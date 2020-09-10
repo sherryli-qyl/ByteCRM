@@ -1,0 +1,30 @@
+.Modal{
+   position:absolute;
+   visibility: hidden;
+   width:40%;
+   height:50%;
+   background-color: transparent;
+   
+}
+
+.MainComponents{
+    visibility: hidden;  
+    width:100%;
+    
+}
+
+.Component--acitve{
+    visibility: visible;
+}
+
+
+
+
+@media screen and (max-width: 1024px) {
+	.Weather {
+		width: 50%;
+		min-width: 350px;
+		margin-top: 50px;
+	}
+
+}

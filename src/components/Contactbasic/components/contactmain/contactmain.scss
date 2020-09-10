@@ -1,0 +1,28 @@
+.Main{
+    height:100%;
+    width:100%;
+  	display: flex;
+	flex-direction: row;
+    border: solid 1px ;
+    position:relative;  
+    z-index:0;
+    
+}
+
+.Contact{
+    flex:1;
+    border: solid 1px;
+    margin:1px
+}
+
+.Function{
+    flex:2;
+    border: solid 1px;
+    margin:1px
+}
+
+.Company{
+    flex:1;
+    border: solid 1px;
+    margin:1px
+}
