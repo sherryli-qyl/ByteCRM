@@ -9,8 +9,8 @@ class ContactMain extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            Xaxis: 500,
-            Yaxis: 200,
+            Xaxis: 300,
+            Yaxis: 50,
             visible: false,
             currentModal: "",
         }
