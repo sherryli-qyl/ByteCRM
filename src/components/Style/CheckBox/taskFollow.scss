@@ -1,0 +1,40 @@
+@import'../../../style/variable.scss';
+
+.taskFollow{
+    display: flex;
+    justify-content:flex-start;
+    flex-wrap: wrap; 
+    height:100%;
+    //max-width: 350px;
+    //background-color:rgba($color: #3ddfd1, $alpha: 0.3);
+    
+   
+
+    &__checkbox{
+        display: flex;
+        justify-content: flex-start;
+        align-self: center;
+        height:50%;
+        //background-color:rgba($color: #b0d11c, $alpha: 0.5);
+    
+        &__text{
+            align-self: center;
+            font-size: small;
+        }
+    }
+
+    &__select{
+        height:40%;
+        align-self: center;
+        font-weight: bold;
+       
+        margin-left: 10px;
+        //background-color:rgba($color: #c4971c, $alpha: 0.5);
+        &:hover{         
+            transition: none;
+            border-bottom:solid 1px (rgba($color: $secondary-color, $alpha: 0.8));
+        } 
+    }
+
+
+}

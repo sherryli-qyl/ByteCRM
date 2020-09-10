@@ -1,20 +1,20 @@
 import React from 'react';
 import {Redirect, Route, Switch} from 'react-router-dom';
-import ContactList from '../Contactlist/Contactlist';
-import ContactMain from '../Contactbasic/components/contactmain/ContactMain';
-import CompanyList from '../companylist/CompanyList';
-import Logout from '../Log/logout';
-import RegForm from '../Log/SignUp';
+import ContactList from '../Contact/ContactList';
+import ContactMain from '../Contact/ContactMain';
+import CompanyList from '../Company/CompanyList';
+// import Logout from '../Log/Logout';
+// import RegForm from '../Log/SignUp';
 
 
 const Routes = () => (
    <Switch>
-        <Redirect exact from="/" to ="/register" />
-        <Route exact path="/contacts" component={ContactList} />
-        <Route exact path="/contacts/main" component={ContactMain} />
+        <Redirect exact from="/" to ="/contacts/contact" />
+        <Route exact path="/contacts/list" component={ContactList} />
+        <Route exact path="/contacts/contact" component={ContactMain} />
         <Route exact path="/companies" component={CompanyList} />
-        <Route exact path="/logout" component={Logout} />
-        <Route exact path="/register" component={RegForm} />
+        {/* <Route exact path="/logout" component={Logout} />
+        <Route exact path="/register" component={RegForm} /> */}
     </Switch>
    );
 

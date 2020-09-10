@@ -1,0 +1,79 @@
+@import "../../../../../../../style/variable.scss";
+
+.emailHeader{
+    background-color: white;
+    display:flex;
+    flex:1;
+
+    &__blank{
+        flex:1;    
+    }
+
+    &__main{
+        display: inline-block;  
+        flex:35;
+        justify-content: flex-start;
+        
+       
+       
+        &__item{
+            display: flex;
+            margin:3% auto;
+           
+            &__right{
+                flex:12;
+                display: flex;
+                flex-wrap: wrap;  
+              
+                
+            }      
+        }
+       
+    }
+}
+
+.item-content{
+        display:flex;
+        margin-left: 0.8rem;
+        margin-bottom: 0.4rem;
+       
+
+    &__left{  
+        flex:1;   
+        margin-left: 1.2rem;
+    }
+
+    &__right{
+        display: flex;
+        flex:1;
+        justify-content: flex-end;
+        visibility: hidden;
+        opacity: 0;
+
+        &__active{
+            visibility: visible;
+            opacity: 1;
+        }
+    }  
+}
+
+.ccButton{
+    margin-right: 0.3rem;
+    cursor: pointer;
+    border: 0;
+    outline: 0;
+    background-color: transparent;
+   
+}
+
+
+.subject{
+    
+   
+}
+
+
+.header_item{
+    flex:1; 
+    margin: 1% 1%;
+}

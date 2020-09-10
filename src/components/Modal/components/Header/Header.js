@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ArrowIcon_Down from "../../../../img/Modal/DownArrow.svg";
 import ArrowIcon_Right from '../../../../img/Modal/RightArrow.svg';
 import CloseIcon from "../../../../img/Modal/closeIcon.png"

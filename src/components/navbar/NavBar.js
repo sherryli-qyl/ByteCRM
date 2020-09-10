@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import './navbar.scss';
-import Logo from '../navbar/logo.png';
+import './Navbar.scss';
+import Logo from './logo.png';
 import { FiHome } from "react-icons/fi";
 
 

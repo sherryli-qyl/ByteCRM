@@ -1,0 +1,42 @@
+@import '../../../../../../../style/variable.scss';
+
+
+.emailSendBar{
+    display: flex;
+    justify-content: flex-start;
+    height:70px;
+    // margin-top:0.1%;
+    // margin-bottom: 1%;
+    //background-color:rgba($color: #e06a1a, $alpha: 0.5);
+
+    &__send{
+        flex:1;
+        align-self: center;
+        margin-left: 1.5%;
+
+        &__button{
+            background-color: $tertiary-color;
+        }
+    }
+
+    &__sendLater{
+        flex:1;
+        align-self: center;
+        margin-left: 1.5%;
+
+        &__button{
+            border:solid 1px $tertiary-color;
+            color:$tertiary-color;
+
+            &:hover{
+                background-color:rgba($color: $tertiary-color, $alpha: 0.1); 
+                cursor: pointer;
+            }
+        }
+    }
+
+    &__taskFollow{
+        flex:7;
+    }
+}
+

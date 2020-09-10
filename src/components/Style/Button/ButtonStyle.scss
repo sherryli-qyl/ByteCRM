@@ -1,0 +1,34 @@
+@import '../../../style/variable.scss';
+
+.containedButton{
+    border: 0;
+    outline: 0;
+    height:30px;
+    width: 60px;
+    border-radius: 3px;
+    color:white;
+    font-size:small;
+
+    &:hover{
+        opacity: 0.8;
+        cursor: pointer;
+    }
+}
+
+.outlinedButton{
+    border: 0;
+    outline: 0;
+    background-color: transparent;
+    height:30px;
+    width: 80px;
+    border-radius: 3px;
+    //color:$tertiary-color;
+    font-size:small;
+    //border:solid 1px $tertiary-color;
+
+    &:hover{
+        background-color:rgba($color: $tertiary-color, $alpha: 0.1);
+        
+        cursor: pointer;
+    }
+}

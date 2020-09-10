@@ -10,6 +10,7 @@
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.20.0",
     "history": "^5.0.0",
+    "moment": "^2.27.0",
     "node-sass": "^4.14.1",
     "or": "^0.2.0",
     "react": "^16.13.1",
