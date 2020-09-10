@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Modal from '../../Modal';
-import Contactbasic from './components/Basic';
-import ContactActivity from './components/Activity';
+import Basic from './components/Basic';
+import Activities from './components/Activities';
 import Navbar from"../../Navbar";
 import './ContactMain.scss';
 
@@ -42,11 +42,11 @@ class ContactMain extends Component {
                     <Navbar />
                 </header>
                 <div className="Main">
-                    <Contactbasic openModal={this.openModal}
+                    <Basic openModal={this.openModal}
                     />
                     
                     <div className="Function">
-                        <ContactActivity/>
+                        <Activities/>
                     </div>
 
                     <div className="Company">
