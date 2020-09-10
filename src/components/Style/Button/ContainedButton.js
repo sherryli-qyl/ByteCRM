@@ -9,7 +9,7 @@ const ContainedButton = ({
     className
 }) => {
     return (
-        <button className={"containedButton " + className}>{children}</button>
+        <button className={"containedButton "}>{children}</button>
     )
 
 }

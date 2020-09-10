@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Modal from '../../Modal';
-import Contactbasic from './Contactbasic';
-import ContactActivity from './ContactActivity';
+import Contactbasic from './components/Basic';
+import ContactActivity from './components/Activity';
 import Navbar from"../../Navbar";
 import './ContactMain.scss';
 
@@ -9,8 +9,8 @@ class ContactMain extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            Xaxis: 500,
-            Yaxis: 200,
+            Xaxis: 300,
+            Yaxis: 50,
             visible: false,
             currentModal: "",
         }

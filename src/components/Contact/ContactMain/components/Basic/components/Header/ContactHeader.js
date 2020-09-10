@@ -1,7 +1,7 @@
 import React from 'react';
 import "./ContactHeader.scss";
-import IconProfile from "../../../../../../img/Contact/profile.png";
-import IconContact from "../../../../../../img/Contact/contact.png"
+import IconProfile from "../../../../../../../img/Contact/profile.png";
+import IconContact from "../../../../../../../img/Contact/contact.png"
 
 const ContactHeader = () => (
   <div className="contact_basic">
