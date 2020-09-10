@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ContactActivity =()=>{
+const Activity =()=>{
 
     return(
         <div>
@@ -9,4 +9,4 @@ const ContactActivity =()=>{
     )
 }
 
-export default ContactActivity;
+export default Activity;

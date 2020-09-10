@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Modal from '../../Modal';
-import Contactbasic from './Contactbasic';
-import ContactActivity from './ContactActivity';
+import Contactbasic from './components/Basic';
+import ContactActivity from './components/Activity';
 import Navbar from"../../Navbar";
 import './ContactMain.scss';
 
