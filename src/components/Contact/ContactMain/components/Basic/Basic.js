@@ -8,8 +8,8 @@ import IconTask from "../../../../../img/Contact/task.png";
 import IconMeeting from "../../../../../img/Contact/meeting.png";
 import Header from "./components/Header"
 import ActivityBar from "./components/ActivityBar/ActivityBar"
-import NoteModal from "../../../../Modal/components/Function/Note_Modal"
-import EmailModal from "../../../../Modal/components/Function/Email_Modal"
+import NoteModal from "../../../../Modal/components/Function/Note"
+import EmailModal from "../../../../Modal/components/Function/Email"
 
 
 
