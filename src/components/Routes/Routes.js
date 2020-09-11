@@ -9,7 +9,7 @@ import CompanyList from '../Company/CompanyList';
 
 const Routes = () => (
    <Switch>
-        <Redirect exact from="/" to ="/contacts/contact" />
+        <Redirect exact from="/" to ="/contacts/list" />
         <Route exact path="/contacts/list" component={ContactList} />
         <Route exact path="/contacts/contact" component={ContactMain} />
         <Route exact path="/companies" component={CompanyList} />
