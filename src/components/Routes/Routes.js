@@ -15,12 +15,7 @@ const Routes = () => (
         <Route exact path="/companies" component={CompanyList} />
         {/* <Route exact path="/logout" component={Logout} />
         <Route exact path="/register" component={RegForm} /> */}
-<<<<<<< HEAD
-        {/* others' change */}
-
-=======
-        {/* my change */}
->>>>>>> emailcomponents
+        
     </Switch>
    );
 
