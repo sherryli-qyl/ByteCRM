@@ -1,0 +1,179 @@
+$hoverColor: #33475b;
+$shownColor: #0091ae;
+$myFont: 'Varela Round', sans-serif;
+
+.byteCRMLogo {
+  width: 27em;
+  height: 9em;
+  margin-left: 34%;
+  margin-top: 5%;
+}
+
+.signUpPara {
+  font: {
+    family: $myFont;
+    weight: 400;
+    size: 14px;
+  }
+
+  color: $hoverColor;
+  line-height: 12px;
+  margin-left: 40%;
+}
+
+.linkBtn {
+  font: {
+    family: $myFont;
+    weight: 400;
+    size: 14px;
+  }
+  text-decoration: none;
+  color: $shownColor;
+  position: fixed;
+}
+
+.linkBtn:hover {
+  color: $hoverColor;
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.loginForm {
+  margin-top: 0;
+  margin-left: 37%;
+}
+
+.laBel {
+  padding: 8px 12px 4px 0;
+  font: {
+    family: $myFont;
+    weight: 600;
+    size: 14px;
+  }
+
+  color: $shownColor;
+}
+
+.emailInput {
+  padding: 9px 10px;
+  border-radius: 3px;
+  border: 1px solid #cbd6e2;
+  font-size: 16px;
+  transition: all 0.15s ease-out;
+  transition-property: all;
+  transition-duration: 0.15s;
+  transition-timing-function: ease-out;
+  transition-delay: 0s;
+  background-color: #f5f8fa;
+  color: $hoverColor;
+  display: block;
+  line-height: 22px;
+  text-align: left;
+  height: 20px;
+  width: 40%;
+  margin: {
+    top: 1%;
+    bottom: 3%;
+  }
+
+  position: relative;
+  display: flex;
+}
+
+.errMsg {
+  color: red;
+  font: {
+    size: 13px;
+    family: $myFont;
+    weight: 600;
+  }
+  margin-top: -2%;
+}
+
+.pwdReveal {
+  font: {
+    family: $myFont;
+    weight: 400;
+    size: 10px;
+  }
+
+  color: $shownColor;
+}
+
+.pwdReveal:hover {
+  color: $hoverColor;
+  text-decoration: underline;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.pwdInput {
+  padding: 9px 10px;
+  border-radius: 3px;
+  border: 1px solid #cbd6e2;
+  font-size: 16px;
+  transition: all 0.15s ease-out;
+  transition-property: all;
+  transition-duration: 0.15s;
+  transition-timing-function: ease-out;
+  transition-delay: 0s;
+  background-color: #f5f8fa;
+  color: $hoverColor;
+  display: block;
+  line-height: 22px;
+  text-align: left;
+  height: 20px;
+  width: 40%;
+  margin : {
+    top: 1%;
+    bottom: 0;
+  }
+
+  position: relative;
+  display: flex;
+}
+
+.checkBox {
+  margin: {
+    left: 0%;
+    top: 3.5em;
+  }
+}
+
+.rmbMe {
+  font: {
+    family: $myFont;
+    size: 16px;
+  }
+  color: $shownColor;
+  margin-left: 1%;
+}
+
+.rmbMe:hover {
+  cursor: pointer;
+  color: $hoverColor;
+}
+
+.loginBtn {
+  font: {
+    family: $myFont;
+    weight: 600;
+  }
+  border: {
+    radius: 3px;
+    style: solid;
+  }
+  margin : {
+    left: 0%;
+    top: 1em;
+  }
+  width: 40%;
+  height: 38px;
+  color: #fff;
+  background-color: #ff7a59;
+  border-color: #ff7a59;
+  line-height: 16px;
+  cursor: pointer;
+  position: relative;
+  vertical-align: middle;
+}
