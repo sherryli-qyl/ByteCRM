@@ -17,5 +17,4 @@ const ContactHeader = () => (
   </div>
 );
 
-
 export default ContactHeader;

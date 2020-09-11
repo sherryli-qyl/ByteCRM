@@ -1,0 +1,43 @@
+.contact_header {
+    justify-self: center;
+    width: 150px;
+    margin:40px 80px;
+    left: 10px;
+    position: relative;
+}
+
+.back-to-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    border: 2px solid rgb(128, 128, 128);
+    margin: 10px 0px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.contact_text {
+    margin: 5px;
+    text-align: center;
+    line-height: 20px;
+}
+
+.icon_contact {
+    margin: 5px;
+    width: 20px;
+}
+
+.profile_icon {
+    margin: 10px 45px;
+    width: 60px;
+    right: 20px;
+}
+
+.contact_name {
+    margin: 10px;
+}
+
+.contact_position {
+    margin: 10px;
+}
+
