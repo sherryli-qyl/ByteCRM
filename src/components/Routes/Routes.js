@@ -9,9 +9,9 @@ import CompanyList from '../Company/CompanyList';
 
 const Routes = () => (
    <Switch>
-        <Redirect exact from="/" to ="/contacts/list" />
+        <Redirect exact from="/" to ="/contacts/main" />
         <Route exact path="/contacts/list" component={ContactList} />
-        <Route exact path="/contacts/contact" component={ContactMain} />
+        <Route exact path="/contacts/main" component={ContactMain} />
         <Route exact path="/companies" component={CompanyList} />
         {/* <Route exact path="/logout" component={Logout} />
         <Route exact path="/register" component={RegForm} /> */}
