@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+$call-myFont: 'Varela Round', sans-serif;
+$callsColor: #516f90;
+$textColor: #0091ae;
+
+#draggable-dialog-title {
+  font-family: $call-myFont;
+  background-color: $callsColor;
+  color: #fff;
+}
+
+.closeIcon {
+  width: 2.5rem;
+  height: 2.5rem;
+  float: right;
+  cursor: pointer;
+}
+
+.closeIcon:hover {
+  box-shadow: 1px 1px 5px 1px #c9dbf0;
+}
+
+.callsNavBar {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: $callsColor;
+  font-size: 13px;
+  position: relative;
+}
+
+.callsNavBar > li {
+  display: inline-block;
+  width: 12rem;
+  text-align: center;
+}
+
+.callsNavItems {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  position: relative;
+}
+
+.callsNavItems > li {
+  display: inline-block;
+  width: 12rem;
+  text-align: center;
+  margin-top: 1rem;
+  position: relative;
+}
+
+.selectOptions {
+  color: $textColor;
+}
+
+.contactedName {
+  font-size: 17px;
+  color: $textColor;
+  border: none;
+  background-color: #fff;
+}
+
+.contactedName > img {
+  width: 1rem;
+  height: 1rem;
+}
+
+hr {
+  width: 100%;
+}
+
+.textArea {
+  font: {
+    family: $call-myFont;
+    size: 14px;
+  }
+  color: #33475b;
+  padding: 1rem 1rem 1rem 1rem;
+  box-sizing: border-box;
+}
