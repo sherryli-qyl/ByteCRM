@@ -1,11 +1,16 @@
-import React from 'react';
+import React,{Fragment} from 'react';
+import Container from '@material-ui/core/Container';
 
+import NaviBar from './components/NaviBar/NaviBar';
 const Activities =()=>{
 
     return(
-        <div>
-        this is Contact Activity Page
-        </div>
+        <Fragment>
+        <Container maxWidth="md">
+          <NaviBar />
+  
+        </Container>
+    </Fragment>
     )
 }
 
