@@ -12,10 +12,7 @@ const ContactList = () => (
         <div className="Contacts">
             <h2>Contacts</h2>
             <ul className="contacts-list">
-                <li className="navbar-contacts">
-                    <NavLink activeClassName="active" to="/contacts/contact">
-                        <button>Brian Halligan</button>
-                    </NavLink></li>
+                <li className="navbar-contacts"><NavLink activeClassName="active" to="/contacts/main"><button>Brian Halligan</button></NavLink></li>
             </ul>
         </div>
     </div>
