@@ -3,6 +3,8 @@ import Logo from './components/logo';
 import LoginForm from './components/form';
 import ToSignUp from './components/signUp';
 import './Style/style.scss';
+import Register from '../RegForm/Register';
+import Calls from '../Calls/Call';
 import { Route, Switch } from 'react-router-dom';
 
 class SignIn extends React.Component {
@@ -10,15 +12,19 @@ class SignIn extends React.Component {
     return (
       <div>
         <Switch>
-          <Route exact path="/login">
+          <Route exact path="/">
             <Logo />
             <ToSignUp />
             <LoginForm />
           </Route>
 
-          {/* <Route path="/call">
+          <Route path="/reg">
+            <Register />
+          </Route>
+
+          <Route path="/call">
             <Calls />
-          </Route>*/}
+          </Route>
         </Switch>
       </div>
     );
