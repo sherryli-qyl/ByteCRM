@@ -9,7 +9,7 @@ import RegForm from '../Log/RegForm/Register';
 
 const Routes = () => (
    <Switch>
-         <Redirect exact from="/" to ="/register" />
+        <Redirect exact from="/" to ="/register" />
         <Route exact path="/contacts" component={ContactList} />
         <Route exact path="/contacts/main" component={ContactMain} />
         <Route exact path="/companies" component={CompanyList} />
