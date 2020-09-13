@@ -13,9 +13,9 @@ const NoteModal = () => (
         placeholder="Please start typing note..."
       />
     </div>
-    <div className="note-container-footer">
-      <NoteSaveBar />
-    </div>
+      <NoteSaveBar 
+        className="note-container-footer"
+      />
   </section>
   );
 
