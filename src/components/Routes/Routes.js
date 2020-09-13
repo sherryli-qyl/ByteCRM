@@ -9,13 +9,13 @@ import LoginForm from '../Log/LoginForm/Login';
 
 const Routes = () => (
   <Switch>
-    <Route exact path="/" component={LoginForm} />
+    <Redirect exact from="/" to="/register" />
+    <Route exact path="/login" component={LoginForm} />
     <Route exact path="/contacts" component={ContactList} />
     <Route exact path="/contacts/main" component={ContactMain} />
     <Route exact path="/companies" component={CompanyList} />
     <Route exact path="/logout" component={Logout} />
     <Route exact path="/register" component={RegForm} />
-    <Redirect exact from="/" to="/register" />
   </Switch>
 );
 

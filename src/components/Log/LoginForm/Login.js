@@ -10,7 +10,7 @@ class SignIn extends React.Component {
     return (
       <div>
         <Switch>
-          <Route exact path="/">
+          <Route exact path="/login">
             <Logo />
             <ToSignUp />
             <LoginForm />
