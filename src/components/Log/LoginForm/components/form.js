@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 const initialState = {
   emailAddr: '',
@@ -57,7 +56,7 @@ class Form extends React.Component {
   render() {
     return (
       <div>
-        <Link to="/call">hello world</Link>
+        {/* <Link to="/call">hello world</Link> */}
         <form className="loginForm" onSubmit={this.handleSubmit}>
           <label htmlFor="email" className="laBel">
             Email address
@@ -92,9 +91,7 @@ class Form extends React.Component {
           <br />
           <div className="errMsg">{this.state.passwordErrMsg}</div>
           <br />
-          <a className="linkBtn" href="#">
-            Forgot my password
-          </a>
+          <a className="linkBtn">Forgot my password</a>
           <input id="rememberMe" className="checkBox" type="checkbox" />
           <label htmlFor="rememberMe" className="rmbMe">
             Remember Me

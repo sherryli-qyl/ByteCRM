@@ -12,6 +12,7 @@ class Modal extends Component {
             defaultXaxis: 500,
             defaultYaxis: 100,
             hide: false,
+
         };
 
         this.modal = React.createRef();
@@ -43,6 +44,10 @@ class Modal extends Component {
 
     render() {
         const { hide, visibleStatus } = this.state;
+        let className="MainComponents";
+        if(!hide){
+            className +=" Component--acitve";
+        }
 
         return (
             <Draggable
