@@ -1,0 +1,34 @@
+.back-to-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+  border: 2px solid rgb(128, 128, 128);
+  margin: 10px 0px;
+  cursor: pointer;
+  border-radius: 5px;
+
+  .company_text {
+      text-align: center;
+      line-height: 25px;
+  }
+
+  .icon_company {
+      width: 25px;
+  }
+}
+
+.company_header {
+  text-align: center;
+  .profile_icon {
+      width: 70px;
+      background-color: white;
+      border: #fffff1;
+      border-radius: 50%;
+      overflow: hidden;
+  }
+
+  .company_name {
+      font-size: 25px;
+      padding: 10px;
+  }
+}
