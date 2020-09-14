@@ -1,5 +1,5 @@
 import React from 'react';
-import "./ContactList.scss";
+// import "./ContactList.scss";
 
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -38,42 +38,290 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function createData(name, email, phoneNumber, contactOwner, 
-  associatedCompany, lastActivityDate, leadStatus, createDate) {
-  return { name, email, phoneNumber, contactOwner, 
-    associatedCompany, lastActivityDate, leadStatus, createDate };
+function createData(
+  name,
+  email,
+  phoneNumber,
+  contactOwner,
+  associatedCompany,
+  lastActivityDate,
+  leadStatus,
+  createDate
+) {
+  return {
+    name,
+    email,
+    phoneNumber,
+    contactOwner,
+    associatedCompany,
+    lastActivityDate,
+    leadStatus,
+    createDate,
+  };
 }
 
 const rows = [
-  createData('John', 'fqwfqwd@gmail.com', '045499149', 'Louis', 'HubSpot, Inc.', '10/09/2020', 'Busy', '08/09/2020'),
-  createData('Louis', 'affq@gmail.com', '045499149', 'Louis', 'HubSpot, Inc.', '10/09/2020', 'Busy', '08/09/2020'),
-  createData('Eclair', '343ewf@gmail.com', '045499149', 'Louis', 'HubSpot, Inc.', '10/09/2020', 'Busy', '08/09/2020'),
-  createData('Mary', '413fqw@gmail.com', '045499149', 'Louis',' HubSpot, Inc.', '10/09/2020', 'Busy', '08/09/2020'),
-  createData('Brian', 'edgar61@hotmail.com', '045499149', 'Louis', 'HubSpot, Inc.', '10/09/2020', 'Busy', '08/09/2020'),
-  createData('Keith', 'elias82@yahoo.com', '045499149', 'Louis', 'HubSpot, Inc.', '10/09/2020', 'Busy', '08/09/2020'),
-  createData('Larry', 'webb80@mail.com', '045499149', 'Louis', 'HubSpot, Inc.', '10/09/2020', 'Busy', '08/09/2020'),
-  createData('Jason', 'billy73@mail.com.au', '045499149', 'Louis',' HubSpot, Inc.', '10/09/2020', 'Busy', '08/09/2020'),
-  createData('Joseph', 'parlin.joseph@gmail.com', '045499149', 'Louis', 'HubSpot, Inc.', '10/09/2020', 'Busy', '08/09/2020'),
-  createData('Samuel', 'tebo84@gmail.com', '045499149', 'Louis', 'HubSpot, Inc.', '10/09/2020', 'Busy', '08/09/2020'),
-  createData('Lori', 'davis1@hotmail.com', '045499149', 'Louis', 'HubSpot, Inc.', '10/09/2020', 'Busy', '08/09/2020'),
-  createData('Russell', 'lou.hull@mail.com.au', '045499149', 'Louis',' HubSpot, Inc.', '10/09/2020', 'Busy', '08/09/2020'),
-  createData('Debra', 'eric31@mail.com.au', '045499149', 'Louis', 'HubSpot, Inc.', '10/09/2020', 'Busy', '08/09/2020'),
-  createData('ricky', 'rhodes89@gmail.com', '045499149', 'Louis', 'HubSpot, Inc.', '10/09/2020', 'Busy', '08/09/2020'),
-  createData('Lanny', 'price41@gmail.com', '045499149', 'Louis', 'HubSpot, Inc.', '10/09/2020', 'Busy', '08/09/2020'),
-  createData('Peter', 'barbara.hester.gmail.com', '045499149', 'Louis', 'HubSpot, Inc.', '10/09/2020', 'Busy', '08/09/2020'),
-  createData('Rebecca', 'thomas93@mail.com.au', '045499149', 'Louis', 'HubSpot, Inc.', '10/09/2020', 'Busy', '08/09/2020'),
-  createData('David', 'david59@yahoo.com', '045499149', 'Louis', 'HubSpot, Inc.', '10/09/2020', 'Busy', '08/09/2020'),
-  createData('Marc', 'waaso.stanley@gmail.com', '045499149', 'Louis', 'HubSpot, Inc.', '10/09/2020', 'Busy', '08/09/2020'),
-  createData('Nancy', 'daniel.thompson@hotmail.com', '045499149', 'Louis', 'HubSpot, Inc.', '10/09/2020', 'Busy', '08/09/2020'),
-  createData('Jose', 'joyce41@hotmail.com', '045499149', 'Louis', 'HubSpot, Inc.', '10/09/2020', 'Busy', '08/09/2020'),
-  createData('Linda', 'timothy.west@yahoo.com', '045499149', 'Louis', 'HubSpot, Inc.', '10/09/2020', 'Busy', '08/09/2020'),
-  createData('Whitney', 'sterling18@hotmail.com', '045499149', 'Louis', 'HubSpot, Inc.', '10/09/2020', 'Busy', '08/09/2020'),
-  createData('Dana', 'robert40@hotmail.com', '045499149', 'Louis', 'HubSpot, Inc.', '10/09/2020', 'Busy', '08/09/2020'),
-  createData('Bonnie', 'egan54@mail.com', '045499149', 'Louis', 'HubSpot, Inc.', '10/09/2020', 'Busy', '08/09/2020'),
-  createData('Ray', 'mattie.lewis@mail.com.au', '045499149', 'Louis', 'HubSpot, Inc.', '10/09/2020', 'Busy', '08/09/2020'),
-
+  createData(
+    'John',
+    'fqwfqwd@gmail.com',
+    '045499149',
+    'Louis',
+    'HubSpot, Inc.',
+    '10/09/2020',
+    'Busy',
+    '08/09/2020'
+  ),
+  createData(
+    'Louis',
+    'affq@gmail.com',
+    '045499149',
+    'Louis',
+    'HubSpot, Inc.',
+    '10/09/2020',
+    'Busy',
+    '08/09/2020'
+  ),
+  createData(
+    'Eclair',
+    '343ewf@gmail.com',
+    '045499149',
+    'Louis',
+    'HubSpot, Inc.',
+    '10/09/2020',
+    'Busy',
+    '08/09/2020'
+  ),
+  createData(
+    'Mary',
+    '413fqw@gmail.com',
+    '045499149',
+    'Louis',
+    ' HubSpot, Inc.',
+    '10/09/2020',
+    'Busy',
+    '08/09/2020'
+  ),
+  createData(
+    'Brian',
+    'edgar61@hotmail.com',
+    '045499149',
+    'Louis',
+    'HubSpot, Inc.',
+    '10/09/2020',
+    'Busy',
+    '08/09/2020'
+  ),
+  createData(
+    'Keith',
+    'elias82@yahoo.com',
+    '045499149',
+    'Louis',
+    'HubSpot, Inc.',
+    '10/09/2020',
+    'Busy',
+    '08/09/2020'
+  ),
+  createData(
+    'Larry',
+    'webb80@mail.com',
+    '045499149',
+    'Louis',
+    'HubSpot, Inc.',
+    '10/09/2020',
+    'Busy',
+    '08/09/2020'
+  ),
+  createData(
+    'Jason',
+    'billy73@mail.com.au',
+    '045499149',
+    'Louis',
+    ' HubSpot, Inc.',
+    '10/09/2020',
+    'Busy',
+    '08/09/2020'
+  ),
+  createData(
+    'Joseph',
+    'parlin.joseph@gmail.com',
+    '045499149',
+    'Louis',
+    'HubSpot, Inc.',
+    '10/09/2020',
+    'Busy',
+    '08/09/2020'
+  ),
+  createData(
+    'Samuel',
+    'tebo84@gmail.com',
+    '045499149',
+    'Louis',
+    'HubSpot, Inc.',
+    '10/09/2020',
+    'Busy',
+    '08/09/2020'
+  ),
+  createData(
+    'Lori',
+    'davis1@hotmail.com',
+    '045499149',
+    'Louis',
+    'HubSpot, Inc.',
+    '10/09/2020',
+    'Busy',
+    '08/09/2020'
+  ),
+  createData(
+    'Russell',
+    'lou.hull@mail.com.au',
+    '045499149',
+    'Louis',
+    ' HubSpot, Inc.',
+    '10/09/2020',
+    'Busy',
+    '08/09/2020'
+  ),
+  createData(
+    'Debra',
+    'eric31@mail.com.au',
+    '045499149',
+    'Louis',
+    'HubSpot, Inc.',
+    '10/09/2020',
+    'Busy',
+    '08/09/2020'
+  ),
+  createData(
+    'ricky',
+    'rhodes89@gmail.com',
+    '045499149',
+    'Louis',
+    'HubSpot, Inc.',
+    '10/09/2020',
+    'Busy',
+    '08/09/2020'
+  ),
+  createData(
+    'Lanny',
+    'price41@gmail.com',
+    '045499149',
+    'Louis',
+    'HubSpot, Inc.',
+    '10/09/2020',
+    'Busy',
+    '08/09/2020'
+  ),
+  createData(
+    'Peter',
+    'barbara.hester.gmail.com',
+    '045499149',
+    'Louis',
+    'HubSpot, Inc.',
+    '10/09/2020',
+    'Busy',
+    '08/09/2020'
+  ),
+  createData(
+    'Rebecca',
+    'thomas93@mail.com.au',
+    '045499149',
+    'Louis',
+    'HubSpot, Inc.',
+    '10/09/2020',
+    'Busy',
+    '08/09/2020'
+  ),
+  createData(
+    'David',
+    'david59@yahoo.com',
+    '045499149',
+    'Louis',
+    'HubSpot, Inc.',
+    '10/09/2020',
+    'Busy',
+    '08/09/2020'
+  ),
+  createData(
+    'Marc',
+    'waaso.stanley@gmail.com',
+    '045499149',
+    'Louis',
+    'HubSpot, Inc.',
+    '10/09/2020',
+    'Busy',
+    '08/09/2020'
+  ),
+  createData(
+    'Nancy',
+    'daniel.thompson@hotmail.com',
+    '045499149',
+    'Louis',
+    'HubSpot, Inc.',
+    '10/09/2020',
+    'Busy',
+    '08/09/2020'
+  ),
+  createData(
+    'Jose',
+    'joyce41@hotmail.com',
+    '045499149',
+    'Louis',
+    'HubSpot, Inc.',
+    '10/09/2020',
+    'Busy',
+    '08/09/2020'
+  ),
+  createData(
+    'Linda',
+    'timothy.west@yahoo.com',
+    '045499149',
+    'Louis',
+    'HubSpot, Inc.',
+    '10/09/2020',
+    'Busy',
+    '08/09/2020'
+  ),
+  createData(
+    'Whitney',
+    'sterling18@hotmail.com',
+    '045499149',
+    'Louis',
+    'HubSpot, Inc.',
+    '10/09/2020',
+    'Busy',
+    '08/09/2020'
+  ),
+  createData(
+    'Dana',
+    'robert40@hotmail.com',
+    '045499149',
+    'Louis',
+    'HubSpot, Inc.',
+    '10/09/2020',
+    'Busy',
+    '08/09/2020'
+  ),
+  createData(
+    'Bonnie',
+    'egan54@mail.com',
+    '045499149',
+    'Louis',
+    'HubSpot, Inc.',
+    '10/09/2020',
+    'Busy',
+    '08/09/2020'
+  ),
+  createData(
+    'Ray',
+    'mattie.lewis@mail.com.au',
+    '045499149',
+    'Louis',
+    'HubSpot, Inc.',
+    '10/09/2020',
+    'Busy',
+    '08/09/2020'
+  ),
 ];
-
 
 function descendingComparator(itemA, itemB, orderBy) {
   if (itemB[orderBy] < itemA[orderBy]) {
@@ -98,7 +346,7 @@ function stableSort(array, comparator) {
   stabilizedThis.sort((a, b) => {
     const order = comparator(a[0], b[0]);
     if (order !== 0) {
-      return order;      
+      return order;
     }
     return a[1] - b[1];
   });
@@ -143,7 +391,7 @@ function EnhancedTable() {
     } else if (selectedIndex > 0) {
       newSelected = newSelected.concat(
         selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1),
+        selected.slice(selectedIndex + 1)
       );
     }
 
@@ -159,15 +407,18 @@ function EnhancedTable() {
     setPage(0);
   };
 
-
   const isSelected = (name) => selected.indexOf(name) !== -1;
 
-  const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
+  const emptyRows =
+    rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
-        <EnhancedTableToolbar numSelected={selected.length} rowCount={rows.length} />
+        <EnhancedTableToolbar
+          numSelected={selected.length}
+          rowCount={rows.length}
+        />
         <TableContainer>
           <Table
             className={classes.table}
@@ -200,13 +451,15 @@ function EnhancedTable() {
                       tabIndex={-1}
                       key={row.name}
                       selected={isItemSelected}
-                      style={{ background: isItemSelected ? "#A8D8B9" : 'white' }}
+                      style={{
+                        background: isItemSelected ? '#A8D8B9' : 'white',
+                      }}
                     >
                       <TableCell padding="checkbox">
                         <Checkbox
                           checked={isItemSelected}
                           inputProps={{ 'aria-labelledby': labelId }}
-                          color='default'
+                          color="default"
                         />
                       </TableCell>
                       {/* <TableCell component="th" id={labelId} scope="row" padding="none">
@@ -216,16 +469,20 @@ function EnhancedTable() {
                       <TableCell align="right">{row.email}</TableCell>
                       <TableCell align="right">{row.phoneNumber}</TableCell>
                       <TableCell align="right">{row.contactOwner}</TableCell>
-                      <TableCell align="right">{row.associatedCompany}</TableCell>
-                      <TableCell align="right">{row.lastActivityDate}</TableCell>
+                      <TableCell align="right">
+                        {row.associatedCompany}
+                      </TableCell>
+                      <TableCell align="right">
+                        {row.lastActivityDate}
+                      </TableCell>
                       <TableCell align="right">{row.leadStatus}</TableCell>
                       <TableCell align="right">{row.createDate}</TableCell>
                     </TableRow>
                   );
                 })}
               {emptyRows > 0 && (
-                <TableRow style={{ height: (53) * emptyRows, hover: true }}>
-                  <TableCell colSpan={6}  />
+                <TableRow style={{ height: 53 * emptyRows, hover: true }}>
+                  <TableCell colSpan={6} />
                 </TableRow>
               )}
             </TableBody>
