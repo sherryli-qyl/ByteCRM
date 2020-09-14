@@ -1,0 +1,41 @@
+@import "../../../../../../../../style/variable.scss";
+.activity{
+    display:flex;
+    
+    &__item {
+        display: flex;
+        flex-direction: column;
+        margin: auto 2%;
+        
+        
+    }
+
+    &__name {
+        text-align: center;
+        font-size: 10px;
+    }
+
+    &__icon{
+        width:20px;
+        height:20px;
+        
+    }
+    
+    &__button{
+        border : solid 1px $primary-color;
+        border-radius : 50%;
+        cursor: pointer;
+
+       &：hover{
+        cursor: pointer;
+       }
+
+       
+        
+    }
+}
+
+
+
+
+

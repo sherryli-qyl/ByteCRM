@@ -1,0 +1,28 @@
+.about_company {
+  display: flex;
+  flex-direction: column;
+  margin: 0px 20px;
+}
+
+.key_name {
+  font-size: 15px;
+  margin: 15px 0px;
+}
+
+.value_name {
+  font-size: 10px;
+  margin: 15px 0px;
+  text-decoration-line: underline;
+}
+
+.view-all-properties {
+  margin: 10px 35px;
+  width: 200px;
+  border-radius: 5px;
+}
+
+.view-property-history {
+  margin: 10px 35px;
+  width: 200px;
+  border-radius: 5px;
+}
