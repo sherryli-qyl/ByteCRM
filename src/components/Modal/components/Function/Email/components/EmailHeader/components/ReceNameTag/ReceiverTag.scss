@@ -23,14 +23,16 @@
     }
 
     &__right{
-        flex:1;
-        
-        
         &__closeButton{
             border: 0;
             outline: 0;
+            align-self: center;
             background-color: transparent;
             cursor: pointer;
+
+            &:hover{
+                //background-color:black;
+            }
    
             &__img{
                height:8px;
