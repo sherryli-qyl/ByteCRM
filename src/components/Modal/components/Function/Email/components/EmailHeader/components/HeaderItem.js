@@ -6,19 +6,12 @@ import "./HeaderItem.scss";
 const HeaderItems = ({
     children,
     borderBottom,
-    value,
-    extraClassName
+    value
 }) => {
-    let className = "emailHeader__main__item ";
-
-    if(extraClassName != undefined){
-        className += extraClassName;
-    }
-
+    let className = "emailHeader__main__item";
     if (borderBottom) {
         className += " border-bottom";
     }
-
     return (
         <div className={className}>
             <div className={"title"}>
