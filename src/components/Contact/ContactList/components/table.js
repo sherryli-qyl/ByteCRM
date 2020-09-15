@@ -1,8 +1,8 @@
-import React, { useState, forwardRef } from 'react';
+import React, { Component, useState, forwardRef } from 'react';
+import MaterialTable from 'material-table'
 
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
 import { createMuiTheme } from '@material-ui/core/styles';
-import MaterialTable from 'material-table';
 import AddBox from '@material-ui/icons/AddBox';
 import ArrowDownward from '@material-ui/icons/ArrowDownward';
 import Check from '@material-ui/icons/Check';
@@ -25,7 +25,9 @@ const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
     Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
     Clear: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
+    Delete: forwardRef((props, ref) => <DeleteOutline {...props} ref={ref} />),
     DetailPanel: forwardRef((props, ref) => <ChevronRight {...props} ref={ref} />),
+    Edit: forwardRef((props, ref) => <Edit {...props} ref={ref} />),
     Export: forwardRef((props, ref) => <SaveAlt {...props} ref={ref} />),
     Filter: forwardRef((props, ref) => <FilterList {...props} ref={ref} />),
     FirstPage: forwardRef((props, ref) => <FirstPage {...props} ref={ref} />),
@@ -36,8 +38,8 @@ const tableIcons = {
     Search: forwardRef((props, ref) => <Search {...props} ref={ref} />),
     SortArrow: forwardRef((props, ref) => <ArrowDownward {...props} ref={ref} />),
     ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
-    ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />),
-  };
+    ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
+};
 
 function getColumns() {
   return ([
@@ -54,7 +56,7 @@ function getColumns() {
   ])
 };
 
-
+// 生成假数据的暂时方法
 function createData(
   name,
   email,
@@ -365,28 +367,35 @@ function EnhancedTable() {
         columns={columns}
         data={data}
         icons={tableIcons}
-        // cellEditable={{
-        //   onCellEditApproved: (newValue, oldValue, rowData, columnDef) => {
-        //     return new Promise((resolve, reject) => {
-              
-        //     });
-        //   }
-        // }}
+        // onSelectionChange={(rows) => console.log(rows)}
         actions={[
-          {
-            tooltip: 'Remove All Selected Contacts',
+          { tooltip: 'Remove All Selected Contacts',
             icon: DeleteIcon,
-            onClick: (evt, data) => {
-
-            }
+            onClick: (evt, selectedRow) => new Promise((resolve, reject) => {
+              setTimeout(() => {
+                const dataDelete = [...data];
+                const names = [];
+                for (const item of selectedRow) {
+                  names.push(item.name);
+                }
+                for (let i = 0; i < dataDelete.length; ) {
+                  if (names.includes(dataDelete[i].name)) {
+                    dataDelete.splice(i, 1);
+                    continue;
+                  }
+                  i++;
+                }
+                setData([...dataDelete]);
+              }, 500);
+            })
           }, {
             tooltip: 'Edit contact',
             icon: EditIcon,
             onClick: (event, rowData) => {
-
+              console.log(rowData)
+              // TODO1: 需要一个弹窗输入信息
             }
-          },
-        ]}
+        }]}
         onRowClick={(evt, selectedRow) => setSelectedRow(selectedRow.tableData.id)}
         options={{
           selection: true,
@@ -395,9 +404,35 @@ function EnhancedTable() {
           search: true,
           sorting: true,
           exportButton: true,
+            // TODO2
             // exportCsv: (columns, data) => {
             //   data.length
             // },
+          pageSize: 10,
+          pageSizeOptions: [10, 30, 50],
+        }}
+        editable={{
+          onRowAdd: newData =>
+          // TODO3: 实现添加的验证
+            new Promise((resolve, reject) => {
+              setTimeout(() => {
+                setData([...data, newData]);
+                
+                resolve();
+              }, 500)
+            }),
+          onRowUpdate: (newData, oldData) =>
+            new Promise((resolve, reject) => {
+              setTimeout(() => {
+                // TODO3: 实现输入的验证
+                const dataUpdate = [...data];
+                const index = oldData.tableData.id;
+                dataUpdate[index] = newData;
+                setData([...dataUpdate]);
+  
+                resolve();
+              }, 500)
+            }),
         }}
       />
     </MuiThemeProvider>
