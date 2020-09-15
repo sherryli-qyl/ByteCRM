@@ -14,8 +14,6 @@
         flex:35;
         justify-content: flex-start;
         
-       
-       
         &__item{
             display: flex;
             margin:3% auto;
@@ -23,12 +21,9 @@
             &__right{
                 flex:12;
                 display: flex;
-                flex-wrap: wrap;  
-              
-                
+                flex-wrap: wrap;               
             }      
-        }
-       
+        }    
     }
 }
 
@@ -67,10 +62,25 @@
 }
 
 
+
+
 .subject{
-    
-   
+    margin: 3% auto;
+    margin-bottom: 0%;
+    &__input{
+        border:none;
+        
+
+        &:focus{
+            border:none;
+            outline:none;
+            box-shadow: none;
+        }
+    }
+
 }
+
+
 
 
 .header_item{

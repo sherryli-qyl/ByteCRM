@@ -16,20 +16,29 @@ class EmailModal extends React.Component {
       { key: 'Meetings', value: 'Meetings' },
       { key: 'Quotes', value: 'Quotes' },
     ];
+
+    const contacts = [
+      {key:'John@gmail.com',email:'John@gmail.com', value:'John Wick'},
+      {key:'John222@gmail.com',email:'John222@gmail.com', value:'John 1111 Wick'},
+    ]
     this.state = {
       items,
+      contacts
     }
+    
   }
-
+  
   render() {
-    const { items } = this.state;
+    const { items,contacts } = this.state;
     return (
       <div className="emailModal">
         <EmailFunctionBar
 
           items={items}
         />
-        <EmailHeader />
+        <EmailHeader 
+           contacts = {contacts}
+        />
         <EmailInput/>
         <EmailSendBar/>
       </div>
