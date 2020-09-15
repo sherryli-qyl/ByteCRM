@@ -34,7 +34,7 @@ const tableIcons = {
     Search: forwardRef((props, ref) => <Search {...props} ref={ref} />),
     SortArrow: forwardRef((props, ref) => <ArrowDownward {...props} ref={ref} />),
     ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
-    ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
+    ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />),
   };
 
 function getColumns() {
@@ -347,14 +347,24 @@ function EnhancedTable() {
       columns={columns}
       data={data}
       icons={tableIcons}
+      options={{
+        selection: true,
+
+      }}
       cellEditable={{
         onCellEditApproved: (newValue, oldValue, rowData, columnDef) => {
           return new Promise((resolve, reject) => {
-            console.log('newValue: ' + newValue);
-            setTimeout(resolve, 1000);
+            
           });
         }
       }}
+      actions={[
+        {
+          tooltip: 'Remove All Selected Contacts',
+          icon: 'delete',
+          onClick: (evt, data) => {}
+        }
+      ]}
     />
   )
 }
