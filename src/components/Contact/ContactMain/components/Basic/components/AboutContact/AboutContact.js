@@ -3,15 +3,15 @@ import '../AboutContact/AboutContact.scss';
 import ContactDetail from './components/ContactDetail';
 
 const ContactbasicList = [
-    { title: "First name", value: "Brian" },
-    { title: "Last name", value: "Halligan" },
-    { title: "Email", value: "bh@hubspot.com" },
-    { title: "Phone number", value: "blank" },
-    { title: "Lifecycle stage", value: "lead" },
-    { title: "Lead status", value: "blank" },
-    { title: "Message", value: "blank" },
-    { title: "Company name", value: "blank" },
-    { title: "Contact owner", value: "blank" },
+    { key: "First name", value: "Brian" },
+    { key: "Last name", value: "Halligan" },
+    { key: "Email", value: "bh@hubspot.com" },
+    { key: "Phone number", value: "blank" },
+    { key: "Lifecycle stage", value: "lead" },
+    { key: "Lead status", value: "blank" },
+    { key: "Message", value: "blank" },
+    { key: "Company name", value: "blank" },
+    { key: "Contact owner", value: "blank" },
 ]
 
 const AboutContact = () => (
@@ -19,7 +19,7 @@ const AboutContact = () => (
         <h3> About this contact</h3>
         {ContactbasicList.map((item) => (
             <ContactDetail
-                title={item.title}
+                title={item.key}
                 value={item.value}
             />
         ))}
