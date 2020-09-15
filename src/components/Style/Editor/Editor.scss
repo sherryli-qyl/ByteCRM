@@ -1,0 +1,26 @@
+.editor .ql-container {
+    display:inline-block;
+    width:100%;
+    border:none;
+    padding-top: 0px;
+}
+
+.quill{
+    // background-color:yellow;
+}
+
+.ql-editor{
+    min-height: 100px; 
+    // background-color: red;
+    position:relative;
+    margin-bottom: 3px;
+}
+
+.ql-toolbar.ql-snow {
+    position: absolute;
+    bottom:70px;
+    display:flex;
+    width:100%;
+    border: 0px;
+    margin-left:1%;
+}
