@@ -12,14 +12,12 @@
    
     &__left{
         flex:1;
-       
         &__nameTag{
             font-size: 70%;  
             font-weight: 800;
             white-space: nowrap;
             color: $primary-color;
-       }
-        
+       } 
     }
 
     &__right{
