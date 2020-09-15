@@ -1,6 +1,6 @@
 import React, { useState, forwardRef } from 'react';
 
-import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
+import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
 import { createMuiTheme } from '@material-ui/core/styles';
 import MaterialTable from 'material-table';
 import AddBox from '@material-ui/icons/AddBox';
@@ -19,14 +19,13 @@ import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
 
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
     Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
     Clear: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
-    Delete: forwardRef((props, ref) => <DeleteOutline {...props} ref={ref} />),
     DetailPanel: forwardRef((props, ref) => <ChevronRight {...props} ref={ref} />),
-    Edit: forwardRef((props, ref) => <Edit {...props} ref={ref} />),
     Export: forwardRef((props, ref) => <SaveAlt {...props} ref={ref} />),
     Filter: forwardRef((props, ref) => <FilterList {...props} ref={ref} />),
     FirstPage: forwardRef((props, ref) => <FirstPage {...props} ref={ref} />),
@@ -43,12 +42,14 @@ const tableIcons = {
 function getColumns() {
   return ([
     { title: 'Name', field: 'name', type: 'string' },
-    { title: 'Email', field: 'email', type: 'string' },
-    { title: 'Phone', field: 'phoneNumber', type: 'string' },
+    { title: 'Email', field: 'email', type: 'string', filtering: false },
+    { title: 'Phone', field: 'phoneNumber', type: 'string', filtering: false },
     { title: 'ContactOwner', field: 'contactOwner', type: 'string' },
     { title: 'AssociatedCompany', field: 'associatedCompany', type: 'string' },
     { title: 'LastActivityDate', field: 'lastActivityDate', type: 'string' },
-    { title: 'LeadStatus', field: 'leadStatus', type: 'string' },
+    { title: 'LeadStatus', field: 'leadStatus', type: 'string', 
+      lookup: { 1: 'New', 2: 'Open', 3: 'In progress', 4: 'Open deal', 5: 'Unqualified', 6: 'Attempted to contact', 7: 'Connected', 8: 'Bad timing' },
+    },
     { title: 'CreateDate', field: 'createDate', type: 'string' },
   ])
 };
@@ -85,7 +86,7 @@ const rows = [
     'Louis',
     'HubSpot, Inc.',
     '10/09/2020',
-    'Busy',
+    1,
     '08/09/2020'
   ),
   createData(
@@ -95,7 +96,7 @@ const rows = [
     'Louis',
     'HubSpot, Inc.',
     '10/09/2020',
-    'Busy',
+    2,
     '08/09/2020'
   ),
   createData(
@@ -105,7 +106,7 @@ const rows = [
     'Louis',
     'HubSpot, Inc.',
     '10/09/2020',
-    'Busy',
+    3,
     '08/09/2020'
   ),
   createData(
@@ -115,7 +116,7 @@ const rows = [
     'Louis',
     ' HubSpot, Inc.',
     '10/09/2020',
-    'Busy',
+    4,
     '08/09/2020'
   ),
   createData(
@@ -125,7 +126,7 @@ const rows = [
     'Louis',
     'HubSpot, Inc.',
     '10/09/2020',
-    'Busy',
+    5,
     '08/09/2020'
   ),
   createData(
@@ -135,7 +136,7 @@ const rows = [
     'Louis',
     'HubSpot, Inc.',
     '10/09/2020',
-    'Busy',
+    6,
     '08/09/2020'
   ),
   createData(
@@ -145,7 +146,7 @@ const rows = [
     'Louis',
     'HubSpot, Inc.',
     '10/09/2020',
-    'Busy',
+    7,
     '08/09/2020'
   ),
   createData(
@@ -155,7 +156,7 @@ const rows = [
     'Louis',
     ' HubSpot, Inc.',
     '10/09/2020',
-    'Busy',
+    8,
     '08/09/2020'
   ),
   createData(
@@ -165,7 +166,7 @@ const rows = [
     'Louis',
     'HubSpot, Inc.',
     '10/09/2020',
-    'Busy',
+    5,
     '08/09/2020'
   ),
   createData(
@@ -175,7 +176,7 @@ const rows = [
     'Louis',
     'HubSpot, Inc.',
     '10/09/2020',
-    'Busy',
+    3,
     '08/09/2020'
   ),
   createData(
@@ -185,7 +186,7 @@ const rows = [
     'Louis',
     'HubSpot, Inc.',
     '10/09/2020',
-    'Busy',
+    2,
     '08/09/2020'
   ),
   createData(
@@ -195,7 +196,7 @@ const rows = [
     'Louis',
     ' HubSpot, Inc.',
     '10/09/2020',
-    'Busy',
+    6,
     '08/09/2020'
   ),
   createData(
@@ -205,7 +206,7 @@ const rows = [
     'Louis',
     'HubSpot, Inc.',
     '10/09/2020',
-    'Busy',
+    2,
     '08/09/2020'
   ),
   createData(
@@ -215,7 +216,7 @@ const rows = [
     'Louis',
     'HubSpot, Inc.',
     '10/09/2020',
-    'Busy',
+    1,
     '08/09/2020'
   ),
   createData(
@@ -225,7 +226,7 @@ const rows = [
     'Louis',
     'HubSpot, Inc.',
     '10/09/2020',
-    'Busy',
+    5,
     '08/09/2020'
   ),
   createData(
@@ -235,7 +236,7 @@ const rows = [
     'Louis',
     'HubSpot, Inc.',
     '10/09/2020',
-    'Busy',
+    5,
     '08/09/2020'
   ),
   createData(
@@ -245,7 +246,7 @@ const rows = [
     'Louis',
     'HubSpot, Inc.',
     '10/09/2020',
-    'Busy',
+    6,
     '08/09/2020'
   ),
   createData(
@@ -255,7 +256,7 @@ const rows = [
     'Louis',
     'HubSpot, Inc.',
     '10/09/2020',
-    'Busy',
+    4,
     '08/09/2020'
   ),
   createData(
@@ -265,7 +266,7 @@ const rows = [
     'Louis',
     'HubSpot, Inc.',
     '10/09/2020',
-    'Busy',
+    2,
     '08/09/2020'
   ),
   createData(
@@ -275,7 +276,7 @@ const rows = [
     'Louis',
     'HubSpot, Inc.',
     '10/09/2020',
-    'Busy',
+    3,
     '08/09/2020'
   ),
   createData(
@@ -285,7 +286,7 @@ const rows = [
     'Louis',
     'HubSpot, Inc.',
     '10/09/2020',
-    'Busy',
+    3,
     '08/09/2020'
   ),
   createData(
@@ -295,7 +296,7 @@ const rows = [
     'Louis',
     'HubSpot, Inc.',
     '10/09/2020',
-    'Busy',
+    5,
     '08/09/2020'
   ),
   createData(
@@ -305,7 +306,7 @@ const rows = [
     'Louis',
     'HubSpot, Inc.',
     '10/09/2020',
-    'Busy',
+    7,
     '08/09/2020'
   ),
   createData(
@@ -315,7 +316,7 @@ const rows = [
     'Louis',
     'HubSpot, Inc.',
     '10/09/2020',
-    'Busy',
+    8,
     '08/09/2020'
   ),
   createData(
@@ -325,7 +326,7 @@ const rows = [
     'Louis',
     'HubSpot, Inc.',
     '10/09/2020',
-    'Busy',
+    1,
     '08/09/2020'
   ),
   createData(
@@ -335,7 +336,7 @@ const rows = [
     'Louis',
     'HubSpot, Inc.',
     '10/09/2020',
-    'Busy',
+    2,
     '08/09/2020'
   ),
 ];
@@ -347,7 +348,6 @@ const theme = createMuiTheme({
     },
     secondary: {
       main: '#ff9100',
-      hover: '#ff9100'
     },
   },
 
@@ -356,6 +356,7 @@ const theme = createMuiTheme({
 function EnhancedTable() {
   const [columns, setColumns] = useState(getColumns());
   const [data, setData] = useState(rows);
+  const [selectedRow, setSelectedRow] = useState(null);
 
   return (
     <MuiThemeProvider theme={theme}>
@@ -364,23 +365,40 @@ function EnhancedTable() {
         columns={columns}
         data={data}
         icons={tableIcons}
-        options={{
-          selection: true,
-        }}
-        cellEditable={{
-          onCellEditApproved: (newValue, oldValue, rowData, columnDef) => {
-            return new Promise((resolve, reject) => {
+        // cellEditable={{
+        //   onCellEditApproved: (newValue, oldValue, rowData, columnDef) => {
+        //     return new Promise((resolve, reject) => {
               
-            });
-          }
-        }}
+        //     });
+        //   }
+        // }}
         actions={[
           {
             tooltip: 'Remove All Selected Contacts',
             icon: DeleteIcon,
-            onClick: (evt, data) => {}
-          }
+            onClick: (evt, data) => {
+
+            }
+          }, {
+            tooltip: 'Edit contact',
+            icon: EditIcon,
+            onClick: (event, rowData) => {
+
+            }
+          },
         ]}
+        onRowClick={(evt, selectedRow) => setSelectedRow(selectedRow.tableData.id)}
+        options={{
+          selection: true,
+          filtering: false,
+          grouping: false,
+          search: true,
+          sorting: true,
+          exportButton: true,
+            // exportCsv: (columns, data) => {
+            //   data.length
+            // },
+        }}
       />
     </MuiThemeProvider>
   )
