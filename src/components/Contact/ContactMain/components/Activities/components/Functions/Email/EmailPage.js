@@ -1,4 +1,5 @@
 import React from 'react';
+import "./EmailPage.scss";
 
 
 
@@ -17,7 +18,7 @@ class EmailPage extends React.Component {
     render() {
         return (
             <div className = "emailPage">
-
+              <p> email page</p>
             </div>
         )
     }
