@@ -1,13 +1,16 @@
 import React from 'react';
 import "./EmailInput.scss";
-import Editor from"../../../../../../Style/Editor/Editor";
+
 
 const EmailInput=({
     children
 })=>(
 
     <div className="EmailInput">
-        <Editor/>
+        <p>input</p>
+        <p>input</p>
+        <p>input</p>
+        <p>input</p>
     </div>
    
 
