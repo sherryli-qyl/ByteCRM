@@ -1,5 +1,7 @@
 import React, { useState, forwardRef } from 'react';
 
+import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
+import { createMuiTheme } from '@material-ui/core/styles';
 import MaterialTable from 'material-table';
 import AddBox from '@material-ui/icons/AddBox';
 import ArrowDownward from '@material-ui/icons/ArrowDownward';
@@ -16,6 +18,7 @@ import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -337,35 +340,49 @@ const rows = [
   ),
 ];
 
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#4caf50',
+    },
+    secondary: {
+      main: '#ff9100',
+      hover: '#ff9100'
+    },
+  },
+
+});
+
 function EnhancedTable() {
   const [columns, setColumns] = useState(getColumns());
   const [data, setData] = useState(rows);
 
   return (
-    <MaterialTable
-      title={null}
-      columns={columns}
-      data={data}
-      icons={tableIcons}
-      options={{
-        selection: true,
-
-      }}
-      cellEditable={{
-        onCellEditApproved: (newValue, oldValue, rowData, columnDef) => {
-          return new Promise((resolve, reject) => {
-            
-          });
-        }
-      }}
-      actions={[
-        {
-          tooltip: 'Remove All Selected Contacts',
-          icon: 'delete',
-          onClick: (evt, data) => {}
-        }
-      ]}
-    />
+    <MuiThemeProvider theme={theme}>
+      <MaterialTable
+        title={null}
+        columns={columns}
+        data={data}
+        icons={tableIcons}
+        options={{
+          selection: true,
+        }}
+        cellEditable={{
+          onCellEditApproved: (newValue, oldValue, rowData, columnDef) => {
+            return new Promise((resolve, reject) => {
+              
+            });
+          }
+        }}
+        actions={[
+          {
+            tooltip: 'Remove All Selected Contacts',
+            icon: DeleteIcon,
+            onClick: (evt, data) => {}
+          }
+        ]}
+      />
+    </MuiThemeProvider>
   )
 }
 
