@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import Container from '@material-ui/core/Container';
-
 import TabBar from './components/TabBar';
+import EmailPage from './components/Functions/Email';
 import './Activities.scss'
 
 
@@ -11,7 +11,7 @@ class Activities extends React.Component {
         const tabItems = [
             { key: 'Activity', value: 'Activity', activity: (<div>Activity</div>) },
             { key: 'Notes', value: 'Notes', activity: (<div>Notes</div>) },
-            { key: 'Emails', value: 'Emails', activity: (<div>Emails</div>) },
+            { key: 'Emails', value: 'Emails', activity: (<EmailPage/>) },
             { key: 'Calls', value: 'Calls', activity: (<div>Calls</div>) },
             { key: 'Tasks', value: 'Tasks', activity: (<div>Tasks</div>) },
             { key: 'Meetings', value: 'Meetings', activity: (<div>Meetings</div>) },
