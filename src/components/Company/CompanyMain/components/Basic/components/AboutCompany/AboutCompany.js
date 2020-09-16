@@ -3,6 +3,7 @@ import CompanyDetail from "./components/CompanyDetail"
 import "./AboutCompany.scss";
 
 const companyInfo = [
+	{ key: "Name", input: "HubSpot, Inc." },
 	{ key: "Company domain name", input: "hubspot.com" },
 	{ key: "Industry", input: "Computer Software" },
 	{ key: "Phone number", input: "+1 888-482-7768." },
@@ -16,7 +17,6 @@ const companyInfo = [
 	{ key: "Time zone", input: "America/New_York" },
 	{ key: "Description", input: "HubSpot is an American developer and marketer of software products for inbound marketing, sales, and customer service.1" },
 	{ key: "LinkedIn company page", input: "https://www.linkedin.com/company/hubspotk" }
-	{ key: "Name", input: "HubSpot, Inc." },
 ]
 
 const AboutCompany = () => (
