@@ -1,5 +1,8 @@
 import React, { Component, useState, forwardRef } from 'react';
-import MaterialTable from 'material-table'
+import MaterialTable from 'material-table';
+import { ExportToCsv } from 'export-to-csv';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
 
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -20,6 +23,7 @@ import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
+
 
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -44,8 +48,8 @@ const tableIcons = {
 function getColumns() {
   return ([
     { title: 'Name', field: 'name', type: 'string' },
-    { title: 'Email', field: 'email', type: 'string', filtering: false },
-    { title: 'Phone', field: 'phoneNumber', type: 'string', filtering: false },
+    { title: 'Email', field: 'email', type: 'string'},
+    { title: 'Phone', field: 'phoneNumber', type: 'string'},
     { title: 'ContactOwner', field: 'contactOwner', type: 'string' },
     { title: 'AssociatedCompany', field: 'associatedCompany', type: 'string' },
     { title: 'LastActivityDate', field: 'lastActivityDate', type: 'string' },
@@ -55,6 +59,30 @@ function getColumns() {
     { title: 'CreateDate', field: 'createDate', type: 'string' },
   ])
 };
+
+// 配置csv生成器
+const options = { 
+  fieldSeparator: ',',
+  quoteStrings: '"',
+  decimalSeparator: '.',
+  showLabels: true, 
+  showTitle: false,
+  filename: 'ByteCRM-exports-contact-'+getDate(),
+  useTextFile: false,
+  useBom: true,
+  useKeysAsHeaders: false,
+  headers: ['name', 'email', 'phoneNumber', 'contactOwner', 'associatedCompany', 'lastActivity', 'leadStatus', 'createDate']
+};
+
+function getDate() {
+  let today = new Date();
+  let dd = String(today.getDate()).padStart(2, '0');
+  let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+  let yyyy = today.getFullYear();
+
+  today = mm + '/' + dd + '/' + yyyy;
+  return today;
+}
 
 // 生成假数据的暂时方法
 function createData(
@@ -116,7 +144,7 @@ const rows = [
     '413fqw@gmail.com',
     '045499149',
     'Louis',
-    ' HubSpot, Inc.',
+    'HubSpot, Inc.',
     '10/09/2020',
     4,
     '08/09/2020'
@@ -156,7 +184,7 @@ const rows = [
     'billy73@mail.com.au',
     '045499149',
     'Louis',
-    ' HubSpot, Inc.',
+    'HubSpot, Inc.',
     '10/09/2020',
     8,
     '08/09/2020'
@@ -196,7 +224,7 @@ const rows = [
     'lou.hull@mail.com.au',
     '045499149',
     'Louis',
-    ' HubSpot, Inc.',
+    'HubSpot, Inc.',
     '10/09/2020',
     6,
     '08/09/2020'
@@ -403,13 +431,51 @@ function EnhancedTable() {
           grouping: false,
           search: true,
           sorting: true,
-          exportButton: true,
-            // TODO2
-            // exportCsv: (columns, data) => {
-            //   data.length
-            // },
           pageSize: 10,
           pageSizeOptions: [10, 30, 50],
+          exportButton: true,
+            exportCsv: (columns, data) => {
+              let tempData = JSON.parse(JSON.stringify(data));
+              const transform = new Map([
+                [1, 'New'], [2, 'Open'], [3, 'In progress'], [4, 'Open deal'], [5, 'Unqualified'], [6, 'Attempted to contact'], [7, 'Connected'], [8, 'Bad timing']
+              ]);
+              for (let item of tempData) {
+                item.leadStatus = transform.get(item.leadStatus);
+                delete item.tableData;
+              }
+              const csvExporter = new ExportToCsv(options);
+              csvExporter.generateCsv(tempData);
+            },
+            exportPdf: (columns, data) => {
+              let tempData = JSON.parse(JSON.stringify(data));
+              let dataToUse = [];
+              const transform = new Map([
+                [1, 'New'], [2, 'Open'], [3, 'In progress'], [4, 'Open deal'], [5, 'Unqualified'], [6, 'Attempted to contact'], [7, 'Connected'], [8, 'Bad timing']
+              ]);
+              for (let item of tempData) {
+                item.leadStatus = transform.get(item.leadStatus);
+                delete item.tableData;
+              }
+              for (let i in tempData) {
+                dataToUse.push(Object.values(tempData[i]));
+              }
+              const content = {
+                startY: 50,
+                head: [columns.map((columnDef) => columnDef.title)],
+                body: dataToUse,
+              };
+              const doc = new jsPDF({
+                orientation: "landscape",
+                size: "A4",
+                unit: "pt"
+              });
+              doc.setFontSize(15);              
+              doc.text('', 40, 40);
+              doc.autoTable(content);
+              doc.save(
+                ('ByteCRM-exports-contact-'+getDate()) + ".pdf"
+              );
+            },
         }}
         editable={{
           onRowAdd: newData =>
@@ -438,7 +504,6 @@ function EnhancedTable() {
     </MuiThemeProvider>
   )
 }
-
 
 
 export default EnhancedTable;
