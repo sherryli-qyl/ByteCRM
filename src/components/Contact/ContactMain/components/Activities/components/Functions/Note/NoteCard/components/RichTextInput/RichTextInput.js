@@ -5,11 +5,12 @@ const RichTextInput = (props) => (
   <div className="rich-text-input">
     <textarea
       placeholder={props.placeholder}
-      rows="5"
+      rows="3"
     >
       {props.content}
     </textarea>
   </div>
 );
+
 
 export default RichTextInput;

@@ -1,0 +1,25 @@
+.note-card-container {
+	font-family: Arial, Helvetica, sans-serif;
+	margin: 40px auto;
+	background-color: white;
+	box-shadow: 0 1px 3px 0 rgba(0,0,0,0.17);
+}
+
+.note-text-input {
+	padding: 10px 55px;
+}
+
+.note-body {
+	margin: 5px 20px 15px 55px;
+}
+
+.accordion-collapse {
+  max-height: 200px;
+  overflow: hidden;
+  transition: max-height .5s ease;
+}
+
+.accordion-close {
+  max-height: 0;
+}
+
