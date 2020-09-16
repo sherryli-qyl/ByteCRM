@@ -1,0 +1,18 @@
+@import '../../../../../../../../../style/variable.scss';
+
+
+.timeline-container {
+	margin: auto;
+	padding: 20px;
+	background-color: #F5F8FA;
+	height: 100%;
+}
+
+.timeline-action-container {
+	float: right;
+}
+
+.timeline-action-button {
+	width: 80px;
+	background-color: $primary-color;
+}
