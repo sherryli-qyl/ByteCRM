@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Icon from '../../../../img/logsys/sortDownArrow.svg';
+import Icon from '../../../../../../../../../img/logsys/sortDownArrow.svg';
 export default class Contacted extends Component {
   render() {
     return (

@@ -11,7 +11,7 @@ import Contacted from './contacted';
 import CallOutcome from './selection';
 import Calendar from './calendar';
 import TimePicker from './time';
-import CloseIcon from '../../../../img/logsys/closeIcon.svg';
+import CloseIcon from '../../../../../../../../../img/logsys/closeIcon.svg';
 
 function PaperComponent(props) {
   return (
@@ -40,8 +40,8 @@ const LogCallBtn = withStyles({
     color: '#506e91',
     fontFamily: 'Varela Round, sans-serif',
     fontSize: 13,
-    marginTop: '10rem',
-    marginLeft: '5rem',
+    marginTop: '2rem',
+    marginLeft: '18rem',
   },
   label: {
     textTransform: 'capitalize',
@@ -77,6 +77,11 @@ function DraggableDialog({ classes }) {
       <LogCallBtn variant="outlined" onClick={handleClickOpen}>
         Log Call
       </LogCallBtn>
+      <button className="phoneCall-btn">Make a phone call</button>
+      <p className="learnMore-para">
+        Call a contact from this record. Or log a call activity to keep track of
+        your discussion and notes. <a href="">Learn more</a>
+      </p>
       <Dialog
         open={open}
         onClose={handleClose}
