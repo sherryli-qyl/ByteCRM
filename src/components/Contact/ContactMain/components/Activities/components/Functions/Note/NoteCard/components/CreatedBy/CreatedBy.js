@@ -5,12 +5,12 @@ import "./CreatedBy.scss";
 
 
 const CreatedBy = (props) => (
-	<div className="createdby-container">
-		<div className="createdby-user-icon">
-			<FontAwesomeIcon icon={faUserCircle} />
-		</div>
-		<span className="createdby-info"> {props.author} left a note</span>
-	</div>
+  <div className="createdby-container">
+    <div className="createdby-user-icon">
+      <FontAwesomeIcon icon={faUserCircle} />
+    </div>
+    <span className="createdby-info"> {props.author} left a note</span>
+  </div>
 );
 
 export default CreatedBy;

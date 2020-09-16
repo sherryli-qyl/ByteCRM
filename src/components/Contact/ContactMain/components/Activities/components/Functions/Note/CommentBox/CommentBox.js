@@ -5,7 +5,6 @@ import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { faCommentDots } from "@fortawesome/free-solid-svg-icons";
 import CommentCard from "./components/CommentCard";
 import CommentForm from "./components/CommentForm";
-//import CommentList from "./components/CommentList";
 import "./CommentBox.scss";
 
 
@@ -72,7 +71,7 @@ class CommentBox extends React.Component {
     
     if (this.state.showComments) {
       buttonText = <FontAwesomeIcon icon={faChevronDown} />;
-			commentNodes = <div className="comment-list">{comments}</div>;
+      commentNodes = <div className="comment-list">{comments}</div>;
     }
     
     return(
@@ -85,9 +84,6 @@ class CommentBox extends React.Component {
             {buttonText} {this.getCommentsTitle(comments.length)} 
           </button>
           {commentNodes}
-          {/* <CommentList 
-            comments={this.state.comments}
-          /> */}
         </div>
         <div className={this.state.showCommentForm ? "accordion-collapse" : "accordion-collapse accordion-close"}>
           <CommentForm addComment={this.addComment.bind(this)}/>
