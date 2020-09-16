@@ -1,4 +1,5 @@
 import React from 'react';
+import ContainedButton from '../../../../../../../../../../Style/Button/Modal/ContainedButton';
 import "./CommentForm.scss";
 
 
@@ -23,20 +24,18 @@ class CommentForm extends React.Component {
           className="comment-form-input" 
           placeholder="Start typing comment..." 
           required 
-          //content={this.state.value}
           ref={(textarea) => this.content = textarea}
         >
         </textarea>
         
         <div className="comment-form-controls">
-          <button type="submit">Save</button>
-          <button type="cancel">Cancel</button>
+          <ContainedButton type="submit">Save</ContainedButton>
+          {/* <button type="cancel">Cancel</button> */}
         </div>
       </form>
     );
   }
 } 
-
 
 
 export default CommentForm;

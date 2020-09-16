@@ -12,23 +12,5 @@ const RichTextInput = (props) => (
 	</div>
 );
 
-// class RichTextInput extends React.Component {
-// 	constructor(props){
-// 		super(props);
-// 	}
-
-// 	render(){
-// 		return(
-// 			<textarea
-// 				className="rich-text-input"
-// 				placeholder={this.props.placeholder}
-// 				rows="3"
-// 			>
-// 				{this.props.content}
-// 		</textarea>
-// 		);
-// 	}
-// };
-
 
 export default RichTextInput;

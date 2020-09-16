@@ -21,14 +21,8 @@ class CommentCard extends React.Component {
 				<div className="comment-detail">
           <p> { this.props.content }</p>
 				</div>
-        {/* <div className="comment-footer">
-          <button href="#" className="comment-footer-delete" onClick={this.deleteComment}>Delete Comment</button>
-        </div> */}
 			</div>
     );
-  }
-  deleteComment() {
-    alert("-- DELETE Comment Functionality COMMING SOON...");
   }
 }
 
