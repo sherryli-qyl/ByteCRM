@@ -1,0 +1,37 @@
+.Modal{
+   display: inline-block;
+   position:absolute;
+   visibility: hidden;
+   width:48%;
+  
+   top: 3%;
+   left: 10%;
+   background-color: white;
+   border: solid 1px rgba(0,0,0,0.2);
+   border-radius:6px;
+   box-shadow: 0px 1px 10px 3px rgba(207,201,207,1);
+}
+
+.MainComponents{
+    visibility: hidden;  
+    opacity: 0;
+    width:100%;
+    
+}
+
+.Component--acitve{
+    visibility: visible;
+    opacity: 1;
+}
+
+
+
+
+@media screen and (max-width: 1024px) {
+	.Modal {
+		width: 50%;
+		min-width: 350px;
+		margin-top: 50px;
+	}
+
+}

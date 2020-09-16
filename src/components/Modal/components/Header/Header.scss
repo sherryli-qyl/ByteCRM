@@ -1,0 +1,62 @@
+@import '../../../../style/variable.scss';
+
+.Header{
+    display: flex;
+    align-items: center;
+    background-color: $secondary-color;
+    background-image: linear-gradient(-303deg,#00a4bd,#00afb2 56%,#00bda5);
+    width: 100%; 
+    cursor: grab;
+    height:50px;
+    border-radius:5px 5px 0px 0px;
+    // border:solid 1px;
+      
+    &__Left{
+             display: flex;
+             align-items: center;
+             flex:4;
+             height:100%;
+             padding-left: 1%;     
+           
+             &__Name{
+                      font-size: medium;
+                      font-weight: 700;
+                      color:white;
+                      padding-left: 2%;    
+                      padding-bottom: 1%;                
+                    }       
+            } 
+
+     &__Right{
+        height:100%;
+        display: flex;
+        flex:1;
+        align-items: center;
+        justify-content: flex-end;
+        padding-right: 2%;     
+
+       
+     }         
+}
+
+.FunctionButton{
+    border:0;
+    outline: 0;
+    background-color: transparent;
+    border-radius: 50%; 
+
+    &:hover{
+        background-color: darken($secondary-color,8%);      
+        cursor: pointer;
+    }
+}
+
+.ArrowIcon{
+    height: 18px;
+    width:  18px;
+}
+
+.CloseIcon{
+    height: 18px;
+    width:  18px;
+}
