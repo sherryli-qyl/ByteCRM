@@ -1,6 +1,7 @@
 import React from 'react';
 import EmailCards from './components/EmailCards';
 import EmailPageHeader from './components/Header';
+
 import "./EmailPage.scss";
 
 
@@ -22,17 +23,19 @@ class EmailPage extends React.Component {
         }
     }
 
+    handleCreateBtn(){
 
+    }
 
     render() {
         const { logEmailCards } = this.state;
         return (
             <div className="emailPage">
-                
                 <EmailPageHeader/>
-
                 {logEmailCards.map((item) => (
-                    <EmailCards value={item.value}
+                    <EmailCards 
+                        key={item.key}
+                        value={item.value}
                         type={item.type}
 
                     />
