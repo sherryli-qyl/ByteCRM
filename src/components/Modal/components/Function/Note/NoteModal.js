@@ -1,18 +1,20 @@
 import React from 'react';
 import './NoteModal.scss';
-import './components/RichTextInput';
-import RichTextInput from './components/RichTextInput';
+import './components/NoteInput';
 import NoteSaveBar from './components/NoteSaveBar';
+import NoteInput from './components/NoteInput/NoteInput';
+
 
 const NoteModal = () => (
   <section id="NoteModal" className="NoteModal">
     <div className="note-input">
-      <RichTextInput
-        className="note-input"
-        placeholder="Please start typing note..."
+      <NoteInput 
+        placeholder="Start typing to leave a note..."
       />
     </div>
-    <NoteSaveBar className="note-container-footer" />
+    <div className="note-container-footer">
+      <NoteSaveBar />
+    </div>
   </section>
 );
 

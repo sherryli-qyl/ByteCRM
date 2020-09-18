@@ -1,7 +1,7 @@
 import React from "react";
 import NoteCard from '../NoteCard';
 import NoteModal from '../../../../../../../../Modal/components/Function/Note';
-import ContainedButton from '../../../../../../../../Style/Button/Modal/ContainedButton';
+import CreateButton from '../../../../../../../../Style/Button/Activities/CreateButton';
 import './NotesTimeLine.scss';
 
 class NotesTimeLine extends React.Component {
@@ -15,15 +15,15 @@ class NotesTimeLine extends React.Component {
           content: "test note render 1", 
           timestamp: "Aug 30, 2020 at 12:08 AM GMT+10",
           comments: [
-            {author:"Joe", content: "comment test 1", timestamp:"Sep 14, 2020 at 12:08 AM GMT+10"}, 
-            {author:"Chloe", content: "comment test 2", timestamp:"Sep 14, 2020 at 12:08 AM GMT+10"}
+            {id:123, author:"Joe", content: "comment test 1", timestamp:"Sep 14, 2020 at 12:08 AM GMT+10"}, 
+            {id:124, author:"Chloe", content: "comment test 2", timestamp:"Sep 14, 2020 at 12:08 AM GMT+10"}
           ]
         },
         { id: 2, 
           author: "Jason Doe", 
           content: "test note render 2", 
           timestamp: "Aug 28, 2020 at 12:08 AM GMT+10",
-          comments: [ {author:"Joe", content: "hello world"}]
+          comments: [ {id:125, author:"Joe", content: "hello world"}]
         }
       ]
     };
@@ -51,9 +51,11 @@ class NotesTimeLine extends React.Component {
     return (
       <div className="timeline-container">
         <div className="timeline-action-container">
-          <ContainedButton className="timeline-action-button">Create Note</ContainedButton>
+          <CreateButton className="timeline-action-button">Create Note</CreateButton>
         </div>
-        {noteNodes}
+        <div className="timeline-all-notes">
+          {noteNodes}
+        </div>
       </div>
     );
   }

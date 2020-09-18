@@ -1,8 +1,8 @@
 import React from 'react';
-import './RichTextInput.scss';
+import './NoteBody.scss';
 
-const RichTextInput = (props) => (
-  <div className="rich-text-input">
+const NoteBody = (props) => (
+  <div className="note-card-body">
     <textarea
       placeholder={props.placeholder}
       rows="3"
@@ -13,4 +13,4 @@ const RichTextInput = (props) => (
 );
 
 
-export default RichTextInput;
+export default NoteBody;

@@ -43,4 +43,16 @@
   background-color: transparent;
 }
 
+.accordion-collapse {
+  max-height: 200px;
+  overflow: hidden;
+  transition: max-height .5s ease;
+}
 
+.accordion-close {
+  max-height: 0;
+}
+
+.comment-items {
+  padding-left: 20px;
+}
