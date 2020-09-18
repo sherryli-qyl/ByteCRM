@@ -5,6 +5,10 @@ import { NavLink } from 'react-router-dom';
 import EnhancedTable from './components/table';
 
 const ContactList = () => (
+  // TODO1: 需要一个弹窗输入信息
+  // TODO2: 需要一个Navbar切换表格
+  // TODO3: 需要一个按钮读入CSV文件
+  // TODO4: 模块化代码
   // TODO5: 完成后端数据库
   // TODO6: 将添加、删除用数据库实现
   <div>
