@@ -13,6 +13,7 @@ import ActivityBar from './components/ActivityBar/ActivityBar';
 import NoteModal from '../../../../Modal/components/Function/Note';
 import EmailModal from '../../../../Modal/components/Function/Email';
 import CallModal from '../../../../Modal/components/Function/Call';
+import TaskModal from '../../../../Modal/components/Function/Task';
 
 class Basic extends Component {
   constructor(props) {
@@ -22,7 +23,7 @@ class Basic extends Component {
       { key: 'Email', value: 'Email', src: IconMail, modal: <EmailModal /> },
       { key: 'Call', value: 'Call', src: IconCall, modal: <CallModal /> },
       { key: 'Log', value: 'Log', src: IconLog, modal: '' },
-      { key: 'Task', value: 'Task', src: IconTask, modal: '' },
+      { key: 'Task', value: 'Task', src: IconTask, modal: <TaskModal /> },
       { key: 'Meeting', value: 'Meeting', src: IconMeeting, modal: '' },
     ];
     this.state = {
