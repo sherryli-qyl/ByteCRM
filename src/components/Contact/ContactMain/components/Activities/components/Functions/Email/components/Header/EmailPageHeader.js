@@ -10,11 +10,9 @@ import Modal from '../../../../../../../../../../js/Modal';
 
 
 
-
-
 const EmailPageHeader = () => {
-    const onClick= useContext(ContactContext);
-    const createModal = new Modal('Email', 'Email',<EmailModal/>);
+    const onClick= useContext(ContactContext); //receive context
+    const createModal = new Modal('Email', 'Email',<EmailModal/>); //create your modal
     const logModal = new Modal('Email', 'Email',<EmailModal/>);
     return(
         <div className="emailPage__header">
@@ -24,11 +22,11 @@ const EmailPageHeader = () => {
                 </button>
             </div>
             <div className="emailPage__header__logEmail">
-                <LogButton onClick={() => onClick(logModal)}>Log Email</LogButton>
+                <LogButton onClick={() => onClick(logModal)}>Log Email</LogButton> {/* //set function */}
             </div>
 
             <div className='emailPage__header__createEmail'>
-                <CreateButton onClick={() => onClick(createModal)}>
+                <CreateButton onClick={() => onClick(createModal)}> {/* //set function */}
                     Create Email
                 </CreateButton>
             </div>
