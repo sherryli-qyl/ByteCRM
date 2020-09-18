@@ -44,7 +44,7 @@ class TaskFollowSelect extends React.Component {
             <div>
                 <ThemeProvider theme={this.props.theme}>
                     <Select
-                        disableUnderline
+                        //disableUnderline
                         value={timeValue}
                         variant='standard'
                         onChange={this.handleSelectChange}

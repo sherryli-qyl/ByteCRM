@@ -1,62 +1,80 @@
 import React from 'react';
 
-const initialState = {
-  emailAddr: '',
-  password: '',
-  emailErrMsg: '',
-  passwordErrMsg: '',
-  hidden: true,
-};
-
 class Form extends React.Component {
-  state = initialState;
+  constructor() {
+    super();
+    this.state = {
+      input: {},
+      errors: {},
+      hidden: true,
+    };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
   //Toggle Password -> Show or Hide
   toggleShow = this.toggleShow.bind(this);
   toggleShow() {
     this.setState({ hidden: !this.state.hidden });
   }
 
-  handleChange = (event) => {
-    const isCheckbox = event.target.type === 'checkbox';
+  handleChange(event) {
+    let input = this.state.input;
+    input[event.target.name] = event.target.value;
+
     this.setState({
-      [event.target.name]: isCheckbox
-        ? event.target.checked
-        : event.target.value,
+      input,
     });
-  };
+  }
 
-  validate = () => {
-    let emailErrMsg = ' ';
-    let passwordErrMsg = ' ';
-
-    if (!this.state.password) {
-      passwordErrMsg = 'Password cannot be blank !';
-    }
-
-    if (!this.state.email.includes('.com')) {
-      emailErrMsg = 'Invalid email address !';
-    }
-
-    if (emailErrMsg || passwordErrMsg) {
-      this.setState({ emailErrMsg, passwordErrMsg });
-      return false;
-    }
-    return true;
-  };
-
-  handleSubmit = (event) => {
+  handleSubmit(event) {
     event.preventDefault();
-    const isValid = this.validate();
-    if (isValid) {
+
+    if (this.validate()) {
       console.log(this.state);
-      this.setState(initialState);
+
+      let input = {};
+      input['password'] = '';
+      input['email'] = '';
+      this.setState({ input: input });
     }
-  };
+  }
+
+  validate() {
+    let input = this.state.input;
+    let errors = {};
+    let isValid = true;
+
+    if (!input['email']) {
+      isValid = false;
+      errors['email'] = 'Please enter your email Address.';
+    }
+
+    if (typeof input['email'] !== 'undefined') {
+      var pattern = new RegExp(
+        /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i
+      );
+      if (!pattern.test(input['email'])) {
+        isValid = false;
+        errors['email'] = 'Please enter valid email address.';
+      }
+    }
+
+    if (!input['password']) {
+      isValid = false;
+      errors['password'] = 'Please enter your password.';
+    }
+
+    this.setState({
+      errors: errors,
+    });
+
+    return isValid;
+  }
 
   render() {
     return (
       <div>
-        {/* <Link to="/call">hello world</Link> */}
         <form className="loginForm" onSubmit={this.handleSubmit}>
           <label htmlFor="email" className="laBel">
             Email address
@@ -66,11 +84,11 @@ class Form extends React.Component {
             id="email"
             placeholder="Enter your email address..."
             name="email"
-            type="email"
-            value={this.state.email}
+            type="text"
+            value={this.state.input.email}
             onChange={this.handleChange}
           />
-          <div className="errMsg">{this.state.emailErrMsg}</div>
+          <div className="errMsg">{this.state.errors.email}</div>
           <br />
           <label htmlFor="password" className="laBel">
             Password
@@ -85,11 +103,11 @@ class Form extends React.Component {
             type={this.state.hidden ? 'password' : 'text'}
             name="password"
             placeholder="Enter your password..."
-            value={this.state.password}
+            value={this.state.input.password}
             onChange={this.handleChange}
           />
           <br />
-          <div className="errMsg">{this.state.passwordErrMsg}</div>
+          <div className="errMsg">{this.state.errors.password}</div>
           <br />
           <a className="linkBtn">Forgot my password</a>
           <input id="rememberMe" className="checkBox" type="checkbox" />

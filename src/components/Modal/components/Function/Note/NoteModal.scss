@@ -1,13 +1,19 @@
 .NoteModal{
-	padding: 1px;
-	background-color: white;
-	margin: 15px;	
+  background-color: white;
+  position: relative;
+  display:flex;
+  flex-direction: column;
+  flex:1;
+  padding: 1px;
+  height:100%;
 }
 
 .note-input {
-	border-bottom: 1px solid lightgrey;
+  font-family: Arial, Helvetica, sans-serif;
+  border-bottom: 1px solid lightgrey;
 }
 
 .note-container-footer {
-	padding-top: 10px;
+  padding: 10px 20px;
 }
+

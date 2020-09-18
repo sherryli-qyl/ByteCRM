@@ -45,7 +45,7 @@ class ContactMain extends Component {
                     <Basic openModal={this.openModal}
                     />
                     
-                    <div className="Function">
+                    <div className="activities">
                         <Activities/>
                     </div>
 

@@ -12,36 +12,50 @@ function getTheme() {
     },
     overrides: {
       // Style sheet name ⚛️ 
-      MuiInput:{
+      MuiInput: {
         underline: {
           "&&&&:hover:before": {
-            borderBottom: "1px solid"+primaryColor,
+            borderBottom: "1px solid" + primaryColor,
           },
-          "&:before":{
+          "&:before": {
             borderBottom: "0",
           },
-          "&::after":{
+          "&::after": {
             borderBottom: "0",
           }
         },
-        input:{
+        input: {
           height: "25px"
         }
       },
-      
+
+      MuiTab: {
+        root: {
+          flexGrow: 1,
+          backgroundColor: 'white',
+          maxWidth:'100px',
+          
+        },
+      },
+      MuiButton:{
+         root:{
+          backgroundColor: 'white',
+         }
+      },
+
       MuiSelect: {
         // Name of the rule
         select: {
           border: 0,
           height: "25px",
-          color:primaryColor,
-          fontWeight:"bold",
-          fontSize:"small",
+          color: primaryColor,
+          fontWeight: "bold",
+          fontSize: "small",
           "&:focus": {
-            backgroundColor: 'transparent',      
-          },  
+            backgroundColor: 'transparent',
+          },
         },
-      }, 
+      },
     },
   });
   return theme;
