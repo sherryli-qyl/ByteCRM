@@ -2,7 +2,7 @@ import React from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
-import AddDate from '../../services/AddDate';
+import {addDate} from '../../services/DateManager';
 import './TaskFollow.scss';
 
 
@@ -55,7 +55,7 @@ class TaskFollowSelect extends React.Component {
                             <MenuItem
                                 key={item.key}
                                 value={item.value}>
-                                {item.key + `(${AddDate(item.value)})`}
+                                {item.key + `(${addDate(item.value)})`}
                             </MenuItem>
                         ))}
                     </Select>
