@@ -8,7 +8,7 @@ const TabBar = ({
   currentPage,
   onTabItemClick,
 }) => (
-    <nav className="tabBar">
+    <nav className={"tabBar"+" "+"horizontal-scroll-wrapper"}>
       {tabItems.map((item) => (
       <TabItem 
         key={item.key}
