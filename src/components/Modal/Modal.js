@@ -44,25 +44,29 @@ class Modal extends Component {
 
     render() {
         const { hide, visibleStatus } = this.state;
-        let className="MainComponents";
-        if(!hide){
-            className +=" Component--acitve";
+        const dragHandlers = {onStart: this.onStart, onStop: this.onStop};
+        let className = "MainComponents";
+        if (!hide) {
+            className += " Component--acitve";
         }
 
         return (
             <Draggable
+                handle="strong" {...dragHandlers}
                 defaultPosition={{ x: this.props.Xaxis, y: this.props.Yaxis }}
             >
                 {this.props.visible ?
                     <div ref={this.modal} className="Modal Component--acitve">
-                        <div className="Header">
-                            <Header
-                                name={this.props.currentModal.key}
-                                hide={this.state.hide}
-                                handleCloseButton={this.handleCloseButton}
-                                handleHideButton={this.handleHideButton}
-                            />
-                        </div>
+                        <strong className="cursor">
+                            <div className="Header">
+                                <Header
+                                    name={this.props.currentModal.key}
+                                    hide={this.state.hide}
+                                    handleCloseButton={this.handleCloseButton}
+                                    handleHideButton={this.handleHideButton}
+                                />
+                            </div>
+                        </strong>
                         {hide ?
                             <div className="MainComponents" />
                             :
@@ -72,7 +76,7 @@ class Modal extends Component {
                         }
                     </div>
                     :
-                    <div className ="Modal"/>
+                    <div className="Modal" />
                 }
             </Draggable>
 
