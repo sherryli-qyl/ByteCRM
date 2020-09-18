@@ -45,18 +45,44 @@ const tableIcons = {
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
 };
 
+const testPhoneNum = (str) => {
+  const reg = /^\({0,1}((0|\+61)(2|4|3|7|8)){0,1}\){0,1}(\ |-){0,1}[0-9]{2}(\ |-){0,1}[0-9]{2}(\ |-){0,1}[0-9]{1}(\ |-){0,1}[0-9]{3}$/;
+  return reg.test(str);
+}
+
+const testEmailAddr = (str) => {
+  const reg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return reg.test(String(str).toLowerCase());
+}
+
+// for mm/dd/yyyy format
+const testDate = (str) => {
+  const reg = /^(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d$/;
+  return reg.test(str);
+}
+
+
 function getColumns() {
   return ([
-    { title: 'Name', field: 'name', type: 'string' },
-    { title: 'Email', field: 'email', type: 'string'},
-    { title: 'Phone', field: 'phoneNumber', type: 'string'},
-    { title: 'ContactOwner', field: 'contactOwner', type: 'string' },
+    { title: 'Name', field: 'name', type: 'string', initialEditValue: '',
+      validate: rowData => rowData.name === '' ? { isValid: false, helperText: 'Name cannot be empty' } : true},
+    { title: 'Email', field: 'email', type: 'string', 
+      validate: (rowData) => testEmailAddr(rowData.email) ? true : { isValid: false, helperText: 'Email address format incorrect' }},
+    { title: 'Phone', field: 'phoneNumber', type: 'string',
+      validate: (rowData) => testPhoneNum(rowData.phoneNumber) ? true : { isValid: false, helperText: 'Phone number format incorrect' }},
+    { title: 'ContactOwner', field: 'contactOwner', type: 'string', },
     { title: 'AssociatedCompany', field: 'associatedCompany', type: 'string' },
-    { title: 'LastActivityDate', field: 'lastActivityDate', type: 'string' },
+    { title: 'LastActivityDate', field: 'lastActivityDate', type: 'string', initialEditValue: getDate(),
+      validate: (rowData) => {
+        if (rowData.lastActivityDate === '' || testDate(rowData.lastActivityDate)) {
+          return true;
+        } 
+        return { isValid: false, helperText: 'Date format incorrect' };}
+    },
     { title: 'LeadStatus', field: 'leadStatus', type: 'string', 
       lookup: { 1: 'New', 2: 'Open', 3: 'In progress', 4: 'Open deal', 5: 'Unqualified', 6: 'Attempted to contact', 7: 'Connected', 8: 'Bad timing' },
     },
-    { title: 'CreateDate', field: 'createDate', type: 'string' },
+    { title: 'CreateDate', field: 'createDate', type: 'string', editable: 'never' },
   ])
 };
 
@@ -79,7 +105,6 @@ function getDate() {
   let dd = String(today.getDate()).padStart(2, '0');
   let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
   let yyyy = today.getFullYear();
-
   today = mm + '/' + dd + '/' + yyyy;
   return today;
 }
@@ -108,11 +133,11 @@ function createData(
   );
 }
 
-const rows = [
+let rows = [
   createData(
     'John',
     'fqwfqwd@gmail.com',
-    '045499149',
+    '0454991490',
     'Louis',
     'HubSpot, Inc.',
     '10/09/2020',
@@ -371,6 +396,7 @@ const rows = [
   ),
 ];
 
+// 表格部分样式
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -425,7 +451,7 @@ function EnhancedTable() {
               // TODO1: 需要一个弹窗输入信息
             }
         }]}
-        onRowClick={(evt, selectedRow) => setSelectedRow(selectedRow.tableData.id)}
+        onRowClick={(evt, selectedRow) => {}}
         options={{
           selection: true,
           filtering: false,
@@ -480,23 +506,26 @@ function EnhancedTable() {
         }}
         editable={{
           onRowAdd: newData =>
-          // TODO3: 实现添加的验证
             new Promise((resolve, reject) => {
+              newData.createDate = getDate();
+              if (newData.contactOwner === '') {
+                newData.contactOwner = 'Unassigned';
+              }
               setTimeout(() => {
                 setData([...data, newData]);
-                
                 resolve();
               }, 500)
             }),
           onRowUpdate: (newData, oldData) =>
             new Promise((resolve, reject) => {
+              if (newData.contactOwner === '') {
+                newData.contactOwner = 'Unassigned';
+              }
               setTimeout(() => {
-                // TODO3: 实现输入的验证
                 const dataUpdate = [...data];
                 const index = oldData.tableData.id;
                 dataUpdate[index] = newData;
                 setData([...dataUpdate]);
-  
                 resolve();
               }, 500)
             }),
