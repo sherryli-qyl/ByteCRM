@@ -6,10 +6,16 @@ import "./ActivitiesButton.scss";
 
 const LogButton = ({
     children,
-    className
+    className,
+    onClick,
 }) => {
     return (
-        <button className={"logButton "}>{children}</button>
+        <button className={"logButton "}
+        onClick={(event) => {
+            event.preventDefault();
+            onClick();
+          }}>{children}
+        </button>
     )
 }
 
