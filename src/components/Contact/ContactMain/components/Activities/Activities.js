@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import Container from '@material-ui/core/Container';
 import TabBar from './components/TabBar';
 import EmailPage from './components/Functions/Email';
+import TaskPage from './components/Functions/Task';
 import NotesTimeLine from './components/Functions/Note/NotesTimeLine';
 import CallPanel from './components/Functions/Calls/index';
 import './Activities.scss';
@@ -22,7 +23,7 @@ class Activities extends React.Component {
       },
       { key: 'Emails', value: 'Emails', activity: <EmailPage /> },
       { key: 'Calls', value: 'Calls', activity: <CallPanel /> },
-      { key: 'Tasks', value: 'Tasks', activity: <div>Tasks</div> },
+      { key: 'Tasks', value: 'Tasks', activity: <TaskPage /> },
       { key: 'Meetings', value: 'Meetings', activity: <div>Meetings</div> },
     ];
     this.state = {

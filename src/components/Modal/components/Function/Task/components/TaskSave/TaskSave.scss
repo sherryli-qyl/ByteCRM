@@ -1,0 +1,12 @@
+.taskSave{
+  display: flex;
+  justify-content: flex-start;
+  height:70px;
+  padding-top:0px;
+
+  &__save{
+      flex:1;
+      align-self: center;
+      margin-left: 3%;
+  }
+}
