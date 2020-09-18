@@ -50,7 +50,7 @@ class Basic extends Component {
         <div className="activity__list">
           <ActivityBar
             navItems={navItems}
-            currentWindow={currentModal}
+            modalKey={currentModal.key}
             onNavItemClick={this.onNavItemClick}
           />
         </div>

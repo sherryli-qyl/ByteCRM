@@ -6,10 +6,15 @@ import "./ActivitiesButton.scss";
 
 const CreateButton = ({
     children,
-    className
+    className,
+    onClick,
 }) => {
     return (
-        <button className={"createButton "}>{children}</button>
+        <button className={"createButton "}
+        onClick={(event) => {
+            event.preventDefault();
+            onClick();
+          }}>{children}</button>
     )
 }
 

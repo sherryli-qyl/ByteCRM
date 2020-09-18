@@ -1,33 +1,38 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import CreateButton from '../../../../../../../../../Style/Button/Activities/CreateButton';
 import LogButton from '../../../../../../../../../Style/Button/Activities/LogButton';
-import Text from '../../../../../../../../../Style/Text'
+import Text from '../../../../../../../../../Style/Text';
+import EmailModal from '../../../../../../../../../Modal/components/Function/Email';
+import { ContactContext } from '../../../../../../../../ContactContext';
 import "./EmailPageHeader.scss";
+import Modal from '../../../../../../../../../../js/Modal';
 
 
 
 
+const EmailPageHeader = () => {
+    const onClick= useContext(ContactContext); //receive context
+    const createModal = new Modal('Email', 'Email',<EmailModal/>); //create your modal
+    const logModal = new Modal('Email', 'Email',<EmailModal/>);
+    return(
+        <div className="emailPage__header">
+            <div className="emailPage__header__showReply">
+                <button className="replyButton">
+                    <Text>Show all email replies</Text>
+                </button>
+            </div>
+            <div className="emailPage__header__logEmail">
+                <LogButton onClick={() => onClick(logModal)}>Log Email</LogButton> {/* //set function */}
+            </div>
 
-
-const EmailPageHeader = () => (
-    <div className="emailPage__header">
-
-        <div className="emailPage__header__showReply">
-            <button className="replyButton">
-                <Text>Show all email replies</Text>
-            </button>
-        </div>
-
-        <div className="emailPage__header__logEmail">
-            <LogButton>Log Email</LogButton>
-        </div>
-
-        <div className='emailPage__header__createEmail'>
-            <CreateButton>Create Email</CreateButton>
-        </div>
-
-    </div>
-)
+            <div className='emailPage__header__createEmail'>
+                <CreateButton onClick={() => onClick(createModal)}> {/* //set function */}
+                    Create Email
+                </CreateButton>
+            </div>
+        </div> 
+    )
+}
 
 
 
