@@ -1,9 +1,8 @@
 import React from 'react';
 import EmailCards from './components/EmailCards';
 import EmailPageHeader from './components/Header';
-import getDate from '../../../../../../../services/GetDate';
+import {getDate,sortDate} from '../../../../../../../services/DateManager';
 import Cards from '../../../../../../../../js/Cards';
-import sortDate from '../../../../../../../services/SortDate';
 import "./EmailPage.scss";
 
 
