@@ -18,6 +18,8 @@ class CommentBox extends React.Component {
       comments: this.props.comments
     };
     this.handleShowCommentFormClick = this.handleShowCommentFormClick.bind(this);
+    this.deleteComment = this.deleteComment.bind(this);
+    this.updateComment = this.updateComment.bind(this);
   }
 
   handleShowCommentFormClick() {
@@ -36,6 +38,18 @@ class CommentBox extends React.Component {
     };
     this.setState({ comments: this.state.comments.concat([comment]) }); 
   }
+
+  deleteComment(index){
+    const arr = this.state.comments;
+    arr.splice(index,1)
+    this.setState({comments: arr});
+  }
+
+  updateComment(newContent, index){
+    const arr = this.state.comments;
+    arr[index].content = newContent;
+    this.setState({comments: arr})
+  }
   
   handleClick() {
     this.setState({
@@ -44,13 +58,19 @@ class CommentBox extends React.Component {
   }
   
   getComments() {    
-    return this.state.comments.map((comment) => { 
+    return this.state.comments.map((comment, i) => { 
       return (
         <CommentCard 
+          key={i}
+          index={i}
+          //id={comment.id}
           author={comment.author} 
           content={comment.content} 
           timestamp={comment.timestamp}
-          key={comment.id} />
+          key={comment.id} 
+          onDelete={this.deleteComment}
+          onUpdate={this.updateComment}
+        />
       ); 
     });
   }
@@ -83,7 +103,9 @@ class CommentBox extends React.Component {
           >
             {buttonText} {this.getCommentsTitle(comments.length)} 
           </button>
-          {commentNodes}
+          <div className="comment-items">
+            {commentNodes}
+          </div>
         </div>
         <div className={this.state.showCommentForm ? "accordion-collapse" : "accordion-collapse accordion-close"}>
           <CommentForm addComment={this.addComment.bind(this)}/>

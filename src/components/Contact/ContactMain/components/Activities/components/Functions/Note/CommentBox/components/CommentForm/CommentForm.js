@@ -1,5 +1,4 @@
 import React from 'react';
-import ContainedButton from '../../../../../../../../../../Style/Button/Modal/ContainedButton';
 import "./CommentForm.scss";
 
 
@@ -29,7 +28,7 @@ class CommentForm extends React.Component {
         </textarea>
         
         <div className="comment-form-controls">
-          <ContainedButton type="submit">Save</ContainedButton>
+          <button type="submit" className="comment-form-controls__save">Save</button>
           {/* <button type="cancel">Cancel</button> */}
         </div>
       </form>
