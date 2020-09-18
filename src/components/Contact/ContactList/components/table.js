@@ -414,6 +414,7 @@ function EnhancedTable() {
                   i++;
                 }
                 setData([...dataDelete]);
+                resolve();
               }, 500);
             })
           }, {
