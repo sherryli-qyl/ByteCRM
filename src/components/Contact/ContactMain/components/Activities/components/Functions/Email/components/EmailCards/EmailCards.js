@@ -1,42 +1,26 @@
 import React from 'react';
-import EmailCard from './components/EmailCard';
+import CreateEmailCard from './components/CreateEmailCard';
 import LogEmailCard from './components/LogEmailCard';
-import { transferDate } from '../../../../../../../../../services/DateManager';
+import CardContainer from '../../../../../../../../../Style/Card/Activity/Container';
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import "./EmailCards.scss";
-
-function CardContainer(props) {
-    const NewDate = transferDate(props.date);
-    return (
-        <div className='emailCards__container'>
-            <div className="dateLabel">
-                {NewDate}
-            </div>
-            {props.content.map((card) => (
-                card.type === 'Email' ?
-                    <EmailCard
-                        key={card.date}
-                        date={card.date} />
-                    :
-                    <LogEmailCard
-                        key={card.date}
-                        date={card.date} />
-            ))
-            }
-        </div>
-
-    );
-}
-
 
 
 function EmailCards(props) {
+    const createCard = (card)=>(<CreateEmailCard card={card}/>);
+    const logCard =(card)=>(<LogEmailCard card={card}/>);
+    const icon= faEnvelope;
     return (
         <div className='emailCards'>
             {props.cardsArray.map((cards) => (
                 <CardContainer
                     key={cards.date}
                     date={cards.date}
-                    content={cards.content} />
+                    content={cards.content}
+                    icon = {icon}  
+                    createCard = {createCard}
+                    logCard = {logCard}
+                    />
             ))}
         </div>
     )
