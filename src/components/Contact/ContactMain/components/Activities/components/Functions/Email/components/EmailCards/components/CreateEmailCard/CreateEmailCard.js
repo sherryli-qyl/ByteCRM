@@ -16,7 +16,10 @@ class CreateEmailCard extends React.Component {
                       {this.props.date}
                         <div>test Email Card</div>
                         <div>test Email Card</div>
-                        <div>test Email Card</div>             
+                        <div>test Email Card</div>
+                        <div>test Email Card</div>
+                        <div>test Email Card</div>
+                        <div>test Email Card</div>               
                 </div>
         )
     }
