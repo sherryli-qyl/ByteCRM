@@ -1,13 +1,8 @@
 import React from 'react';
 import EmailCard from './components/EmailCard';
 import LogEmailCard from './components/LogEmailCard';
-import {transferDate,sortDate } from '../../../../../../../../../services/DateManager';
-
+import { transferDate } from '../../../../../../../../../services/DateManager';
 import "./EmailCards.scss";
-
-
-
-
 
 function CardContainer(props) {
     const NewDate = transferDate(props.date);
@@ -18,9 +13,13 @@ function CardContainer(props) {
             </div>
             {props.content.map((card) => (
                 card.type === 'Email' ?
-                    <EmailCard date={card.date} />
+                    <EmailCard
+                        key={card.date}
+                        date={card.date} />
                     :
-                    <LogEmailCard date={card.date} />
+                    <LogEmailCard
+                        key={card.date}
+                        date={card.date} />
             ))
             }
         </div>
@@ -34,7 +33,9 @@ function EmailCards(props) {
     return (
         <div className='emailCards'>
             {props.cardsArray.map((cards) => (
-                <CardContainer date={cards.date}
+                <CardContainer
+                    key={cards.date}
+                    date={cards.date}
                     content={cards.content} />
             ))}
         </div>
