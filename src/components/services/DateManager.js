@@ -21,11 +21,21 @@ function addDate(days){
     return newDate;
 }
 
-function transferDate(date){
+function transferDateInMonthYear(date){
     const formateDate=moment(date).format("MMMM YYYY");
     return formateDate
 }
 
+function transferDateInMonDayYear(date){
+    const formateDate=moment(date).format("MMM DD YYYY");
+    return formateDate
+}
+
+function getWeekDay(date){
+    const formateDate = moment(date).format("dddd");
+    return formateDate;
+}
 
 
-export {getDate,sortDate,addDate,transferDate};
+
+export {getDate,sortDate,addDate,transferDateInMonthYear,transferDateInMonDayYear,getWeekDay};

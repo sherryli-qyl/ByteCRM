@@ -12,10 +12,8 @@ class Modal extends Component {
             defaultXaxis: 500,
             defaultYaxis: 100,
             hide: false,
-
         };
 
-        this.modal = React.createRef();
         this.showModal = this.showModal.bind(this);
         this.handleCloseButton = this.handleCloseButton.bind(this);
         this.handleHideButton = this.handleHideButton.bind(this);
@@ -56,7 +54,7 @@ class Modal extends Component {
                 defaultPosition={{ x: this.props.Xaxis, y: this.props.Yaxis }}
             >
                 {this.props.visible ?
-                    <div ref={this.modal} className="Modal Component--acitve">
+                    <div className="Modal Component--acitve">
                         <strong className="cursor">
                             <div className="Header">
                                 <Header
@@ -79,7 +77,6 @@ class Modal extends Component {
                     <div className="Modal" />
                 }
             </Draggable>
-
         )
     }
 }

@@ -28,7 +28,11 @@ function getTheme() {
           height: "25px"
         }
       },
-
+      MuiTypography: {
+      
+          fontSize: 14,
+       
+      },
       MuiTab: {
         root: {
           flexGrow: 1,

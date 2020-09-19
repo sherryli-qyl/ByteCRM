@@ -1,6 +1,6 @@
 import React from 'react';
 import ActivityCard from '../Card';
-import { transferDate } from '../../../../services/DateManager';
+import { transferDateInMonthYear, transferDateInMonDayYear} from '../../../../services/DateManager';
 
 
 const CardContainer = ({
@@ -10,7 +10,7 @@ const CardContainer = ({
     logCard,
     icon,
 }) => {
-    const NewDate = transferDate(date);
+    const NewDate = transferDateInMonthYear(date);
     return (
         <div className='CardContainer'>
             <div className="CardContainer__dateLabel">
@@ -20,6 +20,8 @@ const CardContainer = ({
                 card.type.includes("Logged") ?
                     <ActivityCard
                         key={card.date}
+                        dateTime={`${transferDateInMonDayYear(card.date)} at ${card.time}`}
+                        date = {card.date}
                         title={card.type}
                         icon={icon}
                         card={logCard(card.date, card.date)}
@@ -27,6 +29,8 @@ const CardContainer = ({
                     :
                     <ActivityCard
                         key={card.date}
+                        dateTime={`${transferDateInMonDayYear(card.date)} at ${card.time}`}
+                        date = {card.date}
                         title={card.type}
                         icon={icon}
                         card={createCard(card.date, card.date)}
