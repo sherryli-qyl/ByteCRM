@@ -1,9 +1,9 @@
 import React from 'react';
 import EmailCards from './components/EmailCards';
 import EmailPageHeader from './components/Header';
-import getDate from '../../../../../../../services/GetDate';
+import {getDate,sortDate} from '../../../../../../../services/DateManager';
+import shuffleCards from '../../../../../../../services/shuffleCards';
 import Cards from '../../../../../../../../js/Cards';
-import sortDate from '../../../../../../../services/SortDate';
 import "./EmailPage.scss";
 
 
@@ -25,53 +25,19 @@ class EmailPage extends React.Component {
         }
     }
 
-    getCardsArray() {
-        const newCardsArray = this.state.cardsArray;
-        const dataList = this.emailCardsList;
-        sortDate(dataList);
-        for (let i in dataList) {
-            const newDate = getDate(dataList[i].date);
-            const sameCards = [];
-            if (!this.checkduplicate(newDate, dataList[i])) {
-                sameCards.push(dataList[i]);
-                const cards = new Cards(newDate, sameCards);
-                newCardsArray.push(cards);
-                this.setState({
-                    cardsArray: newCardsArray,
-                })
-            }
-        }
-        console.table(this.state.cardsArray);
-    }
-
-    checkduplicate(date, card) {
-        const newCardsArray = this.state.cardsArray
-        for (let i in newCardsArray) {
-            if (date === newCardsArray[i].date) {
-                newCardsArray[i].content.push(card);
-                this.setState({
-                    cardsArray: newCardsArray,
-                })
-                return true;
-            }
-        }
-    }
-
     sortCardsArray() {
-        const newCardsArray = this.state.cardsArray;
-        sortDate(newCardsArray);
+        const newCardsArray = shuffleCards(this.emailCardsList);
         this.setState({
             cardsArray: newCardsArray
         })
     }
 
     componentDidMount() {
-        this.getCardsArray();
         this.sortCardsArray();
     }
 
     render() {
-        const { cardsArray, emailCardsList } = this.state;
+        const { cardsArray} = this.state;
         return (
             <div className="emailPage">
                 <EmailPageHeader />

@@ -1,26 +1,25 @@
 import React from 'react';
 import EmailCard from './components/EmailCard';
 import LogEmailCard from './components/LogEmailCard';
-import TransferDate from '../../../../../../../../../services/TransferDate';
-import sortDate from '../../../../../../../../../services/SortDate';
+import { transferDate } from '../../../../../../../../../services/DateManager';
 import "./EmailCards.scss";
 
-
-
-
-
 function CardContainer(props) {
-    const transferDate = TransferDate(props.date);
+    const NewDate = transferDate(props.date);
     return (
         <div className='emailCards__container'>
             <div className="dateLabel">
-                {transferDate}
+                {NewDate}
             </div>
             {props.content.map((card) => (
                 card.type === 'Email' ?
-                    <EmailCard date={card.date} />
+                    <EmailCard
+                        key={card.date}
+                        date={card.date} />
                     :
-                    <LogEmailCard date={card.date} />
+                    <LogEmailCard
+                        key={card.date}
+                        date={card.date} />
             ))
             }
         </div>
@@ -34,7 +33,9 @@ function EmailCards(props) {
     return (
         <div className='emailCards'>
             {props.cardsArray.map((cards) => (
-                <CardContainer date={cards.date}
+                <CardContainer
+                    key={cards.date}
+                    date={cards.date}
                     content={cards.content} />
             ))}
         </div>
