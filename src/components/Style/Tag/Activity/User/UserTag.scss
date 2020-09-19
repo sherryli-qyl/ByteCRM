@@ -1,0 +1,20 @@
+.userTag{
+    display:flex;
+    justify-content: flex-start;
+
+    &__icon{
+
+        &__img{
+           height:32px;
+           width:32px;
+        }
+    }
+
+    &__name{
+        align-self:center;
+        font-weight: bold;
+        margin:auto 10px;
+        font-size: 14px;
+    }
+
+}
