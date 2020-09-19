@@ -2,7 +2,7 @@ import React from 'react';
 import './ContactList.scss';
 import NavBar from '../../Navbar';
 import { NavLink } from 'react-router-dom';
-import EnhancedTable from './components/Table';
+import EnhancedTable from './components/EnhancedTable';
 
 const ContactList = () => (
   // TODO1: 需要一个弹窗输入信息
