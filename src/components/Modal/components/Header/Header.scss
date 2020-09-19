@@ -3,8 +3,8 @@
 .Header{
     display: flex;
     align-items: center;
-    background-color: $secondary-color;
-    background-image: linear-gradient(-303deg,#00a4bd,#00afb2 56%,#00bda5);
+    background-color: rgba($color: $primary-color, $alpha: 0.7);
+    background-image: linear-gradient(-303deg,$primary-color,#184242 56%,#073347);
     width: 100%; 
     cursor: grab;
     height:50px;
