@@ -14,16 +14,16 @@ const ActivityCard = (props) => (
             </div>
             <div className='activityCard__container__content'>
                 <div className='cardHeader'>
-                    <div className="cardHeader__title"> {props.title} </div>
+                    <div className="cardHeader__title"> {props.card.type} </div>
                     <div className='cardHeader__timeStamp'>
-                        <TimeStamp date={props.date} dateTime ={props.dateTime}/>
+                        <TimeStamp date={props.card.date} dateTime ={props.dateTime}/>
                     </div>
                 </div>
                 <div className='hoverBar'>
                   <ControlBar/>
                 </div>
                 <div className='activityCard__container__content__body'>
-                    {props.card}
+                    {props.cardContent}
                 </div>
             </div>
         </div>
