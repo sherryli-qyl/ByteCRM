@@ -24,6 +24,7 @@ function EnhancedTable() {
           columns={columns}
           data={data}
           icons={TableIcons}
+          onRowClick={(evt, selectedRow) => {}}
           // onSelectionChange={(Rows) => console.log(Rows)}
           actions={[
             { tooltip: 'Remove All Selected Contacts',
@@ -45,7 +46,6 @@ function EnhancedTable() {
                 // TODO1: 需要一个弹窗输入信息
               }
           }]}
-          onRowClick={(evt, selectedRow) => {}}
           options={{
             selection: true,
             filtering: false,
