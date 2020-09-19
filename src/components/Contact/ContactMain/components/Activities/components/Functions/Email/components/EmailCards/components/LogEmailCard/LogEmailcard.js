@@ -9,12 +9,14 @@ class LogEmailCard extends React.Component {
         }
     }
 
-
     render() {
         return (
             <div className="logEmailCard">
-                test logEmail Card
                 {this.props.date}
+                <div>test logEmail Card</div>
+                <div>test logEmail Card</div>
+                <div>test logEmail Card</div>
+                <div>test logEmail Card</div>
             </div>
         )
     }

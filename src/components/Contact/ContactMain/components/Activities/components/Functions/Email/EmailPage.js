@@ -14,11 +14,11 @@ class EmailPage extends React.Component {
     constructor(props) {
         super(props);
         this.emailCardsList = [
-            { key: 1, name: "yurun yu", value: "test", type: "logEmail", date: '2020-09-14' },
-            { key: 2, name: "yurun yu", value: "test", type: "Email", date: '2020-10-13' },
-            { key: 3, name: "yurun yu", value: "test", type: "logEmail", date: '2020-08-12' },
-            { key: 4, name: "yurun yu", value: "test", type: "Email", date: '2020-09-15' },
-            { key: 5, name: "yurun yu", value: "test", type: "logEmail", date: '2020-08-14' },
+            { key: 1, name: "yurun yu", value: "test", type: "log", date: '2020-09-14' },
+            { key: 2, name: "yurun yu", value: "test", type: "Create", date: '2020-10-13' },
+            { key: 3, name: "yurun yu", value: "test", type: "log", date: '2020-08-12' },
+            { key: 4, name: "yurun yu", value: "test", type: "Create", date: '2020-09-15' },
+            { key: 5, name: "yurun yu", value: "test", type: "log", date: '2020-08-14' },
         ]
         this.state = {
             cardsArray: [],
