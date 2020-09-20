@@ -3,6 +3,7 @@ import Container from '@material-ui/core/Container';
 import TabBar from './components/TabBar';
 import TaskPage from './components/Functions/Task';
 import CallPage from './components/Functions/Calls/index';
+import Note from './components/Functions/Note/index';
 import './Activities.scss';
 
 class Activities extends React.Component {
@@ -10,11 +11,7 @@ class Activities extends React.Component {
     super(props);
     const tabItems = [
       { key: 'Activity', value: 'Activity', activity: <div>Activity</div> },
-      {
-        key: 'Notes',
-        value: 'Notes',
-        activity: <div></div>,
-      },
+      { key: 'Notes', value: 'Notes', activity: <Note />},
       { key: 'Emails', value: 'Emails', activity: <div>Email</div> },
       { key: 'Calls', value: 'Calls', activity: <CallPage /> },
       { key: 'Tasks', value: 'Tasks', activity: <TaskPage /> },

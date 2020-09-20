@@ -13,15 +13,7 @@ class Activities extends React.Component {
     super(props);
     const tabItems = [
       { key: 'Activity', value: 'Activity', activity: <div>Activity</div> },
-      {
-        key: 'Notes',
-        value: 'Notes',
-        activity: (
-          <div>
-            <NotesTimeLine />
-          </div>
-        ),
-      },
+      { key: 'Notes', value: 'Notes', activity: <NotesTimeLine /> },
       { key: 'Emails', value: 'Emails', activity: <EmailPage /> },
       { key: 'Calls', value: 'Calls', activity: <CallPanel /> },
       { key: 'Tasks', value: 'Tasks', activity: <TaskPage /> },

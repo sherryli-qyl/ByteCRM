@@ -22,7 +22,7 @@ class CommentCard extends React.Component {
   
 
   handleDelete() {
-    this.props.onDelete();
+    this.props.onDelete(this.props.index);
   }
 
   handleSave() {

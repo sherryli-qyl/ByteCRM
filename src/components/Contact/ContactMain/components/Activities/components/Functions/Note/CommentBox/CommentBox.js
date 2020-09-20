@@ -41,7 +41,7 @@ class CommentBox extends React.Component {
 
   deleteComment(index){
     const arr = this.state.comments;
-    arr.splice(index,1)
+    arr.splice(index, 1)
     this.setState({comments: arr});
   }
 
