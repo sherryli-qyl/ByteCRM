@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import Container from '@material-ui/core/Container';
 import TabBar from './components/TabBar';
 import TaskPage from './components/Functions/Task';
+import CallPage from './components/Functions/Calls/index';
 import './Activities.scss';
 
 class Activities extends React.Component {
@@ -12,15 +13,11 @@ class Activities extends React.Component {
       {
         key: 'Notes',
         value: 'Notes',
-        activity: (
-          <div>
-             
-          </div>
-        ),
+        activity: <div></div>,
       },
       { key: 'Emails', value: 'Emails', activity: <div>Email</div> },
-      { key: 'Calls', value: 'Calls', activity: <div>Call</div> },
-      { key: 'Tasks', value: 'Tasks', activity:  <TaskPage />},
+      { key: 'Calls', value: 'Calls', activity: <CallPage /> },
+      { key: 'Tasks', value: 'Tasks', activity: <TaskPage /> },
       { key: 'Meetings', value: 'Meetings', activity: <div>Meetings</div> },
     ];
     this.state = {
@@ -65,4 +62,3 @@ class Activities extends React.Component {
 }
 
 export default Activities;
-

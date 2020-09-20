@@ -12,6 +12,7 @@ import CallOutcome from './selection';
 import Calendar from './calendar';
 import TimePicker from './time';
 import CloseIcon from '../../../../../../../../../img/logsys/closeIcon.svg';
+import RichTextEditor from '../../../../../../../../Style/Editor/index';
 
 function PaperComponent(props) {
   return (
@@ -121,14 +122,7 @@ function DraggableDialog({ classes }) {
             </li>
           </ul>
           <hr />
-          <textarea
-            name="textEditor"
-            id="textEditor"
-            className="textArea"
-            cols="92"
-            rows="12"
-          ></textarea>
-          U B I 组件
+          <RichTextEditor />
         </DialogContent>
 
         <DialogActions>
