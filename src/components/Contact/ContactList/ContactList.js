@@ -3,6 +3,7 @@ import './ContactList.scss';
 import NavBar from '../../Navbar';
 import { NavLink } from 'react-router-dom';
 import EnhancedTable from './components/EnhancedTable';
+import Modal from '../../Modal';
 
 const ContactList = () => (
   // TODO1: 需要一个弹窗输入信息
