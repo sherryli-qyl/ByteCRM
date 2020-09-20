@@ -1,9 +1,6 @@
 import React from "react";
 import NoteCard from '../NoteCard';
-//import NoteModal from '../../../../../../../../Modal/components/Function/Note';
-import CreateButton from '../../../../../Style/Button/Activities/CreateButton';
-//import Modal from '../../../../../../../../../js/Modal';
-//import { ContactContext } from '../../../../../../../../../components/Contact/ContactContext';
+import TimeLineControls from './TimeLineControls';
 import './NotesTimeLine.scss';
 
 class NotesTimeLine extends React.Component {
@@ -49,14 +46,10 @@ class NotesTimeLine extends React.Component {
     render(){
     const notes = this.getNotes();
     let noteNodes = <div>{notes}</div>;
-    //const onClick= useContext(ContactContext); 
-  
     
     return (
       <div className="timeline-container">
-        <div className="timeline-action-container">
-          <CreateButton className="timeline-action-button">Create Note</CreateButton>
-        </div>
+        <TimeLineControls />
         <div className="timeline-all-notes">
           {noteNodes}
         </div>
