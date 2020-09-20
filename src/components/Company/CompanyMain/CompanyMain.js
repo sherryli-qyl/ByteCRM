@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Modal from '../../Modal';
 import Basic from './components/Basic';
-import Activities from './components/Activities';
+import Activities from '../../Activities';
 import Navbar from"../../Navbar";
 import './CompanyMain.scss';
 

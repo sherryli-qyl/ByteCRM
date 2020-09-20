@@ -1,0 +1,28 @@
+@import '../../../../../../style/variable.scss';
+.card{
+    &:hover .hoverBar{
+    display: block;
+}
+}
+
+.hoverBar{
+    display: none;
+                        
+}
+
+
+
+.records{
+  
+
+    
+ }
+
+
+.recordsText{
+font-size: 12px;
+&:hover{
+    cursor: pointer;
+    border-bottom:solid 1px $secondary-color;
+}
+}
