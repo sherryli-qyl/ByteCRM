@@ -67,7 +67,7 @@ class CommentBox extends React.Component {
           author={comment.author} 
           content={comment.content} 
           timestamp={comment.timestamp}
-          key={comment.id} 
+          //key={comment.id} 
           onDelete={this.deleteComment}
           onUpdate={this.updateComment}
         />
