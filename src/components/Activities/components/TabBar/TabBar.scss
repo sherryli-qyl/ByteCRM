@@ -1,0 +1,15 @@
+@import "../../../../style/variable.scss";
+
+
+.tabBar {
+    display: flex;
+    background-color:transparent;
+    border-bottom: solid 1px rgba($color: $primary-color, $alpha: 0.4);
+    margin:auto 10px;
+}
+.horizontal-scroll-wrapper{
+    overflow-x: scroll;
+    overflow-y: hidden;
+    height: 70px;
+    width: 450px;
+}
