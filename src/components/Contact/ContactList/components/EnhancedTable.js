@@ -3,7 +3,7 @@ import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
 import MaterialTable from 'material-table';
 
 import Theme from './MuiTheme';
-import Rows from '../services/getData';
+import getRows from '../services/getData';
 import getColumns from '../services/getColumns';
 import TableIcons from '../services/getIcons';
 import remove from '../services/removeSelected';
@@ -11,11 +11,13 @@ import exportCSV from '../services/exportCSV';
 import exportPDF from '../services/exportPDF';
 import addRow from '../services/addRow';
 import updateRow from '../services/updateRow';
+import Modal from '../../../Modal';
 
 
-function EnhancedTable() {
+
+function EnhancedTable(props) {
     const [columns, setColumns] = useState(getColumns());
-    const [data, setData] = useState(Rows);
+    const [data, setData] = useState(getRows(props.id, props.userAccount));
     const [selectedRow, setSelectedRow] = useState(null);
     return (
       <MuiThemeProvider theme={Theme}>

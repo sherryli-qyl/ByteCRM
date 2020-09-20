@@ -1,4 +1,6 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
+
 
 // 生成假数据的暂时方法
 function createData(
@@ -23,8 +25,19 @@ function createData(
       }
     );
 }
+
   
 let Rows = [
+    {
+      name: <NavLink activeClassName="active" to="/contacts/main">Brian Halligan</NavLink>, 
+      email: 'fqwfqwd@gmail.com', 
+      phoneNumber: '0454991490', 
+      contactOwner: 'James',
+      associatedCompany: 'HubSpot, Inc.',
+      lastActivityDate: '10/09/2020',
+      leadStatus: 7,
+      createDate: '08/09/2020', 
+    },
     createData(
       'John',
       'fqwfqwd@gmail.com',
@@ -269,7 +282,7 @@ let Rows = [
       'Bonnie',
       'egan54@mail.com',
       '045499149',
-      'Louis',
+      'James',
       'HubSpot, Inc.',
       '10/09/2020',
       1,
@@ -279,7 +292,7 @@ let Rows = [
       'Ray',
       'mattie.lewis@mail.com.au',
       '045499149',
-      'Louis',
+      'James',
       'HubSpot, Inc.',
       '10/09/2020',
       2,
@@ -287,4 +300,26 @@ let Rows = [
     ),
 ];
 
-export default Rows;
+const getRows = (id, userAccount) => {
+  if (id === 1) {
+    return Rows;
+  } else if (id === 2) {
+    let mine = [];
+    for (const item of Rows) {
+      if (item.contactOwner === userAccount) {
+        mine.push(item);
+      }
+    }
+    return mine;
+  } else if (id === 3) {
+    let unassigned = [];
+    for (const item of Rows) {
+      if (item.contactOwner !== userAccount) {
+        unassigned.push(item);
+      }
+    }
+    return unassigned;
+  }
+}
+
+export default getRows;
