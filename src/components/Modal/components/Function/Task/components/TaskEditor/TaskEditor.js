@@ -1,10 +1,17 @@
 import React from 'react';
 import Editor from"../../../../../../Style/Editor/Editor";
-import "./TaskEditor.scss";
-const TaskEditor = () => (
+import './TaskEditor.scss';
+
+
+const TaskEditor=({
+  children
+})=>(
+
   <div className="taskEditor">
-    <Editor />
+      <Editor/>
   </div>
+ 
+
 );
 
 export default TaskEditor;
