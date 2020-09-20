@@ -21,6 +21,14 @@ function addDate(days){
     return newDate;
 }
 
+function addWeekDay(days){
+    const date = moment().add(days,'d').toDate();
+    const newDate=moment(date).format("dddd");
+    console.log("new date is "+ newDate);
+    return newDate;
+
+}
+
 function transferDateInMonthYear(date){
     const formateDate=moment(date).format("MMMM YYYY");
     return formateDate
@@ -38,4 +46,4 @@ function getWeekDay(date){
 
 
 
-export {getDate,sortDate,addDate,transferDateInMonthYear,transferDateInMonDayYear,getWeekDay};
+export {addWeekDay,getDate,sortDate,addDate,transferDateInMonthYear,transferDateInMonDayYear,getWeekDay};

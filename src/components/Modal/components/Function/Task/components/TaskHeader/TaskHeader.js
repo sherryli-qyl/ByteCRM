@@ -8,14 +8,13 @@ import {
   KeyboardDatePicker,
 } from '@material-ui/pickers';
 import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
+import TaskFollowSelect from '../../../../../../Style/Select/Activity/';
 import "./TaskHeader.scss"
 
 const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
-      margin: theme.spacing(1),
-      width: '15ch',
+      width: '30%',
     },
   },
 }));
@@ -30,10 +29,28 @@ export default function TaskHeader() {
   };
   return (
     <div className="taskHeader">
-      <form className={classes.root} noValidate autoComplete="off">
-        <TextField  id="standard-basic" label="Task name" />
-      </form>
-      <MuiPickersUtilsProvider utils={DateFnsUtils}>
+      <div className="taskHeader__left">
+        <form className='taskHeader__left__form'
+        // onSubmit={this.handleSubmit}
+        >
+          <input className='taskHeader__left__form__input'
+            placeholder='Enter Your task'
+          // onChange={this.handleOnchange}
+          // onFocus={this.handleFocus}
+          // onBlur={this.handleBlur}
+          // value={volume}
+          />
+        </form>
+      </div>
+      <div className="taskHeader__right">
+        <div className="taskHeader__right--left">
+          <span className='dueDate'>Due Date</span>
+          <TaskFollowSelect />
+        </div>
+
+      </div>
+
+      {/* <MuiPickersUtilsProvider utils={DateFnsUtils}>
       <Grid container justify="space-around">
         <KeyboardDatePicker
           disableToolbar
@@ -59,7 +76,7 @@ export default function TaskHeader() {
           }}
         />
       </Grid>
-      </MuiPickersUtilsProvider>  
+      </MuiPickersUtilsProvider>   */}
     </div>
   );
 }

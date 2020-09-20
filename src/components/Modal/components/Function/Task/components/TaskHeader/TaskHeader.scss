@@ -1,5 +1,30 @@
-.taskHeader{
+.taskHeader {
   display: flex;
-  justify-content: space-evenly;
-  flex-direction: row;
+  //background-color: rgba($color: #30ac59, $alpha: 1.0);
+
+  &__left {
+    display: flex;
+    flex: 1;
+    margin: auto 5%;
+    height: 42px;
+
+    &__form {
+      align-self: center;
+
+      &__input {
+        font-size: 16px;
+        outline: none;
+        border: none;
+      }
+    }
+  }
+
+  &__right {
+    flex: 3;
+    flex-wrap: nowrap;
+  }
+}
+
+.dueDate {
+  font-size: small;
 }

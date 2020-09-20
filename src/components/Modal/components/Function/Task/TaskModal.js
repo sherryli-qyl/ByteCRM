@@ -7,12 +7,12 @@ import "./TaskModal.scss";
 
 
 const TaskModal = () => (
-  <section className="taskModal">
+  <div className="taskModal">
     <TaskHeader />
     <TaskEditor />
     <TaskInput />
-    <TaskSave />
-  </section>
+    {/* <TaskSave />  */}
+  </div>
 );
 
 export default TaskModal;
