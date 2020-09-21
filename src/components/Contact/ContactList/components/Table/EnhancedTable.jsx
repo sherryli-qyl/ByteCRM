@@ -69,7 +69,9 @@ class EnhancedTable extends Component  {
                 tooltip: "Edit contact",
                 icon: tableIcons.Edit,
                 onClick: (event, rowData) => {
-                  console.log(rowData);
+                  this.setState({
+                    visible: true,
+                  })
                 },
               },
             ]}
