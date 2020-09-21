@@ -11,7 +11,7 @@ const TaskModal = () => (
     <TaskHeader />
     <TaskEditor />
     <TaskInput />
-    {/* <TaskSave />  */}
+    <TaskSave />  
   </div>
 );
 
