@@ -1,6 +1,6 @@
-.btn {
+.filter__add-btn {
     position: absolute; 
-    right: 20px;
+    right: 150px;
     top: 13px;
     width: 100px;
     border: none;
@@ -17,7 +17,8 @@
     font-weight: bold;
 }
 
-.btn:active {
+.filter__add-btn:active {
     opacity: .6;
     transition: opacity .3s;
 }
+

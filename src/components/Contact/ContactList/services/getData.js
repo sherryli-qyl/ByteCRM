@@ -316,7 +316,7 @@ function addData(oldData, newData) {
   return oldData;
 }
 
-const getRows = (id, userAccount, newData, filter) => {
+const getRows = (id, userAccount, newData) => {
   if (id === 1) {
     return addData(Rows, newData);
   } else if (id === 2) {

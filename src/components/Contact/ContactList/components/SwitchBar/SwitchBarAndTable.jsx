@@ -1,4 +1,5 @@
 import React from "react";
+import './SwitchBarAndTable.scss'
 import { withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
@@ -42,6 +43,10 @@ class SwitchBar extends React.Component {
     }
   }
 
+  showModal = () => {
+    this.setState({ addVisible: true })
+  }
+
   render() {
     const { classes } = this.props;
     const { activeTab } = this.state;
@@ -59,20 +64,20 @@ class SwitchBar extends React.Component {
               />
             ))}
           </Tabs>
-          <Importer getNewData={this.getNewData} />
-          
         </AppBar>
+        <Importer getNewData={this.getNewData} />
+
         {this.props.tabs.map((tab) =>
-          activeTab === tab.id ? (
+          activeTab === tab.id && (
             <TabContainer className={classes.wrapper} key={tab.id}>
               {tab.component}
             </TabContainer>
-          ) : null
+          )
         )}
         {this.props.tabs.map((tab) =>
-          activeTab === tab.id ? (
+          activeTab === tab.id && (
             <EnhancedTable data={getRows(this.state.activeTab, this.props.userAccount, this.state.newData, this.state.filter)} />
-          ) : null
+          )
         )}
       </div>
     );

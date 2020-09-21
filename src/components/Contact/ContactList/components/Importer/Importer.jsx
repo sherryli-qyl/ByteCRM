@@ -91,7 +91,7 @@ class Importer extends React.Component {
               multipleFiles={false}
               fileTypes={[".csv"]} 
               handleFiles={this.handleFiles}>
-              <button className="btn" >Upload</button>
+              <button className="btn" >Import</button>
           </ReactFileReader>
         </div>
       );
