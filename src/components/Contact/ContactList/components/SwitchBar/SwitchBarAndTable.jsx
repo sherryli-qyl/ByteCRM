@@ -8,6 +8,7 @@ import Importer from '../Importer';
 import TabContainer from "./TabContainer";
 import EnhancedTable from '../Table/EnhancedTable';
 import getRows from '../../services/getData';
+import Modal from '../../../../Modal';
 
 
 const styles = (theme) => ({
@@ -27,7 +28,7 @@ class SwitchBar extends React.Component {
     this.state = {
       activeTab: 1,
       newData: [],
-      data: []
+      filter: {}
     };
   }
 
@@ -59,6 +60,7 @@ class SwitchBar extends React.Component {
             ))}
           </Tabs>
           <Importer getNewData={this.getNewData} />
+          
         </AppBar>
         {this.props.tabs.map((tab) =>
           activeTab === tab.id ? (
@@ -69,7 +71,7 @@ class SwitchBar extends React.Component {
         )}
         {this.props.tabs.map((tab) =>
           activeTab === tab.id ? (
-            <EnhancedTable data={getRows(this.state.activeTab, this.props.userAccount, this.state.newData)} />
+            <EnhancedTable data={getRows(this.state.activeTab, this.props.userAccount, this.state.newData, this.state.filter)} />
           ) : null
         )}
       </div>

@@ -316,7 +316,7 @@ function addData(oldData, newData) {
   return oldData;
 }
 
-const getRows = (id, userAccount, newData) => {
+const getRows = (id, userAccount, newData, filter) => {
   if (id === 1) {
     return addData(Rows, newData);
   } else if (id === 2) {
@@ -332,7 +332,7 @@ const getRows = (id, userAccount, newData) => {
     let unassigned = [];
     let newRows = addData(Rows, newData);
     for (const item of newRows) {
-      if (item.contactOwner !== userAccount) {
+      if (item.contactOwner === 'Unassigned') {
         unassigned.push(item);
       }
     }

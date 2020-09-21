@@ -8,7 +8,7 @@ import remove from '../../services/removeSelected';
 import exportCSV from '../../services/exportCSV';
 import exportPDF from '../../services/exportPDF';
 import updateRow from '../../services/updateRow';
-import Modal from '../../../../Modal';
+
 
 
 // 表格部分样式
