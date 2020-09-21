@@ -6,7 +6,7 @@ import TaskPage from './components/Functions/Task';
 import NotesTimeLine from './components/Functions/Note/NotesTimeLine';
 import CallPanel from './components/Functions/Calls/index';
 import './Activities.scss';
-import Meeting from './components/Functions/Meeting/Meeting';
+import MeetingPage from './components/Functions/Meeting/MeetingPage';
 
 class Activities extends React.Component {
   constructor(props) {
@@ -17,7 +17,7 @@ class Activities extends React.Component {
       { key: 'Emails', value: 'Emails', activity: <EmailPage /> },
       { key: 'Calls', value: 'Calls', activity: <CallPanel /> },
       { key: 'Tasks', value: 'Tasks', activity: <TaskPage /> },
-      { key: 'Meetings', value: 'Meetings', activity: <Meeting /> },
+      { key: 'Meetings', value: 'Meetings', activity: <MeetingPage /> },
     ];
     this.state = {
       currentActivity: tabItems[0].key,
