@@ -3,6 +3,7 @@ import UserTag from '../../../../../../../../Style/Tag/User';
 import UserIcon from '../../../../../../../../../img/Contact/profile.png';
 import DatePicker from '../../../../../../../../Style/Picker/DatePicker';
 import TimePicker from '../../../../../../../../Style/Picker/TimePicker';
+import {transferTimeHHMM} from '../../../../../../../../services/timeManager';
 
 import './LogEmailCard.scss';
 
@@ -47,7 +48,7 @@ class LogEmailCard extends React.Component {
                                 onDateChange={this.onDateChange} />
                         </div>
                         <div className='logEmailCard__content__input__picker'>
-                            <TimePicker defaultTime={currentTime} 
+                            <TimePicker defaultTime={transferTimeHHMM(currentTime)} 
                              onTimeChange={this.onTimeChange}/>
                         </div>
                     </div>

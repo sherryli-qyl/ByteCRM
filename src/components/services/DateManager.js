@@ -4,6 +4,7 @@ import React from 'react';
 
 function getDate(date){
     const formateDate=moment(date).format("YYYY-MM");
+    console.log("get time" + formateDate);
     return formateDate
 }
 
