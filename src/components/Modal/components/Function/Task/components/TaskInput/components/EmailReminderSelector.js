@@ -7,19 +7,27 @@ import {
   KeyboardTimePicker,
   KeyboardDatePicker,
 } from '@material-ui/pickers';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles({
+  root: {
+   width: '137px',
+  },
+});
 
 export default function MaterialUIPickers() {
   // The first commit of Material-UI
-  const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
+  const [selectedDate, setSelectedDate] = React.useState(new Date('2020-09-18T21:11:54'));
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
+  const classes = useStyles();
 
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
       <Grid container justify="space-around">
-        <KeyboardDatePicker
+        <KeyboardDatePicker className={classes.root}
           disableToolbar
           variant="inline"
           format="MM/dd/yyyy"
@@ -33,7 +41,7 @@ export default function MaterialUIPickers() {
           }}
         />
         
-        <KeyboardTimePicker
+        <KeyboardTimePicker className={classes.root}
           margin="normal"
           id="time-picker"
           label="Due Time"
