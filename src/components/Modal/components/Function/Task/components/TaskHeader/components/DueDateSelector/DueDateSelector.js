@@ -2,8 +2,8 @@ import React from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
-import { addWeekDay } from '../../../services/DateManager';
-import { checkbox } from '../../Theme/MatUITheme';
+import { addWeekDay } from '../../../../../../../../services/DateManager';
+import { checkbox } from '../../../../../../../../Style/Theme/MatUITheme';
 
 
 
@@ -38,8 +38,6 @@ class TaskSelect extends React.Component {
             timeValue: selectedValue,
         });
     }
-
-
 
     render() {
         const { timeValue, selectItems, theme } = this.state;

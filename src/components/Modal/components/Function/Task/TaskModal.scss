@@ -1,7 +1,14 @@
+@import '../../../../../style/variable.scss';
+
 .taskModal{
   display:flex;
   flex-direction: column;
   flex:1;
   padding: 1px;
   height:100%;
+}
+
+.taskLabel{
+  color: $label-color;
+  font-size:small;
 }

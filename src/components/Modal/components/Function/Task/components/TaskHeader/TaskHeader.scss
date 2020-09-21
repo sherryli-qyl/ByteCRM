@@ -20,11 +20,22 @@
   }
 
   &__right {
+    display: flex;
     flex: 3;
     flex-wrap: nowrap;
+    justify-content: flex-end;
+
+    &__dropDown{
+      display: flex;
+      flex-direction: column;
+    }
+
+    &__time{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: red;
+    }
   }
 }
 
-.dueDate {
-  font-size: small;
-}

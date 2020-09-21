@@ -1,6 +1,6 @@
 import React from 'react';
 import 'date-fns';
-import TaskFollowSelect from '../../../../../../Style/Select/Activity/';
+import DueDateSelector from './components/DueDateSelector';
 import "./TaskHeader.scss"
 
 export default function TaskHeader() {
@@ -14,9 +14,12 @@ export default function TaskHeader() {
         </form>
       </div>
       <div className="taskHeader__right">
-        <div className="taskHeader__right--left">
-          <span className='dueDate'>Due Date</span>
-          <TaskFollowSelect />
+        <div className="taskHeader__right__dropDown">
+          <span className='taskLabel'>Due Date</span>
+          <DueDateSelector />
+        </div>
+        <div className="taskHeader__right__time">
+             8:00 PM
         </div>
 
       </div>
