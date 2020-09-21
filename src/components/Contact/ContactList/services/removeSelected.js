@@ -1,4 +1,3 @@
-import React, { Component, useState } from 'react';
 
 
 const remove = (dataDelete, selectedRow) => {

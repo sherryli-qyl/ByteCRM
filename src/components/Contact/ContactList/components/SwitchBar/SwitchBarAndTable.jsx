@@ -1,12 +1,15 @@
 import React from "react";
+import './SwitchBarAndTable.scss'
 import { withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 
-import logo from "../images/hubspotLogo.png";
+import Importer from '../Importer';
 import TabContainer from "./TabContainer";
-import EnhancedTable from './EnhancedTable';
+import EnhancedTable from '../Table/EnhancedTable';
+import getRows from '../../services/getData';
+import Modal from '../../../../Modal';
 
 
 const styles = (theme) => ({
@@ -25,12 +28,23 @@ class SwitchBar extends React.Component {
     super (props);
     this.state = {
       activeTab: 1,
+      newData: [],
     };
   }
 
   handleChange = (event, activeTab) => {
-    this.setState((state) => ({ activeTab }));
+    this.setState({ activeTab: activeTab });
   };
+
+  getNewData = (newData) => {
+    if (newData.length !== 0) {
+      this.setState({ newData: newData });
+    }
+  }
+
+  showModal = () => {
+    this.setState({ addVisible: true })
+  }
 
   render() {
     const { classes } = this.props;
@@ -50,13 +64,19 @@ class SwitchBar extends React.Component {
             ))}
           </Tabs>
         </AppBar>
+        <Importer getNewData={this.getNewData} />
+
         {this.props.tabs.map((tab) =>
-          activeTab === tab.id ? (
+          activeTab === tab.id && (
             <TabContainer className={classes.wrapper} key={tab.id}>
               {tab.component}
-              <EnhancedTable id={tab.id} userAccount={this.props.userAccount} />
             </TabContainer>
-          ) : null
+          )
+        )}
+        {this.props.tabs.map((tab) =>
+          activeTab === tab.id && (
+            <EnhancedTable data={getRows(this.state.activeTab, this.props.userAccount, this.state.newData, this.state.filter)} />
+          )
         )}
       </div>
     );

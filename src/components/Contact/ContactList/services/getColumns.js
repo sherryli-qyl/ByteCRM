@@ -1,4 +1,3 @@
-import React, { Component } from 'react';
 import getDate from './getDate';
 import { testPhoneNum, testEmailAddr, testDate } from './validation';
 
