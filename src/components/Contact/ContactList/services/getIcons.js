@@ -17,7 +17,7 @@ import ViewColumn from '@material-ui/icons/ViewColumn';
 import DeleteIcon from '@material-ui/icons/Delete';
 
 
-const TableIcons = {
+const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
     Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
     Clear: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
@@ -39,4 +39,4 @@ const TableIcons = {
 };
 
 
-export default TableIcons;
+export default tableIcons;
