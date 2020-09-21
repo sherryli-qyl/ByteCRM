@@ -36,12 +36,15 @@ const timePicker = createMuiTheme({
           },
           borderBottom: "0px solid" + primaryColor,
         },
+
         formControl:{
           marginTop: '20px',
         },
+
         input: {
           color: primaryColor,
           padding: '0px',
+          marginTop:'10px',
           minWidth: '80px',
           // backgroundColor: 'pink',
           height: '15px',

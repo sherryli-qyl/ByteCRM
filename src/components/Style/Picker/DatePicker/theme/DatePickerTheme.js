@@ -46,6 +46,7 @@ const DatePickerTheme = createMuiTheme({
         color: primaryColor,
         padding: '0px',
         minWidth: '80px',
+        marginTop:'10px',
         // backgroundColor: 'pink',
         height: '15px',
         width: '80px',
@@ -84,6 +85,7 @@ const DatePickerTheme = createMuiTheme({
       root: {
         height: '15px',
         width: '15px',
+        marginTop:'10px',
       }
     },
     MuiPickersDay: {
