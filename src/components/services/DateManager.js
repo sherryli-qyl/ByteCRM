@@ -39,6 +39,11 @@ function transferDateInMonDayYear(date){
     return formateDate
 }
 
+function transferDateInYearMonDay(date){
+    const formateDate=moment(date).format("YYYY-MM-DD");
+    return formateDate
+}
+
 function getWeekDay(date){
     const formateDate = moment(date).format("dddd");
     return formateDate;
@@ -46,4 +51,4 @@ function getWeekDay(date){
 
 
 
-export {addWeekDay,getDate,sortDate,addDate,transferDateInMonthYear,transferDateInMonDayYear,getWeekDay};
+export {transferDateInYearMonDay,addWeekDay,getDate,sortDate,addDate,transferDateInMonthYear,transferDateInMonDayYear,getWeekDay};

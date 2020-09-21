@@ -19,25 +19,38 @@ export default function TaskInput() {
   return (
     <section className="taskInput">
       <div className={classes.root}>
-        <Grid container spacing={0}>
-          <Grid item xs={2}>
-            <TypeSelector />
-          </Grid>
-          <Grid item xs={2}>
-            <PrioritySelector />
-          </Grid>
-          <Grid item xs={6}>
-            <AssignedUserSelector />
-          </Grid>
-        </Grid>
-        <Grid container spacing={0}>
-          <Grid item xs={2}>
-            <QueueSelector />
-          </Grid>
-          <Grid item xs={9}>
-            <EmailReminderSelector />
-          </Grid>
-        </Grid>
+        <div className='taskInput__top'>
+          <div className='taskInput__top__item'>
+            {/* <TypeSelector /> */}
+            <span className="taskLabel" >Type</span>
+          </div>
+          {/* <Grid container spacing={0}>
+          <Grid item xs={2}> */}
+          <div className='taskInput__top__item'>
+            <span className="taskLabel">Priority</span>
+            {/* <PrioritySelector /> */}
+          </div>
+          {/* </Grid>
+          <Grid item xs={2}> */}
+          <div className='taskInput__top__item'>
+            <span className="taskLabel">Assigned to</span>
+            {/* <AssignedUserSelector /> */}
+          </div>
+          {/* </Grid>
+          <Grid item xs={6}> */}
+          {/* </Grid>
+        </Grid> */}
+        </div>
+        <div className='taskInput__bot'>
+          {/* <Grid container spacing={0}>
+          <Grid item xs={2}> */}
+          {/* <QueueSelector /> */}
+          {/* </Grid>
+          <Grid item xs={9}> */}
+          {/* <EmailReminderSelector /> */}
+        </div>
+        {/* </Grid>
+        </Grid> */}
       </div>
     </section>
   );
