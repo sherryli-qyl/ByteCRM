@@ -4,14 +4,14 @@
 
     &__content{
         display: inline-block;
-        border-bottom: solid 1px rgba(0,0,0,0.1);
+        
 
         &__input{
             display: flex;
             justify-content: flex-start;
             align-items: center;
-            border-top: solid 1px;
-            border-bottom: solid 1px;
+            border-top: solid 1px rgba(0,0,0,0.2);
+            border-bottom: solid 1px rgba(0,0,0,0.2);
 
             &__picker{
                 margin:4% 3%;
