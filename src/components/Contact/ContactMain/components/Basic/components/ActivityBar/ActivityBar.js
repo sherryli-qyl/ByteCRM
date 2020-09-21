@@ -6,7 +6,7 @@ import './ActivityBar.scss';
 const ActivityBar = ({
     navItems,
     onNavItemClick,
-    currentModal,
+    modalKey,
   }) => (
     <nav className="activity__Bar">
       {navItems.map((item) => (
@@ -14,7 +14,7 @@ const ActivityBar = ({
           key = {item.key}
           name ={item.value}
           src={item.src}
-          active={currentModal === item.key} 
+          active={modalKey === item.key} 
            onClick={() => onNavItemClick(item)}
         >
           {item.value}

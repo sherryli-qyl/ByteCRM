@@ -1,0 +1,15 @@
+.emailCards{
+    display:inline-block;
+}
+
+.CardContainer{
+    display: flex;
+    flex-direction: column;
+    margin: auto 5%;
+    //background-color: red;
+
+    &__dateLabel{
+        
+        margin-bottom: 2%;
+    }
+}

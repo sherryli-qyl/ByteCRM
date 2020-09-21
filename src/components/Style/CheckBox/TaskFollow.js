@@ -3,7 +3,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import { ThemeProvider } from '@material-ui/styles';
 import getTheme from '../Theme/MatUITheme';
 
-import TaskFollowSelect from '../Select/TaskFollowSelect';
+import TaskFollowSelect from '../Select/Modal/TaskFollowSelect';
 import './taskFollow.scss';
 
 class Taskfollow extends React.Component {

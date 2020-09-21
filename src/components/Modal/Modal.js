@@ -12,10 +12,8 @@ class Modal extends Component {
             defaultXaxis: 500,
             defaultYaxis: 100,
             hide: false,
-
         };
 
-        this.modal = React.createRef();
         this.showModal = this.showModal.bind(this);
         this.handleCloseButton = this.handleCloseButton.bind(this);
         this.handleHideButton = this.handleHideButton.bind(this);
@@ -44,25 +42,29 @@ class Modal extends Component {
 
     render() {
         const { hide, visibleStatus } = this.state;
-        let className="MainComponents";
-        if(!hide){
-            className +=" Component--acitve";
+        const dragHandlers = {onStart: this.onStart, onStop: this.onStop};
+        let className = "MainComponents";
+        if (!hide) {
+            className += " Component--acitve";
         }
 
         return (
             <Draggable
+                handle="strong" {...dragHandlers}
                 defaultPosition={{ x: this.props.Xaxis, y: this.props.Yaxis }}
             >
                 {this.props.visible ?
-                    <div ref={this.modal} className="Modal Component--acitve">
-                        <div className="Header">
-                            <Header
-                                name={this.props.currentModal.key}
-                                hide={this.state.hide}
-                                handleCloseButton={this.handleCloseButton}
-                                handleHideButton={this.handleHideButton}
-                            />
-                        </div>
+                    <div className="Modal Component--acitve">
+                        <strong className="cursor">
+                            <div className="Header">
+                                <Header
+                                    name={this.props.currentModal.key}
+                                    hide={this.state.hide}
+                                    handleCloseButton={this.handleCloseButton}
+                                    handleHideButton={this.handleHideButton}
+                                />
+                            </div>
+                        </strong>
                         {hide ?
                             <div className="MainComponents" />
                             :
@@ -72,10 +74,9 @@ class Modal extends Component {
                         }
                     </div>
                     :
-                    <div className ="Modal"/>
+                    <div className="Modal" />
                 }
             </Draggable>
-
         )
     }
 }
