@@ -29,7 +29,6 @@ class SwitchBar extends React.Component {
     this.state = {
       activeTab: 1,
       newData: [],
-      filter: {}
     };
   }
 

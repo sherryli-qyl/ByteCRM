@@ -47,6 +47,15 @@ class Importer extends React.Component {
         );
     }
 
+    reformatData(data) {
+      for (let i = 0; i < data.length; i++) {
+        if (i !== 4) {
+          data[i] = data[i].slice(1, data[i].length-1);
+        }
+      }
+      return data;
+    }
+
     processData(allText) {
       const allTextLines = allText.split(/\r\n|\n/);
       let lines = [];
@@ -66,6 +75,7 @@ class Importer extends React.Component {
           }
           company = company.slice(1, company.length-1);
           items = front.concat([company]).concat(back);
+          items = this.reformatData(items);
         }
         lines.push(this.convertArrayToObj(items));
       }
