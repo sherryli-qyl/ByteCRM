@@ -1,4 +1,3 @@
-import React, { Component } from 'react';
 import getDate from './getDate';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';

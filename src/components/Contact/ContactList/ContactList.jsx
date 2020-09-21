@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './ContactList.scss';
 import NavBar from '../../Navbar';
-import SwitchBar from './components/SwitchBar';
+import SwitchBar from './components/SwitchBar/SwitchBarAndTable';
 import All from '@material-ui/icons/Face';
 import Mine from '@material-ui/icons/CheckCircle';
 import Unassigned from '@material-ui/icons/CheckCircleOutline';
@@ -37,16 +37,15 @@ let userAccount = "James";
   
 
 class ContactList extends Component {
-  constructor(props) {
-    super (props);
-
-  }
+  // constructor(props) {
+  //   super (props);
+  // }
 
   render() {
     return (
       <div className="root">
         <NavBar />
-        <SwitchBar tabs={tabs} userAccount={userAccount} />
+        <SwitchBar tabs={tabs} userAccount={userAccount}v/>
       </div>
     )
   }

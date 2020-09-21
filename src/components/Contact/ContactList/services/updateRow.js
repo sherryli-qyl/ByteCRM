@@ -1,6 +1,10 @@
-import React, { Component } from 'react';
+import getDate from './getDate';
 
-const updateRow = (newData) => {
+
+const updateRow = (newData, isAdd = false) => {
+    if (isAdd) {
+        newData.createDate = getDate();
+    }
     if (newData.contactOwner === '') {
         newData.contactOwner = 'Unassigned';
     }

@@ -4,9 +4,10 @@ import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 
-import logo from "../images/hubspotLogo.png";
+import Importer from '../Importer';
 import TabContainer from "./TabContainer";
-import EnhancedTable from './EnhancedTable';
+import EnhancedTable from '../Table/EnhancedTable';
+import getRows from '../../services/getData';
 
 
 const styles = (theme) => ({
@@ -25,12 +26,20 @@ class SwitchBar extends React.Component {
     super (props);
     this.state = {
       activeTab: 1,
+      newData: [],
+      data: []
     };
   }
 
   handleChange = (event, activeTab) => {
-    this.setState((state) => ({ activeTab }));
+    this.setState({ activeTab: activeTab });
   };
+
+  getNewData = (newData) => {
+    if (newData.length !== 0) {
+      this.setState({ newData: newData });
+    }
+  }
 
   render() {
     const { classes } = this.props;
@@ -49,13 +58,18 @@ class SwitchBar extends React.Component {
               />
             ))}
           </Tabs>
+          <Importer getNewData={this.getNewData} />
         </AppBar>
         {this.props.tabs.map((tab) =>
           activeTab === tab.id ? (
             <TabContainer className={classes.wrapper} key={tab.id}>
               {tab.component}
-              <EnhancedTable id={tab.id} userAccount={this.props.userAccount} />
             </TabContainer>
+          ) : null
+        )}
+        {this.props.tabs.map((tab) =>
+          activeTab === tab.id ? (
+            <EnhancedTable data={getRows(this.state.activeTab, this.props.userAccount, this.state.newData)} />
           ) : null
         )}
       </div>

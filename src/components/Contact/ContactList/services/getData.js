@@ -300,12 +300,29 @@ let Rows = [
     ),
 ];
 
-const getRows = (id, userAccount) => {
+function addData(oldData, newData) {
+  if (newData.length === 0) {
+    return oldData;
+  }
+  let names = [];
+  for (const item of oldData) {
+    names.push(item.name);
+  }
+  for (const item of newData) {
+    if (!names.includes(item.name)) {
+      oldData.push(item);
+    }
+  }
+  return oldData;
+}
+
+const getRows = (id, userAccount, newData) => {
   if (id === 1) {
-    return Rows;
+    return addData(Rows, newData);
   } else if (id === 2) {
     let mine = [];
-    for (const item of Rows) {
+    let newRows = addData(Rows, newData);
+    for (const item of newRows) {
       if (item.contactOwner === userAccount) {
         mine.push(item);
       }
@@ -313,7 +330,8 @@ const getRows = (id, userAccount) => {
     return mine;
   } else if (id === 3) {
     let unassigned = [];
-    for (const item of Rows) {
+    let newRows = addData(Rows, newData);
+    for (const item of newRows) {
       if (item.contactOwner !== userAccount) {
         unassigned.push(item);
       }

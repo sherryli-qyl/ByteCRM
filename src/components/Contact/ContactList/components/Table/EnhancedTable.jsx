@@ -1,23 +1,32 @@
 import React, { Component, useState } from 'react';
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
+import { createMuiTheme } from '@material-ui/core/styles';
 import MaterialTable from 'material-table';
-
-import Theme from './MuiTheme';
-import getRows from '../services/getData';
-import getColumns from '../services/getColumns';
-import TableIcons from '../services/getIcons';
-import remove from '../services/removeSelected';
-import exportCSV from '../services/exportCSV';
-import exportPDF from '../services/exportPDF';
-import addRow from '../services/addRow';
-import updateRow from '../services/updateRow';
-import Modal from '../../../Modal';
+import getColumns from '../../services/getColumns';
+import TableIcons from '../../services/getIcons';
+import remove from '../../services/removeSelected';
+import exportCSV from '../../services/exportCSV';
+import exportPDF from '../../services/exportPDF';
+import updateRow from '../../services/updateRow';
+import Modal from '../../../../Modal';
 
 
+// 表格部分样式
+const Theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#81C7D4',
+    },
+    secondary: {
+      main: '#33A6B8',
+    },
+  },
+
+});
 
 function EnhancedTable(props) {
     const [columns, setColumns] = useState(getColumns());
-    const [data, setData] = useState(getRows(props.id, props.userAccount));
+    const [data, setData] = useState(props.data);
     const [selectedRow, setSelectedRow] = useState(null);
     return (
       <MuiThemeProvider theme={Theme}>
@@ -66,7 +75,7 @@ function EnhancedTable(props) {
           editable={{
             onRowAdd: newData =>
               new Promise((resolve, reject) => {
-                newData = addRow(newData);
+                newData = updateRow(newData, true);
                 setTimeout(() => {
                   setData([...data, newData]);
                   resolve();
