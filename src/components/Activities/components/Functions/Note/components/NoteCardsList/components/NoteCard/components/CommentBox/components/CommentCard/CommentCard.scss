@@ -1,4 +1,4 @@
-@import '../../../../../../../../style/variable.scss';
+@import '../../../../../../../../../../../../../style/variable.scss';
 
 .comment-container {
   background-color: #FEF8F0;
@@ -24,6 +24,14 @@
     align-self: center;
     font-size: 12px;
   }
+}
+
+.comment-container-header__left--editing {
+  padding-top: 10px;
+  align-self: none;
+  font-size: 24px;
+  color: lightgrey;
+  display: inline-flex;
 }
 
 .comment-createdby {
@@ -61,7 +69,7 @@
 }
 
 .comment-editor {
-  margin-left: 25px;
+  margin-left: 10px;
 }
 
 .comment-content-edit {
@@ -70,10 +78,9 @@
   border: transparent;
   outline: transparent;
   resize: none;
-  width: 500px;
-  height: 60px;
+  width: 100%;
+  min-height: 60px;
   margin-bottom: 10px;
-  
 }
 
 .comment-card-content {
@@ -108,9 +115,12 @@
     border:solid 1px rgba(#cbd6e2, $alpha: 1);
 
     &:hover{
-        background-color:transparent;
-        
-        cursor: pointer;
+      background-color:transparent;
+      cursor: pointer;
     }
   }
+}
+
+.comment-editor-actions {
+  margin: 0px 0px 10px;
 }

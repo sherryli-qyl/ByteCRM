@@ -3,6 +3,11 @@ import "./CommentForm.scss";
 
 
 class CommentForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+    };
+  }
 
   handleSubmit(event) { 
     event.preventDefault();   
@@ -26,10 +31,12 @@ class CommentForm extends React.Component {
           ref={(textarea) => this.content = textarea}
         >
         </textarea>
-        
         <div className="comment-form-controls">
           <button type="submit" className="comment-form-controls__save">Save</button>
-          {/* <button type="cancel">Cancel</button> */}
+          <button 
+            type="cancel" 
+            className="comment-form-controls__cancel" 
+            onClick={this.props.handleShowCommentForm}>Cancel</button>
         </div>
       </form>
     );

@@ -1,11 +1,10 @@
 .comment-box-top {
-  margin: 5px 20px 15px 35px;
+  margin: 5px 0px;
 }
 
 .accordion-label {
-  margin-left: 10px;
   font-size: 14px;
-  padding: 10px;
+  padding: 10px 0px;
   color: #0091AE;
   border: none;
   background-color: transparent;
@@ -21,7 +20,7 @@
 }
 
 .add-comment-container {
-  padding: 10px 15px;
+  padding: 10px 0px;
   display: flex;
   border-top: 1px solid lightgrey;
   max-width: 100%;
@@ -41,18 +40,4 @@
   border: none;
   outline: none;
   background-color: transparent;
-}
-
-.accordion-collapse {
-  max-height: 200px;
-  overflow: hidden;
-  transition: max-height .5s ease;
-}
-
-.accordion-close {
-  max-height: 0;
-}
-
-.comment-items {
-  padding-left: 20px;
 }
