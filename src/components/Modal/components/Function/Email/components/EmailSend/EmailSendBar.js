@@ -1,9 +1,8 @@
 import React from 'react';
 import ContainedButton from '../../../../../../Style/Button/Modal/ContainedButton';
 import OutlinedButton from '../../../../../../Style/Button/Modal/OutlinedButton';
-import TaskFollow from '../../../../../../Style/CheckBox';
 import "./EmailSendBar.scss"
-import Taskfollow from '../../../../../../Style/CheckBox';
+import Taskfollow from '../../../../Private/TaskFollow';
 
 
 

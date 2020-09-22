@@ -1,7 +1,7 @@
 import 'date-fns';
 import React from 'react';
 import { ThemeProvider, } from '@material-ui/core/styles';
-import timePicker from './theme/theme';
+import timepicker from './theme/TimepickerTheme';
 import TextField from '@material-ui/core/TextField';
 
 
@@ -9,7 +9,7 @@ import TextField from '@material-ui/core/TextField';
 class TimePicker extends React.Component {
     constructor(props) {
         super(props);
-        const pickerTheme = timePicker ;
+        const pickerTheme = timepicker ;
         this.state = {
             pickerTheme,
             currentTime: this.props.defaultTime,
@@ -33,7 +33,8 @@ class TimePicker extends React.Component {
                 <ThemeProvider theme={pickerTheme}>
                     <TextField
                         id="time"
-                        label="Time"
+                        label={this.props.label}
+                        className={this.props.className}
                         type="time"
                         defaultValue={ currentTime}
                         value={currentTime}

@@ -1,30 +1,32 @@
 import React from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
-import Dropdown from '../../../../../../../../Style/Dropdown';
-import { addWeekDay } from '../../../../../../../../services/DateManager';
-import DueDateTheme from './theme/';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
+import { addDate } from '../../../../../../services/DateManager';
+import Dropdown from '../../../../../../Style/Dropdown';
+import './TaskFollowDropDown.scss';
 
 
 
-class TaskSelect extends React.Component {
+class TaskFollowDropdown extends React.Component {
     constructor(props) {
         super(props);
         const selectItems = [
             { key: 'Today', value: 0, date: '' },
             { key: 'Tomorrow ', value: 1, date: '' },
             { key: 'in 2 business days ', value: 2, date: '' },
-            { key: 'in 3 business days ', value: 3, date: '' },
+            { key: 'in 3 business days ', value: 3,},
             { key: 'in 1 week ', value: 7, date: '' },
             { key: 'in 2 weeks ', value: 14, date: '' },
             { key: 'in 1 month ', value: 30 },
         ];
-        const theme = DueDateTheme;
+
         this.state = {
             timeValue: 3,
             selectItems: selectItems,
-            theme,
         };
         this.handleSelectChange = this.handleSelectChange.bind(this);
+
     }
 
     handleSelectChange(e) {
@@ -37,14 +39,16 @@ class TaskSelect extends React.Component {
         });
     }
 
+
+
     render() {
-        const { selectItems, theme } = this.state;
+        const { selectItems } = this.state;
         return (
             <div>
-                <ThemeProvider theme={theme}>
+                <ThemeProvider theme={this.props.theme}>
                     <Dropdown dropdownItems={selectItems}
                         transfer={true}
-                        transferKey={addWeekDay}
+                        transferKey={addDate}
                     />
                 </ThemeProvider>
             </div>
@@ -52,4 +56,4 @@ class TaskSelect extends React.Component {
     }
 }
 
-export default TaskSelect;
+export default TaskFollowDropdown;
