@@ -26,23 +26,53 @@ class EnhancedTable extends Component  {
   constructor(props) {
     super(props);
     this.state = {
+      visible: false,
       columns: getColumns(),
       data: props.data,
-      visible: false,
+      title: "Please select a field to edit"
       // selectedRow: null
     };
   }
 
   setData = (newData) => {
-    this.setState(
-      { data: newData }
-    );
+    this.setState({ data: newData });
+  }
+
+  showEditor = () => {
+    // new Promise((resolve, reject) => {
+    //   setTimeout(() => {
+    //     this.setState({ visible: true });
+    //     console.log(this.state);
+    //   }, 500);
+    // });
+    // this.forceUpdate();
+    this.setState({ visible: true });
+    console.log(this.state);
+    
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.visible !== this.state.visible) {
+      console.log(prevState.visible, this.state.visible);
+      console.log('Visible state has changed.');
+      // prevState.visible = !prevState.visible;
+    }
+  }
+
+  removeRow = (evt, selectedRow) => {
+    new Promise((resolve, reject) => {
+      setTimeout(() => {
+        let dataDelete = [...this.state.data];
+        dataDelete = remove(dataDelete, selectedRow);
+        this.setData([...dataDelete]);
+        resolve();
+      }, 500);
+    });
   }
 
   render() {
     return (
       <>
-        <Editor visible={this.state.visible}></Editor>
         <MuiThemeProvider theme={Theme}>
           <MaterialTable
             title={null}
@@ -53,26 +83,14 @@ class EnhancedTable extends Component  {
             // onSelectionChange={(Rows) => console.log(Rows)}
             actions={[
               {
-                tooltip: "Remove All Selected Contacts",
+                tooltip: "Remove all selected contact(s)",
                 icon: tableIcons.Delete,
-                onClick: (evt, selectedRow) =>
-                  new Promise((resolve, reject) => {
-                    setTimeout(() => {
-                      let dataDelete = [...this.state.data];
-                      dataDelete = remove(dataDelete, selectedRow);
-                      this.setData([...dataDelete]);
-                      resolve();
-                    }, 500);
-                  }),
+                onClick: this.removeRow,
               },
               {
-                tooltip: "Edit contact",
+                tooltip: "Edit contact(s)",
                 icon: tableIcons.Edit,
-                onClick: (event, rowData) => {
-                  this.setState({
-                    visible: true,
-                  })
-                },
+                onClick: this.showEditor,
               },
             ]}
             options={{
@@ -83,12 +101,8 @@ class EnhancedTable extends Component  {
               pageSize: 10,
               pageSizeOptions: [10, 30, 50],
               exportButton: true,
-              exportCsv: (columns, data) => {
-                exportCSV(columns, data);
-              },
-              exportPdf: (columns, data) => {
-                exportPDF(columns, data);
-              },
+              exportCsv: exportCSV,
+              exportPdf: exportPDF,
             }}
             editable={{
               onRowAdd: (newData) =>
@@ -113,6 +127,7 @@ class EnhancedTable extends Component  {
             }}
           />
         </MuiThemeProvider>
+        <Editor visible={this.state.visible} title={this.state.title} ></Editor>
       </>
     );
   }
