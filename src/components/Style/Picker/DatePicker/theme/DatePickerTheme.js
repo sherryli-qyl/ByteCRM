@@ -13,10 +13,11 @@ const DatePickerTheme = createMuiTheme({
       root: {
         display: 'flex',
         justifyContent: 'flex-start',
-        height: '15px',
+        height: '19px',
         width: '100px',
         // backgroundColor: 'yellow',
         padding: '0px',
+        
       }
     },
     MuiFormControl:{
@@ -47,11 +48,12 @@ const DatePickerTheme = createMuiTheme({
         padding: '0px',
         minWidth: '80px',
         marginTop:'10px',
-        // backgroundColor: 'pink',
-        height: '15px',
+        height: '19px',
         width: '80px',
         fontSize: '15px',
-
+      },
+      formControl:{
+        marginTop:'13px',
       }
     },
     MuiInputAdornment: {

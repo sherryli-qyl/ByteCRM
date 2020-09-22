@@ -10,5 +10,7 @@
 
 .taskLabel{
   color: $label-color;
+  align-self: flex-start;
   font-size:small;
+  margin-bottom: 8px;
 }

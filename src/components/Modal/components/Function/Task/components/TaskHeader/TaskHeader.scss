@@ -1,6 +1,6 @@
 .taskHeader {
   display: flex;
-  //background-color: rgba($color: #30ac59, $alpha: 1.0);
+  
 
   &__left {
     display: flex;
@@ -22,8 +22,8 @@
   &__right {
     display: flex;
     flex: 3;
-    flex-wrap: nowrap;
     justify-content: flex-end;
+    margin-top:1%;
 
     &__dropDown{
       display: flex;
@@ -32,10 +32,15 @@
 
     &__time{
       display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: red;
+      justify-content: flex-start;
+      align-items: flex-end;
+      margin-top:0.1rem;
+      
     }
   }
 }
+
+
+
+
 
