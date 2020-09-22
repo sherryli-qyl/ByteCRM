@@ -1,20 +1,19 @@
 import React from 'react';
-import { ThemeProvider } from '@material-ui/core/styles';
 import Select from '@material-ui/core/Select';
-import dropdownTheme from './theme/';
-import './TaskFollow.scss';
+import MenuItem from '@material-ui/core/MenuItem';
+
+
 
 
 class Dropdown extends React.Component {
     constructor(props) {
         super(props);
-        const selectItems = this.props.items;
-        const theme =dropdownTheme;
-        const 
+        const selectItems = this.props.dropdownItems;
+       
         this.state = {
-            currentValue,
+            currentValue:0,
             selectItems,
-            theme,
+          
         };
         this.handleSelectChange = this.handleSelectChange.bind(this);
 
@@ -31,27 +30,32 @@ class Dropdown extends React.Component {
     }
 
     render() {
-        const {selectItems,currentValue,theme} = this.state;
+        const {selectItems,currentValue} = this.state;
         return (
             <div>
-                <ThemeProvider theme={theme}>
+                
                     <Select
                         //disableUnderline
                         value={currentValue}
                         variant='standard'
                         onChange={this.handleSelectChange}
-                        defaultValue={3}
+                        defaultValue={0}
                         className={"taskFollow__select__input"}
                     >
                         {selectItems.map((item) => (
                             <MenuItem
                                 key={item.key}
-                                value={item.value}>
-                                {item.key + `(${addDate(item.value)})`}
+                                className={item.type}
+                                value={item.value}>    
+                          {this.props.transfer?
+                            item.key + `(${this.props.transferKey(item.value)})`
+                            :
+                            item.key
+                           }          
                             </MenuItem>
                         ))}
                     </Select>
-                </ThemeProvider>
+               
             </div>
         );
     }
