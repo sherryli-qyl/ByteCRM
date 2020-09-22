@@ -14,11 +14,19 @@ const timePicker = createMuiTheme({
         root: {
           display: 'flex',
           justifyContent: 'flex-start',
-          height: '15px',
+          height: '19px',
           width: '100px',
-          // backgroundColor: 'yellow',
+        //   backgroundColor: 'yellow',
           padding: '0px',
+         
         }
+      },
+      MuiFormControl:{
+        marginNormal:{
+          marginTop:'0px',
+          marginBottom:'0px',
+        }
+  
       },
       MuiInput: {
         root: {
@@ -36,21 +44,18 @@ const timePicker = createMuiTheme({
           },
           borderBottom: "0px solid" + primaryColor,
         },
-
-        formControl:{
-          marginTop: '20px',
-        },
-
         input: {
           color: primaryColor,
           padding: '0px',
           marginTop:'10px',
-          minWidth: '80px',
-          // backgroundColor: 'pink',
-          height: '15px',
+          
+        //   backgroundColor: 'pink',
+          height: '19px',
           width: '100px',
           fontSize: '15px',
-  
+        },
+        formControl:{
+          marginTop:'10px',
         }
       },
       MuiInputAdornment: {

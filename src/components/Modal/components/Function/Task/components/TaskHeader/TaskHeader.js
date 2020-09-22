@@ -1,9 +1,15 @@
 import React from 'react';
 import 'date-fns';
 import DueDateSelector from './components/DueDateSelector';
+import Timepicker from '../../../../../../Style/Picker/TimePicker';
+import { transferTimeHHMM } from '../../../../../../services/timeManager';
 import "./TaskHeader.scss"
 
-export default function TaskHeader() {
+const TaskHeader = ({
+  children,
+  defaultTime,
+  onTimeChange,
+}) => {
   return (
     <div className="taskHeader">
       <div className="taskHeader__left">
@@ -19,10 +25,14 @@ export default function TaskHeader() {
           <DueDateSelector />
         </div>
         <div className="taskHeader__right__time">
-             8:00 PM
+          <Timepicker 
+            className="taskTime"
+            defaultTime={transferTimeHHMM(defaultTime)}
+            onTimeChange={onTimeChange} />
         </div>
-
       </div>
     </div>
   );
 }
+
+export default TaskHeader;

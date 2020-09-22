@@ -49,6 +49,7 @@ class LogEmailCard extends React.Component {
                         </div>
                         <div className='logEmailCard__content__input__picker'>
                             <TimePicker defaultTime={transferTimeHHMM(currentTime)} 
+                             label='Time'
                              onTimeChange={this.onTimeChange}/>
                         </div>
                     </div>

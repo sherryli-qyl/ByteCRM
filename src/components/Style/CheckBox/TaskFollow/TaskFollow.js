@@ -1,8 +1,8 @@
 import React from 'react';
 import Checkbox from '@material-ui/core/Checkbox';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import { checkbox } from '../Theme/MatUITheme';
-import TaskFollowSelect from '../Select/Modal/TaskFollowSelect';
+import { checkbox } from '../../Theme/MatUITheme';
+import TaskFollowSelect from '../../Select/Modal/TaskFollowSelect';
 import './taskFollow.scss';
 
 
