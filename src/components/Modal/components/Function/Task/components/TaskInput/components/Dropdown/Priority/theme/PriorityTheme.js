@@ -1,7 +1,7 @@
 import { createMuiTheme } from '@material-ui/core/styles';
 
 const primaryColor = '#0091ae';
-const dropdown = createMuiTheme({
+const PrioritydownTheme = createMuiTheme({
     palette: {
         primary: {
             main: primaryColor,
@@ -14,6 +14,7 @@ const dropdown = createMuiTheme({
                 justifyContent: 'flex-start',
                 height: '15px',
                 padding: '0px',
+                width: '65px',
             }
         },
         MuiInput: {
@@ -22,7 +23,10 @@ const dropdown = createMuiTheme({
             },
             underline: {
                 "&&&&:hover:before": {
-                    borderBottom: "0px solid" + primaryColor,
+                    borderBottom: "1px solid" + primaryColor,
+                },
+                "&:hover":{
+                    borderBottom: "0",
                 },
                 "&:before": {
                     borderBottom: "0",
@@ -37,7 +41,7 @@ const dropdown = createMuiTheme({
                 padding: '0px',
                 height: '15px',
                 fontSize: '15px',
-
+                width: '65px',
             }
         },
         MuiInputAdornment: {
@@ -64,4 +68,4 @@ const dropdown = createMuiTheme({
     }
 })
 
-export default dropdown;
+export default PrioritydownTheme;

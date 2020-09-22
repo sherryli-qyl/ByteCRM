@@ -1,9 +1,8 @@
 import React from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
+import Dropdown from '../../../../../../../../Style/Dropdown';
 import { addWeekDay } from '../../../../../../../../services/DateManager';
-import { checkbox } from '../../../../../../../../Style/Theme/MatUITheme';
+import DueDateTheme from './theme/';
 
 
 
@@ -19,14 +18,13 @@ class TaskSelect extends React.Component {
             { key: 'in 2 weeks ', value: 14, date: '' },
             { key: 'in 1 month ', value: 30 },
         ];
-        const theme = checkbox;
+        const theme = DueDateTheme;
         this.state = {
             timeValue: 3,
             selectItems: selectItems,
             theme,
         };
         this.handleSelectChange = this.handleSelectChange.bind(this);
-
     }
 
     handleSelectChange(e) {
@@ -40,26 +38,15 @@ class TaskSelect extends React.Component {
     }
 
     render() {
-        const { timeValue, selectItems, theme } = this.state;
+        const { selectItems, theme } = this.state;
         return (
             <div>
-                <Select
-                    disableUnderline
-                    value={timeValue}
-                    variant='standard'
-                    onChange={this.handleSelectChange}
-                    defaultValue={3}
-                    className={"taskFollow__select__input"}
-                >
-                    {selectItems.map((item) => (
-                        <MenuItem
-                            key={item.key}
-                            value={item.value}>
-                            {item.key + `(${addWeekDay(item.value)})`}
-                        </MenuItem>
-                    ))}
-                </Select>
-
+                <ThemeProvider theme={theme}>
+                    <Dropdown dropdownItems={selectItems}
+                        transfer={true}
+                        transferKey={addWeekDay}
+                    />
+                </ThemeProvider>
             </div>
         );
     }
