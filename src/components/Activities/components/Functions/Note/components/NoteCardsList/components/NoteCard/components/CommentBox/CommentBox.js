@@ -12,22 +12,35 @@ class CommentBox extends React.Component {
   constructor(props) {
     super(props);
 
+    //TODO: When "Add Comment" is clicked, hide "Add Comment" pannel
+    //TODO: When Save button on Comment Form is clicked, hide Comment Form
+    //TODO: When Save button on Comment Form is clicked, show Add Comment section
+    //TODO: When Cancel button on Comment Form is clicked, show Add Comment section
+
     this.state = {
       showComments: false,
       showCommentForm: false,
-      comments: this.props.comments
+      //showAddCommentPanel: true,
+      comments: this.props.comments,
     };
-    this.handleShowCommentFormClick = this.handleShowCommentFormClick.bind(this);
+    this.handleShowCommentForm = this.handleShowCommentForm.bind(this);
+    //this.handleShowAddCommentPanel = this.handleShowAddCommentPanel.bind(this);
     this.deleteComment = this.deleteComment.bind(this);
     this.updateComment = this.updateComment.bind(this);
   }
 
-  handleShowCommentFormClick() {
+  
+  handleShowCommentForm() {
     this.setState(prevState =>({
       showCommentForm: !prevState.showCommentForm
     }));
   }
 
+  // handleShowAddCommentPanel() {
+  //   this.setState(prevState =>({
+  //     showAddCommentPanel: !prevState.showAddCommentPanel
+  //   }));
+  // }
   
   addComment(author, content, timestamp) {
     const comment = {
@@ -103,19 +116,31 @@ class CommentBox extends React.Component {
           >
             {buttonText} {this.getCommentsTitle(comments.length)} 
           </button>
-          <div className="comment-items">
-            {commentNodes}
-          </div>
+          {commentNodes}
         </div>
-        <div className={this.state.showCommentForm ? "accordion-collapse" : "accordion-collapse accordion-close"}>
-          <CommentForm addComment={this.addComment.bind(this)}/>
+        <div>
+          {this.state.showCommentForm
+          ? <CommentForm 
+            addComment={this.addComment.bind(this)} 
+            handleShowCommentForm={this.handleShowCommentForm.bind(this)}/>
+          : null
+          }
         </div>
         
-        <div className="add-comment-container">
+        <div 
+          className="add-comment-container" 
+          //handleShowAddCommentPanel={this.handleShowAddCommentPanel.bind(this)}
+        >
           <div className="add-comment-icon">
             <FontAwesomeIcon icon={faCommentDots} />
           </div>
-          <button onClick={this.handleShowCommentFormClick.bind(this)} className="add-comment-button">Add Comment</button>
+          <button onClick={()=>{
+            this.handleShowCommentForm(); 
+            //this.handleShowAddCommentPanel();
+            }} 
+            className="add-comment-button"
+          >
+          Add Comment</button>
         </div>
       </div>  
     );
