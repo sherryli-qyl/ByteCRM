@@ -1,9 +1,18 @@
-.label{
-  font-size: 15px;
-  margin: 10px 0px;
+.labelwithinfo {
+  display: flex;
+  .label {
+    font-size: 15px;
+    margin: 10px 0px;
+  }
+
+  .info {
+    position: relative;
+    top: 10px;
+    left: 2px;
+  }
 }
 
-.input{
+.input {
   font-size: 15px;
   margin: 10px 0px;
   text-decoration-line: underline;
