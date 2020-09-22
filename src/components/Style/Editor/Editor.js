@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import './Editor.scss';
@@ -23,7 +23,6 @@ class Editor extends React.Component {
     return(
       <div className="editor">
          <ReactQuill 
-            theme={this.state.theme}
             onChange={this.handleChange}
             value={this.state.editorHtml}
             modules={Editor.modules}

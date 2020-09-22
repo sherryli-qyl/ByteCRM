@@ -1,1 +1,1 @@
-export { default } from './components/NotesTimeLine';
+export { default } from './NotesTimeLine';
