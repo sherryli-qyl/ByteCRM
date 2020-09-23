@@ -25,17 +25,16 @@ class Modal extends Component {
     }
 
     handleHideButton() {
-        const hideState = !this.state.hide;
-        this.setState({
-            hide: hideState,
-        })
+        this.setState(preState=>({
+            hide:!preState.hide,
+        }))
     }
 
     showModal() {
         this.setState({
             visibleStatus: true,
             hide: false,
-        })
+        })  
     }
 
 
