@@ -1,0 +1,35 @@
+.infoLink{
+    display: flex;
+    align-items: center;
+    height:100%;
+    outline:0;
+    padding:5%;
+    border: solid 1px rgb(0, 164, 189);
+    border-left:0;
+    border-radius: 4px;
+    background-color: rgb(229, 245, 248);
+    text-decoration: none;
+    color:rgb(51, 71, 91) !important;
+
+    &__text{
+        margin:auto 10px;
+        font-weight: bold;
+        &:hover{
+            border-bottom: solid 1px;
+        }
+    }
+
+    &__leftArrow{
+        margin-left: 5%;
+        height:10px;
+        width:10px;
+    }
+
+    &__icon{
+        margin-right:5px;
+    }
+}
+
+.navLink{
+    text-decoration: none;
+}

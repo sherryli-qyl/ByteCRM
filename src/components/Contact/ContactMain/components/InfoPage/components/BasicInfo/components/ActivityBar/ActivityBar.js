@@ -13,9 +13,9 @@ const ActivityBar = ({
         <ActivityItem 
           key = {item.key}
           name ={item.value}
-          src={item.src}
+          icon={item.icon}
           active={modalKey === item.key} 
-           onClick={() => onNavItemClick(item)}
+          onClick={() => onNavItemClick(item)}
         >
           {item.value}
         </ActivityItem>

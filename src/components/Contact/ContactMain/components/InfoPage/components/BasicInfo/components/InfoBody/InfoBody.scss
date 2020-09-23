@@ -1,0 +1,35 @@
+.infoBody{
+    display:flex;
+    flex:3;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex:1;
+    margin:5% auto;
+
+    &__contactsIcon{
+
+        &__init{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 26px;
+            color:white;
+            height: 72px;
+            width: 72px;
+            border-radius: 50px;
+            background-color: rgba($color: #516F90, $alpha: 0.8);
+
+
+        }
+    }
+
+    &__name{
+        font-size: 24px;
+    }
+
+    &__jobTitle{
+        font-size: 14px;
+    }
+
+}
