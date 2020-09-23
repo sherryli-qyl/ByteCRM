@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Modal from '../../Modal';
-import Basic from './components/Basic';
+import InfoPage from './components/InfoPage';
 import Activities from '../../Activities';
 import Navbar from "../../Navbar";
 import { ThemeProvider} from '@material-ui/core/styles';
@@ -53,7 +53,7 @@ class ContactMain extends Component {
                     </header>
                     <ThemeProvider theme={theme}>
                         <div className="Main">
-                            <Basic openModal={this.openModal}
+                            <InfoPage openModal={this.openModal}
                             />
                             <div className="activities">
                                 <Activities />
