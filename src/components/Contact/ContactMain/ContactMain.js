@@ -29,6 +29,7 @@ class ContactMain extends Component {
         this.closeModal = this.closeModal.bind(this);
         this.openModal = this.openModal.bind(this);
         this.testContext = this.testContext.bind(this);
+        this.onChangeContactInfo = this.onChangeContactInfo.bind(this);
     }
 
     openModal(selectedModal) {
@@ -51,6 +52,16 @@ class ContactMain extends Component {
         console.log("close the modal " + this.state.visible)
     }
 
+    onChangeContactInfo(key,value){
+        console.log("parent key " + key);
+        console.log("parent value " + value);
+        let newContact = this.state.contact;
+        newContact[key] = value;
+        this.setState({
+            contact: newContact
+        })
+    }
+
     render() {
         const { visible, currentModal, contact, theme } = this.state
         return (
@@ -61,11 +72,11 @@ class ContactMain extends Component {
                     </header>
                     <ThemeProvider theme={theme}>
                         <div className="Main">
-                            {/* <ContactContext.Provider value={currentContact}> */}
+                            <ContactContext.Provider value={this.onChangeContactInfo}>
                                 <InfoPage openModal={this.openModal}
                                           contact = {contact}
                                 />
-                            {/* </ContactContext.Provider> */}
+                            </ContactContext.Provider>
                             <Activities />
                             <div className="Company">
                                 <p>Company component</p>

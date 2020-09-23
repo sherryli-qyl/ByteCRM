@@ -30,6 +30,19 @@
             color: $label-color;
         }
 
+        &__input{
+            display: flex;
+            border:0;
+            outline: 0;
+            font-size: 14px;
+            color: $primary-color;
+            padding-top:10px; 
+
+            &:disabled{
+                background-color: transparent;
+            }
+        }
+
         &__value{
             font-size: 14px;
             color: $primary-color;
@@ -61,4 +74,8 @@
     background-color: rgb(0, 164, 189);
     height: 1px;
     width: 90%;
+}
+
+.domActive{
+    display: block;
 }
