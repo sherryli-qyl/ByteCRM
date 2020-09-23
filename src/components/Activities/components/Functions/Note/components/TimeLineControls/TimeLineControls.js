@@ -2,12 +2,12 @@ import React, { useContext } from 'react';
 import CreateButton from '../../../../../../Style/Button/Activities/CreateButton';
 import NoteModal from '../../../../../../Modal/components/Function/Note/NoteModal';
 import Modal from '../../../../../../../js/Modal';
-import { ContactContext } from '../../../../../../Contact/ContactContext';
+import { ModalContext } from '../../../../../../Modal/components/ModalContext';
 import './TimeLineControls.scss';
 
 
 const TimeLineControls = () => {
-  const onClick= useContext(ContactContext);
+  const onClick= useContext(ModalContext);
   const createModal = new Modal('Note', 'Note', <NoteModal/>); 
 
   return (

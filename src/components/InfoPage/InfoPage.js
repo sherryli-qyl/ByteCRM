@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import './InfoPage.scss';
 import { faEnvelope, faEdit, faPhoneAlt, faCalendarAlt, faPlus, faTasks } from "@fortawesome/free-solid-svg-icons";
 import BasicInfo from './components/BasicInfo';
-import AboutContact from './components/AboutContact/AboutContact';
+import DetailInfo from './components/DetailInfo';
 import WebsiteActivity from './components/WebsiteActivity/WebsiteActivity';
-import NoteModal from '../../../../Modal/components/Function/Note';
-import EmailModal from '../../../../Modal/components/Function/Email';
-import CallModal from '../../../../Modal/components/Function/Call';
-import TaskModal from '../../../../Modal/components/Function/Task';
+import NoteModal from '../Modal/components/Function/Note';
+import EmailModal from '../Modal/components/Function/Email';
+import CallModal from '../Modal/components/Function/Call';
+import TaskModal from '../Modal/components/Function/Task';
 
 class InfoPage extends Component {
   constructor(props) {
@@ -18,7 +18,7 @@ class InfoPage extends Component {
       { key: 'Call', value: 'Call', icon: faPhoneAlt, modal: <CallModal /> },
       { key: 'Log', value: 'Log', icon: faPlus, modal: '' },
       { key: 'Task', value: 'Task', icon: faTasks, modal: <TaskModal /> },
-      { key: 'Meeting', value: 'Meeting', icon: faCalendarAlt, modal: '' },
+      { key: 'Meeting', value: 'Meet', icon: faCalendarAlt, modal: '' },
     ];
     this.state = {
       navItems,
@@ -40,11 +40,16 @@ class InfoPage extends Component {
     const { navItems, currentModal } = this.state;
     return (
       <div className="InfoPage">
-        <BasicInfo navItems={navItems}
-                   modalKey={currentModal.key}
-                   onNavItemClick={this.onNavItemClick}
+        <BasicInfo 
+          contact = {this.props.contact}
+          navItems={navItems}
+          modalKey={currentModal.key}
+          onNavItemClick={this.onNavItemClick}
         />
-        <AboutContact />
+
+        <DetailInfo 
+          contact = {this.props.contact}/>
+
         <WebsiteActivity />
       </div>
     );

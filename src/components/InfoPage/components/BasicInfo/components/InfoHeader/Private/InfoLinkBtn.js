@@ -9,7 +9,7 @@ const InfoLinkBtn = ({
     children
 }) => (
         <NavLink className ='navLink' activeClassName="active" to="/contacts">
-            <button className="infoLink">
+            <button className="infoLink nakedBtn">
                 <FontAwesomeIcon className='infoLink__leftArrow' icon={faAngleLeft} />
                 <a className="infoLink__text">{children}</a>
                 <FontAwesomeIcon className='infoLink__icon' icon={faUser} />
