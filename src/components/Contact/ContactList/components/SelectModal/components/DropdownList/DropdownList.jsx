@@ -35,14 +35,14 @@ class DropdownList extends React.Component {
   render() {
     return (
       <div className="dropdown-root">
-        <div className="hint">{this.state.hint}</div>
+        <div className={`${this.props.className}-hint`}>{this.state.hint}</div>
         <OutsideClickHandler
           onOutsideClick={() => {
             this.changeVisible(false);
           }}
         >
-          <div className="text-box" onClick={this.buttonDown}>
-            <div className="display">{this.state.selected}</div>
+          <div className={`${this.props.className}-text-box`} onClick={this.buttonDown}>
+            <div className={`${this.props.className}-display`}>{this.state.selected}</div>
           </div>
           {this.state.visible && (
             <DropdownItem

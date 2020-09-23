@@ -29,7 +29,6 @@ class EnhancedTable extends Component {
       visible: false,
       columns: getColumns(),
       data: props.data,
-      title: "Please select a field to edit",
       // selectedRow: null
     };
   }
@@ -57,13 +56,27 @@ class EnhancedTable extends Component {
     this.setState({ visible: s });
   };
 
+  getResult = () => {
+    // (newData, oldData) =>
+    //             new Promise((resolve, reject) => {
+    //               newData = updateRow(newData);
+    //               setTimeout(() => {
+    //                 const dataUpdate = [...this.state.data];
+    //                 const index = oldData.tableData.id;
+    //                 dataUpdate[index] = newData;
+    //                 this.setData([...dataUpdate]);
+    //                 resolve();
+    //               }, 500);
+    //             })
+  }
+
   render() {
     return (
       <>
         {this.state.visible && (
           <SelectModal
-            title={this.state.title}
-            changeVisible={this.changeVisible}
+            changeModalVisible={this.changeVisible}
+            // getResult={}
           ></SelectModal>
         )}
         <MuiThemeProvider theme={Theme}>

@@ -1,33 +1,54 @@
 import React, { Component } from "react";
 import "./SelectModal.scss";
-import DropdownList from "../DropdownList";
+import DropdownList from "./components/DropdownList";
 
 class SelectModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      visible: false,
-      selectedField: ''
+      modalVisible: false,
+      selectedField: "",
     };
   }
 
-  // 点击取消更新modal中的visible状态
+  // 点击取消更新modal中的modalVisible状态
   closeModal = () => {
-    this.props.changeVisible(false);
+    this.props.changeModalVisible(false);
   };
 
   confirm = () => {
-    this.props.changeVisible(false);
+    this.props.changeModalVisible(false);
   };
 
   maskClick = () => {
-    this.props.changeVisible(false);
+    this.props.changeModalVisible(false);
   };
 
   getSelectedField = (field) => {
     this.setState({ selectedField: field });
-    console.log(this.state.selectedField)
-  }
+    console.log(this.state.selectedField);
+  };
+
+  selectInput = () => {
+    if (
+      this.state.selectedField === "Name" ||
+      this.state.selectedField === "Email" ||
+      this.state.selectedField === "Phone number" ||
+      this.state.selectedField === "Contact owner" ||
+      this.state.selectedField === "Associated company"
+    ) {
+      // single input
+    } else if (
+      this.state.selectedField === "Last activity date" ||
+      this.state.selectedField === "Create date"
+    ) {
+      // 3 dropdown
+    } else if (this.state.selectedField === "Lead status") {
+      // 1 dropdown
+    } else {
+      return <></>;
+    }
+  };
 
   render() {
     return (
@@ -35,6 +56,7 @@ class SelectModal extends Component {
         {
           <div className="modal">
             <DropdownList
+              className="dropdown-list1"
               hint="Please select a field"
               getSelectedField={this.getSelectedField}
               items={[
@@ -48,7 +70,7 @@ class SelectModal extends Component {
                 "Create date",
               ]}
             />
-
+            {this.selectInput()}
 
             <div className="modal-operator">
               <button
