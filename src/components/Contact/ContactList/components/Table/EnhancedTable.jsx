@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { ThemeProvider as MuiThemeProvider } from "@material-ui/core/styles";
 import { createMuiTheme } from "@material-ui/core/styles";
 import MaterialTable from "material-table";
-import Editor from "../Editor";
+import SelectModal from "../SelectModal";
 import tableIcons from "../../services/getIcons";
 import getColumns from "../../services/getColumns";
 import remove from "../../services/removeSelected";
@@ -22,27 +22,63 @@ const Theme = createMuiTheme({
   },
 });
 
-class EnhancedTable extends Component  {
+class EnhancedTable extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      visible: false,
       columns: getColumns(),
       data: props.data,
-      visible: false,
       // selectedRow: null
     };
   }
 
   setData = (newData) => {
-    this.setState(
-      { data: newData }
-    );
+    this.setState({ data: newData });
+  };
+
+  removeRow = (evt, selectedRow) => {
+    new Promise((resolve, reject) => {
+      setTimeout(() => {
+        let dataDelete = [...this.state.data];
+        dataDelete = remove(dataDelete, selectedRow);
+        this.setData([...dataDelete]);
+        resolve();
+      }, 500);
+    });
+  };
+
+  showModal = () => {
+    this.setState({ visible: true });
+  };
+
+  changeVisible = (s) => {
+    this.setState({ visible: s });
+  };
+
+  getResult = () => {
+    // (newData, oldData) =>
+    //             new Promise((resolve, reject) => {
+    //               newData = updateRow(newData);
+    //               setTimeout(() => {
+    //                 const dataUpdate = [...this.state.data];
+    //                 const index = oldData.tableData.id;
+    //                 dataUpdate[index] = newData;
+    //                 this.setData([...dataUpdate]);
+    //                 resolve();
+    //               }, 500);
+    //             })
   }
 
   render() {
     return (
       <>
-        <Editor visible={this.state.visible}></Editor>
+        {this.state.visible && (
+          <SelectModal
+            changeModalVisible={this.changeVisible}
+            // getResult={}
+          ></SelectModal>
+        )}
         <MuiThemeProvider theme={Theme}>
           <MaterialTable
             title={null}
@@ -53,26 +89,14 @@ class EnhancedTable extends Component  {
             // onSelectionChange={(Rows) => console.log(Rows)}
             actions={[
               {
-                tooltip: "Remove All Selected Contacts",
+                tooltip: "Remove all selected contact(s)",
                 icon: tableIcons.Delete,
-                onClick: (evt, selectedRow) =>
-                  new Promise((resolve, reject) => {
-                    setTimeout(() => {
-                      let dataDelete = [...this.state.data];
-                      dataDelete = remove(dataDelete, selectedRow);
-                      this.setData([...dataDelete]);
-                      resolve();
-                    }, 500);
-                  }),
+                onClick: this.removeRow,
               },
               {
-                tooltip: "Edit contact",
+                tooltip: "Edit contact(s)",
                 icon: tableIcons.Edit,
-                onClick: (event, rowData) => {
-                  this.setState({
-                    visible: true,
-                  })
-                },
+                onClick: this.showModal,
               },
             ]}
             options={{
@@ -83,12 +107,8 @@ class EnhancedTable extends Component  {
               pageSize: 10,
               pageSizeOptions: [10, 30, 50],
               exportButton: true,
-              exportCsv: (columns, data) => {
-                exportCSV(columns, data);
-              },
-              exportPdf: (columns, data) => {
-                exportPDF(columns, data);
-              },
+              exportCsv: exportCSV,
+              exportPdf: exportPDF,
             }}
             editable={{
               onRowAdd: (newData) =>
