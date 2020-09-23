@@ -3,7 +3,7 @@ import CreateButton from '../../../../../../Style/Button/Activities/CreateButton
 import LogButton from '../../../../../../Style/Button/Activities/LogButton';
 import Text from '../../../../../../Style/Text';
 import EmailModal from '../../../../../../Modal/components/Function/Email';
-import { ContactContext } from '../../../../../../Contact/ContactContext';
+import {ModalContext} from '../../../../../../Modal/components/ModalContext';
 import "./EmailPageHeader.scss";
 import Modal from '../../../../../../../js/Modal';
 
@@ -11,7 +11,7 @@ import Modal from '../../../../../../../js/Modal';
 
 
 const EmailPageHeader = () => {
-    const onClick= useContext(ContactContext); //receive context
+    const onClick= useContext(ModalContext); //receive context
     const createModal = new Modal('Email', 'Email',<EmailModal/>); //create your modal
     const logModal = new Modal('Email', 'Email',<EmailModal/>);
     return(

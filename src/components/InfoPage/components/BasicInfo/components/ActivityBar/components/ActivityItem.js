@@ -1,36 +1,28 @@
 import React from 'react';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './ActivityItem.scss';
 
 const ActivityItem = ({
     name,
-    src,
+    icon,
     active,
     onClick,
     children
 }) => {
-    let itemClassName = 'activity__item';
-    let buttonClassName = 'activity__button';
-    let iconClassName = 'activity__icon';
     let ActivityNameClassName = 'activity__name';
 
 
-    if (active) {
-        itemClassName += ' activity__item--active';
-    }
-
     return (
-        <div className={itemClassName}>
-            <button
-                className={buttonClassName}
+        <div className='activity__item'>
+            <button className='activity__item__button nakedBtn'
                 onClick={(event) => {
                     event.preventDefault();
                     onClick();
                 }}
             >
-                <img className={iconClassName} src={src} alt={name} />
+                <FontAwesomeIcon className='activity__item__button__icon'  icon={icon} />
             </button>
-            <div className={ActivityNameClassName}>
+            <div className='activity__item__name'>
                 {children}
             </div>
         </div>
