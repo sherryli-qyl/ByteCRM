@@ -1,0 +1,28 @@
+.show-options {
+    height: 110px;
+    width: 250px;
+    border: 1px solid #7a7a7a;
+    border-radius: 4px;
+    position: relative;
+    left: 130px;
+    top: -20px;
+    background: #ebebeb;
+    cursor: pointer;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    // z-index: 1;
+    transition: transform .3 ease-out,top .3s ease-out;
+  }
+  
+  .data-row {
+    height: 20px;
+    text-align: left;
+    /* margin: 0px 10px 0px 10px; */
+    color: #25073c;
+    border-radius: 4px;
+  }
+  
+  .data-row:hover {
+    background-color: #1454ca;
+    color: white;
+  }

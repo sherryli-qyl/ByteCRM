@@ -1,4 +1,4 @@
-.editor {
+.modal {
   position: fixed;
   width: 500px;
   height: 400px;
@@ -14,22 +14,15 @@
   box-shadow: inset 0 0 1px 0 #000;
 }
 
-.editor-title {
-  width: 100%;
-  height: 50px;
-  line-height: 50px;
-  padding: 0 10px;
-}
-
-.editor-operator {
+.modal-operator {
   position: absolute;
   bottom: 0;
   width: 100%;
   height: 50px;
 }
 
-.editor-operator-close,
-.editor-operator-confirm {
+.modal-operator-close,
+.modal-operator-confirm {
   width: 50%;
   border: none;
   outline: none;
@@ -41,8 +34,8 @@
   cursor: pointer;
 }
 
-.editor-operator-close:active,
-.editor-operator-confirm:active {
+.modal-operator-close:active,
+.modal-operator-confirm:active {
   opacity: 0.6;
   transition: opacity 0.3s;
 }

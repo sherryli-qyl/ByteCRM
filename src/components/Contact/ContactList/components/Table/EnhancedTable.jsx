@@ -22,28 +22,21 @@ const Theme = createMuiTheme({
   },
 });
 
-class EnhancedTable extends Component  {
+class EnhancedTable extends Component {
   constructor(props) {
     super(props);
     this.state = {
       visible: false,
       columns: getColumns(),
       data: props.data,
-      title: "Please select a field to edit"
+      title: "Please select a field to edit",
       // selectedRow: null
     };
   }
 
   setData = (newData) => {
     this.setState({ data: newData });
-  }
-
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (prevState.visible !== this.state.visible) {
-  //     console.log(prevState.visible, this.state.visible);
-  //     console.log('Visible state has changed.');
-  //   }
-  // }
+  };
 
   removeRow = (evt, selectedRow) => {
     new Promise((resolve, reject) => {
@@ -54,26 +47,25 @@ class EnhancedTable extends Component  {
         resolve();
       }, 500);
     });
-  }
+  };
 
-  showEditor = () => {
+  showModal = () => {
     this.setState({ visible: true });
-  }
+  };
 
   changeVisible = (s) => {
     this.setState({ visible: s });
-  }
+  };
 
   render() {
     return (
       <>
-        {
-          this.state.visible && 
-          <SelectModal 
+        {this.state.visible && (
+          <SelectModal
             title={this.state.title}
-            changeVisible={this.changeVisible}>
-          </SelectModal>
-        }
+            changeVisible={this.changeVisible}
+          ></SelectModal>
+        )}
         <MuiThemeProvider theme={Theme}>
           <MaterialTable
             title={null}
@@ -91,7 +83,7 @@ class EnhancedTable extends Component  {
               {
                 tooltip: "Edit contact(s)",
                 icon: tableIcons.Edit,
-                onClick: this.showEditor,
+                onClick: this.showModal,
               },
             ]}
             options={{
