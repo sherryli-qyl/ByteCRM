@@ -8,7 +8,7 @@ import './BasicInfo.scss';
 const BasicInfo = (props) => (
     <div className='basicInfo'>
         <InfoHeader />
-        <InfoBody />
+        <InfoBody contact = {props.contact}/>
         <ActivityBar  navItems={props.navItems}
                       modalKey={props.modalKey}
                       onNavItemClick={props.onNavItemClick}/>

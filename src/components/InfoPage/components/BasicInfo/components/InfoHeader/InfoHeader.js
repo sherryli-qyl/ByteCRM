@@ -5,7 +5,7 @@ import './InfoHeader.scss';
 const Header = () => (
   <div className="infoHeader">
     <InfoLinkBtn>
-       Contact 
+       Contacts
      </InfoLinkBtn>
   </div>
 );
