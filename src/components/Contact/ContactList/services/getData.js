@@ -1,304 +1,65 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-
+import React from "react";
+import { NavLink } from "react-router-dom";
 
 // 生成假数据的暂时方法
 function createData(
-    name,
-    email,
-    phoneNumber,
-    contactOwner,
-    associatedCompany,
-    lastActivityDate,
-    leadStatus,
-    createDate
-  ) {
-    return ({
-        name: name, 
-        email: email, 
-        phoneNumber: phoneNumber, 
-        contactOwner: contactOwner,
-        associatedCompany: associatedCompany,
-        lastActivityDate: lastActivityDate,
-        leadStatus: leadStatus,
-        createDate: createDate, 
-      }
-    );
+  // index,
+  name,
+  email,
+  phoneNumber,
+  contactOwner,
+  associatedCompany,
+  lastActivityDate,
+  leadStatus,
+  createDate
+) {
+  return {
+    name: (
+      <NavLink activeClassName="active" to="/contacts/main">
+        {name}
+      </NavLink>
+    ),
+    email: email,
+    phoneNumber: phoneNumber,
+    contactOwner: contactOwner,
+    associatedCompany: associatedCompany,
+    lastActivityDate: lastActivityDate,
+    leadStatus: leadStatus,
+    createDate: createDate,
+    // id: index,
+  };
 }
 
-  
-let Rows = [
-    {
-      name: <NavLink activeClassName="active" to="/contacts/main">Brian Halligan</NavLink>, 
-      email: 'fqwfqwd@gmail.com', 
-      phoneNumber: '0454991490', 
-      contactOwner: 'James',
-      associatedCompany: 'HubSpot, Inc.',
-      lastActivityDate: '10/09/2020',
-      leadStatus: 7,
-      createDate: '08/09/2020', 
-    },
-    createData(
-      'John',
-      'fqwfqwd@gmail.com',
-      '0454991490',
-      'Louis',
-      'HubSpot, Inc.',
-      '10/09/2020',
-      1,
-      '08/09/2020'
-    ),
-    createData(
-      'Louis',
-      'affq@gmail.com',
-      '045499149',
-      'Louis',
-      'HubSpot, Inc.',
-      '10/09/2020',
-      2,
-      '08/09/2020'
-    ),
-    createData(
-      'Eclair',
-      '343ewf@gmail.com',
-      '045499149',
-      'Louis',
-      'HubSpot, Inc.',
-      '10/09/2020',
-      3,
-      '08/09/2020'
-    ),
-    createData(
-      'Mary',
-      '413fqw@gmail.com',
-      '045499149',
-      'Louis',
-      'HubSpot, Inc.',
-      '10/09/2020',
-      4,
-      '08/09/2020'
-    ),
-    createData(
-      'Brian',
-      'edgar61@hotmail.com',
-      '045499149',
-      'Louis',
-      'HubSpot, Inc.',
-      '10/09/2020',
-      5,
-      '08/09/2020'
-    ),
-    createData(
-      'Keith',
-      'elias82@yahoo.com',
-      '045499149',
-      'Louis',
-      'HubSpot, Inc.',
-      '10/09/2020',
-      6,
-      '08/09/2020'
-    ),
-    createData(
-      'Larry',
-      'webb80@mail.com',
-      '045499149',
-      'Louis',
-      'HubSpot, Inc.',
-      '10/09/2020',
-      7,
-      '08/09/2020'
-    ),
-    createData(
-      'Jason',
-      'billy73@mail.com.au',
-      '045499149',
-      'Louis',
-      'HubSpot, Inc.',
-      '10/09/2020',
-      8,
-      '08/09/2020'
-    ),
-    createData(
-      'Joseph',
-      'parlin.joseph@gmail.com',
-      '045499149',
-      'Louis',
-      'HubSpot, Inc.',
-      '10/09/2020',
-      5,
-      '08/09/2020'
-    ),
-    createData(
-      'Samuel',
-      'tebo84@gmail.com',
-      '045499149',
-      'Louis',
-      'HubSpot, Inc.',
-      '10/09/2020',
-      3,
-      '08/09/2020'
-    ),
-    createData(
-      'Lori',
-      'davis1@hotmail.com',
-      '045499149',
-      'Louis',
-      'HubSpot, Inc.',
-      '10/09/2020',
-      2,
-      '08/09/2020'
-    ),
-    createData(
-      'Russell',
-      'lou.hull@mail.com.au',
-      '045499149',
-      'Louis',
-      'HubSpot, Inc.',
-      '10/09/2020',
-      6,
-      '08/09/2020'
-    ),
-    createData(
-      'Debra',
-      'eric31@mail.com.au',
-      '045499149',
-      'Louis',
-      'HubSpot, Inc.',
-      '10/09/2020',
-      2,
-      '08/09/2020'
-    ),
-    createData(
-      'ricky',
-      'rhodes89@gmail.com',
-      '045499149',
-      'Louis',
-      'HubSpot, Inc.',
-      '10/09/2020',
-      1,
-      '08/09/2020'
-    ),
-    createData(
-      'Lanny',
-      'price41@gmail.com',
-      '045499149',
-      'Louis',
-      'HubSpot, Inc.',
-      '10/09/2020',
-      5,
-      '08/09/2020'
-    ),
-    createData(
-      'Peter',
-      'barbara.hester.gmail.com',
-      '045499149',
-      'Louis',
-      'HubSpot, Inc.',
-      '10/09/2020',
-      5,
-      '08/09/2020'
-    ),
-    createData(
-      'Rebecca',
-      'thomas93@mail.com.au',
-      '045499149',
-      'Louis',
-      'HubSpot, Inc.',
-      '10/09/2020',
-      6,
-      '08/09/2020'
-    ),
-    createData(
-      'David',
-      'david59@yahoo.com',
-      '045499149',
-      'Louis',
-      'HubSpot, Inc.',
-      '10/09/2020',
-      4,
-      '08/09/2020'
-    ),
-    createData(
-      'Marc',
-      'waaso.stanley@gmail.com',
-      '045499149',
-      'Louis',
-      'HubSpot, Inc.',
-      '10/09/2020',
-      2,
-      '08/09/2020'
-    ),
-    createData(
-      'Nancy',
-      'daniel.thompson@hotmail.com',
-      '045499149',
-      'Louis',
-      'HubSpot, Inc.',
-      '10/09/2020',
-      3,
-      '08/09/2020'
-    ),
-    createData(
-      'Jose',
-      'joyce41@hotmail.com',
-      '045499149',
-      'Louis',
-      'HubSpot, Inc.',
-      '10/09/2020',
-      3,
-      '08/09/2020'
-    ),
-    createData(
-      'Linda',
-      'timothy.west@yahoo.com',
-      '045499149',
-      'Louis',
-      'HubSpot, Inc.',
-      '10/09/2020',
-      5,
-      '08/09/2020'
-    ),
-    createData(
-      'Whitney',
-      'sterling18@hotmail.com',
-      '045499149',
-      'Louis',
-      'HubSpot, Inc.',
-      '10/09/2020',
-      7,
-      '08/09/2020'
-    ),
-    createData(
-      'Dana',
-      'robert40@hotmail.com',
-      '045499149',
-      'Louis',
-      'HubSpot, Inc.',
-      '10/09/2020',
-      8,
-      '08/09/2020'
-    ),
-    createData(
-      'Bonnie',
-      'egan54@mail.com',
-      '045499149',
-      'James',
-      'HubSpot, Inc.',
-      '10/09/2020',
-      1,
-      '08/09/2020'
-    ),
-    createData(
-      'Ray',
-      'mattie.lewis@mail.com.au',
-      '045499149',
-      'James',
-      'HubSpot, Inc.',
-      '10/09/2020',
-      2,
-      '08/09/2020'
-    ),
+const nameSet = [
+  "Brian Halligan",
+  "John wick",
+  "Bruce Lee",
+  "Eclair Young",
+  "Mary McGregor",
 ];
+// let id = 0;
+
+function generateData() {
+  let result = [];
+  for (let i = 1; i < 100; i++) {
+    result.push(
+      createData(
+        nameSet[Math.floor(Math.random() * 5)],
+        "fqwfqwd@gmail.com",
+        "0454991490",
+        "James",
+        "Hubspot, Inc.",
+        "10/09/2020",
+        Math.floor(Math.random() * 8),
+        "08/09/2020",
+        // id++,
+      )
+    );
+  }
+  return result;
+}
+
+let Rows = generateData();
 
 function addData(oldData, newData) {
   if (newData.length === 0) {
@@ -322,6 +83,7 @@ const getRows = (id, userAccount, newData) => {
   } else if (id === 2) {
     let mine = [];
     let newRows = addData(Rows, newData);
+    // 将来改成用<NavLink>
     for (const item of newRows) {
       if (item.contactOwner === userAccount) {
         mine.push(item);
@@ -332,12 +94,12 @@ const getRows = (id, userAccount, newData) => {
     let unassigned = [];
     let newRows = addData(Rows, newData);
     for (const item of newRows) {
-      if (item.contactOwner === 'Unassigned') {
+      if (item.contactOwner === "Unassigned") {
         unassigned.push(item);
       }
     }
     return unassigned;
   }
-}
+};
 
 export default getRows;

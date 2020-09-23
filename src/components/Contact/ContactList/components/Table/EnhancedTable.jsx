@@ -119,17 +119,17 @@ class EnhancedTable extends Component {
                     resolve();
                   }, 500);
                 }),
-              onRowUpdate: (newData, oldData) =>
-                new Promise((resolve, reject) => {
-                  newData = updateRow(newData);
-                  setTimeout(() => {
-                    const dataUpdate = [...this.state.data];
-                    const index = oldData.tableData.id;
-                    dataUpdate[index] = newData;
-                    this.setData([...dataUpdate]);
-                    resolve();
-                  }, 500);
-                }),
+              // onRowUpdate: (newData, oldData) =>
+              //   new Promise((resolve, reject) => {
+              //     newData = updateRow(newData);
+              //     setTimeout(() => {
+              //       const dataUpdate = [...this.state.data];
+              //       const index = oldData.tableData.id;
+              //       dataUpdate[index] = newData;
+              //       this.setData([...dataUpdate]);
+              //       resolve();
+              //     }, 500);
+              //   }),
             }}
           />
         </MuiThemeProvider>

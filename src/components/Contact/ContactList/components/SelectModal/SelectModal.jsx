@@ -45,6 +45,21 @@ class SelectModal extends Component {
       // 3 dropdown
     } else if (this.state.selectedField === "Lead status") {
       // 1 dropdown
+      return <DropdownList
+      className="dropdown-list2"
+      hint="Please select a status"
+      getSelectedField={this.getSelectedField}
+      items={[
+        "New",
+        "Open",
+        "In progress",
+        "Open deal",
+        "Unqualified",
+        "Attempted to contact",
+        "Connected",
+        "Bad timing",
+      ]}
+    />
     } else {
       return <></>;
     }
