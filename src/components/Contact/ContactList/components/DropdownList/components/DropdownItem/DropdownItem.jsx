@@ -1,5 +1,4 @@
 import React from "react";
-import OutsideClickHandler from "react-outside-click-handler";
 import "./DropdownItem.scss";
 
 function DropdownItem(props) {
@@ -23,13 +22,9 @@ function DropdownItem(props) {
   }
 
   return (
-    <OutsideClickHandler
-      onOutsideClick={() => {
-        props.changeVisible(false);
-      }}
-    >
+    <>
       {displayElements()}
-    </OutsideClickHandler>
+    </>
   );
 };
 

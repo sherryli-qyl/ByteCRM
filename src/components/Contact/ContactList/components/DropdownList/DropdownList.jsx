@@ -1,5 +1,6 @@
 import React from "react";
 import "./DropdownList.scss";
+import OutsideClickHandler from "react-outside-click-handler";
 import DropdownItem from "./components/DropdownItem";
 
 class DropdownList extends React.Component {
@@ -26,29 +27,31 @@ class DropdownList extends React.Component {
   changeVisible = (s) => {
     this.setState({ visible: s });
   };
+
+  buttonDown = () => {
+    this.setState((prevState) => ({ visible: !prevState.visible }));
+  }
+
   render() {
     return (
       <div className="dropdown-root">
         <div className="hint">{this.state.hint}</div>
-        <div
-          className="text-box"
-          onClick={() => this.changeVisible(!this.state.visible)}
+        <OutsideClickHandler
+          onOutsideClick={() => {
+            this.changeVisible(false);
+          }}
         >
-          <div className="display">{this.state.selected}</div>
-        </div>
-        <span
-          className="select-icon"
-          onClick={() => this.changeVisible(!this.state.visible)}
-        >
-          ▼
-        </span>
-        {this.state.visible && (
-          <DropdownItem
-            items={this.props.items}
-            getSelected={this.getSelectedItem}
-            changeVisible={this.changeVisible}
-          />
-        )}
+          <div className="text-box" onClick={this.buttonDown}>
+            <div className="display">{this.state.selected}</div>
+          </div>
+          {this.state.visible && (
+            <DropdownItem
+              items={this.props.items}
+              getSelected={this.getSelectedItem}
+              changeVisible={this.changeVisible}
+            />
+          )}
+        </OutsideClickHandler>
       </div>
     );
   }
