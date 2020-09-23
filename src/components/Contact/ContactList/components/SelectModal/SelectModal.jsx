@@ -7,6 +7,7 @@ class SelectModal extends Component {
     super(props);
     this.state = {
       visible: false,
+      selectedField: ''
     };
   }
 
@@ -23,13 +24,20 @@ class SelectModal extends Component {
     this.props.changeVisible(false);
   };
 
+  getSelectedField = (field) => {
+    this.setState({ selectedField: field });
+    console.log(this.state.selectedField)
+  }
+
   render() {
     return (
       <div className="modal-wrapper">
         {
           <div className="modal">
             <DropdownList
-              elements={[
+              hint="Please select a field"
+              getSelectedField={this.getSelectedField}
+              items={[
                 "Name",
                 "Email",
                 "Phone number",
@@ -40,6 +48,8 @@ class SelectModal extends Component {
                 "Create date",
               ]}
             />
+
+
             <div className="modal-operator">
               <button
                 className="modal-operator-close"

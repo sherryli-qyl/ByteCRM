@@ -2,18 +2,17 @@ import React from "react";
 import OutsideClickHandler from "react-outside-click-handler";
 import "./DropdownItem.scss";
 
-const DropdownItem = (props) => {
-  function displayElements(elements) {
-    console.log(props);
-    console.log(elements);
+function DropdownItem(props) {
+  function displayElements() {
     return (
       <div className="show-options">
-        {elements.map((value, key) => (
+        {props.items &&
+        props.items.map((value, key) => (
           <div
             className="data-row"
             onClick={() => {
               props.changeVisible(false);
-              props.changeSelected(value);
+              props.getSelected(value);
             }}
           >
             {value}
@@ -29,7 +28,7 @@ const DropdownItem = (props) => {
         props.changeVisible(false);
       }}
     >
-      {displayElements(props.items)}
+      {displayElements()}
     </OutsideClickHandler>
   );
 };
