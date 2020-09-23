@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { ThemeProvider as MuiThemeProvider } from "@material-ui/core/styles";
 import { createMuiTheme } from "@material-ui/core/styles";
 import MaterialTable from "material-table";
-import Editor from "../Editor";
+import SelectModal from "../SelectModal";
 import tableIcons from "../../services/getIcons";
 import getColumns from "../../services/getColumns";
 import remove from "../../services/removeSelected";
@@ -38,26 +38,12 @@ class EnhancedTable extends Component  {
     this.setState({ data: newData });
   }
 
-  showEditor = () => {
-    // new Promise((resolve, reject) => {
-    //   setTimeout(() => {
-    //     this.setState({ visible: true });
-    //     console.log(this.state);
-    //   }, 500);
-    // });
-    // this.forceUpdate();
-    this.setState({ visible: true });
-    console.log(this.state);
-    
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.visible !== this.state.visible) {
-      console.log(prevState.visible, this.state.visible);
-      console.log('Visible state has changed.');
-      // prevState.visible = !prevState.visible;
-    }
-  }
+  // componentDidUpdate(prevProps, prevState) {
+  //   if (prevState.visible !== this.state.visible) {
+  //     console.log(prevState.visible, this.state.visible);
+  //     console.log('Visible state has changed.');
+  //   }
+  // }
 
   removeRow = (evt, selectedRow) => {
     new Promise((resolve, reject) => {
@@ -70,9 +56,24 @@ class EnhancedTable extends Component  {
     });
   }
 
+  showEditor = () => {
+    this.setState({ visible: true });
+  }
+
+  changeVisible = (s) => {
+    this.setState({ visible: s });
+  }
+
   render() {
     return (
       <>
+        {
+          this.state.visible && 
+          <SelectModal 
+            title={this.state.title}
+            changeVisible={this.changeVisible}>
+          </SelectModal>
+        }
         <MuiThemeProvider theme={Theme}>
           <MaterialTable
             title={null}
@@ -127,7 +128,6 @@ class EnhancedTable extends Component  {
             }}
           />
         </MuiThemeProvider>
-        <Editor visible={this.state.visible} title={this.state.title} ></Editor>
       </>
     );
   }

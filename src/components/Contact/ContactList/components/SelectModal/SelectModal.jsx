@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import './Editor.scss';
+import './SelectModal.scss';
 
 
-class Editor extends Component {
+class SelectModal extends Component {
   constructor(props) {
     super(props);
     this.state = { 
@@ -10,41 +10,27 @@ class Editor extends Component {
     };
   }
 
-  // 首次渲染使用父组件的状态更新modal中的visible状态，只调用一次
-  componentDidMount = () => {
-    console.log(this.props.visible);
-    this.setState({ visible: this.props.visible })
-  }
-
-  // 每次接收props就根据父组件的状态更新modal中的visible状态，首次渲染不会调用
-  componentWillReceiveProps = () => {
-    console.log(this.props.visible);
-    this.setState({ visible: this.props.visible })
-  }
-
    // 点击取消更新modal中的visible状态
   closeModal = () => {
-    this.setState({ visible: false });
+    this.props.changeVisible(false);
   }
 
   confirm = () => {
-    this.setState({ visible: false });
+    this.props.changeVisible(false);
   }
 
   maskClick = () => {
-    this.setState({ visible: false});
+    this.props.changeVisible(false);
   }
 
 
   render() {
     // 使用modal中维护的visible状态来控制显隐
-    const { visible } = this.state;
     const { title } = this.props;
-    return visible && (
+    return (
         <div className="editor-wrapper">
             <div className="editor">
                 <div className="editor-title">{title}</div>
-                <div className="editor-content">这是editor内容</div>
                 <div className="editor-operator">
                     <button 
                         className="editor-operator-close"
@@ -63,4 +49,4 @@ class Editor extends Component {
     );
   }
 }
-export default Editor;
+export default SelectModal;
