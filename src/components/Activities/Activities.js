@@ -3,7 +3,7 @@ import Container from '@material-ui/core/Container';
 import TabBar from './components/TabBar';
 import EmailPage from './components/Functions/Email';
 import TaskPage from './components/Functions/Task';
-import NotesTimeLine from './components/Functions/Note/NotesTimeLine';
+import NotesTimeLine from './components/Functions/Note/';
 import CallPanel from './components/Functions/Calls/index';
 import './Activities.scss';
 import MeetingPage from './components/Functions/Meeting/MeetingPage';

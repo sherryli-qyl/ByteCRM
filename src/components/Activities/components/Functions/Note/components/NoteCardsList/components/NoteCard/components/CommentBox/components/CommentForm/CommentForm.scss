@@ -1,0 +1,56 @@
+@import '../../../../../../../../../../../../../style/variable.scss';
+
+.comment-form-container {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: white;
+}
+
+.comment-form-input {
+  background: #FEF8F0;
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.17);
+  border: transparent;
+  outline: transparent;
+  resize: none;
+  width: 100%;
+  min-height: 100px;
+}
+
+.comment-form-controls {
+  padding: 10px;
+
+  &__save {
+    border: 0;
+    outline: 0;
+    min-height:34px;
+    min-width: 60px;
+    border-radius: 3px;
+    color:white;
+    font-size:small;
+    background-color:$primary-color;
+
+    &:hover{
+      opacity: 0.8;
+      cursor: pointer;
+    }
+  }
+
+  &__cancel {
+    border: 0;
+    outline: 0;
+    min-height:34px;
+    min-width: 60px;
+    margin-left: 15px;
+    background-color: rgba(#eaf0f6, $alpha: 1);
+    border-radius: 3px;
+    color:rgba(#506e91, $alpha: 1);
+    font-size:small;
+    border:solid 1px rgba(#cbd6e2, $alpha: 1);
+
+    &:hover{
+      background-color:transparent;
+      cursor: pointer;
+    }
+  }
+
+
+}

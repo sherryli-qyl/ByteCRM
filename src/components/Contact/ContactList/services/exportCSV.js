@@ -1,4 +1,3 @@
-import React, { Component } from 'react';
 import { ExportToCsv } from 'export-to-csv';
 import getDate from './getDate';
 
@@ -18,6 +17,7 @@ const Options = {
 
 
 const exportCSV = (columns, data) => {
+  console.log(data)
     if (data.length === 0) {
       alert("No contacts to export!")
       return;

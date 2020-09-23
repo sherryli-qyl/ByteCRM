@@ -1,68 +1,112 @@
 import { createMuiTheme } from '@material-ui/core/styles';
 import { red } from '@material-ui/core/colors';
 
+const primaryColor = '#0091ae';
+const checkbox = createMuiTheme({
+  palette: {
+    primary: {
+      main: primaryColor,
+    },
+  },
+  overrides: {
+    MuiInputBase: {
+      root: {
+        display: 'flex',
+        justifyContent: 'flex-start',
+        height: '15px',
+        padding: '0px',
+      }
+    },
+    MuiInput: {
+      root: {
 
-function getTheme() {
-  const primaryColor = '#00bda5';
-  const theme = createMuiTheme({
-    palette: {
-      primary: {
-        main: primaryColor,
+      },
+      underline: {
+        "&&&&:hover:before": {
+          borderBottom: "1px solid" + primaryColor,
+        },
+        "&:before": {
+          borderBottom: "0",
+        },
+        "&::after": {
+          borderBottom: "0",
+        },
+        borderBottom: "0px solid" + primaryColor,
+      },
+      input: {
+        color: primaryColor,
+        padding: '0px',
+        height: '15px',
+        fontSize: '15px',
+
+      }
+    },
+    MuiInputAdornment: {
+      root: {
+        backgroundColor: 'transparent',
+      },
+      positionEnd: {
+        marginLeft: '0px',
+      }
+    },
+    MuiButtonBase: {
+      root: {
+        width: '15px',
+        backgroundColor: 'transparent',
+      }
+    },
+    MuiSelect: {
+      root:{
+        display:'flex',
+      },
+      select: {
+        "&:focus": {
+          backgroundColor: 'transparent',
+        },
+      }
+    },
+
+    // MuiListItem: {
+    //   root: {
+    //     "&:before": {
+    //       backgroundColor: 'red',
+    //       borderRadius: 10,
+    //       content: '" "',
+    //       display: 'block',
+    //       marginRight: 8,
+    //       height: 10,
+    //       width: 10,
+    //     }
+    //   }
+    // },
+  
+  MuiIconButton: {
+      root: {
+        borderRadius: 0,
+        height: '15px',
+        minWidth: '15px',
+        padding: '0px',
+        backgroundColor: 'transparent',
+        "&:hover": {
+          backgroundColor: 'red',
+        },
       },
     },
-    overrides: {
-      // Style sheet name ⚛️ 
-      MuiInput: {
-        underline: {
-          "&&&&:hover:before": {
-            borderBottom: "1px solid" + primaryColor,
-          },
-          "&:before": {
-            borderBottom: "0",
-          },
-          "&::after": {
-            borderBottom: "0",
-          }
-        },
-        input: {
-          height: "25px"
+    MuiTouchRipple: {
+      root: {
+        "&:focus": {
+          outline: 'none',
         }
-      },
-      MuiTypography: {
-      
-          fontSize: 14,
-       
-      },
-      MuiTab: {
-        root: {
-          flexGrow: 1,
-          backgroundColor: 'white',
-          maxWidth:'100px',
-          
-        },
-      },
-      MuiButton:{
-         root:{
-          backgroundColor: 'white',
-         }
-      },
+      }
+    }
+    // MuiSvgIcon: {
+    //   root: {
+    //     height: '20px',
+    //     width: '20px',
+    //   }
+    // },
+  }
+})
 
-      MuiSelect: {
-        // Name of the rule
-        select: {
-          border: 0,
-          height: "25px",
-          color: primaryColor,
-          fontWeight: "bold",
-          fontSize: "small",
-          "&:focus": {
-            backgroundColor: 'transparent',
-          },
-        },
-      },
-    },
-  });
-  return theme;
-}
 
-export default getTheme;
+export { checkbox };

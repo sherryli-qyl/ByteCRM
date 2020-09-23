@@ -2,8 +2,8 @@ import React from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
-import {addWeekDay} from '../../../services/DateManager';
-import getTheme from '../../Theme/MatUITheme';
+import { addWeekDay } from '../../../services/DateManager';
+import { checkbox } from '../../Theme/MatUITheme';
 
 
 
@@ -19,7 +19,7 @@ class TaskSelect extends React.Component {
             { key: 'in 2 weeks ', value: 14, date: '' },
             { key: 'in 1 month ', value: 30 },
         ];
-        const theme = getTheme();
+        const theme = checkbox;
         this.state = {
             timeValue: 3,
             selectItems: selectItems,
@@ -42,27 +42,26 @@ class TaskSelect extends React.Component {
 
 
     render() {
-        const { timeValue, selectItems,theme} = this.state;
+        const { timeValue, selectItems, theme } = this.state;
         return (
             <div>
-                <ThemeProvider theme={theme}>
-                    <Select
-                        //disableUnderline
-                        value={timeValue}
-                        variant='standard'
-                        onChange={this.handleSelectChange}
-                        defaultValue={3}
-                        className={"taskFollow__select__input"}
-                    >
-                        {selectItems.map((item) => (
-                            <MenuItem
-                                key={item.key}
-                                value={item.value}>
-                                {item.key + `(${addWeekDay(item.value)})`}
-                            </MenuItem>
-                        ))}
-                    </Select>
-                </ThemeProvider>
+                <Select
+                    disableUnderline
+                    value={timeValue}
+                    variant='standard'
+                    onChange={this.handleSelectChange}
+                    defaultValue={3}
+                    className={"taskFollow__select__input"}
+                >
+                    {selectItems.map((item) => (
+                        <MenuItem
+                            key={item.key}
+                            value={item.value}>
+                            {item.key + `(${addWeekDay(item.value)})`}
+                        </MenuItem>
+                    ))}
+                </Select>
+
             </div>
         );
     }
