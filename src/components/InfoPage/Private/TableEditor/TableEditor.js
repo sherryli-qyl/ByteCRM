@@ -1,12 +1,12 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencilAlt } from "@fortawesome/free-solid-svg-icons";
-import {ContactContext} from '../../../../../Contact/ContactContext';
-import './DetailInfoItem.scss';
+import {ContactContext} from '../../../Contact/ContactContext';
+import './TableEditor.scss';
 
 
 
-class DetailInfoItem extends React.Component {
+class TableEditor extends React.Component {
     static contextType = ContactContext;
     constructor(props) {
         super(props);
@@ -75,18 +75,18 @@ class DetailInfoItem extends React.Component {
 
     render() {
         const { hideEditor, currentValue } = this.state;
-        let underline = "borderBottom "
+        let underline = "underline "
         if (!hideEditor){
-            underline += "domActive"
+            underline += "underline__active "
         }
 
         return (
-            <div className="detailInfoItem">
-                <div className="detailInfoItem__left">
-                    <div className="detailInfoItem__left__title"> {this.props.title} </div>
+            <div className="tableEditor">
+                <div className="tableEditor__left">
+                    <div className="tableEditor__left__title"> {this.props.title} </div>
                     <form onSubmit={this.handleSubmit}
                     >
-                        <input ref={this.inputRef} className='detailInfoItem__left__input '
+                        <input ref={this.inputRef} className='tableEditor__left__input '
                             disabled={hideEditor}
                             value={currentValue}
                             onChange={this.handleChange}
@@ -96,15 +96,15 @@ class DetailInfoItem extends React.Component {
 
                 </div>
                 {hideEditor ?
-                    <div className="detailInfoItem__right">
-                        <button className="detailInfoItem__right__btn nakedBtn" onClick={this.onClickEditor}>
-                            <FontAwesomeIcon className='detailInfoItem__right__btn__icon' icon={faPencilAlt} />
+                    <div className="tableEditor__right">
+                        <button className="tableEditor__right__btn nakedBtn" onClick={this.onClickEditor}>
+                            <FontAwesomeIcon className='tableEditor__right__btn__icon' icon={faPencilAlt} />
                         </button>
                     </div>
                     :
                     ""
                 }
-                <div className={underline}/>
+                <div className={underline + 'underline__green'}/>
             </div>
         )
     }
@@ -112,4 +112,4 @@ class DetailInfoItem extends React.Component {
 
 
 
-export default DetailInfoItem;
+export default TableEditor;

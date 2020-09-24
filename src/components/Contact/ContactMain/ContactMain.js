@@ -7,6 +7,7 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import { ModalContext } from '../../Modal/components/ModalContext';
 import { ContactContext } from '../ContactContext';
 import { checkbox } from '../../Style/Theme/MatUITheme';
+import WebActivity from './components/WebActivity';
 import './ContactMain.scss';
 
 
@@ -64,6 +65,7 @@ class ContactMain extends Component {
 
     render() {
         const { visible, currentModal, contact, theme } = this.state
+        const expandPack = [{key:'Website Activity',content: (<WebActivity/>)}]
         return (
             <div>
                 <ModalContext.Provider value={this.openModal}>
@@ -75,6 +77,7 @@ class ContactMain extends Component {
                             <ContactContext.Provider value={this.onChangeContactInfo}>
                                 <InfoPage openModal={this.openModal}
                                           contact = {contact}
+                                          expandPack = {expandPack}
                                 />
                             </ContactContext.Provider>
                             <Activities />
