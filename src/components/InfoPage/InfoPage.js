@@ -3,7 +3,6 @@ import './InfoPage.scss';
 import { faEnvelope, faEdit, faPhoneAlt, faCalendarAlt, faPlus, faTasks } from "@fortawesome/free-solid-svg-icons";
 import BasicInfo from './components/BasicInfo';
 import DetailInfo from './components/DetailInfo';
-import WebsiteActivity from './components/WebsiteActivity/WebsiteActivity';
 import NoteModal from '../Modal/components/Function/Note';
 import EmailModal from '../Modal/components/Function/Email';
 import CallModal from '../Modal/components/Function/Call';
@@ -48,9 +47,11 @@ class InfoPage extends Component {
         />
 
         <DetailInfo 
-          contact = {this.props.contact}/>
+          contact = {this.props.contact}
+          expandPack = {this.props.expandPack}/>
+        
 
-        <WebsiteActivity />
+        
       </div>
     );
   }
