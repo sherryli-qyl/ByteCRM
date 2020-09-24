@@ -1,0 +1,21 @@
+@import '../../../../../../../style/variable.scss';
+
+
+.meetingSaveBar{
+    display: flex;
+    justify-content: flex-start;
+    height:70px;
+    margin-top:0px;
+    
+    // margin-top:0.1%;
+    // margin-bottom: 1%;
+    //background-color:rgba($color: #e06a1a, $alpha: 0.5);
+
+    &__save{
+        flex:1;
+        align-self: center;
+        margin-left: 3%;
+    }
+
+
+}

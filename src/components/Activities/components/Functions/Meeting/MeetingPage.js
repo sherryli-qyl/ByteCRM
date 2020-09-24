@@ -36,7 +36,7 @@ class MeetingPage extends React.Component {
         const { cardsArray} = this.state;
         return (
             <div className="meetingPage">
-                {/*<MeetingPageHeader />*/}
+                <MeetingPageHeader />
                 <MeetingCards cardsArray={cardsArray} />
             </div>
         )

@@ -8,7 +8,7 @@ import NoteModal from '../Modal/components/Function/Note';
 import EmailModal from '../Modal/components/Function/Email';
 import CallModal from '../Modal/components/Function/Call';
 import TaskModal from '../Modal/components/Function/Task';
-
+import MeetingModal from '../Modal/components/Function/Meeting';
 class InfoPage extends Component {
   constructor(props) {
     super(props);
@@ -18,7 +18,7 @@ class InfoPage extends Component {
       { key: 'Call', value: 'Call', icon: faPhoneAlt, modal: <CallModal /> },
       { key: 'Log', value: 'Log', icon: faPlus, modal: '' },
       { key: 'Task', value: 'Task', icon: faTasks, modal: <TaskModal /> },
-      { key: 'Meeting', value: 'Meet', icon: faCalendarAlt, modal: '' },
+      { key: 'Meeting', value: 'Meet', icon: faCalendarAlt, modal: <MeetingModal /> },
     ];
     this.state = {
       navItems,
