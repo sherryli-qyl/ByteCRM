@@ -49,9 +49,6 @@ class InfoPage extends Component {
         <DetailInfo 
           contact = {this.props.contact}
           expandPack = {this.props.expandPack}/>
-        
-
-        
       </div>
     );
   }
