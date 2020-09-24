@@ -16,25 +16,6 @@
 }
 
 
-.nakedBtn {
-    outline: 0;
-    border: 0;
-    background-color: transparent;
-    cursor: pointer;
-}
 
-.underline {
-    display: none;
-    position: absolute;
-    bottom: 5px;
-    height: 1px;
-    width: 90%;
 
-    &__active {
-        display: block;
-    }
 
-    &__green{
-        background-color: rgb(0, 164, 189);
-    }
-}

@@ -13,9 +13,15 @@ $label-color:#516F90;
 }
 
 .underline {
+    display: none;
     position: absolute;
+    bottom: 5px;
     height: 1px;
-    width: 100%;
+    width: 90%;
+
+    &--active {
+        display: block;
+    }
 }
 
 
