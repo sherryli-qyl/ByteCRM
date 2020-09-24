@@ -6,7 +6,7 @@ import Navbar from "../../Navbar";
 import { ThemeProvider } from '@material-ui/core/styles';
 import { ModalContext } from '../../Modal/components/ModalContext';
 import { ContactContext } from '../ContactContext';
-import { checkbox } from '../../Style/Theme/MatUITheme';
+import { publicTheme} from '../../Style/Theme/MatUITheme';
 import WebActivity from './components/WebActivity';
 import './ContactMain.scss';
 
@@ -27,7 +27,7 @@ class ContactMain extends Component {
             contact: testContact,
             expandPack,
             currentModal: "",
-            theme: checkbox
+            theme: publicTheme,
         }
         this.closeModal = this.closeModal.bind(this);
         this.openModal = this.openModal.bind(this);

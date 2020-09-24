@@ -4,6 +4,7 @@
     display: flex;
     padding-top: 5%;
     position: relative;
+    border-bottom:1px solid rgb(203, 214, 226);
 
     &__container {
         display: flex;
@@ -62,8 +63,6 @@
     }
 
 
-
-
     &__content {
         display: flex;
         justify-content: center;
@@ -96,4 +95,5 @@
         transform: rotate(90deg);
     }
 }
+
 
