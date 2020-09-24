@@ -1,1 +1,1 @@
-export {default} from './AboutContact';
+export {default} from './AboutSection';

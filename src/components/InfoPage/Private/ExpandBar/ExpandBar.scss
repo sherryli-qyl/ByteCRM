@@ -2,8 +2,7 @@
 
 .expandBar {
     display: flex;
-    
-    padding-top:5%;
+    padding-top: 5%;
     position: relative;
 
     &__container {
@@ -14,7 +13,7 @@
 
         &__content {
             width: 90%;
-            margin-bottom:5%;
+            margin-bottom: 5%;
             display: flex;
             justify-content: flex-start;
             align-self: center;
@@ -22,22 +21,20 @@
             overflow: auto;
             font-size: 14px;
             transition: max-height .3s ease-out;
-          
+
 
             &__active {
                 max-height: 100%;
                 transition: max-height .3s ease-in;
                 transform-origin: 100% 0;
-                
-
             }
         }
 
         &__labelBtn {
             display: flex;
-            align-self: start;
+            justify-content: center;
+            align-items: center;
             width: 90%;
-           
             cursor: pointer;
 
             margin: {
@@ -62,8 +59,6 @@
                 }
             }
         }
-
-
     }
 
 
@@ -102,10 +97,3 @@
     }
 }
 
-.underline {
-    &__normal {
-        bottom: 0px;
-        width: 100%;
-        border-bottom: 1px solid rgb(203, 214, 226);
-    }
-}

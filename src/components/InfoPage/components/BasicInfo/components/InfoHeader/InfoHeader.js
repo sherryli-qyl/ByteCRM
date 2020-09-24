@@ -2,10 +2,10 @@ import React from 'react';
 import InfoLinkBtn from './Private/InfoLinkBtn';
 import './InfoHeader.scss';
 
-const Header = () => (
+const Header = (props) => (
   <div className="infoHeader">
-    <InfoLinkBtn>
-       Contacts
+     <InfoLinkBtn type = {props.dataPack.type}>
+       {props.dataPack.title}
      </InfoLinkBtn>
   </div>
 );
