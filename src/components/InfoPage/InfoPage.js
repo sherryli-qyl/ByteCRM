@@ -11,7 +11,6 @@ import DataPack from './services/DataPack';
 import './InfoPage.scss';
 
 
-
 class InfoPage extends Component {
   constructor(props) {
     super(props);
