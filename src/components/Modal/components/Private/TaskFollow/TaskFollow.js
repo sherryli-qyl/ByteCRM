@@ -1,5 +1,4 @@
 import React from 'react';
-import Checkbox from '@material-ui/core/Checkbox';
 import TaskFollowCheckbox from './components/TaskFollowCheckbox';
 import TaskFollowDropdown from './components/TaskFollowDropdown';
 import './TaskFollow.scss';
@@ -27,7 +26,6 @@ class Taskfollow extends React.Component {
         const { checked } = this.state;
         return (
             <div className='taskFollow'>
-                {/* <ThemeProvider theme={theme}> */}
                 <div className='taskFollow__checkbox'>
                     <TaskFollowCheckbox
                         checked={this.checked}

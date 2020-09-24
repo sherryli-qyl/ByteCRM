@@ -46,7 +46,7 @@ class ExpandBar extends React.Component {
                         {this.props.content}
                     </div>
                 </div>
-                <div className='underline'/>
+                <div className='underline--grey'/>
             </div>
         )
     }

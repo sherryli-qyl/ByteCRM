@@ -4,7 +4,7 @@
     display: flex;
     margin-top: 5%;
     position: relative;
-    
+    border-bottom:1px solid rgb(203, 214, 226);
     justify-content: center;
 
     &:hover .underline {
@@ -68,9 +68,6 @@
     }
 }
 
-.underline--green{
-    @extend .underline;
-    bottom: 5px;
-    background-color: rgb(0, 164, 189);
-}
+
+
 

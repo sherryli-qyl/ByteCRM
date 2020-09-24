@@ -5,6 +5,8 @@ import {ModalContext} from '../../Modal/components/ModalContext';
 import InfoPage from '../../InfoPage';
 import Activities from '../../Activities';
 import Navbar from "../../Navbar";
+import { ThemeProvider } from '@material-ui/core/styles';
+import {publicTheme} from '../../Style/Theme/MatUITheme';
 import './CompanyMain.scss';
 
 class CompanyMain extends Component {
@@ -22,6 +24,7 @@ class CompanyMain extends Component {
             company: testCompany,
             expandPack,
             currentModal: "",
+            theme: publicTheme,
         }
         this.closeModal = this.closeModal.bind(this);
         this.openModal = this.openModal.bind(this);
@@ -44,13 +47,14 @@ class CompanyMain extends Component {
     }
 
     render() {
-        const { visible, currentModal, company,expandPack } = this.state
+        const { visible, currentModal, company,expandPack ,theme} = this.state
         return (
             <div>
                 <ModalContext.Provider value={this.openModal}>
                     <header>
                         <Navbar />
                     </header>
+                    <ThemeProvider theme={theme}>
                     <div className="Main">
                         <CompanyContext.Provider value={this.onChangeContactInfo}>
                             <InfoPage openModal={this.openModal}
@@ -73,6 +77,7 @@ class CompanyMain extends Component {
                             closeModal={this.closeModal}
                         />
                     </div>
+                    </ThemeProvider>
                 </ModalContext.Provider>
             </div>
         )
