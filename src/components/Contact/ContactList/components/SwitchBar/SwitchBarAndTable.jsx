@@ -8,7 +8,8 @@ import Tab from "@material-ui/core/Tab";
 import Importer from "../Importer";
 import TabContainer from "./TabContainer";
 import EnhancedTable from "../Table/EnhancedTable";
-import getRows from "../../services/getData";
+
+import getRows from "../../tableServices/getData";
 import Modal from "../../../../Modal";
 
 const styles = (theme) => ({
@@ -28,6 +29,7 @@ class SwitchBar extends React.Component {
     this.state = {
       activeTab: 1,
       newData: [],
+      dataToEdit: {},
     };
   }
 
@@ -41,8 +43,20 @@ class SwitchBar extends React.Component {
     }
   };
 
+<<<<<<< HEAD
   showModal = () => {
     this.setState({ addVisible: true });
+=======
+  // showModal = () => {
+  //   this.setState({ addVisible: true });
+  // };
+
+  getDataToEdit = (data) => {
+    this.setState({ dataToEdit: data });
+    setTimeout(() => {
+      console.log(this.state.dataToEdit)
+    }, 500)
+>>>>>>> rename folder and get so close to modal completion
   };
 
   render() {
@@ -68,6 +82,7 @@ class SwitchBar extends React.Component {
         {this.props.tabs.map(
           (tab) =>
             activeTab === tab.id && (
+<<<<<<< HEAD
               <>
                 <TabContainer className={classes.wrapper} key={tab.id}>
                   {tab.component}
@@ -81,6 +96,25 @@ class SwitchBar extends React.Component {
                   )}
                 />
               </>
+=======
+              <TabContainer className={classes.wrapper} key={tab.id}>
+                {tab.component}
+              </TabContainer>
+            )
+        )}
+        {this.props.tabs.map(
+          (tab) =>
+            activeTab === tab.id && (
+              <EnhancedTable
+                getDataToEdit={this.getDataToEdit}
+                data={getRows(
+                  this.state.activeTab,
+                  this.props.userAccount,
+                  this.state.newData,
+                  this.state.filter
+                )}
+              />
+>>>>>>> rename folder and get so close to modal completion
             )
         )}
       </div>

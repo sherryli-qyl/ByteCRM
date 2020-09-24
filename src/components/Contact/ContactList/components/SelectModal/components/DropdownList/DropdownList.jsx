@@ -18,7 +18,12 @@ class DropdownList extends React.Component {
     this.setState({ selected: item });
     return new Promise((res, rej) => {
       setTimeout(() => {
-        this.props.getSelectedField(this.state.selected);
+        if (this.props.getSelectedField) {
+          this.props.getSelectedField(this.state.selected);
+        } else if (this.props.getInputData) {
+          this.props.getInputData(this.state.selected);
+        }
+        
         res();
       }, 500);
     });

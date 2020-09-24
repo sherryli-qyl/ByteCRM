@@ -3,12 +3,12 @@ import { ThemeProvider as MuiThemeProvider } from "@material-ui/core/styles";
 import { createMuiTheme } from "@material-ui/core/styles";
 import MaterialTable from "material-table";
 import SelectModal from "../SelectModal";
-import tableIcons from "../../services/getIcons";
-import getColumns from "../../services/getColumns";
-import remove from "../../services/removeSelected";
-import exportCSV from "../../services/exportCSV";
-import exportPDF from "../../services/exportPDF";
-import updateRow from "../../services/updateRow";
+import tableIcons from "../../tableServices/getIcons";
+import getColumns from "../../tableServices/getColumns";
+import remove from "../../tableServices/removeSelected";
+import exportCSV from "../../tableServices/exportCSV";
+import exportPDF from "../../tableServices/exportPDF";
+import updateRow from "../../tableServices/updateRow";
 
 // 表格部分样式
 const Theme = createMuiTheme({
@@ -29,7 +29,7 @@ class EnhancedTable extends Component {
       visible: false,
       columns: getColumns(),
       data: props.data,
-      // selectedRow: null
+      selectedRow: null
     };
   }
 
@@ -48,7 +48,7 @@ class EnhancedTable extends Component {
     });
   };
 
-  showModal = () => {
+  showModal = (evt, selectedRow) => {
     this.setState({ visible: true });
   };
 
@@ -56,18 +56,18 @@ class EnhancedTable extends Component {
     this.setState({ visible: s });
   };
 
-  getResult = () => {
-    // (newData, oldData) =>
-    //             new Promise((resolve, reject) => {
-    //               newData = updateRow(newData);
-    //               setTimeout(() => {
-    //                 const dataUpdate = [...this.state.data];
-    //                 const index = oldData.tableData.id;
-    //                 dataUpdate[index] = newData;
-    //                 this.setData([...dataUpdate]);
-    //                 resolve();
-    //               }, 500);
-    //             })
+  getDataAndIndex = (data) => {
+    data.set('index', this.state.selectedRow);
+    this.props.getDataToEdit(data);
+  }
+
+  getSelectedRowIndex = (Rows) => {
+    let index = [];
+    for (const item of Rows) {
+      index.push(item.tableData.id);
+    }
+    console.log(index);
+    return index;
   }
 
   render() {
@@ -76,7 +76,7 @@ class EnhancedTable extends Component {
         {this.state.visible && (
           <SelectModal
             changeModalVisible={this.changeVisible}
-            // getResult={}
+            getDataToEdit={this.getDataAndIndex}
           ></SelectModal>
         )}
         <MuiThemeProvider theme={Theme}>
@@ -86,7 +86,7 @@ class EnhancedTable extends Component {
             data={this.state.data}
             icons={tableIcons}
             onRowClick={(evt, selectedRow) => {}}
-            // onSelectionChange={(Rows) => console.log(Rows)}
+            onSelectionChange={(Rows) => this.setState({ selectedRow: this.getSelectedRowIndex(Rows) })}
             actions={[
               {
                 tooltip: "Remove all selected contact(s)",
