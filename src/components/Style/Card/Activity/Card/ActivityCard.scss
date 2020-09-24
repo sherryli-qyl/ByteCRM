@@ -17,13 +17,15 @@
         display: flex;
         margin: 3%;
 
-        &__icon {
+        &__left {
             display: flex;
             flex: 1;
             justify-content: center;
             padding-top: 1px;
-            //background-color: rgba($color: #95da9b, $alpha: 1.0);
 
+            &__icon{
+                color:rgb(81, 111, 144);
+            }
         }
 
         &__content {
@@ -43,6 +45,7 @@
         font-size: 14px;
         font-weight:bold;
         flex-grow: 1;
+        color:$primary-color;
     }
 
     &__timeStamp{

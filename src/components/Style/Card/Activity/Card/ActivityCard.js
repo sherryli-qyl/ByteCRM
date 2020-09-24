@@ -9,8 +9,8 @@ import './ActivityCard.scss';
 const ActivityCard = (props) => (
     <div className='activityCard'>
         <div className='activityCard__container'>
-            <div className="activityCard__container__icon">
-                <FontAwesomeIcon icon={props.icon} />
+            <div className="activityCard__container__left">
+                <FontAwesomeIcon className='activityCard__container__left__icon'icon={props.icon} />
             </div>
             <div className='activityCard__container__content'>
                 <div className='cardHeader'>
