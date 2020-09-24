@@ -1,17 +1,17 @@
 import React from 'react';
 import TableEditor from '../../../../Private/TableEditor';
-import './AboutContact.scss';
+import './AboutSection.scss';
 
 
 
 
-const AboutContact = ({
-   contactInfoList
+const AboutSection = ({
+    infoList
 }) => {
 
     return (
         <div className='aboutContact'>
-            {contactInfoList.map((item) => (
+            {infoList.map((item) => (
                 <TableEditor
                     key={item.key}
                     itemKey={item.key}
@@ -23,4 +23,4 @@ const AboutContact = ({
     )
 }
 
-export default AboutContact;
+export default AboutSection;
