@@ -11,7 +11,6 @@ function FormatData(dataPack,dictionary){
         const item = new dataInfo( dictionary[i].key,dictionary[i].title,value);
         dataInfoArray.push(item); 
     }
-    console.table(dataInfoArray);
     return dataInfoArray;
 }
 
