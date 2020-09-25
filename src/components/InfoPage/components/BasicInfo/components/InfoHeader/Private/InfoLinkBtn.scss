@@ -1,15 +1,26 @@
+@import '../../../../../../../style/variable.scss';
+
 .infoLink{
+    @extend .nakedBtn;
     display: flex;
     align-items: center;
     height:100%;
-    outline:0;
     padding:5%;
-    border: solid 1px rgb(0, 164, 189);
     border-left:0;
     border-radius: 4px;
-    background-color: rgb(229, 245, 248);
     text-decoration: none;
     color:rgb(51, 71, 91) !important;
+    background-color: rgb(229, 248, 246);
+
+    &--contact{
+        @extend .infoLink;
+        border: solid 1px rgb(0, 164, 189);
+    }
+
+    &--company{
+        @extend .infoLink;
+        border: solid 1px rgb(0, 189, 165);
+    }
 
     &__text{
         margin:auto 10px;
