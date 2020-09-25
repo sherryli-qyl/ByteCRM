@@ -1,15 +1,12 @@
 import moment from 'moment';
-import React from 'react';
 
 
 function getDate(date){
     const formateDate=moment(date).format("YYYY-MM");
-    console.log("get time" + formateDate);
     return formateDate
 }
 
 function sortDate(array) {
-    console.log("start sort");
     array.sort(function (a, b) {
         return b.date < a.date ? -1 : 1
     })
@@ -18,14 +15,12 @@ function sortDate(array) {
 function addDate(days){
     const date = moment().add(days,'d').toDate();
     const newDate=moment(date).format("DD,MMM");
-    console.log("new date is "+ newDate);
     return newDate;
 }
 
 function addWeekDay(days){
     const date = moment().add(days,'d').toDate();
     const newDate=moment(date).format("dddd");
-    console.log("new date is "+ newDate);
     return newDate;
 
 }

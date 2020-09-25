@@ -1,12 +1,12 @@
 import React from 'react';
 import './DetailInfo.scss';
-import FormatContact from '../../services/FormatContact';
+import FormatData from '../../services/FormatData';
 import AboutSection from './components/About';
 import ExpandBar from '../../Private/ExpandBar';
 
 
 const DetailInfo = (props) => {
-    const infoList = FormatContact(props.dataPack);
+    const infoList = FormatData(props.dataPack.data,props.dictionary);
     const expandPack = props.expandPack
     expandPack[0].content = <AboutSection infoList={infoList} />;
 
