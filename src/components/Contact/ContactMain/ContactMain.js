@@ -7,6 +7,7 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import { ModalContext } from '../../Modal/components/ModalContext';
 import { ContactContext } from '../ContactContext';
 import { publicTheme} from '../../Style/Theme/MatUITheme';
+import {ContactDictionary} from './components/Dictionary';
 import WebActivity from './components/WebActivity';
 import './ContactMain.scss';
 
@@ -25,7 +26,7 @@ class ContactMain extends Component {
             Yaxis: 50,
             visible: false,
             contact: testContact,
-            expandPack,
+            expandPack:expandPack,
             currentModal: "",
             theme: publicTheme,
         }
@@ -39,7 +40,6 @@ class ContactMain extends Component {
         this.setState({
             visible: true,
             currentModal: selectedModal,
-
         });
         console.log("open the modal " + this.state.visible)
     }
@@ -66,8 +66,8 @@ class ContactMain extends Component {
     }
 
     render() {
-        const {visible, currentModal, contact, theme,expandPack} = this.state
-        
+        const {visible, currentModal, contact, theme,expandPack} = this.state;
+        const infoData = {key:'contact',data: contact, dictionary: ContactDictionary};
         return (
             <div>
                 <ModalContext.Provider value={this.openModal}>
@@ -78,7 +78,7 @@ class ContactMain extends Component {
                         <div className="Main">
                             <ContactContext.Provider value={this.onChangeContactInfo}>
                                 <InfoPage openModal={this.openModal}
-                                          contact = {contact}
+                                          infoData = {infoData}
                                           expandPack = {expandPack}
                                 />
                             </ContactContext.Provider>
