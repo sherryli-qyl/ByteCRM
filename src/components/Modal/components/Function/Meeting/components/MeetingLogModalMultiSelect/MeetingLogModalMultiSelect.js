@@ -1,9 +1,5 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-
-import CardContent from '@material-ui/core/CardContent';
-
 import Grid from '@material-ui/core/Grid';
 
 import InputLabel from '@material-ui/core/InputLabel';
@@ -21,7 +17,7 @@ import TextField from '@material-ui/core/TextField';
 
 const useStyles = theme => ({
     root: {
-        minWidth: 275,
+        minWidth: 100,
       },
       time: {
         fontSize: 14,
@@ -56,7 +52,7 @@ const useStyles = theme => ({
 
 
 
-class SetGrid extends React.Component {
+class MeetingModalMultiSelect extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
@@ -85,10 +81,9 @@ class SetGrid extends React.Component {
 
         
         return (
-        <Card className={classes.root}>
-            <CardContent>
+        <div className="border-bottom">
             <Grid container alignContent="space-between" alignItems="center">
-            <Grid item xs={3}>
+            <Grid item xs={4}>
             <FormControl className={classes.formControl}>
             <InputLabel shrink id="demo-simple-select-placeholder-label-label">
               Attendees
@@ -112,40 +107,9 @@ class SetGrid extends React.Component {
             </Grid>
           
             <Grid item xs={3}>
-            <form className={classes.container} noValidate>
-            <TextField
-              id="date"
-              label="Start date"
-              type="date"
-              defaultValue="2020-08-26"
-              className={classes.textField}
-              InputLabelProps={{
-                shrink: true,
-              }}
-            />
-          </form>
-            </Grid>
-            <Grid item xs={3}>
-            <form className={classes.container} noValidate>
-            <TextField
-              id="time"
-              label="Start time"
-              type="time"
-              defaultValue="07:30"
-              className={classes.textField}
-              InputLabelProps={{
-                shrink: true,
-              }}
-              inputProps={{
-                step: 300, // 5 min
-              }}
-            />
-          </form>
-            </Grid>
-            <Grid item xs={3}>
             <FormControl className={classes.formControl}>
             <InputLabel shrink id="demo-simple-select-placeholder-label-label">
-              Duration
+              outcome
             </InputLabel>
             <Select
               labelId="demo-simple-select-placeholder-label-label"
@@ -164,14 +128,40 @@ class SetGrid extends React.Component {
             </Select>
           </FormControl>
             </Grid>
+            <Grid item xs={5}>
+            </Grid>
+            
+            <Grid item xs={4}>
+            </Grid>
+            <Grid item xs={4}>
+            </Grid>
+            <Grid item xs={4}>
+                <FormControl className={classes.formControl}>
+                    <InputLabel shrink id="demo-simple-select-placeholder-label-label">
+                        duration
+                    </InputLabel>
+                    <Select
+                        labelId="demo-simple-select-placeholder-label-label"
+                        id="demo-simple-select-placeholder-label"
+                        value={this.state.outcome}
+                        onChange={this.handleChange}
+                        displayEmpty
+                        className={classes.selectEmpty}
+                        >
+                    <MenuItem value="">
+                        <em>None</em>
+                    </MenuItem>
+                    <MenuItem value={10}>Scheduled</MenuItem>
+                    <MenuItem value={20}>Completed</MenuItem>
+                    <MenuItem value={30}>Rescheduled</MenuItem>
+                    </Select>
+            </FormControl>
+            </Grid>
+            
         </Grid>
-  
- 
-            </CardContent>
-          
-        </Card>
+        </div>
         );
       }
     }
     
-export default withStyles(useStyles)(SetGrid);
+export default withStyles(useStyles)(MeetingModalMultiSelect);

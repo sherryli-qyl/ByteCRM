@@ -2,16 +2,14 @@ import React from 'react';
 import "./MeetingInput.scss";
 import Editor from"../../../../../../Style/Editor/Editor";
 
-const MeetingInput=({
-    children
-})=>(
-
-    <div className="MeetingInput">
-        <Editor/>
-    </div>
-   
-
-);
 
 
-export default MeetingInput;
+
+const MeetingInput = (props) => (
+    <div >
+      <Editor placeholder={props.placeholder}
+      />
+    </div> 
+  );
+  
+  export default MeetingInput;
