@@ -35,6 +35,7 @@ class EnhancedTable extends Component {
 
   setData = (newData) => {
     this.setState({ data: newData });
+    this.props.getNewTable(newData);
   };
 
   removeRow = (evt, selectedRow) => {
@@ -57,7 +58,9 @@ class EnhancedTable extends Component {
   };
 
   getDataAndIndex = (data) => {
-    data.set('index', this.state.selectedRow);
+    if (data.size !== 0) {
+      data.set('index', this.state.selectedRow);
+    }
     this.props.getDataToEdit(data);
   }
 
@@ -66,7 +69,6 @@ class EnhancedTable extends Component {
     for (const item of Rows) {
       index.push(item.tableData.id);
     }
-    console.log(index);
     return index;
   }
 

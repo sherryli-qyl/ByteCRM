@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./StringInput.scss";
 
+
 class StringInput extends Component {
   constructor(props) {
     super(props);

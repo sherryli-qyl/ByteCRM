@@ -5,7 +5,7 @@ function DropdownItem(props) {
   let id = 0;
   function displayElements() {
     return (
-      <div className="show-options">
+      <div className={`${props.className}-show-options`}>
         {props.items &&
         props.items.map((value, key) => (
           <div

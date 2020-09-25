@@ -51,6 +51,7 @@ class DropdownList extends React.Component {
           </div>
           {this.state.visible && (
             <DropdownItem
+              className={this.props.className}
               items={this.props.items}
               getSelected={this.getSelectedItem}
               changeVisible={this.changeVisible}

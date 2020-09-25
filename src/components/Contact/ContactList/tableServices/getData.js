@@ -51,7 +51,7 @@ function generateData() {
         "Hubspot, Inc.",
         "10/09/2020",
         Math.floor(Math.random() * 8),
-        "08/09/2020",
+        "08/09/2020"
         // id++,
       )
     );
@@ -65,25 +65,38 @@ function addData(oldData, newData) {
   if (newData.length === 0) {
     return oldData;
   }
-  let names = [];
-  for (const item of oldData) {
-    names.push(item.name);
-  }
   for (const item of newData) {
-    if (!names.includes(item.name)) {
-      oldData.push(item);
-    }
+    oldData.push(item);
   }
   return oldData;
 }
 
-const getRows = (id, userAccount, newData) => {
+function replaceData(oldData, index, field, newValue) {
+
+}
+
+// TODO: 只负责拿到table的初始数据，把add和edit分离出来
+const getRows = (id, userAccount, newData, dataToEdit) => {
+  if (dataToEdit.size > 0) {
+    let field = "",
+      newValue = "",
+      index = [];
+    dataToEdit.forEach((key, value) => {
+      if (key === "index") {
+        index = value;
+      } else {
+        field = key;
+        newValue = value;
+      }
+    });
+    return replaceData()
+  }
+
   if (id === 1) {
     return addData(Rows, newData);
   } else if (id === 2) {
     let mine = [];
     let newRows = addData(Rows, newData);
-    // 将来改成用<NavLink>
     for (const item of newRows) {
       if (item.contactOwner === userAccount) {
         mine.push(item);

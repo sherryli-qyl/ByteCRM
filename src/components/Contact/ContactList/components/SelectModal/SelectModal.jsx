@@ -2,6 +2,12 @@ import React, { Component } from "react";
 import "./SelectModal.scss";
 import DropdownList from "./components/DropdownList";
 import StringInput from "./components/StringInput";
+import {
+  testPhoneNum,
+  testEmailAddr,
+  testEmptyString,
+  testDate,
+} from "../../tableServices/validation";
 
 const MODAL = {
   OTHER: "OTHER",
@@ -11,6 +17,7 @@ const MODAL = {
 };
 
 const FIELDS = [
+  "",
   "Name",
   "Email",
   "Phone number",
@@ -22,6 +29,7 @@ const FIELDS = [
 ];
 
 const LEAD_STATUS = [
+  "",
   "New",
   "Open",
   "In progress",
@@ -36,18 +44,10 @@ function generateArray(start, end) {
   return Array.from(new Array(end + 1).keys()).slice(start);
 }
 
-const DAYS = generateArray(1, 31);
-const YEARS = generateArray(1900, 2020);
-const MONTHSNUM = generateArray(1, 12).map((value, index) => {
-  let result = [];
-  if (value <= 10) {
-    result.push("0" + value);
-  } else {
-    result.push("" + value);
-  }
-  return result;
-});
+const DAYS = [""].concat(generateArray(1, 31));
+const YEARS = [""].concat(generateArray(1900, 2020));
 const MONTHS = [
+  "",
   "Jan",
   "Feb",
   "Mar",
@@ -59,8 +59,9 @@ const MONTHS = [
   "Sep",
   "Oct",
   "Nov",
-  "Dem",
+  "Dec",
 ];
+const MONTHSNUM = generateArray(1, 12);
 
 class SelectModal extends Component {
   constructor(props) {
@@ -68,7 +69,12 @@ class SelectModal extends Component {
     this.state = {
       selectedField: "",
       showType: MODAL.EMPTY,
-      dataToEdit: [],
+      singleDataToEdit: "",
+      dateToEdit: new Map([
+        ["day", ""],
+        ["month", ""],
+        ["year", ""],
+      ]),
     };
   }
 
@@ -77,44 +83,32 @@ class SelectModal extends Component {
     this.getType();
   };
 
-  getType = () => {
-    if (
-      this.state.selectedField == "Name" ||
-      this.state.selectedField == "Email" ||
-      this.state.selectedField == "Phone number" ||
-      this.state.selectedField == "Contact owner" ||
-      this.state.selectedField == "Associated company"
-    ) {
-      // single STRING input
-      this.selectType(MODAL.OTHER);
-    } else if (
-      this.state.selectedField == "Last activity date" ||
-      this.state.selectedField == "Create date"
-    ) {
-      // 3 dropdown
-      console.log("222");
-      this.selectType(MODAL.DATE);
-    } else if (this.state.selectedField == "Lead status") {
-      // 1 dropdown
-      console.log("333");
-      this.selectType(MODAL.STATUS);
-    } else {
-      console.log("444");
-      this.selectType(MODAL.EMPTY);
-    }
-  };
-
   selectType(target) {
-    // return (event) => {
-    //   event.preventDefault();
     this.setState({
       showType: target,
     });
-
-    console.log(this.state.showType);
-
-    // };
   }
+
+  getType = () => {
+    if (
+      this.state.selectedField === "Name" ||
+      this.state.selectedField === "Email" ||
+      this.state.selectedField === "Phone number" ||
+      this.state.selectedField === "Contact owner" ||
+      this.state.selectedField === "Associated company"
+    ) {
+      this.selectType(MODAL.OTHER);
+    } else if (
+      this.state.selectedField === "Last activity date" ||
+      this.state.selectedField === "Create date"
+    ) {
+      this.selectType(MODAL.DATE);
+    } else if (this.state.selectedField === "Lead status") {
+      this.selectType(MODAL.STATUS);
+    } else {
+      this.selectType(MODAL.EMPTY);
+    }
+  };
 
   getInputData = (data) => {
     if (
@@ -122,45 +116,46 @@ class SelectModal extends Component {
       this.state.showType !== MODAL.EMPTY
     ) {
       //
-      this.setState({ dataToEdit: [data] });
+      this.setState({ singleDataToEdit: data, dateToEdit: [] });
     } else if (this.state.showType === MODAL.DATE) {
       //
-      let temp = this.state.dataToEdit;
-      this.setState({ dataToEdit: temp.push(data) });
+      const curData = this.processDateData(data);
+      let temp = this.state.dateToEdit;
+      temp.set(Object.keys(curData)[0], Object.values(curData)[0]);
+      this.setState({ dateToEdit: temp });
     } else {
       //
-      this.setState({ dataToEdit: [] });
+      this.setState({ singleDataToEdit: "", dateToEdit: [] });
     }
   };
 
-  processInputData() {
-    if (this.state.dataToEdit.length > 1) {
-      let year = 1900;
-      let month = 1;
-      let day = 1;
-      for (const item of this.state.dataToEdit) {
-        switch (item.length) {
-          case 1:
-            day = "0" + item;
-            break;
-          case 2:
-            day = item;
-            break;
-          case 3:
-            month = MONTHSNUM[MONTHS.indexOf(item)];
-            break;
-          case 4:
-            year = item;
-            break;
-          default:
-            year = 1900;
-            month = day = 1;
+  processDateData(data) {
+    let result = "";
+    let cur = data.toString();
+    switch (cur.length) {
+      case NaN:
+      case "":
+        break;
+      case 1:
+        result = { day: "0" + data };
+        break;
+      case 2:
+        result = { day: data };
+        break;
+      case 3:
+        let month = MONTHSNUM[MONTHS.indexOf(data) - 1];
+        if (Number(month) <= 10) {
+          month = "0" + month;
         }
-        return "" + month + "/" + day + "/" + year;
-      }
-    } else if (this.state.dataToEdit.length === 1) {
-      return this.state.dataToEdit[0];
+        result = { month: month };
+        break;
+      case 4:
+        result = { year: data };
+        break;
+      default:
+        throw Error("Invalid input!");
     }
+    return result;
   }
 
   // 点击取消更新modal中的modalVisible状态
@@ -170,11 +165,42 @@ class SelectModal extends Component {
 
   confirm = () => {
     this.props.changeModalVisible(false);
+    let currentData = null;
+    const selectedField = this.state.selectedField;
+    const showType = this.state.showType;
     const mapData = new Map();
-    mapData.set(this.state.selectedField, this.processInputData());
-
-    console.log(mapData);
-
+    if (this.state.singleDataToEdit.length === 0) {
+      currentData = this.state.dateToEdit;
+    } else {
+      currentData = this.state.singleDataToEdit;
+    }
+    if (selectedField === "Phone number" && testPhoneNum(currentData)) {
+      mapData.set(selectedField, currentData);
+    } else if (selectedField === "Email" && testEmailAddr(currentData)) {
+      mapData.set(selectedField, currentData);
+    } else if (
+      (showType === MODAL.OTHER || showType === MODAL.STATUS) &&
+      testEmptyString(currentData)
+    ) {
+      mapData.set(selectedField, currentData);
+    } else if (
+      showType === MODAL.DATE &&
+      testDate(
+        currentData.get("month") +
+          "/" +
+          currentData.get("day") +
+          "/" +
+          currentData.get("year")
+      )
+    ) {
+      currentData =
+        currentData.get("month") +
+        "/" +
+        currentData.get("day") +
+        "/" +
+        currentData.get("year");
+      mapData.set(selectedField, currentData);
+    }
     this.props.getDataToEdit(mapData);
   };
 
@@ -188,21 +214,46 @@ class SelectModal extends Component {
         {
           <div className="modal">
             <DropdownList
-              className="dropdown-list1"
+              className="dropdown-list-selection"
               hint="Please select a field"
               getSelectedField={this.getSelectedField}
               items={FIELDS}
             />
             {this.state.showType === MODAL.STATUS && (
               <DropdownList
-                className="dropdown-list2"
+                className="dropdown-list-single"
                 hint="Please select a status"
                 getInputData={this.getInputData}
                 items={LEAD_STATUS}
               />
             )}
             {this.state.showType === MODAL.OTHER && (
-              <StringInput getInputData={this.getInputData} />
+              <StringInput
+                getInputData={this.getInputData}
+                selectedField={this.state.selectedField}
+              />
+            )}
+            {this.state.showType === MODAL.DATE && (
+              <>
+                <DropdownList
+                  className="dropdown-list-triple1"
+                  hint="Day"
+                  getInputData={this.getInputData}
+                  items={DAYS}
+                />
+                <DropdownList
+                  className="dropdown-list-triple2"
+                  hint="Month"
+                  getInputData={this.getInputData}
+                  items={MONTHS}
+                />
+                <DropdownList
+                  className="dropdown-list-triple3"
+                  hint="Year"
+                  getInputData={this.getInputData}
+                  items={YEARS}
+                />
+              </>
             )}
 
             <div className="modal-operator">

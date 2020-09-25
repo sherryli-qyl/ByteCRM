@@ -43,10 +43,7 @@ class SwitchBar extends React.Component {
     }
   };
 
-<<<<<<< HEAD
-  showModal = () => {
-    this.setState({ addVisible: true });
-=======
+
   // showModal = () => {
   //   this.setState({ addVisible: true });
   // };
@@ -56,7 +53,6 @@ class SwitchBar extends React.Component {
     setTimeout(() => {
       console.log(this.state.dataToEdit)
     }, 500)
->>>>>>> rename folder and get so close to modal completion
   };
 
   render() {
@@ -82,21 +78,6 @@ class SwitchBar extends React.Component {
         {this.props.tabs.map(
           (tab) =>
             activeTab === tab.id && (
-<<<<<<< HEAD
-              <>
-                <TabContainer className={classes.wrapper} key={tab.id}>
-                  {tab.component}
-                </TabContainer>
-                <EnhancedTable
-                  data={getRows(
-                    this.state.activeTab,
-                    this.props.userAccount,
-                    this.state.newData,
-                    this.state.filter
-                  )}
-                />
-              </>
-=======
               <TabContainer className={classes.wrapper} key={tab.id}>
                 {tab.component}
               </TabContainer>
@@ -114,7 +95,6 @@ class SwitchBar extends React.Component {
                   this.state.filter
                 )}
               />
->>>>>>> rename folder and get so close to modal completion
             )
         )}
       </div>
