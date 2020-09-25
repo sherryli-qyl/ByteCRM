@@ -1,7 +1,8 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPencilAlt } from "@fortawesome/free-solid-svg-icons";
-import {ContactContext} from '../../../Contact/ContactContext';
+import ReactTooltip from 'react-tooltip';
+import { faPencilAlt, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+import { ContactContext } from '../../../Contact/ContactContext';
 import './TableEditor.scss';
 
 
@@ -10,12 +11,14 @@ class TableEditor extends React.Component {
     static contextType = ContactContext;
     constructor(props) {
         super(props);
-        const defaultValue = this.props.value;
+        const {title,value,itemKey,tip} = this.props.item;
         this.inputRef = React.createRef();
         this.state = {
             hideEditor: true,
-            currentValue: defaultValue,
-            itemKey:this.props.itemKey,
+            currentValue: value,
+            itemKey,
+            title,
+            tip,
             onChange: '',
         }
         this.toggleEditor = this.toggleEditor.bind(this);
@@ -40,18 +43,18 @@ class TableEditor extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         const key = this.state.itemKey;
-        this.state.onChange(key,this.state.currentValue);
+        this.state.onChange(key, this.state.currentValue);
         this.toggleEditor();
     }
 
-    updateDisplay(inputValue){
-		this.setState({
-			currentValue: inputValue
-		});
+    updateDisplay(inputValue) {
+        this.setState({
+            currentValue: inputValue
+        });
     }
 
     handleChange(e) {
-       this.updateDisplay(e.target.value)
+        this.updateDisplay(e.target.value)
     }
 
     handleBlur() {
@@ -65,25 +68,38 @@ class TableEditor extends React.Component {
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         const context = this.context;
         this.setState({
-            onChange:context
+            onChange: context
         })
     }
 
 
     render() {
-        const { hideEditor, currentValue } = this.state;
+        const { hideEditor, currentValue,title, tip } = this.state;
+        console.log(title + tip);
         let underline = "underline "
-        if (!hideEditor){
+        if (!hideEditor) {
             underline += "underline--active "
         }
 
         return (
             <div className="tableEditor">
                 <div className="tableEditor__left">
-                    <div className="tableEditor__left__title"> {this.props.title} </div>
+                    <div className="tableEditor__left__title">
+                        {title}
+                        {tip ?
+                            <div className="tableEditor__left__title__info" >
+                                <FontAwesomeIcon className='infoIcon' icon={faInfoCircle} data-tip data-for="infoTip"/>
+                                <ReactTooltip id="infoTip" place="top" effect="solid">
+                                    Property was filled from the ByteCRM database.
+                                </ReactTooltip>
+                            </div>
+                            :
+                            ""
+                        }
+                    </div>
                     <form onSubmit={this.handleSubmit}
                     >
                         <input ref={this.inputRef} className='tableEditor__left__input '
@@ -104,7 +120,7 @@ class TableEditor extends React.Component {
                     :
                     ""
                 }
-                <div className={underline + 'underline__green'}/>
+                <div className={underline + 'underline__green'} />
             </div>
         )
     }
