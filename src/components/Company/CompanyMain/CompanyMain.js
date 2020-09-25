@@ -7,6 +7,7 @@ import Activities from '../../Activities';
 import Navbar from "../../Navbar";
 import { ThemeProvider } from '@material-ui/core/styles';
 import {publicTheme} from '../../Style/Theme/MatUITheme';
+import {CompanyDictionary} from './components/Dictionary';
 import './CompanyMain.scss';
 
 class CompanyMain extends Component {
@@ -47,7 +48,8 @@ class CompanyMain extends Component {
     }
 
     render() {
-        const { visible, currentModal, company,expandPack ,theme} = this.state
+        const { visible, currentModal,company,expandPack ,theme} = this.state
+        const infoData = {key:'company',data: company, dictionary: CompanyDictionary};
         return (
             <div>
                 <ModalContext.Provider value={this.openModal}>
@@ -58,7 +60,7 @@ class CompanyMain extends Component {
                     <div className="Main">
                         <CompanyContext.Provider value={this.onChangeContactInfo}>
                             <InfoPage openModal={this.openModal}
-                                      company={company}
+                                      infoData = {infoData}
                                       expandPack={expandPack}
                             />
                         </CompanyContext.Provider>
