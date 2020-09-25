@@ -40,14 +40,15 @@ class InfoPage extends Component {
 
   render() {
     const { navItems, currentModal } = this.state;
+    const {key,data,dictionary} = this.props.infoData
     let dataPack = "";
+    
 
-    if(this.props.contact){
-       dataPack = new DataPack("contact","Contacts",this.props.contact);
+    if(this.props.infoData.key === 'contact'){
+       dataPack = new DataPack(key,"Contacts",data,dictionary);  
     }
     else{
-       dataPack = new DataPack("company","Companies",this.props.company);
-       console.table(dataPack);
+       dataPack = new DataPack(key,"Companies",data,dictionary);
     }
 
     return (
@@ -60,7 +61,8 @@ class InfoPage extends Component {
         />
 
         <DetailInfo 
-          dataPack = {dataPack}    
+          dataPack = {dataPack}  
+          dictionary = {dictionary}
           expandPack = {this.props.expandPack}/>
       </div>
     );
