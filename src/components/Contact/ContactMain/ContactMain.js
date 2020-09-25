@@ -6,7 +6,8 @@ import Navbar from "../../Navbar";
 import { ThemeProvider } from '@material-ui/core/styles';
 import { ModalContext } from '../../Modal/components/ModalContext';
 import { ContactContext } from '../ContactContext';
-import { checkbox } from '../../Style/Theme/MatUITheme';
+import { publicTheme} from '../../Style/Theme/MatUITheme';
+import WebActivity from './components/WebActivity';
 import './ContactMain.scss';
 
 
@@ -18,13 +19,15 @@ class ContactMain extends Component {
             ID: '000001', FirstName: 'John', LastName: 'Doe', JobTitle: 'CEO', PhoneNo: '12345', Email: '123@gmail.com',
             ContactOwner: "Yurun YU",Company:"Nike Ltd",LifeCycle:'Customer'
         }
+        const expandPack = [{key:'About this Contact',content:""},{key:'Website Activity',content: (<WebActivity/>)}]
         this.state = {
             Xaxis: 300,
             Yaxis: 50,
             visible: false,
             contact: testContact,
+            expandPack,
             currentModal: "",
-            theme: checkbox
+            theme: publicTheme,
         }
         this.closeModal = this.closeModal.bind(this);
         this.openModal = this.openModal.bind(this);
@@ -63,7 +66,8 @@ class ContactMain extends Component {
     }
 
     render() {
-        const { visible, currentModal, contact, theme } = this.state
+        const {visible, currentModal, contact, theme,expandPack} = this.state
+        
         return (
             <div>
                 <ModalContext.Provider value={this.openModal}>
@@ -75,6 +79,7 @@ class ContactMain extends Component {
                             <ContactContext.Provider value={this.onChangeContactInfo}>
                                 <InfoPage openModal={this.openModal}
                                           contact = {contact}
+                                          expandPack = {expandPack}
                                 />
                             </ContactContext.Provider>
                             <Activities />
@@ -94,8 +99,6 @@ class ContactMain extends Component {
 
         )
     }
-
 }
-
 
 export default ContactMain;

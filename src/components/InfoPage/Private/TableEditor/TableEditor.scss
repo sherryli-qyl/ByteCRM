@@ -1,12 +1,12 @@
-@import '../../../../../../style/variable.scss';
+@import '../../../../style/variable.scss';
 
-.detailInfoItem {
+.tableEditor {
     display: flex;
     margin-top: 5%;
     position: relative;
     justify-content: center;
 
-    &:hover .borderBottom {
+    &:hover .underline {
         display: block;
     }
 
@@ -25,28 +25,28 @@
         margin-left: 5%;
         font-family: Avenir Next W02, Helvetica, Arial, sans-serif;
 
-        &__title{
+        &__title {
             font-size: 12px;
             color: $label-color;
         }
 
-        &__input{
+        &__input {
             display: flex;
-            border:0;
+            border: 0;
             outline: 0;
             font-size: 14px;
             color: $primary-color;
-            padding-top:10px; 
+            padding-top: 10px;
 
-            &:disabled{
+            &:disabled {
                 background-color: transparent;
             }
         }
 
-        &__value{
+        &__value {
             font-size: 14px;
             color: $primary-color;
-            padding-top:10px;
+            padding-top: 10px;
         }
     }
 
@@ -67,15 +67,10 @@
     }
 }
 
-.borderBottom {
-    display: none;
-    position: absolute;
-    bottom: 5px;
+.underline__green{
     background-color: rgb(0, 164, 189);
-    height: 1px;
-    width: 90%;
 }
 
-.domActive{
-    display: block;
-}
+
+
+

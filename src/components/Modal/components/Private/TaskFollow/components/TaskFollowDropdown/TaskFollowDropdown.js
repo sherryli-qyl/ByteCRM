@@ -1,7 +1,5 @@
 import React from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
 import { addDate } from '../../../../../../services/DateManager';
 import Dropdown from '../../../../../../Style/Dropdown';
 import './TaskFollowDropDown.scss';
