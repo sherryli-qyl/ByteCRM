@@ -14,7 +14,7 @@ class NotesTimeLine extends React.Component {
         type: "Note", 
         date: '2020-09-14', 
         time:'9:00 PM',
-        content: "note content test", 
+        content: "note content test note content test note content test note content test note content test note content test note content test note content test note content test note content test", 
         comments: [
           {id:123, author:"Joe", content: "comment test 1", timestamp:"Sep 14, 2020 at 12:08 AM GMT+10"}, 
           {id:124, author:"Chloe", content: "comment test 2", timestamp:"Sep 14, 2020 at 12:08 AM GMT+10"}

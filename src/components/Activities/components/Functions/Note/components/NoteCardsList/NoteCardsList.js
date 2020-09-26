@@ -9,7 +9,7 @@ function NoteCardsList(props) {
   const logCard =(card)=>(<NoteCard card={card}/>);
   const icon= faEdit;
   return (
-    <div className='emailCards'>
+    <div>
       {props.cardsArray.map((cards) => (
         <CardContainer
           key={cards.date}
