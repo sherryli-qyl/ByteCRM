@@ -1,8 +1,8 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import ReactTooltip from 'react-tooltip';
-import { faPencilAlt, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+import { faPencilAlt} from "@fortawesome/free-solid-svg-icons";
 import { ContactContext } from '../../../Contact/ContactContext';
+import TipIcon from './Private/TipIcon';
 import './TableEditor.scss';
 
 
@@ -75,7 +75,6 @@ class TableEditor extends React.Component {
         })
     }
 
-
     render() {
         const { hideEditor, currentValue,title, tip } = this.state;
         console.log(title + tip);
@@ -91,10 +90,7 @@ class TableEditor extends React.Component {
                         {title}
                         {tip ?
                             <div className="tableEditor__left__title__info" >
-                                <FontAwesomeIcon className='infoIcon' icon={faInfoCircle} data-tip data-for="infoTip"/>
-                                <ReactTooltip id="infoTip" place="top" effect="solid">
-                                    Property was filled from the ByteCRM database.
-                                </ReactTooltip>
+                                <TipIcon/>
                             </div>
                             :
                             ""
