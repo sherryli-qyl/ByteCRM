@@ -1,13 +1,20 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import CreateButton from '../../../../../../Style/Button/Activities/CreateButton';
+import TaskModal from '../../../../../../Modal/components/Function/Task';
+import {ModalContext} from '../../../../../../Modal/components/ModalContext';
+import Modal from '../../../../../../../js/Modal';
 import "./TaskPageHeader.scss";
 
-const TaskPageHeader = () => (
-  <div className="taskPage__header">
-    <div className='taskPage__header__createTask'>
-      <CreateButton>Create Task</CreateButton>
+const TaskPageHeader = () => {
+  const onClick= useContext(ModalContext); 
+  const createModal = new Modal('Task', 'Task',<TaskModal />); 
+  return(
+    <div className="taskPage__header">
+      <div className='taskPage__header__createTask'>
+        <CreateButton onClick={() => onClick(createModal)}>Create Task</CreateButton>
+      </div>
     </div>
-  </div>
-)
+  )
+}
 
 export default TaskPageHeader;
