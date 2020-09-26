@@ -10,7 +10,7 @@ const LogButton = ({
     onClick,
 }) => {
     return (
-        <button className={"logButton "}
+        <button className={`logButton ${className}`}
         onClick={(event) => {
             event.preventDefault();
             onClick();

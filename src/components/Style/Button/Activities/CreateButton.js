@@ -10,7 +10,7 @@ const CreateButton = ({
     onClick,
 }) => {
     return (
-        <button className={"createButton "}
+        <button className={`createButton ${className}`}
         onClick={(event) => {
             event.preventDefault();
             onClick();
