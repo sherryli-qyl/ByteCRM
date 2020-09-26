@@ -1,21 +1,24 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPencilAlt } from "@fortawesome/free-solid-svg-icons";
-import {ContactContext} from '../../../Contact/ContactContext';
+import { faPencilAlt} from "@fortawesome/free-solid-svg-icons";
+import {InfoContext} from '../../components/Context';
+import TipIcon from './Private/TipIcon';
 import './TableEditor.scss';
 
 
 
 class TableEditor extends React.Component {
-    static contextType = ContactContext;
+    static contextType =  InfoContext;
     constructor(props) {
         super(props);
-        const defaultValue = this.props.value;
+        const {title,value,key,tip} = this.props.item;
         this.inputRef = React.createRef();
         this.state = {
             hideEditor: true,
-            currentValue: defaultValue,
-            itemKey:this.props.itemKey,
+            currentValue: value,
+            key,
+            title,
+            tip,
             onChange: '',
         }
         this.toggleEditor = this.toggleEditor.bind(this);
@@ -39,19 +42,18 @@ class TableEditor extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        const key = this.state.itemKey;
-        this.state.onChange(key,this.state.currentValue);
+        this.state.onChange(this.state.key, this.state.currentValue);
         this.toggleEditor();
     }
 
-    updateDisplay(inputValue){
-		this.setState({
-			currentValue: inputValue
-		});
+    updateDisplay(inputValue) {
+        this.setState({
+            currentValue: inputValue
+        });
     }
 
     handleChange(e) {
-       this.updateDisplay(e.target.value)
+        this.updateDisplay(e.target.value)
     }
 
     handleBlur() {
@@ -65,25 +67,33 @@ class TableEditor extends React.Component {
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         const context = this.context;
         this.setState({
-            onChange:context
+            onChange: context
         })
     }
 
-
     render() {
-        const { hideEditor, currentValue } = this.state;
+        const { hideEditor, currentValue,title, tip } = this.state;
         let underline = "underline "
-        if (!hideEditor){
+        if (!hideEditor) {
             underline += "underline--active "
         }
 
         return (
             <div className="tableEditor">
                 <div className="tableEditor__left">
-                    <div className="tableEditor__left__title"> {this.props.title} </div>
+                    <div className="tableEditor__left__title">
+                        {title}
+                        {tip ?
+                            <div className="tableEditor__left__title__info" >
+                                <TipIcon/>
+                            </div>
+                            :
+                            ""
+                         }
+                    </div>
                     <form onSubmit={this.handleSubmit}
                     >
                         <input ref={this.inputRef} className='tableEditor__left__input '
@@ -104,7 +114,7 @@ class TableEditor extends React.Component {
                     :
                     ""
                 }
-                <div className={underline + 'underline__green'}/>
+                <div className={underline + 'underline__green'} />
             </div>
         )
     }

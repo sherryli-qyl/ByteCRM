@@ -18,19 +18,20 @@ class DatePicker extends React.Component {
     const pickerTheme = DatePickerTheme;
     this.state = {
       pickerTheme,
-      currentDate: this.props.defaultDate,
-      
+      currentDate: this.props.defaultDate, 
     }
-    this.onDateChange = this.onDateChange.bind(this);
+    this.onChange = this.onChange.bind(this);
   }
 
-  onDateChange(date) {
+  onChange(date) {
     const newDate = transferDateInYearMonDay(date);
-    this.props.onDateChange(newDate);
     this.setState({
       currentDate: newDate,
     })
+    this.props.onDateChange(newDate);
   }
+
+
 
   render() {
     const { currentDate, pickerTheme} = this.state
@@ -43,9 +44,8 @@ class DatePicker extends React.Component {
             format="MM/dd/yyyy"
             margin="normal"
             id="date-picker-inline"
-            label="Date"
             value={currentDate}
-            onChange={date => this.onDateChange(date)}
+            onChange={date => this.onChange(date)}
             KeyboardButtonProps={{
               'aria-label': 'change date',
             }}

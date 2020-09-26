@@ -6,7 +6,7 @@ import './AboutSection.scss';
 
 
 const AboutSection = ({
-    infoList
+    infoList,
 }) => {
 
     return (
@@ -14,9 +14,7 @@ const AboutSection = ({
             {infoList.map((item) => (
                 <TableEditor
                     key={item.key}
-                    itemKey={item.key}
-                    title={item.title}
-                    value={item.value}
+                    item = {item}
                 />
             ))}
         </div>
