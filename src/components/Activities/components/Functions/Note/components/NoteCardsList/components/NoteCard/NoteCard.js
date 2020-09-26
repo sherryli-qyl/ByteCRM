@@ -9,16 +9,19 @@ class NoteCard extends React.Component {
   }
 
   render() {
+    const {key,content,author,comments} = this.props.card;
     return (
       <div>
         <NoteBody 
-          content={this.props.card.content}
+          content={content}
+          cardKey = {key}
+          
           />
         <CreatedBy 
-          author={this.props.card.author}
+          author={author}
         />  
         <CommentBox 
-          comments={this.props.card.comments}
+          comments={comments}
         />            
       </div>
     )

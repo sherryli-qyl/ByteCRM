@@ -7,7 +7,7 @@ import "./ActivitiesButton.scss";
 const LogButton = ({
     children,
     className,
-    onClick,
+    onClick
 }) => {
     return (
         <button className={`logButton ${className}`}
