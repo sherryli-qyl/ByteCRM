@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Modal from '../../Modal';
-import {CompanyContext} from '../Context';
+import {InfoContext} from '../../InfoPage/components/Context';
 import {ModalContext} from '../../Modal/components/ModalContext';
 import InfoPage from '../../InfoPage';
 import Activities from '../../Activities';
@@ -29,6 +29,7 @@ class CompanyMain extends Component {
         }
         this.closeModal = this.closeModal.bind(this);
         this.openModal = this.openModal.bind(this);
+        this.onChangeInfo = this.onChangeInfo.bind(this);
     }
 
     openModal(selectedModal) {
@@ -47,9 +48,17 @@ class CompanyMain extends Component {
         console.log("close the modal " + this.state.visible)
     }
 
+    onChangeInfo(key,value){
+        let newCompany = this.state.company;
+        newCompany[key] = value;
+        this.setState({
+            company: newCompany
+        })
+    }
+
     render() {
         const { visible, currentModal,company,expandPack ,theme} = this.state
-        const infoData = {key:'company',data: company, dictionary: CompanyDictionary};
+        const infoData = {key:'company',data:company, dictionary:CompanyDictionary};
         return (
             <div>
                 <ModalContext.Provider value={this.openModal}>
@@ -58,12 +67,12 @@ class CompanyMain extends Component {
                     </header>
                     <ThemeProvider theme={theme}>
                     <div className="Main">
-                        <CompanyContext.Provider value={this.onChangeContactInfo}>
+                        <InfoContext.Provider value={this.onChangeInfo}>
                             <InfoPage openModal={this.openModal}
                                       infoData = {infoData}
                                       expandPack={expandPack}
                             />
-                        </CompanyContext.Provider>
+                        </InfoContext.Provider>
 
                         <div className="Function">
                             <Activities />

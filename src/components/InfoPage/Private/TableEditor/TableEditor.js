@@ -1,22 +1,22 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencilAlt} from "@fortawesome/free-solid-svg-icons";
-import { ContactContext } from '../../../Contact/ContactContext';
+import {InfoContext} from '../../components/Context';
 import TipIcon from './Private/TipIcon';
 import './TableEditor.scss';
 
 
 
 class TableEditor extends React.Component {
-    static contextType = ContactContext;
+    static contextType =  InfoContext;
     constructor(props) {
         super(props);
-        const {title,value,itemKey,tip} = this.props.item;
+        const {title,value,key,tip} = this.props.item;
         this.inputRef = React.createRef();
         this.state = {
             hideEditor: true,
             currentValue: value,
-            itemKey,
+            key,
             title,
             tip,
             onChange: '',
@@ -42,8 +42,7 @@ class TableEditor extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        const key = this.state.itemKey;
-        this.state.onChange(key, this.state.currentValue);
+        this.state.onChange(this.state.key, this.state.currentValue);
         this.toggleEditor();
     }
 

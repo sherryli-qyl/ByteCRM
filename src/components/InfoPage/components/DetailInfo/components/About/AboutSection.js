@@ -6,7 +6,7 @@ import './AboutSection.scss';
 
 
 const AboutSection = ({
-    infoList
+    infoList,
 }) => {
 
     return (
