@@ -77,7 +77,6 @@ class TableEditor extends React.Component {
 
     render() {
         const { hideEditor, currentValue,title, tip } = this.state;
-        console.log(title + tip);
         let underline = "underline "
         if (!hideEditor) {
             underline += "underline--active "
@@ -94,7 +93,7 @@ class TableEditor extends React.Component {
                             </div>
                             :
                             ""
-                        }
+                         }
                     </div>
                     <form onSubmit={this.handleSubmit}
                     >

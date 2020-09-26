@@ -2,6 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen } from '@fortawesome/free-solid-svg-icons';
 import Editor from '../Editor';
+import { Quill} from 'react-quill';
 import CreateButton from '../Button/Activities/CreateButton';
 import LogButton from '../Button/Activities/LogButton';
 import './EditableText.scss';
@@ -14,21 +15,30 @@ import './EditableText.scss';
 class EditableText extends React.Component {
   constructor(props) {
     super(props);
-
+    const {content} = this.props;
     this.state = {
       isEditingMode: false,
       onHover: false,
+      content,
     };
 
     this.handleEdit = this.handleEdit.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
     this.handleSave = this.handleSave.bind(this);
+    this.handleEditorChange = this.handleEditorChange.bind(this);
   }
+ 
 
+  handleEditorChange(newContent){
+    this.setState({
+      content: newContent,
+    })
+    console.log("parent" + newContent);
+  }
   
   handleSave() {
-    //
     this.setState({ isEditingMode: false });
+
   }
 
   handleEdit() {
@@ -56,8 +66,9 @@ class EditableText extends React.Component {
           onMouseLeave={this.handleEditIconToggle}
           onClick={this.handleEdit}
         >
-          <div className="editable-text-content">
-            {this.props.content}
+          <div className="editable-text-content" dangerouslySetInnerHTML={{__html:this.state.content}}>
+           
+            
           </div>
          
           <div className={onHover ? "editable-text-edit-icon" : "editable-text-edit-icon__hidden"}>
@@ -73,11 +84,12 @@ class EditableText extends React.Component {
 
 
   renderEditingMode () {
-    
+    const {content} = this.state;
     return(
       <div>
         <div className="editingmode-editor">
-          <Editor
+          <Editor content = {content}
+                  handleEditorChange={this.handleEditorChange}
           />
         </div>
         <div className="editingmode-editor-actions">
