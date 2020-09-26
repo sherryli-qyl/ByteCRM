@@ -1,9 +1,6 @@
 import React from 'react';
-import UserTag from '../../../../../../../../Style/Tag/User';
-import UserIcon from '../../../../../../../../../img/Contact/profile.png';
-import DatePicker from '../../../../../../../../Style/Picker/DatePicker';
-import TimePicker from '../../../../../../../../Style/Picker/TimePicker';
-import {transferTimeHHMM} from '../../../../../../../../services/timeManager';
+import Body from './components/Body';
+import Footer from './components/Footer';
 
 import './LogEmailCard.scss';
 
@@ -17,53 +14,42 @@ class LogEmailCard extends React.Component {
         }
         this.onDateChange = this.onDateChange.bind(this);
         this.onTimeChange = this.onTimeChange.bind(this);
+        this.onTest = this.onTest.bind(this)
     }
 
     onDateChange(date) {
+        this.setState({
+            currentDate: date,
+        })
+        console.log("1111" + date);
+    }
+
+    onTest(date) {
         const newDate = date;
         this.setState({
             currentDate: newDate,
         })
-        console.log(this.props.card.date);
+        console.log(date)
     }
 
-    onTimeChange(time){
+    onTimeChange(time) {
         const newTime = time;
         this.setState({
             currentTime: newTime,
         })
-        console.log(newTime);
     }
 
     render() {
         const { currentDate, currentTime } = this.state;
         return (
             <div className="logEmailCard">
-                <div className='logEmailCard__content'>
-                    {currentTime}
-                    {currentDate}
-                    <div className="logEmailCard__content__input">
-                        <div className='logEmailCard__content__input__picker'>
-                            <DatePicker defaultDate={currentDate}
-                                onDateChange={this.onDateChange} />
-                        </div>
-                        <div className='logEmailCard__content__input__picker'>
-                            <TimePicker defaultTime={transferTimeHHMM(currentTime)} 
-                             label='Time'
-                             onTimeChange={this.onTimeChange}/>
-                        </div>
-                    </div>
+                <div className='blockline' >
+                    <Body currentDate={currentDate}
+                        currentTime={currentTime}
+                        onTimeChange={this.onTimeChange}
+                        onDateChange={this.onDateChange} />
                 </div>
-                <div className='logEmailCard__footer'>
-                    <UserTag
-                        userName={this.props.card.name}
-                        userIcon={UserIcon}
-                    />
-                    <div className='logEmailCard__footer__label'>
-                        logged an Email
-                    </div>
-                </div>
-
+                <Footer userName={this.props.card.name} />
             </div>
         )
     }

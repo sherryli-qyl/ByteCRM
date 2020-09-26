@@ -24,5 +24,23 @@ $label-color:#516F90;
     }
 }
 
+.blockline{
+    margin: {
+        top: 2%;
+        bottom: 1%;
+    }
+    border: {
+        top: solid 1px rgb(203, 214, 226);
+        bottom: solid 1px rgb(203, 214, 226);
+    }
+}
+
+.cardLabel{
+    flex-grow: 1;
+    font-size: small;
+    color:$label-color;
+    margin-bottom: 10px;
+}
+
 
 

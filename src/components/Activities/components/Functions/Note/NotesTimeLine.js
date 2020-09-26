@@ -37,11 +37,11 @@ class NotesTimeLine extends React.Component {
       },
     ]
     this.state = {
-      cardsList : this.testCardsList,
+      cardsList: this.testCardsList,
       cardsArray: [],
     }
 
-    this.onChangeNote = this.onChangeNote.bind(this);
+    this.onChangeText = this.onChangeText.bind(this);
   }
 
   sortCardsArray() {
@@ -51,13 +51,13 @@ class NotesTimeLine extends React.Component {
     })
   }
 
-  onChangeNote(newContent,cardKey) {
+  onChangeText(newContent, cardKey) {
     const newCardsList = this.state.cardsList;
-    for (let i in newCardsList){
-      if(newCardsList[i].key === cardKey){
+    for (let i in newCardsList) {
+      if (newCardsList[i].key === cardKey) {
         newCardsList[i].content = newContent;
         this.setState({
-          cardsList:newCardsList,
+          cardsList: newCardsList,
         })
       }
     }
@@ -69,7 +69,7 @@ class NotesTimeLine extends React.Component {
 
   render() {
     const { cardsArray } = this.state;
-    const onSave = this.onChangeNote;
+    const onSave = this.onChangeText;
     return (
       <div className="note-time-line">
         <TimeLineControls />

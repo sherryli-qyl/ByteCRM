@@ -26,7 +26,6 @@ class CreateTaskCard extends React.Component {
       this.setState({
           currentDate: newDate,
       })
-      console.log(this.props.card.date);
     }
 
     onTimeChange(time){
