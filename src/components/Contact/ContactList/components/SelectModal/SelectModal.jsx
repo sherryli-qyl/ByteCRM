@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./SelectModal.scss";
 import DropdownList from "./components/DropdownList";
 import StringInput from "./components/StringInput";
+import generateArray from '../../tableServices/generateArray';
 import {
   testPhoneNum,
   testEmailAddr,
@@ -9,6 +10,7 @@ import {
   testDate,
 } from "../../tableServices/validation";
 
+/* ======================Define all Options for Dropdown======================================= */
 const MODAL = {
   OTHER: "OTHER",
   DATE: "DATE",
@@ -40,12 +42,9 @@ const LEAD_STATUS = [
   "Bad timing",
 ];
 
-function generateArray(start, end) {
-  return Array.from(new Array(end + 1).keys()).slice(start);
-}
-
 const DAYS = [""].concat(generateArray(1, 31));
 const YEARS = [""].concat(generateArray(1900, 2020));
+const MONTHSNUM = generateArray(1, 12);
 const MONTHS = [
   "",
   "Jan",
@@ -61,7 +60,7 @@ const MONTHS = [
   "Nov",
   "Dec",
 ];
-const MONTHSNUM = generateArray(1, 12);
+
 
 class SelectModal extends Component {
   constructor(props) {
@@ -78,6 +77,7 @@ class SelectModal extends Component {
     };
   }
 
+  /* ======================Get Which Field to Operate======================================= */
   getSelectedField = (field) => {
     this.setState({ selectedField: field });
     this.getType();
@@ -110,6 +110,7 @@ class SelectModal extends Component {
     }
   };
 
+  /* ======================Get Processed Data according to Selected Field======================================= */
   getInputData = (data) => {
     if (
       this.state.showType !== MODAL.DATE &&
@@ -158,8 +159,12 @@ class SelectModal extends Component {
     return result;
   }
 
-  // 点击取消更新modal中的modalVisible状态
+  /* ======================Handle 2 Buttons and Mask Clicking======================================= */
   closeModal = () => {
+    this.props.changeModalVisible(false);
+  };
+
+  maskClick = () => {
     this.props.changeModalVisible(false);
   };
 
@@ -168,12 +173,15 @@ class SelectModal extends Component {
     let currentData = null;
     const selectedField = this.state.selectedField;
     const showType = this.state.showType;
+    // Use a map to restore input data
     const mapData = new Map();
+    // Get input data from selected field. Two types of data: <input> & dropdown
     if (this.state.singleDataToEdit.length === 0) {
       currentData = this.state.dateToEdit;
     } else {
       currentData = this.state.singleDataToEdit;
     }
+    // Validate if input data is legal
     if (selectedField === "Phone number" && testPhoneNum(currentData)) {
       mapData.set(selectedField, currentData);
     } else if (selectedField === "Email" && testEmailAddr(currentData)) {
@@ -201,11 +209,8 @@ class SelectModal extends Component {
         currentData.get("year");
       mapData.set(selectedField, currentData);
     }
+    // Pass input data to father component
     this.props.getDataToEdit(mapData);
-  };
-
-  maskClick = () => {
-    this.props.changeModalVisible(false);
   };
 
   render() {
@@ -261,10 +266,10 @@ class SelectModal extends Component {
                 className="modal-operator-close"
                 onClick={this.closeModal}
               >
-                取消
+                Cancel
               </button>
               <button className="modal-operator-confirm" onClick={this.confirm}>
-                确认
+                Confirm
               </button>
             </div>
           </div>

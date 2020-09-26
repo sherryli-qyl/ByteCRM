@@ -35,6 +35,7 @@ class EnhancedTable extends Component {
 
   setData = (newData) => {
     this.setState({ data: newData });
+    // Pass new table to father component for database updating
     this.props.getNewTable(newData);
   };
 
@@ -58,6 +59,7 @@ class EnhancedTable extends Component {
   };
 
   getDataAndIndex = (data) => {
+    // Add the index of rows for editing
     if (data.size !== 0) {
       data.set('index', this.state.selectedRow);
     }
@@ -103,7 +105,6 @@ class EnhancedTable extends Component {
             ]}
             options={{
               selection: true,
-              filtering: false,
               search: true,
               sorting: true,
               pageSize: 10,
@@ -121,17 +122,6 @@ class EnhancedTable extends Component {
                     resolve();
                   }, 500);
                 }),
-              // onRowUpdate: (newData, oldData) =>
-              //   new Promise((resolve, reject) => {
-              //     newData = updateRow(newData);
-              //     setTimeout(() => {
-              //       const dataUpdate = [...this.state.data];
-              //       const index = oldData.tableData.id;
-              //       dataUpdate[index] = newData;
-              //       this.setData([...dataUpdate]);
-              //       resolve();
-              //     }, 500);
-              //   }),
             }}
           />
         </MuiThemeProvider>
