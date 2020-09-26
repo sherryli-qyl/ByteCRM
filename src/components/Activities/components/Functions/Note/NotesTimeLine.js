@@ -45,6 +45,10 @@ class NotesTimeLine extends React.Component {
     })
   }
 
+  onChangeNote(newContent){
+    console.log("parent" + newContent);
+  }
+
   componentDidMount() {
     this.sortCardsArray();
   }

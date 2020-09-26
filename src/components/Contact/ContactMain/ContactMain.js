@@ -5,7 +5,7 @@ import Activities from '../../Activities';
 import Navbar from "../../Navbar";
 import { ThemeProvider } from '@material-ui/core/styles';
 import { ModalContext } from '../../Modal/components/ModalContext';
-import { ContactContext } from '../ContactContext';
+import { InfoContext } from '../../InfoPage/components/Context';
 import { publicTheme} from '../../Style/Theme/MatUITheme';
 import {ContactDictionary} from './components/Dictionary';
 import WebActivity from './components/WebActivity';
@@ -33,7 +33,7 @@ class ContactMain extends Component {
         this.closeModal = this.closeModal.bind(this);
         this.openModal = this.openModal.bind(this);
         this.testContext = this.testContext.bind(this);
-        this.onChangeContactInfo = this.onChangeContactInfo.bind(this);
+        this.onChangeInfo = this.onChangeInfo.bind(this);
     }
 
     openModal(selectedModal) {
@@ -55,9 +55,7 @@ class ContactMain extends Component {
         console.log("close the modal " + this.state.visible)
     }
 
-    onChangeContactInfo(key,value){
-        console.log("parent key " + key);
-        console.log("parent value " + value);
+    onChangeInfo(key,value){
         let newContact = this.state.contact;
         newContact[key] = value;
         this.setState({
@@ -76,12 +74,12 @@ class ContactMain extends Component {
                     </header>
                     <ThemeProvider theme={theme}>
                         <div className="Main">
-                            <ContactContext.Provider value={this.onChangeContactInfo}>
+                            <InfoContext.Provider value={this.onChangeInfo}>
                                 <InfoPage openModal={this.openModal}
                                           infoData = {infoData}
                                           expandPack = {expandPack}
                                 />
-                            </ContactContext.Provider>
+                            </InfoContext.Provider>
                             <Activities />
                             <div className="Company">
                                 <p>Company component</p>
