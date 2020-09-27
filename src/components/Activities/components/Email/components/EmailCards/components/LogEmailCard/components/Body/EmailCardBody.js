@@ -1,7 +1,7 @@
 import React from 'react';
-import DatePicker from '../../../../../../../../../../Style/Picker/DatePicker';
-import TimePicker from '../../../../../../../../../../Style/Picker/TimePicker';
-import { transferTimeHHMM } from '../../../../../../../../../../services/timeManager';
+import DatePicker from '../../../../../../../../../Style/Picker/DatePicker';
+import TimePicker from '../../../../../../../../../Style/Picker/TimePicker';
+import { transferTimeHHMM } from '../../../../../../../../../services/timeManager';
 import './EmailCardBody.scss';
 
 

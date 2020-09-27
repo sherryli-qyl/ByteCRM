@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
-import CreateButton from '../../../../../../Style/Button/Activities/CreateButton';
-import LogButton from '../../../../../../Style/Button/Activities/LogButton';
-import Text from '../../../../../../Style/Text';
-import EmailModal from '../../../../../../Modal/components/Function/Email';
-import {ModalContext} from '../../../../../../Modal/components/ModalContext';
+import CreateButton from '../../../../../Style/Button/Activities/CreateButton';
+import LogButton from '../../../../../Style/Button/Activities/LogButton';
+import Text from '../../../../../Style/Text';
+import EmailModal from '../EmailModal/';
+import {ModalContext} from '../../../../../Modal/components/ModalContext';
 import "./EmailPageHeader.scss";
-import Modal from '../../../../../../../js/Modal';
+import Modal from '../../../../../../js/Modal';
 
 
 
