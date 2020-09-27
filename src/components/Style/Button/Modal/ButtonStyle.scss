@@ -1,14 +1,27 @@
 @import '../../../../style/variable.scss';
 
+
+
+
 .containedButton{
-    border: 0;
-    outline: 0;
-    height:30px;
-    width: 60px;
+    @extend .nakedBtn;
     border-radius: 3px;
     color:white;
     font-size:small;
     background-color:$tertiary-color;
+
+    &--small{
+        @extend .containedButton;
+        height:30px;
+        width: 60px;
+    }
+
+    &--large{
+        @extend .containedButton;
+        height:40px;
+        width:80px;
+        
+    }
 
     &:hover{
         opacity: 0.8;
@@ -17,16 +30,28 @@
 }
 
 .outlinedButton{
-    border: 0;
-    outline: 0;
-    background-color: transparent;
-    height:30px;
+    @extend .nakedBtn;
+    background-color: white;
+    height:100%;
+    min-height:30px;
     width: 80px;
     border-radius: 3px;
     color:$tertiary-color;
     font-size:small;
     border:solid 1px $tertiary-color;
 
+    &--small{
+        @extend .outlinedButton;
+        height:30px;
+        width: 60px;
+    }
+
+    &--large{
+        @extend .outlinedButton;
+        height:40px;
+        width:100px;
+        
+    }
     &:hover{
         background-color:rgba($color: $tertiary-color, $alpha: 0.1);
         
