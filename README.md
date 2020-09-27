@@ -1,3 +1,28 @@
+#ByteCRM(customer-relationship-management)
+-Sass
+
+Routes:
+-loginForm
+-RegForm
+-ContactList 
+-ContactMain
+-CompanyList
+-CompanyMain
+
+General components:
+-Header
+-Navbar
+-Modal
+-Style
+
+
+
+
+
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
