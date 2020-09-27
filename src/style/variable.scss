@@ -33,6 +33,13 @@ $label-color:#516F90;
         top: solid 1px rgb(203, 214, 226);
         bottom: solid 1px rgb(203, 214, 226);
     }
+
+    &--top{
+        
+        border: {
+            top: solid 1px rgb(203, 214, 226);
+        }
+    }
 }
 
 .cardLabel{
