@@ -66,14 +66,17 @@ class ContactMain extends Component {
         }
     }
 
-    onChangeMultiInfo(key,value){
-        console.log(key + value);
+    onChangeMultiInfo(data) {
+        let newContact = data;
+        this.setState({
+            contact: newContact
+        })
     }
 
     render() {
         const { visible, currentModal, contact, theme, expandPack } = this.state;
         const infoData = { key: 'contact', data: contact, dictionary: ContactDictionary };
-        const value = {single: this.onChangeSingleInfo,multi:this.onChangeMultiInfo};
+        const value = { single: this.onChangeSingleInfo, multi: this.onChangeMultiInfo };
         return (
             <div>
                 <ModalContext.Provider value={this.openModal}>

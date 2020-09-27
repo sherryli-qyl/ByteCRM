@@ -1,6 +1,7 @@
 import React from 'react';
 import TableEditor from '../../../../Private/TableEditor';
 import SaveModal from '../../../../Private/SaveModal';
+import { InfoContext } from '../../../Context';
 import './AboutSection.scss';
 
 
@@ -11,20 +12,23 @@ class AboutSection extends React.Component {
         super(props);
         this.state = {
             modalActive: false,
+            data: this.props.data,
         }
         this.showModal = this.showModal.bind(this);
     }
 
-    showModal(target) {
+    showModal(target, key, value) {
+        const newData = this.state.data;
+        newData[key] = value;
         this.setState({
             modalActive: target,
+            data: newData
         })
     }
 
-   
 
     render() {
-        const { modalActive } = this.state;
+        const { modalActive, data } = this.state;
         return (
             <div className='aboutContact'>
                 {this.props.infoList.map((item) => (
@@ -34,8 +38,16 @@ class AboutSection extends React.Component {
                         showModal={this.showModal}
                     />
                 ))}
-                <SaveModal modalActive={modalActive}
-                           showModal = {()=>this.showModal(false)} />
+                <InfoContext.Consumer>
+                    {value =>(
+                         <SaveModal modalActive={modalActive}
+                                    showModal={() => { 
+                                        value.multi(data);
+                                        this.showModal(false);
+                                     }
+                                    } />
+                    )}
+                </InfoContext.Consumer>
             </div>
 
         )

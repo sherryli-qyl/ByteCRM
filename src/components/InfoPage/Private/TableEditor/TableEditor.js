@@ -47,13 +47,14 @@ class TableEditor extends React.Component {
 
     handleChange(e) {
         let value = e.target.value;
+        let key = this.state.key;
         if (value === this.state.value) {
             this.props.showModal(false);
-            this.updateDisplay(e.target.value); 
+            this.updateDisplay(e.target.value);
         }
         else {
-            this.props.showModal(true);
-            this.updateDisplay(e.target.value); 
+            this.props.showModal(true,key,value);
+            this.updateDisplay(e.target.value);
         }
     }
 
@@ -68,7 +69,7 @@ class TableEditor extends React.Component {
     }
 
     render() {
-        const { hideEditor, currentValue, title, tip, key, value,showSaveModal } = this.state;
+        const { hideEditor, currentValue, title, tip, key} = this.state;
         let underline = "underline "
         if (!hideEditor) {
             underline += "underline--active "

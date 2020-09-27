@@ -8,11 +8,14 @@ import ExpandBar from '../../Private/ExpandBar';
 
 
 const DetailInfo = (props) => {
-    const infoList = FormatData(props.dataPack.data,props.dictionary);
+    const {dataPack,dictionary} = props;
+    const infoList = FormatData(dataPack.data,dictionary);
     const expandPack = props.expandPack
-    let onSubmit = "";
+   
     
-    expandPack[0].content = <AboutSection infoList={infoList} key = {props.dataPack.key}/>;
+    expandPack[0].content = <AboutSection infoList={infoList} 
+                                          key = {props.dataPack.key} 
+                                          data = {dataPack.data}/>;
 
     return (
         <div className="DetailInfo">
