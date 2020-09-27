@@ -1,19 +1,19 @@
 #ByteCRM(customer-relationship-management)
--Sass
+-Sass;
 
 Routes:
--loginForm
--RegForm
--ContactList 
--ContactMain
--CompanyList
--CompanyMain
+-loginForm;
+-RegForm;
+-ContactList;
+-ContactMain;
+-CompanyList;
+-CompanyMain;
 
 General components:
--Header
--Navbar
--Modal
--Style
+-Header;
+-Navbar;
+-Modal;
+-Style;
 
 
 
