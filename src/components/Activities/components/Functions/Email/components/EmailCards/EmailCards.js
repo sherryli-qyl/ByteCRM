@@ -1,7 +1,7 @@
 import React from 'react';
 import CreateEmailCard from './components/CreateEmailCard';
 import LogEmailCard from './components/LogEmailCard';
-import CardContainer from '../../../../../../Style/Card/Activity/Container';
+import CardContainer from '../../../../../Style/Card/Activity/Container';
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import "./EmailCards.scss";
 

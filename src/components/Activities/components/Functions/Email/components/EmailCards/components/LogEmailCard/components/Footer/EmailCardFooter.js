@@ -1,6 +1,6 @@
 import React from 'react';
-import UserTag from '../../../../../../../../../../Style/Tag/User';
-import UserIcon from '../../../../../../../../../../../img/Contact/profile.png';
+import UserTag from '../../../../../../../../../Style/Tag/User';
+import UserIcon from '../../../../../../../../../../img/Contact/profile.png';
 
 
 
