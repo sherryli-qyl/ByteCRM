@@ -1,6 +1,5 @@
 import React from 'react';
 import "./MeetingCreateModal.scss";
-import Text from '../../../../../Style/Text';
 import MeetingTitle from '../components/MeetingTitle';
 import MeetingInput from '../components/MeetingInput';
 import MeetingSaveBar from '../components/MeetingSaveBar';

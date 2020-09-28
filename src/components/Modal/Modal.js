@@ -40,20 +40,22 @@ class Modal extends Component {
 
 
     render() {
-        const { hide, visibleStatus } = this.state;
+        const { hide} = this.state;
         const dragHandlers = {onStart: this.onStart, onStop: this.onStop};
-        let className = "MainComponents";
-        if (!hide) {
-            className += " Component--acitve";
+        const nodeRef = React.createRef();
+        let modalClassName = "Modal";
+
+        if (this.props.visible) {
+            modalClassName += " Component--acitve";
         }
 
         return (
             <Draggable
+                nodeRef={nodeRef}
                 handle="strong" {...dragHandlers}
                 defaultPosition={{ x: this.props.Xaxis, y: this.props.Yaxis }}
             >
-                {this.props.visible ?
-                    <div className="Modal Component--acitve">
+                    <div ref={nodeRef} className={modalClassName}>
                         <strong className="cursor">
                             <div className="Header">
                                 <Header
@@ -72,9 +74,6 @@ class Modal extends Component {
                             </div>
                         }
                     </div>
-                    :
-                    <div className="Modal" />
-                }
             </Draggable>
         )
     }
