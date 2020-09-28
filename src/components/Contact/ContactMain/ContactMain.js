@@ -18,8 +18,8 @@ class ContactMain extends Component {
     constructor(props) {
         super(props);
         const testContact = {
-            ID: '000001', FirstName: 'John', LastName: 'Doe', JobTitle: 'CEO', PhoneNo: '12345', Email: '123@gmail.com',
-            ContactOwner: "Yurun YU", Company: "Nike Ltd", LifeCycle: 'Customer'
+            _id: '000001', firstName: 'John', lastName: 'Doe', jobTitle: 'CEO', phoneNo: '12345', email: '123@gmail.com',
+            contactOwner: "Yurun YU", company: "Nike Ltd", lifeCycle: 'Customer'
         }
         const expandPack = [{ key: 'About this Contact', content: "" }, { key: 'Website Activity', content: (<WebActivity />) }]
         this.state = {
