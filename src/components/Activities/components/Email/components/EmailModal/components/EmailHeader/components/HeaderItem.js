@@ -11,7 +11,7 @@ const HeaderItems = ({
 }) => {
     let className = "emailHeader__main__item ";
 
-    if(extraClassName != undefined){
+    if(extraClassName !== undefined){
         className += extraClassName;
     }
 
