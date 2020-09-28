@@ -1,12 +1,12 @@
 
 
 const Dictionary = [
-    { key: 'FirstName', title: "First Name" },
-    { key: 'LastName', title: "Last Name" },
-    { key: 'Email', title: "Email" },
-    { key: 'PhoneNo', title: "Phone Number" },
-    { key: 'ContactOwner', title: "Contact Owner" },
-    { key: 'LifeCycle', title: "Lifecycle Stage" },
+    { key: 'firstName', title: "First Name" },
+    { key: 'lastName', title: "Last Name" },
+    { key: 'email', title: "Email" },
+    { key: 'phoneNo', title: "Phone Number" },
+    { key: 'contactOwner', title: "Contact Owner" },
+    { key: 'lifeCycle', title: "Lifecycle Stage" },
 ]
 
 
