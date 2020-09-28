@@ -41,11 +41,18 @@ class ContactMain extends Component {
     }
 
     openModal(selectedModal) {
-        this.setState({
-            visible: true,
-            currentModal: selectedModal,
-        });
-        console.log("open the modal " + this.state.visible)
+        console.table(selectedModal);
+        if (selectedModal.key === this.state.currentModal.key) {
+            this.setState({
+                visible: true,
+            });
+        }
+        else {
+            this.setState({
+                visible: true,
+                currentModal: selectedModal,
+            });
+        }
     }
 
     testContext() {
@@ -55,6 +62,7 @@ class ContactMain extends Component {
     closeModal() {
         this.setState({
             visible: false,
+            currentModal: '',
         });
         console.log("close the modal " + this.state.visible)
     }
@@ -89,7 +97,7 @@ class ContactMain extends Component {
                     </header>
                     <ThemeProvider theme={theme}>
                         {loading ?
-                            <Loading variant = "full page"/>
+                            <Loading variant="full page" />
                             :
                             <div className="Main">
                                 <InfoContext.Provider value={value}>
