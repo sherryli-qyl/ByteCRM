@@ -2,15 +2,15 @@ import React, { Component } from "react";
 import { ThemeProvider as MuiThemeProvider } from "@material-ui/core/styles";
 import { createMuiTheme } from "@material-ui/core/styles";
 import MaterialTable from "material-table";
-import SelectModal from "../SelectModal";
-import tableIcons from "../../services/getIcons";
-import getColumns from "../../services/getColumns";
-import remove from "../../services/removeSelected";
-import exportCSV from "../../services/exportCSV";
-import exportPDF from "../../services/exportPDF";
-import updateRow from "../../services/updateRow";
+import SelectModal from "../../SelectModal";
+import tableIcons from "../../../tableServices/getIcons";
+import getColumns from "../../../tableServices/getColumns";
+import remove from "../../../tableServices/removeSelected";
+import exportCSV from "../../../tableServices/exportCSV";
+import exportPDF from "../../../tableServices/exportPDF";
+import updateRow from "../../../tableServices/updateRow";
+import { updateDatabase } from "../../../tableServices/getData";
 
-// 表格部分样式
 const Theme = createMuiTheme({
   palette: {
     primary: {
@@ -28,16 +28,18 @@ class EnhancedTable extends Component {
     this.state = {
       visible: false,
       columns: getColumns(),
+      selectedRow: null,
       data: props.data,
-      // selectedRow: null
     };
   }
 
   setData = (newData) => {
     this.setState({ data: newData });
+    updateDatabase(newData);
   };
 
   removeRow = (evt, selectedRow) => {
+    evt.preventDefault();
     new Promise((resolve, reject) => {
       setTimeout(() => {
         let dataDelete = [...this.state.data];
@@ -48,7 +50,8 @@ class EnhancedTable extends Component {
     });
   };
 
-  showModal = () => {
+  showModal = (evt, selectedRow) => {
+    evt.preventDefault();
     this.setState({ visible: true });
   };
 
@@ -56,19 +59,21 @@ class EnhancedTable extends Component {
     this.setState({ visible: s });
   };
 
-  getResult = () => {
-    // (newData, oldData) =>
-    //             new Promise((resolve, reject) => {
-    //               newData = updateRow(newData);
-    //               setTimeout(() => {
-    //                 const dataUpdate = [...this.state.data];
-    //                 const index = oldData.tableData.id;
-    //                 dataUpdate[index] = newData;
-    //                 this.setData([...dataUpdate]);
-    //                 resolve();
-    //               }, 500);
-    //             })
-  }
+  getDataAndIndex = (data) => {
+    // Add the index of rows for editing
+    if (data.size !== 0) {
+      data.set("index", this.state.selectedRow);
+    }
+    this.props.getDataToEdit(data);
+  };
+
+  getSelectedRowIndex = (Rows) => {
+    let index = [];
+    for (const item of Rows) {
+      index.push(item.tableData.id);
+    }
+    return index;
+  };
 
   render() {
     return (
@@ -76,7 +81,7 @@ class EnhancedTable extends Component {
         {this.state.visible && (
           <SelectModal
             changeModalVisible={this.changeVisible}
-            // getResult={}
+            getDataToEdit={this.getDataAndIndex}
           ></SelectModal>
         )}
         <MuiThemeProvider theme={Theme}>
@@ -86,7 +91,9 @@ class EnhancedTable extends Component {
             data={this.state.data}
             icons={tableIcons}
             onRowClick={(evt, selectedRow) => {}}
-            // onSelectionChange={(Rows) => console.log(Rows)}
+            onSelectionChange={(Rows) =>
+              this.setState({ selectedRow: this.getSelectedRowIndex(Rows) })
+            }
             actions={[
               {
                 tooltip: "Remove all selected contact(s)",
@@ -101,7 +108,6 @@ class EnhancedTable extends Component {
             ]}
             options={{
               selection: true,
-              filtering: false,
               search: true,
               sorting: true,
               pageSize: 10,
@@ -113,20 +119,9 @@ class EnhancedTable extends Component {
             editable={{
               onRowAdd: (newData) =>
                 new Promise((resolve, reject) => {
-                  newData = updateRow(newData, true);
-                  setTimeout(() => {
-                    this.setData([...this.state.data, newData]);
-                    resolve();
-                  }, 500);
-                }),
-              onRowUpdate: (newData, oldData) =>
-                new Promise((resolve, reject) => {
                   newData = updateRow(newData);
                   setTimeout(() => {
-                    const dataUpdate = [...this.state.data];
-                    const index = oldData.tableData.id;
-                    dataUpdate[index] = newData;
-                    this.setData([...dataUpdate]);
+                    this.setData([...this.state.data, newData]);
                     resolve();
                   }, 500);
                 }),
