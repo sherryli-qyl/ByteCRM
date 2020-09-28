@@ -27,7 +27,7 @@ const InfoLinkBtn = ({
         <NavLink className='navLink' activeClassName="active" to={route}>
             <button className={btnClassName}>
                 <FontAwesomeIcon className='infoLink__leftArrow' icon={faAngleLeft} />
-                <a className="infoLink__text">{children}</a>
+                  <span className="infoLink__text">{children}</span>
                 <FontAwesomeIcon className='infoLink__icon' icon={icon} />
             </button>
         </NavLink>
