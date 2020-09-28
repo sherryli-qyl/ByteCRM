@@ -4,6 +4,7 @@ import InfoPage from '../../InfoPage';
 import Activities from '../../Activities';
 import Navbar from "../../Navbar";
 import RelationPage from "../../RelationPage";
+import Loading from '../../Loading';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { ModalContext } from '../../Modal/components/ModalContext';
 import { InfoContext } from '../../InfoPage/components/Context';
@@ -29,6 +30,7 @@ class ContactMain extends Component {
             contact: testContact,
             expandPack: expandPack,
             currentModal: "",
+            loading: false,
             theme: publicTheme,
         }
         this.closeModal = this.closeModal.bind(this);
@@ -75,32 +77,36 @@ class ContactMain extends Component {
     }
 
     render() {
-        const { visible, currentModal, contact, theme, expandPack } = this.state;
+        const { visible, currentModal, contact, theme, expandPack, loading } = this.state;
         const infoData = { key: 'contact', data: contact, dictionary: ContactDictionary };
         const value = { single: this.onChangeSingleInfo, multi: this.onChangeMultiInfo };
+        const openModal = this.openModal;
         return (
             <div>
-                <ModalContext.Provider value={this.openModal}>
+                <ModalContext.Provider value={openModal}>
                     <header>
                         <Navbar />
                     </header>
                     <ThemeProvider theme={theme}>
-                        <div className="Main">
-                            <InfoContext.Provider value={value}>
-                                <InfoPage openModal={this.openModal}
-                                    infoData={infoData}
-                                    expandPack={expandPack}
-                                />
-                            </InfoContext.Provider>
-                            <Activities />
-                            <RelationPage />
-                            <Modal Xaxis={this.state.Xaxis}
-                                Yaxis={this.state.Yaxis}
-                                visible={visible}
-                                currentModal={currentModal}
-                                closeModal={this.closeModal}
-                            />
-                        </div>
+                        {loading ?
+                            <Loading variant = "full page"/>
+                            :
+                            <div className="Main">
+                                <InfoContext.Provider value={value}>
+                                    <InfoPage openModal={this.openModal}
+                                        infoData={infoData}
+                                        expandPack={expandPack}
+                                    />
+                                </InfoContext.Provider>
+                                <Activities />
+                                <RelationPage />
+                                <Modal Xaxis={this.state.Xaxis}
+                                    Yaxis={this.state.Yaxis}
+                                    visible={visible}
+                                    currentModal={currentModal}
+                                    closeModal={this.closeModal} />
+                            </div>
+                        }
                     </ThemeProvider>
                 </ModalContext.Provider>
             </div>

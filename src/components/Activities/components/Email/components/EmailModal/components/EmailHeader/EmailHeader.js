@@ -65,7 +65,9 @@ class EmailHeader extends React.Component {
                         borderBottom={false}
                     >
                         {emailReceivers.map((item) => (
-                            <ReceiverTag onClick={() => this.onDeleteReceiversButton(item.email)}>
+                            <ReceiverTag 
+                                key = {item.key}
+                                onClick={() => this.onDeleteReceiversButton(item.email)}>
                                 {item.value}
                             </ReceiverTag>
                         ))}
@@ -76,7 +78,9 @@ class EmailHeader extends React.Component {
                             borderBottom={false}
                         >
                             {carbonCopies.map((item) => (
-                                <ReceiverTag onClick={() => this.onDeleteCCsButton(item.email)}>
+                                <ReceiverTag 
+                                     key = {item.key}
+                                     onClick={() => this.onDeleteCCsButton(item.email)}>
                                     {item.value}
                                 </ReceiverTag>
                             ))}
