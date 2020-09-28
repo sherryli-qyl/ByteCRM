@@ -1,23 +1,10 @@
 import React from "react";
-import "./SwitchBarAndTable.scss";
-import { withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 
 import TabContainer from "./TabContainer";
-import EnhancedTable from "../Table/EnhancedTable";
-
-const styles = (theme) => ({
-  root: {
-    flexGrow: 1,
-    backgroundColor: theme.palette.background.paper,
-    position: "relative",
-  },
-  colorPrimary: {
-    color: "red",
-  },
-});
+import TableWrapper from "../TableWrapper";
 
 class SwitchBar extends React.Component {
   constructor(props) {
@@ -32,19 +19,15 @@ class SwitchBar extends React.Component {
     this.setState({
       activeTab: activeTab,
     });
-    setTimeout(() => {
-      this.props.getActiveTab(activeTab);
-    }, 500);
   };
 
   render() {
-    const { classes } = this.props;
     const { activeTab } = this.state;
 
     return (
-      <div className={classes.root}>
-        <AppBar position="static" className={classes.wrapped}>
-          <Tabs value={activeTab} onChange={this.handleChange}>
+      <>
+        <AppBar position="static">
+          <Tabs value={activeTab} onChange={this.handleChange} key={"tabs"}>
             {this.props.tabs.map((tab) => (
               <Tab
                 key={tab.id}
@@ -60,16 +43,18 @@ class SwitchBar extends React.Component {
           (tab) =>
             activeTab === tab.id && (
               <>
-                <TabContainer className={classes.wrapper} key={tab.id}>
-                  {tab.component}
-                </TabContainer>
-                {/* <TableWrapper tab={tab.id} /> */}
+                <TabContainer>{tab.component}</TabContainer>
+                <TableWrapper
+                  tab={tab.id}
+                  userAccount={this.props.userAccount}
+                />
               </>
             )
         )}
-      </div>
+      </>
     );
   }
 }
 
-export default withStyles(styles)(SwitchBar);
+// export default withStyles(styles)(SwitchBar);
+export default SwitchBar;
