@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import getDate from './getDate';
 
 // 生成假数据的暂时方法
 function createData(
@@ -37,7 +38,46 @@ const nameSet = [
   "Eclair Young",
   "Mary McGregor",
 ];
-// let id = 0;
+
+const ownerSet = [
+  'James',
+  'Mike',
+  'Kay',
+  'Alice',
+  "Unassigned"
+]
+
+const phoneNumSet = [
+  '0454991490',
+  '0468080886',
+  '0409875648',
+  '0441387946',
+  '0417899416'
+]
+
+const emailSet = [
+  'fqwfqwd@gmail.com',
+  'wqrw@hotmail.com',
+  'u1489479@anu.edu.au',
+  'qjioqjw@mail.com',
+  'noAddress@outlook.com'
+]
+
+const dateSet = [
+  '02/30/2020',
+  '04/31/2020',
+  '06/31/2020',
+  '09/31/2020',
+  '11/31/2020',
+]
+
+const companySet = [
+  'Hubspot, Inc.',
+  'Intel',
+  'AMD',
+  'NVIDIA',
+  'Google',
+]
 
 function generateData() {
   let result = [];
@@ -45,74 +85,88 @@ function generateData() {
     result.push(
       createData(
         nameSet[Math.floor(Math.random() * 5)],
-        "fqwfqwd@gmail.com",
-        "0454991490",
-        "James",
-        "Hubspot, Inc.",
-        "10/09/2020",
+        emailSet[Math.floor(Math.random() * 5)],
+        phoneNumSet[Math.floor(Math.random() * 5)],
+        ownerSet[Math.floor(Math.random() * 5)],
+        companySet[Math.floor(Math.random() * 5)],
+        dateSet[Math.floor(Math.random() * 5)],
         Math.floor(Math.random() * 8),
-        "08/09/2020"
-        // id++,
+        getDate()
       )
     );
   }
   return result;
 }
 
-let Rows = generateData();
-
-function addData(oldData, newData) {
+const addRowsToTable = (oldTable, newData) => {
   if (newData.length === 0) {
-    return oldData;
+    return oldTable;
   }
   for (const item of newData) {
-    oldData.push(item);
+    oldTable.push(item);
   }
-  return oldData;
-}
+  return oldTable;
+};
 
-function replaceData(oldData, index, field, newValue) {
+const editTable = (oldTable, newValue) => {
+  if (newValue.size !== 0) {
+    const iterator = newValue.values();
+    const dataToEdit = iterator.next().value;
+    const index = iterator.next().value;
+    const field = newValue.keys().next().value;
+    for (const i of index) {
+      let curRow = oldTable[i];
+      Object.keys(curRow).forEach((key) => {
+        if (key === field) {
+          curRow[key] = dataToEdit;
+        }
+      });
+    }
+    return oldTable;
+  }
+};
 
-}
+const getTable = (id, userAccount, getNewDataFromCSV, updateTable, getDataToEdit) => {
+  const newTable = updateTable();
+  if (newTable) {
+    return newTable;
+  }
 
-// TODO: 只负责拿到table的初始数据，把add和edit分离出来
-const getRows = (id, userAccount, newData, dataToEdit) => {
-  if (dataToEdit.size > 0) {
-    let field = "",
-      newValue = "",
-      index = [];
-    dataToEdit.forEach((key, value) => {
-      if (key === "index") {
-        index = value;
-      } else {
-        field = key;
-        newValue = value;
-      }
-    });
-    return replaceData()
+  let tableData = generateData();
+  const newRows = getNewDataFromCSV();
+  if (newRows) {
+    for (const item of newRows) {
+      tableData.push(item);
+    }
+    return tableData;
+  }
+
+  let rowsToEdit = getDataToEdit();
+  if (rowsToEdit) {
+    return editTable(tableData, rowsToEdit);
   }
 
   if (id === 1) {
-    return addData(Rows, newData);
+    return tableData;
   } else if (id === 2) {
     let mine = [];
-    let newRows = addData(Rows, newData);
-    for (const item of newRows) {
+    for (const item of tableData) {
       if (item.contactOwner === userAccount) {
         mine.push(item);
       }
     }
+    // console.log("getTable -> mine", mine);
     return mine;
   } else if (id === 3) {
     let unassigned = [];
-    let newRows = addData(Rows, newData);
-    for (const item of newRows) {
+    for (const item of tableData) {
       if (item.contactOwner === "Unassigned") {
         unassigned.push(item);
       }
     }
+    // console.log("getTable -> unassigned", unassigned);
     return unassigned;
   }
 };
 
-export default getRows;
+export { addRowsToTable, editTable, getTable };

@@ -5,12 +5,8 @@ import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 
-import Importer from "../Importer";
 import TabContainer from "./TabContainer";
 import EnhancedTable from "../Table/EnhancedTable";
-
-import getRows from "../../tableServices/getData";
-import Modal from "../../../../Modal";
 
 const styles = (theme) => ({
   root: {
@@ -28,31 +24,17 @@ class SwitchBar extends React.Component {
     super(props);
     this.state = {
       activeTab: 1,
-      newData: [],
-      dataToEdit: {},
     };
   }
 
   handleChange = (event, activeTab) => {
-    this.setState({ activeTab: activeTab });
-  };
-
-  getNewData = (newData) => {
-    if (newData.length !== 0) {
-      this.setState({ newData: newData });
-    }
-  };
-
-
-  // showModal = () => {
-  //   this.setState({ addVisible: true });
-  // };
-
-  getDataToEdit = (data) => {
-    this.setState({ dataToEdit: data });
+    event.preventDefault();
+    this.setState({
+      activeTab: activeTab,
+    });
     setTimeout(() => {
-      console.log(this.state.dataToEdit)
-    }, 500)
+      this.props.getActiveTab(activeTab);
+    }, 500);
   };
 
   render() {
@@ -73,28 +55,16 @@ class SwitchBar extends React.Component {
             ))}
           </Tabs>
         </AppBar>
-        <Importer getNewData={this.getNewData} />
 
         {this.props.tabs.map(
           (tab) =>
             activeTab === tab.id && (
-              <TabContainer className={classes.wrapper} key={tab.id}>
-                {tab.component}
-              </TabContainer>
-            )
-        )}
-        {this.props.tabs.map(
-          (tab) =>
-            activeTab === tab.id && (
-              <EnhancedTable
-                getDataToEdit={this.getDataToEdit}
-                data={getRows(
-                  this.state.activeTab,
-                  this.props.userAccount,
-                  this.state.newData,
-                  this.state.filter
-                )}
-              />
+              <>
+                <TabContainer className={classes.wrapper} key={tab.id}>
+                  {tab.component}
+                </TabContainer>
+                {/* <TableWrapper tab={tab.id} /> */}
+              </>
             )
         )}
       </div>

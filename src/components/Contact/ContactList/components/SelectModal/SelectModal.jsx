@@ -30,6 +30,17 @@ const FIELDS = [
   "Create date",
 ];
 
+const FIELDS_MAP_TO_KEYS = new Map([
+  ["Name", "name"],
+  ["Email", "email"],
+  ["Phone number", "phoneNumber"],
+  ["Contact owner", "contactOwner"],
+  ["Associated company", "associatedCompany"],
+  ["Last activity date", "LastActivityDate"],
+  ["Lead status", "leadStatus"],
+  ["Create date", "createDate"],
+]);
+
 const LEAD_STATUS = [
   "",
   "New",
@@ -171,7 +182,7 @@ class SelectModal extends Component {
   confirm = () => {
     this.props.changeModalVisible(false);
     let currentData = null;
-    const selectedField = this.state.selectedField;
+    const selectedField = FIELDS_MAP_TO_KEYS.get(this.state.selectedField);
     const showType = this.state.showType;
     // Use a map to restore input data
     const mapData = new Map();
@@ -182,9 +193,9 @@ class SelectModal extends Component {
       currentData = this.state.singleDataToEdit;
     }
     // Validate if input data is legal
-    if (selectedField === "Phone number" && testPhoneNum(currentData)) {
+    if (selectedField === "phoneNumber" && testPhoneNum(currentData)) {
       mapData.set(selectedField, currentData);
-    } else if (selectedField === "Email" && testEmailAddr(currentData)) {
+    } else if (selectedField === "email" && testEmailAddr(currentData)) {
       mapData.set(selectedField, currentData);
     } else if (
       (showType === MODAL.OTHER || showType === MODAL.STATUS) &&
