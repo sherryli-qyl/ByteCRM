@@ -16,8 +16,8 @@ class InfoBody extends React.Component {
                 {dataPack.key === 'contact' ?
                     <React.Fragment>
                         <div className='infoBody__contactsIcon__init'> BH </div>
-                        <div className="infoBody__name"> {`${dataPack.data.FirstName} ${dataPack.data.LastName}`} </div>
-                        <div className="infoBody__jobTitle"> {`${dataPack.data.JobTitle} at ${dataPack.data.Company}`}  </div>
+                        <div className="infoBody__name"> {`${dataPack.data.firstName} ${dataPack.data.lastName}`} </div>
+                        <div className="infoBody__jobTitle"> {`${dataPack.data.jobTitle} at ${dataPack.data.company}`}  </div>
                     </React.Fragment>
                     :
                     <React.Fragment>
