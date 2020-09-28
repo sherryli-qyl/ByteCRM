@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
-import './InfoPage.scss';
-import { faEnvelope, faEdit, faPhoneAlt, faCalendarAlt, faPlus, faTasks } from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope, faEdit, faPhoneAlt, faCalendarAlt, faPlus, faTasks,faUser,faBuilding} from "@fortawesome/free-solid-svg-icons";
 import BasicInfo from './components/BasicInfo';
 import DetailInfo from './components/DetailInfo';
-import WebsiteActivity from './components/WebsiteActivity/WebsiteActivity';
 import NoteModal from '../Modal/components/Function/Note';
 import EmailModal from '../Modal/components/Function/Email';
 import CallModal from '../Modal/components/Function/Call';
 import TaskModal from '../Modal/components/Function/Task';
-import MeetingModal from '../Modal/components/Function/Meeting';
+import MeetingCreateModal from '../Modal/components/Function/Meeting/MeetingCreateModal';
+import DataPack from './services/DataPack';
+import './InfoPage.scss';
+
+
 class InfoPage extends Component {
   constructor(props) {
     super(props);
@@ -18,7 +20,7 @@ class InfoPage extends Component {
       { key: 'Call', value: 'Call', icon: faPhoneAlt, modal: <CallModal /> },
       { key: 'Log', value: 'Log', icon: faPlus, modal: '' },
       { key: 'Task', value: 'Task', icon: faTasks, modal: <TaskModal /> },
-      { key: 'Meeting', value: 'Meet', icon: faCalendarAlt, modal: <MeetingModal /> },
+      { key: 'Meeting', value: 'Meet', icon: faCalendarAlt, modal: <MeetingCreateModal /> },
     ];
     this.state = {
       navItems,
@@ -38,19 +40,30 @@ class InfoPage extends Component {
 
   render() {
     const { navItems, currentModal } = this.state;
+    const {key,data,dictionary} = this.props.infoData
+    let dataPack = "";
+    
+
+    if(this.props.infoData.key === 'contact'){
+       dataPack = new DataPack(key,"Contacts",data,dictionary);  
+    }
+    else{
+       dataPack = new DataPack(key,"Companies",data,dictionary);
+    }
+
     return (
       <div className="InfoPage">
         <BasicInfo 
-          contact = {this.props.contact}
+          dataPack = {dataPack}    
           navItems={navItems}
           modalKey={currentModal.key}
           onNavItemClick={this.onNavItemClick}
         />
 
         <DetailInfo 
-          contact = {this.props.contact}/>
-
-        <WebsiteActivity />
+          dataPack = {dataPack}  
+          dictionary = {dictionary}
+          expandPack = {this.props.expandPack}/>
       </div>
     );
   }

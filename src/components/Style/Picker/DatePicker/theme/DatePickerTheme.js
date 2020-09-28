@@ -15,8 +15,8 @@ const DatePickerTheme = createMuiTheme({
         justifyContent: 'flex-start',
         height: '19px',
         width: '100px',
-        // backgroundColor: 'yellow',
         padding: '0px',
+
         
       }
     },
@@ -33,7 +33,7 @@ const DatePickerTheme = createMuiTheme({
       },
       underline: {
         "&&&&:hover:before": {
-          borderBottom: "0px solid" + primaryColor,
+          borderBottom: "1px solid" + primaryColor,
         },
         "&:before": {
           borderBottom: "0",
@@ -47,13 +47,16 @@ const DatePickerTheme = createMuiTheme({
         color: primaryColor,
         padding: '0px',
         minWidth: '80px',
-        marginTop:'10px',
+        marginTop:'0px',
         height: '19px',
         width: '80px',
         fontSize: '15px',
+        "&:hover":{
+            cursor:"pointer",
+          }
       },
       formControl:{
-        marginTop:'13px',
+        marginTop:'0px',
       }
     },
     MuiInputAdornment: {
@@ -87,7 +90,7 @@ const DatePickerTheme = createMuiTheme({
       root: {
         height: '15px',
         width: '15px',
-        marginTop:'10px',
+        marginTop:'0px',
       }
     },
     MuiPickersDay: {

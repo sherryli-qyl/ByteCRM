@@ -14,7 +14,7 @@ const ActivityItem = ({
 
     return (
         <div className='activity__item'>
-            <button className='activity__item__button nakedBtn'
+            <button className='activity__item__button'
                 onClick={(event) => {
                     event.preventDefault();
                     onClick();

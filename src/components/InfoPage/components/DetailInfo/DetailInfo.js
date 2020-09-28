@@ -1,31 +1,36 @@
-import React from 'react';
+import React,{ useContext } from 'react';
 import './DetailInfo.scss';
-import FormatContact from './services/FormatContact';
-import DetailInfoItem from './components/DetailInfoItem';
+import FormatData from '../../services/FormatData';
+import AboutSection from './components/About';
+import ExpandBar from '../../Private/ExpandBar';
+
 
 
 
 const DetailInfo = (props) => {
-    const ContactInfoList = FormatContact(props.contact);
+    const {dataPack,dictionary} = props;
+    const infoList = FormatData(dataPack.data,dictionary);
+    const expandPack = props.expandPack
+   
+    
+    expandPack[0].content = <AboutSection infoList={infoList} 
+                                          key = {props.dataPack.key} 
+                                          data = {dataPack.data}/>;
+
     return (
         <div className="DetailInfo">
-            <div className='DetailInfo__top'>
-                <button className='nakedBtn DetailInfo__top__btn'>
-                    About this contact
-                </button>
-            </div>
-            <div className='DetailInfo__items'>
-                {ContactInfoList.map((item) => (
-                    <DetailInfoItem
-                        key={item.key}
-                        itemKey={item.key}
-                        title={item.title}
-                        value={item.value}
-                    />
-                ))}
+            <div>
+                {expandPack.map((item) => (
+                    <ExpandBar key={item.key}
+                        label={item.key}
+                        content={item.content}>
+                    </ExpandBar>
+                ))
+                }
             </div>
         </div>
     )
 }
+
 
 export default DetailInfo;

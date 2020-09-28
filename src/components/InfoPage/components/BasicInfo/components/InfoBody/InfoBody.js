@@ -1,46 +1,31 @@
 import React, { useContext } from 'react';
-// import { ContactContext } from '../../../../../Contact/ContactContext';
 import './InfoBody.scss';
 
-
-
-// const InfoBody = () => {
-//     const contact= useContext(ContactContext); //receive context
-//     return (
-//         <div className="infoBody">
-//             <div className='infoBody__contactsIcon__init'>BH</div>
-//             <div className="infoBody__name"> {`${contact.FirstName} ${contact.LastName}`} </div>
-//             <div className="infoBody__jobTitle"> {contact.JobTitle}  </div>
-//         </div>
-//     )
-// }
 
 class InfoBody extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            contact: this.props.contact,
+        this.state = {        
         }
     }
-    // getContact() {
-    //     const contact = useContext(ContactContext);
-    //     this.setState({
-    //         currentContact: contact,
-    //     })
-    // }
-    
-    // componentDidMount(){
-    //     this.getContact();
-    // }
 
     render() {
-        const { contact} = this.state;
-        // const currentContact = useContext(ContactContext);
+        const dataPack  = this.props.dataPack;
         return (
             <div className="infoBody">
-                <div className='infoBody__contactsIcon__init'>BH</div>
-                <div className="infoBody__name"> {`${ contact.FirstName} ${ contact.LastName}`} </div>
-                <div className="infoBody__jobTitle"> {`${ contact.JobTitle} at ${contact.Company}`}  </div>
+                {dataPack.key === 'contact' ?
+                    <React.Fragment>
+                        <div className='infoBody__contactsIcon__init'> BH </div>
+                        <div className="infoBody__name"> {`${dataPack.data.FirstName} ${dataPack.data.LastName}`} </div>
+                        <div className="infoBody__jobTitle"> {`${dataPack.data.JobTitle} at ${dataPack.data.Company}`}  </div>
+                    </React.Fragment>
+                    :
+                    <React.Fragment>
+                    <div className='infoBody__contactsIcon__init'> AA</div>
+                    <div className="infoBody__name"> {dataPack.data.Name} </div>
+                    <div className="infoBody__jobTitle"> {dataPack.data.CompanyDomainName} </div>
+                    </React.Fragment>
+                }
             </div>
         )
     }

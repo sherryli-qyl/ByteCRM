@@ -1,0 +1,87 @@
+@import '../../../../style/variable.scss';
+
+.tableEditor {
+    display: flex;
+    margin-top: 5%;
+    position: relative;
+    justify-content: center;
+
+    &:hover .underline {
+        display: block;
+    }
+
+    &:hover &__right {
+        &__btn {
+            display: block;
+        }
+    }
+
+    &__left {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        margin: 2% auto;
+        margin-left: 5%;
+        font-family: Avenir Next W02, Helvetica, Arial, sans-serif;
+
+        &__title {
+            display:flex;
+            font-size: 12px;
+            align-items: center;
+            color: $label-color;
+
+            &__info{
+                margin-left: 5px;
+                margin-top: 2px;
+            }
+        }
+
+        &__input {
+            display: flex;
+            border: 0;
+            outline: 0;
+            font-size: 14px;
+            color: $primary-color;
+            padding-top: 10px;
+
+            &:disabled {
+                background-color: transparent;
+            }
+        }
+
+        &__value {
+            font-size: 14px;
+            color: $primary-color;
+            padding-top: 10px;
+        }
+    }
+
+    &__right {
+        display: flex;
+        align-items: center;
+        margin-right: 5%;
+
+        &__btn {
+            display: none;
+
+            &__icon {
+                height: 15px;
+                width: 15px;
+                color: rgb(0, 164, 189);
+            }
+        }
+    }
+}
+
+.infoIcon{
+    height: 12px;
+    width: 12px;
+}
+
+.underline__green{
+    background-color: rgb(0, 164, 189);
+}
+
+
+
+

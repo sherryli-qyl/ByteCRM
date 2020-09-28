@@ -18,7 +18,7 @@ const useStyles = theme => ({
     },
 });
 
-class timeStamp extends React.Component {
+class TimeStamp extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -35,13 +35,10 @@ class timeStamp extends React.Component {
                         {this.props.dateTime}
                     </Typography>
                 </Tooltip>
-                <div className='hoverBar'>
-
-                </div>
             </div>
         )
     }
 }
 
-export default withStyles(useStyles)(timeStamp);
+export default withStyles(useStyles)(TimeStamp);
 

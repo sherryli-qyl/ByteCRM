@@ -6,7 +6,7 @@ import TypeDropdown from '../../../../../../../../Modal/components/Function/Task
 
 import PriorityDropdown from '../../../../../../../../Modal/components/Function/Task/components/TaskInput/components/Dropdown/Priority';
 import {transferTimeHHMM} from '../../../../../../../../services/timeManager';
-
+import EditableText from '../../../../../../../../Style/EditableText';
 import './CreateTaskCard.scss';
 
 class CreateTaskCard extends React.Component {
@@ -14,7 +14,8 @@ class CreateTaskCard extends React.Component {
         super(props);
         this.state = {
           currentDate: this.props.card.date,
-          currentTime: this.props.card.time
+          currentTime: this.props.card.time,
+          taskContent: this.props.content
         }
         this.onDateChange = this.onDateChange.bind(this);
         this.onTimeChange = this.onTimeChange.bind(this);
@@ -25,7 +26,6 @@ class CreateTaskCard extends React.Component {
       this.setState({
           currentDate: newDate,
       })
-      console.log(this.props.card.date);
     }
 
     onTimeChange(time){
@@ -37,7 +37,7 @@ class CreateTaskCard extends React.Component {
     }
 
     render() {
-      const { currentDate, currentTime } = this.state;
+      const { currentDate, currentTime, taskContent } = this.state;
         return (
           <div className="createTaskCard">
           <div className='createTaskCard__content'>          
@@ -52,13 +52,18 @@ class CreateTaskCard extends React.Component {
 									onTimeChange={this.onTimeChange}/>
                 </div>
                 <div className='createTaskCard__content__input__picker'>
-                <span className='createTaskCard__content__input__picker__label'>Type</span>
-                <TypeDropdown />
+                  <span className='createTaskCard__content__input__picker__label'>Type</span>
+                  <TypeDropdown />
                 </div>
                 <div className='createTaskCard__content__input__picker'>
-                <span className='createTaskCard__content__input__picker__label'>Priority</span>
-                <PriorityDropdown />
+                  <span className='createTaskCard__content__input__picker__label'>Priority</span>
+                  <PriorityDropdown />
                 </div>
+              </div>
+              <div className="createTaskCard__content__description">
+                <EditableText 
+                  content={taskContent}
+                />
               </div>
           </div>
       </div>

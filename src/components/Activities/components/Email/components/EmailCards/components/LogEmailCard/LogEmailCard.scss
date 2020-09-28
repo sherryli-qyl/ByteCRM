@@ -1,0 +1,21 @@
+.logEmailCard{
+    display: flex;
+    flex-direction: column;
+
+    &__footer{
+        display: flex;
+        justify-content: flex-start;
+        margin: {
+            top:4%;
+            left:2%;
+        }
+
+        &__label{
+            flex:1;
+            font-size: 14px;
+            align-self: center;
+        }
+
+    }
+    
+}

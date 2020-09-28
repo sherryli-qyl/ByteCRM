@@ -3,7 +3,7 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import { addWeekDay } from '../../../services/DateManager';
-import { checkbox } from '../../Theme/MatUITheme';
+import { publicTheme } from '../../Theme/MatUITheme';
 
 
 
@@ -19,7 +19,7 @@ class TaskSelect extends React.Component {
             { key: 'in 2 weeks ', value: 14, date: '' },
             { key: 'in 1 month ', value: 30 },
         ];
-        const theme = checkbox;
+        const theme = publicTheme;
         this.state = {
             timeValue: 3,
             selectItems: selectItems,

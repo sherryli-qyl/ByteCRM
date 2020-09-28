@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
 import CreateButton from '../../../../../../Style/Button/Activities/CreateButton';
 import LogButton from '../../../../../../Style/Button/Activities/LogButton';
-import MeetingModal from '../../../../../../Modal/components/Function/Meeting';
+import MeetingCreateModal from '../../../../../../Modal/components/Function/Meeting/MeetingCreateModal';
+import MeetingLogModal from '../../../../../../Modal/components/Function/Meeting/MeetingLogModal';
 import {ModalContext} from '../../../../../../Modal/components/ModalContext';
 import {meetingHeader} from "./MeetingPageHeader.scss";
 import Modal from '../../../../../../../js/Modal';
@@ -12,8 +13,8 @@ import Grid from '@material-ui/core/Grid';
 
 const MeetingPageHeader = () => {
     const onClick= useContext(ModalContext); //receive context
-    const createModal = new Modal('Meeting', 'Meeting',<MeetingModal/>); //create your modal
-    const logModal = new Modal('Meeting', 'Meeting',<MeetingModal/>);
+    const createModal = new Modal('Schedule', 'Meeting',<MeetingCreateModal/>); //create your modal
+    const logModal = new Modal('Log Meeting', 'Meeting',<MeetingLogModal/>);
     return(
         <div className={meetingHeader}>
             <Grid  container alignContent="space-between" alignItems="center">

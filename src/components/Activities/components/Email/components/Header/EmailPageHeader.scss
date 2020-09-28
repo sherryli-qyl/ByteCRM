@@ -1,0 +1,38 @@
+@import '../../../../../../style/variable.scss';
+
+.emailPage{
+    &__header{
+        display:flex;
+        height:60px;
+        justify-content: flex-end;
+
+
+        &__showReply{
+           align-self: center;
+           margin:auto 3%;
+        }
+
+        &__createEmail{
+            align-self: center;
+            margin:auto 3%;
+        }
+
+        &__logEmail{
+            align-self: center;
+            
+        }
+    }
+
+.replyButton{
+    border:none;
+    outline:none;
+    background-color: transparent;
+
+    &:hover{
+        cursor: pointer;
+        border-bottom:solid 1px $secondary-color;
+    }
+ }
+}
+
+
