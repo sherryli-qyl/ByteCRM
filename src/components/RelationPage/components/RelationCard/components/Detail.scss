@@ -1,0 +1,21 @@
+.detailWrapper {
+  border: solid 1px rgba(51, 71, 91, 0.4);
+  margin: 10px 0px;
+  border-radius: 3px;
+  color: #0091ae;
+  padding: 10px 20px;
+  font-weight: bolder;
+  font-size: 12px;
+  .position{
+    color: #33475b;
+    font-weight: lighter;
+    margin: 5px;
+  }
+  .email{
+    display: flex;
+    .emailIcon{
+      color: #a1a9b1;
+      margin-right: 8px;
+    }
+  }
+}

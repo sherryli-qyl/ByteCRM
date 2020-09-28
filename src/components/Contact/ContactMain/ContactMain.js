@@ -3,6 +3,7 @@ import Modal from '../../Modal';
 import InfoPage from '../../InfoPage';
 import Activities from '../../Activities';
 import Navbar from "../../Navbar";
+import RelationPage from "../../RelationPage";
 import { ThemeProvider } from '@material-ui/core/styles';
 import { ModalContext } from '../../Modal/components/ModalContext';
 import { InfoContext } from '../../InfoPage/components/Context';
@@ -92,9 +93,7 @@ class ContactMain extends Component {
                                 />
                             </InfoContext.Provider>
                             <Activities />
-                            <div className="Company">
-                                <p>Company component</p>
-                            </div>
+                            <RelationPage />
                             <Modal Xaxis={this.state.Xaxis}
                                 Yaxis={this.state.Yaxis}
                                 visible={visible}

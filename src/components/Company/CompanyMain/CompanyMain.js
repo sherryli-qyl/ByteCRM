@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import Modal from '../../Modal';
-import {InfoContext} from '../../InfoPage/components/Context';
-import {ModalContext} from '../../Modal/components/ModalContext';
+import { InfoContext } from '../../InfoPage/components/Context';
+import { ModalContext } from '../../Modal/components/ModalContext';
 import InfoPage from '../../InfoPage';
 import Activities from '../../Activities';
 import Navbar from "../../Navbar";
+import RelationPage from '../../RelationPage';
 import { ThemeProvider } from '@material-ui/core/styles';
-import {publicTheme} from '../../Style/Theme/MatUITheme';
-import {CompanyDictionary} from './components/Dictionary';
+import { publicTheme } from '../../Style/Theme/MatUITheme';
+import { CompanyDictionary } from './components/Dictionary';
 import './CompanyMain.scss';
 
 class CompanyMain extends Component {
@@ -16,7 +17,7 @@ class CompanyMain extends Component {
             Name: 'Nike', CompanyDomainName: 'Nike.Ltd', Industry: 'IT', PhoneNumber: '123123',
             CompanyOwner: 'John Doe', Type: 'Partner', City: 'Sydney'
         }
-        const expandPack = [{key:'About this Contact',content:""}]
+        const expandPack = [{ key: 'About this Contact', content: "" }]
         super(props);
         this.state = {
             Xaxis: 300,
@@ -48,7 +49,7 @@ class CompanyMain extends Component {
         console.log("close the modal " + this.state.visible)
     }
 
-    onChangeInfo(key,value){
+    onChangeInfo(key, value) {
         let newCompany = this.state.company;
         newCompany[key] = value;
         this.setState({
@@ -57,8 +58,8 @@ class CompanyMain extends Component {
     }
 
     render() {
-        const { visible, currentModal,company,expandPack ,theme} = this.state
-        const infoData = {key:'company',data:company, dictionary:CompanyDictionary};
+        const { visible, currentModal, company, expandPack, theme } = this.state
+        const infoData = { key: 'company', data: company, dictionary: CompanyDictionary };
         return (
             <div>
                 <ModalContext.Provider value={this.openModal}>
@@ -66,28 +67,24 @@ class CompanyMain extends Component {
                         <Navbar />
                     </header>
                     <ThemeProvider theme={theme}>
-                    <div className="Main">
-                        <InfoContext.Provider value={this.onChangeInfo}>
-                            <InfoPage openModal={this.openModal}
-                                      infoData = {infoData}
-                                      expandPack={expandPack}
-                            />
-                        </InfoContext.Provider>
+                        <div className="Main">
+                            <InfoContext.Provider value={this.onChangeInfo}>
+                                <InfoPage openModal={this.openModal}
+                                    infoData={infoData}
+                                    expandPack={expandPack}
+                                />
+                            </InfoContext.Provider>
 
-                        <div className="Function">
                             <Activities />
-                        </div>
 
-                        <div className="Company">
-                            <p>Company component</p>
+                            <RelationPage />
+                            <Modal Xaxis={this.state.Xaxis}
+                                Yaxis={this.state.Yaxis}
+                                visible={visible}
+                                currentModal={currentModal}
+                                closeModal={this.closeModal}
+                            />
                         </div>
-                        <Modal Xaxis={this.state.Xaxis}
-                            Yaxis={this.state.Yaxis}
-                            visible={visible}
-                            currentModal={currentModal}
-                            closeModal={this.closeModal}
-                        />
-                    </div>
                     </ThemeProvider>
                 </ModalContext.Provider>
             </div>

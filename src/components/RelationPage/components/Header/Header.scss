@@ -1,0 +1,17 @@
+.ExpandRelationship {
+  color: #33475b;
+  display: flex;
+  padding: 10px 5px;
+  font-size: 14px;
+  font-weight: 600;
+  &:hover {
+    color: #0091ae;
+  }
+  .ChevronDown {
+    margin-right: 15px;
+    color: #00a4bd;
+  }
+  .NumOfRelation {
+    margin: 0px 5px;
+  }
+}
