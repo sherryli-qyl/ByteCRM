@@ -1,16 +1,15 @@
 import React from "react";
-import './SwitchBarAndTable.scss'
+import "./SwitchBarAndTable.scss";
 import { withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 
-import Importer from '../Importer';
+import Importer from "../Importer";
 import TabContainer from "./TabContainer";
-import EnhancedTable from '../Table/EnhancedTable';
-import getRows from '../../services/getData';
-import Modal from '../../../../Modal';
-
+import EnhancedTable from "../Table/EnhancedTable";
+import getRows from "../../services/getData";
+import Modal from "../../../../Modal";
 
 const styles = (theme) => ({
   root: {
@@ -25,7 +24,7 @@ const styles = (theme) => ({
 
 class SwitchBar extends React.Component {
   constructor(props) {
-    super (props);
+    super(props);
     this.state = {
       activeTab: 1,
       newData: [],
@@ -40,11 +39,11 @@ class SwitchBar extends React.Component {
     if (newData.length !== 0) {
       this.setState({ newData: newData });
     }
-  }
+  };
 
   showModal = () => {
-    this.setState({ addVisible: true })
-  }
+    this.setState({ addVisible: true });
+  };
 
   render() {
     const { classes } = this.props;
@@ -66,17 +65,23 @@ class SwitchBar extends React.Component {
         </AppBar>
         <Importer getNewData={this.getNewData} />
 
-        {this.props.tabs.map((tab) =>
-          activeTab === tab.id && (
-            <TabContainer className={classes.wrapper} key={tab.id}>
-              {tab.component}
-            </TabContainer>
-          )
-        )}
-        {this.props.tabs.map((tab) =>
-          activeTab === tab.id && (
-            <EnhancedTable data={getRows(this.state.activeTab, this.props.userAccount, this.state.newData, this.state.filter)} />
-          )
+        {this.props.tabs.map(
+          (tab) =>
+            activeTab === tab.id && (
+              <>
+                <TabContainer className={classes.wrapper} key={tab.id}>
+                  {tab.component}
+                </TabContainer>
+                <EnhancedTable
+                  data={getRows(
+                    this.state.activeTab,
+                    this.props.userAccount,
+                    this.state.newData,
+                    this.state.filter
+                  )}
+                />
+              </>
+            )
         )}
       </div>
     );
