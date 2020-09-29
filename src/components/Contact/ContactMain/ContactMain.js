@@ -4,6 +4,7 @@ import InfoPage from '../../InfoPage';
 import Activities from '../../Activities';
 import Navbar from "../../Navbar";
 import RelationPage from "../../RelationPage";
+import Loading from '../../Loading';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { ModalContext } from '../../Modal/components/ModalContext';
 import { InfoContext } from '../../InfoPage/components/Context';
@@ -29,32 +30,35 @@ class ContactMain extends Component {
             contact: testContact,
             expandPack: expandPack,
             currentModal: "",
+            loading: false,
             theme: publicTheme,
         }
         this.closeModal = this.closeModal.bind(this);
         this.openModal = this.openModal.bind(this);
-        this.testContext = this.testContext.bind(this);
         this.onChangeSingleInfo = this.onChangeSingleInfo.bind(this);
         this.onChangeMultiInfo = this.onChangeMultiInfo.bind(this);
     }
 
     openModal(selectedModal) {
-        this.setState({
-            visible: true,
-            currentModal: selectedModal,
-        });
-        console.log("open the modal " + this.state.visible)
-    }
-
-    testContext() {
-        console.log('receive context');
+        console.table(selectedModal);
+        if (selectedModal.key === this.state.currentModal.key) {
+            this.setState({
+                visible: true,
+            });
+        }
+        else {
+            this.setState({
+                visible: true,
+                currentModal: selectedModal,
+            });
+        }
     }
 
     closeModal() {
         this.setState({
             visible: false,
+            currentModal: '',
         });
-        console.log("close the modal " + this.state.visible)
     }
 
     onChangeSingleInfo(key, value) {
@@ -65,6 +69,7 @@ class ContactMain extends Component {
                 contact: newContact
             })
         }
+        console.table(this.props.data);
     }
 
     onChangeMultiInfo(data) {
@@ -72,35 +77,40 @@ class ContactMain extends Component {
         this.setState({
             contact: newContact
         })
+
     }
 
     render() {
-        const { visible, currentModal, contact, theme, expandPack } = this.state;
+        const { visible, currentModal, contact, theme, expandPack, loading } = this.state;
         const infoData = { key: 'contact', data: contact, dictionary: ContactDictionary };
         const value = { single: this.onChangeSingleInfo, multi: this.onChangeMultiInfo };
+        const openModal = this.openModal;
         return (
             <div>
-                <ModalContext.Provider value={this.openModal}>
+                <ModalContext.Provider value={openModal}>
                     <header>
                         <Navbar />
                     </header>
                     <ThemeProvider theme={theme}>
-                        <div className="Main">
-                            <InfoContext.Provider value={value}>
-                                <InfoPage openModal={this.openModal}
-                                    infoData={infoData}
-                                    expandPack={expandPack}
-                                />
-                            </InfoContext.Provider>
-                            <Activities />
-                            <RelationPage />
-                            <Modal Xaxis={this.state.Xaxis}
-                                Yaxis={this.state.Yaxis}
-                                visible={visible}
-                                currentModal={currentModal}
-                                closeModal={this.closeModal}
-                            />
-                        </div>
+                        {loading ?
+                            <Loading variant="full page" />
+                            :
+                            <div className="Main">
+                                <InfoContext.Provider value={value}>
+                                    <InfoPage openModal={this.openModal}
+                                        infoData={infoData}
+                                        expandPack={expandPack}
+                                    />
+                                </InfoContext.Provider>
+                                <Activities />
+                                <RelationPage />
+                                <Modal Xaxis={this.state.Xaxis}
+                                    Yaxis={this.state.Yaxis}
+                                    visible={visible}
+                                    currentModal={currentModal}
+                                    closeModal={this.closeModal} />
+                            </div>
+                        }
                     </ThemeProvider>
                 </ModalContext.Provider>
             </div>

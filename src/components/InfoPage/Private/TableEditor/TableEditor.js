@@ -2,7 +2,6 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 import { InfoContext } from '../../components/Context';
-import SaveModal from '../SaveModal';
 import TipIcon from './Private/TipIcon';
 import './TableEditor.scss';
 
@@ -25,8 +24,14 @@ class TableEditor extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleBlur = this.handleBlur.bind(this);
         this.onClickEditor = this.onClickEditor.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
     }
 
+    onSubmit(event) {
+        event.preventDefault();
+        this.props.closeModal();
+        this.toggleEditor();
+    }
 
     onClickEditor() {
         this.inputRef.current.focus();
@@ -48,14 +53,8 @@ class TableEditor extends React.Component {
     handleChange(e) {
         let value = e.target.value;
         let key = this.state.key;
-        if (value === this.state.value) {
-            this.props.showModal(false);
-            this.updateDisplay(e.target.value);
-        }
-        else {
-            this.props.showModal(true,key,value);
-            this.updateDisplay(e.target.value);
-        }
+        this.props.showModal(key, value);
+        this.updateDisplay(e.target.value);
     }
 
     handleBlur() {
@@ -69,7 +68,7 @@ class TableEditor extends React.Component {
     }
 
     render() {
-        const { hideEditor, currentValue, title, tip, key} = this.state;
+        const { hideEditor, currentValue, title, tip, key } = this.state;
         let underline = "underline "
         if (!hideEditor) {
             underline += "underline--active "
@@ -90,9 +89,8 @@ class TableEditor extends React.Component {
                             }
                         </div>
                         <form onSubmit={(event) => {
-                            event.preventDefault();
+                            this.onSubmit(event);
                             value.single(key, currentValue);
-                            this.toggleEditor();
                         }}
                         >
                             <input ref={this.inputRef} className='tableEditor__left__input '
