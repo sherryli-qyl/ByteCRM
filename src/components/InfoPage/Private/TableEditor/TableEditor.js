@@ -2,7 +2,6 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 import { InfoContext } from '../../components/Context';
-import SaveModal from '../SaveModal';
 import TipIcon from './Private/TipIcon';
 import './TableEditor.scss';
 
@@ -48,7 +47,7 @@ class TableEditor extends React.Component {
     handleChange(e) {
         let value = e.target.value;
         let key = this.state.key;
-        if (value === this.state.value) {
+        if (value === this.props.item.value) {
             this.props.showModal(false);
             this.updateDisplay(e.target.value);
         }
@@ -92,6 +91,7 @@ class TableEditor extends React.Component {
                         <form onSubmit={(event) => {
                             event.preventDefault();
                             value.single(key, currentValue);
+                            this.props.closeModal();
                             this.toggleEditor();
                         }}
                         >
