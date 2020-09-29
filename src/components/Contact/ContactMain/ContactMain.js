@@ -35,7 +35,6 @@ class ContactMain extends Component {
         }
         this.closeModal = this.closeModal.bind(this);
         this.openModal = this.openModal.bind(this);
-        this.testContext = this.testContext.bind(this);
         this.onChangeSingleInfo = this.onChangeSingleInfo.bind(this);
         this.onChangeMultiInfo = this.onChangeMultiInfo.bind(this);
     }
@@ -55,16 +54,11 @@ class ContactMain extends Component {
         }
     }
 
-    testContext() {
-        console.log('receive context');
-    }
-
     closeModal() {
         this.setState({
             visible: false,
             currentModal: '',
         });
-        console.log("close the modal " + this.state.visible)
     }
 
     onChangeSingleInfo(key, value) {
@@ -75,6 +69,7 @@ class ContactMain extends Component {
                 contact: newContact
             })
         }
+        console.table(this.props.data);
     }
 
     onChangeMultiInfo(data) {
@@ -82,6 +77,7 @@ class ContactMain extends Component {
         this.setState({
             contact: newContact
         })
+
     }
 
     render() {
