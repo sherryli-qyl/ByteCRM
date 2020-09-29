@@ -23,7 +23,7 @@ class AboutSection extends React.Component {
 
     showModal(key, value) {
         const newData = this.state.data;
-        let target = "";
+        let target = true;
         newData[key] = value;
         const count = FindDiff(newData,this.props.data,0);
         count === 0? target = false : target = true;
@@ -59,7 +59,7 @@ class AboutSection extends React.Component {
                                     closeModal={this.closeModal}
                                     propertyDiff = {propertyDiff}
                                     saveData={() => { 
-                                        value.multi(data);
+                                        value.multi(Object.assign({},data));
                                         this.closeModal();
                                      }
                                     } />
