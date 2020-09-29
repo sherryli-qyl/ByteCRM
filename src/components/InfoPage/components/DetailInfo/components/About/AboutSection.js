@@ -49,7 +49,6 @@ class AboutSection extends React.Component {
                     <TableEditor
                         key={item.key}
                         item={item}
-                        propertyDiff = {propertyDiff}
                         showModal={this.showModal}
                         closeModal = {this.closeModal}
                     />
@@ -58,6 +57,7 @@ class AboutSection extends React.Component {
                     {value =>(
                          <SaveModal modalActive={modalActive}
                                     closeModal={this.closeModal}
+                                    propertyDiff = {propertyDiff}
                                     saveData={() => { 
                                         value.multi(data);
                                         this.closeModal();

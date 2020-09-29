@@ -10,6 +10,7 @@ const SaveModal = ({
     modalActive,
     saveData,
     closeModal,
+    propertyDiff,
 }) => {
     let className = 'modalOverlay ';
     if (modalActive) {
@@ -27,6 +28,9 @@ const SaveModal = ({
                     <div className="modalOverlay__modal__btnWrapper">
                         <CancelButton size='large' variant='outlined'
                             onClick={closeModal}> Cancel</CancelButton>
+                    </div>
+                    <div className = "modalOverlay__modal__text">
+                        You have changed {propertyDiff} properties
                     </div>
                 </div>
             </div>
