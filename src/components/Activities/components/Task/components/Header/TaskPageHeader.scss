@@ -1,0 +1,18 @@
+@import '../../../../../../style/variable.scss';
+
+.taskPage{
+    &__header{
+        display:flex;
+        height:60px;
+        justify-content: flex-end;
+
+
+        &__createTask{
+            align-self: center;
+            margin:auto 3%;
+        }
+
+    }
+  }
+
+
