@@ -81,17 +81,10 @@ class ContactMain extends Component {
         })
     }
 
-    getContact() {
-        const serverUrl = 'http//localhost:3000/api/contacts';
-        const response = await fetch(serverUrl);
-        console.log(serverUrl);
-        const data = response.json();
-        console.table(data)
-        return data;
-    }
+    
 
     componentDidMount() {
-        this.getContact;
+        GetContact(this.id);
     }
 
 
