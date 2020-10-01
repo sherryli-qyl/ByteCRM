@@ -19,7 +19,7 @@ class ContactMain extends Component {
 
     constructor(props) {
         super(props);
-        this.id = "5f75fbbd080c656719588d5d";
+        this.id = "5f76297c7416988952244fb3";
         const testContact = {
             _id: '000001', firstName: 'John', lastName: 'Doe', jobTitle: 'CEO', phoneNo: '12345', email: '123@gmail.com',
             contactOwner: "Yurun YU", company: "Nike Ltd", lifeCycle: 'Customer'
