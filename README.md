@@ -1,20 +1,34 @@
 #ByteCRM(customer-relationship-management)
 -Sass;
 
-Routes:
--loginForm;
--RegForm;
--ContactList;
--ContactMain;
--CompanyList;
--CompanyMain;
-
-General components:
--Header;
--Navbar;
--Modal;
--Style;
-
+Folder structure
+src
+|
+Api
+|
+Routes : mainly route mapping
+|
+Contact : related to domain CRUD
+|
+Company : related to domain CRUD
+|
+Log: user login system
+|
+Loading: reusable small components
+|
+Modal:reusable small components
+|
+Services:reusable small components
+|
+Style:reusable small components
+|
+Images
+|
+Utils : // optional
+|
+App.js App container (top level)
+|
+index.js entry file
 
 
 
