@@ -10,7 +10,7 @@ import { ModalContext } from '../../Modal/components/ModalContext';
 import { InfoContext } from '../../InfoPage/components/Context';
 import { publicTheme } from '../../Style/Theme/MatUITheme';
 import { ContactDictionary } from './components/Dictionary';
-import { GetContact } from '../../Api/Contact/Contact';
+import { GetContact,UpdateContact } from '../../Api/Contact/Contact';
 import WebActivity from './components/WebActivity';
 import './ContactMain.scss';
 
@@ -67,7 +67,6 @@ class ContactMain extends Component {
                 contact: newContact
             })
         }
-        console.table(this.props.data);
     }
 
     onChangeMultiInfo(data) {
@@ -75,6 +74,8 @@ class ContactMain extends Component {
         this.setState({
             contact: newContact
         })
+        UpdateContact(this.id,newContact)
+        console.table(newContact);
     }
 
     

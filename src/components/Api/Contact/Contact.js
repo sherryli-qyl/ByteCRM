@@ -7,15 +7,16 @@ async function GetContact(contactId) {
     return data;
 }
 
-async function UpdateContact(contactId, data) {
+
+async function UpdateContact(contactId, body) {
     const serverUrl = `http://localhost:3000/api/contacts/${contactId}`;
-    console.log(data);
+    console.log(body);
     const response = await fetch(serverUrl, {
         method: "PUT",
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify(body)
     });
     const data = response.json();
     return data;
