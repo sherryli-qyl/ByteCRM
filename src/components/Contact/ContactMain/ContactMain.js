@@ -10,6 +10,7 @@ import { ModalContext } from '../../Modal/components/ModalContext';
 import { InfoContext } from '../../InfoPage/components/Context';
 import { publicTheme } from '../../Style/Theme/MatUITheme';
 import { ContactDictionary } from './components/Dictionary';
+import {GetContact} from '../../Api/Contact/Contact';
 import WebActivity from './components/WebActivity';
 import './ContactMain.scss';
 
@@ -18,6 +19,7 @@ class ContactMain extends Component {
 
     constructor(props) {
         super(props);
+        this.id = "5f75fbbd080c656719588d5d";
         const testContact = {
             _id: '000001', firstName: 'John', lastName: 'Doe', jobTitle: 'CEO', phoneNo: '12345', email: '123@gmail.com',
             contactOwner: "Yurun YU", company: "Nike Ltd", lifeCycle: 'Customer'
@@ -77,8 +79,13 @@ class ContactMain extends Component {
         this.setState({
             contact: newContact
         })
-
     }
+
+    componentDidMount(){
+        GetContact(this.id);
+    }
+
+
 
     render() {
         const { visible, currentModal, contact, theme, expandPack, loading } = this.state;
