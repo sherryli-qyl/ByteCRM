@@ -4,7 +4,9 @@ async function GetContact(contactId) {
         method:"GET"
     });
     const data = response.json();
-    return data;
+    const contact = data;
+    
+    return contact;
 }
 
 export { GetContact };
