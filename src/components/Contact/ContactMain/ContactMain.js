@@ -20,19 +20,15 @@ class ContactMain extends Component {
     constructor(props) {
         super(props);
         this.id = "5f76297c7416988952244fb3";
-        const testContact = {
-            _id: '000001', firstName: 'John', lastName: 'Doe', jobTitle: 'CEO', phoneNo: '12345', email: '123@gmail.com',
-            contactOwner: "Yurun YU", company: "Nike Ltd", lifeCycle: 'Customer'
-        }
         const expandPack = [{ key: 'About this Contact', content: "" }, { key: 'Website Activity', content: (<WebActivity />) }]
         this.state = {
             Xaxis: 300,
             Yaxis: 50,
             visible: false,
-            contact: testContact,
+            contact: '',
             expandPack: expandPack,
             currentModal: "",
-            loading: false,
+            loading: true,
             theme: publicTheme,
         }
         this.closeModal = this.closeModal.bind(this);
@@ -85,7 +81,12 @@ class ContactMain extends Component {
 
     componentDidMount() {
         const contact = GetContact(this.id);
-        console.table(contact);
+        contact.then( value =>
+            this.setState({
+                contact:value,
+                loading:false,
+            })
+        )
     }
 
 

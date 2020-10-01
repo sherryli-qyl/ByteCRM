@@ -4,10 +4,10 @@ async function GetContact(contactId) {
         method:"GET"
     });
     const data = response.json();
-    const contact = data;
-    
-    return contact;
+    return data;
 }
+
+
 
 export { GetContact };
 
