@@ -3,9 +3,7 @@ async function GetContact(contactId) {
     const response = await fetch(serverUrl,{
         method:"GET"
     });
-    console.log(serverUrl);
     const data = response.json();
-    console.table(data)
     return data;
 }
 

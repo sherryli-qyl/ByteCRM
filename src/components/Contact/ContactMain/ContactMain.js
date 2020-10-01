@@ -84,7 +84,8 @@ class ContactMain extends Component {
     
 
     componentDidMount() {
-        GetContact(this.id);
+        const contact = GetContact(this.id);
+        console.table(contact);
     }
 
 
