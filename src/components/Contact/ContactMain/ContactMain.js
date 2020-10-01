@@ -10,7 +10,7 @@ import { ModalContext } from '../../Modal/components/ModalContext';
 import { InfoContext } from '../../InfoPage/components/Context';
 import { publicTheme } from '../../Style/Theme/MatUITheme';
 import { ContactDictionary } from './components/Dictionary';
-import {GetContact} from '../../Api/Contact/Contact';
+import { GetContact } from '../../Api/Contact/Contact';
 import WebActivity from './components/WebActivity';
 import './ContactMain.scss';
 
@@ -81,8 +81,17 @@ class ContactMain extends Component {
         })
     }
 
-    componentDidMount(){
-        GetContact(this.id);
+    getContact() {
+        const serverUrl = 'http//localhost:3000/api/contacts';
+        const response = await fetch(serverUrl);
+        console.log(serverUrl);
+        const data = response.json();
+        console.table(data)
+        return data;
+    }
+
+    componentDidMount() {
+        this.getContact;
     }
 
 
