@@ -34,19 +34,24 @@ class CompanyMain extends Component {
     }
 
     openModal(selectedModal) {
-        this.setState({
-            visible: true,
-            currentModal: selectedModal,
-
-        });
-        console.log("open the modal " + this.state.visible)
+        if (selectedModal.key === this.state.currentModal.key) {
+            this.setState({
+                visible: true,
+            });
+        }
+        else {
+            this.setState({
+                visible: true,
+                currentModal: selectedModal,
+            });
+        }
     }
 
     closeModal() {
         this.setState({
             visible: false,
+            currentModal: ''
         });
-        console.log("close the modal " + this.state.visible)
     }
 
     onChangeInfo(key, value) {
