@@ -17,7 +17,7 @@ class CompanyMain extends Component {
             Name: 'Nike', CompanyDomainName: 'Nike.Ltd', Industry: 'IT', PhoneNumber: '123123',
             CompanyOwner: 'John Doe', Type: 'Partner', City: 'Sydney'
         }
-        const expandPack = [{ key: 'About this Contact', content: "" }]
+        const expandPack = [{ key: 'About this Company', content: "" }]
         super(props);
         this.state = {
             Xaxis: 300,

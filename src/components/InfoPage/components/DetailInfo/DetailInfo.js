@@ -23,7 +23,7 @@ const DetailInfo = (props) => {
                 {expandPack.map((item) => (
                     <ExpandBar key={item.key}
                         label={item.key}
-                        content={item.content}>
+                        content={item.content}>     
                     </ExpandBar>
                 ))
                 }
