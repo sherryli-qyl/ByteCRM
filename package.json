@@ -33,6 +33,7 @@
     "react-router": "^5.2.0",
     "react-scripts": "3.4.3",
     "react-select": "^3.1.0",
+    "react-spinners": "^0.9.0",
     "react-tooltip": "^4.2.10",
     "sass": "^1.26.10",
     "save": "^2.4.0",
@@ -41,7 +42,7 @@
     "with-router": "^1.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "cross-env PORT=8000 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -62,6 +63,7 @@
     ]
   },
   "devDependencies": {
+    "cross-env": "^7.0.2",
     "react-props-history": "^3.0.7",
     "react-router-dom": "^5.2.0"
   }

@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react';
 import Container from '@material-ui/core/Container';
 import TabBar from './components/TabBar';
-import EmailPage from './components/Functions/Email';
-import TaskPage from './components/Functions/Task';
+import EmailPage from './components/Email';
+import TaskPage from './components/Task';
 import NotesTimeLine from './components/Functions/Note/';
 import CallPanel from './components/Functions/Calls/index';
 import './Activities.scss';

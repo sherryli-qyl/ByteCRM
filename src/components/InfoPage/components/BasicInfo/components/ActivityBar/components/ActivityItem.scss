@@ -10,6 +10,7 @@
         margin: auto 2%;
 
         &__button {
+            @extend .nakedBtn;
             background-color: #eaf0f6;
             align-self: center;
             height: 32px;

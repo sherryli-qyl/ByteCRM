@@ -3,9 +3,9 @@ import { faEnvelope, faEdit, faPhoneAlt, faCalendarAlt, faPlus, faTasks,faUser,f
 import BasicInfo from './components/BasicInfo';
 import DetailInfo from './components/DetailInfo';
 import NoteModal from '../Modal/components/Function/Note';
-import EmailModal from '../Modal/components/Function/Email';
+import EmailModal from '../Activities/components/Email/components/EmailModal';
 import CallModal from '../Modal/components/Function/Call';
-import TaskModal from '../Modal/components/Function/Task';
+import TaskModal from '../Activities/components/Task/components/TaskModal';
 import MeetingCreateModal from '../Modal/components/Function/Meeting/MeetingCreateModal';
 import DataPack from './services/DataPack';
 import './InfoPage.scss';

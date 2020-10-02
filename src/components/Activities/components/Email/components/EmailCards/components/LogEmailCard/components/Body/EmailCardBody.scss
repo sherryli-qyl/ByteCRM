@@ -1,0 +1,36 @@
+@import '../../../../../../../../../../style/variable.scss';
+
+.emailCardBody {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-grow: 1;
+    flex-wrap: wrap;
+    width: 100%;
+    min-height: 40px;
+    margin: {
+        top: 3%;
+        bottom: 3%;
+    }
+    
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+        margin-right:10%;
+        height:100%;
+
+        &__text {
+            display: flex;
+            min-width: 70px;
+            font-size: 14px;
+            flex-grow:1;
+        }
+
+        &__picker {
+            cursor: pointer; 
+        }
+    }
+
+
+}

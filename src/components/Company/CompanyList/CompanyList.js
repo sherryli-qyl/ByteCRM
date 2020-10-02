@@ -1,12 +1,10 @@
 import React from 'react';
 import './CompanyList.scss';
 import { NavLink } from 'react-router-dom';
-
 import Header from "./components/Header";
 import NavBar from "./components/NavBar";
 import EnhancedTable from "./components/EnhancedTable";
 import MaterialTableDemo from "./components/MaterialTableDemo";
-
 import CompanyIcon from "@material-ui/icons/Business";
 import AddIcon from "@material-ui/icons/Add";
 

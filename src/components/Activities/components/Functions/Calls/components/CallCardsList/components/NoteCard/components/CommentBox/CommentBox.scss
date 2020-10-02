@@ -1,0 +1,47 @@
+.comment-box-top {
+  margin: 5px 0px;
+}
+
+.accordion-label {
+  font-size: 14px;
+  padding: 10px 0px;
+  color: #0091ae;
+  border: none;
+  background-color: transparent;
+  outline: transparent;
+}
+
+.button--hidden {
+  visibility: hidden;
+}
+
+.button--visible {
+  visibility: visible;
+}
+
+.add-comment-container {
+  padding: 10px 0px;
+  display: flex;
+  border-top: 1px solid lightgrey;
+  max-width: 100%;
+}
+
+.add-comment-icon {
+  color: #98acc2;
+  font-size: 18px;
+  margin-right: 10px;
+}
+
+.add-comment-button {
+  color: #0091ae;
+  font-weight: 600;
+  font-size: 14px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.add-comment-button:hover {
+  text-decoration: underline;
+}

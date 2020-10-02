@@ -1,30 +1,37 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencilAlt } from "@fortawesome/free-solid-svg-icons";
-import {ContactContext} from '../../../Contact/ContactContext';
+import { InfoContext } from '../../components/Context';
+import TipIcon from './Private/TipIcon';
 import './TableEditor.scss';
 
 
 
 class TableEditor extends React.Component {
-    static contextType = ContactContext;
     constructor(props) {
         super(props);
-        const defaultValue = this.props.value;
+        const { title, value, key, tip } = this.props.item;
         this.inputRef = React.createRef();
         this.state = {
             hideEditor: true,
-            currentValue: defaultValue,
-            itemKey:this.props.itemKey,
-            onChange: '',
+            value,
+            currentValue: value,
+            key,
+            title,
+            tip,
         }
         this.toggleEditor = this.toggleEditor.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleBlur = this.handleBlur.bind(this);
         this.onClickEditor = this.onClickEditor.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
     }
 
+    onSubmit(event) {
+        event.preventDefault();
+        this.props.closeModal();
+        this.toggleEditor();
+    }
 
     onClickEditor() {
         this.inputRef.current.focus();
@@ -37,25 +44,20 @@ class TableEditor extends React.Component {
         }))
     }
 
-    handleSubmit(e) {
-        e.preventDefault();
-        const key = this.state.itemKey;
-        this.state.onChange(key,this.state.currentValue);
-        this.toggleEditor();
-    }
-
-    updateDisplay(inputValue){
-		this.setState({
-			currentValue: inputValue
-		});
+    updateDisplay(inputValue) {
+        this.setState({
+            currentValue: inputValue
+        });
     }
 
     handleChange(e) {
-       this.updateDisplay(e.target.value)
+        let value = e.target.value;
+        let key = this.state.key;
+        this.props.showModal(key, value);
+        this.updateDisplay(e.target.value);
     }
 
     handleBlur() {
-        this.updateDisplay(this.props.value);
         this.toggleEditor();
     }
 
@@ -65,47 +67,56 @@ class TableEditor extends React.Component {
         }
     }
 
-    componentDidMount(){
-        const context = this.context;
-        this.setState({
-            onChange:context
-        })
-    }
-
-
     render() {
-        const { hideEditor, currentValue } = this.state;
+        const { hideEditor, currentValue, title, tip, key } = this.state;
         let underline = "underline "
-        if (!hideEditor){
+        if (!hideEditor) {
             underline += "underline--active "
         }
 
         return (
-            <div className="tableEditor">
-                <div className="tableEditor__left">
-                    <div className="tableEditor__left__title"> {this.props.title} </div>
-                    <form onSubmit={this.handleSubmit}
-                    >
-                        <input ref={this.inputRef} className='tableEditor__left__input '
-                            disabled={hideEditor}
-                            value={currentValue}
-                            onChange={this.handleChange}
-                            onBlur={this.handleBlur}
-                        />
-                    </form>
+            <InfoContext.Consumer>
+                { value => (<div className="tableEditor">
+                    <div className="tableEditor__left">
+                        <div className="tableEditor__left__title">
+                            {title}
+                            {tip ?
+                                <div className="tableEditor__left__title__info" >
+                                    <TipIcon />
+                                </div>
+                                :
+                                ""
+                            }
+                        </div>
+                        <form onSubmit={(event) => {
+                            this.onSubmit(event);
+                            value.single(key, currentValue);
+                        }}
+                        >
+                            <input ref={this.inputRef} className='tableEditor__left__input '
+                                disabled={hideEditor}
+                                value={currentValue}
+                                onChange={this.handleChange}
+                                onBlur={this.handleBlur}
+                            />
+                        </form>
+
+                    </div>
+                    {hideEditor ?
+                        <div className="tableEditor__right">
+                            <button className="tableEditor__right__btn nakedBtn" onClick={this.onClickEditor}>
+                                <FontAwesomeIcon className='tableEditor__right__btn__icon' icon={faPencilAlt} />
+                            </button>
+                        </div>
+                        :
+                        ""
+                    }
+                    <div className={underline + 'underline__green'} />
 
                 </div>
-                {hideEditor ?
-                    <div className="tableEditor__right">
-                        <button className="tableEditor__right__btn nakedBtn" onClick={this.onClickEditor}>
-                            <FontAwesomeIcon className='tableEditor__right__btn__icon' icon={faPencilAlt} />
-                        </button>
-                    </div>
-                    :
-                    ""
+                )
                 }
-                <div className={underline + 'underline__green'}/>
-            </div>
+            </InfoContext.Consumer>
         )
     }
 }

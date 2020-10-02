@@ -1,0 +1,35 @@
+@import '../../../../../../../../style/variable.scss';
+.taskInput{
+  display:flex;
+  // background-color:yellow;
+  margin: auto 3%;
+  
+
+  &__top{
+    // background-color: red;
+    display:flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items:center;
+    margin:auto 3%;
+
+    &__item{
+      display: flex;
+      flex-direction: column;
+      flex:1;
+      margin-top:2%;
+      align-self: end;
+
+      &__label{
+        font-size: small;
+        color:$label-color;
+      }
+
+    }
+
+  }
+
+  &__bot{
+    display:flex;
+  }
+}

@@ -15,10 +15,10 @@ class TimePicker extends React.Component {
             currentTime: this.props.defaultTime,
 
         }
-        this.onTimeChange = this.onTimeChange.bind(this);
+        this.onChange = this.onChange.bind(this);
     }
 
-    onTimeChange(time) {
+    onChange(time) {
         const newTime = time.target.value;
         this.props.onTimeChange(newTime);
         this.setState({
@@ -32,13 +32,10 @@ class TimePicker extends React.Component {
         return (
                 <ThemeProvider theme={pickerTheme}>
                     <TextField
-                        id="time"
-                        label={this.props.label}
                         className={this.props.className}
                         type="time"
-                        defaultValue={ currentTime}
                         value={currentTime}
-                        onChange={time=>this.onTimeChange(time)}
+                        onChange={time=>this.onChange(time)}
                         InputLabelProps={{
                             shrink: true,
                         }}

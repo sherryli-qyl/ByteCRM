@@ -1,0 +1,44 @@
+.modalOverlay{
+    position: fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    width:100vw;
+    height:10vh;
+    max-height:0vh;
+    z-index: 2;
+    background-color: rgba($color:#f5f8fa, $alpha: 1.0);
+    overflow: auto;
+    font-size: 14px;
+    transition: max-height .5s ease-out;
+
+    &--active{
+        max-height:10vh;
+        transition: max-height .5s ease-in;
+        transform-origin: 100% 0;
+    }
+
+    &__modal{
+        display: flex;
+        margin-left:5%;
+        margin-top:1%;
+        
+        &__btnWrapper{
+           &~&{
+               
+               margin-left:1%;
+           }
+
+           &__saveBtn{
+               height: 40px;
+           }
+
+        }
+
+        &__text{
+            margin-left: 2%;
+            align-self: center;
+        }
+    }
+}
+

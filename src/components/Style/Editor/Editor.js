@@ -1,5 +1,5 @@
 import React from "react";
-import ReactQuill from 'react-quill';
+import ReactQuill,{Quill} from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import './Editor.scss';
 
@@ -8,27 +8,39 @@ import './Editor.scss';
 
 
 class Editor extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
-    this.state = {editorHtml: ''}
+    const { content} = this.props;
+    this.state = {
+      editorHtml: content,
+    }
     this.handleChange = this.handleChange.bind(this)
   }
 
-  handleChange (text) {
-    this.setState({editorHtml: text});
-}
+  handleChange(text) {
+    this.updateDisplay(text);
+    this.props.handleEditorChange(text);
+  }
 
 
-  render(){
-    return(
+  updateDisplay(newContent) {
+    this.setState({
+      editorHtml: newContent,
+    });
+    // Quill.getHTML(this.state.content)
+  }
+
+
+  render() {
+    return (
       <div className="editor">
-         <ReactQuill 
-            onChange={this.handleChange}
-            value={this.state.editorHtml}
-            modules={Editor.modules}
-            formats={Editor.formats}
-            placeholder={this.props.placeholder}
-           />
+        <ReactQuill
+          onChange={this.handleChange}
+          value={this.state.editorHtml}
+          modules={Editor.modules}
+          formats={Editor.formats}
+          placeholder={this.props.placeholder}
+        />
       </div>
     )
   }
@@ -38,9 +50,9 @@ Editor.modules = {
   toolbar: [
     ['bold', 'italic', 'underline'],
     ['clean'],
-    [{'list': 'ordered'}, {'list': 'bullet'}, 
-     {'indent': '-1'}, {'indent': '+1'}],
-    ['link', 'image', 'video'], 
+    [{ 'list': 'ordered' }, { 'list': 'bullet' },
+    { 'indent': '-1' }, { 'indent': '+1' }],
+    ['link', 'image', 'video'],
   ],
   clipboard: {
     // toggle to add extra line breaks when pasting HTML:

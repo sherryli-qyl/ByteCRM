@@ -9,9 +9,6 @@ const ActivityItem = ({
     onClick,
     children
 }) => {
-    let ActivityNameClassName = 'activity__name';
-
-
     return (
         <div className='activity__item'>
             <button className='activity__item__button'
