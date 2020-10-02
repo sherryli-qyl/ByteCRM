@@ -4,7 +4,7 @@ import './InfoHeader.scss';
 
 const Header = (props) => (
   <div className="infoHeader">
-     <InfoLinkBtn type = {props.dataPack.key}>
+     <InfoLinkBtn type = {props.dataPack.type}>
        {props.dataPack.title}
      </InfoLinkBtn>
   </div>

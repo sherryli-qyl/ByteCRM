@@ -11,7 +11,7 @@ import './AboutSection.scss';
 class AboutSection extends React.Component {
     constructor(props) {
         super(props);
-        const data = {...this.props.data};
+        const data = Object.assign({},this.props.data);
         this.state = {
             modalActive: false,
             data,

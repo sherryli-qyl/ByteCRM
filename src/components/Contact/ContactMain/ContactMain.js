@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Modal from '../../Modal';
 import InfoPage from '../../InfoPage';
 import Activities from '../../Activities';
-import Navbar from "../../Navbar";
 import RelationPage from "../../RelationPage";
 import Loading from '../../Loading';
 import { ThemeProvider } from '@material-ui/core/styles';
@@ -10,7 +9,6 @@ import { ModalContext } from '../../Modal/components/ModalContext';
 import { InfoContext } from '../../InfoPage/components/Context';
 import { publicTheme } from '../../Style/Theme/MatUITheme';
 import { ContactDictionary } from './components/Dictionary';
-import { GetContact,UpdateContact } from '../../Api/Contact/Contact';
 import WebActivity from './components/WebActivity';
 import './ContactMain.scss';
 
@@ -19,16 +17,19 @@ class ContactMain extends Component {
 
     constructor(props) {
         super(props);
-        this.id = "5f76297c7416988952244fb3";
+        const testContact = {
+            _id: '000001', firstName: 'John', lastName: 'Doe', jobTitle: 'CEO', phoneNo: '12345', email: '123@gmail.com',
+            contactOwner: "Yurun YU", company: "Nike Ltd", lifeCycle: 'Customer'
+        }
         const expandPack = [{ key: 'About this Contact', content: "" }, { key: 'Website Activity', content: (<WebActivity />) }]
         this.state = {
             Xaxis: 300,
             Yaxis: 50,
             visible: false,
-            contact: '',
+            contact: testContact,
             expandPack: expandPack,
             currentModal: "",
-            loading: true,
+            loading: false,
             theme: publicTheme,
         }
         this.closeModal = this.closeModal.bind(this);
@@ -67,6 +68,7 @@ class ContactMain extends Component {
                 contact: newContact
             })
         }
+        console.table(this.props.data);
     }
 
     onChangeMultiInfo(data) {
@@ -74,23 +76,8 @@ class ContactMain extends Component {
         this.setState({
             contact: newContact
         })
-        UpdateContact(this.id,newContact)
-        console.table(newContact);
+
     }
-
-    
-
-    componentDidMount() {
-        const contact = GetContact(this.id);
-        contact.then( value =>
-            this.setState({
-                contact:value,
-                loading:false,
-            })
-        )
-    }
-
-
 
     render() {
         const { visible, currentModal, contact, theme, expandPack, loading } = this.state;
@@ -100,9 +87,6 @@ class ContactMain extends Component {
         return (
             <div>
                 <ModalContext.Provider value={openModal}>
-                    <header>
-                        <Navbar />
-                    </header>
                     <ThemeProvider theme={theme}>
                         {loading ?
                             <Loading variant="full page" />
