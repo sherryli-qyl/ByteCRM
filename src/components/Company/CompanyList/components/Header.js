@@ -14,15 +14,17 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 
 import AccountCircle from "@material-ui/icons/AccountCircle";
-import BusinessIcon from '@material-ui/icons/Business';
 import ContactsIcon from "@material-ui/icons/Contacts";
+import ConversationsIcon from "@material-ui/icons/Chat";
 import MarketingIcon from "@material-ui/icons/Storefront";
+import SalesIcon from "@material-ui/icons/MoneyOff";
 import ServiceIcon from "@material-ui/icons/Settings";
+import AutomationIcon from "@material-ui/icons/Autorenew";
+import ReportsIcon from "@material-ui/icons/Report";
+import SearchIcon from "@material-ui/icons/Search";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 
-import logo from "../../../../img/Navbar/logo2.png";
-import { NavLink } from 'react-router-dom';
-
+import logo from "../images/hubspotLogo.png";
 
 const useStyles = makeStyles((theme) => ({
   list: {
@@ -87,25 +89,39 @@ export default function Header() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-      <NavLink activeClassName="active" to="/contacts">
         <ListItem button key="Contacts">
-        <ListItemIcon>
-          <ContactsIcon />
+          <ListItemIcon>
+            <ContactsIcon />
           </ListItemIcon>
           <ListItemText primary="Contacts" />
         </ListItem>
-        </NavLink>
       </List>
 
       <List>
-      <NavLink activeClassName="active" to="/companies">
-        <ListItem button key="Companies">
+        <ListItem button key="Conversations">
           <ListItemIcon>
-            <BusinessIcon />
+            <ConversationsIcon />
           </ListItemIcon>
-          <ListItemText primary="Companies" />
+          <ListItemText primary="Conversations" />
         </ListItem>
-        </NavLink>
+      </List>
+
+      <List>
+        <ListItem button key="Marketing">
+          <ListItemIcon>
+            <MarketingIcon />
+          </ListItemIcon>
+          <ListItemText primary="Marketing" />
+        </ListItem>
+      </List>
+
+      <List>
+        <ListItem button key="Sales">
+          <ListItemIcon>
+            <SalesIcon />
+          </ListItemIcon>
+          <ListItemText primary="Sales" />
+        </ListItem>
       </List>
 
       <List>
@@ -117,7 +133,23 @@ export default function Header() {
         </ListItem>
       </List>
 
-  
+      <List>
+        <ListItem button key="Automation">
+          <ListItemIcon>
+            <AutomationIcon />
+          </ListItemIcon>
+          <ListItemText primary="Automation" />
+        </ListItem>
+      </List>
+
+      <List>
+        <ListItem button key="Reports">
+          <ListItemIcon>
+            <ReportsIcon />
+          </ListItemIcon>
+          <ListItemText primary="Reports" />
+        </ListItem>
+      </List>
     </div>
   );
 
@@ -132,7 +164,7 @@ export default function Header() {
             aria-label="menu"
             onClick={toggleDrawer(true)}
           >
-            <img src={logo} height="45" alt="logo"/>
+            <img src={logo} height="45" />
           </IconButton>
           <Typography variant="h6" className={classes.title}></Typography>
           <div>
@@ -141,15 +173,11 @@ export default function Header() {
             </IconButton> */}
 
             <IconButton color="inherit">
-            <NavLink activeClassName="active" to="/contacts">
-              <ContactsIcon />
-              </NavLink>
+              <MarketingIcon />
             </IconButton>
 
             <IconButton color="inherit">
-            <NavLink activeClassName="active" to="/companies">
-              <BusinessIcon />
-              </NavLink>
+              <ServiceIcon />
             </IconButton>
 
             <IconButton color="inherit">
@@ -172,7 +200,7 @@ export default function Header() {
               onClick={handleMenu}
               color="inherit"
             >
-              <Typography variant="h6">ByteCRM</Typography>
+              <Typography variant="h6">cml</Typography>
             </IconButton>
 
             <Menu
