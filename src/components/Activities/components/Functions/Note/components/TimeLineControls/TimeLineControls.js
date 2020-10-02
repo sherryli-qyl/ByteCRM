@@ -13,6 +13,7 @@ const TimeLineControls = () => {
   return (
     <div className="timeline-action-container">
       <CreateButton 
+        className="timeline-action-button"
         onClick={() => onClick(createModal)}
       >
         Create Note</CreateButton>

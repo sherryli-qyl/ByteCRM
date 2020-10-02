@@ -20,7 +20,7 @@ import MarketingIcon from "@material-ui/icons/Storefront";
 import ServiceIcon from "@material-ui/icons/Settings";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 
-import logo from "../../../../img/Navbar/logo2.png";
+import logo from "../../img/Navbar/logo2.png";
 import { NavLink } from 'react-router-dom';
 
 

@@ -24,17 +24,6 @@ import FilterListIcon from "@material-ui/icons/FilterList";
 import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add";
 
-import AccountCircle from "@material-ui/icons/AccountCircle";
-import ContactsIcon from "@material-ui/icons/Contacts";
-import ConversationsIcon from "@material-ui/icons/Chat";
-import MarketingIcon from "@material-ui/icons/Storefront";
-import SalesIcon from "@material-ui/icons/MoneyOff";
-import ServiceIcon from "@material-ui/icons/Settings";
-import AutomationIcon from "@material-ui/icons/Autorenew";
-import ReportsIcon from "@material-ui/icons/Report";
-import SearchIcon from "@material-ui/icons/Search";
-import NotificationsIcon from "@material-ui/icons/Notifications";
-
 function createData(
   name,
   company_owner,

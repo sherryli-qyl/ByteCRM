@@ -15,6 +15,7 @@ const InfoLinkBtn = ({
         icon = faUser;
         btnClassName = 'infoLink--contact';
         route = "/contacts";
+        
     }
     else{
       icon = faBuilding;
