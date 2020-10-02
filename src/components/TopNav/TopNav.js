@@ -15,7 +15,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import ContactsIcon from "@material-ui/icons/Contacts";
-import ConversationsIcon from "@material-ui/icons/Chat";
+import BusinessIcon from '@material-ui/icons/Business';
 import MarketingIcon from "@material-ui/icons/Storefront";
 import SalesIcon from "@material-ui/icons/MoneyOff";
 import ServiceIcon from "@material-ui/icons/Settings";
@@ -23,8 +23,9 @@ import AutomationIcon from "@material-ui/icons/Autorenew";
 import ReportsIcon from "@material-ui/icons/Report";
 import SearchIcon from "@material-ui/icons/Search";
 import NotificationsIcon from "@material-ui/icons/Notifications";
+import logo from "../../img/Logo/logo.png";
+import { NavLink } from 'react-router-dom';
 
-import logo from "../images/hubspotLogo.png";
 
 const useStyles = makeStyles((theme) => ({
   list: {
@@ -46,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Header() {
+export default function TopNav() {
   const classes = useStyles();
   const [state, setState] = React.useState({
     top: false,
@@ -89,39 +90,25 @@ export default function Header() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
+      <NavLink activeClassName="active" to="/contacts">
         <ListItem button key="Contacts">
           <ListItemIcon>
             <ContactsIcon />
           </ListItemIcon>
           <ListItemText primary="Contacts" />
         </ListItem>
+        </NavLink>
       </List>
 
       <List>
-        <ListItem button key="Conversations">
+      <NavLink activeClassName="active" to="/companies">
+        <ListItem button key="Companies">
           <ListItemIcon>
-            <ConversationsIcon />
+            <BusinessIcon />
           </ListItemIcon>
-          <ListItemText primary="Conversations" />
+          <ListItemText primary="Companies" />
         </ListItem>
-      </List>
-
-      <List>
-        <ListItem button key="Marketing">
-          <ListItemIcon>
-            <MarketingIcon />
-          </ListItemIcon>
-          <ListItemText primary="Marketing" />
-        </ListItem>
-      </List>
-
-      <List>
-        <ListItem button key="Sales">
-          <ListItemIcon>
-            <SalesIcon />
-          </ListItemIcon>
-          <ListItemText primary="Sales" />
-        </ListItem>
+        </NavLink>
       </List>
 
       <List>
@@ -133,23 +120,6 @@ export default function Header() {
         </ListItem>
       </List>
 
-      <List>
-        <ListItem button key="Automation">
-          <ListItemIcon>
-            <AutomationIcon />
-          </ListItemIcon>
-          <ListItemText primary="Automation" />
-        </ListItem>
-      </List>
-
-      <List>
-        <ListItem button key="Reports">
-          <ListItemIcon>
-            <ReportsIcon />
-          </ListItemIcon>
-          <ListItemText primary="Reports" />
-        </ListItem>
-      </List>
     </div>
   );
 
@@ -172,13 +142,18 @@ export default function Header() {
               <SearchIcon />
             </IconButton> */}
 
-            <IconButton color="inherit">
-              <MarketingIcon />
-            </IconButton>
+            <NavLink activeClassName="active" to="/contacts">
+              <IconButton color="inherit">
+                <ContactsIcon />
+              </IconButton>
+            </NavLink>
 
+            <NavLink activeClassName="active" to="/companies">
             <IconButton color="inherit">
-              <ServiceIcon />
+              <BusinessIcon />
             </IconButton>
+            </NavLink>
+
 
             <IconButton color="inherit">
               <NotificationsIcon />
@@ -200,7 +175,7 @@ export default function Header() {
               onClick={handleMenu}
               color="inherit"
             >
-              <Typography variant="h6">cml</Typography>
+              <Typography variant="h6">ByteCRM</Typography>
             </IconButton>
 
             <Menu
