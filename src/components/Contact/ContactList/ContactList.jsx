@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "./ContactList.scss";
-import NavBar from "../../Navbar";
 import SwitchBar from "./components/SwitchBar/SwitchBar";
 import All from "@material-ui/icons/Face";
 import Mine from "@material-ui/icons/CheckCircle";
@@ -40,7 +39,6 @@ class ContactList extends Component {
   render() {
     return (
       <div className="root" key={'wrapper'}>
-        <NavBar />
         <SwitchBar tabs={tabs} userAccount={this.state.userAccount} />
       </div>
     );

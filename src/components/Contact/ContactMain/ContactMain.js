@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Modal from '../../Modal';
 import InfoPage from '../../InfoPage';
 import Activities from '../../Activities';
-import Navbar from "../../Navbar";
 import RelationPage from "../../RelationPage";
 import Loading from '../../Loading';
 import { ThemeProvider } from '@material-ui/core/styles';
@@ -100,9 +99,6 @@ class ContactMain extends Component {
         return (
             <div>
                 <ModalContext.Provider value={openModal}>
-                    <header>
-                        <Navbar />
-                    </header>
                     <ThemeProvider theme={theme}>
                         {loading ?
                             <Loading variant="full page" />
