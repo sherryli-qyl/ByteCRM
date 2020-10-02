@@ -4,6 +4,7 @@ import { InfoContext } from '../../InfoPage/components/Context';
 import { ModalContext } from '../../Modal/components/ModalContext';
 import InfoPage from '../../InfoPage';
 import Activities from '../../Activities';
+import Navbar from "../../Navbar";
 import RelationPage from '../../RelationPage';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { publicTheme } from '../../Style/Theme/MatUITheme';
@@ -62,6 +63,9 @@ class CompanyMain extends Component {
         return (
             <div>
                 <ModalContext.Provider value={this.openModal}>
+                    <header>
+                        <Navbar />
+                    </header>
                     <ThemeProvider theme={theme}>
                         <div className="Main">
                             <InfoContext.Provider value={this.onChangeInfo}>
