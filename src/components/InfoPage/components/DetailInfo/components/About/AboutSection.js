@@ -59,7 +59,7 @@ class AboutSection extends React.Component {
                                     closeModal={this.closeModal}
                                     propertyDiff = {propertyDiff}
                                     saveData={() => { 
-                                        value.multi(Object.assign({},data));
+                                        value.multi({...data});
                                         this.closeModal();
                                      }
                                     } />
