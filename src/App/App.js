@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.scss';
-import Routes from '../Routes';
-import TopNav from '../../TopNav/TopNav';
+import Routes from '../Routes/Routes';
+import TopNav from '../TopNav/TopNav';
 
 
 function App() {
