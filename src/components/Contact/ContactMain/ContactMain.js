@@ -7,9 +7,10 @@ import Loading from '../../Loading';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { ModalContext } from '../../Modal/components/ModalContext';
 import { InfoContext } from '../../InfoPage/components/Context';
+import { ActivityContext } from '../../Activities/Context';
 import { publicTheme } from '../../Style/Theme/MatUITheme';
 import { ContactDictionary } from './components/Dictionary';
-import { GetContact,UpdateContact } from '../../Api/Contact/Contact';
+import { GetContact, UpdateContact } from '../../Api/Contact/Contact';
 import WebActivity from './components/WebActivity';
 import './ContactMain.scss';
 
@@ -27,7 +28,7 @@ class ContactMain extends Component {
             contact: '',
             expandPack: expandPack,
             currentModal: "",
-            loading: true,
+            loading: false,
             theme: publicTheme,
         }
         this.closeModal = this.closeModal.bind(this);
@@ -73,20 +74,22 @@ class ContactMain extends Component {
         this.setState({
             contact: newContact
         })
-        UpdateContact(this.id,newContact)
-        console.table(newContact);
+        UpdateContact(this.id, newContact)
     }
 
-    
+
 
     componentDidMount() {
-        const contact = GetContact(this.id);
-        contact.then( value =>
-            this.setState({
-                contact:value,
-                loading:false,
-            })
-        )
+        if (this.state.contact === '') {
+            const contact = GetContact(this.id);
+            contact.then(value => {
+                this.setState({
+                    contact: value,
+                    loading: false,
+                })
+            }
+            )
+        }
     }
 
 
@@ -106,17 +109,19 @@ class ContactMain extends Component {
                             <div className="Main">
                                 <InfoContext.Provider value={value}>
                                     <InfoPage openModal={this.openModal}
-                                        infoData={infoData}
-                                        expandPack={expandPack}
+                                              infoData={infoData}
+                                              expandPack={expandPack}
                                     />
                                 </InfoContext.Provider>
-                                <Activities />
-                                <RelationPage />
-                                <Modal Xaxis={this.state.Xaxis}
-                                    Yaxis={this.state.Yaxis}
-                                    visible={visible}
-                                    currentModal={currentModal}
-                                    closeModal={this.closeModal} />
+                                <ActivityContext.Provider value={contact} >
+                                    <Activities />
+                                    <RelationPage />
+                                    <Modal Xaxis={this.state.Xaxis}
+                                           Yaxis={this.state.Yaxis}
+                                           visible={visible}
+                                           currentModal={currentModal}
+                                           closeModal={this.closeModal} />
+                                </ActivityContext.Provider>
                             </div>
                         }
                     </ThemeProvider>
