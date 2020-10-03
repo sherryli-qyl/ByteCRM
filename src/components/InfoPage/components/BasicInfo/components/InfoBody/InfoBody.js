@@ -16,7 +16,6 @@ class InfoBody extends React.Component {
         let loading = true;
         if (dataPack.data && !dataPack.data.errors) {
             loading = false
-            console.table (dataPack.data)
         }
         return (
             <div className="infoBody">

@@ -80,16 +80,15 @@ class ContactMain extends Component {
 
 
     componentDidMount() {
-        if (this.state.contact === '') {
-            const contact = GetContact(this.id);
-            contact.then(value => {
-                this.setState({
-                    contact: value,
-                    loading: false,
-                })
-            }
-            )
+        const contact = GetContact(this.id);
+        contact.then(value => {
+            this.setState({
+                contact: value,
+                loading: false,
+            })
         }
+        )
+
     }
 
 
@@ -109,18 +108,18 @@ class ContactMain extends Component {
                             <div className="Main">
                                 <InfoContext.Provider value={value}>
                                     <InfoPage openModal={this.openModal}
-                                              infoData={infoData}
-                                              expandPack={expandPack}
+                                        infoData={infoData}
+                                        expandPack={expandPack}
                                     />
                                 </InfoContext.Provider>
                                 <ActivityContext.Provider value={contact} >
                                     <Activities />
                                     <RelationPage />
                                     <Modal Xaxis={this.state.Xaxis}
-                                           Yaxis={this.state.Yaxis}
-                                           visible={visible}
-                                           currentModal={currentModal}
-                                           closeModal={this.closeModal} />
+                                        Yaxis={this.state.Yaxis}
+                                        visible={visible}
+                                        currentModal={currentModal}
+                                        closeModal={this.closeModal} />
                                 </ActivityContext.Provider>
                             </div>
                         }
