@@ -1,7 +1,7 @@
-@import '../../../../../../../../style/variable.scss';
+@import '../../../../../../../../../style/variable.scss';
 
 
-.emailSendBar{
+.emailFooter{
     display: flex;
     justify-content: flex-start;
     height:70px;
@@ -9,7 +9,7 @@
     
     // margin-top:0.1%;
     // margin-bottom: 1%;
-    //background-color:rgba($color: #e06a1a, $alpha: 0.5);
+   
 
     &__send{
         flex:1;

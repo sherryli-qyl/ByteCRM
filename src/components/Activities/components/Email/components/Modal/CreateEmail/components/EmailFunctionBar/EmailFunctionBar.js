@@ -1,5 +1,4 @@
 import React from 'react';
-import Text from '../../../../../../../Style/Text';
 import "./EmailFunctionBar.scss"
 import EmailFunctionBarItem from './components/EmailFunctionBarItem'
 

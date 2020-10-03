@@ -1,5 +1,5 @@
 import React from 'react';
-import Text from '../../../../../../../../Style/Text';
+import Text from '../../../../../../../../../Style/Text';
 
 
 
