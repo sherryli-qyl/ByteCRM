@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.scss';
 import Routes from '../Routes';
-import TopNav from '../TopNav/TopNav';
+import TopNav from '../../TopNav/TopNav';
 
 
 function App() {
@@ -13,6 +13,6 @@ function App() {
       </main>
     </div>
   )
-};
+}
 
 export default App;
