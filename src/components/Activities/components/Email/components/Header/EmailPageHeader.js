@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import CreateButton from '../../../../../Style/Button/Activities/CreateButton';
 import LogButton from '../../../../../Style/Button/Activities/LogButton';
 import Text from '../../../../../Style/Text';
