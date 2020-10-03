@@ -16,14 +16,10 @@ import MenuItem from "@material-ui/core/MenuItem";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import ContactsIcon from "@material-ui/icons/Contacts";
 import BusinessIcon from '@material-ui/icons/Business';
-import MarketingIcon from "@material-ui/icons/Storefront";
-import SalesIcon from "@material-ui/icons/MoneyOff";
 import ServiceIcon from "@material-ui/icons/Settings";
-import AutomationIcon from "@material-ui/icons/Autorenew";
-import ReportsIcon from "@material-ui/icons/Report";
-import SearchIcon from "@material-ui/icons/Search";
 import NotificationsIcon from "@material-ui/icons/Notifications";
-import logo from "../../img/Logo/logo.png";
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import logo from "../img/Logo/logo.png";
 import { NavLink } from 'react-router-dom';
 
 
@@ -112,6 +108,17 @@ export default function TopNav() {
       </List>
 
       <List>
+      <NavLink activeClassName="active" to="/login">
+        <ListItem button key="Logout">
+          <ListItemIcon>
+            <ExitToAppIcon />
+          </ListItemIcon>
+          <ListItemText primary="Logout" />
+        </ListItem>
+        </NavLink>
+      </List>
+
+      <List>
         <ListItem button key="Service">
           <ListItemIcon>
             <ServiceIcon />
@@ -134,25 +141,21 @@ export default function TopNav() {
             aria-label="menu"
             onClick={toggleDrawer(true)}
           >
-            <img src={logo} height="45" />
+            <img src={logo} height="45" alt="logo"/>
           </IconButton>
           <Typography variant="h6" className={classes.title}></Typography>
           <div>
             {/* <IconButton color="inherit">
               <SearchIcon />
-            </IconButton> */}
+            </IconButton>  */}
 
-            <NavLink activeClassName="active" to="/contacts">
               <IconButton color="inherit">
                 <ContactsIcon />
               </IconButton>
-            </NavLink>
 
-            <NavLink activeClassName="active" to="/companies">
             <IconButton color="inherit">
               <BusinessIcon />
             </IconButton>
-            </NavLink>
 
 
             <IconButton color="inherit">

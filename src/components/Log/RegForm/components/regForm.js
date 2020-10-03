@@ -8,7 +8,7 @@ export default class RegisterForm extends React.Component {
       <div className="reg-formContainer">
         <form className="regForm" action="">
           <p className="asking">
-            Have an account?&nbsp;
+            {/* Have an account?&nbsp; */}
             <Link className="reg-signInLink" to="/login">
               Sign in
             </Link>

@@ -4,21 +4,30 @@ import ContactList from '../Contact/ContactList';
 import ContactMain from '../Contact/ContactMain';
 import CompanyList from '../Company/CompanyList';
 import CompanyMain from '../Company/CompanyMain';
-import Logout from '../Log/RegForm/Register';
+import Logout from '../Log/LogIn/LogIn';
 import RegForm from '../Log/RegForm/Register';
-import LoginForm from '../Log/LoginForm/Login';
+import Login from '../Log/LogIn/LogIn';
+import {
+  COMPANY_BASE_URL,
+  CONTACT_BASE_URL,
+  LOGIN_BASE_URL,
+  REG_BASE_URL,
+  LOGOUT_BASE_URL,
+} from './URLMap';
 
-const Routes = () => (
-  <Switch>
-    <Redirect exact from="/" to="/register" />
-    <Route exact path="/login" component={LoginForm} />
-    <Route exact path="/contacts" component={ContactList} />
-    <Route exact path="/contacts/main" component={ContactMain} />
-    <Route exact path="/companies" component={CompanyList} />
-    <Route exact path="/companies/main" component={CompanyMain} />
-    <Route exact path="/logout" component={Logout} />
-    <Route exact path="/register" component={RegForm} />
-  </Switch>
-);
+const Routes = () => {
+  return (
+    <Switch>
+      <Redirect exact from="/" to={CONTACT_BASE_URL} />
+      <Route exact path={LOGIN_BASE_URL} component={Login} />
+      <Route exact path={REG_BASE_URL} component={RegForm} />
+      <Route exact path={LOGOUT_BASE_URL} component={Login} />
+      <Route exact path={CONTACT_BASE_URL} component={ContactList} />
+      <Route exact path={`${CONTACT_BASE_URL}/:id`} component={ContactMain} />
+      <Route exact path={COMPANY_BASE_URL} component={CompanyList} />
+      <Route exact path={`${COMPANY_BASE_URL}/main`} component={CompanyMain} />
+    </Switch>
+  )
+}
 
 export default Routes;
