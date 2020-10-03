@@ -21,7 +21,13 @@ import NotificationsIcon from "@material-ui/icons/Notifications";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import logo from "../img/Logo/logo.png";
 import { NavLink } from 'react-router-dom';
-
+import {
+  COMPANY_BASE_URL,
+  CONTACT_BASE_URL,
+  LOGIN_BASE_URL,
+  REG_BASE_URL,
+  LOGOUT_BASE_URL,
+} from '../Routes/URLMap';
 
 const useStyles = makeStyles((theme) => ({
   list: {
