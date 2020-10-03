@@ -50,7 +50,10 @@ function createData(
 ) {
   return {
     name: (
-      <NavLink activeClassName="active" to="/contacts/main">
+      <NavLink activeClassName="active" to={{
+        pathname: "/contacts/main",
+        // id: `${ID}`,
+        }}>
         {name}
       </NavLink>
     ),
@@ -84,11 +87,24 @@ function generateData() {
       )
     );
   }
+  result.push({
+    name: (
+      <>
+      <NavLink activeClassName="active" to="/contacts/main">
+        Luis
+      </NavLink>
+      &ensp;
+      <NavLink activeClassName="active" to="/contacts/main">
+        Alice
+      </NavLink>
+      </>
+    ),
+  });
   return result;
 }
 
 /* ======================================================= */
-function wrapUpData(tableData) {  
+function wrapUpData(tableData) {
   let result = [];
   for (let i = 0; i < tableData.length; i++) {
     result.push(

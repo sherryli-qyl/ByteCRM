@@ -35,7 +35,7 @@ const tableIcons = {
     SortArrow: forwardRef((props, ref) => <ArrowDownward {...props} ref={ref} />),
     ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />),
-    Delete: forwardRef((props, ref) => <DeleteIcon {...props} ref={ref} />),
+    Deletion: forwardRef((props, ref) => <DeleteIcon {...props} ref={ref} />),
 };
 
 
