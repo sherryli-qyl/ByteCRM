@@ -1,6 +1,6 @@
 import { keys } from '@material-ui/core/styles/createBreakpoints';
 import React from 'react';
-import Body from '../../../private/LogEmailMain';
+import Body from './components/Body';
 import Footer from './components/Footer';
 import Header from './components/Header';
 
@@ -20,12 +20,21 @@ class LogEmailCard extends React.Component {
         }
         this.onDateChange = this.onDateChange.bind(this);
         this.onTimeChange = this.onTimeChange.bind(this);
+        this.onTest = this.onTest.bind(this)
     }
 
     onDateChange(date) {
         this.setState({
             currentDate: date,
         })
+    }
+
+    onTest(date) {
+        const newDate = date;
+        this.setState({
+            currentDate: newDate,
+        })
+        console.log(date)
     }
 
     onTimeChange(time) {
@@ -48,9 +57,9 @@ class LogEmailCard extends React.Component {
                 }
                 <div className='blockline' >
                     <Body currentDate={currentDate}
-                          currentTime={currentTime}
-                          onTimeChange={this.onTimeChange}
-                          onDateChange={this.onDateChange} />
+                        currentTime={currentTime}
+                        onTimeChange={this.onTimeChange}
+                        onDateChange={this.onDateChange} />
                 </div>
                 <Footer userName={this.props.card.name} />
             </div>

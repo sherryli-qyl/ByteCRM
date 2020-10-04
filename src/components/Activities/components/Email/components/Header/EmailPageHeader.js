@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import CreateButton from '../../../../../Style/Button/Activities/CreateButton';
 import LogButton from '../../../../../Style/Button/Activities/LogButton';
 import Text from '../../../../../Style/Text';
-import EmailModal from '../Modal/CreateEmail';
-import LogEmailModal from '../Modal/LogEmail';
+import EmailModal from '../EmailModal/';
 import { ModalContext } from '../../../../../Modal/components/ModalContext';
 import "./EmailPageHeader.scss";
 import Modal from '../../../../../../js/Modal';
@@ -12,8 +11,8 @@ import Modal from '../../../../../../js/Modal';
 
 
 const EmailPageHeader = () => {
-    const createModal = new Modal('Email', 'Email', <EmailModal/>); //create your modal
-    const logModal = new Modal('Log Email', 'Log Email', <LogEmailModal/>);
+    const createModal = new Modal('Email', 'Email', <EmailModal />); //create your modal
+    const logModal = new Modal('Email', 'Email', <EmailModal />);
     return (
         <ModalContext.Consumer>
             { openModal =>
