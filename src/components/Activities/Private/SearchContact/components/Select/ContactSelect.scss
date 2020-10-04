@@ -1,0 +1,25 @@
+.contactSelect{
+    display: flex;
+    flex-direction: column;
+    flex:2;
+    width: 100%;
+    justify-content: center;
+    height: 100%;
+    
+   
+    
+
+    &__title{
+        display: flex;
+        align-items: center;
+        background-color: white;
+        min-height:40px;
+        width: 100%;
+        font-size: 14px;
+
+        &__text{
+            margin-left: 3%;
+        }
+    }
+   
+}
