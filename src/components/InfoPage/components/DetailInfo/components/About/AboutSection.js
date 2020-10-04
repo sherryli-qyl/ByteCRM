@@ -11,11 +11,11 @@ import './AboutSection.scss';
 class AboutSection extends React.Component {
     constructor(props) {
         super(props);
-        const data = {...this.props.data};
+        const data = { ...this.props.data };
         this.state = {
             modalActive: false,
             data,
-            propertyDiff:0,
+            propertyDiff: 0,
         }
         this.showModal = this.showModal.bind(this);
         this.closeModal = this.closeModal.bind(this)
@@ -25,16 +25,16 @@ class AboutSection extends React.Component {
         const newData = this.state.data;
         let target = true;
         newData[key] = value;
-        const count = FindDiff(newData,this.props.data,0);
-        count === 0? target = false : target = true;
+        const count = FindDiff(newData, this.props.data, 0);
+        count === 0 ? target = false : target = true;
         this.setState({
             modalActive: target,
             data: newData,
-            propertyDiff:count,
+            propertyDiff: count,
         });
     }
 
-    closeModal(){
+    closeModal() {
         this.setState({
             modalActive: false,
         })
@@ -42,27 +42,31 @@ class AboutSection extends React.Component {
 
 
     render() {
-        const { modalActive, data,propertyDiff} = this.state;
+        const { modalActive, data, propertyDiff } = this.state;
         return (
             <div className='aboutContact'>
-                {this.props.infoList.map((item) => (
-                    <TableEditor
-                        key={item.key}
-                        item={item}
-                        showModal={this.showModal}
-                        closeModal = {this.closeModal}
-                    />
-                ))}
+                {this.props.infoList.map((item) => {
+                    console.log(item.value);
+                    return (
+                        <TableEditor
+                            key={item.key}
+                            item={item}
+                            showModal={this.showModal}
+                            closeModal={this.closeModal}
+                        />
+                    )
+                }
+                )}
                 <InfoContext.Consumer>
-                    {value =>(
-                         <SaveModal modalActive={modalActive}
-                                    closeModal={this.closeModal}
-                                    propertyDiff = {propertyDiff}
-                                    saveData={() => { 
-                                        value.multi(Object.assign({},data));
-                                        this.closeModal();
-                                     }
-                                    } />
+                    {value => (
+                        <SaveModal modalActive={modalActive}
+                            closeModal={this.closeModal}
+                            propertyDiff={propertyDiff}
+                            saveData={() => {
+                                value.multi({ ...data });
+                                this.closeModal();
+                            }
+                            } />
                     )}
                 </InfoContext.Consumer>
             </div>

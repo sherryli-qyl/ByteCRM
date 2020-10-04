@@ -1,0 +1,14 @@
+.logEmailModal{
+    display:flex;
+    flex-direction: column;
+    flex:1;
+    // padding: {
+    //     left:2%;
+    // };
+    height:100%;
+    background-color: inherit;
+
+    &__header{
+        padding-left:3%;
+    }
+}
