@@ -7,9 +7,9 @@ import Loading from '../../Loading';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { ModalContext } from '../../Modal/components/ModalContext';
 import { InfoContext } from '../../InfoPage/components/Context';
-import { ActivityContext } from '../../Activities/Context';
 import { publicTheme } from '../../Style/Theme/MatUITheme';
 import { ContactDictionary } from './components/Dictionary';
+import { ActivityContext } from '../../Activities/Context';
 import { GetContact, UpdateContact } from '../../Api/Contact/Contact';
 import WebActivity from './components/WebActivity';
 import './ContactMain.scss';
@@ -28,7 +28,7 @@ class ContactMain extends Component {
             contact: '',
             expandPack: expandPack,
             currentModal: "",
-            loading: false,
+            loading: true,
             theme: publicTheme,
         }
         this.closeModal = this.closeModal.bind(this);
@@ -75,20 +75,19 @@ class ContactMain extends Component {
             contact: newContact
         })
         UpdateContact(this.id, newContact)
+        console.table(newContact);
     }
 
 
 
     componentDidMount() {
         const contact = GetContact(this.id);
-        contact.then(value => {
+        contact.then(value =>
             this.setState({
                 contact: value,
                 loading: false,
             })
-        }
         )
-
     }
 
 
@@ -112,7 +111,7 @@ class ContactMain extends Component {
                                         expandPack={expandPack}
                                     />
                                 </InfoContext.Provider>
-                                <ActivityContext.Provider value={contact} >
+                                <ActivityContext.Provider value = {contact}>
                                     <Activities />
                                     <RelationPage />
                                     <Modal Xaxis={this.state.Xaxis}
