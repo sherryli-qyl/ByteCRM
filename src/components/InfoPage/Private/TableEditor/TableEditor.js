@@ -69,6 +69,7 @@ class TableEditor extends React.Component {
 
     render() {
         const { hideEditor, currentValue, title, tip, key } = this.state;
+
         let underline = "underline "
         if (!hideEditor) {
             underline += "underline--active "
