@@ -1,0 +1,32 @@
+@import '../../../../../../../../../style/variable.scss';
+
+
+.emailFooter{
+    display: flex;
+    justify-content: flex-start;
+    height:70px;
+    margin-top:0px;
+    
+    // margin-top:0.1%;
+    // margin-bottom: 1%;
+   
+
+    &__send{
+        flex:1;
+        align-self: center;
+        margin-left: 3%;
+    }
+
+    &__sendLater{
+        flex:1;
+        align-self: center;
+        margin-left: 3%;
+    }
+
+    &__taskFollow{
+        margin-left: 3%;
+        align-self: center;
+        flex:7;
+    }
+}
+
