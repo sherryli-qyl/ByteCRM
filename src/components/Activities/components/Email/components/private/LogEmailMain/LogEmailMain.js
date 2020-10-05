@@ -2,7 +2,7 @@ import React from 'react';
 import DatePicker from '../../../../../../Style/Picker/DatePicker';
 import TimePicker from '../../../../../../Style/Picker/TimePicker';
 import { transferTimeHHMM } from '../../../../../../services/timeManager';
-import SearchContact from '../../../../../Private/SearchContact';
+import SearchContact from '../../../../../../SearchContact';
 import './LogEmailMain.scss';
 
 
