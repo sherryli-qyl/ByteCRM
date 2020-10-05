@@ -51,7 +51,8 @@ class Dropdown extends React.Component {
 
         if (text.length >= 3) {
             newHint = 'searching';
-            const newSearchList = SearchContactRemote(this.state.searchList,text.toUpperCase());
+            const newList = SearchContactLocal(this.state.contactList, text.toUpperCase());
+            const newSearchList = SearchContactRemote(newList,text.toUpperCase());
             let foundNewContact = false;
             
             if (newSearchList.length >= 1){
