@@ -1,10 +1,10 @@
 import React from 'react';
 import Dropdown from './components/Dropdown';
-import './SearchContact.scss';
+import './ContactSelector.scss';
 
 
 
-class SearchDropdown extends React.Component {
+class ContactSelector extends React.Component {
     constructor(props) {
         super(props);
         this.testList = [{ _id: "00001", firstName: "Oliver", lastName: "Yu", email: '223@gmail.com' },
@@ -24,7 +24,6 @@ class SearchDropdown extends React.Component {
             showDropdown: !prevState.showDropdown
         })
         )
-        console.log("click " + this.state.showDropdown);
     }
 
     onClose() {
@@ -32,7 +31,6 @@ class SearchDropdown extends React.Component {
             showDropdown: false,
         })
         )
-        console.log("click2 " + this.state.showDropdown);
     }
 
     handleRemoveContact(id) {
@@ -65,9 +63,9 @@ class SearchDropdown extends React.Component {
         }
         else contacted = `${contactList.length} contacts`
         return (
-            <div className='searchDropdown'>
-                <div className='searchDropdown__label'>
-                    <button className='searchDropdown__label__btn'
+            <div className='contactSelector'>
+                <div className='contactSelector__label'>
+                    <button className='contactSelector__label__btn'
                         onClick={(event) => {
                             event.stopPropagation();
                             this.onClickButton();
@@ -84,4 +82,4 @@ class SearchDropdown extends React.Component {
     }
 }
 
-export default SearchDropdown;
+export default ContactSelector;

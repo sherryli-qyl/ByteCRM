@@ -9,7 +9,7 @@ class SelectItem extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            checked: true,
+            checked: this.props.checked,
         }
         this.onClickCheckbox = this.onClickCheckbox.bind(this);
     }
@@ -22,7 +22,7 @@ class SelectItem extends React.Component {
 
     render() {
         const { checked } = this.state;
-        const { contact, email,contactID} = this.props;
+        const { contact,contactID} = this.props;
         return (
             <div className='selectItem'>
                 <div className='selectItem__left'>
@@ -45,7 +45,7 @@ class SelectItem extends React.Component {
                     }
                 </div>
                 <div className='selectItem__right'>
-                    {`${contact.firstName} ${contact.lastName} (${email})`}
+                    {`${contact.firstName} ${contact.lastName} (${contact.email})`}
                 </div>
             </div>
         )
