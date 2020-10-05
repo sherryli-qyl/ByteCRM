@@ -2,7 +2,7 @@ import React from 'react';
 import SearchBar from '../SearchBar';
 import Select from '../Select';
 import HintBar from '../HintBar';
-import { SearchContact } from '../../../../utils/SearchContact/SearchContact';
+import { SearchContactLocal,SearchContactRemote} from '../../../../utils/SearchContact/SearchContact';
 import './Dropdown.scss';
 
 
@@ -14,18 +14,17 @@ class Dropdown extends React.Component {
             hintMessage: '',
             showDropdown: this.props.showDropdown,
             contactList: this.props.contactList,
-            searchResult:[],
+            searchList:[],
         }
         this.onChangeInput = this.onChangeInput.bind(this);
     }
 
     onChangeInput(text) {
         let newHint = '';
-        let newList = SearchContact(this.state.contactList, text.toUpperCase());
+        let newList = SearchContactLocal(this.state.contactList, text.toUpperCase());
         if (newList.length > 0 && text.length !==0) {
-            console.table(newList);
             this.setState({
-                searchResult:newList,
+                searchList:newList,
                 showSearchList: true,
                 checkInput:false,
             })
@@ -40,20 +39,23 @@ class Dropdown extends React.Component {
                 }
             })
         }
-        else if (text.length >= 3) {
+
+        else {
+            this.setState({
+                searchList: [],
+                checkInput: false,
+            })
+        }
+
+        if (text.length >= 3) {
             newHint = 'searching';
+            const newSearchList = SearchContactRemote(this.state.searchList,text.toUpperCase());
             this.setState(prevState => {
                 return {
                     ...prevState,
+                    searchList: newSearchList,
                     hintMessage: newHint,
-                    checkInput: true,
                 }
-            })
-        }
-        else {
-            this.setState({
-                searchResult: [],
-                checkInput: false,
             })
         }
     }
@@ -61,8 +63,8 @@ class Dropdown extends React.Component {
 
     render() {
         const {showDropdown} = this.props
-        const { hintMessage, checkInput, contactList,searchResult} = this.state;
-        console.log("check1 " + searchResult.length);
+        const { hintMessage, checkInput, contactList,searchList} = this.state;
+        console.log("check1 " + searchList.length);
         let className = "dropdown "
         if (showDropdown) {
             className += "dropdown__active"
@@ -76,7 +78,7 @@ class Dropdown extends React.Component {
                     </div>
                     {!checkInput ?
                         <Select label={'Contacts'}
-                            searchResult = {searchResult}
+                            searchList = {searchList}
                             handleRemoveContact={this.props.handleRemoveContact}
                             handleAddContact={this.props.handleAddContact}
                             contactList={contactList} />
