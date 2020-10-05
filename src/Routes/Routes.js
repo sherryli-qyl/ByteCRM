@@ -4,8 +4,8 @@ import ContactList from '../Contact/ContactList';
 import ContactMain from '../Contact/ContactMain';
 import CompanyList from '../Company/CompanyList';
 import CompanyMain from '../Company/CompanyMain';
-import RegForm from '../Log/RegForm/Register';
-import Login from '../Log/LogIn/LogIn';
+import RegForm from '../User/RegForm/Register';
+import Login from '../User/LogIn/LogIn';
 import About from '../AboutUs/AboutUs';
 import Contactus from '../ContactUs/ContactUs';
 import
