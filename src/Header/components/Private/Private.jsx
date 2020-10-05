@@ -1,13 +1,9 @@
 import React from 'react';
-import styled from 'styled-components';
 import NavigationButton from '../NavigationButton';
 import NavigationLink from '../NavigationLink';
 import SignInModal from './components/SignInModal';
 import SignUpModal from './components/SignUpModal';
 
-const Layout = styled.div`
-  display: flex;
-`;
 
 const MODAL = {
   SIGN_IN: 'SIGN_IN',
@@ -41,17 +37,17 @@ class Private extends React.Component {
 
     return (
       <>
-        <Layout>
+        <div className = "Layout">
           <NavigationButton.Text onClick={this.showModal(MODAL.SIGN_IN)}>
             Sign in
           </NavigationButton.Text>
           <NavigationButton.Text onClick={this.showModal(MODAL.SIGN_UP)}>
-            Sign up
+            Register
           </NavigationButton.Text>
           <NavigationLink.Button variant="secondary" href="/enroll">
             Become a Tasker
           </NavigationLink.Button>
-        </Layout>
+        </div>
         {showModal === MODAL.SIGN_IN && (
           <SignInModal
             onClose={this.showModal(MODAL.EMPTY)}

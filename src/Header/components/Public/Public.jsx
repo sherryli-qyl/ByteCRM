@@ -1,30 +1,18 @@
 import React from 'react';
-import styled from 'styled-components';
 import NavigationLink from '../NavigationLink';
 import NavigationButton from '../NavigationButton';
 import PostATaskModal from './components/PostATaskModal';
 import CategoriesDropdown from './components/CategoriesDropdown';
 import ToggleContent from '../../UI/ToggleContent';
+import './Public.scss';
 
-const Layout = styled.div`
-  display: flex;
-`;
-
-const Divider = styled.div`
-  width: 1px;
-  border-right: 1px solid #dadada;
-`;
-
-const Logo = styled.span`
-  color: #008fb4;
-`;
 
 const Public = () => (
-  <Layout>
+  <div className = "Layout">
     <NavigationLink.Naked href="/">
-      <Logo>LOGO</Logo>
+      <div className = "Logo">ByteCRM</div>
     </NavigationLink.Naked>
-    <Divider />
+    <div className = "Divider"></div>
     <ToggleContent
       toggle={(toggler) => (
         <NavigationButton.Button
@@ -46,7 +34,7 @@ const Public = () => (
     <NavigationLink.Text indictable href="/how-it-works">
       How it works
     </NavigationLink.Text>
-  </Layout>
+  </div>
 );
 
 export default Public;
