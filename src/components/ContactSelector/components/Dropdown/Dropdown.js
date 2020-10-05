@@ -5,7 +5,6 @@ import HintBar from '../HintBar';
 import './Dropdown.scss';
 
 
-
 class Dropdown extends React.Component {
     constructor(props) {
         super(props);
@@ -19,10 +18,8 @@ class Dropdown extends React.Component {
 
     onChangeInput(text) {
         let newHint = '';
-        console.log(text.length);
-        if (text.length > 1 && text.length < 3) {
+        if (text.length > 0 && text.length < 3) {
             newHint = `type ${3 - text.length} more character`;
-            console.log(newHint);
             this.setState(prevState => {
                 return {
                     ...prevState,
@@ -41,16 +38,16 @@ class Dropdown extends React.Component {
                 }
             })
         }
-        else{
+        else {
             this.setState({
-                checkInput:false,
+                checkInput: false,
             })
         }
     }
 
 
     render() {
-        const { showDropdown } = this.props;
+        const { showDropdown,contactList} = this.props;
         const { hintMessage, checkInput } = this.state;
         console.log(hintMessage);
         let className = "dropdown "
@@ -69,7 +66,7 @@ class Dropdown extends React.Component {
                         <Select label={'Contacts'}
                             handleRemoveContact={this.props.handleRemoveContact}
                             handleAddContact={this.props.handleAddContact}
-                            contactList={this.props.contactList} />
+                            contactList={contactList} />
                         :
                         <HintBar>
                             {hintMessage}
