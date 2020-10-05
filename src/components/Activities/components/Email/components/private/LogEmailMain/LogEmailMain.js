@@ -2,7 +2,7 @@ import React from 'react';
 import DatePicker from '../../../../../../Style/Picker/DatePicker';
 import TimePicker from '../../../../../../Style/Picker/TimePicker';
 import { transferTimeHHMM } from '../../../../../../services/timeManager';
-import SearchContact from '../../../../../../SearchContact';
+import ContactSelector from '../../../../../../ContactSelector';
 import './LogEmailMain.scss';
 
 
@@ -17,7 +17,7 @@ const LogEmailCardMain = ({
                 <div className="cardLabel">
                     Contacted
                 </div>
-                <SearchContact/>
+                <ContactSelector/>
             </div>
             <div className='emailCardBody__container'>
                 <div className="cardLabel">
