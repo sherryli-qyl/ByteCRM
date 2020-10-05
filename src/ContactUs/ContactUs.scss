@@ -1,0 +1,22 @@
+.Contact_container {
+    width: 1024px;
+    margin: 0 auto;
+    background-image: url("../img/Contactus/getintouch.jpeg"); 
+  }
+  
+  .Contact_layout {
+      display: flex;
+      flex-direction: column;
+      border : 2px solid black;
+  }
+
+  .Catch_background {
+      border : 2px solid black;
+      height : 400px;
+      
+  }
+  
+  .Catch_text {
+      border : 2px solid black;
+
+  }
