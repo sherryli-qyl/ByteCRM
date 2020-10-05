@@ -6,13 +6,13 @@ import './HintBar.scss';
 
 
 const HintBar = ({
-    children
-})=>(
-    <div className = 'hintBar'>
-
-        this is hint bar
-
-    </div>
-)
+    children,
+}) => (
+        <div className='hintBar'>
+            <div className='hintBar__text'>
+                {children}
+            </div>
+        </div>
+    )
 
 export default HintBar;

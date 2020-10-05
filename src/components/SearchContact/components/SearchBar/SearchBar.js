@@ -12,6 +12,12 @@ class SearchBar extends React.Component {
         this.state ={
 
         }
+        this.onChange = this.onChange.bind(this);
+    }
+
+    onChange(event){
+        event.preventDefault();
+        this.props.onChange(event.target.value);
     }
 
     componentDidUpdate(){
@@ -26,6 +32,7 @@ class SearchBar extends React.Component {
                     <input ref={this.textInput}
                            className="searchBar__input"
                            placeholder = "Search all records"
+                           onChange = {this.onChange}
                     />
                 </form>
                 <div className="searchBar__right">
