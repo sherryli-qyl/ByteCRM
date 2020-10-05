@@ -2,6 +2,7 @@ import React from 'react';
 import SearchBar from '../SearchBar';
 import Select from '../Select';
 import HintBar from '../HintBar';
+import { SearchContact } from '../../../../utils/SearchContact/SearchContact';
 import './Dropdown.scss';
 
 
@@ -11,14 +12,25 @@ class Dropdown extends React.Component {
         this.state = {
             checkInput: false,
             hintMessage: '',
-
+            showDropdown: this.props.showDropdown,
+            contactList: this.props.contactList,
+            searchResult:[],
         }
         this.onChangeInput = this.onChangeInput.bind(this);
     }
 
     onChangeInput(text) {
         let newHint = '';
-        if (text.length > 0 && text.length < 3) {
+        let newList = SearchContact(this.state.contactList, text.toUpperCase());
+        if (newList.length > 0 && text.length !==0) {
+            console.table(newList);
+            this.setState({
+                searchResult:newList,
+                showSearchList: true,
+                checkInput:false,
+            })
+        }
+        else if (text.length > 0 && text.length < 3 && newList.length === 0) {
             newHint = `type ${3 - text.length} more character`;
             this.setState(prevState => {
                 return {
@@ -40,6 +52,7 @@ class Dropdown extends React.Component {
         }
         else {
             this.setState({
+                searchResult: [],
                 checkInput: false,
             })
         }
@@ -47,14 +60,13 @@ class Dropdown extends React.Component {
 
 
     render() {
-        const { showDropdown,contactList} = this.props;
-        const { hintMessage, checkInput } = this.state;
-        console.log(hintMessage);
+        const {showDropdown} = this.props
+        const { hintMessage, checkInput, contactList,searchResult} = this.state;
+        console.log("check1 " + searchResult.length);
         let className = "dropdown "
         if (showDropdown) {
             className += "dropdown__active"
         }
-
         return (
             <div className={className}>
                 <div className='dropdown__corner' />
@@ -64,6 +76,7 @@ class Dropdown extends React.Component {
                     </div>
                     {!checkInput ?
                         <Select label={'Contacts'}
+                            searchResult = {searchResult}
                             handleRemoveContact={this.props.handleRemoveContact}
                             handleAddContact={this.props.handleAddContact}
                             contactList={contactList} />

@@ -8,13 +8,15 @@ import './ContactSelect.scss';
 class ContactSelect extends React.Component {
     constructor(props) {
         super(props);
+      
         this.state = {
-            contactList: this.props.contactList,
+         
         }
     }
 
     render() {
-        const { contactList } = this.state;
+        const { contactList, searchResult } = this.props;
+        console.log("check2 " + searchResult.length);
         return (
             <ActivityContext.Consumer>
                 {contact => (
@@ -24,28 +26,48 @@ class ContactSelect extends React.Component {
                                 {this.props.label}
                             </span>
                         </div>
-                        <SelectItem
-                            contactID={contact._id}
-                            contact = {contact}
-                            email={contact.email}
-                            handleRemoveContact={this.props.handleRemoveContact}
-                            handleAddContact={this.props.handleAddContact}>
-                        </SelectItem>
-                        {contactList.map(item => {
-                            if (item._id !== contact._id) {
-                                return (
-                                    <SelectItem
-                                        key={item._id}
-                                        contactID={item._id}
-                                        contact = {item}
-                                        email={item.email}
-                                        handleRemoveContact={this.props.handleRemoveContact}
-                                        handleAddContact={this.props.handleAddContact}>
-                                    </SelectItem>
-                                )
-                            }
-                            return null;
-                        })
+                        {searchResult.length > 0 ?
+                            searchResult.map(item => {
+                                if (item._id !== contact._id) {
+                                    return (
+                                        <SelectItem
+                                            key={item._id}
+                                            contactID={item._id}
+                                            contact={item}
+                                            email={item.email}
+                                            handleRemoveContact={this.props.handleRemoveContact}
+                                            handleAddContact={this.props.handleAddContact}>
+                                        </SelectItem>
+                                    )
+                                }
+                                return null;
+                            })
+                            :
+                            <React.Fragment>
+                                <SelectItem
+                                    contactID={contact._id}
+                                    contact={contact}
+                                    email={contact.email}
+                                    handleRemoveContact={this.props.handleRemoveContact}
+                                    handleAddContact={this.props.handleAddContact}>
+                                </SelectItem>
+                                {contactList.map(item => {
+                                    if (item._id !== contact._id) {
+                                        return (
+                                            <SelectItem
+                                                key={item._id}
+                                                contactID={item._id}
+                                                contact={item}
+                                                email={item.email}
+                                                handleRemoveContact={this.props.handleRemoveContact}
+                                                handleAddContact={this.props.handleAddContact}>
+                                            </SelectItem>
+                                        )
+                                    }
+                                    return null;
+                                })
+                                }
+                            </React.Fragment>
                         }
                     </div>
                 )
