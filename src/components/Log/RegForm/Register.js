@@ -1,6 +1,6 @@
 import React from 'react';
 import RegLogo from './components/RegLogo';
-import RegForm from './components/RegForm';
+import RegisterForm from './components/RegisterForm';
 import './Style/style.scss';
 
 export default class RegiForm extends React.Component {
@@ -8,7 +8,7 @@ export default class RegiForm extends React.Component {
     return (
       <div>
         <RegLogo />
-        <RegForm />
+        <RegisterForm />
       </div>
     );
   }
