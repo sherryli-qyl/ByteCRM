@@ -35,6 +35,10 @@
             position: absolute;
             right:10px;
 
+            &__active{
+                cursor: pointer;
+            }
+
             &__icon {
                 color: #0091ae;
                 height: 30px;
