@@ -16,7 +16,6 @@ class ContactSelect extends React.Component {
 
     render() {
         const { contactList, searchList } = this.props;
-        console.log("check2 " + searchList.length);
         return (
             <ActivityContext.Consumer>
                 {contact => (
@@ -30,7 +29,7 @@ class ContactSelect extends React.Component {
                             searchList.map(item => {
                                 return (
                                     <SelectItem
-                                        key={item._id}
+                                        key={item.contact._id}
                                         contactID={item.contact._id}
                                         contact={item.contact}
                                         checked = {item.checked}

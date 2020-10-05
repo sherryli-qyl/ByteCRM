@@ -46,7 +46,6 @@ class AboutSection extends React.Component {
         return (
             <div className='aboutContact'>
                 {this.props.infoList.map((item) => {
-                    console.log(item.value);
                     return (
                         <TableEditor
                             key={item.key}

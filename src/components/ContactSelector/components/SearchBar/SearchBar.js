@@ -10,13 +10,33 @@ class SearchBar extends React.Component {
         super(props);
         this.textInput = React.createRef();
         this.state ={
+            currentValue:'',
 
         }
         this.onChange = this.onChange.bind(this);
     }
 
+    handleDisplay(inputText){
+        this.setState(prevState=>{
+            return{
+                ...prevState,
+                currentValue:inputText,
+            } 
+        })
+    }
+
+    onCleanInput(){
+        this.setState(prevState=>{
+            return{
+                ...prevState,
+                currentValue:'',
+            } 
+        })
+    }
+
     onChange(event){
         event.preventDefault();
+        this.handleDisplay(event.target.value);
         this.props.onChange(event.target.value);
     }
 
@@ -24,12 +44,15 @@ class SearchBar extends React.Component {
         this.textInput.current.focus();
     }
 
+
     render(){
+        const {currentValue} = this.state;
         return (
             <div className='searchBar'>
                 <form className="searchBar__form"
                 >
                     <input ref={this.textInput}
+                           value = {currentValue}
                            className="searchBar__input"
                            placeholder = "Search all records"
                            onChange = {this.onChange}
