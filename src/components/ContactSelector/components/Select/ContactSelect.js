@@ -27,9 +27,7 @@ class ContactSelect extends React.Component {
                             </span>
                         </div>
                         {searchResult.length > 0 ?
-                            searchResult.map(item => {
-                                if (item._id !== contact._id) {
-                                    return (
+                            searchResult.map(item =>(     
                                         <SelectItem
                                             key={item._id}
                                             contactID={item._id}
@@ -37,11 +35,8 @@ class ContactSelect extends React.Component {
                                             email={item.email}
                                             handleRemoveContact={this.props.handleRemoveContact}
                                             handleAddContact={this.props.handleAddContact}>
-                                        </SelectItem>
-                                    )
-                                }
-                                return null;
-                            })
+                                        </SelectItem>    
+                            ))
                             :
                             <React.Fragment>
                                 <SelectItem
