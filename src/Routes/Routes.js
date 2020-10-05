@@ -1,18 +1,21 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import ContactList from '../Contact/ContactList';
-import ContactMain from '../Contact/ContactMain';
-import CompanyList from '../Company/CompanyList';
-import CompanyMain from '../Company/CompanyMain';
-import Logout from '../Log/LogIn/LogIn';
-import RegForm from '../Log/RegForm/Register';
-import Login from '../Log/LogIn/LogIn';
-import {
-  COMPANY_BASE_URL,
+import ContactList from '../components/Contact/ContactList';
+import ContactMain from '../components/Contact/ContactMain';
+import CompanyList from '../components/Company/CompanyList';
+import CompanyMain from '../components/Company/CompanyMain';
+import RegForm from '../components/Log/RegForm/Register';
+import Login from '../components/Log/LogIn/LogIn';
+import About from '../AboutUs/AboutUs';
+import Contactus from '../ContactUs/ContactUs';
+import
+{COMPANY_BASE_URL,
   CONTACT_BASE_URL,
   LOGIN_BASE_URL,
   REG_BASE_URL,
   LOGOUT_BASE_URL,
+  ABOUTUS_BASE_URL,
+  CONTACTUS_BASE_URL
 } from './URLMap';
 
 const Routes = () => {
@@ -26,6 +29,10 @@ const Routes = () => {
       <Route exact path={`${CONTACT_BASE_URL}/:id`} component={ContactMain} />
       <Route exact path={COMPANY_BASE_URL} component={CompanyList} />
       <Route exact path={`${COMPANY_BASE_URL}/main`} component={CompanyMain} />
+      <Route exact path={ABOUTUS_BASE_URL} component={About} />
+      <Route exact path={CONTACTUS_BASE_URL} component={Contactus} />
+
+
     </Switch>
   )
 }
