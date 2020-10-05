@@ -8,15 +8,15 @@ import './ContactSelect.scss';
 class ContactSelect extends React.Component {
     constructor(props) {
         super(props);
-      
+
         this.state = {
-         
+
         }
     }
 
     render() {
-        const { contactList, searchResult } = this.props;
-        console.log("check2 " + searchResult.length);
+        const { contactList, searchList } = this.props;
+        console.log("check2 " + searchList.length);
         return (
             <ActivityContext.Consumer>
                 {contact => (
@@ -26,23 +26,26 @@ class ContactSelect extends React.Component {
                                 {this.props.label}
                             </span>
                         </div>
-                        {searchResult.length > 0 ?
-                            searchResult.map(item =>(     
-                                        <SelectItem
-                                            key={item._id}
-                                            contactID={item._id}
-                                            contact={item}
-                                            email={item.email}
-                                            handleRemoveContact={this.props.handleRemoveContact}
-                                            handleAddContact={this.props.handleAddContact}>
-                                        </SelectItem>    
-                            ))
+                        {searchList.length > 0 ?
+                            searchList.map(item => {
+                                return (
+                                    <SelectItem
+                                        key={item._id}
+                                        contactID={item.contact._id}
+                                        contact={item.contact}
+                                        checked = {item.checked}
+                                        handleRemoveContact={this.props.handleRemoveContact}
+                                        handleAddContact={this.props.handleAddContact}>
+                                    </SelectItem>
+                                )
+                            })
                             :
                             <React.Fragment>
                                 <SelectItem
                                     contactID={contact._id}
                                     contact={contact}
                                     email={contact.email}
+                                    checked = {true}
                                     handleRemoveContact={this.props.handleRemoveContact}
                                     handleAddContact={this.props.handleAddContact}>
                                 </SelectItem>
@@ -54,6 +57,7 @@ class ContactSelect extends React.Component {
                                                 contactID={item._id}
                                                 contact={item}
                                                 email={item.email}
+                                                checked = {true}
                                                 handleRemoveContact={this.props.handleRemoveContact}
                                                 handleAddContact={this.props.handleAddContact}>
                                             </SelectItem>
