@@ -1,5 +1,5 @@
 import React from 'react';
-import GoogleIcon from '../../../../img/logsys/googleIcon.svg';
+import GoogleIcon from '../../../img/logsys/googleIcon.svg';
 import { Link } from 'react-router-dom';
 
 export default class RegisterForm extends React.Component {

@@ -10,7 +10,7 @@ import { InfoContext } from '../../InfoPage/components/Context';
 import { publicTheme } from '../../Style/Theme/MatUITheme';
 import { ContactDictionary } from './components/Dictionary';
 import { ActivityContext } from '../../Activities/Context';
-import { GetContact, UpdateContact } from '../../Api/Contact/Contact';
+import { GetContact, UpdateContact } from '../../../Api/Contact/Contact';
 import WebActivity from './components/WebActivity';
 import './ContactMain.scss';
 

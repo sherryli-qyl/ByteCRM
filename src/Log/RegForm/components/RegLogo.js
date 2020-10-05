@@ -1,5 +1,5 @@
 import React from 'react';
-import regLogo from '../../../../img/Logo/logo.png';
+import regLogo from '../../../img/Logo/logo.png';
 
 const RegLogo = () => {
   return (
