@@ -6,6 +6,8 @@ src
 |  
 Api  
 |  
+Header  
+|  
 Routes : mainly route mapping  
 |  
 Contact : related to domain CRUD  
@@ -29,6 +31,33 @@ Utils : // optional
 App.js App container (top level)  
 |  
 index.js entry file  
+
+## Api
+Company
+Contact
+Auth
+
+## Header
+AC: (Acceptance Criteria)  
+- left: Public  -Logo  
+                -Contact  
+                -Company  
+- right: Private - Signout  
+
+### Logo  
+### Navigation  
+#### NavLink (Button | Text)  
+### Authentication
+
+         
+       
+
+
+
+
+
+
+
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
