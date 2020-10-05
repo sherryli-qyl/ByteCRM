@@ -16,7 +16,6 @@ class ContactSelect extends React.Component {
 
     render() {
         const { contactList, searchList } = this.props;
-        console.log(searchList.length);
         return (
             <ActivityContext.Consumer>
                 {contact => (

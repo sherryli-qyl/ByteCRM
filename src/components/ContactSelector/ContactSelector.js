@@ -7,8 +7,7 @@ import './ContactSelector.scss';
 class ContactSelector extends React.Component {
     constructor(props) {
         super(props);
-        this.testList = [{ _id: "00001", firstName: "Oliver", lastName: "Yu", email: '223@gmail.com' },
-        { _id: "5f7709da190582d02ea1bd3c", firstName: "Jane", lastName: "Wick", email: 'abc@gmail.com' }]
+        this.testList = [{ _id: "5f7709da190582d02ea1bd3c", firstName: "Jane", lastName: "Wick", email: 'abc@gmail.com' }];
         this.state = {
             showDropdown: false,
             contactList: this.testList,
