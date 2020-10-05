@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
 import Button from '../../UI/Button';
-import NavigationItem from '../NavigationItem';
+import NavigationItem from '../../UI/NavigationItem';
 
 const StyledLink = styled.a`
   text-decoration: none;
