@@ -22,13 +22,21 @@ class Dropdown extends React.Component {
     onChangeInput(text) {
         let newHint = '';
         let newList = SearchContactLocal(this.state.contactList, text.toUpperCase());
-        if (newList.length > 0 && text.length !==0) {
+
+        if(text.length === 0) {
+            this.setState({
+                searchList: [],
+                checkInput: false,
+            })
+        }
+
+        else if (newList.length > 0 && text.length !==0) {
             this.setState({
                 searchList:newList,
-                showSearchList: true,
                 checkInput:false,
             })
         }
+
         else if (text.length > 0 && text.length < 3 && newList.length === 0) {
             newHint = `type ${3 - text.length} more character`;
             this.setState(prevState => {
@@ -36,35 +44,36 @@ class Dropdown extends React.Component {
                     ...prevState,
                     hintMessage: newHint,
                     checkInput: true,
+                    searchList:newList,
                 }
-            })
-        }
-
-        else {
-            this.setState({
-                searchList: [],
-                checkInput: false,
             })
         }
 
         if (text.length >= 3) {
             newHint = 'searching';
             const newSearchList = SearchContactRemote(this.state.searchList,text.toUpperCase());
+            let foundNewContact = false;
+            
+            if (newSearchList.length >= 1){
+                foundNewContact = true;
+            }
             this.setState(prevState => {
                 return {
                     ...prevState,
+                    checkInput: !foundNewContact,
                     searchList: newSearchList,
                     hintMessage: newHint,
                 }
-            })
+            });
         }
     }
+
+   
 
 
     render() {
         const {showDropdown} = this.props
         const { hintMessage, checkInput, contactList,searchList} = this.state;
-        console.log("check1 " + searchList.length);
         let className = "dropdown "
         if (showDropdown) {
             className += "dropdown__active"

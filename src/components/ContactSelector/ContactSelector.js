@@ -24,7 +24,6 @@ class ContactSelector extends React.Component {
             showDropdown: !prevState.showDropdown
         })
         )
-        console.log("click " + this.state.showDropdown);
     }
 
     onClose() {
@@ -32,7 +31,6 @@ class ContactSelector extends React.Component {
             showDropdown: false,
         })
         )
-        console.log("click2 " + this.state.showDropdown);
     }
 
     handleRemoveContact(id) {
