@@ -1,6 +1,6 @@
 import React from 'react';
 import SelectItem from './components/SelectItem/SelectItem';
-import { ActivityContext } from '../../../../Context';
+import { ActivityContext } from '../../../Activities/Context';
 import './ContactSelect.scss';
 
 
