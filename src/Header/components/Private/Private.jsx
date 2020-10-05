@@ -4,14 +4,15 @@ import './Private.scss';
 
 const Private = () => (
         <div className = "Layout">
-        <NavigationLink.Button variant="secondary" href="/register">
-            Register
+        <NavigationLink.Button variant="secondary" href="/contactus">
+        CONTACT US
+          </NavigationLink.Button>
+          
+          <NavigationLink.Button variant="secondary" href="/login">
+          REGISTER
           </NavigationLink.Button>
           <NavigationLink.Button variant="secondary" href="/login">
-            Signin
-          </NavigationLink.Button>
-          <NavigationLink.Button variant="secondary" href="/login">
-            Signout
+          SIGN OUT
           </NavigationLink.Button>
         </div>
     );
