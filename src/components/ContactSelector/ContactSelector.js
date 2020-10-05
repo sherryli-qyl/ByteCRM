@@ -47,12 +47,13 @@ class ContactSelector extends React.Component {
     }
 
     handleAddContact(contact) {
+        console.log("add contact");
+        console.table(contact);
         let newList = this.state.contactList;
          newList.push(contact);
         this.setState({
             contactList: newList
         })
-        console.table(this.state.contactList[0]);
     }
 
     render() {
