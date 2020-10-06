@@ -1,0 +1,55 @@
+.dropdown {
+    position: absolute;
+    display: inline-block;
+    top: 40px;
+    left: 5px;
+    width: 350px;
+    border: solid 1px rgb(203, 214, 226);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .4s ease-out;
+    z-index: 1;
+    border-radius: 5px;
+    background-color: #eaf0f6;
+
+
+    &__active {
+        opacity: 1;
+      
+        visibility: visible;
+        transition: opacity .5s ease-in;
+    }
+
+    &__corner {
+        position: absolute;
+        transform: rotate(45deg);
+        top: -11px;
+        left: 20px;
+        background-color: #eaf0f6;
+        height: 20px;
+        width: 20px;
+        z-index: -1;
+
+        border: {
+            top: solid 1px rgb(203, 214, 226);
+            left: solid 1px rgb(203, 214, 226);
+        }
+    }
+
+    &__inner {
+        display: inline-block;
+        width: 100%;
+      
+
+        &__wrapper {
+            width: 100%;
+            background-color: #eaf0f6;
+            padding:3% 0;
+            // background-color: red;
+            // display: flex;
+            // justify-content: center;
+        }
+
+    }
+
+}
