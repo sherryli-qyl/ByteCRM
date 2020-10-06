@@ -1,6 +1,9 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import getDate from "./getDate";
+import { getAllContacts } from '../../../Api/Contact';
+
+const url = 'https://localhost:3000/api/contacts/';
 
 const nameSet = [
   "Brian Halligan",
@@ -50,10 +53,13 @@ function createData(
 ) {
   return {
     name: (
-      <NavLink activeClassName="active" to={{
-        pathname: "/contacts/main",
-        // id: `${ID}`,
-        }}>
+      <NavLink
+        activeClassName="active"
+        to={{
+          pathname: "/contacts/main",
+          // id: `${ID}`,
+        }}
+      >
         {name}
       </NavLink>
     ),
@@ -87,56 +93,49 @@ function generateData() {
       )
     );
   }
-  result.push({
-    name: (
-      <>
-      <NavLink activeClassName="active" to="/contacts/main">
-        Luis
-      </NavLink>
-      &ensp;
-      <NavLink activeClassName="active" to="/contacts/main">
-        Alice
-      </NavLink>
-      </>
-    ),
+  return result;
+}
+
+// /* ======================================================= */
+// function wrapUpData(tableData) {
+//   let result = [];
+//   for (let i = 0; i < tableData.length; i++) {
+//     result.push(
+//       createData(
+//         tableData[i]["name"],
+//         tableData[i]["email"],
+//         tableData[i]["phoneNumber"],
+//         tableData[i]["contactOwner"],
+//         tableData[i]["associatedCompany"],
+//         tableData[i]["lastActivityDate"],
+//         tableData[i]["leadStatus"],
+//         tableData[i]["createDate"]
+//       )
+//     );
+//   }
+//   return result;
+// }
+
+// const normalizeData = (tableData) => {
+//   for (let i = 0; i < tableData.length; i++) {
+//     let curRow = tableData[i];
+//     Object.keys(curRow).forEach((key) => {
+//       if (key === "name" || key === "associatedCompany") {
+//         curRow[key] = curRow[key].props.children;
+//       }
+//     });
+//   }
+//   return tableData;
+// };
+/* ======================================================= */
+
+const fetchAllData = () => {
+  getAllContacts().then((data) => {
+    return data;
   });
-  return result;
 }
 
-/* ======================================================= */
-function wrapUpData(tableData) {
-  let result = [];
-  for (let i = 0; i < tableData.length; i++) {
-    result.push(
-      createData(
-        tableData[i]["name"],
-        tableData[i]["email"],
-        tableData[i]["phoneNumber"],
-        tableData[i]["contactOwner"],
-        tableData[i]["associatedCompany"],
-        tableData[i]["lastActivityDate"],
-        tableData[i]["leadStatus"],
-        tableData[i]["createDate"]
-      )
-    );
-  }
-  return result;
-}
-
-const normalizeData = (tableData) => {
-  for (let i = 0; i < tableData.length; i++) {
-    let curRow = tableData[i];
-    Object.keys(curRow).forEach((key) => {
-      if (key === "name" || key === "associatedCompany") {
-        curRow[key] = curRow[key].props.children;
-      }
-    });
-  }
-  return tableData;
-};
-/* ======================================================= */
-
-let tableData = generateData();
+let tableData = fetchAllData();
 
 const updateTable = (newTable) => {
   tableData = newTable;
@@ -147,31 +146,26 @@ const addRowsFromCsv = (newData) => {
   if (newData.length === 0) {
     return tableData;
   }
-  let normalizedTable = normalizeData(tableData);
-  for (const item of newData) {
-    normalizedTable.push(item);
-  }
-  tableData = wrapUpData(normalizedTable);
   return tableData;
 };
 
 // 先往数据库改，再取全部，再调用generateData()
 const editColumns = (newValue) => {
   if (newValue && newValue.size !== 0) {
-    let normalizedTable = normalizeData(tableData);
-    const iterator = newValue.values();
-    const dataToEdit = iterator.next().value;
-    const index = iterator.next().value;
-    const field = newValue.keys().next().value;
-    for (const i of index) {
-      let curRow = normalizedTable[i];
-      Object.keys(curRow).forEach((key) => {
-        if (key === field) {
-          curRow[key] = dataToEdit;
-        }
-      });
-    }
-    tableData = wrapUpData(normalizedTable);
+    // let normalizedTable = normalizeData(tableData);
+    // const iterator = newValue.values();
+    // const dataToEdit = iterator.next().value;
+    // const index = iterator.next().value;
+    // const field = newValue.keys().next().value;
+    // for (const i of index) {
+    //   let curRow = normalizedTable[i];
+    //   Object.keys(curRow).forEach((key) => {
+    //     if (key === field) {
+    //       curRow[key] = dataToEdit;
+    //     }
+    //   });
+    // }
+    // tableData = wrapUpData(normalizedTable);
     return tableData;
   }
 };
@@ -179,10 +173,10 @@ const editColumns = (newValue) => {
 // tableData从数据库来
 const getTable = (id, userAccount) => {
   if (id === 1) {
-    return tableData;
+    return fetchAllData();
   } else if (id === 2) {
     let mine = [];
-    for (const item of tableData) {
+    for (const item of fetchAllData()) {
       if (item.contactOwner === userAccount) {
         mine.push(item);
       }
@@ -190,7 +184,7 @@ const getTable = (id, userAccount) => {
     return mine;
   } else if (id === 3) {
     let unassigned = [];
-    for (const item of tableData) {
+    for (const item of fetchAllData()) {
       if (item.contactOwner === "Unassigned") {
         unassigned.push(item);
       }
@@ -199,7 +193,4 @@ const getTable = (id, userAccount) => {
   }
 };
 
-export {   getTable,
-  addRowsFromCsv,
-  editColumns,
-  updateTable };
+export { getTable, addRowsFromCsv, editColumns, updateTable };

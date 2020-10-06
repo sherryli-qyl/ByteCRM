@@ -1,6 +1,7 @@
 import React from "react";
 import EnhancedTable from "./components/EnhancedTable";
 import Importer from "../Importer";
+import { getAllContacts } from '../../../../Api/Contact';
 import {
   getTable,
   addRowsFromCsv,
@@ -12,7 +13,7 @@ class TableWrapper extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      table: getTable(props.tab, props.userAccount),
+      table: []
     };
   }
 
@@ -45,7 +46,8 @@ class TableWrapper extends React.Component {
         <EnhancedTable
           getNewTable={this.getNewTable}
           getDataToEdit={this.getDataToEdit}
-          data={this.state.table}
+          tab={this.props.tab}
+          userAccount={this.props.userAccount}
         />
       </>
     );

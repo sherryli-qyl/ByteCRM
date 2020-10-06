@@ -9,6 +9,7 @@ import remove from "../../../tableLibs/removeRow";
 import exportCSV from "../../../tableLibs/exportCSV";
 import exportPDF from "../../../tableLibs/exportPDF";
 import updateRow from "../../../tableLibs/updateRow";
+import { getAllContacts } from '../../../../../Api/Contact';
 
 
 const Theme = createMuiTheme({
@@ -29,8 +30,16 @@ class EnhancedTable extends Component {
       modalVisible: false,
       columns: getColumns(),
       selectedRow: null,
-      data: props.data,
+      data: [],
     };
+  }
+
+  componentDidMount() {
+    getAllContacts().then((data) => {
+      this.setState({
+        data: data,
+      });
+    });
   }
 
   removeRow = (evt, selectedRow) => {
@@ -87,6 +96,7 @@ class EnhancedTable extends Component {
             getDataToEdit={this.getDataAndIndex}
           ></SelectModal>
         )}
+        {/* <Manipulators /> */}
         <MuiThemeProvider theme={Theme}>
           <MaterialTable
             title={null}
