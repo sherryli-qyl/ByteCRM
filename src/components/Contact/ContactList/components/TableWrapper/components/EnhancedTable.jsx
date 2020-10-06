@@ -3,13 +3,13 @@ import { ThemeProvider as MuiThemeProvider } from "@material-ui/core/styles";
 import { createMuiTheme } from "@material-ui/core/styles";
 import MaterialTable from "material-table";
 import SelectModal from "../../SelectModal";
-import tableIcons from "../../../tableServices/getIcons";
-import getColumns from "../../../tableServices/getColumns";
-import remove from "../../../tableServices/removeSelected";
-import exportCSV from "../../../tableServices/exportCSV";
-import exportPDF from "../../../tableServices/exportPDF";
-import updateRow from "../../../tableServices/updateRow";
-import { updateDatabase } from "../../../tableServices/getData";
+import tableIcons from "../../../tableLibs/getIcons";
+import getColumns from "../../../tableLibs/getColumns";
+import remove from "../../../tableLibs/removeRow";
+import exportCSV from "../../../tableLibs/exportCSV";
+import exportPDF from "../../../tableLibs/exportPDF";
+import updateRow from "../../../tableLibs/updateRow";
+
 
 const Theme = createMuiTheme({
   palette: {
@@ -26,17 +26,12 @@ class EnhancedTable extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      visible: false,
+      modalVisible: false,
       columns: getColumns(),
       selectedRow: null,
       data: props.data,
     };
   }
-
-  setData = (newData) => {
-    this.setState({ data: newData });
-    updateDatabase(newData);
-  };
 
   removeRow = (evt, selectedRow) => {
     evt.preventDefault();
@@ -44,19 +39,27 @@ class EnhancedTable extends Component {
       setTimeout(() => {
         let dataDelete = [...this.state.data];
         dataDelete = remove(dataDelete, selectedRow);
-        this.setData([...dataDelete]);
+        this.props.getNewTable([...dataDelete]);
         resolve();
       }, 500);
     });
   };
 
+  addRow = (newData) =>
+    new Promise((resolve, reject) => {
+      newData = updateRow(newData);
+      setTimeout(() => {
+        this.props.getNewTable([...this.state.data, newData]);
+      }, 0);
+    });
+
   showModal = (evt, selectedRow) => {
     evt.preventDefault();
-    this.setState({ visible: true });
+    this.setState({ modalVisible: true });
   };
 
   changeVisible = (s) => {
-    this.setState({ visible: s });
+    this.setState({ modalVisible: s });
   };
 
   getDataAndIndex = (data) => {
@@ -78,7 +81,7 @@ class EnhancedTable extends Component {
   render() {
     return (
       <>
-        {this.state.visible && (
+        {this.state.modalVisible && (
           <SelectModal
             changeModalVisible={this.changeVisible}
             getDataToEdit={this.getDataAndIndex}
@@ -117,14 +120,7 @@ class EnhancedTable extends Component {
               exportPdf: exportPDF,
             }}
             editable={{
-              onRowAdd: (newData) =>
-                new Promise((resolve, reject) => {
-                  newData = updateRow(newData);
-                  setTimeout(() => {
-                    this.setData([...this.state.data, newData]);
-                    resolve();
-                  }, 500);
-                }),
+              onRowAdd: this.addRow,
             }}
           />
         </MuiThemeProvider>

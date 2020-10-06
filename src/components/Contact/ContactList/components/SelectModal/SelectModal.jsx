@@ -2,13 +2,13 @@ import React, { Component } from "react";
 import "./SelectModal.scss";
 import DropdownList from "./components/DropdownList";
 import StringInput from "./components/StringInput";
-import generateArray from '../../tableServices/generateArray';
+import generateArray from '../../tableLibs/generateArray';
 import {
   testPhoneNum,
   testEmailAddr,
   testEmptyString,
   testDate,
-} from "../../tableServices/validation";
+} from "../../tableLibs/validation";
 
 /* ======================Define all Options for Dropdown======================================= */
 const MODAL = {

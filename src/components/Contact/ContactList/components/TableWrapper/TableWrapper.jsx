@@ -3,9 +3,10 @@ import EnhancedTable from "./components/EnhancedTable";
 import Importer from "../Importer";
 import {
   getTable,
-  addRowsToTable,
-  editTable,
-} from "../../tableServices/getData";
+  addRowsFromCsv,
+  editColumns,
+  updateTable
+} from "../../tableLibs/getData";
 
 class TableWrapper extends React.Component {
   constructor(props) {
@@ -17,19 +18,20 @@ class TableWrapper extends React.Component {
 
   getNewDataFromCSV = (newRows) => {
     this.setState({
-      table: addRowsToTable(newRows),
+      table: addRowsFromCsv(newRows),
     });
   };
 
-  // remove和add直接得到新的table
-  //   updateTable = (newTable) => {
-  //     this.setState({ table: newTable });
-  //   };
+  getNewTable = (newTable) => {
+    this.setState({
+      table: updateTable(newTable)
+    });
+  }
 
   // edit只能得到需要修改的行和域
   getDataToEdit = (dataToEdit) => {
     this.setState({
-      table: editTable(dataToEdit),
+      table: editColumns(dataToEdit),
     });
     setTimeout(() => {
         console.log(this.state.table);
@@ -41,7 +43,7 @@ class TableWrapper extends React.Component {
       <>
         <Importer getNewData={this.getNewDataFromCSV} />
         <EnhancedTable
-          updateTable={this.updateTable}
+          getNewTable={this.getNewTable}
           getDataToEdit={this.getDataToEdit}
           data={this.state.table}
         />

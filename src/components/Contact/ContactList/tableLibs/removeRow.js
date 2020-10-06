@@ -1,5 +1,4 @@
 
-
 const remove = (dataDelete, selectedRow) => {
     const names = [];
     for (const item of selectedRow) {
