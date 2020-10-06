@@ -122,12 +122,12 @@ const normalizeData = (tableData) => {
 
 let tableData = generateData();
 
-const updateDatabase = (newTable) => {
+const updateTable = (newTable) => {
   tableData = newTable;
 };
 
 // 先往数据库加，再取全部，再调用generateData()
-const addRowsToTable = (newData) => {
+const addRowsFromCsv = (newData) => {
   if (newData.length === 0) {
     return tableData;
   }
@@ -140,7 +140,7 @@ const addRowsToTable = (newData) => {
 };
 
 // 先往数据库改，再取全部，再调用generateData()
-const editTable = (newValue) => {
+const editColumns = (newValue) => {
   if (newValue && newValue.size !== 0) {
     let normalizedTable = normalizeData(tableData);
     const iterator = newValue.values();
@@ -183,4 +183,7 @@ const getTable = (id, userAccount) => {
   }
 };
 
-export { addRowsToTable, editTable, getTable, updateDatabase };
+export {   getTable,
+  addRowsFromCsv,
+  editColumns,
+  updateTable };
