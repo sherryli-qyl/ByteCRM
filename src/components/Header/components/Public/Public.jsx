@@ -1,5 +1,5 @@
 import React from 'react';
-import NavigationLink from '../../../UI/NavigationLink';
+import NavigationLink from '../../../NavigationLink';
 import './Public.scss';
 // import Logo from '../../../img/Logo/logo.png';
 

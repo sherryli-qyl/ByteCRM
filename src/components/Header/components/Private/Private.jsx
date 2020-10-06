@@ -1,5 +1,5 @@
 import React from 'react';
-import NavigationLink from '../../../UI/NavigationLink';
+import NavigationLink from '../../../NavigationLink';
 import './Private.scss';
 
 const Private = () => (
