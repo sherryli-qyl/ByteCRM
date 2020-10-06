@@ -1,0 +1,26 @@
+@import '../../style/variable.scss';
+
+
+.contactSelector{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height:20px;
+   
+
+    &__label{
+
+        &__btn{
+            @extend .nakedBtn;
+            cursor: pointer;
+            color: $secondary-color;
+            font-size: 15px;
+            
+
+            &:hover{
+                border-bottom: solid 1px;
+            }
+
+        }
+    }
+}

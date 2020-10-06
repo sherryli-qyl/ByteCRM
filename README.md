@@ -1,34 +1,57 @@
-#ByteCRM(customer-relationship-management)
--Sass;
+# ByteCRM(customer-relationship-management)  
+-Sass;  
 
-Folder structure
-src
-|
-Api
-|
-Routes : mainly route mapping
-|
-Contact : related to domain CRUD
-|
-Company : related to domain CRUD
-|
-Log: user login system
-|
-Loading: reusable small components
-|
-Modal:reusable small components
-|
-Services:reusable small components
-|
-Style:reusable small components
-|
-Images
-|
-Utils : // optional
-|
-App.js App container (top level)
-|
-index.js entry file
+Folder structure  
+src  
+|  
+Api  
+|  
+Header  
+|  
+Routes : mainly route mapping  
+|  
+Contact : related to domain CRUD  
+|  
+Company : related to domain CRUD  
+|  
+Log: user login system  
+|  
+Loading: reusable small components  
+|  
+Modal:reusable small components  
+|  
+Services:reusable small components  
+|  
+Style:reusable small components  
+|  
+Images  
+|  
+Utils : // optional  
+|  
+App.js App container (top level)  
+|  
+index.js entry file  
+
+## Api
+Company
+Contact
+Auth
+
+## Header
+AC: (Acceptance Criteria)  
+- left: Public  -Logo  
+                -Contact  
+                -Company  
+- right: Private - Signout  
+
+### Logo  
+### Navigation  
+#### NavLink (Button | Text)  
+### Authentication
+
+         
+       
+
 
 
 

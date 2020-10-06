@@ -1,0 +1,23 @@
+.btn {
+    position: absolute; 
+    right: 20px;
+    top: 65px;
+    width: 100px;
+    border: none;
+    border-radius: 25px;
+    outline: none;
+    height: 50px;
+    line-height: 50px;
+    opacity: 1;
+    color: #fff;
+    background: rgb(247, 32, 32);
+    cursor: pointer;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 100%;
+    font-weight: bold;
+}
+
+.btn:active {
+    opacity: .6;
+    transition: opacity .3s;
+}
