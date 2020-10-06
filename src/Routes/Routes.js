@@ -1,11 +1,11 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import ContactList from '../Contact/ContactList';
-import ContactMain from '../Contact/ContactMain';
-import CompanyList from '../Company/CompanyList';
-import CompanyMain from '../Company/CompanyMain';
-import RegForm from '../User/RegForm/Register';
-import Login from '../User/LogIn/LogIn';
+import ContactList from '../components/Contact/ContactList';
+import ContactMain from '../components/Contact/ContactMain';
+import CompanyList from '../components/Company/CompanyList';
+import CompanyMain from '../components/Company/CompanyMain';
+import RegForm from '../components/Log/RegForm/Register';
+import Login from '../components/Log/LogIn/LogIn';
 import About from '../AboutUs/AboutUs';
 import Contactus from '../ContactUs/ContactUs';
 import
