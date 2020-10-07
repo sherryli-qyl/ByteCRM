@@ -1,0 +1,13 @@
+.loading{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width:100%;
+    // background-color: red;
+    &--fullPage{
+        height:80vh;
+    }
+    &--block{
+        height: 20vh;;
+    }
+}
