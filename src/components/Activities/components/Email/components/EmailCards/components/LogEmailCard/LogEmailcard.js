@@ -14,25 +14,44 @@ class LogEmailCard extends React.Component {
         this.state = {
             currentDate: this.props.card.date,
             currentTime: this.props.card.time,
+            card:this.props.card,
             cardId: _id,
             description,
 
         }
         this.onDateChange = this.onDateChange.bind(this);
         this.onTimeChange = this.onTimeChange.bind(this);
+        this.onDescriptionChange = this.onDescriptionChange.bind(this);
     }
 
     onDateChange(date) {
+        let newCard = this.state.card;
+        newCard.date = date;
         this.setState({
             currentDate: date,
+            card: newCard,
         })
+        this.props.onChangeEmail(this.state.cardId,newCard)
     }
 
     onTimeChange(time) {
-        const newTime = time;
+        let newCard = this.state.card;
+        newCard.time = time;
         this.setState({
-            currentTime: newTime,
+            currentTime: time,
+            card:newCard,
         })
+        this.props.onChangeEmail(this.state.cardId,newCard)
+    }
+
+    onDescriptionChange(description){
+        let newCard = this.state.card;
+        newCard.description = description;
+        this.setState({
+            description:description,
+            card:newCard,
+        })
+        this.props.onChangeEmail(this.state.cardId,newCard)
     }
 
     render() {
@@ -42,7 +61,8 @@ class LogEmailCard extends React.Component {
                 {description?
                     <Header 
                         cardId={cardId}
-                        description={description} />
+                        description={description}
+                        onContentChange = {this.onDescriptionChange}/>
                     :
                     ""
                 }
