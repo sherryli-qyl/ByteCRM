@@ -13,6 +13,7 @@ class NoteCard extends React.Component {
       card: this.props.card,
       content,
       comments,
+      author,
     }
     this.onContentChange = this.onContentChange.bind(this);
   }
@@ -25,7 +26,17 @@ class NoteCard extends React.Component {
       card: newCard,
     })
     this.props.onChangeNote(this.state.cardId, newCard)
-}
+  }
+
+  // onCommentChange(comments){
+  //   let newCard = this.state.card;
+  //   newCard.comments = comments;
+  //   this.setState({
+  //     comments: comments,
+  //     card: newCard,
+  //   })
+  //   this.props.onChangeNote(this.state.cardId, newCard)
+  // }
 
   render() {
     const { _id, content, author, comments } = this.props.card;

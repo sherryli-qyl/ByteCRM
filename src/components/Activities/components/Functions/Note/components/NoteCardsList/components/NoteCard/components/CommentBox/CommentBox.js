@@ -27,6 +27,8 @@ class CommentBox extends React.Component {
     //this.handleShowAddCommentPanel = this.handleShowAddCommentPanel.bind(this);
     this.deleteComment = this.deleteComment.bind(this);
     this.updateComment = this.updateComment.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+    this.addComment = this.addComment.bind(this);
   }
 
   
@@ -80,7 +82,6 @@ class CommentBox extends React.Component {
           author={comment.author} 
           content={comment.content} 
           timestamp={comment.timestamp}
-          //key={comment.id} 
           onDelete={this.deleteComment}
           onUpdate={this.updateComment}
         />
@@ -97,8 +98,8 @@ class CommentBox extends React.Component {
   }
   
   render () {
-    const commentsFromNote = this.props.comments;
-    const comments = this.getComments(commentsFromNote);
+    const commentsForNote = this.props.comments;
+    const comments = this.getComments(commentsForNote);
     let commentNodes;
     let buttonText = <FontAwesomeIcon icon={faChevronRight} />;
     
@@ -111,7 +112,7 @@ class CommentBox extends React.Component {
       <div>
         <div className="comment-box-top">
           <button 
-            onClick={this.handleClick.bind(this)}
+            onClick={this.handleClick}
             className="accordion-label"
           >
             {buttonText} {this.getCommentsTitle(comments.length)} 
@@ -121,7 +122,7 @@ class CommentBox extends React.Component {
         <div>
           {this.state.showCommentForm
           ? <CommentForm 
-            addComment={this.addComment.bind(this)} 
+            addComment={this.addComment} 
             handleShowCommentForm={this.handleShowCommentForm.bind(this)}/>
           : null
           }
