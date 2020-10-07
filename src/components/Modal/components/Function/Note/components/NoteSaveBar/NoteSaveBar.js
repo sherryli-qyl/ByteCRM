@@ -4,12 +4,13 @@ import Taskfollow from '../../../../Private/TaskFollow';
 import "./NoteSaveBar.scss"
 
 
-const NoteSaveBar = ({
-  children
-  }) => (
+const NoteSaveBar = props => {
+  return (
     <div className="note-save-bar">
       <div className="note-save-bar__save">
-        <ContainedButton>
+        <ContainedButton 
+          onClick={props.handleNoteCreate}
+        >
           Save
         </ContainedButton>
       </div>
@@ -17,7 +18,8 @@ const NoteSaveBar = ({
         <Taskfollow />
       </div>
     </div>
-)
+  )
+}  
 
 
 export default NoteSaveBar;

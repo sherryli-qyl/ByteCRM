@@ -8,6 +8,7 @@ const NoteBody = (props) => {
       <EditableText
         content={props.content}
         cardKey={props.cardKey}
+        onContentChange = {props.onContentChange}
       />
     </div>
   )
