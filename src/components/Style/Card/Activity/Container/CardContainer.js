@@ -19,7 +19,7 @@ const CardContainer = ({
             {content.map((card) => (
                 card.type.includes("Logged") ?
                     <ActivityCard
-                        key={card.key}
+                        key={card._id}
                         dateTime={`${transferDateInMonDayYear(card.date)} at ${card.time}`}
                         card = {card}
                         icon={icon}
@@ -27,7 +27,7 @@ const CardContainer = ({
                     />
                     :
                     <ActivityCard
-                        key={card.key}
+                        key={card._id}
                         dateTime={`${transferDateInMonDayYear(card.date)} at ${card.time}`}
                         card = {card}
                         icon={icon}
