@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Modal from '../../Modal';
 import InfoPage from '../../InfoPage';
 import Activities from '../../Activities';
-import RelationPage from "../../RelationPage";
+import RelationCompany from "./components/RelationCompany";
 import Loading from '../../Loading';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { ModalContext } from '../../Modal/components/ModalContext';
@@ -113,7 +113,7 @@ class ContactMain extends Component {
                                 </InfoContext.Provider>
                                 <ActivityContext.Provider value = {contact}>
                                     <Activities />
-                                    <RelationPage />
+                                    <RelationCompany />
                                     <Modal Xaxis={this.state.Xaxis}
                                         Yaxis={this.state.Yaxis}
                                         visible={visible}
