@@ -38,12 +38,10 @@ class Relationship extends React.Component {
     return (
       <div className="expand_wrapper">
         <div className="container">
-          <div className="label">
-            <div
-              onClick={this.handleShowRelationship}>
-              <div>{angle} </div>
-              <span>{this.props.label}</span>
-            </div>
+          <div className="label"
+            onClick={this.handleShowRelationship}>
+            <div className="chevron">{angle} </div>
+            <span className="relationship">{this.props.label}</span>
           </div>
           <div className="content">
             {relationInfo}

@@ -7,8 +7,12 @@
   &:hover {
     color: #0091ae;
   }
-  .ChevronDown {
-    margin-right: 15px;
-    color: #00a4bd;
+  .label {
+    display: flex;
+    cursor: pointer;
+    .chevron {
+      margin-right: 15px;
+      color: #00a4bd;
+    }
   }
 }
