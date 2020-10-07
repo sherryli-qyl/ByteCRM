@@ -1,13 +1,14 @@
 import React from 'react';
-import Header from './components/Header';
-import RelationCard from './components/RelationCard'
+import Relationship from './components/Relationship';
 import './RelationPage.scss';
 
-const RelationPage = () => (
-  <div className="layout">
-    <Header>Contacts</Header>
-    <RelationCard />
-  </div>
-)
+const RelationPage = (props) => {
+
+  return (
+    <div className="layout">
+      <Relationship />
+    </div>
+  )
+}
 
 export default RelationPage;
