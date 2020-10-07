@@ -1,0 +1,74 @@
+.editable-text-wrapper{
+  position: relative;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.editable-text-wrapper__hovered{
+  position: relative;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: rgb(229, 245, 248);
+  border: 1px solid rgb(127, 209, 222);
+  border-radius: 3px;
+  cursor: text;
+}
+
+.editable-text-content{
+  // width: 90%;
+  // font-weight: 400;
+  font-size: 14px;
+  color: #33475b;
+  line-height: 20px;
+}
+
+
+.editable-text-edit-icon{
+  font-size: 14px;
+  color: #00A4BD;
+  cursor: pointer;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  &__hidden{
+    visibility: hidden;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+  }
+}
+
+.editingmode-editor{
+  border: 3px solid;
+  border-color: rgba(0,208,228,.5);
+  box-shadow: 0 1px 3px rgba(0,164,189,.3);
+  border-radius: 3px;
+  cursor: default;
+}
+
+.editingmode-editor-actions{
+  display: flex;
+  justify-content: flex-start;
+  margin: 10px 0px;
+
+  &__save{
+    flex: 1;
+    align-self: center;
+  }
+  &__cancel{
+    margin-left: 2%;
+    align-self: center;
+    flex: 8;
+  }
+}
+
+.createButton-small{
+  min-width: 60px;
+  min-height:30px;
+}
+
+.logButton-small{
+  min-width: 60px;
+  min-height:30px;
+}
+

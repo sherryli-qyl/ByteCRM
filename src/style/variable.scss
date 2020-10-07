@@ -1,0 +1,53 @@
+$primary-color:rgba($color: #33475b, $alpha: 1);
+$primary-color-light:#F5F8FA;
+$secondary-color: #0091ae;
+$tertiary-color:#ff5722;
+$label-color:#516F90;
+
+
+.nakedBtn {
+    outline: 0;
+    border: 0;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.underline {
+    display: none;
+    position: absolute;
+    bottom: 5px;
+    height: 1px;
+    width: 90%;
+
+    &--active {
+        display: block;
+    }
+}
+
+.blockline{
+    margin: {
+        top: 2%;
+        bottom: 1%;
+    }
+    border: {
+        top: solid 1px rgb(203, 214, 226);
+        bottom: solid 1px rgb(203, 214, 226);
+    }
+
+    &--top{
+        
+        border: {
+            top: solid 1px rgb(203, 214, 226);
+        }
+    }
+}
+
+.cardLabel{
+    flex-grow: 1;
+    font-size: small;
+    color:$label-color;
+    margin-bottom: 10px;
+}
+
+
+

@@ -1,0 +1,43 @@
+.Contact_method {
+    display: flex;
+    flex-direction: row;
+    border: 2px solid black;
+    margin : 10px;
+    height: 700px;
+}
+
+.Call_sale {
+    display: flex;
+    width : 500px;
+    flex-direction: column;
+    border: 2px solid black;
+    position: relative;
+    margin : 10px;
+    }
+ 
+.Call_background {
+    width: 400px;
+    opacity: 0.5;
+    position: relative;
+    }
+
+.Call_info {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid black;
+    position : absolute;
+}
+
+
+.Customer_service {
+    display: flex;
+    width : 500px;
+    flex-direction: column;
+    border: 2px solid black;
+    margin : 10px;
+}
+.Email_info {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid black;
+    }

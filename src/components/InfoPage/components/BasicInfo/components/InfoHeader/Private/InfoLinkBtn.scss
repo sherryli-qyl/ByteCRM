@@ -1,0 +1,46 @@
+@import '../../../../../../../style/variable.scss';
+
+.infoLink{
+    @extend .nakedBtn;
+    display: flex;
+    align-items: center;
+    height:100%;
+    padding:5%;
+    border-left:0;
+    border-radius: 4px;
+    text-decoration: none;
+    color:rgb(51, 71, 91) !important;
+    background-color: rgb(229, 248, 246);
+
+    &--contact{
+        @extend .infoLink;
+        border: solid 1px rgb(0, 164, 189);
+    }
+
+    &--company{
+        @extend .infoLink;
+        border: solid 1px rgb(0, 189, 165);
+    }
+
+    &__text{
+        margin:auto 10px;
+        font-weight: bold;
+        &:hover{
+            border-bottom: solid 1px;
+        }
+    }
+
+    &__leftArrow{
+        margin-left: 5%;
+        height:10px;
+        width:10px;
+    }
+
+    &__icon{
+        margin-right:5px;
+    }
+}
+
+.navLink{
+    text-decoration: none;
+}

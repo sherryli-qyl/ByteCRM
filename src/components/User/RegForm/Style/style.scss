@@ -1,0 +1,150 @@
+/************************Import Google Fonts***************************************/
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+/**********************************************************************************/
+
+//Global Variable
+$regFont: 'Varela Round', sans-serif;
+$reg-showColor: #0091ae;
+$reg-hoverColor: #33475b;
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: $regFont;
+}
+
+.reg-logo {
+  width: 19rem;
+  height: 7rem;
+  position: relative;
+  margin: {
+    top: 3%;
+    left: 37%;
+  }
+}
+
+.reg-formContainer {
+  margin-left: 36%;
+  width: 20rem;
+  height: 30rem;
+  border: solid 1.5px $reg-showColor;
+  border-radius: 20px;
+  background-color: #f5f8fa;
+  -webkit-box-shadow: 4px 11px 12px -1px rgba(195, 197, 199, 1);
+  -moz-box-shadow: 4px 11px 12px -1px rgba(195, 197, 199, 1);
+  box-shadow: 4px 11px 12px -1px rgba(195, 197, 199, 1);
+  position: relative;
+}
+
+.regForm {
+  margin-left: 1em;
+}
+
+.asking {
+  font-size: 1rem;
+  font-weight: 400;
+  color: $reg-hoverColor;
+  margin-left: 10%;
+}
+
+.reg-signInLink {
+  text-decoration: none;
+  color: $reg-showColor;
+}
+
+.reg-signInLink:hover {
+  color: $reg-hoverColor;
+  font-weight: 600;
+}
+
+h3 {
+  color: $reg-hoverColor;
+  margin-bottom: -1%;
+}
+
+.slogan {
+  color: $reg-hoverColor;
+  font-size: 0.5rem;
+  font-weight: 400;
+}
+
+.googleSignUpWrapper {
+  border: solid 0.5px #5886d4;
+  width: 18rem;
+  margin-top: 2%;
+  border-top-left-radius: 0.1875rem;
+  border-top-right-radius: 0.1875rem;
+  border-bottom-right-radius: 0.1875rem;
+  border-bottom-left-radius: 0.1875rem;
+}
+
+.googleIcon {
+  width: 28px;
+  height: 28px;
+  vertical-align: middle;
+}
+
+.googleSignUpBtn {
+  width: 16.25rem;
+  height: 2rem;
+  border: none;
+  background-color: #4285f4;
+  font-family: $regFont;
+  color: #ffff;
+  cursor: pointer;
+}
+
+.googleSignUpBtn:hover {
+  background-color: #5886d4;
+}
+
+hr {
+  width: 70%;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.reg-inputLabel {
+  color: $reg-showColor;
+}
+
+.reg-firstNameInput,
+.reg-lastNameInput,
+.reg-emailInput,
+.reg-pwdInput {
+  padding: 4.5px 5px;
+  border-radius: 3px;
+  border: 1px solid #cbd6e2;
+  font-size: 14px;
+  transition: all 0.15s ease-out;
+  transition-property: all;
+  transition-duration: 0.15s;
+  transition-timing-function: ease-out;
+  transition-delay: 0s;
+  background-color: #f5f8fa;
+  color: $reg-showColor;
+  display: block;
+  line-height: 22px;
+  text-align: left;
+  height: 1rem;
+  width: 16rem;
+  position: relative;
+  display: flex;
+}
+
+.reg-submitBtn {
+  font-family: $regFont;
+  font-weight: 600;
+  border-radius: 3px;
+  border-style: solid;
+  width: 13rem;
+  height: 2rem;
+  margin-left: 10%;
+  color: #fff;
+  background-color: #ff7a59;
+  border-color: #ff7a59;
+  line-height: 16px;
+  cursor: pointer;
+  position: relative;
+  vertical-align: middle;
+}

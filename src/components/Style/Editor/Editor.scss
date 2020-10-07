@@ -1,0 +1,37 @@
+.editor{
+    display: inline-block;
+    background-color: transparent;
+    width:100%;
+    height:auto;
+    border-radius: 0;
+    border:0;
+    box-shadow: none;
+    margin:0;
+    padding:0 1%;
+    position: relative;
+}
+
+.ql-container.ql-snow{
+    border:none;
+}
+
+.quill{
+   
+}
+
+.ql-editor{
+    min-height: 200px; 
+    margin-bottom: 4%;
+    
+}
+
+.ql-toolbar.ql-snow {
+    position: absolute;
+    bottom: 0px;
+    display: flex;
+    justify-content: flex-start;
+    bottom:0px;
+    width:100%;
+    border: 1px;
+   
+}

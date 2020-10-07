@@ -1,0 +1,27 @@
+@import '../../../../../../style/variable.scss';
+
+
+.controlBar {
+    display: flex;
+    justify-content: flex-end;
+
+    &__container {
+        margin:auto 1%;
+
+        &__btn {
+            outline: none;
+            border: none;
+            background-color: transparent;
+            font-size: 14px;
+
+            &__text {
+                &:hover {
+                    cursor: pointer;
+                    border-bottom: solid 1px $secondary-color;
+                }
+            }
+        }
+    }
+
+
+}
