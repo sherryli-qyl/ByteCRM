@@ -8,8 +8,8 @@ async function GetEmails(contactId) {
 }
 
 
-async function UpdateContact(contactId, body) {
-    const serverUrl = `http://localhost:3000/api/contacts/${contactId}`;
+async function UpdateEmail(emailId, body) {
+    const serverUrl = `http://localhost:3000/api/emails/${emailId}`;
     console.log(body);
     const response = await fetch(serverUrl, {
         method: "PUT",
@@ -23,4 +23,4 @@ async function UpdateContact(contactId, body) {
 }
 
 
-export {GetEmails, UpdateContact };
+export {GetEmails, UpdateEmail };
