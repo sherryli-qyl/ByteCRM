@@ -1,0 +1,19 @@
+.expand_wrapper {
+  color: #33475b;
+  display: flex;
+  padding: 10px 5px;
+  font-size: 14px;
+  font-weight: 600;
+  &:hover {
+    color: #0091ae;
+  }
+  .label {
+    display: flex;
+    cursor: pointer;
+    .chevron {
+      margin-right: 15px;
+      color: #00a4bd;
+    }
+  }
+}
+

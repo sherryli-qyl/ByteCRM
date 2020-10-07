@@ -4,7 +4,7 @@ import { InfoContext } from '../../InfoPage/components/Context';
 import { ModalContext } from '../../Modal/components/ModalContext';
 import InfoPage from '../../InfoPage';
 import Activities from '../../Activities';
-import RelationPage from '../../RelationPage';
+import RelationContact from './components/RelationContact';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { publicTheme } from '../../Style/Theme/MatUITheme';
 import { CompanyDictionary } from './components/Dictionary';
@@ -78,7 +78,7 @@ class CompanyMain extends Component {
 
                             <Activities />
 
-                            <RelationPage />
+                            <RelationContact />
                             <Modal Xaxis={this.state.Xaxis}
                                 Yaxis={this.state.Yaxis}
                                 visible={visible}
