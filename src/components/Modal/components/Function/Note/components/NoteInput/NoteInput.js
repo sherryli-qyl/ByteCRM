@@ -6,6 +6,7 @@ const NoteInput = (props) => (
   <div className="rich-text-input">
     <Editor 
       placeholder={props.placeholder}
+      onChange={props.handleChange}
     />
   </div> 
 );
