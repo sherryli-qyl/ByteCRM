@@ -5,7 +5,7 @@ import { faEdit } from "@fortawesome/free-solid-svg-icons";
 
 
 function NoteCardsList(props) {
-  const createCard = (card)=>(<NoteCard card={card}/>);
+  const createCard = (card)=>(<NoteCard card={card} onChangeNote = {props.onChangeNote}/>);
   const icon= faEdit;
   return (
     <div>
