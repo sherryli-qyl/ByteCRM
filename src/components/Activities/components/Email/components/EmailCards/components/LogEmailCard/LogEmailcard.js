@@ -10,11 +10,11 @@ import './LogEmailCard.scss';
 class LogEmailCard extends React.Component {
     constructor(props) {
         super(props);
-        const { key, description } = this.props.card;
+        const { _id, description } = this.props.card;
         this.state = {
             currentDate: this.props.card.date,
             currentTime: this.props.card.time,
-            cardKey: key,
+            cardId: _id,
             description,
 
         }
@@ -36,12 +36,12 @@ class LogEmailCard extends React.Component {
     }
 
     render() {
-        const { currentDate, currentTime, cardKey, description } = this.state;
+        const { currentDate, currentTime, cardId, description } = this.state;
         return (
             <div className="logEmailCard">
                 {description?
                     <Header 
-                        cardKey={cardKey}
+                        cardId={cardId}
                         description={description} />
                     :
                     ""
