@@ -41,6 +41,8 @@ class EmailPage extends React.Component {
 
     }
 
+    
+
     onChangeEmail(emailId, body) {
         UpdateEmail(emailId, body);
     }
@@ -51,8 +53,9 @@ class EmailPage extends React.Component {
         const emails = GetEmails(this.props.id);
         emails.then(value => {
             this.setState({
-                cardList: value.emailLogs,
+                cardList: value,
             });
+            console.log(value);
             return this.state.cardList
         }).then(data => {
             if (data.length >= 1) {
