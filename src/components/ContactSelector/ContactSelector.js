@@ -1,5 +1,7 @@
 import React from 'react';
 import Dropdown from './components/Dropdown';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCaretDown} from "@fortawesome/free-solid-svg-icons";
 import './ContactSelector.scss';
 
 
@@ -7,7 +9,7 @@ import './ContactSelector.scss';
 class ContactSelector extends React.Component {
     constructor(props) {
         super(props);
-        this.testList = [{ _id: "5f7709da190582d02ea1bd3c", firstName: "Jane", lastName: "Wick", email: 'abc@gmail.com' }];
+        this.testList = [{ _id: "5f7c1fa07ed22f05ec4ec31a", firstName: "Joy", lastName: "Wong", email: 'abc@gmail.com' }];
         this.state = {
             showDropdown: false,
             contactList: this.testList,
@@ -71,6 +73,7 @@ class ContactSelector extends React.Component {
                             this.onClickButton();
                         }}>
                         {contacted}
+                        <FontAwesomeIcon className = 'contactSelector__label__btn__icon' icon = {faCaretDown}/>
                     </button>
                 </div>
                 <Dropdown showDropdown={showDropdown}
