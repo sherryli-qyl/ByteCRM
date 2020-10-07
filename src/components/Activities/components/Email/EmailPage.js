@@ -2,25 +2,19 @@ import React from 'react';
 import EmailCards from './components/EmailCards';
 import EmailPageHeader from './components/Header';
 import shuffleCards from '../../../services/shuffleCards';
-import { EditorContext } from '../../../Style/EditableText/Context';
+import { GetEmails,UpdateEmail } from '../../../Api/Email/Email';
 import "./EmailPage.scss";
 
 
 class EmailPage extends React.Component {
     constructor(props) {
         super(props);
-        this.emailCardsList = [
-            { key: 1, name: "Yurun Yu", value: "test", type: "Logged email", description: "test test test", date: '2020-10-14', time: '9:00 PM' },
-            { key: 2, name: "Yurun Yu", value: "test", type: "Logged email", description: "", date: '2020-10-13', time: '9:30 AM' },
-            { key: 3, name: "Yurun Yu", value: "test", type: "Logged email", description: "test test test", date: '2020-08-12', time: '10:59 AM' },
-            { key: 4, name: "Yurun Yu", value: "test", type: "Logged email", description: "", date: '2020-09-15', time: '12:16 PM' },
-            { key: 5, name: "Yurun Yu", value: "test", type: "Logged email", description: "test test test", date: '2020-08-14', time: '12:00 AM' },
-        ]
         this.state = {
-            cardList: this.emailCardsList,
+            cardList: [],
             cardsArray: [],
         }
         this.onChangeText = this.onChangeText.bind(this);
+        this.onChangeEmail = this.onChangeEmail.bind(this);
     }
 
     sortCardsArray() {
@@ -43,19 +37,38 @@ class EmailPage extends React.Component {
         console.table(this.state.cardsList);
     }
 
+    handleAddContact(contactId, emailId) {
+
+    }
+
+    onChangeEmail(emailId, body) {
+        UpdateEmail(emailId, body);
+    }
+
+
+
     componentDidMount() {
-        this.sortCardsArray();
+        const emails = GetEmails(this.props.id);
+        emails.then(value => {
+            this.setState({
+                cardList: value.emailLogs,
+            });
+            return this.state.cardList
+        }).then(data => {
+            if (data.length >= 1) {
+                console.log('check');
+                this.sortCardsArray();
+            }
+        });
     }
 
     render() {
         const { cardsArray } = this.state;
-        const onSave = this.onChangeText;
         return (
             <div className="emailPage">
                 <EmailPageHeader />
-                <EditorContext.Provider value={onSave}>
-                    <EmailCards cardsArray={cardsArray} />
-                </EditorContext.Provider>
+                <EmailCards cardsArray={cardsArray}
+                            onChangeEmail = {this.onChangeEmail} />
             </div>
         )
     }

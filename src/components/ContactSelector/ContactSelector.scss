@@ -12,9 +12,19 @@
 
         &__btn{
             @extend .nakedBtn;
+            display: flex;
             cursor: pointer;
             color: $secondary-color;
+            justify-content: flex-end;
+            align-items: center;
             font-size: 15px;
+            min-width: 90px;
+
+            &__icon{
+                margin-left:5px;
+                color:rgba($color: $primary-color, $alpha: 0.7);
+                flex-grow: 1;
+            }
             
 
             &:hover{

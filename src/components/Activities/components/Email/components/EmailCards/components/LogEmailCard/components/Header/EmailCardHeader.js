@@ -9,6 +9,7 @@ const EmailCardHeader = (props) => {
             <EditableText
                 content={props.description}
                 cardKey={props.cardKey}
+                onContentChange = {props.onContentChange}
                 placeholder = {"Description..."}
             />
         </div>

@@ -47,6 +47,7 @@ class EditableText extends React.Component {
       isEditingMode: false,
       content:newContent, 
     });
+     this.props.onContentChange(newContent);
   }
 
   handleEdit() {
@@ -99,18 +100,13 @@ class EditableText extends React.Component {
           />
         </div>
         <div className="editingmode-editor-actions">
-          <EditorContext.Consumer>
-            {onSave => (
               <div className="editingmode-editor-actions__save">
                 <CreateButton className="createButton-small"
                               onClick={this.handleSave}
-                              onSave={() => onSave(currentContent,cardKey)}>
+                             >
                   Save
                 </CreateButton>
               </div>
-            )
-            }
-          </EditorContext.Consumer>
           <div className="editingmode-editor-actions__cancel">
             <LogButton className="logButton-small" onClick={this.handleCancel}>Cancel</LogButton>
           </div>
