@@ -9,10 +9,9 @@ import './ContactSelector.scss';
 class ContactSelector extends React.Component {
     constructor(props) {
         super(props);
-        this.testList = [{ _id: "5f7c1fa07ed22f05ec4ec31a", firstName: "Joy", lastName: "Wong", email: 'abc@gmail.com' }];
         this.state = {
             showDropdown: false,
-            contactList: this.testList,
+            contactList: this.props.contactList,
         }
         this.onClickButton = this.onClickButton.bind(this);
         this.onClose = this.onClose.bind(this);
@@ -44,17 +43,16 @@ class ContactSelector extends React.Component {
                 contactList: newList
             })
         }
-        console.table(this.state.contactList[0]);
+        this.props.handleDeleteContact(id);
     }
 
     handleAddContact(contact) {
-        console.log("add contact");
-        console.table(contact);
         let newList = this.state.contactList;
-         newList.push(contact);
+        newList.push(contact);
         this.setState({
             contactList: newList
         })
+        this.props.handleAddContact(contact._id);
     }
 
     render() {

@@ -8,7 +8,10 @@ import "./EmailCards.scss";
 
 function EmailCards(props) {
     const createCard = (card)=>(<CreateEmailCard card={card}/>);
-    const logCard =(card)=>(<LogEmailCard card={card} onChangeEmail = {props.onChangeEmail}/>);
+    const logCard =(card)=>(<LogEmailCard card={card} 
+                                          onChangeEmail = {props.onChangeEmail}
+                                          handleAddContact = {props.handleAddContact}
+                                          handleRemoveContact = {props.handleRemoveContact}/>);
     const icon= faEnvelope;
     return (
         <div className='emailCards'>

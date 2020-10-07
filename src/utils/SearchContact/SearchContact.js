@@ -1,7 +1,7 @@
 import SearchResult from './SearchResult';
 
 const testList = [{ _id: "5f7d75bac4b63051271b23eb", firstName: "Harry", lastName: "Kayn", email: 'HarryKayn@gmail.com' },
-{ _id: "00004", firstName: "Robert", lastName: "Lee", email: '2241143@gmail.com' }];
+{ _id: "5f7dce3175812d8b0f4d3add", firstName: "Ash", lastName: "Liu", email: 'Ashliu1990@gmail.com' }];
 
 
 function SearchContactLocal(contactList,textInput){
