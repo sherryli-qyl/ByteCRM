@@ -2,7 +2,7 @@ import React from 'react';
 import EmailCards from './components/EmailCards';
 import EmailPageHeader from './components/Header';
 import shuffleCards from '../../../services/shuffleCards';
-import { GetEmails,UpdateEmail } from '../../../Api/Email/Email';
+import { GetEmails,UpdateEmail,UpdateContacts,RemoveContacts} from '../../../Api/Email/Email';
 import "./EmailPage.scss";
 
 
@@ -15,6 +15,8 @@ class EmailPage extends React.Component {
         }
         this.onChangeText = this.onChangeText.bind(this);
         this.onChangeEmail = this.onChangeEmail.bind(this);
+        this.handleAddContact = this.handleAddContact.bind(this);
+        this.handleRemoveContact = this.handleRemoveContact.bind(this);
     }
 
     sortCardsArray() {
@@ -38,25 +40,27 @@ class EmailPage extends React.Component {
     }
 
     handleAddContact(contactId, emailId) {
+        UpdateContacts(contactId, emailId);
+    }
 
+    handleRemoveContact(contactId, emailId){
+        console.log(contactId+ "//" + emailId)
+        RemoveContacts(contactId, emailId);
     }
 
     onChangeEmail(emailId, body) {
         UpdateEmail(emailId, body);
     }
 
-
-
     componentDidMount() {
-        const emails = GetEmails(this.props.id);
+        const emails = GetEmails(this.props.contactId);
         emails.then(value => {
             this.setState({
-                cardList: value.emailLogs,
+                cardList: value,
             });
             return this.state.cardList
         }).then(data => {
             if (data.length >= 1) {
-                console.log('check');
                 this.sortCardsArray();
             }
         });
@@ -68,6 +72,8 @@ class EmailPage extends React.Component {
             <div className="emailPage">
                 <EmailPageHeader />
                 <EmailCards cardsArray={cardsArray}
+                            handleAddContact = {this.handleAddContact}
+                            handleRemoveContact = {this.handleRemoveContact}
                             onChangeEmail = {this.onChangeEmail} />
             </div>
         )

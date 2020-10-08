@@ -22,6 +22,25 @@ async function UpdateContact(contactId, body) {
     return data;
 }
 
+async function GetContactByUserId(userId,keyword) {
+    const serverUrl = `http://localhost:3000/api/contacts/search/${userId}/${keyword}`;
+    const response = await fetch(serverUrl, {
+        method: "GET"
+    }).catch((error) =>{
+        return error
+    }    
+    );
+    if(response.status === 409){
+        return false;
+    }
+    else{
+        const data = response.json();
+        return data;
+    }
+}
 
-export { GetContact, UpdateContact };
+
+
+
+export { GetContact, UpdateContact, GetContactByUserId };
 

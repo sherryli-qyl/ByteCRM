@@ -51,7 +51,11 @@ class EditableText extends React.Component {
   }
 
   handleEdit() {
-    this.setState({ isEditingMode: true })
+    this.setState({ 
+      isEditingMode: true,
+      onHover: false
+     });
+    
   }
 
   handleCancel() {
@@ -91,7 +95,7 @@ class EditableText extends React.Component {
 
 
   renderEditingMode() {
-    const { content, currentContent,cardKey} = this.state;
+    const { content} = this.state;
     return (
       <div>
         <div className="editingmode-editor">

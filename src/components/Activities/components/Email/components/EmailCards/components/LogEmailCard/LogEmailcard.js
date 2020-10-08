@@ -10,18 +10,30 @@ import './LogEmailCard.scss';
 class LogEmailCard extends React.Component {
     constructor(props) {
         super(props);
-        const { _id, description } = this.props.card;
+        const { _id, description,contacts } = this.props.card;
         this.state = {
             currentDate: this.props.card.date,
             currentTime: this.props.card.time,
             card:this.props.card,
             cardId: _id,
             description,
+            contactList:contacts
 
         }
         this.onDateChange = this.onDateChange.bind(this);
         this.onTimeChange = this.onTimeChange.bind(this);
         this.onDescriptionChange = this.onDescriptionChange.bind(this);
+        this.handleAddContact = this.handleAddContact.bind(this);
+        this.handleDeleteContact = this.handleDeleteContact.bind(this);
+    }
+
+    handleAddContact(contactId){
+        this.props.handleAddContact(contactId,this.state.cardId);
+    }
+
+    handleDeleteContact(contactId){
+        console.log(contactId);
+        this.props.handleRemoveContact(contactId,this.state.cardId);
     }
 
     onDateChange(date) {
@@ -55,7 +67,7 @@ class LogEmailCard extends React.Component {
     }
 
     render() {
-        const { currentDate, currentTime, cardId, description } = this.state;
+        const { currentDate, currentTime, cardId, description,contactList} = this.state;
         return (
             <div className="logEmailCard">
                 {description?
@@ -67,8 +79,11 @@ class LogEmailCard extends React.Component {
                     ""
                 }
                 <div className='blockline' >
-                    <Body currentDate={currentDate}
+                    <Body contactList = {contactList}
+                          currentDate={currentDate}
                           currentTime={currentTime}
+                          handleAddContact = {this.handleAddContact}
+                          handleDeleteContact = {this.handleDeleteContact}
                           onTimeChange={this.onTimeChange}
                           onDateChange={this.onDateChange} />
                 </div>

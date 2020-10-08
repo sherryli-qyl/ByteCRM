@@ -1,7 +1,8 @@
 import SearchResult from './SearchResult';
+import {GetContactByUserId} from '../../components/Api/Contact';
 
 const testList = [{ _id: "5f7d75bac4b63051271b23eb", firstName: "Harry", lastName: "Kayn", email: 'HarryKayn@gmail.com' },
-{ _id: "00004", firstName: "Robert", lastName: "Lee", email: '2241143@gmail.com' }];
+{ _id: "5f7dce3175812d8b0f4d3add", firstName: "Ash", lastName: "Liu", email: 'Ashliu1990@gmail.com' }];
 
 
 function SearchContactLocal(contactList,textInput){
@@ -17,12 +18,13 @@ function SearchContactLocal(contactList,textInput){
     return searchList;
 }
 
-function SearchContactRemote(searchList,textInput){
+function SearchContactRemote(searchList,textInput,contactsList){
     let newSerachList = searchList;
-    for(let i in testList){
-        if (testList[i].firstName.toUpperCase().includes(textInput)|| testList[i].lastName.toUpperCase().includes(textInput)||testList[i].email.toUpperCase().includes(textInput)){  
-                if(!checkDuplicate(newSerachList,testList[i])){
-                    const searchResult = new SearchResult(testList[i],false)
+    // const findContacts = GetContactByUserId();
+    for(let i in contactsList){
+        if (contactsList[i].fullName.toUpperCase().includes(textInput) ||contactsList[i].email.toUpperCase().includes(textInput)){  
+                if(!checkDuplicate(newSerachList,contactsList[i])){
+                    const searchResult = new SearchResult(contactsList[i],false)
                     newSerachList.push(searchResult);
                 }
         }

@@ -1,7 +1,8 @@
 import React from 'react';
 import Dropdown from './components/Dropdown';
+import { ActivityContext } from '../Activities/Context';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCaretDown} from "@fortawesome/free-solid-svg-icons";
+import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
 import './ContactSelector.scss';
 
 
@@ -9,10 +10,9 @@ import './ContactSelector.scss';
 class ContactSelector extends React.Component {
     constructor(props) {
         super(props);
-        this.testList = [{ _id: "5f7c1fa07ed22f05ec4ec31a", firstName: "Joy", lastName: "Wong", email: 'abc@gmail.com' }];
         this.state = {
             showDropdown: false,
-            contactList: this.testList,
+            contactList: this.props.contactList,
         }
         this.onClickButton = this.onClickButton.bind(this);
         this.onClose = this.onClose.bind(this);
@@ -44,17 +44,16 @@ class ContactSelector extends React.Component {
                 contactList: newList
             })
         }
-        console.table(this.state.contactList[0]);
+        this.props.handleDeleteContact(id);
     }
 
     handleAddContact(contact) {
-        console.log("add contact");
-        console.table(contact);
         let newList = this.state.contactList;
-         newList.push(contact);
+        newList.push(contact);
         this.setState({
             contactList: newList
         })
+        this.props.handleAddContact(contact._id);
     }
 
     render() {
@@ -73,13 +72,21 @@ class ContactSelector extends React.Component {
                             this.onClickButton();
                         }}>
                         {contacted}
-                        <FontAwesomeIcon className = 'contactSelector__label__btn__icon' icon = {faCaretDown}/>
+                        <FontAwesomeIcon className='contactSelector__label__btn__icon' icon={faCaretDown} />
                     </button>
                 </div>
-                <Dropdown showDropdown={showDropdown}
-                          handleRemoveContact={this.handleRemoveContact}
-                          handleAddContact = {this.handleAddContact}
-                          contactList = {contactList} />
+                <ActivityContext.Consumer>
+                    {contactInfo => (
+                        <Dropdown
+                            showDropdown={showDropdown}
+                            userId = {contactInfo.userId}
+                            contact = {contactInfo.contact}
+                            handleRemoveContact={this.handleRemoveContact}
+                            handleAddContact={this.handleAddContact}
+                            contactList={contactList} />
+                    )
+                    }
+                </ActivityContext.Consumer>
             </div>
         )
     }
