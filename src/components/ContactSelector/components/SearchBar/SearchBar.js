@@ -1,7 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faTimes } from "@fortawesome/free-solid-svg-icons";
-
 import './SearchBar.scss';
 
 
@@ -10,12 +9,12 @@ class SearchBar extends React.Component {
         super(props);
         this.textInput = React.createRef();
         this.state = {
-            currentValue: '',
-            enableCleanBtn: false,
-
+            currentValue: this.props.textInput,
+            enableCleanBtn: this.props.enableCleanBtn,
         }
         this.onChange = this.onChange.bind(this);
-        this.onCleanInput = this.onCleanInput.bind(this);
+        this.CleanInput = this.CleanInput.bind(this);
+        this.onClickCleanBtn = this.onClickCleanBtn.bind(this);
     }
 
     handleDisplay(inputText) {
@@ -23,37 +22,36 @@ class SearchBar extends React.Component {
         if (inputText.length > 0) {
             activeBtn = true;
         }
-        this.setState(prevState => {
-            return {
-                ...prevState,
-                currentValue: inputText,
-                enableCleanBtn: activeBtn
-            }
+        this.setState({
+            currentValue: inputText,
+            enableCleanBtn: activeBtn
         })
     }
 
-    onCleanInput() {
-        this.setState(prevState => {
-            return {
-                ...prevState,
-                currentValue: '',
-                enableCleanBtn: false,
-
-            }
+    CleanInput(){
+        this.setState({
+            currentValue: '',
+            enableCleanBtn: false,
         })
-        this.props.onChange('');
+    }
+
+    onClickCleanBtn() {
+        this.CleanInput();
     }
 
     onChange(event) {
         event.preventDefault();
         this.handleDisplay(event.target.value);
-        this.props.onChange(event.target.value);
     }
 
     componentDidUpdate() {
         this.textInput.current.focus();
     }
 
+    componentDidMount(){
+        this.props.handleCleanInput(this.CleanInput);
+    }
+    
 
     render() {
         const { currentValue, enableCleanBtn } = this.state;
@@ -75,7 +73,7 @@ class SearchBar extends React.Component {
                     />
                 </form>
                 <div className="searchBar__right">
-                    <button disabled = {!enableCleanBtn} className={btnClassName} onClick={this.onCleanInput}>
+                    <button disabled = {!enableCleanBtn} className={btnClassName} onClick={this.onClickCleanBtn}>
                         <FontAwesomeIcon className="searchBar__right__btn__icon" icon={icon} />
                     </button>
                 </div>

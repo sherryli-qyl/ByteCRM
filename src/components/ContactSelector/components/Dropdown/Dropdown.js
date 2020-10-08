@@ -108,7 +108,8 @@ class Dropdown extends React.Component {
                 <div className='dropdown__corner' />
                 <div className='dropdown__inner'>
                     <div className='dropdown__inner__wrapper'>
-                        <SearchBar onChange={this.onChangeInput} />
+                        <SearchBar onChange={this.onChangeInput}
+                                   handleCleanInput = {this.props.handleCleanInput}/>
                     </div>
                     {!checkInput ?
                         <Select label={'Contacts'}
