@@ -115,7 +115,8 @@ class ContactMain extends Component {
                                 </InfoContext.Provider>
                                 <ActivityContext.Provider value = {contactData}>
                                     <Activities contactId= {this.id}
-                                                userId = {this.userId}/>
+                                                contact = {contact}
+                                                />
                                     <RelationCompany />
                                     <Modal Xaxis={this.state.Xaxis}
                                         Yaxis={this.state.Yaxis}

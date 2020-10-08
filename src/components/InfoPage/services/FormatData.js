@@ -12,7 +12,6 @@ function FormatData(dataPack,dictionary){
         let item = undefined;
         if(typeof value === 'object'){
             item = new dataInfo( dictionary[i].key,dictionary[i].title,value.fullName,dictionary[i].tip);
-            console.log(value); 
         }
         else{
             item = new dataInfo( dictionary[i].key,dictionary[i].title,value,dictionary[i].tip);

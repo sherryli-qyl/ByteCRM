@@ -70,7 +70,7 @@ class EmailPage extends React.Component {
         const { cardsArray } = this.state;
         return (
             <div className="emailPage">
-                <EmailPageHeader />
+                <EmailPageHeader contact = {this.props.contact}/>
                 <EmailCards cardsArray={cardsArray}
                             handleAddContact = {this.handleAddContact}
                             handleRemoveContact = {this.handleRemoveContact}
