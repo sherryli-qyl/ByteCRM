@@ -23,7 +23,6 @@ async function UpdateEmail(emailId, body) {
 }
 
 async function UpdateContacts(contactId,emailId){
-    console.log(emailId + "//" + contactId);
     const serverUrl = `http://localhost:3000/api/emails/${emailId}/contacts/${contactId}`;
     const response = await fetch(serverUrl, {
         method: "PUT",

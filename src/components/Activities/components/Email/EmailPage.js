@@ -53,7 +53,7 @@ class EmailPage extends React.Component {
     }
 
     componentDidMount() {
-        const emails = GetEmails(this.props.id);
+        const emails = GetEmails(this.props.contactId);
         emails.then(value => {
             this.setState({
                 cardList: value,

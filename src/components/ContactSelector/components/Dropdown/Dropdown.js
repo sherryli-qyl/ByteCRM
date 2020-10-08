@@ -2,7 +2,9 @@ import React from 'react';
 import SearchBar from '../SearchBar';
 import Select from '../Select';
 import HintBar from '../HintBar';
-import { SearchContactLocal,SearchContactRemote} from '../../../../utils/SearchContact/SearchContact';
+import Loading from '../../../Loading';
+import { SearchContactLocal, SearchContactRemote } from '../../../../utils/SearchContact/SearchContact';
+import { GetContactByUserId } from '../../../Api/Contact';
 import './Dropdown.scss';
 
 
@@ -12,9 +14,10 @@ class Dropdown extends React.Component {
         this.state = {
             checkInput: false,
             hintMessage: '',
+            loading: false,
             showDropdown: this.props.showDropdown,
             contactList: this.props.contactList,
-            searchList:[],
+            searchList: [],
         }
         this.onChangeInput = this.onChangeInput.bind(this);
     }
@@ -23,17 +26,17 @@ class Dropdown extends React.Component {
         let newHint = '';
         let newList = SearchContactLocal(this.state.contactList, text.toUpperCase());
 
-        if(text.length === 0) {
+        if (text.length === 0) {
             this.setState({
                 searchList: [],
                 checkInput: false,
             })
         }
 
-        else if (newList.length > 0 && text.length !==0) {
+        else if (newList.length > 0 && text.length !== 0) {
             this.setState({
-                searchList:newList,
-                checkInput:false,
+                searchList: newList,
+                checkInput: false,
             })
         }
 
@@ -44,7 +47,7 @@ class Dropdown extends React.Component {
                     ...prevState,
                     hintMessage: newHint,
                     checkInput: true,
-                    searchList:newList,
+                    searchList: newList,
                 }
             })
         }
@@ -52,29 +55,50 @@ class Dropdown extends React.Component {
         if (text.length >= 3) {
             newHint = 'searching';
             const newList = SearchContactLocal(this.state.contactList, text.toUpperCase());
-            const newSearchList = SearchContactRemote(newList,text.toUpperCase());
-            let foundNewContact = false;
-            
-            if (newSearchList.length >= 1){
-                foundNewContact = true;
-            }
-            this.setState(prevState => {
-                return {
-                    ...prevState,
-                    checkInput: !foundNewContact,
-                    searchList: newSearchList,
-                    hintMessage: newHint,
+            const response = GetContactByUserId(this.props.userId, text.toUpperCase())
+            this.setState(prevState =>({
+                ...prevState,
+                loading:true
+            }))
+            response.then(findContacts => {
+                if (findContacts) {
+                    const newSearchList = SearchContactRemote(newList, text.toUpperCase(), findContacts);
+                    let foundNewContact = false;
+                    if (newSearchList.length >= 1) {
+                        foundNewContact = true;
+                        this.setState(prevState => {
+                            return {
+                                ...prevState,
+                                checkInput: !foundNewContact,
+                                searchList: newSearchList,
+                                hintMessage: newHint,
+                                loading: false,
+                            }
+                        });
+                    }
                 }
-            });
+                else {
+                    this.setState(prevState => {
+                        return {
+                            ...prevState,
+                            loading:false,
+                            checkInput: true,
+                            hintMessage: 'No result found'
+                        }
+                    }
+                    )
+                }
+            }
+            )
         }
     }
 
-   
+
 
 
     render() {
-        const {showDropdown} = this.props
-        const { hintMessage, checkInput, contactList,searchList} = this.state;
+        const { showDropdown } = this.props
+        const { hintMessage, checkInput, contactList, searchList,loading} = this.state;
         let className = "dropdown "
         if (showDropdown) {
             className += "dropdown__active"
@@ -88,11 +112,15 @@ class Dropdown extends React.Component {
                     </div>
                     {!checkInput ?
                         <Select label={'Contacts'}
-                            searchList = {searchList}
+                            contact={this.props.contact}
+                            searchList={searchList}
                             handleRemoveContact={this.props.handleRemoveContact}
                             handleAddContact={this.props.handleAddContact}
                             contactList={contactList} />
                         :
+                        loading?
+                        <Loading variant = "bar"/>
+                        : 
                         <HintBar>
                             {hintMessage}
                         </HintBar>

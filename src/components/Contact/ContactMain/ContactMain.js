@@ -20,6 +20,7 @@ class ContactMain extends Component {
     constructor(props) {
         super(props);
         this.id = "5f7c1fa07ed22f05ec4ec31a";
+        this.userId = "5f6fda5a99f207748e5905fa";
         const expandPack = [{ key: 'About this Contact', content: "" }, { key: 'Website Activity', content: (<WebActivity />) }]
         this.state = {
             Xaxis: 300,
@@ -96,6 +97,7 @@ class ContactMain extends Component {
         const { visible, currentModal, contact, theme, expandPack, loading } = this.state;
         const infoData = { key: 'contact', data: contact, dictionary: ContactDictionary };
         const value = { single: this.onChangeSingleInfo, multi: this.onChangeMultiInfo };
+        const contactData = {contact:contact,userId:this.userId}
         const openModal = this.openModal;
         return (
             <div>
@@ -111,8 +113,9 @@ class ContactMain extends Component {
                                         expandPack={expandPack}
                                     />
                                 </InfoContext.Provider>
-                                <ActivityContext.Provider value = {contact}>
-                                    <Activities id= {this.id}/>
+                                <ActivityContext.Provider value = {contactData}>
+                                    <Activities contactId= {this.id}
+                                                userId = {this.userId}/>
                                     <RelationCompany />
                                     <Modal Xaxis={this.state.Xaxis}
                                         Yaxis={this.state.Yaxis}

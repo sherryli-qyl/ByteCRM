@@ -1,7 +1,8 @@
 import React from 'react';
 import Dropdown from './components/Dropdown';
+import { ActivityContext } from '../Activities/Context';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCaretDown} from "@fortawesome/free-solid-svg-icons";
+import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
 import './ContactSelector.scss';
 
 
@@ -71,13 +72,21 @@ class ContactSelector extends React.Component {
                             this.onClickButton();
                         }}>
                         {contacted}
-                        <FontAwesomeIcon className = 'contactSelector__label__btn__icon' icon = {faCaretDown}/>
+                        <FontAwesomeIcon className='contactSelector__label__btn__icon' icon={faCaretDown} />
                     </button>
                 </div>
-                <Dropdown showDropdown={showDropdown}
-                          handleRemoveContact={this.handleRemoveContact}
-                          handleAddContact = {this.handleAddContact}
-                          contactList = {contactList} />
+                <ActivityContext.Consumer>
+                    {contactInfo => (
+                        <Dropdown
+                            showDropdown={showDropdown}
+                            userId = {contactInfo.userId}
+                            contact = {contactInfo.contact}
+                            handleRemoveContact={this.handleRemoveContact}
+                            handleAddContact={this.handleAddContact}
+                            contactList={contactList} />
+                    )
+                    }
+                </ActivityContext.Consumer>
             </div>
         )
     }
