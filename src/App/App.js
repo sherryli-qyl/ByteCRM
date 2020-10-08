@@ -1,4 +1,5 @@
 import React from 'react';
+import './App.scss';
 import Routes from '../components/Routes';
 import Header from '../components/Header';
 
