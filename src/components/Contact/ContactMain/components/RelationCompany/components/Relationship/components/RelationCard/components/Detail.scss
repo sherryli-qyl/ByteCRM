@@ -12,7 +12,8 @@
     .website_link {
       color: #33475b;
       font-weight: lighter;
-      margin: 10px;
+      margin: 10px 5px;
+      text-decoration: none;
       &:hover{
         text-decoration: underline;
       }
@@ -20,7 +21,7 @@
     .linkIcon {
       color: #a1a9b1;
       position: relative;
-      top: 9px;
+      top: 10px;
     }
   }
   .phone {
