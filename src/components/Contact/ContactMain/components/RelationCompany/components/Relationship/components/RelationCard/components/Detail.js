@@ -5,11 +5,12 @@ import './Detail.scss';
 
 
 const Detail = (props) => {
+  const websiteURL = `https://${props.website}`;
   return (
     <div className="detailWrapper">
       <div className="company"> {props.company} </div>
       <div className="website">
-        <a className="website_link">
+        <a className="website_link" href={websiteURL} target="_blank" rel="noopener noreferrer">
           {props.website}
         </a>
         <div className="linkIcon">

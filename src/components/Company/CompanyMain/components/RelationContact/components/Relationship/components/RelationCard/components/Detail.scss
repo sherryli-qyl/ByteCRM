@@ -17,5 +17,11 @@
       color: #a1a9b1;
       margin-right: 8px;
     }
+    .email_address{
+      cursor: pointer;
+      &:hover{
+        color: #33475b;
+      }
+    }
   }
 }

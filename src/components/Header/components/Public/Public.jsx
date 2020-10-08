@@ -22,6 +22,9 @@ const Public = () => (
     <NavigationLink.Text indictable href="/test">
       TEST 
     </NavigationLink.Text>
+    <NavigationLink.Text indictable href="/test2">
+      TEST2
+    </NavigationLink.Text>
   </div>
 );
 
