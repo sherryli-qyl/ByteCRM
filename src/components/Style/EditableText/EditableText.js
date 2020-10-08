@@ -24,7 +24,7 @@ class EditableText extends React.Component {
       onHover: false,
       content,
       cardKey,
-      currentContent: "",
+      currentContent: content,
       onChangeNote: '',
     };
 
@@ -95,7 +95,7 @@ class EditableText extends React.Component {
 
 
   renderEditingMode() {
-    const { content} = this.state;
+    const {content} = this.state;
     return (
       <div>
         <div className="editingmode-editor">
