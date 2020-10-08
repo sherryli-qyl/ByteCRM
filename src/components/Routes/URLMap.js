@@ -6,4 +6,6 @@ export const LOGOUT_BASE_URL = '/register';
 export const ABOUTUS_BASE_URL = '/about';
 export  const CONTACTUS_BASE_URL = '/contactus';
 export const TEST_BASE_URL = '/test';
+export const COURSE_BASE_URL = '/course';
+export const TEST2_BASE_URL = '/test2';
 

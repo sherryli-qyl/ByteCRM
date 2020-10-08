@@ -8,7 +8,7 @@ const Private = () => (
         CONTACT US
           </NavigationLink.Button>
           
-          <NavigationLink.Button variant="secondary" href="/login">
+          <NavigationLink.Button variant="secondary" href="/register">
           REGISTER
           </NavigationLink.Button>
           <NavigationLink.Button variant="secondary" href="/login">
