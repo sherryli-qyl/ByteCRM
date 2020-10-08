@@ -11,7 +11,7 @@ const Detail = (props) => {
       <div className="position"> {props.position} </div>
       <div className="email">
         <div className="emailIcon"><FontAwesomeIcon icon={faEnvelope} /></div>
-        {props.email}
+        <span className="email_address">{props.email}</span>
       </div>
     </div >
   )
