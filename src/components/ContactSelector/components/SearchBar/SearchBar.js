@@ -1,6 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faTimes } from "@fortawesome/free-solid-svg-icons";
+
 import './SearchBar.scss';
 
 
@@ -13,7 +14,6 @@ class SearchBar extends React.Component {
             enableCleanBtn: this.props.enableCleanBtn,
         }
         this.onChange = this.onChange.bind(this);
-        this.CleanInput = this.CleanInput.bind(this);
         this.onClickCleanBtn = this.onClickCleanBtn.bind(this);
     }
 
@@ -42,6 +42,7 @@ class SearchBar extends React.Component {
     onChange(event) {
         event.preventDefault();
         this.handleDisplay(event.target.value);
+        this.props.onChange(event.target.value);
     }
 
     componentDidUpdate() {
@@ -49,7 +50,7 @@ class SearchBar extends React.Component {
     }
 
     componentDidMount(){
-        this.props.handleCleanInput(this.CleanInput);
+        this.props.handleCleanInput(this.onClickCleanBtn);
     }
     
 
