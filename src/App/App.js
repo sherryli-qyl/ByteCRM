@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.scss';
-import Routes from '../Routes';
-import Header from '../Header/Header';
+import Routes from '../components/Routes';
+import Header from '../components/Header';
 
 function App() {
   return (

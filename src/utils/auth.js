@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 
-const JWT_TOKEN_NAME = 'jwtToken-jr-lms';
+const JWT_TOKEN_NAME = 'jwtToken-byteCRM';
 
 export const getToken = () => localStorage.getItem(JWT_TOKEN_NAME);
 
