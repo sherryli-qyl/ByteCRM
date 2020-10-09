@@ -78,7 +78,7 @@ class NotesTimeLine extends React.Component {
 
   onChangeNote(noteId, body) {
     UpdateNote(noteId, body);
-}
+  }
 
 
   render() {

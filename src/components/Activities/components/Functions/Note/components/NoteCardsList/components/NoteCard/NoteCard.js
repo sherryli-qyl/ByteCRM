@@ -16,6 +16,7 @@ class NoteCard extends React.Component {
       author,
     }
     this.onContentChange = this.onContentChange.bind(this);
+    this.onCommentChange = this.onCommentChange.bind(this);
   }
 
   onContentChange(content){
@@ -28,30 +29,31 @@ class NoteCard extends React.Component {
     this.props.onChangeNote(this.state.cardId, newCard)
   }
 
-  // onCommentChange(comments){
-  //   let newCard = this.state.card;
-  //   newCard.comments = comments;
-  //   this.setState({
-  //     comments: comments,
-  //     card: newCard,
-  //   })
-  //   this.props.onChangeNote(this.state.cardId, newCard)
-  // }
+  onCommentChange(comments){
+    let newCard = this.state.card;
+    newCard.comments = comments;
+    this.setState({
+      comments: comments,
+      card: newCard,
+    })
+    this.props.onChangeNote(this.state.cardId, newCard)
+  }
 
   render() {
     const { _id, content, author, comments } = this.props.card;
-    
+
     return (
       <div>
         <NoteBody 
           content={content}
-          onContentChange = {this.onContentChange} 
+          onContentChange={this.onContentChange} 
           />
         <CreatedBy 
-          author={author}
+          createdBy={author}
         />  
         <CommentBox 
           comments={comments}
+          onCommentChange={this.onCommentChange} 
         />            
       </div>
     )
