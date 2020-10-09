@@ -16,13 +16,14 @@ class CommentBox extends React.Component {
     //TODO: When Save button on Comment Form is clicked, hide Comment Form
     //TODO: When Save button on Comment Form is clicked, show Add Comment section
     //TODO: When Cancel button on Comment Form is clicked, show Add Comment section
-
+    
     this.state = {
       showComments: false,
       showCommentForm: false,
       //showAddCommentPanel: true,
       comments: this.props.comments,
     };
+    
     this.handleShowCommentForm = this.handleShowCommentForm.bind(this);
     //this.handleShowAddCommentPanel = this.handleShowAddCommentPanel.bind(this);
     this.deleteComment = this.deleteComment.bind(this);
@@ -46,13 +47,20 @@ class CommentBox extends React.Component {
   
   addComment(author, content, timestamp) {
     const comment = {
-      id: this.state.comments.length + 1,
+      //id: this.state.comments.length + 1,
       author,
       content,
       timestamp
     };
     this.setState({ comments: this.state.comments.concat([comment]) }); 
   }
+
+
+//   fetch('http://localhost:8080')
+//   .then(response => response.json())
+//   .then(json => {
+//   this.setState({mystate: this.state.mystate.push.apply(this.state.mystate, json)})
+// })
 
   deleteComment(index){
     const arr = this.state.comments;
@@ -63,7 +71,8 @@ class CommentBox extends React.Component {
   updateComment(newContent, index){
     const arr = this.state.comments;
     arr[index].content = newContent;
-    this.setState({comments: arr})
+    this.setState({comments: arr});
+    
   }
   
   handleClick() {
@@ -117,7 +126,7 @@ class CommentBox extends React.Component {
           >
             {buttonText} {this.getCommentsTitle(comments.length)} 
           </button>
-          {commentNodes}
+            {commentNodes}
         </div>
         <div>
           {this.state.showCommentForm

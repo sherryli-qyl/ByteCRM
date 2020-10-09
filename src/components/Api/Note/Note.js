@@ -33,6 +33,17 @@ export const AddNote = ({
   }
 });
 
+// async function addComment(userId, noteId, content) {
+//   const comment = {
+//     createdBy: userId,
+//     content: content,
+//   };
+
+//   const updateNote = await Note.put(`http://localhost:3000/api/notes/${noteId}/comment`, comment);
+
+//   return updateNote;
+// }
+
 
 export { GetNoteByRelatedToId, UpdateNote };
 
