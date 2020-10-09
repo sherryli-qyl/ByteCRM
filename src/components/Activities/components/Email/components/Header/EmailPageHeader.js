@@ -11,9 +11,9 @@ import Modal from '../../../../../../js/Modal';
 
 
 
-const EmailPageHeader = () => {
-    const createModal = new Modal('Email', 'Email', <EmailModal/>); //create your modal
-    const logModal = new Modal('Log Email', 'Log Email', <LogEmailModal/>);
+const EmailPageHeader = (props) => {
+    const createModal = new Modal('Email', 'Email', <EmailModal contact={props.contact}/>); //create your modal
+    const logModal = new Modal('Log Email', 'Log Email', <LogEmailModal contact={props.contact}/>);
     return (
         <ModalContext.Consumer>
             { openModal =>

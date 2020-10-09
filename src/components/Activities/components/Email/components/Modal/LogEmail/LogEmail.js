@@ -46,11 +46,14 @@ class LogEmail extends React.Component {
 
     render() {
         const { currentDate, currentTime } = this.state;
+        let contactList = [] ;
+        contactList.push(this.props.contact);
         return (
             <div className="logEmailModal">
                 <div className="logEmailModal__header">
                     <Header currentDate={currentDate}
                             currentTime={currentTime}
+                            contactList = {contactList}
                             onDateChange = {this.handleDateChange}
                             onTimeChange = {this.handleTimeChange}
                     />
