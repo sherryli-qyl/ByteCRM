@@ -33,6 +33,7 @@ class SearchBar extends React.Component {
             currentValue: '',
             enableCleanBtn: false,
         })
+        this.props.onChange("");
     }
 
     onClickCleanBtn() {

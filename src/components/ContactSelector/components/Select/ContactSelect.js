@@ -16,6 +16,7 @@ class ContactSelect extends React.Component {
 
     render() {
         const { contactList, searchList,contact } = this.props;
+        console.log("check" + searchList.length);
         return (
             <div className="contactSelect">
                 <div className="contactSelect__title">
@@ -24,7 +25,9 @@ class ContactSelect extends React.Component {
                     </span>
                 </div>
                 {searchList.length > 0 ?
+                   
                     searchList.map(item => {
+
                         return (
                             <SelectItem
                                 key={item.contact._id}
