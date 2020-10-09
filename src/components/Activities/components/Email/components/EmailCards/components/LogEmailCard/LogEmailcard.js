@@ -85,7 +85,7 @@ class LogEmailCard extends React.Component {
                           onTimeChange={this.onTimeChange}
                           onDateChange={this.onDateChange} />
                 </div>
-                <Footer userName={this.props.card.name} />
+                <Footer userName={this.props.card.user.fullName} />
             </div>
         )
     }
