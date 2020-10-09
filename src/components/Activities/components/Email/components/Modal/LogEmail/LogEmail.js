@@ -10,12 +10,14 @@ import './LogEmail.scss';
 
 class LogEmail extends React.Component {
     constructor(props) {
-        const currentDate = transferDateInYearMonDay(new Date());
-        const currentTime = "09:00"
         super(props);
+        const currentDate = transferDateInYearMonDay(new Date());
+        const currentTime = "09:00";
+        const contactList = [this.props.contactData.contact]
         this.state = {
             currentDate,
             currentTime,
+            contactList,
             text: '',
         }
         this.handleEditorChange = this.handleEditorChange.bind(this);
@@ -45,10 +47,7 @@ class LogEmail extends React.Component {
 
 
     render() {
-        const { currentDate, currentTime } = this.state;
-        const {contact} = this.props.contactData;
-        let contactList = [] ;
-        contactList.push(contact);
+        const { currentDate, currentTime,contactList } = this.state;
         return (
             <div className="logEmailModal">
                 <div className="logEmailModal__header">

@@ -1,12 +1,14 @@
 import React from 'react';
-import Relationship from './components/Relationship';
+import RelationCard from './components/Relationship/components/RelationCard';
+import ExpandBar from '../../../../ExpandBar';
 import './RelationCompany.scss';
 
 const RelationCompany = (props) => {
 
   return (
     <div className="relationship_page">
-      <Relationship label="Company"/>
+      <ExpandBar content ={<RelationCard/>} 
+                 label = {"Company"}/>
     </div>
   )
 }
