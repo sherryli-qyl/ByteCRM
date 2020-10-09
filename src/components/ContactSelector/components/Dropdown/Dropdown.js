@@ -12,93 +12,94 @@ class Dropdown extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            checkInput: false,
-            hintMessage: '',
-            loading: false,
-            showDropdown: this.props.showDropdown,
-            contactList: this.props.contactList,
-            searchList: [],
+            // checkInput: false,
+            // hintMessage: '',
+            // loading: false,
+            // showDropdown: this.props.showDropdown,
+            // contactList: this.props.contactList,
+            // searchList: [],
         }
-        this.onChangeInput = this.onChangeInput.bind(this);
+       
     }
 
-    onChangeInput(text) {
-        let newHint = '';
-        let newList = SearchContactLocal(this.state.contactList, text.toUpperCase());
+    // onChangeInput(text) {
+    //     let newHint = '';
+    //     let newList = SearchContactLocal(this.state.contactList, text.toUpperCase());
 
-        if (text.length === 0) {
-            this.setState({
-                searchList: [],
-                checkInput: false,
-            })
-        }
+    //     if (text.length === 0) {
+    //         this.setState({
+    //             searchList: [],
+    //             checkInput: false,
+    //         })
+    //     }
 
-        else if (newList.length > 0 && text.length !== 0) {
-            this.setState({
-                searchList: newList,
-                checkInput: false,
-            })
-        }
+    //     else if (newList.length > 0 && text.length !== 0) {
+    //         this.setState({
+    //             searchList: newList,
+    //             checkInput: false,
+    //         })
+    //     }
 
-        else if (text.length > 0 && text.length < 3 && newList.length === 0) {
-            newHint = `type ${3 - text.length} more character`;
-            this.setState(prevState => {
-                return {
-                    ...prevState,
-                    hintMessage: newHint,
-                    checkInput: true,
-                    searchList: newList,
-                }
-            })
-        }
+    //     else if (text.length > 0 && text.length < 3 && newList.length === 0) {
+    //         newHint = `type ${3 - text.length} more character`;
+    //         this.setState(prevState => {
+    //             return {
+    //                 ...prevState,
+    //                 hintMessage: newHint,
+    //                 checkInput: true,
+    //                 searchList: newList,
+    //             }
+    //         })
+    //     }
 
-        if (text.length >= 3) {
-            newHint = 'searching';
-            const newList = SearchContactLocal(this.state.contactList, text.toUpperCase());
-            const response = GetContactByUserId(this.props.userId, text.toUpperCase())
-            this.setState(prevState =>({
-                ...prevState,
-                loading:true
-            }))
-            response.then(findContacts => {
-                if (findContacts) {
-                    const newSearchList = SearchContactRemote(newList, text.toUpperCase(), findContacts);
-                    let foundNewContact = false;
-                    if (newSearchList.length >= 1) {
-                        foundNewContact = true;
-                        this.setState(prevState => {
-                            return {
-                                ...prevState,
-                                checkInput: !foundNewContact,
-                                searchList: newSearchList,
-                                hintMessage: newHint,
-                                loading: false,
-                            }
-                        });
-                    }
-                }
-                else {
-                    this.setState(prevState => {
-                        return {
-                            ...prevState,
-                            loading:false,
-                            checkInput: true,
-                            hintMessage: 'No result found'
-                        }
-                    }
-                    )
-                }
-            }
-            )
-        }
-    }
+    //     if (text.length >= 3) {
+    //         newHint = 'searching';
+    //         const newList = SearchContactLocal(this.state.contactList, text.toUpperCase());
+    //         const response = GetContactByUserId(this.props.userId, text.toUpperCase())
+    //         this.setState(prevState =>({
+    //             ...prevState,
+    //             loading:true
+    //         }))
+    //         response.then(findContacts => {
+    //             if (findContacts) {
+    //                 const newSearchList = SearchContactRemote(newList, text.toUpperCase(), findContacts);
+    //                 let foundNewContact = false;
+    //                 if (newSearchList.length >= 1) {
+    //                     foundNewContact = true;
+    //                     this.setState(prevState => {
+    //                         return {
+    //                             ...prevState,
+    //                             checkInput: !foundNewContact,
+    //                             searchList: newSearchList,
+    //                             hintMessage: newHint,
+    //                             loading: false,
+    //                         }
+    //                     });
+    //                 }
+    //             }
+    //             else {
+    //                 this.setState(prevState => {
+    //                     return {
+    //                         ...prevState,
+    //                         loading:false,
+    //                         checkInput: true,
+    //                         hintMessage: 'No result found'
+    //                     }
+    //                 }
+    //                 )
+    //             }
+    //         }
+    //         )
+    //     }
+    // }
 
 
 
 
     render() {
-        const { showDropdown } = this.props
-        const { hintMessage, checkInput, contactList, searchList,loading} = this.state;
+        const { showDropdown,hintMessage, checkInput, contactList, searchList,loading } = this.props
+        
+        console.log("send2 " + this.props.textInput);
         let className = "dropdown "
         if (showDropdown) {
             className += "dropdown__active"
@@ -108,7 +109,9 @@ class Dropdown extends React.Component {
                 <div className='dropdown__corner' />
                 <div className='dropdown__inner'>
                     <div className='dropdown__inner__wrapper'>
-                        <SearchBar onChange={this.onChangeInput}
+                        <SearchBar textInput = {this.props.textInput}
+                                   enableCleanBtn = {this.props.enableCleanBtn}
+                                   handleInputChange = {this.props.handleInputChange}
                                    handleCleanInput = {this.props.handleCleanInput}/>
                     </div>
                     {!checkInput ?

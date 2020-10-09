@@ -2,8 +2,9 @@ import React from 'react';
 import EmailCards from './components/EmailCards';
 import EmailPageHeader from './components/Header';
 import shuffleCards from '../../../services/shuffleCards';
-import { GetEmails,UpdateEmail,UpdateContacts,RemoveContacts} from '../../../Api/Email/Email';
+import { GetEmails, UpdateEmail, UpdateContacts, RemoveContacts } from '../../../Api/Email/Email';
 import "./EmailPage.scss";
+import { ActivityContext } from '../../Context';
 
 
 class EmailPage extends React.Component {
@@ -43,8 +44,8 @@ class EmailPage extends React.Component {
         UpdateContacts(contactId, emailId);
     }
 
-    handleRemoveContact(contactId, emailId){
-        console.log(contactId+ "//" + emailId)
+    handleRemoveContact(contactId, emailId) {
+        console.log(contactId + "//" + emailId)
         RemoveContacts(contactId, emailId);
     }
 
@@ -69,13 +70,19 @@ class EmailPage extends React.Component {
     render() {
         const { cardsArray } = this.state;
         return (
-            <div className="emailPage">
-                <EmailPageHeader contact = {this.props.contact}/>
-                <EmailCards cardsArray={cardsArray}
-                            handleAddContact = {this.handleAddContact}
-                            handleRemoveContact = {this.handleRemoveContact}
-                            onChangeEmail = {this.onChangeEmail} />
-            </div>
+            <ActivityContext.Consumer>
+                {contactData => (
+                    <div className="emailPage">
+                        <EmailPageHeader contactData={contactData} />
+                        <EmailCards 
+                            contactData = {contactData}
+                            cardsArray={cardsArray}
+                            handleAddContact={this.handleAddContact}
+                            handleRemoveContact={this.handleRemoveContact}
+                            onChangeEmail={this.onChangeEmail} />
+                    </div>
+                )}
+            </ActivityContext.Consumer>
         )
     }
 }

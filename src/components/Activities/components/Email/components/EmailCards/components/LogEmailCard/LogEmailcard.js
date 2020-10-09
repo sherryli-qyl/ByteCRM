@@ -10,7 +10,7 @@ import './LogEmailCard.scss';
 class LogEmailCard extends React.Component {
     constructor(props) {
         super(props);
-        const { _id, description,contacts } = this.props.card;
+        const { _id,description,contacts } = this.props.card;
         this.state = {
             currentDate: this.props.card.date,
             currentTime: this.props.card.time,
@@ -18,7 +18,6 @@ class LogEmailCard extends React.Component {
             cardId: _id,
             description,
             contactList:contacts
-
         }
         this.onDateChange = this.onDateChange.bind(this);
         this.onTimeChange = this.onTimeChange.bind(this);
@@ -67,7 +66,7 @@ class LogEmailCard extends React.Component {
     }
 
     render() {
-        const { currentDate, currentTime, cardId, description,contactList} = this.state;
+        const { currentDate, currentTime,cardId, description,contactList} = this.state;
         return (
             <div className="logEmailCard">
                 {description?
@@ -80,6 +79,7 @@ class LogEmailCard extends React.Component {
                 }
                 <div className='blockline' >
                     <Body contactList = {contactList}
+                          contactData = {this.props.contactData}
                           currentDate={currentDate}
                           currentTime={currentTime}
                           handleAddContact = {this.handleAddContact}

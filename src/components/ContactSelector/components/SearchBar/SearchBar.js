@@ -9,54 +9,31 @@ class SearchBar extends React.Component {
     constructor(props) {
         super(props);
         this.textInput = React.createRef();
-        this.state = {
-            currentValue: this.props.textInput,
-            enableCleanBtn: this.props.enableCleanBtn,
-        }
         this.onChange = this.onChange.bind(this);
         this.onClickCleanBtn = this.onClickCleanBtn.bind(this);
     }
 
-    handleDisplay(inputText) {
-        let activeBtn = false
-        if (inputText.length > 0) {
-            activeBtn = true;
-        }
-        this.setState({
-            currentValue: inputText,
-            enableCleanBtn: activeBtn
-        })
+    CleanInput(){
+        this.props.handleCleanInput();
     }
 
-    CleanInput(){
-        this.setState({
-            currentValue: "",
-            enableCleanBtn: false,
-        })
-        this.props.onChange("");
+    onChange(event) {
+        event.preventDefault();
+        this.props.handleInputChange(event.target.value);
     }
 
     onClickCleanBtn() {
         this.CleanInput();
     }
 
-    onChange(event) {
-        event.preventDefault();
-        this.handleDisplay(event.target.value);
-        this.props.onChange(event.target.value);
-    }
-
     componentDidUpdate() {
         this.textInput.current.focus();
     }
 
-    componentDidMount(){
-        this.props.handleCleanInput(this.onClickCleanBtn);
-    }
-    
+   
 
     render() {
-        const { currentValue, enableCleanBtn } = this.state;
+        const { textInput, enableCleanBtn } = this.props;
         let icon = faSearch
         let btnClassName = 'searchBar__right__btn ';
         if(enableCleanBtn){
@@ -68,7 +45,7 @@ class SearchBar extends React.Component {
                 <form className="searchBar__form"
                 >
                     <input ref={this.textInput}
-                        value={currentValue}
+                        value={textInput}
                         className="searchBar__input"
                         placeholder="Search all records"
                         onChange={this.onChange}
