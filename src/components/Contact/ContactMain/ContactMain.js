@@ -20,7 +20,7 @@ class ContactMain extends Component {
     constructor(props) {
         super(props);
         this.id = "5f7c1fa07ed22f05ec4ec31a";
-        this.userId = "5f6fda5a99f207748e5905fa";
+        this.userId = "5f80b49ae7f8960972681ac5";
         const expandPack = [{ key: 'About this Contact', content: "" }, { key: 'Website Activity', content: (<WebActivity />) }]
         this.state = {
             Xaxis: 300,
@@ -88,7 +88,10 @@ class ContactMain extends Component {
                 contact: value,
                 loading: false,
             })
-        )
+        ).catch(error =>{
+            console.log(error.message);
+            alert("Please Check your Internet");
+        })
     }
 
 

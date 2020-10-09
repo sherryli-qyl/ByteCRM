@@ -1,4 +1,3 @@
-import { keys } from '@material-ui/core/styles/createBreakpoints';
 import React from 'react';
 import Body from '../../../private/LogEmailMain';
 import Footer from './components/Footer';
@@ -10,7 +9,7 @@ import './LogEmailCard.scss';
 class LogEmailCard extends React.Component {
     constructor(props) {
         super(props);
-        const { _id, description,contacts } = this.props.card;
+        const { _id,description,contacts } = this.props.card;
         this.state = {
             currentDate: this.props.card.date,
             currentTime: this.props.card.time,
@@ -18,7 +17,6 @@ class LogEmailCard extends React.Component {
             cardId: _id,
             description,
             contactList:contacts
-
         }
         this.onDateChange = this.onDateChange.bind(this);
         this.onTimeChange = this.onTimeChange.bind(this);
@@ -32,7 +30,6 @@ class LogEmailCard extends React.Component {
     }
 
     handleDeleteContact(contactId){
-        console.log(contactId);
         this.props.handleRemoveContact(contactId,this.state.cardId);
     }
 
@@ -67,7 +64,7 @@ class LogEmailCard extends React.Component {
     }
 
     render() {
-        const { currentDate, currentTime, cardId, description,contactList} = this.state;
+        const { currentDate, currentTime,cardId, description,contactList} = this.state;
         return (
             <div className="logEmailCard">
                 {description?
@@ -80,6 +77,7 @@ class LogEmailCard extends React.Component {
                 }
                 <div className='blockline' >
                     <Body contactList = {contactList}
+                          contactData = {this.props.contactData}
                           currentDate={currentDate}
                           currentTime={currentTime}
                           handleAddContact = {this.handleAddContact}
@@ -87,7 +85,7 @@ class LogEmailCard extends React.Component {
                           onTimeChange={this.onTimeChange}
                           onDateChange={this.onDateChange} />
                 </div>
-                <Footer userName={this.props.card.name} />
+                <Footer userName={this.props.card.user.fullName} />
             </div>
         )
     }

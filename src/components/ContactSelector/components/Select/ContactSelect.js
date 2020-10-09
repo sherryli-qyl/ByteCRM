@@ -1,6 +1,5 @@
 import React from 'react';
 import SelectItem from './components/SelectItem/SelectItem';
-import { ActivityContext } from '../../../Activities/Context';
 import './ContactSelect.scss';
 
 
@@ -10,7 +9,16 @@ class ContactSelect extends React.Component {
         super(props);
 
         this.state = {
+        }
+        this.onChangeRemoveContact = this.onChangeRemoveContact.bind(this);
+    }
 
+    onChangeRemoveContact(id){
+        if(this.props.contactList.length <= 1){
+            console.log("card must have at least one contact");
+        }
+        else{
+            this.props.handleRemoveContact(id);
         }
     }
 
