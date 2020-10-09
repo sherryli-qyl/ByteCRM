@@ -1,6 +1,5 @@
 import React from 'react';
 import SelectItem from './components/SelectItem/SelectItem';
-import { ActivityContext } from '../../../Activities/Context';
 import './ContactSelect.scss';
 
 
@@ -10,13 +9,23 @@ class ContactSelect extends React.Component {
         super(props);
 
         this.state = {
+        }
 
+        this.onChangeRemoveContact = this.onChangeRemoveContact.bind(this);
+    }
+
+    onChangeRemoveContact(id){
+        console.log(this.props.contactList.length);
+        if(this.props.contactList.length <= 1){
+            console.log("card must have at least one contact");
+        }
+        else{
+            this.props.handleRemoveContact(id);
         }
     }
 
     render() {
         const { contactList, searchList,contact } = this.props;
-        console.log("check" + searchList.length);
         return (
             <div className="contactSelect">
                 <div className="contactSelect__title">
@@ -34,7 +43,7 @@ class ContactSelect extends React.Component {
                                 contactID={item.contact._id}
                                 contact={item.contact}
                                 checked={item.checked}
-                                handleRemoveContact={this.props.handleRemoveContact}
+                                handleRemoveContact={this.onChangeRemoveContact}
                                 handleAddContact={this.props.handleAddContact}>
                             </SelectItem>
                         )
@@ -46,7 +55,7 @@ class ContactSelect extends React.Component {
                             contact={contact}
                             email={contact.email}
                             checked={true}
-                            handleRemoveContact={this.props.handleRemoveContact}
+                            handleRemoveContact={this.onChangeRemoveContact}
                             handleAddContact={this.props.handleAddContact}>
                         </SelectItem>
                         {contactList.map(item => {
@@ -58,7 +67,7 @@ class ContactSelect extends React.Component {
                                         contact={item}
                                         email={item.email}
                                         checked={true}
-                                        handleRemoveContact={this.props.handleRemoveContact}
+                                        handleRemoveContact={this.onChangeRemoveContact}
                                         handleAddContact={this.props.handleAddContact}>
                                     </SelectItem>
                                 )

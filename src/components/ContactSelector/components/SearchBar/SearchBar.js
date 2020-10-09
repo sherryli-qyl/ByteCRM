@@ -30,7 +30,7 @@ class SearchBar extends React.Component {
 
     CleanInput(){
         this.setState({
-            currentValue: '',
+            currentValue: "",
             enableCleanBtn: false,
         })
         this.props.onChange("");

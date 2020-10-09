@@ -27,10 +27,11 @@ async function GetContactByUserId(userId,keyword) {
     const response = await fetch(serverUrl, {
         method: "GET"
     }).catch((error) =>{
-        return error
+        return error;
     }    
     );
     if(response.status === 409){
+        console.log(response.status);
         return false;
     }
     else{
