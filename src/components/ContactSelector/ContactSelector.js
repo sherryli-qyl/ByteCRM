@@ -1,6 +1,5 @@
 import React from 'react';
 import Dropdown from './components/Dropdown';
-import { ActivityContext } from '../Activities/Context';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
 import { SearchContactLocal, SearchContactRemote } from '../../utils/SearchContact/SearchContact';
@@ -63,15 +62,20 @@ class ContactSelector extends React.Component {
 
     handleRemoveContact(id) {
         let newList = this.state.contactList
-        for (let i in newList) {
-            if (newList[i]._id === id) {
-                newList.splice(i, 1);
-            }
-            this.setState({
-                contactList: newList
-            })
+        if (newList.length <= 1){
+            console.log("card must have at least one contact");
         }
-        this.props.handleDeleteContact(id);
+        else{
+            for (let i in newList) {
+                if (newList[i]._id === id) {
+                    newList.splice(i, 1);
+                }
+                this.setState({
+                    contactList: newList
+                })
+            }
+            this.props.handleDeleteContact(id);
+        }
     }
 
     handleAddContact(contact) {
@@ -173,7 +177,6 @@ class ContactSelector extends React.Component {
     render() {
         const { showDropdown, contactList, textInput, enableCleanBtn,
             hintMessage, checkInput, searchList, loading, contact } = this.state;
-        console.log("send1 " + textInput);
         let contacted = ""
 
         if (!contactList) {
@@ -211,7 +214,6 @@ class ContactSelector extends React.Component {
                         handleRemoveContact={this.handleRemoveContact}
                         handleAddContact={this.handleAddContact}
                         contactList={contactList} />
-                        )
                 </div>
             </div>
         )

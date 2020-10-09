@@ -1,4 +1,3 @@
-import { keys } from '@material-ui/core/styles/createBreakpoints';
 import React from 'react';
 import Body from '../../../private/LogEmailMain';
 import Footer from './components/Footer';
@@ -31,7 +30,6 @@ class LogEmailCard extends React.Component {
     }
 
     handleDeleteContact(contactId){
-        console.log(contactId);
         this.props.handleRemoveContact(contactId,this.state.cardId);
     }
 

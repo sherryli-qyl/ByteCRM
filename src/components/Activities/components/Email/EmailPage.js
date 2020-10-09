@@ -45,7 +45,6 @@ class EmailPage extends React.Component {
     }
 
     handleRemoveContact(contactId, emailId) {
-        console.log(contactId + "//" + emailId)
         RemoveContacts(contactId, emailId);
     }
 

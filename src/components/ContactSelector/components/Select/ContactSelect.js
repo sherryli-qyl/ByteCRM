@@ -10,12 +10,10 @@ class ContactSelect extends React.Component {
 
         this.state = {
         }
-
         this.onChangeRemoveContact = this.onChangeRemoveContact.bind(this);
     }
 
     onChangeRemoveContact(id){
-        console.log(this.props.contactList.length);
         if(this.props.contactList.length <= 1){
             console.log("card must have at least one contact");
         }
@@ -34,16 +32,14 @@ class ContactSelect extends React.Component {
                     </span>
                 </div>
                 {searchList.length > 0 ?
-                   
                     searchList.map(item => {
-
                         return (
                             <SelectItem
                                 key={item.contact._id}
                                 contactID={item.contact._id}
                                 contact={item.contact}
                                 checked={item.checked}
-                                handleRemoveContact={this.onChangeRemoveContact}
+                                handleRemoveContact={this.props.handleRemoveContact}
                                 handleAddContact={this.props.handleAddContact}>
                             </SelectItem>
                         )
@@ -55,7 +51,7 @@ class ContactSelect extends React.Component {
                             contact={contact}
                             email={contact.email}
                             checked={true}
-                            handleRemoveContact={this.onChangeRemoveContact}
+                            handleRemoveContact={this.props.handleRemoveContact}
                             handleAddContact={this.props.handleAddContact}>
                         </SelectItem>
                         {contactList.map(item => {
@@ -67,7 +63,7 @@ class ContactSelect extends React.Component {
                                         contact={item}
                                         email={item.email}
                                         checked={true}
-                                        handleRemoveContact={this.onChangeRemoveContact}
+                                        handleRemoveContact={this.props.handleRemoveContact}
                                         handleAddContact={this.props.handleAddContact}>
                                     </SelectItem>
                                 )
