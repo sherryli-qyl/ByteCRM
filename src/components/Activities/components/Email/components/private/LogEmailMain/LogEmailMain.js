@@ -13,7 +13,8 @@ const LogEmailCardMain = ({
     onTimeChange,
     handleAddContact,
     handleDeleteContact,
-    contactData,
+    contact,
+    userId,
     contactList,
 }) => (
         <div className="emailCardBody">
@@ -22,8 +23,8 @@ const LogEmailCardMain = ({
                     Contacted
                 </div>
                 <ContactSelector contactList = {contactList}
-                                 contact = {contactData.contact}
-                                 userId = {contactData.userId}
+                                 contact = {contact}
+                                 userId = {userId}
                                  handleAddContact = {handleAddContact}
                                  handleDeleteContact = {handleDeleteContact}/>
             </div>
