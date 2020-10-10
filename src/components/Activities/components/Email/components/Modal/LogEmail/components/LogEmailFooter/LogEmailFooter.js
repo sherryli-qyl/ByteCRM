@@ -4,11 +4,12 @@ import TaskFollow from '../../../../../../../Private/TaskFollow';
 
 
 
-const LogEmailFooter = () => (
+const LogEmailFooter = (props) => (
     <div className="emailFooter">
         <div className="emailFooter__send">
             <Button size = 'small' 
-                    variant = 'contained'>
+                    variant = 'contained'
+                    onClick = {props.onClick}>
                 Log activity
             </Button>
         </div>
