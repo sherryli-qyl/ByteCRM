@@ -6,7 +6,16 @@ import './ContactSelect.scss';
 
 
 const ContactSelect = (props) => {
-    const { currentList, label} = props;
+    const { contactList,searchList,label} = props;
+    console.log("C" + contactList.length);
+    console.log("S" + searchList.length);
+
+    let currentList = contactList;
+
+    if (searchList && searchList.length > 0){
+        currentList = searchList
+    }
+
     return (
         <div className="contactSelect">
             <div className="contactSelect__title">
@@ -16,7 +25,7 @@ const ContactSelect = (props) => {
             </div>
             {
                 currentList.map(item => { 
-                    const oneContactId = CheckOneContact(currentList);
+                    const oneContactId = CheckOneContact(contactList,currentList);
                     let disabled = false;
                     if (oneContactId && oneContactId === item.contact._id){
                         disabled = true

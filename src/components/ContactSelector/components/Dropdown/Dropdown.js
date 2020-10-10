@@ -10,7 +10,8 @@ const Dropdown = ({
     showDropdown,
     hintMessage,
     checkInput,
-    currentList,
+    contactList, 
+    searchList, 
     loading,
     textInput,
     enableCleanBtn,
@@ -36,9 +37,10 @@ const Dropdown = ({
                 </div>
                 {!checkInput ?
                     <Select label={'Contacts'}
-                        currentList={currentList}
-                        handleRemoveContact={handleRemoveContact}
-                        handleAddContact={handleAddContact} />
+                            contactList = {contactList}
+                            searchList = {searchList}
+                            handleRemoveContact={handleRemoveContact}
+                            handleAddContact={handleAddContact} />
                     :
                     loading ?
                         <Loading variant="bar" />

@@ -43,17 +43,21 @@ function ItemSelected(selectList,id,checked){
     return newList
 }
 
-function CheckOneContact(list){
+function CheckOneContact(contactList,searchList){
+    console.table(contactList);
     let checkedCounter = 0;
     let contactId = "";
-    for (let i in list){
-        if(list[i].checked === true ){
+    for (let i in searchList){
+        if(searchList[i].checked === true ){
             checkedCounter +=1;
-            contactId = list[i].contact.id
+            contactId = searchList[i].contact.id
         }
     }
-    if(checkedCounter === 1){
-        return contactId
+    if(checkedCounter === 1 && contactList.length > 1){
+        return false
+    }
+    else if(checkedCounter === 1 && contactList[0].contact.id === contactId){
+        return contactId;
     }
     else{
         return false

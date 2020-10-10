@@ -23,13 +23,13 @@ class ContactSelector extends React.Component {
             loading: false,
             searchList: [],
         }
+        this.wrapperRef = React.createRef();
+        this.btnRef = React.createRef();
         this.handleClickSelectorButton = this.handleClickSelectorButton.bind(this);
         this.handleRemoveContact = this.handleRemoveContact.bind(this);
         this.handleAddContact = this.handleAddContact.bind(this);
         this.handleCleanInput = this.handleCleanInput.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
-        this.wrapperRef = React.createRef();
-        this.btnRef = React.createRef();
         this.handleClickOutside = this.handleClickOutside.bind(this);
     }
 
@@ -181,25 +181,19 @@ class ContactSelector extends React.Component {
 
 
     render() {
-        const { showDropdown, contactList, textInput, enableCleanBtn,
+        const { showDropdown, textInput, enableCleanBtn,
             hintMessage, checkInput, searchList, loading, contact } = this.state;
 
         let contacted = ""
-        let currentList = FormatList(contactList);
+        const contactList = FormatList(this.state.contactList);
 
         if (!contactList) {
             contacted = `0 contacts`
         }
         else if (contactList.length === 1) {
-            contacted = `${contactList[0].firstName} ${contactList[0].lastName}`;
+            contacted = `${contactList[0].contact.firstName} ${contactList[0].contact.lastName}`;
         }
         else contacted = `${contactList.length} contacts`
-
-        if(searchList.length >1){
-            currentList = searchList;
-        }
-
-        console.table(currentList);
 
 
         return (
@@ -218,7 +212,8 @@ class ContactSelector extends React.Component {
                     <Dropdown
                         hintMessage={hintMessage}
                         checkInput={checkInput}
-                        currentList = {currentList}
+                        contactList = {contactList}
+                        searchList = {searchList}
                         loading={loading}
                         showDropdown={showDropdown}
                         contact={contact}
