@@ -1,6 +1,6 @@
 import React from 'react';
 import NoteCard from './components/NoteCard';
-import CardContainer from '../../../../../../Style/Card/Activity/Container';
+import CardContainer from '../../../../../Style/Card/Activity/Container';
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 
 
@@ -16,7 +16,7 @@ function NoteCardsList(props) {
     <div>
       {props.cardsArray.map((cards) => (
         <CardContainer
-          key={cards._id}
+          key={cards.date}
           date={cards.date}
           content={cards.content}
           icon={icon}  
