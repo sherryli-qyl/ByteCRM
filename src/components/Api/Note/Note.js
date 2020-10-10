@@ -19,19 +19,24 @@ async function UpdateNote(noteId, body) {
   return response.json();
 }
 
-export const AddNote = ({
-  author,
-  content,
-}) => fetch('http://localhost:3000/api/notes', {
-  method: 'POST',
-  body: JSON.stringify({
-    author,
-    content,
-  }),
-  headers: {
-    'content-type': 'application/json',
+async function AddNote(body){
+  const serverUrl = `http://localhost:3000/api/notes`;
+  const response = await fetch(serverUrl, {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(body)
+  });
+
+  if (response.ok){
+    return true;
   }
-});
+  else {
+    return false
+  }
+}
+
 
 // async function addComment(userId, noteId, content) {
 //   const comment = {
@@ -45,18 +50,4 @@ export const AddNote = ({
 // }
 
 
-export { GetNoteByRelatedToId, UpdateNote };
-
-
-// export const UpdateNote = ({
-//   noteId, 
-//   content
-// }) => fetch(`http://localhost:3000/api/notes/${noteId}`, {
-//   method: 'PUT',
-//   body: JSON.stringify({
-//     content
-//   }),
-//   headers: {
-//     'content-type': 'application/json',
-//   }
-// })
+export { GetNoteByRelatedToId, UpdateNote, AddNote };

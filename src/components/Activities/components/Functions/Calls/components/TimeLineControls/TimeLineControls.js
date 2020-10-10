@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import LogCallButton from '../../../../../../Style/Button/Activities/LogButton';
-import LogCallModal from '../../../../../../Modal/components/Function/Note/NoteModal';
+import LogCallModal from '../../../../../../Activities/components/Note/components/NoteModal';
 import Modal from '../../../../../../../js/Modal';
 import { ModalContext } from '../../../../../../Modal/components/ModalContext';
 import PhoneCallBtn from '../../../../../../Style/Button/Activities/CreateButton';

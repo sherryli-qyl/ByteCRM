@@ -1,5 +1,5 @@
 import React from 'react';
-import EditableText from '../../../../../../../../../../Style/EditableText';
+import EditableText from '../../../../../../../../../Style/EditableText';
 import './NoteBody.scss';
 
 const NoteBody = (props) => {
