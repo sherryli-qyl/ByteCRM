@@ -9,6 +9,7 @@ const LogEmailFooter = (props) => (
         <div className="emailFooter__send">
             <Button size = 'small' 
                     variant = 'contained'
+                    btnDisable = {props.btnDisable}
                     onClick = {props.onClick}>
                 Log activity
             </Button>

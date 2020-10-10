@@ -100,7 +100,7 @@ class ContactMain extends Component {
         const { visible, currentModal, contact, theme, expandPack, loading } = this.state;
         const infoData = { key: 'contact', data: contact, dictionary: ContactDictionary };
         const value = { single: this.onChangeSingleInfo, multi: this.onChangeMultiInfo };
-        const contactData = {contact:contact,userId:this.userId}
+        const contactData = {contact:contact,userId:this.userId,close:this.closeModal}
         const openModal = this.openModal;
         return (
             <div>
@@ -111,7 +111,8 @@ class ContactMain extends Component {
                             :
                             <div className="Main">
                                 <InfoContext.Provider value={value}>
-                                    <InfoPage openModal={this.openModal}
+                                    <InfoPage 
+                                        openModal={this.openModal}
                                         infoData={infoData}
                                         expandPack={expandPack}
                                     />
