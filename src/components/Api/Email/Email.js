@@ -7,6 +7,24 @@ async function GetEmails(contactId) {
     return data;
 }
 
+async function PostEmail(body){
+    const serverUrl = `http://localhost:3000/api/emails`;
+    const response = await fetch(serverUrl, {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
+    });
+
+    if (response.ok){
+        return true;
+    }
+    else {
+        return false
+    }
+}
+
 
 async function UpdateEmail(emailId, body) {
     const serverUrl = `http://localhost:3000/api/emails/${emailId}`;
@@ -47,4 +65,4 @@ async function RemoveContacts(contactId,emailId){
 }
 
 
-export {GetEmails, UpdateEmail,UpdateContacts,RemoveContacts};
+export {GetEmails,PostEmail,UpdateEmail,UpdateContacts,RemoveContacts};

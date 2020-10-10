@@ -36,7 +36,7 @@ class Editor extends React.Component {
       <div className="editor">
         <ReactQuill
           onChange={this.handleChange}
-          value={this.state.editorHtml}
+          value={this.state.editorHtml || ''}
           modules={Editor.modules}
           formats={Editor.formats}
           placeholder={this.props.placeholder}
