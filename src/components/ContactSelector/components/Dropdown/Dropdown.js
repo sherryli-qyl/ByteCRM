@@ -24,19 +24,17 @@ class Dropdown extends React.Component {
                 <div className='dropdown__corner' />
                 <div className='dropdown__inner'>
                     <div className='dropdown__inner__wrapper'>
-                        <SearchBar 
-                            textInput={this.props.textInput}
-                            enableCleanBtn={this.props.enableCleanBtn}
-                            handleInputChange={this.props.handleInputChange}
-                            handleCleanInput={this.props.handleCleanInput} />
+                        <SearchBar textInput={this.props.textInput}
+                                   enableCleanBtn={this.props.enableCleanBtn}
+                                   handleInputChange={this.props.handleInputChange}
+                                   handleCleanInput={this.props.handleCleanInput} />
                     </div>
                     {!checkInput ?
                         <Select label={'Contacts'}
-                            contact={this.props.contact}
-                            searchList={searchList}
-                            handleRemoveContact={this.props.handleRemoveContact}
-                            handleAddContact={this.props.handleAddContact}
-                            contactList={contactList} />
+                                searchList={searchList}
+                                handleRemoveContact={this.props.handleRemoveContact}
+                                handleAddContact={this.props.handleAddContact}
+                                contactList={contactList} />
                         :
                         loading ?
                             <Loading variant="bar" />
