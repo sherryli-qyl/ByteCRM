@@ -9,13 +9,12 @@
 
     &__left{
         margin: auto 1%;
-      
-
         &__checkbox{
-
             &__btn{
                 color: #0091ae;
                 @extend.nakedBtn;
+                height: 15px;
+                width: 15px;
 
                 &__disabled{
                     @extend .disabled;
@@ -23,7 +22,6 @@
                     background-color: transparent;
                 }
             }
-           
         }
 
         &__square{

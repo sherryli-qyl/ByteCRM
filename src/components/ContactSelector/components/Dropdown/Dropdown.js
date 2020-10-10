@@ -14,7 +14,7 @@ class Dropdown extends React.Component {
 
     }
     render() {
-        const { showDropdown, hintMessage, checkInput, contactList, searchList, loading } = this.props
+        const { showDropdown, hintMessage, checkInput, currentList ,loading,oneContact } = this.props
         let className = "dropdown "
         if (showDropdown) {
             className += "dropdown__active"
@@ -31,10 +31,9 @@ class Dropdown extends React.Component {
                     </div>
                     {!checkInput ?
                         <Select label={'Contacts'}
-                                searchList={searchList}
+                                currentList={currentList}
                                 handleRemoveContact={this.props.handleRemoveContact}
-                                handleAddContact={this.props.handleAddContact}
-                                contactList={contactList} />
+                                handleAddContact={this.props.handleAddContact}/>
                         :
                         loading ?
                             <Loading variant="bar" />

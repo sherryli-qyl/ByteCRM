@@ -1,15 +1,20 @@
-import SearchResult from './SearchResult';
+import ListItem from './ListItem';
 
-
+function FormatList(contactList){
+    let formatedList = []
+    for(let i in contactList){
+        const listItem = new ListItem(contactList[i],true);
+        formatedList.push(listItem);   
+    }
+    return formatedList;
+}
 
 function SearchContactLocal(contactList,textInput){
     let searchList = [];
     for(let i in contactList){
         if (contactList[i].fullName.toUpperCase().includes(textInput)||contactList[i].email.toUpperCase().includes(textInput) ){
-            // if (!checkDuplicate(searchList,contactList[i])){
-                const searchResult = new SearchResult(contactList[i],true)
-                searchList.push(searchResult);
-            // }
+                const listItem = new ListItem(contactList[i],true)
+                searchList.push(listItem);
         }
     }
     return searchList;
@@ -20,12 +25,39 @@ function SearchContactRemote(searchList,textInput,contactsList){
     for(let i in contactsList){
         if (contactsList[i].fullName.toUpperCase().includes(textInput) ||contactsList[i].email.toUpperCase().includes(textInput)){  
                 if(!checkDuplicate(newSerachList,contactsList[i])){
-                    const searchResult = new SearchResult(contactsList[i],false)
-                    newSerachList.push(searchResult);
+                    const listItem = new ListItem(contactsList[i],false)
+                    newSerachList.push(listItem);
                 }
         }
     }
     return newSerachList;
+}
+
+function ItemSelected(selectList,id,checked){
+    let newList = selectList;
+    for (let i in newList){
+        if(newList[i].contact.id === id){
+            newList[i].checked = checked
+        }
+    }
+    return newList
+}
+
+function CheckOneContact(list){
+    let checkedCounter = 0;
+    let contactId = "";
+    for (let i in list){
+        if(list[i].checked === true ){
+            checkedCounter +=1;
+            contactId = list[i].contact.id
+        }
+    }
+    if(checkedCounter === 1){
+        return contactId
+    }
+    else{
+        return false
+    }
 }
 
 function checkDuplicate(contactList,contact){
@@ -39,4 +71,4 @@ function checkDuplicate(contactList,contact){
     return duplicate;
 }
 
-export {SearchContactLocal,SearchContactRemote};
+export {FormatList,SearchContactLocal,SearchContactRemote,ItemSelected,CheckOneContact};
