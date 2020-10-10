@@ -22,18 +22,28 @@ class SelectItem extends React.Component {
 
     render() {
         const { checked } = this.state;
-        const { contact,contactID} = this.props;
+        const { contact,contactID,oneContact} = this.props;
+        let btnClassName = "selectItem__left__checkbox__btn "
+
+        if(oneContact){
+            btnClassName += "selectItem__left__checkbox__btn__disabled"
+        }
         return (
             <div className='selectItem'>
                 <div className='selectItem__left'>
                     {checked ?
-                        <div className='selectItem__left__checkbox' 
-                            onClick = {event =>{
+                        <div className='selectItem__left__checkbox' >
+                            <button
+                                className = {btnClassName}
+                                disabled = {oneContact}
+                                onClick = {event =>{
                                 event.preventDefault();
                                 this.props.handleRemoveContact(contactID);
                                 this.onClickCheckbox()
                             }}>
-                            <FontAwesomeIcon  icon={faCheckSquare} />
+                                <FontAwesomeIcon  icon={faCheckSquare} />
+                            </button>
+                          
                         </div>
                         :
                         <div className='selectItem__left__square' 

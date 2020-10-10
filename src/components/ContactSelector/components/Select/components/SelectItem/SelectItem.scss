@@ -1,3 +1,5 @@
+@import '../../../../../../style/variable.scss';
+
 .selectItem{
     display: flex;
     justify-content: center;
@@ -10,7 +12,18 @@
       
 
         &__checkbox{
-            color: #0091ae;
+
+            &__btn{
+                color: #0091ae;
+                @extend.nakedBtn;
+
+                &__disabled{
+                    @extend .disabled;
+                    color: #b0c1d4;
+                    background-color: transparent;
+                }
+            }
+           
         }
 
         &__square{
