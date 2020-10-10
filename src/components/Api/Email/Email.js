@@ -18,7 +18,7 @@ async function PostEmail(body){
     });
 
     if (response.ok){
-        return true;
+        return response.json();
     }
     else {
         return false

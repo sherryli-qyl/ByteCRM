@@ -7,8 +7,6 @@ import './ContactSelect.scss';
 
 const ContactSelect = (props) => {
     const { contactList,searchList,label} = props;
-    console.log("C" + contactList.length);
-    console.log("S" + searchList.length);
 
     let currentList = contactList;
 

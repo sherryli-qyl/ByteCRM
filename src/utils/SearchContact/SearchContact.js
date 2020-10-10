@@ -44,7 +44,6 @@ function ItemSelected(selectList,id,checked){
 }
 
 function CheckOneContact(contactList,searchList){
-    console.table(contactList);
     let checkedCounter = 0;
     let contactId = "";
     for (let i in searchList){

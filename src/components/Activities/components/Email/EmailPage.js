@@ -16,6 +16,7 @@ class EmailPage extends React.Component {
         }
         this.onChangeText = this.onChangeText.bind(this);
         this.onChangeEmail = this.onChangeEmail.bind(this);
+        this.handleLogEmail = this.handleLogEmail.bind(this);
         this.handleAddContact = this.handleAddContact.bind(this);
         this.handleRemoveContact = this.handleRemoveContact.bind(this);
     }
@@ -38,6 +39,17 @@ class EmailPage extends React.Component {
             }
         }
         console.table(this.state.cardsList);
+    }
+
+    handleLogEmail(email){
+        const newCardList = this.state.cardList;
+        newCardList.push(email);
+        console.table(newCardList)
+        this.setState({
+            cardList:newCardList,
+        })
+        this.sortCardsArray()
+
     }
 
     handleAddContact(contactId, emailId) {
@@ -72,7 +84,8 @@ class EmailPage extends React.Component {
             <ActivityContext.Consumer>
                 {contactData => (
                     <div className="emailPage">
-                        <EmailPageHeader contactData={contactData} />
+                        <EmailPageHeader contactData={contactData}
+                                         handleLogEmail = {this.handleLogEmail} />
                         <EmailCards 
                             contactData = {contactData}
                             cardsArray={cardsArray}
