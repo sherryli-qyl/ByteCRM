@@ -12,6 +12,12 @@ $label-color:#516F90;
     cursor: pointer;
 }
 
+.disabled{
+    cursor: not-allowed !important;
+    color: #b0c1d4;
+    background-color: #eaf0f6;
+}
+
 .underline {
     display: none;
     position: absolute;

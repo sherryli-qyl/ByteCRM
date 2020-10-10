@@ -24,6 +24,7 @@ class LogEmail extends React.Component {
             contacts,
             userId,
             contact,
+            btnDisable: true,
             description: '',
         }
         this.handleEditorChange = this.handleEditorChange.bind(this);
@@ -55,9 +56,18 @@ class LogEmail extends React.Component {
     }
 
     handleEditorChange(text) {
-        this.setState({
-            description: text
-        })
+        if (this.checkValidation(text)){
+            this.setState({
+                description: text,
+                btnDisable: false
+            })
+        }
+        else{
+            this.setState({
+                description: text,
+                btnDisable: true,
+            })
+        }
     }
 
     handleTimeChange(time) {
@@ -74,23 +84,47 @@ class LogEmail extends React.Component {
         })
     }
 
+    checkValidation(text){
+        const {contacts} = this.state;
+        if (contacts.length >=1 && text !== '<p><br></p>'){
+          return true
+        }
+        else{
+            return false; 
+        }
+    }
+
     handleClickLogBtn(){
         const {currentDate,currentTime,contacts,description,userId} = this.state;
-        const body = {
-            description: description,
-            date: currentDate,
-            time:currentTime,
-            contacts:contacts,
-            userId:userId,
-            type:'Logged Email',
+        if (this.checkValidation(description)){
+            const body = {
+                description: description,
+                date: currentDate,
+                time:currentTime,
+                contacts:contacts,
+                userId:userId,
+                type:'Logged Email',
+            }
+            const res = PostEmail(body);
+            res.then(value=>{
+                if (value){
+                    console.log("Log Email Success");
+                    this.props.contactData.close();
+                }
+                else{
+                    console.log("Unexpected Error");
+                }
+            })
         }
-        PostEmail(body);
-        console.table(body);
+        else{
+            return;
+        }
     }
 
 
     render() {
-        const { currentDate, currentTime,contactList,contact,userId } = this.state;
+        const { currentDate, currentTime,contactList,contact,userId,btnDisable} = this.state;
+        console.log(btnDisable);
         return (
             <div className="logEmailModal">
                 <div className="logEmailModal__header">
@@ -108,7 +142,8 @@ class LogEmail extends React.Component {
                 <div className='blockline--top' >
                     <Body handleEditorChange={this.handleEditorChange} />
                 </div>
-                <Footer onClick = {this.handleClickLogBtn}/>
+                <Footer onClick = {this.handleClickLogBtn}
+                        btnDisable = {btnDisable}/>
             </div>
         )
     }
