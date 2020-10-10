@@ -86,9 +86,8 @@ class LogEmail extends React.Component {
 
     checkValidation(text){
         const {contacts} = this.state;
-        console.log(text);
-        console.log(text.replace('<br>', ''));
-        if (contacts.length >=1 && text.replace('<br>', '') !== '<p></p>'){
+        const checkInput = text.replaceAll(/\s+/g,"").replaceAll('<br>', '').replaceAll('<p></p>','');
+        if (contacts.length >=1 && checkInput!== ''){
           return true
         }
         else{
