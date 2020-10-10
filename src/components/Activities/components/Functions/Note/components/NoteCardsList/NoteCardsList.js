@@ -5,18 +5,23 @@ import { faEdit } from "@fortawesome/free-solid-svg-icons";
 
 
 function NoteCardsList(props) {
-  const createCard = (card)=>(<NoteCard card={card} onChangeNote = {props.onChangeNote}/>);
-  const icon= faEdit;
+  const createCard = (card) => (
+    <NoteCard 
+      card={card} 
+      onChangeNote={props.onChangeNote}
+    />);
+  const icon = faEdit;
+  
   return (
     <div>
       {props.cardsArray.map((cards) => (
         <CardContainer
-          key={cards.date}
-          date={cards.date}  
+          key={cards._id}
+          date={cards.date}
           content={cards.content}
-          icon = {icon}  
-          createCard = {createCard}
-          />
+          icon={icon}  
+          createCard={createCard}
+        />
       ))}
     </div>
   )
