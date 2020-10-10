@@ -43,7 +43,7 @@ class SelectItem extends React.Component {
                                     this.props.handleRemoveContact(contactID);
                                     this.onClickCheckbox()
                                 }}>
-                                <FontAwesomeIcon icon={faCheckSquare} />
+                                <FontAwesomeIcon  icon={faCheckSquare} />
                             </button>
 
                         </div>
