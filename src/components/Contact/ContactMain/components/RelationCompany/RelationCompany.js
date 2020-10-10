@@ -1,5 +1,5 @@
 import React from 'react';
-import RelationCard from './components/Relationship/components/RelationCard';
+import RelationCard from './components/RelationCard';
 import ExpandBar from '../../../../ExpandBar';
 import './RelationCompany.scss';
 
