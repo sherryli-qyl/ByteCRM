@@ -1,29 +1,25 @@
 import React from 'react';
 import NavigationLink from '../../../NavigationLink';
 import './Public.scss';
-// import Logo from '../../../img/Logo/logo.png';
-
+import SmallLogo from '../../../../img/Logo/smalllogo.png';
+//import { NavLink } from 'react-router-dom';
 
 const Public = () => (
-  <div className = "Layout">
-    <NavigationLink.Naked href="/">
-      <div className = "Logo"> BYTECRM</div>    
-      </NavigationLink.Naked>
-    <div className = "Divider"></div>
+  <div className="Layout">
+    <NavigationLink.Text indictable href="/">
+      <img src={SmallLogo} alt="small logo" />
+    </NavigationLink.Text>
     <NavigationLink.Text indictable href="/contacts">
-      CONTACTS
+      Contacts
     </NavigationLink.Text>
     <NavigationLink.Text indictable href="/companies">
-      COMPANIES
+      Companies
     </NavigationLink.Text>
     <NavigationLink.Text indictable href="/about">
-      ABOUT 
+      About
     </NavigationLink.Text>
-    <NavigationLink.Text indictable href="/test">
-      TEST 
-    </NavigationLink.Text>
-    <NavigationLink.Text indictable href="/test2">
-      TEST2
+    <NavigationLink.Text indictable href="/contactus">
+    Contact us
     </NavigationLink.Text>
   </div>
 );

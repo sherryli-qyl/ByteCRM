@@ -41,7 +41,7 @@ const NavigationLink = {};
 NavigationLink.Naked = Link;
 
 NavigationLink.Text = styled(Link)`
-  color: #545a77;
+  color: #ffffff;
 
   &:hover {
     color: #008fb4;
