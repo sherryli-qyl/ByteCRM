@@ -1,19 +1,14 @@
 import React from 'react';
 import NavigationLink from '../../../NavigationLink';
 import './Private.scss';
+import Profile from '../../../../img/Contact/profile.png';
+
 
 const Private = () => (
         <div className = "Layout">
-        <NavigationLink.Button variant="secondary" href="/contactus">
-        CONTACT US
-          </NavigationLink.Button>
-          
-          <NavigationLink.Button variant="secondary" href="/register">
-          REGISTER
-          </NavigationLink.Button>
-          <NavigationLink.Button variant="secondary" href="/login">
-          SIGN OUT
-          </NavigationLink.Button>
+          <NavigationLink.Text indictable href="/">
+            <img className = "profile_nav" src= {Profile} alt = "profile" />
+          </NavigationLink.Text>
         </div>
     );
 export default Private;
