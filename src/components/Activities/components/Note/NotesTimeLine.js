@@ -1,9 +1,9 @@
 import React from 'react';
 import TimeLineControls from './components/TimeLineControls';
 import NoteCardsList from './components/NoteCardsList';
-import shuffleCards from '../../../../services/shuffleCards';
+import shuffleCards from '../../../services/shuffleCards';
 import "./NotesTimeLine.scss";
-import { GetNoteByRelatedToId, UpdateNote } from '../../../../Api/Note/Note';
+import { GetNoteByRelatedToId, UpdateNote } from '../../../Api/Note/Note';
 
 
 class NotesTimeLine extends React.Component {

@@ -4,7 +4,7 @@ import './components/NoteInput';
 import NoteSaveBar from './components/NoteSaveBar';
 import NoteInput from './components/NoteInput/NoteInput';
 // import axios from 'axios';
-import { AddNote } from '../../../../Api/Note/Note';
+import { AddNote } from '../../../../../Api/Note/Note';
 
 
 class NoteModal extends React.Component {
