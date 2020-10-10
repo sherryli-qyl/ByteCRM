@@ -4,7 +4,7 @@ import './components/NoteInput';
 import NoteSaveBar from './components/NoteSaveBar';
 import NoteInput from './components/NoteInput/NoteInput';
 // import axios from 'axios';
-import { AddNote } from '../../../../../Api/Note/Note';
+import { AddNote, GetNoteByRelatedToId } from '../../../../../Api/Note/Note';
 
 
 class NoteModal extends React.Component {
@@ -12,46 +12,90 @@ class NoteModal extends React.Component {
     super(props);
 
     this.state = {
-      author: "Chloe Test",
+      createdBy: '5f6fda5a99f207748e5905fa',
       content: '',
       relatedTo: '5f7c1fa07ed22f05ec4ec31a',
+      btnDisable: true,
     }
-    this.handleChange = this.handleChange.bind(this);
-    this.handleNoteCreate = this.handleNoteCreate.bind(this);
+    this.handleEditorChange = this.handleEditorChange.bind(this);
+    this.handleClickSaveBtn = this.handleClickSaveBtn.bind(this);
   }
 
-  handleChange = event => {
-    const key = event.target.name;
-    const value = event.target.value;
-    this.setState({ [key]: value } );
+  handleEditorChange(content) {
+    if (this.checkValidation(content)){
+      this.setState({
+        content: content,
+        btnDisable: false
+      })
+    }
+    else{
+      this.setState({
+        content: content,
+        btnDisable: true,
+      })
+    }
   }
 
-  handleNoteCreate = () => {
-    const note = { ...this.state };
-    this.setState(() => {
-      AddNote(note)
-        .then(newNote => {
-            this.props.history.push(`http://localhost:3000/api/notes/${newNote.Id}`);
+  // handleNoteCreate = () => {
+  //   const note = { ...this.state };
+  //   this.setState(() => {
+  //     AddNote(note)
+  //       .then(newNote => {
+  //           this.props.history.push(`http://localhost:3000/api/notes/${newNote.Id}`);
+  //       })
+  //       .catch(error => this.setState({ error }));
+  //   });
+  // }
+
+
+  checkValidation(text){
+    if (text !== '<p><br></p>'){
+      return true
+    }
+    else{
+      return false; 
+    }
+  } 
+
+  handleClickSaveBtn(){
+    const {content, createdBy, relatedTo} = this.state;
+      if (this.checkValidation(content)){
+        const body = {
+          content: content,
+          createdBy: createdBy,
+          type:'Note',
+          isDeleted: false,
+          relatedTo: relatedTo,
+        }
+        const res = AddNote(body);
+        res.then(value=>{
+          if (value) {
+              console.log("Note created successfully");
+              //this.props.contactData.close();
+          } else {
+              console.log("Unexpected Error");
+          }
         })
-        .catch(error => this.setState({ error }));
-    });
-}
-
-
+      } else {
+        return;
+      }
+  }
+  
 
   render() {
+    const { btnDisable } = this.state;
     return (
       <section id="NoteModal" className="NoteModal">
         <div className="note-input">
           <NoteInput 
             placeholder="Start typing to leave a note..."
-            content={this.state.content}
-            onChange={this.handleChange}
-            
+            handleEditorChange={this.handleEditorChange}
           />
         </div>
         <div className="note-container-footer">
-          <NoteSaveBar onSubmit={this.handleNoteCreate} />
+          <NoteSaveBar 
+            onClick={this.handleClickSaveBtn} 
+            btnDisable = {btnDisable} />
         </div>
       </section>
     )
