@@ -37,7 +37,7 @@ class LogEmail extends React.Component {
 
     handleAddContact(id){
       const newContacts = this.state.contacts;
-      newContacts.push(id)
+      newContacts.push(id);
       this.setState({
           contacts:newContacts
       })
@@ -86,7 +86,8 @@ class LogEmail extends React.Component {
 
     checkValidation(text){
         const {contacts} = this.state;
-        if (contacts.length >=1 && text !== '<p><br></p>'){
+        const checkInput = text.replaceAll(" ","").replaceAll('<br>', '').replaceAll('<p></p>','');
+        if (contacts.length >=1 && checkInput!== ''){
           return true
         }
         else{
@@ -109,6 +110,7 @@ class LogEmail extends React.Component {
             res.then(value=>{
                 if (value){
                     console.log("Log Email Success");
+                    this.props.handleLogEmail(value);
                     this.props.contactData.close();
                 }
                 else{
@@ -124,7 +126,6 @@ class LogEmail extends React.Component {
 
     render() {
         const { currentDate, currentTime,contactList,contact,userId,btnDisable} = this.state;
-        console.log(btnDisable);
         return (
             <div className="logEmailModal">
                 <div className="logEmailModal__header">

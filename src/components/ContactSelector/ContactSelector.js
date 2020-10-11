@@ -2,7 +2,7 @@ import React from 'react';
 import Dropdown from './components/Dropdown';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
-import { SearchContactLocal, SearchContactRemote } from '../../utils/SearchContact/SearchContact';
+import { FormatList,SearchContactLocal, SearchContactRemote,ItemSelected } from '../../utils/SearchContact/SearchContact';
 import { GetContactByUserId } from '../Api/Contact';
 import './ContactSelector.scss';
 
@@ -23,13 +23,13 @@ class ContactSelector extends React.Component {
             loading: false,
             searchList: [],
         }
+        this.wrapperRef = React.createRef();
+        this.btnRef = React.createRef();
         this.handleClickSelectorButton = this.handleClickSelectorButton.bind(this);
         this.handleRemoveContact = this.handleRemoveContact.bind(this);
         this.handleAddContact = this.handleAddContact.bind(this);
         this.handleCleanInput = this.handleCleanInput.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
-        this.wrapperRef = React.createRef();
-        this.btnRef = React.createRef();
         this.handleClickOutside = this.handleClickOutside.bind(this);
     }
 
@@ -61,9 +61,11 @@ class ContactSelector extends React.Component {
     }
 
     handleRemoveContact(id) {
-        let newList = this.state.contactList
-        if (newList.length <= 1){
+        let newList = this.state.contactList;
+        let newSearchList = ItemSelected(this.state.searchList,id,false);
+        if (newList.length <= 1){     
             console.log("card must have at least one contact");
+            return;
         }
         else{
             for (let i in newList) {
@@ -71,7 +73,8 @@ class ContactSelector extends React.Component {
                     newList.splice(i, 1);
                 }
                 this.setState({
-                    contactList: newList
+                    contactList: newList,
+                    searchList: newSearchList
                 })
             }
             this.props.handleDeleteContact(id);
@@ -79,11 +82,14 @@ class ContactSelector extends React.Component {
     }
 
     handleAddContact(contact) {
-        let newList = this.state.contactList;
-        newList.push(contact);
+        let newContactList = this.state.contactList;
+        let newSearchList = ItemSelected(this.state.searchList,contact.id,true);
+        newContactList.push(contact);
+
         this.setState({
-            contactList: newList
-        })
+            contactList: newContactList,
+            searchList:newSearchList
+        })  
         this.props.handleAddContact(contact._id);
     }
 
@@ -175,17 +181,20 @@ class ContactSelector extends React.Component {
 
 
     render() {
-        const { showDropdown, contactList, textInput, enableCleanBtn,
+        const { showDropdown, textInput, enableCleanBtn,
             hintMessage, checkInput, searchList, loading, contact } = this.state;
+
         let contacted = ""
+        const contactList = FormatList(this.state.contactList);
 
         if (!contactList) {
             contacted = `0 contacts`
         }
         else if (contactList.length === 1) {
-            contacted = `${contactList[0].firstName} ${contactList[0].lastName}`
+            contacted = `${contactList[0].contact.firstName} ${contactList[0].contact.lastName}`;
         }
         else contacted = `${contactList.length} contacts`
+
 
         return (
             <div className='contactSelector'>
@@ -203,7 +212,8 @@ class ContactSelector extends React.Component {
                     <Dropdown
                         hintMessage={hintMessage}
                         checkInput={checkInput}
-                        searchList={searchList}
+                        contactList = {contactList}
+                        searchList = {searchList}
                         loading={loading}
                         showDropdown={showDropdown}
                         contact={contact}
@@ -213,7 +223,7 @@ class ContactSelector extends React.Component {
                         handleInputChange={this.handleInputChange}
                         handleRemoveContact={this.handleRemoveContact}
                         handleAddContact={this.handleAddContact}
-                        contactList={contactList} />
+                       />
                 </div>
             </div>
         )

@@ -24,6 +24,8 @@ function EmailCards(props) {
                     icon = {icon}  
                     createCard = {createCard}
                     logCard = {logCard}
+                    handleTest = {props.handleTest}
+                    handleDeleteCard = {props.handleDeleteCard}
                     />
             ))}
         </div>

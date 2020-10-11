@@ -18,13 +18,12 @@ async function PostEmail(body){
     });
 
     if (response.ok){
-        return true;
+        return response.json();
     }
     else {
         return false
     }
 }
-
 
 async function UpdateEmail(emailId, body) {
     const serverUrl = `http://localhost:3000/api/emails/${emailId}`;
@@ -39,6 +38,24 @@ async function UpdateEmail(emailId, body) {
     const data = response.json();
     return data;
 }
+
+async function DeleteEmailLog(emailId) {
+    const serverUrl = `http://localhost:3000/api/emails/${emailId}`;
+    const response = await fetch(serverUrl, {
+        method: "DELETE",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    });
+    if(response.ok){
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+
 
 async function UpdateContacts(contactId,emailId){
     const serverUrl = `http://localhost:3000/api/emails/${emailId}/contacts/${contactId}`;
@@ -65,4 +82,4 @@ async function RemoveContacts(contactId,emailId){
 }
 
 
-export {GetEmails,PostEmail,UpdateEmail,UpdateContacts,RemoveContacts};
+export {GetEmails,PostEmail,UpdateEmail,DeleteEmailLog,UpdateContacts,RemoveContacts};
