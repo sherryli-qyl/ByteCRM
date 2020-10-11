@@ -1,18 +1,17 @@
 import React from 'react';
 import './ContactUs.scss';
-import Call from '../../img/Company/call.svg';
-import Email from '../../img/Contact/mail.png';
 
-import CatchBackground from './components/CatchBackground';
+// import CatchBackground from './components/CatchBackground';
+import Background from './components/Background';
 import ContactMethod from './components/ContactMethod';
 
-const ContactUs = () => (
-    <div className="Contact_container">
-        <div className="Contact_layout">
-            <CatchBackground />
+const ContactUs = () => {
+    return (
+        <div className="Contact_container">
+            <Background />
             <ContactMethod />
         </div>
-    </div>
-)
+    )
+}
 
 export default ContactUs;

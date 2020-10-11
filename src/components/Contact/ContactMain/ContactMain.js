@@ -20,6 +20,7 @@ class ContactMain extends Component {
     constructor(props) {
         super(props);
         this.id = "5f7c1fa07ed22f05ec4ec31a";
+        this.userId = "5f80b49ae7f8960972681ac5";
         const expandPack = [{ key: 'About this Contact', content: "" }, { key: 'Website Activity', content: (<WebActivity />) }]
         this.state = {
             Xaxis: 300,
@@ -87,7 +88,10 @@ class ContactMain extends Component {
                 contact: value,
                 loading: false,
             })
-        )
+        ).catch(error =>{
+            console.log(error.message);
+            alert("Please Check your Internet");
+        })
     }
 
 
@@ -96,6 +100,7 @@ class ContactMain extends Component {
         const { visible, currentModal, contact, theme, expandPack, loading } = this.state;
         const infoData = { key: 'contact', data: contact, dictionary: ContactDictionary };
         const value = { single: this.onChangeSingleInfo, multi: this.onChangeMultiInfo };
+        const contactData = {contact:contact,userId:this.userId,close:this.closeModal}
         const openModal = this.openModal;
         return (
             <div>
@@ -106,13 +111,16 @@ class ContactMain extends Component {
                             :
                             <div className="Main">
                                 <InfoContext.Provider value={value}>
-                                    <InfoPage openModal={this.openModal}
+                                    <InfoPage 
+                                        openModal={this.openModal}
                                         infoData={infoData}
                                         expandPack={expandPack}
                                     />
                                 </InfoContext.Provider>
-                                <ActivityContext.Provider value = {contact}>
-                                    <Activities id= {this.id}/>
+                                <ActivityContext.Provider value = {contactData}>
+                                    <Activities contactId= {this.id}
+                                                contact = {contact}
+                                                />
                                     <RelationCompany />
                                     <Modal Xaxis={this.state.Xaxis}
                                         Yaxis={this.state.Yaxis}

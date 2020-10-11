@@ -1,0 +1,19 @@
+.createdby-container {
+  display: flex;
+}
+
+.createdby-user-icon {
+  font-size: 24px;
+  color: lightgrey;
+  margin-right: 5px;
+}
+
+.createdby-info {
+  display: inline-flex;
+  align-items: center;
+  color: #33475B;
+  font-size: 14px;
+  &__bold {
+    font-weight: bold;
+  }
+}

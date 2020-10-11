@@ -4,17 +4,9 @@ import './ControlBar.scss';
 
 
 
-class ControlBar extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-
-        }
-    }
-
-
-
-    render() {
+const ControlBar = ({
+    handleDeleteCard,
+})=>{
         return (
             <div className='controlBar'>
                 <div className='controlBar__container'>
@@ -23,13 +15,16 @@ class ControlBar extends React.Component {
                     </button>
                 </div>
                 <div className='controlBar__container'>
-                    <button className='controlBar__container__btn'>
+                    <button className='controlBar__container__btn'
+                             onClick={(event) => {
+                                event.preventDefault();
+                                handleDeleteCard();
+                              }}>
                         <Text className='controlBar__container__btn__text'>Delete</Text>
                     </button>
                 </div>
             </div>
-        )
-    }
+        ) 
 }
 
 export default ControlBar;

@@ -9,6 +9,8 @@ const CardContainer = ({
     createCard,
     logCard,
     icon,
+    handleDeleteCard,
+    handleTest
 }) => {
     const NewDate = transferDateInMonthYear(date);
     return (
@@ -23,6 +25,8 @@ const CardContainer = ({
                         dateTime={`${transferDateInMonDayYear(card.date)} at ${card.time}`}
                         card = {card}
                         icon={icon}
+                        handleTest = {handleTest}
+                        handleDeleteCard = {()=>handleDeleteCard(card._id)}
                         cardContent={logCard(card)}
                     />
                     :
@@ -31,6 +35,7 @@ const CardContainer = ({
                         dateTime={`${transferDateInMonDayYear(card.date)} at ${card.time}`}
                         card = {card}
                         icon={icon}
+                        handleDeleteCard = {()=>handleDeleteCard("123")}
                         cardContent={createCard(card)}
                     />
             ))

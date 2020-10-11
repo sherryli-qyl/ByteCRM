@@ -8,9 +8,7 @@ import RegForm from '../User/RegForm/Register';
 import Login from '../User/LogIn/LogIn';
 import About from '../AboutUs/AboutUs';
 import Contactus from '../ContactUs/ContactUs';
-import Test from '../Test';
-import Test2 from '../Test2/Test2';
-import Course from '../Test2/Test2';
+
 // import Route from './components/Route';
 import
 { 
@@ -21,9 +19,6 @@ import
   LOGOUT_BASE_URL,
   ABOUTUS_BASE_URL,
   CONTACTUS_BASE_URL,
-  TEST_BASE_URL,
-  TEST2_BASE_URL,
-  COURSE_BASE_URL
 } from './URLMap';
 
 const Routes = () => {
@@ -41,9 +36,6 @@ const Routes = () => {
       <Route exact path={`${COMPANY_BASE_URL}/main`} component={CompanyMain} />
       <Route exact path={ABOUTUS_BASE_URL} component={About} />
       <Route exact path={CONTACTUS_BASE_URL} component={Contactus} />
-      <Route exact path={TEST_BASE_URL} component={Test} />
-      <Route exact path={TEST2_BASE_URL} component={Test2} />
-      <Route exact path={COURSE_BASE_URL} component={Course} />
     </Switch>
     </BrowserRouter>
   )
