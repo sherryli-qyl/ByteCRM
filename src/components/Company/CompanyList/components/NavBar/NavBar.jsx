@@ -1,19 +1,18 @@
 import React from "react";
 import { withStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
+import './NavBar.scss';
 
-import TabContainer from "./TabContainer";
+import TabContainer from "../TabContainer";
 
 const styles = (theme) => ({
   root: {
     flexGrow: 1,
-    backgroundColor: theme.palette.background.paper,
     position: "relative",
   },
   colorPrimary: {
-    color: "red",
+    color: "white",
   },
 });
 
@@ -32,18 +31,16 @@ class NavBar extends React.Component {
 
     return (
       <div className={classes.root}>
-        <AppBar position="static" className={classes.wrapped}>
-          <Tabs value={activeTab} onChange={this.handleChange}>
-            {this.props.tabs.map((tab) => (
-              <Tab
-                key={tab.id}
-                label={tab.label}
-                value={tab.id}
-                icon={tab.icon}
-              />
-            ))}
-          </Tabs>
-        </AppBar>
+        <h1>Companies</h1>
+        <Tabs value={activeTab} onChange={this.handleChange}>
+          {this.props.tabs.map((tab) => (
+            <Tab
+              label={tab.label}
+              key={tab.id}
+              value={tab.id}
+            />
+          ))}
+        </Tabs>
         {this.props.tabs.map((tab) =>
           activeTab === tab.id ? (
             <TabContainer className={classes.wrapper} key={tab.id}>
