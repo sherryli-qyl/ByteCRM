@@ -2,7 +2,7 @@ import React from 'react';
 import EmailCards from './components/EmailCards';
 import EmailPageHeader from './components/Header';
 import shuffleCards from '../../../services/shuffleCards';
-import { GetEmails, UpdateEmail, UpdateContacts, RemoveContacts } from '../../../Api/Email/Email';
+import { GetEmails, UpdateEmail,DeleteEmailLog,UpdateContacts, RemoveContacts } from '../../../Api/Email/Email';
 import "./EmailPage.scss";
 import { ActivityContext } from '../../Context';
 
@@ -17,6 +17,7 @@ class EmailPage extends React.Component {
         this.onChangeText = this.onChangeText.bind(this);
         this.onChangeEmail = this.onChangeEmail.bind(this);
         this.handleLogEmail = this.handleLogEmail.bind(this);
+        this.handleDeleteCard = this.handleDeleteCard.bind(this);
         this.handleAddContact = this.handleAddContact.bind(this);
         this.handleRemoveContact = this.handleRemoveContact.bind(this);
     }
@@ -38,7 +39,6 @@ class EmailPage extends React.Component {
                 })
             }
         }
-        console.table(this.state.cardsList);
     }
 
     handleLogEmail(email){
@@ -49,8 +49,16 @@ class EmailPage extends React.Component {
             cardList:newCardList,
         })
         this.sortCardsArray()
-
     }
+
+    handleDeleteCard(id){
+        const response = DeleteEmailLog(id);
+        response.then(value =>(
+            console.log(value)
+        ))
+        this.handleInitPage();
+    }
+
 
     handleAddContact(contactId, emailId) {
         UpdateContacts(contactId, emailId);
@@ -64,7 +72,7 @@ class EmailPage extends React.Component {
         UpdateEmail(emailId, body);
     }
 
-    componentDidMount() {
+    handleInitPage(){
         const emails = GetEmails(this.props.contactId);
         emails.then(value => {
             this.setState({
@@ -78,6 +86,10 @@ class EmailPage extends React.Component {
         });
     }
 
+    componentDidMount() {
+        this.handleInitPage();
+    }
+
     render() {
         const { cardsArray } = this.state;
         return (
@@ -89,6 +101,7 @@ class EmailPage extends React.Component {
                         <EmailCards 
                             contactData = {contactData}
                             cardsArray={cardsArray}
+                            handleDeleteCard = {this.handleDeleteCard}
                             handleAddContact={this.handleAddContact}
                             handleRemoveContact={this.handleRemoveContact}
                             onChangeEmail={this.onChangeEmail} />

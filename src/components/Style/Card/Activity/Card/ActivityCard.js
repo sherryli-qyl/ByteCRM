@@ -20,7 +20,7 @@ const ActivityCard = (props) => (
                     </div>
                 </div>
                 <div className='hoverBar'>
-                  <ControlBar/>
+                  <ControlBar handleDeleteCard={props.handleDeleteCard}/>
                 </div>
                 <div className='activityCard__container__content__body'>
                     {props.cardContent}
