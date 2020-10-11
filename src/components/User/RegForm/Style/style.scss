@@ -13,6 +13,16 @@ body {
   font-family: $regFont;
 }
 
+.reg-errMsg {
+  color: red;
+  font: {
+    size: 13px;
+    family: $regFont;
+    weight: 600;
+  }
+  margin-top: -2%;
+}
+
 .reg-logo {
   width: 19rem;
   height: 7rem;
