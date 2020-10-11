@@ -44,7 +44,6 @@ class EmailPage extends React.Component {
     handleLogEmail(email){
         const newCardList = this.state.cardList;
         newCardList.push(email);
-        console.table(newCardList)
         this.setState({
             cardList:newCardList,
         })
@@ -53,10 +52,11 @@ class EmailPage extends React.Component {
 
     handleDeleteCard(id){
         const response = DeleteEmailLog(id);
-        response.then(value =>(
-            console.log(value)
-        ))
-        this.handleInitPage();
+        response.then(value =>{
+            if (value){
+            this.handleInitPage();
+            }
+        })
     }
 
 

@@ -48,10 +48,10 @@ async function DeleteEmailLog(emailId) {
         },
     });
     if(response.ok){
-        return "Email deleted"
+        return true;
     }
     else {
-        return"something is wrong";
+        return false;
     }
 }
 
