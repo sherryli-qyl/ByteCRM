@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { faEnvelope, faEdit, faPhoneAlt, faCalendarAlt, faPlus, faTasks,faUser,faBuilding} from "@fortawesome/free-solid-svg-icons";
 import BasicInfo from './components/BasicInfo';
 import DetailInfo from './components/DetailInfo';
-import NoteModal from '../Modal/components/Function/Note';
+import NoteModal from '../Activities/components/Note/components/NoteModal';
 import EmailModal from '../Activities/components/Email/components/Modal/CreateEmail';
 import CallModal from '../Modal/components/Function/Call';
 import TaskModal from '../Activities/components/Task/components/TaskModal';

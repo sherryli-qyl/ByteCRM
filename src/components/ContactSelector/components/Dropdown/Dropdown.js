@@ -2,106 +2,57 @@ import React from 'react';
 import SearchBar from '../SearchBar';
 import Select from '../Select';
 import HintBar from '../HintBar';
-import { SearchContactLocal,SearchContactRemote} from '../../../../utils/SearchContact/SearchContact';
+import Loading from '../../../Loading';
 import './Dropdown.scss';
 
 
-class Dropdown extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            checkInput: false,
-            hintMessage: '',
-            showDropdown: this.props.showDropdown,
-            contactList: this.props.contactList,
-            searchList:[],
-        }
-        this.onChangeInput = this.onChangeInput.bind(this);
+const Dropdown = ({
+    showDropdown,
+    hintMessage,
+    checkInput,
+    contactList, 
+    searchList, 
+    loading,
+    textInput,
+    enableCleanBtn,
+    handleInputChange,
+    handleCleanInput,
+    handleRemoveContact,
+    handleAddContact
+}) => {
+
+    let className = "dropdown "
+    if (showDropdown) {
+        className += "dropdown__active"
     }
-
-    onChangeInput(text) {
-        let newHint = '';
-        let newList = SearchContactLocal(this.state.contactList, text.toUpperCase());
-
-        if(text.length === 0) {
-            this.setState({
-                searchList: [],
-                checkInput: false,
-            })
-        }
-
-        else if (newList.length > 0 && text.length !==0) {
-            this.setState({
-                searchList:newList,
-                checkInput:false,
-            })
-        }
-
-        else if (text.length > 0 && text.length < 3 && newList.length === 0) {
-            newHint = `type ${3 - text.length} more character`;
-            this.setState(prevState => {
-                return {
-                    ...prevState,
-                    hintMessage: newHint,
-                    checkInput: true,
-                    searchList:newList,
-                }
-            })
-        }
-
-        if (text.length >= 3) {
-            newHint = 'searching';
-            const newList = SearchContactLocal(this.state.contactList, text.toUpperCase());
-            const newSearchList = SearchContactRemote(newList,text.toUpperCase());
-            let foundNewContact = false;
-            
-            if (newSearchList.length >= 1){
-                foundNewContact = true;
-            }
-            this.setState(prevState => {
-                return {
-                    ...prevState,
-                    checkInput: !foundNewContact,
-                    searchList: newSearchList,
-                    hintMessage: newHint,
-                }
-            });
-        }
-    }
-
-   
-
-
-    render() {
-        const {showDropdown} = this.props
-        const { hintMessage, checkInput, contactList,searchList} = this.state;
-        let className = "dropdown "
-        if (showDropdown) {
-            className += "dropdown__active"
-        }
-        return (
-            <div className={className}>
-                <div className='dropdown__corner' />
-                <div className='dropdown__inner'>
-                    <div className='dropdown__inner__wrapper'>
-                        <SearchBar onChange={this.onChangeInput} />
-                    </div>
-                    {!checkInput ?
-                        <Select label={'Contacts'}
+    return (
+        <div className={className}>
+            <div className='dropdown__corner' />
+            <div className='dropdown__inner'>
+                <div className='dropdown__inner__wrapper'>
+                    <SearchBar textInput={textInput}
+                        enableCleanBtn={enableCleanBtn}
+                        handleInputChange={handleInputChange}
+                        handleCleanInput={handleCleanInput} />
+                </div>
+                {!checkInput ?
+                    <Select label={'Contacts'}
+                            contactList = {contactList}
                             searchList = {searchList}
-                            handleRemoveContact={this.props.handleRemoveContact}
-                            handleAddContact={this.props.handleAddContact}
-                            contactList={contactList} />
+                            handleRemoveContact={handleRemoveContact}
+                            handleAddContact={handleAddContact} />
+                    :
+                    loading ?
+                        <Loading variant="bar" />
                         :
                         <HintBar>
                             {hintMessage}
                         </HintBar>
-                    }
-                </div>
+                }
             </div>
-
-        )
-    }
+        </div>
+    )
 }
+
 
 export default Dropdown;

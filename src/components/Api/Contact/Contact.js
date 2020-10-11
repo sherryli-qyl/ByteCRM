@@ -22,6 +22,34 @@ async function UpdateContact(contactId, body) {
     return data;
 }
 
+async function GetContactByUserId(userId,keyword) {
+    const serverUrl = `http://localhost:3000/api/contacts/search/${userId}/${keyword}`;
+    const response = await fetch(serverUrl, {
+        method: "GET"
+    });
+    // .then((res)=>{
+    //     if(!res.ok){
+    //         throw res;
+    //     }
+    //     return res.json();
+    // })
+    // .catch(error =>{
+    //     if (error.status === 404){
+    //         console.log("no match data");
+    //     }
+    //     throw error;
+    // })
+    if(response.status === 404){
+        return false;
+    }
+    else if(response.ok){
+        const data = response.json();
+        return data;
+    }
+}
 
-export { GetContact, UpdateContact };
+
+
+
+export { GetContact, UpdateContact, GetContactByUserId };
 

@@ -2,8 +2,9 @@ import React from 'react';
 import EmailCards from './components/EmailCards';
 import EmailPageHeader from './components/Header';
 import shuffleCards from '../../../services/shuffleCards';
-import { GetEmails,UpdateEmail } from '../../../Api/Email/Email';
+import { GetEmails, UpdateEmail,DeleteEmailLog,UpdateContacts, RemoveContacts } from '../../../Api/Email/Email';
 import "./EmailPage.scss";
+import { ActivityContext } from '../../Context';
 
 
 class EmailPage extends React.Component {
@@ -15,6 +16,10 @@ class EmailPage extends React.Component {
         }
         this.onChangeText = this.onChangeText.bind(this);
         this.onChangeEmail = this.onChangeEmail.bind(this);
+        this.handleLogEmail = this.handleLogEmail.bind(this);
+        this.handleDeleteCard = this.handleDeleteCard.bind(this);
+        this.handleAddContact = this.handleAddContact.bind(this);
+        this.handleRemoveContact = this.handleRemoveContact.bind(this);
     }
 
     sortCardsArray() {
@@ -34,42 +39,75 @@ class EmailPage extends React.Component {
                 })
             }
         }
-        console.table(this.state.cardsList);
     }
 
-    handleAddContact(contactId, emailId) {
+    handleLogEmail(email){
+        const newCardList = this.state.cardList;
+        newCardList.push(email);
+        this.setState({
+            cardList:newCardList,
+        })
+        this.sortCardsArray()
+    }
 
+    handleDeleteCard(id){
+        const response = DeleteEmailLog(id);
+        response.then(value =>{
+            if (value){
+            this.handleInitPage();
+            }
+        })
+    }
+
+
+    handleAddContact(contactId, emailId) {
+        UpdateContacts(contactId, emailId);
+    }
+
+    handleRemoveContact(contactId, emailId) {
+        RemoveContacts(contactId, emailId);
     }
 
     onChangeEmail(emailId, body) {
         UpdateEmail(emailId, body);
     }
 
-
-
-    componentDidMount() {
-        const emails = GetEmails(this.props.id);
+    handleInitPage(){
+        const emails = GetEmails(this.props.contactId);
         emails.then(value => {
             this.setState({
-                cardList: value.emailLogs,
+                cardList: value,
             });
             return this.state.cardList
         }).then(data => {
             if (data.length >= 1) {
-                console.log('check');
                 this.sortCardsArray();
             }
         });
     }
 
+    componentDidMount() {
+        this.handleInitPage();
+    }
+
     render() {
         const { cardsArray } = this.state;
         return (
-            <div className="emailPage">
-                <EmailPageHeader />
-                <EmailCards cardsArray={cardsArray}
-                            onChangeEmail = {this.onChangeEmail} />
-            </div>
+            <ActivityContext.Consumer>
+                {contactData => (
+                    <div className="emailPage">
+                        <EmailPageHeader contactData={contactData}
+                                         handleLogEmail = {this.handleLogEmail} />
+                        <EmailCards 
+                            contactData = {contactData}
+                            cardsArray={cardsArray}
+                            handleDeleteCard = {this.handleDeleteCard}
+                            handleAddContact={this.handleAddContact}
+                            handleRemoveContact={this.handleRemoveContact}
+                            onChangeEmail={this.onChangeEmail} />
+                    </div>
+                )}
+            </ActivityContext.Consumer>
         )
     }
 }

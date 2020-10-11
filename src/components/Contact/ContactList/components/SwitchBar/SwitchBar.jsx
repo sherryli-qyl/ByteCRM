@@ -1,5 +1,4 @@
 import React from "react";
-import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 
@@ -26,18 +25,15 @@ class SwitchBar extends React.Component {
 
     return (
       <>
-        <AppBar position="static">
           <Tabs value={activeTab} onChange={this.handleChange} key={"tabs"}>
             {this.props.tabs.map((tab) => (
               <Tab
                 key={tab.id}
                 label={tab.label}
                 value={tab.id}
-                icon={tab.icon}
               />
             ))}
           </Tabs>
-        </AppBar>
 
         {this.props.tabs.map(
           (tab) =>

@@ -1,9 +1,8 @@
-import React, { Fragment } from 'react';
-import Container from '@material-ui/core/Container';
+import React from 'react';
 import TabBar from './components/TabBar';
 import EmailPage from './components/Email';
 import TaskPage from './components/Task';
-import NotesTimeLine from './components/Functions/Note/';
+import NotesTimeLine from './components/Note';
 import CallPanel from './components/Functions/Calls/index';
 import './Activities.scss';
 import MeetingPage from './components/Functions/Meeting/MeetingPage';
@@ -11,11 +10,13 @@ import MeetingPage from './components/Functions/Meeting/MeetingPage';
 class Activities extends React.Component {
   constructor(props) {
     super(props);
-    const id = this.props.id;
+    const {contactId,contact} = this.props;
     const tabItems = [
       { key: 'Activity', value: 'Activity', activity: <div>Activity</div> },
-      { key: 'Notes', value: 'Notes', activity: <NotesTimeLine /> },
-      { key: 'Emails', value: 'Emails', activity: <EmailPage id = {id} /> },
+      { key: 'Notes', value: 'Notes', activity: <NotesTimeLine contactId={contactId} contact={contact} /> },
+      {
+        key: 'Emails', value: 'Emails', activity: <EmailPage contactId={contactId}/>
+      },
       { key: 'Calls', value: 'Calls', activity: <CallPanel /> },
       { key: 'Tasks', value: 'Tasks', activity: <TaskPage /> },
       { key: 'Meetings', value: 'Meetings', activity: <MeetingPage /> },
@@ -44,18 +45,18 @@ class Activities extends React.Component {
           currentPage={currentActivity}
           onTabItemClick={this.handleOnclick}
         />
-        <div className="activityPage">
-          {tabItems.map((tabItem) => {
-            if (currentActivity !== tabItem.key) {
-              return null;
-            }
-            return (
-              <React.Fragment key={tabItem.key}>
-                {tabItem.activity}
-              </React.Fragment>
-            );
-          })}
-        </div>
+          <div className="activityPage">
+            {tabItems.map((tabItem) => {
+              if (currentActivity !== tabItem.key) {
+                return null;
+              }
+              return (
+                <React.Fragment key={tabItem.key}>
+                  {tabItem.activity}
+                </React.Fragment>
+              );
+            })}
+          </div>
       </div>
     );
   }

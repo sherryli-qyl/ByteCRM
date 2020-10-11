@@ -4,12 +4,15 @@ class LoginForm extends React.Component {
   constructor() {
     super();
     this.state = {
-      input: {},
-      errors: {},
+      user: { email: '', password: '' },
+
+      emailErrMsg: '',
+      passwordErrMsg: '',
       hidden: true,
     };
 
-    this.handleChange = this.handleChange.bind(this);
+    this.handleEmailChange = this.handleEmailChange.bind(this);
+    this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   //Toggle Password -> Show or Hide
@@ -18,61 +21,85 @@ class LoginForm extends React.Component {
     this.setState({ hidden: !this.state.hidden });
   }
 
-  handleChange(event) {
-    let input = this.state.input;
-    input[event.target.name] = event.target.value;
-
-    this.setState({
-      input,
-    });
+  handleEmailChange(event) {
+    let value = event.target.value;
+    this.setState(
+      (prevState) => ({
+        user: {
+          ...prevState.user,
+          email: value,
+        },
+      }),
+      () => console.log(this.state.user)
+    );
   }
 
-  handleSubmit(event) {
+  handlePasswordChange(event) {
+    let value = event.target.value;
+    this.setState(
+      (prevState) => ({
+        user: {
+          ...prevState.user,
+          password: value,
+        },
+      }),
+      () => console.log(this.state.user)
+    );
+  }
+
+  handleSubmit = (event) => {
     event.preventDefault();
-
-    if (this.validate()) {
+    const isValid = this.validate();
+    if (isValid) {
       console.log(this.state);
-
-      let input = {};
-      input['password'] = '';
-      input['email'] = '';
-      this.setState({ input: input });
+      this.setState({
+        emailErrMsg: '',
+        passwordErrMsg: '',
+      });
     }
-  }
+  };
 
   validate() {
-    let input = this.state.input;
-    let errors = {};
-    let isValid = true;
+    let emailErrMsg = '';
+    let passwordErrMsg = '';
 
-    if (!input['email']) {
-      isValid = false;
-      errors['email'] = 'Please enter your email Address.';
-    }
-
-    if (typeof input['email'] !== 'undefined') {
-      var pattern = new RegExp(
+    if (!this.state.user.email) {
+      emailErrMsg = 'Email cannot be blank..';
+    } else if (typeof this.state.user.email !== 'undefined') {
+      let emailPattern = new RegExp(
         /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i
       );
-      if (!pattern.test(input['email'])) {
-        isValid = false;
-        errors['email'] = 'Please enter valid email address.';
+
+      if (!emailPattern.test(this.state.user.email)) {
+        emailErrMsg = 'Enter valid email format.';
       }
     }
 
-    if (!input['password']) {
-      isValid = false;
-      errors['password'] = 'Please enter your password.';
+    if (!this.state.user.password) {
+      passwordErrMsg = 'Password cannot be blank.';
+    } else if (typeof this.state.user.password !== 'undefined') {
+      let passwordPattern = new RegExp(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/i
+      );
+
+      if (!passwordPattern.test(this.state.user.password)) {
+        passwordErrMsg =
+          'Minimum eight characters, at least one uppercase letter, one lowercase letter and one number';
+      }
+    }
+    if (emailErrMsg || passwordErrMsg) {
+      this.setState({
+        emailErrMsg,
+        passwordErrMsg,
+      });
+      return false;
     }
 
-    this.setState({
-      errors: errors,
-    });
-
-    return isValid;
+    return true;
   }
 
   render() {
+    const { onSignIn } = this.state.user;
     return (
       <div>
         <form className="loginForm" onSubmit={this.handleSubmit}>
@@ -85,10 +112,10 @@ class LoginForm extends React.Component {
             placeholder="Enter your email address..."
             name="email"
             type="text"
-            value={this.state.input.email}
-            onChange={this.handleChange}
+            value={this.state.user.email}
+            onChange={this.handleEmailChange}
           />
-          <div className="errMsg">{this.state.errors.email}</div>
+          <div className="errMsg">{this.state.emailErrMsg}</div>
           <br />
           <label htmlFor="password" className="laBel">
             Password
@@ -103,11 +130,11 @@ class LoginForm extends React.Component {
             type={this.state.hidden ? 'password' : 'text'}
             name="password"
             placeholder="Enter your password..."
-            value={this.state.input.password}
-            onChange={this.handleChange}
+            value={this.state.user.password}
+            onChange={this.handlePasswordChange}
           />
           <br />
-          <div className="errMsg">{this.state.errors.password}</div>
+          <div className="errMsg">{this.state.passwordErrMsg}</div>
           <br />
           <a className="linkBtn">Forgot my password</a>
           <input id="rememberMe" className="checkBox" type="checkbox" />
@@ -115,7 +142,7 @@ class LoginForm extends React.Component {
             Remember Me
           </label>
           <br />
-          <button className="loginBtn" type="submit">
+          <button className="loginBtn" onClick={onSignIn}>
             Log in
           </button>
         </form>
