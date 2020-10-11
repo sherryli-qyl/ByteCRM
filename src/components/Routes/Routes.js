@@ -2,7 +2,7 @@ import React from 'react';
 import { Redirect, Route, Switch, BrowserRouter} from 'react-router-dom';
 import ContactList from '../Contact/ContactList';
 import ContactMain from '../Contact/ContactMain';
-import CompanyList from '../Company/CompanyList/CompanyList';
+import CompanyList from '../Company/CompanyList';
 import CompanyMain from '../Company/CompanyMain';
 import RegForm from '../User/RegForm/Register';
 import Login from '../User/LogIn/LogIn';

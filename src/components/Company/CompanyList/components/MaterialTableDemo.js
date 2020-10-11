@@ -1,5 +1,7 @@
 import React from "react";
 import MaterialTable from "material-table";
+import { NavLink } from "react-router-dom";
+
 
 import { forwardRef } from "react";
 
@@ -46,6 +48,7 @@ const tableIcons = {
 export default function MaterialTableDemo() {
   const [state, setState] = React.useState({
     columns: [
+      {title: "TYPE", field: "type"},
       { title: "NAME", field: "name" },
       { title: "COMPANY OWNER", field: "company_owner" },
       { title: "CREATE DATE(GMT+10)", field: "create_date" },
@@ -56,7 +59,12 @@ export default function MaterialTableDemo() {
       { title: "INDUSTRY", field: "industry" },
     ],
     data: [
-      {
+      { 
+        type: (
+          <NavLink activeClassName="active" to="/companies/main">
+            "company"
+            </NavLink>
+        ),
         name: "The University of Queensland",
         company_owner: "Unassigned",
         create_date: "Aug 25, 2020",
@@ -66,7 +74,12 @@ export default function MaterialTableDemo() {
         country_region: "Australia",
         industry: "Higher Education",
       },
-      {
+      { 
+        type: (
+          <NavLink activeClassName="active" to="/companies/main">
+            "company"
+            </NavLink>
+        ),
         name: "HubSpot, Inc.",
         company_owner: "Unassigned",
         create_date: "Aug 20, 2020",
