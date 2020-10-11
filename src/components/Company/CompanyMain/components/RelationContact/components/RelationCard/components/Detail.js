@@ -1,7 +1,7 @@
 import React from 'react';
-import EmailModal from '../../../../../../../../../Activities/components/Email/components/Modal/CreateEmail';
-import { ModalContext } from '../../../../../../../../../Modal/components/ModalContext';
-import Modal from '../../../../../../../../../../js/Modal';
+import EmailModal from '../../../../../../../Activities/components/Email/components/Modal/CreateEmail';
+import { ModalContext } from '../../../../../../../Modal/components/ModalContext';
+import Modal from '../../../../../../../../js/Modal';
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Detail.scss';
