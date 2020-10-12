@@ -1,1 +1,1 @@
-export {default} from './ContactMethod';
+export {default} from './ContactMethod.js';
