@@ -5,7 +5,7 @@ import './ControlBar.scss';
 
 
 const ControlBar = ({
-    handleDeleteCard,
+    onClickDelete,
 })=>{
         return (
             <div className='controlBar'>
@@ -18,7 +18,7 @@ const ControlBar = ({
                     <button className='controlBar__container__btn'
                              onClick={(event) => {
                                 event.preventDefault();
-                                handleDeleteCard();
+                                onClickDelete();
                               }}>
                         <Text className='controlBar__container__btn__text'>Delete</Text>
                     </button>

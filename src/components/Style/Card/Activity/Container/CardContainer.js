@@ -36,7 +36,7 @@ const CardContainer = ({
                             dateTime={`${transferDateInMonDayYear(card.date)} at ${card.time}`}
                             card={card}
                             icon={icon}
-                            handleDeleteCard={() => handleDeleteCard("123")}
+                            handleDeleteCard={() => handleDeleteCard(card._id)}
                             cardContent={createCard(card)}
                         />
                 )
