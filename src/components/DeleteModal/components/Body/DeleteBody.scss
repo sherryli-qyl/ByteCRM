@@ -1,0 +1,16 @@
+@import '../../../../style/variable.scss';
+
+
+.deleteBody {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    width: 100%;
+
+    &__text {
+        margin-left:5%;
+        color: $primary-color;
+        font-size: 14px;
+    }
+}

@@ -80,9 +80,7 @@ class EmailPage extends React.Component {
             });
             return this.state.cardList
         }).then(data => {
-            if (data.length >= 1) {
-                this.sortCardsArray();
-            }
+            this.sortCardsArray();
         });
     }
 

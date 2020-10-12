@@ -1,0 +1,45 @@
+@import '../../../../style/variable.scss';
+
+.deleteFooter {
+    flex: 1;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    background-color: white;
+    border-radius: 0 0 5px 5px;
+    
+
+    &__btnContainer {
+        margin-left: 5%;
+
+        &__btn {
+            @extend .nakedBtn;
+
+            &+& {
+                margin-left: 1em;
+            }
+            font-size: 14px;
+            font-weight: 600;
+            padding:11px 24px;
+            border-radius: 5px;
+        }
+
+    }
+}
+
+.confirmBtn {
+    background-color:#f2545b;
+    color: white;
+    &:hover{
+        background-color: #ff5962;
+    }
+}
+
+.cancelBtn {
+    background-color: #eaf0f6;
+    border:solid 1px #cbd6e2;
+    color: #506e91;
+    &:hover{
+        background-color: #f5f8fa;
+    }
+}

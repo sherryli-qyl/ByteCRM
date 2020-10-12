@@ -60,6 +60,19 @@
                 }
             }
         }
+
+        &__right{
+            &__addBtn{
+                @extend.nakedBtn;
+                font-weight: 600;
+                font-size: 14px;
+                color:$secondary-color;
+
+                &:hover{
+                    border-bottom: solid 1px $secondary-color;
+                }
+            }
+        }
     }
 
 
