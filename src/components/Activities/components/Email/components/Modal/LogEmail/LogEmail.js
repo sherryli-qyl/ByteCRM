@@ -15,12 +15,12 @@ class LogEmail extends React.Component {
         const currentDate = transferDateInYearMonDay(new Date());
         const currentTime = "09:00";
         const{userId,contact} = this.props.contactData;
-        const contactList = [contact];
-        const contacts = [contact._id];
+        let contacts = []
+        contact._id? contacts= [contact._id] :contacts = [];
         this.state = {
             currentDate,
             currentTime,
-            contactList,
+            contactList:[],
             contacts,
             userId,
             contact,
@@ -56,7 +56,7 @@ class LogEmail extends React.Component {
     }
 
     handleEditorChange(text) {
-        if (this.checkValidation(text)){
+        if (this.checkValidation(text) && this.state.contacts.length > 0){
             this.setState({
                 description: text,
                 btnDisable: false
@@ -125,6 +125,9 @@ class LogEmail extends React.Component {
 
     render() {
         const { currentDate, currentTime,contactList,contact,userId,btnDisable} = this.state;
+        if(contact){
+            contactList.push(contact);
+        }
         return (
             <div className="logEmailModal">
                 <div className="logEmailModal__header">
