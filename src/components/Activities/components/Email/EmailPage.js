@@ -50,7 +50,7 @@ class EmailPage extends React.Component {
         this.setState({
             cardList: newCardList,
         })
-        this.sortCardsArray()
+        this.sortCardsArray(newCardList);
     }
 
     handleDeleteCard(id) {
@@ -79,7 +79,9 @@ class EmailPage extends React.Component {
         const emails = GetEmails(this.props.contactId);
         emails.then(emailList => {
             if (emailList.length > 0) {
-                return emailList;
+                this.setState({
+                    cardList:emailList
+                })
             }
             else {
                 return null;
