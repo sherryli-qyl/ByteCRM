@@ -13,7 +13,7 @@ class Activities extends React.Component {
     const {contactId,contact} = this.props;
     const tabItems = [
       { key: 'Activity', value: 'Activity', activity: <div>Activity</div> },
-      { key: 'Notes', value: 'Notes', activity: <NotesTimeLine contactId={contactId} contact={contact} /> },
+      { key: 'Notes', value: 'Notes', activity: <NotesTimeLine contactId={contactId} /> },
       {
         key: 'Emails', value: 'Emails', activity: <EmailPage contactId={contactId}/>
       },
