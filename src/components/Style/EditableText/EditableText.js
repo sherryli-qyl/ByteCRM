@@ -65,7 +65,7 @@ class EditableText extends React.Component {
     })
   }
 
-  handleEditIconToggle = () => this.setState({ onHover: !this.state.onHover });
+  handleEditIconToggle = (onHover) => this.setState({ onHover: onHover });
 
   renderNormalMode() {
     const onHover = this.state.onHover;
@@ -73,8 +73,8 @@ class EditableText extends React.Component {
     return (
       <div
         className={onHover ? "editable-text-wrapper__hovered" : "editable-text-wrapper"}
-        onMouseEnter={this.handleEditIconToggle}
-        onMouseLeave={this.handleEditIconToggle}
+        onMouseEnter={()=>this.handleEditIconToggle(true)}
+        onMouseLeave={()=>this.handleEditIconToggle(false)}
         onClick={this.handleEdit}
       >
         <div className="editable-text-content" dangerouslySetInnerHTML={{ __html: this.state.content }}>

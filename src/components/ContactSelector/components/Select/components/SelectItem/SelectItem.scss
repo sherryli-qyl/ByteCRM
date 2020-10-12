@@ -9,13 +9,27 @@
 
     &__left {
         margin: auto 1%;
+      
+        
+
+       
+
         &__checkbox {
+         
+          
 
             &__btn {
-                color: #0091ae;
+                display: flex;
+                justify-content: center;
+                align-items: center;
                 @extend.nakedBtn;
-                height: 100%;
-                width:15px;
+                color: #0091ae;
+                width:16px;
+                height:16px;
+                background-color: transparent;
+                font-size: 16px;
+               
+               
 
                 &__disabled {
                     @extend .disabled;
@@ -27,8 +41,9 @@
 
         &__square {
             background-color: white;
-            height: 12px;
-            width: 12px;
+            height: 14px;
+            width: 14px;
+            border-radius: 2px;
             border: solid 1px rgb(203, 214, 226);
         }
     }
