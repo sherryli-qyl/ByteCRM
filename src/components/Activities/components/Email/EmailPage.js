@@ -82,6 +82,7 @@ class EmailPage extends React.Component {
                 this.setState({
                     cardList:emailList
                 })
+                return emailList;
             }
             else {
                 return null;
