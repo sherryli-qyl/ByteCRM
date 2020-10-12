@@ -109,7 +109,6 @@ class LogEmail extends React.Component {
             const res = PostEmail(body);
             res.then(value=>{
                 if (value){
-                    console.log("Log Email Success");
                     this.props.handleLogEmail(value);
                     this.props.contactData.close();
                 }
