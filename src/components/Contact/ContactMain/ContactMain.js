@@ -83,6 +83,7 @@ class ContactMain extends Component {
 
     componentDidMount() {
         const contact = GetContact(this.id);
+        console.log(contact)
         contact.then(value =>
             this.setState({
                 contact: value,

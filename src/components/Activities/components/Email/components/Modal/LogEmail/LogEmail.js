@@ -16,11 +16,13 @@ class LogEmail extends React.Component {
         const currentTime = "09:00";
         const{userId,contact} = this.props.contactData;
         let contacts = []
-        contact._id? contacts= [contact._id] :contacts = [];
+        let contactList = []
+        contact ? contactList.push(contact): contactList = [];
+        contact._id? contacts= [contact._id] : contacts = [];
         this.state = {
             currentDate,
             currentTime,
-            contactList:[],
+            contactList,
             contacts,
             userId,
             contact,
@@ -125,9 +127,6 @@ class LogEmail extends React.Component {
 
     render() {
         const { currentDate, currentTime,contactList,contact,userId,btnDisable} = this.state;
-        if(contact){
-            contactList.push(contact);
-        }
         return (
             <div className="logEmailModal">
                 <div className="logEmailModal__header">
