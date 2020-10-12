@@ -3,7 +3,7 @@ import Overlay from '../Overlay';
 import Header from './components/Header';
 import Body from './components/Body';
 import Footer from './components/Footer';
-import './DeleteModal.scss';
+import './deleteModal.scss';
 
 
 

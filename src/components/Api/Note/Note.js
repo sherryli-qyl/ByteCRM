@@ -30,12 +30,28 @@ async function AddNote(body){
   });
 
   if (response.ok){
-    return true;
+    return response.json();
   }
   else {
     return false
   }
 }
+
+async function DeleteNote(noteId) {
+  const serverUrl = `http://localhost:3000/api/notes/${noteId}`;
+  const response = await fetch(serverUrl, {
+    method: "DELETE",
+    headers: {
+        'Content-Type': 'application/json'
+    },
+  });
+  if(response.ok) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 
 
 // async function addComment(userId, noteId, content) {
@@ -50,4 +66,4 @@ async function AddNote(body){
 // }
 
 
-export { GetNoteByRelatedToId, UpdateNote, AddNote };
+export { GetNoteByRelatedToId, UpdateNote, AddNote, DeleteNote };

@@ -21,6 +21,7 @@ function NoteCardsList(props) {
           content={cards.content}
           icon={icon}  
           createCard={createCard}
+          handleDeleteCard = {props.handleDeleteNoteCard}
         />
       ))}
     </div>
