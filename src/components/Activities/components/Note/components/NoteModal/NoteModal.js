@@ -3,7 +3,6 @@ import './NoteModal.scss';
 import './components/NoteInput';
 import NoteSaveBar from './components/NoteSaveBar';
 import NoteInput from './components/NoteInput/NoteInput';
-// import axios from 'axios';
 import { AddNote, GetNoteByRelatedToId } from '../../../../../Api/Note/Note';
 
 
@@ -11,10 +10,12 @@ class NoteModal extends React.Component {
   constructor(props) {
     super(props);
 
+    const{ userId, contact } = this.props.contactData;
+
     this.state = {
-      createdBy: '5f6fda5a99f207748e5905fa',
+      userId,
       content: '',
-      relatedTo: '5f7c1fa07ed22f05ec4ec31a',
+      contact,
       btnDisable: true,
     }
     this.handleEditorChange = this.handleEditorChange.bind(this);
@@ -22,7 +23,7 @@ class NoteModal extends React.Component {
   }
 
   handleEditorChange(content) {
-    if (this.checkValidation(content)){
+    if (this.checkValidation(content)) {
       this.setState({
         content: content,
         btnDisable: false
@@ -36,18 +37,6 @@ class NoteModal extends React.Component {
     }
   }
 
-  // handleNoteCreate = () => {
-  //   const note = { ...this.state };
-  //   this.setState(() => {
-  //     AddNote(note)
-  //       .then(newNote => {
-  //           this.props.history.push(`http://localhost:3000/api/notes/${newNote.Id}`);
-  //       })
-  //       .catch(error => this.setState({ error }));
-  //   });
-  // }
-
-
   checkValidation(text){
     if (text !== '<p><br></p>'){
       return true
@@ -58,20 +47,20 @@ class NoteModal extends React.Component {
   } 
 
   handleClickSaveBtn(){
-    const {content, createdBy, relatedTo} = this.state;
+    const { content, userId, contact } = this.state;
       if (this.checkValidation(content)){
         const body = {
           content: content,
-          createdBy: createdBy,
+          createdBy: userId,
           type:'Note',
           isDeleted: false,
-          relatedTo: relatedTo,
+          relatedTo: contact,
         }
         const res = AddNote(body);
-        res.then(value=>{
+        res.then(value => {
           if (value) {
-              console.log("Note created successfully");
-              //this.props.contactData.close();
+            this.props.handleCreateNote(value);
+            this.props.contactData.close();
           } else {
               console.log("Unexpected Error");
           }
@@ -83,13 +72,16 @@ class NoteModal extends React.Component {
   
 
   render() {
-    const { btnDisable } = this.state;
+    const { btnDisable, createdBy, relatedTo } = this.state;
+
     return (
       <section id="NoteModal" className="NoteModal">
         <div className="note-input">
           <NoteInput 
             placeholder="Start typing to leave a note..."
             handleEditorChange={this.handleEditorChange}
+            createdBy={createdBy}
+            relatedTo={relatedTo}
           />
         </div>
         <div className="note-container-footer">
