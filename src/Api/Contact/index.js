@@ -1,0 +1,1 @@
+export { GetContact, UpdateContact, getAllContacts } from './Contact';
