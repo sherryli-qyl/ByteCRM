@@ -34,8 +34,8 @@ class InfoBody extends React.Component {
                     :
                     <React.Fragment>
                         <div className='infoBody__contactsIcon__init'> AA</div>
-                        <div className="infoBody__name"> {dataPack.data.name} </div>
-                        <div className="infoBody__jobTitle"> {dataPack.data.companyDomainName} </div>
+                        <div className="infoBody__name"> {dataPack.data.name?dataPack.data.name:""} </div>
+                        <div className="infoBody__jobTitle"> {dataPack.data.CompanyDomainName?dataPack.data.CompanyDomainName:""} </div>
                     </React.Fragment>
                 }
             </div>
