@@ -2,10 +2,10 @@ import React from "react";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 
-import TabContainer from "./TabContainer";
-import TableWrapper from "../TableWrapper";
+import TabContainer from "./components/TabContainer/TabContainer";
+import TableWrapper from "./components/TableWrapper";
 
-class SwitchBar extends React.Component {
+class ListPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -52,5 +52,4 @@ class SwitchBar extends React.Component {
   }
 }
 
-// export default withStyles(styles)(SwitchBar);
-export default SwitchBar;
+export default ListPage;

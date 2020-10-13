@@ -1,7 +1,7 @@
 import React from "react";
-import EnhancedTable from "./components/EnhancedTable";
-import Importer from "../Importer";
-import { addRowsFromCsv } from "../../tableLibs/getData";
+import EnhancedTable from "./components/EnhancedTable/EnhancedTable";
+import Importer from "./components/Importer";
+import { addRowsFromCsv } from "../../../../tableLibs/getData";
 
 class TableWrapper extends React.Component {
   constructor(props) {

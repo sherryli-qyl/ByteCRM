@@ -2,20 +2,20 @@ import React, { Component } from "react";
 import { ThemeProvider as MuiThemeProvider } from "@material-ui/core/styles";
 import { createMuiTheme } from "@material-ui/core/styles";
 import MaterialTable from "material-table";
-import SelectModal from "../../SelectModal";
-import tableIcons from "../../../tableLibs/getIcons";
-import getColumns from "../../../tableLibs/getColumns";
-import remove from "../../../tableLibs/removeRow";
-import exportCSV from "../../../tableLibs/exportCSV";
-import exportPDF from "../../../tableLibs/exportPDF";
-import updateRow from "../../../tableLibs/updateRow";
-import { GetAllContacts } from '../../../../../Api/Contact';
+import SelectModal from "./components/SelectModal";
+import tableIcons from "../../../../../../tableLibs/getIcons";
+import getColumns from "../../../../../../tableLibs/getColumns";
+import remove from "../../../../../../tableLibs/removeRow";
+import exportCSV from "../../../../../../tableLibs/exportCSV";
+import exportPDF from "../../../../../../tableLibs/exportPDF";
+import updateRow from "../../../../../../tableLibs/updateRow";
+import { GetAllContacts } from '../../../../../../../../Api/Contact';
 import {
   getTable,
   processData,
   editColumns,
   updateTable
-} from "../../../tableLibs/getData";
+} from "../../../../../../tableLibs/getData";
 
 
 const Theme = createMuiTheme({
