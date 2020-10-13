@@ -17,6 +17,11 @@ class InfoBody extends React.Component {
         if (dataPack.data && !dataPack.data.errors) {
             loading = false
         }
+
+        let companyName = "";
+        if(dataPack.data.company){
+             companyName = `at ${dataPack.data.company.name}`;
+        }
         return (
             <div className="infoBody">
                 {dataPack.key === 'contact' ?
@@ -27,7 +32,7 @@ class InfoBody extends React.Component {
                             <React.Fragment>
                                 <div className='infoBody__contactsIcon__init'> BH </div>
                                 <div className="infoBody__name"> {`${dataPack.data.firstName} ${dataPack.data.lastName}`} </div>
-                                <div className="infoBody__jobTitle"> {`${dataPack.data.jobTitle} at ${dataPack.data.company.name}`}  </div>
+                                <div className="infoBody__jobTitle"> {`${dataPack.data.jobTitle} ${companyName}`}  </div>
                             </React.Fragment>
                         }
                     </React.Fragment>

@@ -31,6 +31,10 @@ $border-color:#cbd6e2;
     }
 }
 
+.border{
+    border:solid 1px rgb(203, 214, 226)
+}
+
 .blockline{
     margin: {
         top: 2%;
@@ -42,7 +46,6 @@ $border-color:#cbd6e2;
     }
 
     &--top{
-        
         border: {
             top: solid 1px rgb(203, 214, 226);
         }

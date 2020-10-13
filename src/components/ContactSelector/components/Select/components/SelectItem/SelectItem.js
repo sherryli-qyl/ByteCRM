@@ -13,16 +13,16 @@ const SelectItem = ({
     handleRemoveContact,
     handleAddContact,
 }) => {
-    let btnClassName = "selectItem__left__checkbox__btn "
+    let btnClassName = "contactSelectItem__left__checkbox__btn "
 
     if (disabled) {
-        btnClassName += "selectItem__left__checkbox__btn__disabled"
+        btnClassName += "contactSelectItem__left__checkbox__btn__disabled"
     }
     return (
-        <div className='selectItem'>
-            <div className='selectItem__left'>
+        <div className='contactSelectItem'>
+            <div className='contactSelectItem__left'>
                 {checked ?
-                    <div className='selectItem__left__checkbox' >
+                    <div className='contactSelectItem__left__checkbox' >
                         <button
                             className={btnClassName}
                             disabled={disabled}
@@ -34,14 +34,14 @@ const SelectItem = ({
                         </button>
                     </div>
                     :
-                    <div className='selectItem__left__square'
+                    <div className='contactSelectItem__left__square'
                         onClick={event => {
                             event.preventDefault();
                             handleAddContact(contact);
                         }} />
                 }
             </div>
-            <div className='selectItem__right'>
+            <div className='contactSelectItem__right'>
                 {`${contact.fullName} (${contact.email})`}
             </div>
         </div>

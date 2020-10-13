@@ -4,6 +4,7 @@ async function GetContact(contactId) {
     method: "GET",
   });
   const data = response.json();
+  console.log(data);
   return data;
 }
 

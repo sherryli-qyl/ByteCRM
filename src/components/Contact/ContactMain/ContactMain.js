@@ -82,8 +82,8 @@ class ContactMain extends Component {
 
 
     componentDidMount() {
-        const contact = GetContact(this.id);
-        console.log(contact)
+        console.log(this.props.location.id);
+        const contact = GetContact(this.props.location.id);
         contact.then(value =>
             this.setState({
                 contact: value,
