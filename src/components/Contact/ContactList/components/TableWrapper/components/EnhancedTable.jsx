@@ -10,6 +10,12 @@ import exportCSV from "../../../tableLibs/exportCSV";
 import exportPDF from "../../../tableLibs/exportPDF";
 import updateRow from "../../../tableLibs/updateRow";
 import { GetAllContacts } from '../../../../../Api/Contact';
+import {
+  getTable,
+  processData,
+  editColumns,
+  updateTable
+} from "../../../tableLibs/getData";
 
 
 const Theme = createMuiTheme({
@@ -30,15 +36,19 @@ class EnhancedTable extends Component {
       modalVisible: false,
       columns: getColumns(),
       selectedRow: null,
-      data: [],
+      dataToShow: [],
+      allData: []
     };
   }
 
   componentDidMount() {
-    GetAllContacts().then((data) => {
-      console.log(data);
+    GetAllContacts({getAll: true}).then((data) => {
+      let allData = [];
+      allData = data.map((cur) => processData(cur));
+      const temp = getTable(allData, this.props.tab, this.props.userAccount);
       this.setState({
-        data: data,
+        allData: allData,
+        dataToShow: temp,
       });
     });
   }
@@ -49,7 +59,7 @@ class EnhancedTable extends Component {
       setTimeout(() => {
         let dataDelete = [...this.state.data];
         dataDelete = remove(dataDelete, selectedRow);
-        this.props.getNewTable([...dataDelete]);
+        // this.props.getNewTable([...dataDelete]);
         resolve();
       }, 500);
     });
@@ -59,7 +69,7 @@ class EnhancedTable extends Component {
     new Promise((resolve, reject) => {
       newData = updateRow(newData);
       setTimeout(() => {
-        this.props.getNewTable([...this.state.data, newData]);
+        // this.props.getNewTable([...this.state.data, newData]);
       }, 0);
     });
 
@@ -77,7 +87,7 @@ class EnhancedTable extends Component {
     if (data.size !== 0) {
       data.set("index", this.state.selectedRow);
     }
-    this.props.getDataToEdit(data);
+    // this.props.getDataToEdit(data);
   };
 
   getSelectedRowIndex = (Rows) => {
@@ -102,7 +112,7 @@ class EnhancedTable extends Component {
           <MaterialTable
             title={null}
             columns={this.state.columns}
-            data={this.state.data}
+            data={this.state.dataToShow}
             icons={tableIcons}
             onRowClick={(evt, selectedRow) => {}}
             onSelectionChange={(Rows) =>

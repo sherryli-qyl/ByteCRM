@@ -1,8 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import getDate from "./getDate";
 
-const url = 'https://localhost:3000/api/contacts/';
+// const url = 'http://localhost:3000/api/contacts/';
 
 const nameSet = [
   "Brian Halligan",
@@ -39,39 +38,6 @@ const dateSet = [
 ];
 
 const companySet = ["Hubspot, Inc.", "Intel", "AMD", "NVIDIA", "Google"];
-
-function createData(
-  name,
-  email,
-  phoneNumber,
-  contactOwner,
-  associatedCompany,
-  lastActivityDate,
-  leadStatus,
-  createDate
-) {
-  return {
-    name: (
-      <NavLink activeClassName="active" to={{
-        pathname: "/contacts/main",
-        // id: `${ID}`,
-        }}>
-        {name}
-      </NavLink>
-    ),
-    email: email,
-    phoneNumber: phoneNumber,
-    contactOwner: contactOwner,
-    associatedCompany: (
-      <NavLink activeClassName="active" to="/companies/main">
-        {associatedCompany}
-      </NavLink>
-    ),
-    lastActivityDate: lastActivityDate,
-    leadStatus: leadStatus,
-    createDate: createDate,
-  };
-}
 
 /* ======================================================= */
 // function wrapUpData(tableData) {
@@ -110,98 +76,80 @@ function postData(url, data) {
   let urlObj = new URL(url);
   return fetch(urlObj, {
     body: JSON.stringify(data), // must match 'Content-Type' header
-    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-    credentials: 'same-origin', // include, same-origin, *omit
+    cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: "same-origin", // include, same-origin, *omit
     headers: {
-      'user-agent': 'Mozilla/4.0 MDN Example',
-      'content-type': 'application/json'
+      "user-agent": "Mozilla/4.0 MDN Example",
+      "content-type": "application/json",
     },
-    method: 'POST', // *GET, POST, PUT, DELETE, etc.
-    mode: 'cors', // no-cors, cors, *same-origin
-    redirect: 'follow', // manual, *follow, error
-    referrer: 'no-referrer', // *client, no-referrer
-  })
-  .then(response => response.json()) // parses response to JSON
+    method: "POST", // *GET, POST, PUT, DELETE, etc.
+    mode: "cors", // no-cors, cors, *same-origin
+    redirect: "follow", // manual, *follow, error
+    referrer: "no-referrer", // *client, no-referrer
+  }).then((response) => response.json()); // parses response to JSON
 }
 
 function getData(url, data) {
   let urlObj = new URL(url);
   return fetch(urlObj, {
-    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-    credentials: 'same-origin', // include, same-origin, *omit
+    cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: "same-origin", // include, same-origin, *omit
     headers: {
-      'user-agent': 'Mozilla/4.0 MDN Example',
-      'content-type': 'application/json'
+      "user-agent": "Mozilla/4.0 MDN Example",
+      "content-type": "application/json",
     },
-    method: 'GET', // *GET, POST, PUT, DELETE, etc.
-    mode: 'cors', // no-cors, cors, *same-origin
-    redirect: 'follow', // manual, *follow, error
-    referrer: 'no-referrer', // *client, no-referrer
-  })
-  .then(response => response.json()) // parses response to JSON
+    method: "GET", // *GET, POST, PUT, DELETE, etc.
+    mode: "cors", // no-cors, cors, *same-origin
+    redirect: "follow", // manual, *follow, error
+    referrer: "no-referrer", // *client, no-referrer
+  }).then((response) => response.json()); // parses response to JSON
 }
 
 function putData(url, data) {
   let urlObj = new URL(url);
   return fetch(urlObj, {
     body: JSON.stringify(data), // must match 'Content-Type' header
-    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-    credentials: 'same-origin', // include, same-origin, *omit
+    cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: "same-origin", // include, same-origin, *omit
     headers: {
-      'user-agent': 'Mozilla/4.0 MDN Example',
-      'content-type': 'application/json'
+      "user-agent": "Mozilla/4.0 MDN Example",
+      "content-type": "application/json",
     },
-    method: 'PUT', // *GET, POST, PUT, DELETE, etc.
-    mode: 'cors', // no-cors, cors, *same-origin
-    redirect: 'follow', // manual, *follow, error
-    referrer: 'no-referrer', // *client, no-referrer
-  })
-  .then(response => response.json()) // parses response to JSON
+    method: "PUT", // *GET, POST, PUT, DELETE, etc.
+    mode: "cors", // no-cors, cors, *same-origin
+    redirect: "follow", // manual, *follow, error
+    referrer: "no-referrer", // *client, no-referrer
+  }).then((response) => response.json()); // parses response to JSON
 }
 
 function deleteData(url, data) {
   let urlObj = new URL(url);
   return fetch(urlObj, {
-    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-    credentials: 'same-origin', // include, same-origin, *omit
+    cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: "same-origin", // include, same-origin, *omit
     headers: {
-      'user-agent': 'Mozilla/4.0 MDN Example',
-      'content-type': 'application/json'
+      "user-agent": "Mozilla/4.0 MDN Example",
+      "content-type": "application/json",
     },
-    method: 'DELETE', // *GET, POST, PUT, DELETE, etc.
-    mode: 'cors', // no-cors, cors, *same-origin
-    redirect: 'follow', // manual, *follow, error
-    referrer: 'no-referrer', // *client, no-referrer
-  })
-  .then(response => response.json()) // parses response to JSON
+    method: "DELETE", // *GET, POST, PUT, DELETE, etc.
+    mode: "cors", // no-cors, cors, *same-origin
+    redirect: "follow", // manual, *follow, error
+    referrer: "no-referrer", // *client, no-referrer
+  }).then((response) => response.json()); // parses response to JSON
 }
 
-// TODO: fetch GET all
-async function fetchAllData() {
-  let response = getData(url);
-  console.log("fetchAllData -> response", response)
-  
-  
-}
-
-let tableData = fetchAllData();
-
-// TODO: 比较长度决定是加是删
-const updateTable = (newTable) => {
-  tableData = newTable;
-};
 
 // TODO: 先往数据库加，再调用generateData()
 const addRowsFromCsv = (newData) => {
-  if (newData.length === 0) {
-    return tableData;
-  }
+  // if (newData.length === 0) {
+  //   return tableData;
+  // }
   // let normalizedTable = normalizeData(tableData);
   // for (const item of newData) {
   //   normalizedTable.push(item);
   // }
   // tableData = wrapUpData(normalizedTable);
-  return tableData;
+  // return tableData;
 };
 
 // 先往数据库改，再调用generateData()
@@ -221,31 +169,73 @@ const editColumns = (newValue) => {
   //     });
   //   }
   //   tableData = wrapUpData(normalizedTable);
-    return tableData;
-  
+  // return tableData;
 };
 
+function wrapUpData(data) {
+  const temp = data.map((cur) => {
+    return {
+      name: (
+        <NavLink
+          activeClassName="active"
+          to={{
+            pathname: "/contacts/main",
+            id: cur.id,
+          }}
+        >
+          {cur.name}
+        </NavLink>
+      ),
+      email: cur.email,
+      phoneNumber: cur.phoneNumber,
+      contactOwner: cur.contactOwner,
+      associatedCompany: (
+        <NavLink activeClassName="active" to="/companies/main">
+          {cur.associatedCompany}
+        </NavLink>
+      ),
+      lastActivityDate: cur.lastActivityDate,
+      leadStatus: cur.leadStatus,
+      createDate: cur.createDate,
+    };
+  });
+  return temp;
+}
 
-const getTable = (id, userAccount) => {
-  if (id === 1) {
-    return fetchAllData();
-  } else if (id === 2) {
+const processData = (data) => {
+  return {
+    name: data.fullName,
+    id: data.id,
+    phoneNumber: data.phoneNo,
+    email: data.email,
+    contactOwner: data.contactOwner,
+    associatedCompany: data.company,
+    lastActivityDate: data.lastActivityDate,
+    leadStatus: data.leadStatus,
+    createDate: data.createDate,
+  };
+};
+
+const getTable = (data, tabID, userAccount) => {
+  if (tabID === 1) {
+    return wrapUpData(data);
+  } else if (tabID === 2) {
     let mine = [];
-    for (const item of fetchAllData()) {
+    for (const item of data) {
       if (item.contactOwner === userAccount) {
         mine.push(item);
       }
     }
-    return mine;
-  } else if (id === 3) {
+    return wrapUpData(mine);
+  } else if (tabID === 3) {
     let unassigned = [];
-    for (const item of fetchAllData()) {
+    for (const item of data) {
       if (item.contactOwner === "Unassigned") {
         unassigned.push(item);
       }
     }
-    return unassigned;
+    return wrapUpData(unassigned);
   }
 };
 
-export { addRowsFromCsv, editColumns, getTable, updateTable };
+export { addRowsFromCsv, editColumns, getTable, processData };
