@@ -7,7 +7,7 @@ class TypeDropdown extends React.Component {
     constructor(props) {
         super(props);
 
-        const { defaultValue } = this.props;
+        const {defaultValue} = this.props;
         let currentValue = '';
         defaultValue ? currentValue = defaultValue : currentValue = 0;
 
