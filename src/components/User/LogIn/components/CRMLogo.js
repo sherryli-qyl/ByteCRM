@@ -1,5 +1,5 @@
 import React from 'react';
-import Logo from '../../../../img/logsys/bytecrm.png';
+import Logo from '../../../../img/Logo/logo.png';
 
 const CRMLogo = () => {
   return (

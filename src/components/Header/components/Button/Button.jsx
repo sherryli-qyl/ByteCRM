@@ -1,10 +1,12 @@
-import styled, { css } from 'styled-components';
+import  { css } from 'styled-components';
 import NakedButton from '../NakedButton';
+import React from 'react';
+import './Button.scss';
 
-const Button = styled(NakedButton)`
-  border-radius: 200px;
-
-  ${(props) => props.width && css`width: ${props.width};`}
+   const Button = () => (
+  <button> 
+    <NakedButton />
+    ${(props) => props.width && css`width: ${props.width};`}
 
   ${(props) => {
     const style = {
@@ -48,6 +50,7 @@ const Button = styled(NakedButton)`
     cursor: not-allowed;
     filter: grayscale(0.3);
   `}
-`;
+  </button>
+);
 
 export default Button;

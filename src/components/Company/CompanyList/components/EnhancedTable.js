@@ -31,7 +31,7 @@ function createData(
   last_activity_date,
   phone_number,
   city,
-  country_region,
+  country,
   industry
 ) {
   return {
@@ -41,7 +41,7 @@ function createData(
     last_activity_date,
     phone_number,
     city,
-    country_region,
+    country,
     industry,
   };
 }
@@ -133,7 +133,7 @@ const headCells = [
     label: "CITY",
   },
   {
-    id: "country_region",
+    id: "country",
     numeric: false,
     disablePadding: false,
     label: "COUNTRY/REGION",
@@ -443,7 +443,7 @@ export default function EnhancedTable() {
                       </TableCell>
                       <TableCell align="center">{row.phone_number}</TableCell>
                       <TableCell align="center">{row.city}</TableCell>
-                      <TableCell align="center">{row.country_region}</TableCell>
+                      <TableCell align="center">{row.country}</TableCell>
                       <TableCell align="center">{row.industry}</TableCell>
                     </TableRow>
                   );

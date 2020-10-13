@@ -1,5 +1,5 @@
 import React from 'react';
-import NavigationLink from '../../../NavigationLink';
+import NavigationLink from '../../components/NavigationLink';
 import './Private.scss';
 import Profile from '../../../../img/Contact/profile.png';
 

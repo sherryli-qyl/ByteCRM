@@ -16,8 +16,7 @@ const CompanyList = () => (
 const tabs = [
     {   
         label: "All Companies",
-        id: 1,
-        
+        id: 1,      
     },
     {
         label: "My Companies",

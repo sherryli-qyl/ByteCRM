@@ -48,21 +48,21 @@ const tableIcons = {
 export default function MaterialTableDemo() {
   const [state, setState] = React.useState({
     columns: [
-      {title: "TYPE", field: "type"},
-      { title: "NAME", field: "name" },
-      { title: "COMPANY OWNER", field: "company_owner" },
-      { title: "CREATE DATE(GMT+10)", field: "create_date" },
-      { title: "LAST ACTIVITY DATE(GMT+10)", field: "last_activity_date" },
-      { title: "PHONE NUMBER", field: "phone_number" },
-      { title: "CITY", field: "city" },
-      { title: "COUNTRY/REGION", field: "country_region" },
-      { title: "INDUSTRY", field: "industry" },
+      {title: "Type", field: "type"},
+      { title: "Name", field: "name" },
+      { title: "Company Owner", field: "company_owner" },
+      { title: "Create Date", field: "create_date" },
+      { title: "Last Activity Date", field: "last_activity_date" },
+      { title: "Phone Number", field: "phone_number" },
+      { title: "City", field: "city" },
+      { title: "Country", field: "country" },
+      { title: "Industry", field: "industry" },
     ],
     data: [
       { 
         type: (
           <NavLink activeClassName="active" to="/companies/main">
-            "company"
+            company
             </NavLink>
         ),
         name: "The University of Queensland",
@@ -71,13 +71,13 @@ export default function MaterialTableDemo() {
         last_activity_date: "--",
         phone_number: "+61733651111",
         city: "St Lucia",
-        country_region: "Australia",
+        country: "Australia",
         industry: "Higher Education",
       },
       { 
         type: (
           <NavLink activeClassName="active" to="/companies/main">
-            "company"
+             company
             </NavLink>
         ),
         name: "HubSpot, Inc.",
@@ -86,7 +86,7 @@ export default function MaterialTableDemo() {
         last_activity_date: "Aug 27, 2020",
         phone_number: "+1 888-482-7768",
         city: "Cambridge",
-        country_region: "United States",
+        country: "United States",
         industry: "Computer Software",
       },
     ],
@@ -95,7 +95,7 @@ export default function MaterialTableDemo() {
   return (
     <MaterialTable
       icons={tableIcons}
-      title="Companies"
+      title=" "
       columns={state.columns}
       data={state.data}
       editable={{
