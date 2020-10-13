@@ -11,9 +11,11 @@ class Dropdown extends React.Component {
         this.state = {
             showDropdown: false,
         }
+        this.wrapperRef = React.createRef();
+        this.btnRef = React.createRef();
         this.onClickDropdown = this.onClickDropdown.bind(this);
         this.onChangeSelect = this.onChangeSelect.bind(this);
-
+        this.handleClickOutside = this.handleClickOutside.bind(this);
     }
 
     onClickDropdown() {
@@ -24,8 +26,22 @@ class Dropdown extends React.Component {
         console.log(this.state.showDropdown);
     }
 
-    onChangeSelect(value){
+    onChangeSelect(value) {
         this.props.onChangeValue(value);
+    }
+
+    handleClickOutside(event) {
+        if (this.wrapperRef && !this.wrapperRef.current.contains(event.target) && !this.btnRef.current.contains(event.target) && this.state.showDropdown) {
+            this.onClickDropdown();
+        }
+    }
+
+    componentDidMount() {
+        document.addEventListener('mousedown', this.handleClickOutside);
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener('mousedown', this.handleClickOutside);
     }
 
 
@@ -36,13 +52,13 @@ class Dropdown extends React.Component {
         if (value) {
             currentValue = value;
         }
-        else{
+        else {
             currentValue = selectItems[0].value;
         }
-       
+
         return (
             <div className='dropdown'>
-                <div className="dropdown__above" onClick={this.onClickDropdown}>
+                <div className="dropdown__above" ref={this.btnRef} onClick={this.onClickDropdown}>
                     <div className="dropdown__above__text">
                         {currentValue}
                     </div>
@@ -50,9 +66,11 @@ class Dropdown extends React.Component {
                         <FontAwesomeIcon icon={faCaretDown} />
                     </div>
                 </div>
-                <Selects selectItems={selectItems}
-                         showDropdown={showDropdown} 
-                         onChangeSelect = {this.onChangeSelect}/>
+                <div ref={this.wrapperRef}>
+                    <Selects selectItems={selectItems}
+                             showDropdown={showDropdown}
+                             onChangeSelect={this.onChangeSelect} />
+                </div>
             </div>
         )
     }
