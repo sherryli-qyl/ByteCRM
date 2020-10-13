@@ -1,0 +1,36 @@
+.select{
+    position: absolute;
+    display:flex;
+    justify-content: center;
+    top:200%;
+    right:-30%;
+    // left:0;
+    height:100px;
+    width:100px;
+    background-color: white;
+    border:solid 1px black;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .4s ease-out;
+    z-index: 1;
+    border-radius: 5px;
+
+    &__active {
+        opacity: 1;
+        visibility: visible;
+        transition: opacity .5s ease-in;
+    }
+
+    &__corner{
+        border: {
+            left: solid 1px;
+            top: solid 1px;
+        }
+        position: absolute;
+        top:-10%;
+        height:20px;
+        width:20px;
+        transform: rotate(45deg);
+        z-index: 0;
+    }
+}

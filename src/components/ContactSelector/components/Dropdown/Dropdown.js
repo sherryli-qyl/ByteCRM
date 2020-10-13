@@ -21,15 +21,15 @@ const Dropdown = ({
     handleAddContact
 }) => {
 
-    let className = "dropdown "
+    let className = "contactDropdown "
     if (showDropdown) {
-        className += "dropdown__active"
+        className += "contactDropdown__active"
     }
     return (
         <div className={className}>
-            <div className='dropdown__corner' />
-            <div className='dropdown__inner'>
-                <div className='dropdown__inner__wrapper'>
+            <div className='contactDropdown__corner' />
+            <div className='contactDropdown__inner'>
+                <div className='contactDropdown__inner__wrapper'>
                     <SearchBar textInput={textInput}
                         enableCleanBtn={enableCleanBtn}
                         handleInputChange={handleInputChange}
