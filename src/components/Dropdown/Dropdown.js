@@ -9,12 +9,12 @@ class Dropdown extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            showDropdown:false,
+            showDropdown: false,
         }
         this.onClickSelect = this.onClickSelect.bind(this);
     }
 
-     onClickSelect(){
+    onClickSelect() {
         this.setState(prevState => ({
             showDropdown: !prevState.showDropdown,
         })
@@ -25,7 +25,7 @@ class Dropdown extends React.Component {
 
     render() {
         const { value, selectItems } = this.props;
-        const {showDropdown} = this.state;
+        const { showDropdown } = this.state;
         let currentValue = 0;
         if (value) {
             currentValue = value;
@@ -33,7 +33,7 @@ class Dropdown extends React.Component {
         console.log(selectItems[currentValue].value);
         return (
             <div className='dropdown'>
-                <div className="dropdown__above"  onClick = {this.onClickSelect}>
+                <div className="dropdown__above" onClick={this.onClickSelect}>
                     <div className="dropdown__above__text">
                         {selectItems[currentValue].value}
                     </div>
@@ -41,10 +41,8 @@ class Dropdown extends React.Component {
                         <FontAwesomeIcon icon={faCaretDown} />
                     </div>
                 </div>
-               
-                    <Selects selectItems={selectItems}
-                             showDropdown={showDropdown} />
-               
+                <Selects selectItems={selectItems}
+                    showDropdown={showDropdown} />
             </div>
         )
     }

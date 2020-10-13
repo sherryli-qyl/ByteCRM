@@ -16,7 +16,7 @@ const Selects = ({
     return (
         <div className={className}>
             <div className='select__corner' />
-            <div className='select__incer'>
+            <div className='select__inner'>
                 {selectItems.map((item) => {
                     return (
                         <SelectItem key={item.key}

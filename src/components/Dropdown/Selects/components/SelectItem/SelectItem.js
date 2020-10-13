@@ -9,7 +9,9 @@ const SelectItem =({
 })=>{
     return(
         <div className = "selectItem">
-           {item}
+            <button className="selectItem__btn">
+              {item}
+            </button>
         </div>
 
     )
