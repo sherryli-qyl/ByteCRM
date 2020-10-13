@@ -12,56 +12,60 @@ class CreateTaskCard extends React.Component {
       currentDate: this.props.card.date,
       currentTime: this.props.card.time,
       cardKey: key,
+      taskType: this.props.card.taskType,
       description,
     }
     this.onDateChange = this.onDateChange.bind(this);
     this.onTimeChange = this.onTimeChange.bind(this);
+    this.onTypeChange = this.onTypeChange.bind(this);
   }
 
   onDateChange(date) {
     const newDate = date;
     this.setState({
-        currentDate: newDate,
+      currentDate: newDate,
     })
     console.log(this.props.card.date);
   }
-
-  onTest(date) {
-    const newDate = date;
+  
+  onTimeChange(time) {
+    const newTime = time;
     this.setState({
-        currentDate: newDate,
+      currentTime: newTime,
     })
-    console.log(date)
+    console.log(newTime);
   }
 
-  onTimeChange(time){
-      const newTime = time;
-      this.setState({
-          currentTime: newTime,
-      })
-      console.log(newTime);
+  onTypeChange(type) {
+    const newType = type;
+    this.setState({
+      taskType: newType,
+    })
   }
-    render() {
-      const { currentDate, currentTime, cardKey, description } = this.state;
-        return (
-          <div className="createTaskCard">
-            <InputTaskType 
-              currentDate={currentDate}
-              currentTime={currentTime}
-              onTimeChange={this.onTimeChange}
-              onDateChange={this.onDateChange} 
-            />
-            <div className="createTaskCard__footer">
-            {description?
-              <TaskDescription 
-                cardKey={cardKey}
-                description={description} />
-                : ""
-            } 
-            </div>
-          </div>
-        )
-    }
+
+  render() {
+    const { currentDate, currentTime, cardKey, description, taskType } = this.state;
+    return (
+      <div className="createTaskCard">
+        <InputTaskType
+          currentDate={currentDate}
+          currentTime={currentTime}
+          taskType={taskType}
+          onTimeChange={this.onTimeChange}
+          onDateChange={this.onDateChange}
+          onTypeChange = {this.onTypeChange}
+        />
+        <div className="createTaskCard__footer">
+          {description ?
+            <TaskDescription
+              cardKey={cardKey}
+              description={description} />
+            : ""
+          }
+        </div>
+      </div>
+    )
+  }
 }
 
 export default CreateTaskCard;

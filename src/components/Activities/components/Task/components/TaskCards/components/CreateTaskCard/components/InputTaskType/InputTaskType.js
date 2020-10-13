@@ -13,7 +13,8 @@ const InputTaskType = ({
   currentDate,
   onDateChange,
   onTimeChange,
-  type,
+  onTypeChange,
+  taskType,
   userName,
 }) => (
     <div className="inputTaskType">
@@ -35,20 +36,21 @@ const InputTaskType = ({
               Date
              </div>
             <DatePicker defaultDate={currentDate}
-              onDateChange={onDateChange} />
+                        onDateChange={onDateChange} />
           </div>
           <div className='inputTaskType__content__block__item'>
             <div className="cardLabel">
               Time
             </div>
             <TimePicker defaultTime={transferTimeHHMM(currentTime)}
-              onTimeChange={onTimeChange} />
+                        onTimeChange={onTimeChange} />
           </div>
           <div className='inputTaskType__content__block__item'>
             <div className="cardLabel">
               Type
              </div>
-            <TypeDropdown defaultValue={type}/>
+            <TypeDropdown defaultValue={taskType}
+                          onTypeChange = {onTypeChange}/>
           </div>
         </div>
         <div className='inputTaskType__content__block'>

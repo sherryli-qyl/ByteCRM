@@ -6,10 +6,9 @@ import Dropdown from '../../../../../../Dropdown';
 class TypeDropdown extends React.Component {
     constructor(props) {
         super(props);
-
         const {defaultValue} = this.props;
         let currentValue = '';
-        defaultValue ? currentValue = defaultValue : currentValue = 0;
+        defaultValue ? currentValue = defaultValue : currentValue = false;
 
         const selectItems = [
             { value: 'To-do', key: 0 },
@@ -19,12 +18,14 @@ class TypeDropdown extends React.Component {
             selectItems,
             currentValue,
         }
+        this.onChangeValue = this.onChangeValue.bind(this);
     }
 
-    onChange(index) {
+    onChangeValue(type) {
         this.setState({
-            currentValue: index
+            currentValue: type
         })
+        this.props.onTypeChange(type)
 
     }
 
@@ -33,6 +34,7 @@ class TypeDropdown extends React.Component {
         return (
             <Dropdown
                 value={currentValue}
+                 onChangeValue = {this.onChangeValue}
                 selectItems={selectItems}
             />
         )

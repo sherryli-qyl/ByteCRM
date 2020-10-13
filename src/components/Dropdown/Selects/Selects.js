@@ -7,7 +7,8 @@ import './Selects.scss';
 
 const Selects = ({
     selectItems,
-    showDropdown
+    showDropdown,
+    onChangeSelect,
 }) => {
     let className = "select "
     if(showDropdown){
@@ -20,6 +21,7 @@ const Selects = ({
                 {selectItems.map((item) => {
                     return (
                         <SelectItem key={item.key}
+                                    onClick={()=> onChangeSelect(item.value)}
                                     item = {item.value} />
                     )
                 })

@@ -11,10 +11,12 @@ class Dropdown extends React.Component {
         this.state = {
             showDropdown: false,
         }
-        this.onClickSelect = this.onClickSelect.bind(this);
+        this.onClickDropdown = this.onClickDropdown.bind(this);
+        this.onChangeSelect = this.onChangeSelect.bind(this);
+
     }
 
-    onClickSelect() {
+    onClickDropdown() {
         this.setState(prevState => ({
             showDropdown: !prevState.showDropdown,
         })
@@ -22,27 +24,35 @@ class Dropdown extends React.Component {
         console.log(this.state.showDropdown);
     }
 
+    onChangeSelect(value){
+        this.props.onChangeValue(value);
+    }
+
 
     render() {
         const { value, selectItems } = this.props;
         const { showDropdown } = this.state;
-        let currentValue = 0;
+        let currentValue = '';
         if (value) {
             currentValue = value;
         }
-        console.log(selectItems[currentValue].value);
+        else{
+            currentValue = selectItems[0].value;
+        }
+       
         return (
             <div className='dropdown'>
-                <div className="dropdown__above" onClick={this.onClickSelect}>
+                <div className="dropdown__above" onClick={this.onClickDropdown}>
                     <div className="dropdown__above__text">
-                        {selectItems[currentValue].value}
+                        {currentValue}
                     </div>
                     <div className="dropdown__above__icon">
                         <FontAwesomeIcon icon={faCaretDown} />
                     </div>
                 </div>
                 <Selects selectItems={selectItems}
-                    showDropdown={showDropdown} />
+                         showDropdown={showDropdown} 
+                         onChangeSelect = {this.onChangeSelect}/>
             </div>
         )
     }
