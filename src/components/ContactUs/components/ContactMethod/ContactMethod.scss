@@ -1,0 +1,15 @@
+.contact_method_container {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  .callMethod{
+    position: absolute;
+    top: -60px;
+    left: 50%;
+  }
+  .emailMethod{
+    position: absolute;
+    top: -60px;
+    right: 50%;
+  }
+}

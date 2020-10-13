@@ -1,0 +1,1 @@
+export {GetCompanyByCode} from './Company';

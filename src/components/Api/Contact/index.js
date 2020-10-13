@@ -1,0 +1,1 @@
+export {GetContact,GetContactByUserId } from './Contact';

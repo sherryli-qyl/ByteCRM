@@ -1,0 +1,24 @@
+.InfoPage {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    border-right: solid 1px rgba(51, 71, 91, 0.4);
+    background-color: white;
+    height:100vh;
+    overflow-y: scroll;
+
+}
+
+.icon_note,
+.icon_mail,
+.icon_call,
+.icon_log,
+.icon_task,
+.icon_meeting {
+    width: 15px;
+}
+
+
+
+
+

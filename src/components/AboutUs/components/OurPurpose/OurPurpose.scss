@@ -1,0 +1,17 @@
+.Our_purpose {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.purpose_text {
+    width:450px;
+    text-align: center;
+    font-size: 30px;
+    font-style: italic;
+    padding: 40px;
+}
+
+.purpose_img {
+    width:550px;
+}

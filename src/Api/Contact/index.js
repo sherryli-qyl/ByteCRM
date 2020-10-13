@@ -1,1 +1,0 @@
-export {GetContact} from './Contact';

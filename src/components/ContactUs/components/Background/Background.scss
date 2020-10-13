@@ -1,0 +1,26 @@
+@import "../../../../style/variable.scss";
+
+.catch_background {
+  // background-image: url("../../../../img/Contactus/getintouch.jpeg") no-repeat fixed,
+  background-image: linear-gradient(45deg, #6a78d1, #00a4bd);
+  height: 350px;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+
+  .background-text {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: $primary-color-light;
+
+    h2 {
+      font-size: 50px;
+    }
+    p {
+      font-size: 1.125rem;
+    }
+  }
+}
