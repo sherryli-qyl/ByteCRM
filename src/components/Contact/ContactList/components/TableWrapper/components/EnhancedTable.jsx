@@ -9,7 +9,7 @@ import remove from "../../../tableLibs/removeRow";
 import exportCSV from "../../../tableLibs/exportCSV";
 import exportPDF from "../../../tableLibs/exportPDF";
 import updateRow from "../../../tableLibs/updateRow";
-import { getAllContacts } from '../../../../../Api/Contact';
+import { GetAllContacts } from '../../../../../Api/Contact';
 
 
 const Theme = createMuiTheme({
@@ -35,7 +35,8 @@ class EnhancedTable extends Component {
   }
 
   componentDidMount() {
-    getAllContacts().then((data) => {
+    GetAllContacts().then((data) => {
+      console.log(data);
       this.setState({
         data: data,
       });

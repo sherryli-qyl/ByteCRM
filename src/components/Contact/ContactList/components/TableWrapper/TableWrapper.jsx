@@ -1,7 +1,7 @@
 import React from "react";
 import EnhancedTable from "./components/EnhancedTable";
 import Importer from "../Importer";
-import { getAllContacts } from '../../../../Api/Contact';
+import { GetAllContacts } from '../../../../Api/Contact';
 import {
   getTable,
   addRowsFromCsv,
