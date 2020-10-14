@@ -82,8 +82,8 @@ class ContactMain extends Component {
 
 
     componentDidMount() {
-        console.log(this.props.location.id);
-        const contact = GetContact(this.props.location.id);
+        const selectedContactId = sessionStorage.getItem('id');
+        const contact = GetContact(selectedContactId);
         contact.then(value =>
             this.setState({
                 contact: value,
@@ -119,8 +119,7 @@ class ContactMain extends Component {
                                     />
                                 </InfoContext.Provider>
                                 <ActivityContext.Provider value = {contactData}>
-                                    <Activities contactId= {this.id}
-                                                contact = {contact}
+                                    <Activities contact = {contact}
                                                 />
                                     <RelationCompany />
                                     <Modal Xaxis={this.state.Xaxis}
