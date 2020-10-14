@@ -2,23 +2,27 @@ import React from 'react';
 import Detail from './components/Detail';
 import './RelationCard.scss'
 
-const contactInfo = [
-  { key: "HubSpot, Inc", website: "hubspot.com", phone: "+1 (888) 482-7768" },
-]
 
-const RelationCard = () => (
-  <div className="cardWrap">
-    {contactInfo.map((item) => (
-      <Detail
-        key={item.key}
-        company={item.key}
-        website={item.website}
-        phone={item.phone} />
 
-    )
-    )}
-  </div>
-)
+const RelationCard = ({
+  company,
+}) => {
+  return (
+    <div className="cardWrap">
+      {company ?
+        <Detail
+          name={company.name}
+          website={company.companyDomainName}
+          phoneNumber={company.phoneNumber} />
+        :
+        <div>
+          View the company related to this contact. Add an existing company or create a new one.
+       </div>
+      }
+
+    </div>
+  )
+}
 
 
 

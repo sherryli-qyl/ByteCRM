@@ -121,7 +121,7 @@ class ContactMain extends Component {
                                 <ActivityContext.Provider value = {contactData}>
                                     <Activities contact = {contact}
                                                 />
-                                    <RelationCompany />
+                                    <RelationCompany company={contact.company}/>
                                     <Modal Xaxis={this.state.Xaxis}
                                         Yaxis={this.state.Yaxis}
                                         visible={visible}

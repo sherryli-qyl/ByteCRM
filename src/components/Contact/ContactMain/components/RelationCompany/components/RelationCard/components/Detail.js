@@ -8,7 +8,7 @@ const Detail = (props) => {
   const websiteURL = `https://${props.website}`;
   return (
     <div className="detailWrapper">
-      <div className="company"> {props.company} </div>
+      <div className="company"> {props.name} </div>
       <div className="website">
         <a className="website_link" href={websiteURL} target="_blank" rel="noopener noreferrer">
           {props.website}
@@ -21,7 +21,7 @@ const Detail = (props) => {
         <div className="phoneIcon">
           <FontAwesomeIcon icon={faPhoneAlt} />
         </div>
-        {props.phone}
+        {props.phoneNumber}
       </div>
     </div >
   )

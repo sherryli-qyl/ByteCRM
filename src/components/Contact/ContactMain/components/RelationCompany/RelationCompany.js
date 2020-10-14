@@ -7,7 +7,7 @@ const RelationCompany = (props) => {
 
   return (
     <div className="relationship_page">
-      <ExpandBar content ={<RelationCard/>} 
+      <ExpandBar content ={<RelationCard company={props.company}/>} 
                  label = {"Company"}
                  showAdd = {true}/>
     </div>
