@@ -29,7 +29,7 @@ $myFont: 'Varela Round', sans-serif;
   }
   text-decoration: none;
   color: $shownColor;
-  position: fixed;
+  position: relative;
 }
 
 .linkBtn:hover {
@@ -37,6 +37,23 @@ $myFont: 'Varela Round', sans-serif;
   text-decoration: underline;
   font-weight: 600;
 }
+
+// .forgotPassword {
+//   font: {
+//     family: $myFont;
+//     weight: 400;
+//     size: 14px;
+//   }
+//   text-decoration: none;
+//   color: $shownColor;
+//   position: relative;
+// }
+
+// .forgotPassword:hover {
+//   color: $hoverColor;
+//   text-decoration: underline;
+//   font-weight: 600;
+// }
 
 .loginForm {
   margin-top: 0;

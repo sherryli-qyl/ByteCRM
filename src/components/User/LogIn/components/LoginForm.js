@@ -153,6 +153,7 @@ class LoginForm extends React.Component {
           <div className="errMsg">{this.state.passwordErrMsg}</div>
           <br />
           <a className="linkBtn">Forgot my password</a>
+          <br />
           <input id="rememberMe" className="checkBox" type="checkbox" />
           <label htmlFor="rememberMe" className="rmbMe">
             Remember Me
