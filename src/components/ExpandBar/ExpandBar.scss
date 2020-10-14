@@ -62,6 +62,16 @@
         }
 
         &__right{
+
+            &__hint{
+                position: absolute;
+                right: 60px; 
+                top:5px;
+                padding-right:10px;
+                height:50px;
+                width:200px;
+            }
+
             &__addBtn{
                 @extend.nakedBtn;
                 font-weight: 600;
@@ -78,7 +88,10 @@
                     background-color: transparent;
                     
                     &:hover{
-                        border-bottom: 0px;
+                        .hintBox{
+                            opacity: 1;
+                            visibility: visible;
+                        }
                     }
                 }
             }
