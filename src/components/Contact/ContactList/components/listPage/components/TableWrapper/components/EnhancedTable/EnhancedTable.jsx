@@ -32,6 +32,7 @@ class EnhancedTable extends Component {
 
   componentDidMount() {
     GetAllContacts({getAll: true}).then((data) => {
+    console.log("EnhancedTable -> componentDidMount -> data", data)
       let allData = [];
       allData = data.map((cur) => processData(cur));
       const temp = getTable(allData, this.props.tab, this.props.userAccount);
@@ -46,9 +47,12 @@ class EnhancedTable extends Component {
     evt.preventDefault();
     new Promise((resolve, reject) => {
       setTimeout(() => {
-        let dataDelete = [...this.state.data];
-        dataDelete = remove(dataDelete, selectedRow);
-        // this.props.getNewTable([...dataDelete]);
+        let allData = [...this.state.data], deleteData = [];
+        [allData, deleteData] = remove(allData, selectedRow);
+        // removeDataInDB()
+        this.setState({
+          dataToShow: allData
+        })
         resolve();
       }, 500);
     });
