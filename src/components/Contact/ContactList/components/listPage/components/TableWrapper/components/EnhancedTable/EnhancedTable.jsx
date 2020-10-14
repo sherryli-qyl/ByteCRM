@@ -1,33 +1,22 @@
-import React, { Component } from "react";
-import { ThemeProvider as MuiThemeProvider } from "@material-ui/core/styles";
-import { createMuiTheme } from "@material-ui/core/styles";
-import MaterialTable from "material-table";
-import SelectModal from "./components/SelectModal";
-import tableIcons from "../../../../../../tableLibs/getIcons";
-import getColumns from "../../../../../../tableLibs/getColumns";
-import remove from "../../../../../../tableLibs/removeRow";
-import exportCSV from "../../../../../../tableLibs/exportCSV";
-import exportPDF from "../../../../../../tableLibs/exportPDF";
-import updateRow from "../../../../../../tableLibs/updateRow";
+import React, { Component } from 'react';
+import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
+import Theme from '../../../../../../../../Style/Theme/TableTheme';
+import MaterialTable from 'material-table';
+import SelectModal from './components/SelectModal';
+import tableIcons from '../../../../../../tableLibs/getIcons';
+import getColumns from '../../../../../../tableLibs/getColumns';
+import remove from '../../../../../../tableLibs/removeRow';
+import exportCSV from '../../../../../../tableLibs/exportCSV';
+import exportPDF from '../../../../../../tableLibs/exportPDF';
+import updateRow from '../../../../../../tableLibs/updateRow';
 import { GetAllContacts } from '../../../../../../../../Api/Contact';
 import {
   getTable,
   processData,
   editColumns,
   updateTable
-} from "../../../../../../tableLibs/getData";
+} from '../../../../../../tableLibs/getData';
 
-
-const Theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: "#81C7D4",
-    },
-    secondary: {
-      main: "#33A6B8",
-    },
-  },
-});
 
 class EnhancedTable extends Component {
   constructor(props) {
@@ -85,7 +74,7 @@ class EnhancedTable extends Component {
   getDataAndIndex = (data) => {
     // Add the index of rows for editing
     if (data.size !== 0) {
-      data.set("index", this.state.selectedRow);
+      data.set('index', this.state.selectedRow);
     }
     // this.props.getDataToEdit(data);
   };
@@ -120,12 +109,12 @@ class EnhancedTable extends Component {
             }
             actions={[
               {
-                tooltip: "Remove all selected contact(s)",
+                tooltip: 'Remove all selected contact(s)',
                 icon: tableIcons.Delete,
                 onClick: this.removeRow,
               },
               {
-                tooltip: "Edit contact(s)",
+                tooltip: 'Edit contact(s)',
                 icon: tableIcons.Edit,
                 onClick: this.showModal,
               },
