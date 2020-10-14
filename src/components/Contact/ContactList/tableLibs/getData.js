@@ -174,18 +174,23 @@ const editColumns = (newValue) => {
 
 function wrapUpData(data) {
   const temp = data.map((cur) => {
-    console.log(cur.id);
     return {
       name: (
-        <NavLink
+        <button className='nakedBtn'
+                onClick ={(event)=>{
+                  event.preventDefault();
+                  sessionStorage.setItem('id',cur.id);
+                }}>
+          <NavLink
           activeClassName="active"
           to={{
             pathname: "/contacts/main",
-            id: cur.id,
           }}
         >
           {cur.name}
         </NavLink>
+        </button>
+        
       ),
       email: cur.email,
       phoneNumber: cur.phoneNumber,
