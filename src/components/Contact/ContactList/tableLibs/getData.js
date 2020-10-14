@@ -174,6 +174,7 @@ const editColumns = (newValue) => {
 
 function wrapUpData(data) {
   const temp = data.map((cur) => {
+    console.log(cur.id);
     return {
       name: (
         <NavLink
