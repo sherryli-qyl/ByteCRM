@@ -8,7 +8,7 @@ import './Dropdown.scss';
 
 const Dropdown = ({
     showDropdown,
-    hintMessage,
+    textInputHint,
     checkInput,
     contactList, 
     searchList, 
@@ -18,7 +18,8 @@ const Dropdown = ({
     handleInputChange,
     handleCleanInput,
     handleRemoveContact,
-    handleAddContact
+    handleAddContact,
+    contactSelectHint
 }) => {
 
     let className = "contactDropdown "
@@ -39,6 +40,7 @@ const Dropdown = ({
                     <Select label={'Contacts'}
                             contactList = {contactList}
                             searchList = {searchList}
+                            contactSelectHint = {contactSelectHint}
                             handleRemoveContact={handleRemoveContact}
                             handleAddContact={handleAddContact} />
                     :
@@ -46,7 +48,7 @@ const Dropdown = ({
                         <Loading variant="bar" />
                         :
                         <HintBar>
-                            {hintMessage}
+                            {textInputHint}
                         </HintBar>
                 }
             </div>

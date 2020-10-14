@@ -4,7 +4,7 @@
     display: flex;
     padding-top: 5%;
     position: relative;
-    border-bottom:1px solid rgb(203, 214, 226);
+    border-bottom: 1px solid rgb(203, 214, 226);
 
     &__container {
         display: flex;
@@ -61,15 +61,39 @@
             }
         }
 
-        &__right{
-            &__addBtn{
+        &__right {
+
+            &__hint {
+                position: absolute;
+                right: 60px;
+                top: 5px;
+                padding-right: 10px;
+                height: 50px;
+                width: 200px;
+            }
+
+            &__addBtn {
                 @extend.nakedBtn;
                 font-weight: 600;
                 font-size: 14px;
-                color:$secondary-color;
+                color: $secondary-color;
 
-                &:hover{
+                &:hover {
                     border-bottom: solid 1px $secondary-color;
+                }
+
+                &--disable {
+                    @extend.disabled;
+                    color: #b0c1d4;
+                    background-color: transparent;
+
+                    &:hover {
+                        border-bottom: none;
+                        .hintBox {
+                            opacity: 1;
+                            visibility: visible;
+                        }
+                    }
                 }
             }
         }
@@ -108,5 +132,3 @@
         transform: rotate(90deg);
     }
 }
-
-

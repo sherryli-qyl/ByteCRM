@@ -35,6 +35,7 @@ const ContactSelect = (props) => {
                             contact={item.contact}
                             checked={item.checked}
                             disabled = {disabled}
+                            contactSelectHint = {props.contactSelectHint}
                             handleRemoveContact={props.handleRemoveContact}
                             handleAddContact={props.handleAddContact}>
                         </SelectItem>
