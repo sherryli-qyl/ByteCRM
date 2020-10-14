@@ -1,0 +1,37 @@
+@import '../../style/variable.scss';
+
+.hintBox {
+    opacity: 0;
+    visibility: hidden;
+    position: relative;
+    float: left;
+    background-color: $primary-color;
+    color: white;
+    font-size: 10px;
+    border-radius: 3px;
+    flex-wrap: nowrap;
+    transition: opacity .6s ease-in;
+
+
+    &__corner{
+        position: absolute;
+        // background-color: red;
+        height:15px;
+        width: 15px;
+        transform: rotate(45deg);
+        
+        background-color: $primary-color;
+
+        &--bottomRight{
+            right: 10px;
+            bottom: -7px;;
+        }
+
+    }
+
+    &__text {
+        padding: 10px 10px;
+
+    }
+
+}
