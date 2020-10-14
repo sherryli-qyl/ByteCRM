@@ -10,10 +10,13 @@ class ExpandBar extends React.Component {
         super(props);
         this.state = {
             showDetail: false,
+            showHint:false,
+            color:"white",
 
         }
 
         this.handleOnClickAngle = this.handleOnClickAngle.bind(this);
+        this.hintBoxToggle = this.hintBoxToggle.bind(this);
     }
 
     handleOnClickAngle() {
@@ -23,9 +26,15 @@ class ExpandBar extends React.Component {
         console.log(this.state.showDetail);
     }
 
+    hintBoxToggle(show){
+        this.setState({
+            showHint:show
+        })
+    }
+
 
     render() {
-        const { showDetail } = this.state;
+        const { showDetail,showHint } = this.state;
         const { showAdd, disabled, hintMessage } = this.props;
         let angleIconClassName = 'angleIcon '
 
@@ -51,23 +60,25 @@ class ExpandBar extends React.Component {
                         <div className='expandBar__container__labelBtn__text'>
                             <span> {this.props.label} </span>
                         </div>
-                        {showAdd ?
-                            <div className='expandBar__container__right'>
+                        {showAdd  ?
+                            <div className='expandBar__container__right'
+                                 onMouseEnter = {()=>this.hintBoxToggle(true)}
+                                 onMouseLeave={()=>this.hintBoxToggle(false)}>
                                 <button className={addBtnClassName}
-                                    disabled={disabled}
-                                    onClick={(event) => {
+                                        disabled={disabled}
+                                        onClick={(event) => {
                                         event.stopPropagation();
                                     }}>
-                                         {disabled ?
-                                    <div className='expandBar__container__right__hint'>
-                                        <HintBox variant="right">
-                                            {hintMessage}
-                                        </HintBox>
-                                    </div>
-                                    :
-                                    ""
-                                }
-                                    +Add
+                                    {disabled && showHint?
+                                        <div className='expandBar__container__right__hint'>
+                                            <HintBox variant="right">
+                                                {hintMessage}
+                                            </HintBox>
+                                        </div>
+                                        :
+                                        ""
+                                    }
+                                   + Add
                                     </button>
                             </div>
                             :
