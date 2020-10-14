@@ -13,10 +13,6 @@ const tabs = [
     id: 2,
     label: "My contacts",
   },
-  {
-    id: 3,
-    label: "Unassigned contacts",
-  },
 ];
 
 
