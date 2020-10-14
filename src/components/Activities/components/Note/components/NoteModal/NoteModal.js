@@ -38,7 +38,8 @@ class NoteModal extends React.Component {
   }
 
   checkValidation(text){
-    if (text !== '<p><br></p>'){
+    const checkInput = text.replaceAll(" ","").replaceAll('<br>', '').replaceAll('<p></p>','');
+    if (checkInput!== ''){
       return true
     }
     else{
@@ -66,13 +67,14 @@ class NoteModal extends React.Component {
           }
         })
       } else {
-        return;
+          return;
       }
   }
   
 
   render() {
-    const { btnDisable, createdBy, relatedTo } = this.state;
+    //const { btnDisable, createdBy, relatedTo } = this.state;
+    const { btnDisable, userId, contact } = this.state;
 
     return (
       <section id="NoteModal" className="NoteModal">
@@ -80,8 +82,8 @@ class NoteModal extends React.Component {
           <NoteInput 
             placeholder="Start typing to leave a note..."
             handleEditorChange={this.handleEditorChange}
-            createdBy={createdBy}
-            relatedTo={relatedTo}
+            createdBy={contact}
+            relatedTo={userId}
           />
         </div>
         <div className="note-container-footer">
