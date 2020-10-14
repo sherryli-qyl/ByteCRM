@@ -25,13 +25,21 @@ class ExpandBar extends React.Component {
 
     render() {
         const { showDetail } = this.state;
-        const {showAdd} = this.props;
+        const { showAdd, disabled } = this.props;
         let angleIconClassName = 'angleIcon '
+       
+
         let expandContentClassName = 'expandBar__container__content '
+        let addBtnClassName = 'expandBar__container__right__addBtn '
         if (showDetail) {
             angleIconClassName += 'angleIcon__rotate';
             expandContentClassName += 'expandBar__container__content__active';
         }
+
+        if(disabled){
+            addBtnClassName += "expandBar__container__right__addBtn--disable";
+        }
+
         return (
             <div className='expandBar'>
                 <div className='expandBar__container'>
@@ -42,23 +50,25 @@ class ExpandBar extends React.Component {
                         <div className='expandBar__container__labelBtn__text'>
                             <span> {this.props.label} </span>
                         </div>
-                        {showAdd?
-                             <div className ='expandBar__container__right'>
-                             <button className ="expandBar__container__right__addBtn" onClick={(event)=>{
-                                 event.stopPropagation();
-                             }}>
-                                 +Add
+                        {showAdd ?
+                            <div className='expandBar__container__right'>
+                                <button className={addBtnClassName}
+                                    disabled={disabled}
+                                    onClick={(event) => {
+                                        event.stopPropagation();
+                                    }}>
+                                    +Add
                              </button>
-                         </div>
-                         :
-                         ""
-                        }   
+                            </div>
+                            :
+                            ""
+                        }
                     </div>
                     <div className={expandContentClassName}>
                         {this.props.content}
                     </div>
                 </div>
-               
+
             </div>
         )
     }

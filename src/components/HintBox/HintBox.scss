@@ -7,7 +7,7 @@
     float: left;
     background-color: $primary-color;
     color: white;
-    font-size: 10px;
+    font-size: 12px;
     border-radius: 3px;
     flex-wrap: nowrap;
     transition: opacity .6s ease-in;
@@ -24,7 +24,12 @@
 
         &--bottomRight{
             right: 10px;
-            bottom: -7px;;
+            bottom: -7px;
+        }
+
+        &--topRight{
+            top:-5px;
+            right:15px;
         }
 
     }

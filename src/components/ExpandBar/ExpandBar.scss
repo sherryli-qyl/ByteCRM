@@ -71,6 +71,16 @@
                 &:hover{
                     border-bottom: solid 1px $secondary-color;
                 }
+
+                &--disable{
+                    @extend.disabled;
+                    color: #b0c1d4;
+                    background-color: transparent;
+                    
+                    &:hover{
+                        border-bottom: 0px;
+                    }
+                }
             }
         }
     }
