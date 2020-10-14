@@ -1,4 +1,6 @@
 import React from 'react';
+import axios from 'axios';
+import { withRouter } from 'react-router-dom';
 
 class LoginForm extends React.Component {
   constructor() {
@@ -57,6 +59,20 @@ class LoginForm extends React.Component {
         passwordErrMsg: '',
       });
     }
+    axios
+      .post('http://localhost:3000/api/auth', {
+        email: this.state.user.email,
+        password: this.state.user.password,
+      })
+      .then((res) => {
+        console.log(res);
+        if (res.status === 200) {
+          this.props.history.push('/contacts');
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   validate() {
@@ -150,4 +166,4 @@ class LoginForm extends React.Component {
     );
   }
 }
-export default LoginForm;
+export default withRouter(LoginForm);

@@ -2,7 +2,7 @@ import React from 'react';
 import GoogleIcon from '../../../../img/logsys/googleIcon.svg';
 import { Link, withRouter } from 'react-router-dom';
 import axios from 'axios';
-import { createBrowserHistory } from 'history';
+//import history from '../../../Routes/components/History';
 
 class RegisterForm extends React.Component {
   constructor(props) {
@@ -147,7 +147,7 @@ class RegisterForm extends React.Component {
       .then((res) => {
         console.log(res);
         if (res.status === 200) {
-          // TODO: Jump to login page
+          this.props.history.push('/login');
         }
       })
       .catch((error) => {
@@ -237,4 +237,4 @@ class RegisterForm extends React.Component {
     );
   }
 }
-export default RegisterForm;
+export default withRouter(RegisterForm);
