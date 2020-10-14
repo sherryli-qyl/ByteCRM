@@ -95,6 +95,7 @@ class NotesTimeLine extends React.Component {
               handleCreateNote = {this.handleCreateNote}
             />
             <NoteCardsList 
+              contactData={contactData}
               cardsArray={cardsArray} 
               onChangeNote = {this.onChangeNote}
               handleDeleteNoteCard = {this.handleDeleteNoteCard}
