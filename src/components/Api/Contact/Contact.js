@@ -8,7 +8,7 @@ async function GetContact(contactId) {
 }
 
 async function GetAllContacts() {
-  let url = new URL("http://localhost:3000/api/contacts?getAll=true");
+  let url = new URL("http://localhost:3000/api/contacts");
   const response = await fetch(url, {
     method: "GET",
     headers: {

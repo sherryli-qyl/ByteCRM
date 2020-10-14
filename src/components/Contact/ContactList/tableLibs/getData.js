@@ -203,13 +203,17 @@ function wrapUpData(data) {
 }
 
 const processData = (data) => {
+  let newOwner;
+  if (typeof(data.contactOwner) === 'object') {
+    newOwner = data.contactOwner.fullName;
+  }
   return {
     name: data.fullName,
     id: data.id,
     phoneNumber: data.phoneNo,
     email: data.email,
-    contactOwner: data.contactOwner,
-    associatedCompany: data.company,
+    contactOwner: newOwner ? newOwner : data.contactOwner,
+    associatedCompany: typeof(data.company) === 'object' ? data.company.name : data.company,
     lastActivityDate: data.lastActivityDate,
     leadStatus: data.leadStatus,
     createDate: data.createDate,
