@@ -88,13 +88,14 @@
                     background-color: transparent;
                     
                     &:hover{
+                        border-bottom: none;
                         .hintBox{
                             opacity: 1;
                             visibility: visible;
-                        }
+                        }      
                     }
                 }
-            }
+            }  
         }
     }
 
@@ -131,5 +132,7 @@
         transform: rotate(90deg);
     }
 }
+
+
 
 

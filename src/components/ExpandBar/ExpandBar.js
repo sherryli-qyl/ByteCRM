@@ -53,7 +53,12 @@ class ExpandBar extends React.Component {
                         </div>
                         {showAdd ?
                             <div className='expandBar__container__right'>
-                                {disabled ?
+                                <button className={addBtnClassName}
+                                    disabled={disabled}
+                                    onClick={(event) => {
+                                        event.stopPropagation();
+                                    }}>
+                                         {disabled ?
                                     <div className='expandBar__container__right__hint'>
                                         <HintBox variant="right">
                                             {hintMessage}
@@ -62,13 +67,8 @@ class ExpandBar extends React.Component {
                                     :
                                     ""
                                 }
-                                <button className={addBtnClassName}
-                                    disabled={disabled}
-                                    onClick={(event) => {
-                                        event.stopPropagation();
-                                    }}>
                                     +Add
-                                </button>
+                                    </button>
                             </div>
                             :
                             ""
