@@ -102,9 +102,10 @@ const editColumns = (newValue) => {
 
 /* ====================================GET========================================== */
 function wrapUpData(data) {
+
   return data.map((cur) => {
     return {
-      name: <JumpButton id={cur.contactId} type={"contact"} name={cur.name} />,
+      name: <JumpButton id={cur.contactID} type={"contact"} name={cur.name} />,
       contactID: cur.contactID,
       companyID: cur.companyID,
       email: cur.email,
@@ -112,7 +113,7 @@ function wrapUpData(data) {
       contactOwner: cur.contactOwner,
       associatedCompany: (
         <JumpButton
-          id={cur.companyId}
+          id={cur.companyID}
           type={"company"}
           name={cur.associatedCompany}
         />
