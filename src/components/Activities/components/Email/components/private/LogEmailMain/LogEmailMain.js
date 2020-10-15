@@ -5,7 +5,7 @@ import { transferTimeHHMM } from '../../../../../../services/timeManager';
 import ContactSelector from '../../../../../../ContactSelector';
 import './LogEmailMain.scss';
 
-
+const contactSelectHint = "Logged Emails must have at Least one association";
 const LogEmailCardMain = ({
     currentTime,
     currentDate,
@@ -25,6 +25,7 @@ const LogEmailCardMain = ({
                 <ContactSelector contactList = {contactList}
                                  contact = {contact}
                                  userId = {userId}
+                                 contactSelectHint = {contactSelectHint}
                                  handleAddContact = {handleAddContact}
                                  handleDeleteContact = {handleDeleteContact}/>
             </div>

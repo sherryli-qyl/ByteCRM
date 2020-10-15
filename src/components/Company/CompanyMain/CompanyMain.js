@@ -8,28 +8,33 @@ import RelationContact from './components/RelationContact';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { publicTheme } from '../../Style/Theme/MatUITheme';
 import { CompanyDictionary } from './components/Dictionary';
+import { GetCompanyByCode } from '../../Api/Company/Company';
+import { ActivityContext } from '../../Activities/Context';
+import Loading from '../../Loading';
 import './CompanyMain.scss';
+
 
 class CompanyMain extends Component {
     constructor(props) {
-        const testCompany = {
-            Name: 'Nike', CompanyDomainName: 'Nike.Ltd', Industry: 'IT', PhoneNumber: '123123',
-            CompanyOwner: 'John Doe', Type: 'Partner', City: 'Sydney'
-        }
         const expandPack = [{ key: 'About this Company', content: "" }]
         super(props);
+        this.code = 'CM09';
+        this.userId = '5f80b49ae7f8960972681ac5';
         this.state = {
             Xaxis: 300,
             Yaxis: 50,
             visible: false,
-            company: testCompany,
+            code: this.code,
+            company: {},
             expandPack,
             currentModal: "",
             theme: publicTheme,
+            loading: true,
         }
         this.closeModal = this.closeModal.bind(this);
         this.openModal = this.openModal.bind(this);
-        this.onChangeInfo = this.onChangeInfo.bind(this);
+        this.onChangeSingleInfo = this.onChangeSingleInfo.bind(this);
+        this.onChangeMultiInfo = this.onChangeMultiInfo.bind(this);
     }
 
     openModal(selectedModal) {
@@ -53,7 +58,7 @@ class CompanyMain extends Component {
         });
     }
 
-    onChangeInfo(key, value) {
+    onChangeSingleInfo(key, value) {
         let newCompany = this.state.company;
         newCompany[key] = value;
         this.setState({
@@ -61,31 +66,62 @@ class CompanyMain extends Component {
         })
     }
 
+    onChangeMultiInfo(data) {
+        let newCompany = data;
+        this.setState({
+            company: newCompany
+        })
+
+        console.table(newCompany);
+    }
+
+    componentDidMount() {
+        const data = GetCompanyByCode(this.state.code);
+        data.then(response => {
+            if (response.statusText === "OK") {
+                this.setState({
+                    company: response.data,
+                    loading: false,
+                })
+            }
+            else if (response.status === 404) {
+                alert('comapny is not found');
+            }
+        })
+    }
+
     render() {
-        const { visible, currentModal, company, expandPack, theme } = this.state
+        const { visible, currentModal, company, expandPack, theme, loading } = this.state;
+        const value = { single: this.onChangeSingleInfo, multi: this.onChangeMultiInfo };
         const infoData = { key: 'company', data: company, dictionary: CompanyDictionary };
+        const contactData = {contact:"",userId:this.userId,close:this.closeModal}
         return (
             <div>
                 <ModalContext.Provider value={this.openModal}>
                     <ThemeProvider theme={theme}>
-                        <div className="Main">
-                            <InfoContext.Provider value={this.onChangeInfo}>
-                                <InfoPage openModal={this.openModal}
-                                    infoData={infoData}
-                                    expandPack={expandPack}
+                        {loading ?
+                            <Loading variant="full page" />
+                            :
+                            <div className="Main">
+                                <InfoContext.Provider value={value}>
+                                    <InfoPage openModal={this.openModal}
+                                        infoData={infoData}
+                                        expandPack={expandPack}
+                                    />
+                                </InfoContext.Provider>
+
+                                <ActivityContext.Provider value = {contactData}>
+                                    <Activities/>
+                                <RelationContact />
+                                <Modal Xaxis={this.state.Xaxis}
+                                    Yaxis={this.state.Yaxis}
+                                    visible={visible}
+                                    currentModal={currentModal}
+                                    closeModal={this.closeModal}
                                 />
-                            </InfoContext.Provider>
-
-                            <Activities />
-
-                            <RelationContact />
-                            <Modal Xaxis={this.state.Xaxis}
-                                Yaxis={this.state.Yaxis}
-                                visible={visible}
-                                currentModal={currentModal}
-                                closeModal={this.closeModal}
-                            />
-                        </div>
+                                </ActivityContext.Provider>
+                            </div>
+                        }
                     </ThemeProvider>
                 </ModalContext.Provider>
             </div>

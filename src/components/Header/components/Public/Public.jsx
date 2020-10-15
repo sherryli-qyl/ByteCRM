@@ -1,8 +1,9 @@
 import React from 'react';
-import NavigationLink from '../../../NavigationLink';
+import NavigationLink from '../../components/NavigationLink';
 import './Public.scss';
 import SmallLogo from '../../../../img/Logo/smalllogo.png';
 //import { NavLink } from 'react-router-dom';
+
 
 const Public = () => (
   <div className="Layout">

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./ContactList.scss";
-import SwitchBar from "./components/SwitchBar/SwitchBar";
+import ListPage from "./components/listPage";
 
 
 
@@ -12,10 +12,6 @@ const tabs = [
   {
     id: 2,
     label: "My contacts",
-  },
-  {
-    id: 3,
-    label: "Unassigned contacts",
   },
 ];
 
@@ -32,7 +28,7 @@ class ContactList extends Component {
     return (
       <div className="root" key={'wrapper'}>
         <h1>Contacts</h1>
-        <SwitchBar tabs={tabs} userAccount={this.state.userAccount} />
+        <ListPage tabs={tabs} userAccount={this.state.userAccount} />
       </div>
     );
   }

@@ -2,7 +2,7 @@ import React from 'react';
 import EmailCards from './components/EmailCards';
 import EmailPageHeader from './components/Header';
 import shuffleCards from '../../../services/shuffleCards';
-import { GetEmails, UpdateEmail,DeleteEmailLog,UpdateContacts, RemoveContacts } from '../../../Api/Email/Email';
+import { GetEmails, UpdateEmail, DeleteEmailLog, UpdateContacts, RemoveContacts } from '../../../Api/Email/Email';
 import "./EmailPage.scss";
 import { ActivityContext } from '../../Context';
 
@@ -22,11 +22,14 @@ class EmailPage extends React.Component {
         this.handleRemoveContact = this.handleRemoveContact.bind(this);
     }
 
-    sortCardsArray() {
-        const newCardsArray = shuffleCards(this.state.cardList);
-        this.setState({
-            cardsArray: newCardsArray
-        })
+    sortCardsArray(emailList) {
+        if (emailList) {
+            const newCardsArray = shuffleCards(emailList);
+            this.setState({
+                cardsArray: newCardsArray
+            })
+        }
+        return;
     }
 
     onChangeText(newContent, cardKey) {
@@ -41,20 +44,20 @@ class EmailPage extends React.Component {
         }
     }
 
-    handleLogEmail(email){
+    handleLogEmail(email) {
         const newCardList = this.state.cardList;
         newCardList.push(email);
         this.setState({
-            cardList:newCardList,
+            cardList: newCardList,
         })
-        this.sortCardsArray()
+        this.sortCardsArray(newCardList);
     }
 
-    handleDeleteCard(id){
+    handleDeleteCard(id) {
         const response = DeleteEmailLog(id);
-        response.then(value =>{
-            if (value){
-            this.handleInitPage();
+        response.then(value => {
+            if (value) {
+                this.handleInitPage();
             }
         })
     }
@@ -72,17 +75,20 @@ class EmailPage extends React.Component {
         UpdateEmail(emailId, body);
     }
 
-    handleInitPage(){
+    handleInitPage() {
         const emails = GetEmails(this.props.contactId);
-        emails.then(value => {
-            this.setState({
-                cardList: value,
-            });
-            return this.state.cardList
-        }).then(data => {
-            if (data.length >= 1) {
-                this.sortCardsArray();
+        emails.then(emailList => {
+            if (emailList.length > 0) {
+                this.setState({
+                    cardList:emailList
+                })
+                return emailList;
             }
+            else {
+                return null;
+            }
+        }).then((emailList) => {
+            this.sortCardsArray(emailList);
         });
     }
 
@@ -94,19 +100,22 @@ class EmailPage extends React.Component {
         const { cardsArray } = this.state;
         return (
             <ActivityContext.Consumer>
-                {contactData => (
-                    <div className="emailPage">
-                        <EmailPageHeader contactData={contactData}
-                                         handleLogEmail = {this.handleLogEmail} />
-                        <EmailCards 
-                            contactData = {contactData}
-                            cardsArray={cardsArray}
-                            handleDeleteCard = {this.handleDeleteCard}
-                            handleAddContact={this.handleAddContact}
-                            handleRemoveContact={this.handleRemoveContact}
-                            onChangeEmail={this.onChangeEmail} />
-                    </div>
-                )}
+                {contactData => {
+                    return (
+                        <div className="emailPage">
+                            <EmailPageHeader 
+                                contactData={contactData}
+                                handleLogEmail={this.handleLogEmail} />
+                            <EmailCards
+                                contactData={contactData}
+                                cardsArray={cardsArray}
+                                handleDeleteCard={this.handleDeleteCard}
+                                handleAddContact={this.handleAddContact}
+                                handleRemoveContact={this.handleRemoveContact}
+                                onChangeEmail={this.onChangeEmail} />
+                        </div>
+                    )
+                }}
             </ActivityContext.Consumer>
         )
     }

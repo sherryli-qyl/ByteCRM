@@ -1,23 +1,36 @@
 @import '../../../../../../style/variable.scss';
 
-.selectItem {
+.contactSelectItem {
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: rgb(229, 248, 246);
     min-height: 40px;
 
+    &:hover{
+        .hintBox{
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+
     &__left {
         margin: auto 1%;
         &__checkbox {
-
             &__btn {
-                color: #0091ae;
+                display: flex;
+                justify-content: center;
+                align-items: center;
                 @extend.nakedBtn;
-                height: 100%;
-                width:15px;
+                color: #0091ae;
+                width:16px;
+                height:16px;
+                background-color: transparent;
+                font-size: 16px;
+               
+               
 
-                &__disabled {
+                &--disabled {
                     @extend .disabled;
                     color: #b0c1d4;
                     background-color: transparent;
@@ -27,14 +40,21 @@
 
         &__square {
             background-color: white;
-            height: 12px;
-            width: 12px;
+            height: 14px;
+            width: 14px;
+            border-radius: 2px;
             border: solid 1px rgb(203, 214, 226);
         }
     }
 
     &__right {
         margin: auto 1%;
+    }
+
+    &__hint{
+        position: absolute;
+        bottom:-45px;
+        left:-50px;
     }
 }
 

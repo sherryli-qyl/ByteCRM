@@ -3,7 +3,8 @@ import TimeLineControls from './components/TimeLineControls';
 import NoteCardsList from './components/NoteCardsList';
 import shuffleCards from '../../../services/shuffleCards';
 import "./NotesTimeLine.scss";
-import { GetNoteByRelatedToId, UpdateNote } from '../../../Api/Note/Note';
+import { GetNoteByRelatedToId, UpdateNote, DeleteNote } from '../../../Api/Note/Note';
+import { ActivityContext } from '../../Context';
 
 
 class NotesTimeLine extends React.Component {
@@ -18,9 +19,15 @@ class NotesTimeLine extends React.Component {
     this.onChangeText = this.onChangeText.bind(this);
     this.onChangeNote = this.onChangeNote.bind(this);
     this.sortCardsArray = this.sortCardsArray.bind(this);
+    this.handleDeleteNoteCard = this.handleDeleteNoteCard.bind(this);
+    this.handleCreateNote = this.handleCreateNote.bind(this);
   }
 
   componentDidMount() {
+    this.handleGetNotes();
+  }
+
+  handleGetNotes() {
     const notes = GetNoteByRelatedToId(this.props.contactId);
     notes
       .then(value => {
@@ -30,12 +37,9 @@ class NotesTimeLine extends React.Component {
         return this.state.cardsList
       })
       .then(data => {
-        if (data.length >= 1) {
-          this.sortCardsArray();
-        }
+        this.sortCardsArray();
       });
   }
-
 
   sortCardsArray() {
     const newCardsArray = shuffleCards(this.state.cardsList);
@@ -43,7 +47,6 @@ class NotesTimeLine extends React.Component {
       cardsArray: newCardsArray
     })
   }
-
 
   onChangeText(newContent, cardKey) {
     const newCardsList = this.state.cardsList;
@@ -61,18 +64,45 @@ class NotesTimeLine extends React.Component {
     UpdateNote(noteId, body);
   }
 
+  handleCreateNote(note){
+    const newCardList = this.state.cardsList;
+    newCardList.push(note);
+    this.setState({
+      cardsList: newCardList,
+    })
+    this.sortCardsArray()
+}
+
+  handleDeleteNoteCard(noteId){
+    const response = DeleteNote(noteId);
+    response.then(value => {
+      if (value) {
+        this.handleGetNotes();
+      }
+    })
+}
+
 
   render() {
     const { cardsArray } = this.state;
 
     return (
-      <div className="note-time-line">
-        <TimeLineControls />
-        <NoteCardsList 
-          cardsArray={cardsArray} 
-          onChangeNote = {this.onChangeNote}
-        />
-      </div>
+      <ActivityContext.Consumer>
+        {contactData => (
+          <div className="note-time-line">
+            <TimeLineControls 
+              contactData={contactData}
+              handleCreateNote = {this.handleCreateNote}
+            />
+            <NoteCardsList 
+              contactData={contactData}
+              cardsArray={cardsArray} 
+              onChangeNote = {this.onChangeNote}
+              handleDeleteNoteCard = {this.handleDeleteNoteCard}
+            />
+          </div>
+        )}
+      </ActivityContext.Consumer>
     )
   }
 }

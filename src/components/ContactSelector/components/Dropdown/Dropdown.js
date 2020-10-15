@@ -8,7 +8,7 @@ import './Dropdown.scss';
 
 const Dropdown = ({
     showDropdown,
-    hintMessage,
+    textInputHint,
     checkInput,
     contactList, 
     searchList, 
@@ -18,18 +18,19 @@ const Dropdown = ({
     handleInputChange,
     handleCleanInput,
     handleRemoveContact,
-    handleAddContact
+    handleAddContact,
+    contactSelectHint
 }) => {
 
-    let className = "dropdown "
+    let className = "contactDropdown "
     if (showDropdown) {
-        className += "dropdown__active"
+        className += "contactDropdown__active"
     }
     return (
         <div className={className}>
-            <div className='dropdown__corner' />
-            <div className='dropdown__inner'>
-                <div className='dropdown__inner__wrapper'>
+            <div className='contactDropdown__corner' />
+            <div className='contactDropdown__inner'>
+                <div className='contactDropdown__inner__wrapper'>
                     <SearchBar textInput={textInput}
                         enableCleanBtn={enableCleanBtn}
                         handleInputChange={handleInputChange}
@@ -39,6 +40,7 @@ const Dropdown = ({
                     <Select label={'Contacts'}
                             contactList = {contactList}
                             searchList = {searchList}
+                            contactSelectHint = {contactSelectHint}
                             handleRemoveContact={handleRemoveContact}
                             handleAddContact={handleAddContact} />
                     :
@@ -46,7 +48,7 @@ const Dropdown = ({
                         <Loading variant="bar" />
                         :
                         <HintBar>
-                            {hintMessage}
+                            {textInputHint}
                         </HintBar>
                 }
             </div>

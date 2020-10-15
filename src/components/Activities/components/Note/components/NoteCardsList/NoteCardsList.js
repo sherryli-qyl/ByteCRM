@@ -8,6 +8,7 @@ function NoteCardsList(props) {
   const createCard = (card) => (
     <NoteCard 
       card={card} 
+      contactData = {props.contactData}
       onChangeNote={props.onChangeNote}
     />);
   const icon = faEdit;
@@ -21,6 +22,7 @@ function NoteCardsList(props) {
           content={cards.content}
           icon={icon}  
           createCard={createCard}
+          handleDeleteCard = {props.handleDeleteNoteCard}
         />
       ))}
     </div>

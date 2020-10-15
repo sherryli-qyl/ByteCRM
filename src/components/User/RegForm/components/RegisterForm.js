@@ -1,8 +1,10 @@
 import React from 'react';
 import GoogleIcon from '../../../../img/logsys/googleIcon.svg';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
+import axios from 'axios';
+//import history from '../../../Routes/components/History';
 
-export default class RegisterForm extends React.Component {
+class RegisterForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -135,6 +137,22 @@ export default class RegisterForm extends React.Component {
         passwordErrMsg: '',
       });
     }
+    axios
+      .post('http://localhost:3000/api/users', {
+        firstName: this.state.newUser.firstname,
+        lastName: this.state.newUser.lastname,
+        email: this.state.newUser.email,
+        password: this.state.newUser.password,
+      })
+      .then((res) => {
+        console.log(res);
+        if (res.status === 200) {
+          this.props.history.push('/login');
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   render() {
@@ -219,3 +237,4 @@ export default class RegisterForm extends React.Component {
     );
   }
 }
+export default withRouter(RegisterForm);

@@ -1,0 +1,15 @@
+.deleteHeader {
+    flex: 2;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-start-start-radius: 5px;
+    
+    &__text {
+        margin-left: 5%;
+        color: #fff;
+        font-size: 32px;
+        font-weight: bold;
+    }
+}

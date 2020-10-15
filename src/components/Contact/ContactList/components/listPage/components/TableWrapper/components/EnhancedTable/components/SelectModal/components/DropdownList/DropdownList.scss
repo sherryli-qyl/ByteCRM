@@ -1,0 +1,167 @@
+.dropdown-list-selection-hint {
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  padding: 0 10px;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: large;
+  position: relative;
+  right: 5px;
+  top: 10px;
+}
+
+.dropdown-list-selection-text-box {
+  width: 230px;
+  height: 40px;
+  position: relative;
+  margin: 0 auto;
+  // margin-bottom: 500px;
+  border: 1px solid;
+  border-radius: 10px;
+  top: 5px;
+  cursor: pointer;
+}
+
+.dropdown-list-selection-display {
+  font-size: large;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  position: relative;
+  top: 10px;
+}
+
+.dropdown-list-single-hint {
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  padding: 0 10px;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: large;
+  position: relative;
+  right: 5px;
+  top: 50px;
+}
+
+.dropdown-list-single-text-box {
+  width: 230px;
+  height: 40px;
+  position: relative;
+  margin: 0 auto;
+  border: 1px solid;
+  border-radius: 10px;
+  top: 50px;
+  cursor: pointer;
+}
+
+.dropdown-list-single-display {
+  font-size: large;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  position: relative;
+  top: 10px;
+}
+
+.dropdown-list-triple1-hint {
+  width: 50px;
+  height: 10vh;
+  line-height: 50px;
+  padding: 0 10px;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: large;
+  position: relative;
+  left: 35px;
+  top: 50px;
+}
+
+.dropdown-list-triple1-text-box {
+  width: 80px;
+  height: 40px;
+  border: 1px solid;
+  border-radius: 10px;
+  position: relative;
+  left: 30px;
+  top: 0px;
+  cursor: pointer;
+}
+
+.dropdown-list-triple1-display {
+  font-size: large;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  position: relative;
+  top: 10px;
+}
+
+.dropdown-list-triple2-hint {
+  width: 50px;
+  height: 10vh;
+  line-height: 50px;
+  padding: 0 10px;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: large;
+  position: relative;
+  left: 150px;
+  top: -85px;
+  z-index: 999;
+}
+
+.dropdown-list-triple2-text-box {
+  width: 90px;
+  height: 40px;
+  margin: 0 auto;
+  border: 1px solid;
+  border-radius: 10px;
+  position: relative;
+  left: -15px;
+  top: -138px;
+  cursor: pointer;
+  z-index: 999;
+
+}
+
+.dropdown-list-triple2-display {
+  font-size: large;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  position: relative;
+  top: 10px;
+  z-index: 999;
+
+}
+
+.dropdown-list-triple3-hint {
+  width: 100%;
+  height: 10vh;
+  line-height: 50px;
+  padding: 0 10px;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: large;
+  position: relative;
+  left: 115px;
+  top: -225px;
+}
+
+.dropdown-list-triple3-text-box {
+  width: 110px;
+  height: 40px;
+  margin: 0 auto;
+  border: 1px solid;
+  border-radius: 10px;
+  position: relative;
+  left: 120px;
+  bottom: 276px;
+  cursor: pointer;
+}
+
+.dropdown-list-triple3-display {
+  font-size: large;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  position: relative;
+  top: 10px;
+}

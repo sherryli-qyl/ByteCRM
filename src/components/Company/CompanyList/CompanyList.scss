@@ -1,39 +1,50 @@
-.Companylist {
-    text-align: center;
-  }
-  
-  .Companylist-logo {
-    height: 40vmin;
-    pointer-events: none;
-  }
-  
-  @media (prefers-reduced-motion: no-preference) {
-    .Companylist-logo {
-      animation: Companylist-logo-spin infinite 20s linear;
-    }
-  }
-  
-  .Companylist-header {
-    background-color: #282c34;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
-  }
-  
-  .Companylist-link {
-    color: #61dafb;
-  }
-  
-  @keyframes Companylist-logo-spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-  
+h1 {
+  color: #0091AE;
+  text-align: left;
+  font-size: 24px;
+  font-weight: 400;
+  font-family: Avenir Next W02,Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing: antialiased;
+  line-height: normal;
+  text-transform: none;
+  margin:20px;
+}
+
+.root {
+  text-align: center;
+}
+
+// .Root-logo {
+//   height: 40vmin;
+//   pointer-events: none;
+// }
+
+// @media (prefers-reduced-motion: no-preference) {
+//   .Root-logo {
+//     animation: App-logo-spin infinite 20s linear;
+//   }
+// }
+
+// .Root-header {
+//   background-color: #282c34;
+//   min-height: 100vh;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   justify-content: center;
+//   font-size: calc(10px + 2vmin);
+//   color: white;
+// }
+
+// .Root-link {
+//   color: #61dafb;
+// }
+
+// @keyframes Root-logo-spin {
+//   from {
+//     transform: rotate(0deg);
+//   }
+//   to {
+//     transform: rotate(360deg);
+//   }
+// }

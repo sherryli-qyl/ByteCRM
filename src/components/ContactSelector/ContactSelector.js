@@ -19,7 +19,7 @@ class ContactSelector extends React.Component {
             textInput: '',
             enableCleanBtn: false,
             checkInput: false,
-            hintMessage: '',
+            textInputHint: '',
             loading: false,
             searchList: [],
         }
@@ -116,7 +116,7 @@ class ContactSelector extends React.Component {
             this.setState(prevState => {
                 return {
                     ...prevState,
-                    hintMessage: newHint,
+                    textInputHint: newHint,
                     checkInput: true,
                     searchList: newList,
                 }
@@ -142,7 +142,7 @@ class ContactSelector extends React.Component {
                                 ...prevState,
                                 checkInput: !foundNewContact,
                                 searchList: newSearchList,
-                                hintMessage: newHint,
+                                textInputHint: newHint,
                                 loading: false,
                             }
                         });
@@ -154,7 +154,7 @@ class ContactSelector extends React.Component {
                             ...prevState,
                             loading: false,
                             checkInput: true,
-                            hintMessage: 'No result found'
+                            textInputHint: 'No result found'
                         }
                     }
                     )
@@ -182,7 +182,7 @@ class ContactSelector extends React.Component {
 
     render() {
         const { showDropdown, textInput, enableCleanBtn,
-            hintMessage, checkInput, searchList, loading, contact } = this.state;
+            textInputHint, checkInput, searchList, loading, contact } = this.state;
 
         let contacted = ""
         const contactList = FormatList(this.state.contactList);
@@ -210,7 +210,7 @@ class ContactSelector extends React.Component {
                 </div>
                 <div className='drowpdown__wrapper' ref={this.wrapperRef}>
                     <Dropdown
-                        hintMessage={hintMessage}
+                        textInputHint={textInputHint}
                         checkInput={checkInput}
                         contactList = {contactList}
                         searchList = {searchList}
@@ -218,6 +218,7 @@ class ContactSelector extends React.Component {
                         showDropdown={showDropdown}
                         contact={contact}
                         textInput={textInput}
+                        contactSelectHint = {this.props.contactSelectHint}
                         enableCleanBtn={enableCleanBtn}
                         handleCleanInput={this.handleCleanInput}
                         handleInputChange={this.handleInputChange}

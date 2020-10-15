@@ -15,8 +15,10 @@ class LogEmail extends React.Component {
         const currentDate = transferDateInYearMonDay(new Date());
         const currentTime = "09:00";
         const{userId,contact} = this.props.contactData;
-        const contactList = [contact];
-        const contacts = [contact._id];
+        let contacts = []
+        let contactList = []
+        contact ? contactList.push(contact): contactList = [];
+        contact._id? contacts= [contact._id] : contacts = [];
         this.state = {
             currentDate,
             currentTime,
@@ -56,7 +58,7 @@ class LogEmail extends React.Component {
     }
 
     handleEditorChange(text) {
-        if (this.checkValidation(text)){
+        if (this.checkValidation(text) && this.state.contacts.length > 0){
             this.setState({
                 description: text,
                 btnDisable: false
@@ -109,7 +111,6 @@ class LogEmail extends React.Component {
             const res = PostEmail(body);
             res.then(value=>{
                 if (value){
-                    console.log("Log Email Success");
                     this.props.handleLogEmail(value);
                     this.props.contactData.close();
                 }

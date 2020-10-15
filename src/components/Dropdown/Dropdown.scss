@@ -1,0 +1,23 @@
+@import '../../style/variable.scss';
+
+.dropdown{
+    position: relative;
+    background-color: white;
+    &__above{
+        display:flex;
+
+        &:hover{
+            cursor: pointer;
+            border-bottom: solid 1px $secondary-color;
+        }
+
+        &__text{
+            color: $secondary-color;
+        }
+        &__icon{
+            margin-left:5px;
+            color:rgba($color: $primary-color, $alpha: 0.7);
+            flex-grow: 1;
+        }
+    }
+}
