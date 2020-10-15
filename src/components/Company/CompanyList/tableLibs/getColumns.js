@@ -23,7 +23,7 @@ function getColumns() {
           ? true
           : { isValid: false, helperText: "Phone number format incorrect" },
     },
-    { title: "CONTACT OWNER", field: "contactOwner", type: "string" },
+    { title: "COMPANY OWNER", field: "companyOwner", type: "string" },
     {
       title: "LAST ACTIVITY DATE",
       field: "lastActivityDate",

@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-// const url = 'http://localhost:3000/api/contacts/';
+// const url = 'http://localhost:3000/api/companys/';
 
 const nameSet = [
   "Brian Halligan",
@@ -40,7 +40,7 @@ const companySet = ["Hubspot, Inc.", "Intel", "AMD", "NVIDIA", "Google"];
 //         tableData[i]["name"],
 //         tableData[i]["email"],
 //         tableData[i]["phoneNumber"],
-//         tableData[i]["contactOwner"],
+//         tableData[i]["companyOwner"],
 //         tableData[i]["associatedCompany"],
 //         tableData[i]["lastActivityDate"],
 //         tableData[i]["leadStatus"],
@@ -185,7 +185,7 @@ function wrapUpData(data) {
         
       ),
       phoneNumber: cur.phoneNumber,
-      contactOwner: cur.contactOwner,
+      companyOwner: cur.companyOwner,
       lastActivityDate: cur.lastActivityDate,
       city: cur.city,
       country: cur.country,
@@ -198,14 +198,14 @@ function wrapUpData(data) {
 
 const processData = (data) => {
   let newOwner;
-  if (typeof(data.contactOwner) === 'object') {
-    newOwner = data.contactOwner.fullName;
+  if (typeof(data.companyOwner) === 'object') {
+    newOwner = data.companyOwner.fullName;
   }
   return {
     name: data.fullName,
     id: data.id,
     phoneNumber: data.phoneNo,
-    contactOwner: newOwner ? newOwner : data.contactOwner,
+    companyOwner: newOwner ? newOwner : data.companyOwner,
     lastActivityDate: data.lastActivityDate,
     city: data.city,
     country: data.country,
@@ -220,7 +220,7 @@ const getTable = (data, tabID, userAccount) => {
   } else if (tabID === 2) {
     let mine = [];
     for (const item of data) {
-      if (item.contactOwner === userAccount) {
+      if (item.companyOwner === userAccount) {
         mine.push(item);
       }
     }
@@ -228,7 +228,7 @@ const getTable = (data, tabID, userAccount) => {
   } else if (tabID === 3) {
     let unassigned = [];
     for (const item of data) {
-      if (item.contactOwner === "Unassigned") {
+      if (item.companyOwner === "Unassigned") {
         unassigned.push(item);
       }
     }

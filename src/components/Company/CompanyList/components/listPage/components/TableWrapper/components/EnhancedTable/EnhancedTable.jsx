@@ -9,7 +9,7 @@ import remove from '../../../../../../tableLibs/removeRow';
 import exportCSV from '../../../../../../tableLibs/exportCSV';
 import exportPDF from '../../../../../../tableLibs/exportPDF';
 import updateRow from '../../../../../../tableLibs/updateRow';
-import { GetAllContacts } from '../../../../../../../../Api/Contact';
+import { GetAllCompanies } from '../../../../../../../../Api/Company/Company';
 import {
   getTable,
   processData,
@@ -31,7 +31,7 @@ class EnhancedTable extends Component {
   }
 
   componentDidMount() {
-    GetAllContacts({getAll: true}).then((data) => {
+    GetAllCompanies({getAll: true}).then((data) => {
     console.log("EnhancedTable -> componentDidMount -> data", data)
       let allData = [];
       allData = data.map((cur) => processData(cur));
@@ -113,12 +113,12 @@ class EnhancedTable extends Component {
             }
             actions={[
               {
-                tooltip: 'Remove all selected contact(s)',
+                tooltip: 'Remove all selected company(s)',
                 icon: tableIcons.Delete,
                 onClick: this.removeRow,
               },
               {
-                tooltip: 'Edit contact(s)',
+                tooltip: 'Edit company(s)',
                 icon: tableIcons.Edit,
                 onClick: this.showModal,
               },

@@ -8,23 +8,23 @@ const Options = {
     decimalSeparator: '.',
     showLabels: true, 
     showTitle: false,
-    filename: 'ByteCRM-exports-contact-'+getDate(),
+    filename: 'ByteCRM-exports-company-'+getDate(),
     useTextFile: false,
     useBom: true,
     useKeysAsHeaders: false,
-    headers: ['name', 'email', 'phoneNumber', 'contactOwner', 'associatedCompany', 'lastActivity', 'leadStatus', 'createDate']
+    headers: ['name', 'email', 'phoneNumber', 'companyOwner', 'associatedCompany', 'lastActivity', 'leadStatus', 'createDate']
 };
 
 
 const exportCSV = (columns, data) => {
   console.log(data)
     if (data.length === 0) {
-      alert("No contacts to export!")
+      alert("No companys to export!")
       return;
     }
     let tempData = JSON.parse(JSON.stringify(data));
     const transform = new Map([
-      [1, 'New'], [2, 'Open'], [3, 'In progress'], [4, 'Open deal'], [5, 'Unqualified'], [6, 'Attempted to contact'], [7, 'Connected'], [8, 'Bad timing']
+      [1, 'New'], [2, 'Open'], [3, 'In progress'], [4, 'Open deal'], [5, 'Unqualified'], [6, 'Attempted to company'], [7, 'Connected'], [8, 'Bad timing']
     ]);
     for (let item of tempData) {
       item.leadStatus = transform.get(item.leadStatus);

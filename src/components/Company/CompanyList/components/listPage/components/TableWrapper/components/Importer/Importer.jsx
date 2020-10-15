@@ -6,7 +6,7 @@ function Importer(props) {
   const extractData = (
     name,
     phoneNumber,
-    contactOwner,
+    companytOwner,
     city,
     country,
     industry,
@@ -16,7 +16,7 @@ function Importer(props) {
     return {
       name: name,
       phoneNumber: phoneNumber,
-      contactOwner: contactOwner,
+      companytOwner: companytOwner,
       city: city,
       contry: country,
       industry: industry,

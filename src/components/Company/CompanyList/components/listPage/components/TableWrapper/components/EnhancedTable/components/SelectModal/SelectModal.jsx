@@ -21,7 +21,7 @@ const FIELDS = [
   "",
   "Name",
   "Phone number",
-  "Contact owner",
+  "Company owner",
   "City",
   "Country",
   "Industry",
@@ -32,7 +32,7 @@ const FIELDS = [
 const FIELDS_MAP_TO_KEYS = new Map([
   ["Name", "name"],
   ["Phone number", "phoneNumber"],
-  ["Contact owner", "contactOwner"],
+  ["Company owner", "companyOwner"],
   ["City", "city"],
   ["Country", "country"],
   ["Industry", "industry"],
@@ -47,7 +47,7 @@ const LEAD_STATUS = [
   "In progress",
   "Open deal",
   "Unqualified",
-  "Attempted to contact",
+  "Attempted to company",
   "Connected",
   "Bad timing",
 ];
@@ -103,7 +103,7 @@ class SelectModal extends Component {
     if (
       this.state.selectedField === "Name" ||
       this.state.selectedField === "Phone number" ||
-      this.state.selectedField === "Contact owner" 
+      this.state.selectedField === "Company owner" 
     ) {
       this.selectType(MODAL.OTHER);
     } else if (

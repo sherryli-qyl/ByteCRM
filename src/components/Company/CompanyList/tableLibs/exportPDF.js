@@ -5,13 +5,13 @@ import 'jspdf-autotable';
 
 const exportPDF = (columns, data) => {
     if (data.length === 0) {
-      alert("No contacts to export!")
+      alert("No company to export!")
       return;
     }
     let tempData = JSON.parse(JSON.stringify(data));
     let dataToUse = [];
     const transform = new Map([
-      [1, 'New'], [2, 'Open'], [3, 'In progress'], [4, 'Open deal'], [5, 'Unqualified'], [6, 'Attempted to contact'], [7, 'Connected'], [8, 'Bad timing']
+      [1, 'New'], [2, 'Open'], [3, 'In progress'], [4, 'Open deal'], [5, 'Unqualified'], [6, 'Attempted to company'], [7, 'Connected'], [8, 'Bad timing']
     ]);
     for (let item of tempData) {
       item.leadStatus = transform.get(item.leadStatus);
@@ -34,7 +34,7 @@ const exportPDF = (columns, data) => {
     doc.text('', 40, 40);
     doc.autoTable(content);
     doc.save(
-      ('ByteCRM-exports-contact-'+getDate()) + ".pdf"
+      ('ByteCRM-exports-company-'+getDate()) + ".pdf"
     );
 }
 
