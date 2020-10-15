@@ -171,7 +171,7 @@ function wrapUpData(data) {
         <button className='nakedBtn'
                 onClick ={(event)=>{
                   event.preventDefault();
-                  sessionStorage.setItem('id',cur.id);
+                  sessionStorage.setItem('code',cur.code);
                 }}>
           <NavLink
           activeClassName="active"
@@ -199,12 +199,12 @@ function wrapUpData(data) {
 const processData = (data) => {
   let newOwner;
   if (typeof(data.companyOwner) === 'object') {
-    newOwner = data.companyOwner.fullName;
+    newOwner = data.companyOwner.name;
   }
   return {
-    name: data.fullName,
+    name: data.name,
     id: data.id,
-    phoneNumber: data.phoneNo,
+    phoneNumber: data.phoneNumber,
     companyOwner: newOwner ? newOwner : data.companyOwner,
     lastActivityDate: data.lastActivityDate,
     city: data.city,
