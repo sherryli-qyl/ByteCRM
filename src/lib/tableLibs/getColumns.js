@@ -6,8 +6,10 @@ function getColumns() {
     {
       title: "NAME",
       field: "name",
-      type: "string",
       initialEditValue: "",
+      // render: rowData => (
+
+      // ),
       validate: (rowData) =>
         rowData.name === ""
           ? { isValid: false, helperText: "Name cannot be empty" }
@@ -16,7 +18,6 @@ function getColumns() {
     {
       title: "EMAIL",
       field: "email",
-      type: "string",
       validate: (rowData) =>
         testEmailAddr(rowData.email)
           ? true
@@ -25,18 +26,15 @@ function getColumns() {
     {
       title: "PHONE NUMBER",
       field: "phoneNumber",
-      type: "string",
       validate: (rowData) =>
         testPhoneNum(rowData.phoneNumber)
           ? true
           : { isValid: false, helperText: "Phone number format incorrect" },
     },
-    { title: "CONTACT OWNER", field: "contactOwner", type: "string" },
-    { title: "Associated Company", field: "associatedCompany", type: "string" },
+    { title: "CONTACT OWNER", field: "contactOwner" },
+    { title: "Associated Company", field: "associatedCompany" },
     {
       title: "LAST ACTIVITY DATE",
-      field: "lastActivityDate",
-      type: "string",
       initialEditValue: getDate(),
       validate: (rowData) => {
         if (
@@ -51,7 +49,6 @@ function getColumns() {
     {
       title: "LEAD STATUS",
       field: "leadStatus",
-      type: "string",
       lookup: {
         1: "New",
         2: "Open",
@@ -66,10 +63,8 @@ function getColumns() {
     {
       title: "CREATE DATE",
       field: "createDate",
-      type: "string",
       editable: "never",
     },
-    // { title: 'ID', field: 'id', type: 'numeric' },
   ];
 }
 
