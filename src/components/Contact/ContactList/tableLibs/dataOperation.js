@@ -1,73 +1,7 @@
 import React from "react";
-import JumpButton from "../components/listPage/components/TableWrapper/components/EnhancedTable/components/JumpButton";
+import JumpButton from "../components/PageWrapper/components/TableWrapper/components/EnhancedTable/components/JumpButton";
 
-function postData(url, data) {
-  let urlObj = new URL(url);
-  return fetch(urlObj, {
-    body: JSON.stringify(data), // must match 'Content-Type' header
-    cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-    credentials: "same-origin", // include, same-origin, *omit
-    headers: {
-      "user-agent": "Mozilla/4.0 MDN Example",
-      "content-type": "application/json",
-    },
-    method: "POST", // *GET, POST, PUT, DELETE, etc.
-    mode: "cors", // no-cors, cors, *same-origin
-    redirect: "follow", // manual, *follow, error
-    referrer: "no-referrer", // *client, no-referrer
-  }).then((response) => response.json()); // parses response to JSON
-}
 
-function getData(url, data) {
-  let urlObj = new URL(url);
-  return fetch(urlObj, {
-    cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-    credentials: "same-origin", // include, same-origin, *omit
-    headers: {
-      "user-agent": "Mozilla/4.0 MDN Example",
-      "content-type": "application/json",
-    },
-    method: "GET", // *GET, POST, PUT, DELETE, etc.
-    mode: "cors", // no-cors, cors, *same-origin
-    redirect: "follow", // manual, *follow, error
-    referrer: "no-referrer", // *client, no-referrer
-  }).then((response) => response.json()); // parses response to JSON
-}
-
-function putData(url, data) {
-  let urlObj = new URL(url);
-  return fetch(urlObj, {
-    body: JSON.stringify(data), // must match 'Content-Type' header
-    cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-    credentials: "same-origin", // include, same-origin, *omit
-    headers: {
-      "user-agent": "Mozilla/4.0 MDN Example",
-      "content-type": "application/json",
-    },
-    method: "PUT", // *GET, POST, PUT, DELETE, etc.
-    mode: "cors", // no-cors, cors, *same-origin
-    redirect: "follow", // manual, *follow, error
-    referrer: "no-referrer", // *client, no-referrer
-  }).then((response) => response.json()); // parses response to JSON
-}
-
-function deleteData(url, data) {
-  let urlObj = new URL(url);
-  return fetch(urlObj, {
-    cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-    credentials: "same-origin", // include, same-origin, *omit
-    headers: {
-      "user-agent": "Mozilla/4.0 MDN Example",
-      "content-type": "application/json",
-    },
-    method: "DELETE", // *GET, POST, PUT, DELETE, etc.
-    mode: "cors", // no-cors, cors, *same-origin
-    redirect: "follow", // manual, *follow, error
-    referrer: "no-referrer", // *client, no-referrer
-  }).then((response) => response.json()); // parses response to JSON
-}
-
-// TODO: 先往数据库加，再调用generateData()
 const addRowsFromCsv = (newData) => {
   // if (newData.length === 0) {
   //   return tableData;
@@ -80,7 +14,7 @@ const addRowsFromCsv = (newData) => {
   // return tableData;
 };
 
-// 先往数据库改，再调用generateData()
+
 const editColumns = (newValue) => {
   // if (newValue && newValue.size !== 0) {
   //   let normalizedTable = normalizeData(tableData);
@@ -102,7 +36,6 @@ const editColumns = (newValue) => {
 
 /* ====================================GET========================================== */
 function wrapUpData(data) {
-
   return data.map((cur) => {
     return {
       name: <JumpButton id={cur.contactID} type={"contact"} name={cur.name} />,
@@ -183,15 +116,10 @@ function remove(allData, selectedRow) {
   return allData;
 }
 
-function removeDataInDB(dataDelete) {
-  // console.log("removeDataInDB -> dataDelete", dataDelete);
-}
-
 export {
   addRowsFromCsv,
   editColumns,
   getTable,
   processData,
   remove,
-  removeDataInDB,
 };

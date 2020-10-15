@@ -1,23 +1,24 @@
-import React, { Component } from 'react';
-import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
-import Theme from '../../../../../../../../Style/Theme/TableTheme';
-import MaterialTable from 'material-table';
-import SelectModal from './components/SelectModal';
-import tableIcons from '../../../../../../tableLibs/getIcons';
-import getColumns from '../../../../../../tableLibs/getColumns';
-import exportCSV from '../../../../../../tableLibs/exportCSV';
-import exportPDF from '../../../../../../tableLibs/exportPDF';
-import updateRow from '../../../../../../tableLibs/updateRow';
-import { GetAllContacts } from '../../../../../../../../Api/Contact';
+import React, { Component } from "react";
+import { ThemeProvider as MuiThemeProvider } from "@material-ui/core/styles";
+import Theme from "../../../../../../../../Style/Theme/TableTheme";
+import MaterialTable from "material-table";
+import SelectModal from "./components/SelectModal";
+import tableIcons from "../../../../../../tableLibs/getIcons";
+import getColumns from "../../../../../../tableLibs/getColumns";
+import exportCSV from "../../../../../../tableLibs/exportCSV";
+import exportPDF from "../../../../../../tableLibs/exportPDF";
+import updateRow from "../../../../../../tableLibs/updateRow";
+import {
+  GetAllContacts,
+  removeContact,
+} from "../../../../../../../../Api/Contact";
 import {
   getTable,
   processData,
   remove,
-  removeDataInDB,
   editColumns,
-  updateTable
-} from '../../../../../../tableLibs/getData';
-
+  updateTable,
+} from "../../../../../../tableLibs/dataOperation";
 
 class EnhancedTable extends Component {
   constructor(props) {
@@ -27,16 +28,20 @@ class EnhancedTable extends Component {
       columns: getColumns(),
       selectedRow: null,
       dataToShow: [],
-      allData: []
+      allData: [],
     };
   }
 
   componentDidMount() {
-    GetAllContacts({getAll: true}).then((data) => {
-      console.log("EnhancedTable -> componentDidMount -> data", data)
+    GetAllContacts().then((data) => {
+      console.log("EnhancedTable -> componentDidMount -> data", data);
       let allData = [];
       allData = data.map((cur) => processData(cur));
-      const showData = getTable(allData, this.props.tab, this.props.userAccount);
+      const showData = getTable(
+        allData,
+        this.props.tab,
+        this.props.userAccount
+      );
       this.setState({
         allData: allData,
         dataToShow: showData,
@@ -48,14 +53,21 @@ class EnhancedTable extends Component {
     evt.preventDefault();
     new Promise((resolve, reject) => {
       setTimeout(() => {
-        let allData = [...this.state.dataToShow], deleteRow = [];
+        let allData = [...this.state.dataToShow],
+          deleteRow = [];
+        // remove rows of dataToShow for table display
         allData = remove(allData, selectedRow);
         for (const row of selectedRow) {
-          deleteRow.push(this.state.dataToShow[row.tableData.id])
+          deleteRow.push(this.state.dataToShow[row.tableData.id]);
         }
-        removeDataInDB(deleteRow);
+        // remove data in mongoDB
+        deleteRow.map((cur) => {
+          removeContact(cur.contactID).then((code) => {
+            console.log("EnhancedTable -> removeRow -> code", code);
+          });
+        });
         this.setState({
-          dataToShow: allData
+          dataToShow: allData,
         });
         resolve();
       }, 500);
@@ -82,7 +94,7 @@ class EnhancedTable extends Component {
   getDataAndIndex = (data) => {
     // Add the index of rows for editing
     if (data.size !== 0) {
-      data.set('index', this.state.selectedRow);
+      data.set("index", this.state.selectedRow);
     }
     // this.props.getDataToEdit(data);
   };
@@ -104,7 +116,6 @@ class EnhancedTable extends Component {
             getDataToEdit={this.getDataAndIndex}
           ></SelectModal>
         )}
-        {/* <Manipulators /> */}
         <MuiThemeProvider theme={Theme}>
           <MaterialTable
             title={null}
@@ -113,17 +124,16 @@ class EnhancedTable extends Component {
             icons={tableIcons}
             onRowClick={(evt, selectedRow) => {}}
             onSelectionChange={(Rows) => {
-              console.log(Rows)
-              this.setState({ selectedRow: this.getSelectedRowIndex(Rows) })
+              this.setState({ selectedRow: this.getSelectedRowIndex(Rows) });
             }}
             actions={[
               {
-                tooltip: 'Remove all selected contact(s)',
+                tooltip: "Remove all selected contact(s)",
                 icon: tableIcons.Delete,
                 onClick: this.removeRow,
               },
               {
-                tooltip: 'Edit contact(s)',
+                tooltip: "Edit contact(s)",
                 icon: tableIcons.Edit,
                 onClick: this.showModal,
               },

@@ -22,26 +22,21 @@ class ListPage extends React.Component {
 
   render() {
     const { activeTab } = this.state;
-
     return (
       <>
-          <Tabs value={activeTab} onChange={this.handleChange} key={"tabs"}>
-            {this.props.tabs.map((tab) => (
-              <Tab
-                key={tab.id}
-                label={tab.label}
-                value={tab.id}
-              />
-            ))}
-          </Tabs>
+        <Tabs value={activeTab} onChange={this.handleChange} key={"tabs"}>
+          {this.props.tabs.map((tab) => (
+            <Tab key={tab.id} label={tab.label} value={tab.id} />
+          ))}
+        </Tabs>
 
         {this.props.tabs.map(
           (tab) =>
             activeTab === tab.id && (
-              <div key={'table'}>
-                <TabContainer key={'id'+tab.id}>{tab.component}</TabContainer>
+              <div key={"table"}>
+                <TabContainer key={"id" + tab.id}>{tab.component}</TabContainer>
                 <TableWrapper
-                  key={'ID'+tab.id}
+                  key={"ID" + tab.id}
                   tab={tab.id}
                   userAccount={this.props.userAccount}
                 />
