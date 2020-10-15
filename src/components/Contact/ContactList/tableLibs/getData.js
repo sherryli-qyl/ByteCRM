@@ -1,5 +1,4 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
 import JumpButton from "../components/listPage/components/TableWrapper/components/EnhancedTable/components/JumpButton";
 
 function postData(url, data) {
@@ -101,10 +100,13 @@ const editColumns = (newValue) => {
   // return tableData;
 };
 
+/* ====================================GET========================================== */
 function wrapUpData(data) {
-  const temp = data.map((cur) => {
+  return data.map((cur) => {
     return {
       name: <JumpButton id={cur.contactId} type={"contact"} name={cur.name} />,
+      contactID: cur.contactID,
+      companyID: cur.companyID,
       email: cur.email,
       phoneNumber: cur.phoneNumber,
       contactOwner: cur.contactOwner,
@@ -120,7 +122,6 @@ function wrapUpData(data) {
       createDate: cur.createDate,
     };
   });
-  return temp;
 }
 
 const processData = (data) => {
@@ -130,7 +131,7 @@ const processData = (data) => {
   }
   return {
     name: data.fullName,
-    contactId: data.id,
+    contactID: data.id,
     companyID: data.company ? data.company.code : undefined,
     phoneNumber: data.phoneNo,
     email: data.email,
@@ -165,4 +166,31 @@ const getTable = (data, tabID, userAccount) => {
   }
 };
 
-export { addRowsFromCsv, editColumns, getTable, processData };
+/* ====================================DELETE========================================== */
+function remove(allData, selectedRow) {
+  const names = [];
+  for (const item of selectedRow) {
+    names.push(item.name);
+  }
+  for (let i = 0; i < allData.length; ) {
+    if (names.includes(allData[i].name)) {
+      allData.splice(i, 1);
+      continue;
+    }
+    i++;
+  }
+  return allData;
+}
+
+function removeDataInDB(dataDelete) {
+  // console.log("removeDataInDB -> dataDelete", dataDelete);
+}
+
+export {
+  addRowsFromCsv,
+  editColumns,
+  getTable,
+  processData,
+  remove,
+  removeDataInDB,
+};

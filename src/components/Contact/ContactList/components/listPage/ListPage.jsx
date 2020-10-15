@@ -38,13 +38,14 @@ class ListPage extends React.Component {
         {this.props.tabs.map(
           (tab) =>
             activeTab === tab.id && (
-              <>
-                <TabContainer>{tab.component}</TabContainer>
+              <div key={'table'}>
+                <TabContainer key={'id'+tab.id}>{tab.component}</TabContainer>
                 <TableWrapper
+                  key={'ID'+tab.id}
                   tab={tab.id}
                   userAccount={this.props.userAccount}
                 />
-              </>
+              </div>
             )
         )}
       </>
