@@ -1,5 +1,5 @@
 import getDate from "./getDate";
-import { testPhoneNum, testEmailAddr, testDate } from "./validation";
+import { testPhoneNum, testDate } from "./validation";
 
 function getColumns() {
   return [
@@ -13,15 +13,7 @@ function getColumns() {
           ? { isValid: false, helperText: "Name cannot be empty" }
           : true,
     },
-    {
-      title: "EMAIL",
-      field: "email",
-      type: "string",
-      validate: (rowData) =>
-        testEmailAddr(rowData.email)
-          ? true
-          : { isValid: false, helperText: "Email address format incorrect" },
-    },
+    
     {
       title: "PHONE NUMBER",
       field: "phoneNumber",
@@ -32,7 +24,6 @@ function getColumns() {
           : { isValid: false, helperText: "Phone number format incorrect" },
     },
     { title: "CONTACT OWNER", field: "contactOwner", type: "string" },
-    { title: "Associated Company", field: "associatedCompany", type: "string" },
     {
       title: "LAST ACTIVITY DATE",
       field: "lastActivityDate",
@@ -48,21 +39,9 @@ function getColumns() {
         return { isValid: false, helperText: "Date format incorrect" };
       },
     },
-    {
-      title: "LEAD STATUS",
-      field: "leadStatus",
-      type: "string",
-      lookup: {
-        1: "New",
-        2: "Open",
-        3: "In progress",
-        4: "Open deal",
-        5: "Unqualified",
-        6: "Attempted to contact",
-        7: "Connected",
-        8: "Bad timing",
-      },
-    },
+    { title: "CITY", field: "city", type: "string" },
+    { title: "COUNTRY", field: "country", type: "string" },
+    { title: "INDUSTRY", field: "industry", type: "string" },
     {
       title: "CREATE DATE",
       field: "createDate",

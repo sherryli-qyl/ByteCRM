@@ -1,26 +1,26 @@
 import React from "react";
 import ReactFileReader from "react-file-reader";
-import "./CompanyImporter.scss";
+import "./importer.scss";
 
 function Importer(props) {
   const extractData = (
-    Name,
-    CompanyOwner,
-    CreateDate,
-    L,
-    associatedCompany,
+    name,
+    phoneNumber,
+    contactOwner,
+    city,
+    country,
+    industry,
     lastActivityDate,
-    leadStatus,
     createDate
   ) => {
     return {
       name: name,
-      email: email,
       phoneNumber: phoneNumber,
       contactOwner: contactOwner,
-      associatedCompany: associatedCompany,
+      city: city,
+      contry: country,
+      industry: industry,
       lastActivityDate: lastActivityDate,
-      leadStatus: leadStatus,
       createDate: createDate,
     };
   };

@@ -3,7 +3,8 @@
 .createButton{
     border: 0;
     outline: 0;
-    padding: 8px 15px;
+    min-height:34px;
+    min-width: 100px;
     border-radius: 3px;
     color:white;
     font-size:small;
@@ -18,7 +19,8 @@
 .logButton{
     border: 0;
     outline: 0;
-    padding: 7px 15px;
+    min-height:34px;
+    min-width: 80px;
     background-color: rgba(#eaf0f6, $alpha: 1);
     border-radius: 3px;
     color:rgba(#506e91, $alpha: 1);
@@ -27,6 +29,7 @@
 
     &:hover{
         background-color:transparent;
+        
         cursor: pointer;
     }
 }
