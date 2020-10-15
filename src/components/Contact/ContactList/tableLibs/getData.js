@@ -1,76 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-
-// const url = 'http://localhost:3000/api/contacts/';
-
-const nameSet = [
-  "Brian Halligan",
-  "John wick",
-  "Bruce Lee",
-  "Eclair Young",
-  "Mary McGregor",
-];
-
-const ownerSet = ["James", "Mike", "Kay", "Alice", "Unassigned"];
-
-const phoneNumSet = [
-  "0454991490",
-  "0468080886",
-  "0409875648",
-  "0441387946",
-  "0417899416",
-];
-
-const emailSet = [
-  "fqwfqwd@gmail.com",
-  "wqrw@hotmail.com",
-  "u1489479@anu.edu.au",
-  "qjioqjw@mail.com",
-  "noAddress@outlook.com",
-];
-
-const dateSet = [
-  "02/30/2020",
-  "04/31/2020",
-  "06/31/2020",
-  "09/31/2020",
-  "11/31/2020",
-];
-
-const companySet = ["Hubspot, Inc.", "Intel", "AMD", "NVIDIA", "Google"];
-
-/* ======================================================= */
-// function wrapUpData(tableData) {
-//   let result = [];
-//   for (let i = 0; i < tableData.length; i++) {
-//     result.push(
-//       createData(
-//         tableData[i]["name"],
-//         tableData[i]["email"],
-//         tableData[i]["phoneNumber"],
-//         tableData[i]["contactOwner"],
-//         tableData[i]["associatedCompany"],
-//         tableData[i]["lastActivityDate"],
-//         tableData[i]["leadStatus"],
-//         tableData[i]["createDate"]
-//       )
-//     );
-//   }
-//   return result;
-// }
-
-// const normalizeData = (tableData) => {
-//   for (let i = 0; i < tableData.length; i++) {
-//     let curRow = tableData[i];
-//     Object.keys(curRow).forEach((key) => {
-//       if (key === "name" || key === "associatedCompany") {
-//         curRow[key] = curRow[key].props.children;
-//       }
-//     });
-//   }
-//   return tableData;
-// };
-/* ======================================================= */
+import JumpButton from "../components/listPage/components/TableWrapper/components/EnhancedTable/components/JumpButton";
 
 function postData(url, data) {
   let urlObj = new URL(url);
@@ -138,7 +68,6 @@ function deleteData(url, data) {
   }).then((response) => response.json()); // parses response to JSON
 }
 
-
 // TODO: 先往数据库加，再调用generateData()
 const addRowsFromCsv = (newData) => {
   // if (newData.length === 0) {
@@ -175,30 +104,16 @@ const editColumns = (newValue) => {
 function wrapUpData(data) {
   const temp = data.map((cur) => {
     return {
-      name: (
-        <button className='nakedBtn'
-                onClick ={(event)=>{
-                  event.preventDefault();
-                  sessionStorage.setItem('id',cur.id);
-                }}>
-          <NavLink
-          activeClassName="active"
-          to={{
-            pathname: "/contacts/main",
-          }}
-        >
-          {cur.name}
-        </NavLink>
-        </button>
-        
-      ),
+      name: <JumpButton id={cur.contactId} type={"contact"} name={cur.name} />,
       email: cur.email,
       phoneNumber: cur.phoneNumber,
       contactOwner: cur.contactOwner,
       associatedCompany: (
-        <NavLink activeClassName="active" to="/companies/main">
-          {cur.associatedCompany}
-        </NavLink>
+        <JumpButton
+          id={cur.companyId}
+          type={"company"}
+          name={cur.associatedCompany}
+        />
       ),
       lastActivityDate: cur.lastActivityDate,
       leadStatus: cur.leadStatus,
@@ -210,16 +125,18 @@ function wrapUpData(data) {
 
 const processData = (data) => {
   let newOwner;
-  if (typeof(data.contactOwner) === 'object') {
+  if (typeof data.contactOwner === "object") {
     newOwner = data.contactOwner.fullName;
   }
   return {
     name: data.fullName,
-    id: data.id,
+    contactId: data.id,
+    companyID: data.company ? data.company.code : undefined,
     phoneNumber: data.phoneNo,
     email: data.email,
     contactOwner: newOwner ? newOwner : data.contactOwner,
-    associatedCompany: typeof(data.company) === 'object' ? data.company.name : data.company,
+    associatedCompany:
+      typeof data.company === "object" ? data.company.name : data.company,
     lastActivityDate: data.lastActivityDate,
     leadStatus: data.leadStatus,
     createDate: data.createDate,
