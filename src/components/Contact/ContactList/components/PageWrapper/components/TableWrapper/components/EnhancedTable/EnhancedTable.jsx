@@ -3,11 +3,11 @@ import { ThemeProvider as MuiThemeProvider } from "@material-ui/core/styles";
 import Theme from "../../../../../../../../Style/Theme/TableTheme";
 import MaterialTable from "material-table";
 import SelectModal from "./components/SelectModal";
-import tableIcons from "../../../../../../tableLibs/getIcons";
-import getColumns from "../../../../../../tableLibs/getColumns";
-import exportCSV from "../../../../../../tableLibs/exportCSV";
-import exportPDF from "../../../../../../tableLibs/exportPDF";
-import updateRow from "../../../../../../tableLibs/updateRow";
+import tableIcons from "../../../../../../../../../lib/tableLibs/getIcons";
+import getColumns from "../../../../../../../../../lib/tableLibs/getColumns";
+import exportCSV from "../../../../../../../../../lib/tableLibs/exportCSV";
+import exportPDF from "../../../../../../../../../lib/tableLibs/exportPDF";
+import updateRow from "../../../../../../../../../lib/tableLibs/updateRow";
 import {
   GetAllContacts,
   removeContact,
@@ -18,7 +18,7 @@ import {
   remove,
   editColumns,
   updateTable,
-} from "../../../../../../tableLibs/dataOperation";
+} from "../../../../../../../../../lib/tableLibs/dataOperation";
 
 class EnhancedTable extends Component {
   constructor(props) {
