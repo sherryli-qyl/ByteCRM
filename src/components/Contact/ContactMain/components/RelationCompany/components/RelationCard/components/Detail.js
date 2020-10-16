@@ -30,7 +30,7 @@ const Detail = (props) => {
           <div className="relatedCompany__btnContainer__remove__hint">
             <HintBox variant='bottomRight'>
               Remove association
-          </HintBox>
+            </HintBox>
           </div>
           <FontAwesomeIcon icon={faTimes} />
         </RemoveButtom>
