@@ -1,5 +1,8 @@
+@import "../../style/variable.scss";
+
 .StyledHeader {
   border-bottom: 2px solid #dadada;
+<<<<<<< HEAD
   background-color: #33475b;
 }
 
@@ -11,4 +14,16 @@
   font-weight: 500;
   line-height: 2.5rem;
   color:#ffffff;
+=======
+  background-color: $primary-color;
+  .Layout {
+    display: flex;
+    justify-content: space-between;
+    font-family: Avenir Next W02, Avenir Next, Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    // color: #33475b;
+    line-height: 0.8;
+  }
+>>>>>>> redesign about us page
 }

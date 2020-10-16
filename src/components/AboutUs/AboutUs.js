@@ -17,20 +17,18 @@ const AboutUs = () => {
             <img src={conference} alt="conference" />
           </div>
         </div>
+        <div className="background_waves">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" className="svg_header_bottom"><path fill="#ffffff" fill-opacity="1" d="M0,128L120,160C240,192,480,256,720,266.7C960,277,1200,235,1320,213.3L1440,192L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path></svg>
-        <div className="svg_header_left">
-          <svg xmlns="http://www.w3.org/2000/svg"><path fill="#111111" fill-opacity="1" d="M180.00,0.00 C138.26,108.05 212.18,130.75 200.80,150.00 L133.17,133.17 L133.17,0.00 Z"></path></svg>
-        </div>
-        {/* <div className="svg_header_deco">
-          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-            <path fill="#F1C21B" d="M36.4,-55.2C49,-48.5,62.3,-41.5,59.4,-31.8C56.6,-22.1,37.6,-9.7,36.4,5.9C35.2,21.5,51.8,40.4,52.9,54.3C54,68.1,39.6,76.9,26.1,74.1C12.6,71.3,0.1,56.8,-12.1,49.4C-24.2,42,-36,41.7,-43.2,36C-50.5,30.3,-53.3,19.2,-50.5,9.9C-47.6,0.7,-39.2,-6.7,-33,-13C-26.8,-19.2,-23,-24.5,-17.8,-34.5C-12.7,-44.6,-6.4,-59.5,2.8,-63.8C11.9,-68.1,23.8,-61.8,36.4,-55.2Z" transform="translate(100 100)" />
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 165" className="svg_header_left"><path fill="#f5f8fa" fill-opacity="1" d="M189.61,-2.45 C125.84,72.53 217.27,111.02 200.80,150.00 L113.00,152.45 L113.00,-13.31 Z"></path></svg>
+          <svg viewBox="0 0 250 250" xmlns="http://www.w3.org/2000/svg" className="svg_header_deco">
+            <path fill="#F1C21B" d="M20.1,-28.7C28,-26.2,37.8,-24,45.7,-17.7C53.5,-11.3,59.5,-1,60.3,10.3C61.2,21.5,57,33.6,47.8,38C38.7,42.4,24.6,39.2,13.4,39.6C2.3,40.1,-6,44.3,-17.6,46.9C-29.2,49.4,-44.2,50.3,-56.3,44.3C-68.5,38.3,-77.9,25.4,-82.8,10.1C-87.8,-5.2,-88.3,-22.9,-80,-34.5C-71.6,-46.2,-54.2,-51.8,-39.4,-51.2C-24.6,-50.6,-12.3,-43.8,-3.1,-38.9C6.1,-34.1,12.2,-31.3,20.1,-28.7Z" transform="translate(100 100)" />
           </svg>
-        </div> */}
+        </div>
       </div>
       <div className="our_mission_wrapper">
         <div className="mission_text">
           <h2>Our Mission</h2>
-          <p>There's this notion that to grow a business, you have to be ruthless. But we know there's a better way to grow. One where what's good for the bottom line is also good for customers. We believe businesses can grow with a conscience, and succeed with a soul — and that they can do it with inbound. That's why we've created a platform uniting software, education, and community to help businesses grow better every day.</p>
+          <p>There's this notion that to grow a business, you have to be ruthless. But we know there's a better way to grow. One where what's good for the bottom line is also good for customers. We believe businesses can grow with a conscience, and succeed with a soul and that they can do it with inbound. That's why we've created a platform uniting software, education, and community to help businesses grow better every day.</p>
         </div>
         <div className="mission_img_wrapper">
           <img src={people} alt="employee" />
