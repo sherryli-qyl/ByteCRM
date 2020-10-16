@@ -1,6 +1,28 @@
 import React from "react";
 import JumpButton from "../../components/Contact/ContactList/components/PageWrapper/components/TableWrapper/components/EnhancedTable/components/JumpButton";
+import getDate from "./getDate";
 
+const LEAD_STATUS = {
+  1: "New",
+  2: "Open",
+  3: "In progress",
+  4: "Open deal",
+  5: "Unqualified",
+  6: "Attempted to contact",
+  7: "Connected",
+  8: "Bad timing",
+};
+
+const LEAD_STATUS_BACK = {
+  "New": 1,
+  "Open": 2,
+  "In progress": 3,
+  "Open deal": 4,
+  "Unqualified": 5,
+  "Attempted to contact": 6,
+  "Connected": 7,
+  "Bad timing": 8,
+}
 
 const addRowsFromCsv = (newData) => {
   // if (newData.length === 0) {
@@ -13,7 +35,6 @@ const addRowsFromCsv = (newData) => {
   // tableData = wrapUpData(normalizedTable);
   // return tableData;
 };
-
 
 const editColumns = (newValue) => {
   // if (newValue && newValue.size !== 0) {
@@ -59,9 +80,12 @@ function wrapUpData(data) {
 }
 
 const processData = (data) => {
+  console.log("processData -> data", data)
   let newOwner;
   if (typeof data.contactOwner === "object") {
     newOwner = data.contactOwner.fullName;
+  } else if (!data.contactOwner) {
+    newOwner = "Unassigned";
   }
   return {
     name: data.fullName,
@@ -72,7 +96,7 @@ const processData = (data) => {
     contactOwner: newOwner ? newOwner : data.contactOwner,
     associatedCompany:
       typeof data.company === "object" ? data.company.name : data.company,
-    lastActivityDate: data.lastActivityDate,
+    lastActivityDate: LEAD_STATUS_BACK[data.lastActivityDate],
     leadStatus: data.leadStatus,
     createDate: data.createDate,
   };
@@ -116,10 +140,47 @@ function remove(allData, selectedRow) {
   return allData;
 }
 
+/* =====================================ADD============================================== */
+function makeNewRow(newData) {
+  newData.createDate = getDate();
+  if (!newData.contactOwner) {
+    newData.contactOwnerFirstName = "Unassigned";
+    newData.contactOwnerLastName = undefined;
+    delete newData.contactOwner;
+  } else {
+    let tempName = newData.contactOwner.split(" ");
+    newData.contactOwnerFirstName = tempName[0];
+    newData.contactOwnerLastName =
+      tempName.length > 1 ? tempName[1] : undefined;
+    delete newData.contactOwner;
+  }
+  if (newData.phoneNumber) {
+    newData.phoneNo = newData.phoneNumber;
+    delete newData.phoneNumber;
+  }
+  if (newData.associatedCompany) {
+    newData.company = newData.associatedCompany;
+    delete newData.associatedCompany;
+  }
+  if (newData.leadStatus) {
+    newData.leadStatus = LEAD_STATUS[newData.leadStatus];
+  }
+  if (newData.company) {
+    newData.companyName = newData.company;
+    delete newData.company;
+  }
+  let tempName = newData.name.split(" ");
+  newData.firstName = tempName[0];
+  newData.lastName = tempName.length > 1 ? tempName[1] : undefined;
+  delete newData.name;
+  return newData;
+}
+
 export {
   addRowsFromCsv,
   editColumns,
   getTable,
   processData,
   remove,
+  makeNewRow,
 };

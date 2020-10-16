@@ -7,15 +7,16 @@ import tableIcons from "../../../../../../../../../lib/tableLibs/getIcons";
 import getColumns from "../../../../../../../../../lib/tableLibs/getColumns";
 import exportCSV from "../../../../../../../../../lib/tableLibs/exportCSV";
 import exportPDF from "../../../../../../../../../lib/tableLibs/exportPDF";
-import updateRow from "../../../../../../../../../lib/tableLibs/updateRow";
 import {
   GetAllContacts,
   removeContact,
+  createContact,
 } from "../../../../../../../../Api/Contact";
 import {
   getTable,
   processData,
   remove,
+  makeNewRow,
   editColumns,
   updateTable,
 } from "../../../../../../../../../lib/tableLibs/dataOperation";
@@ -32,7 +33,7 @@ class EnhancedTable extends Component {
     };
   }
 
-  componentDidMount() {
+  getAll = () => {
     GetAllContacts().then((data) => {
       console.log("EnhancedTable -> componentDidMount -> data", data);
       let allData = [];
@@ -47,6 +48,10 @@ class EnhancedTable extends Component {
         dataToShow: showData,
       });
     });
+  };
+
+  componentDidMount() {
+    this.getAll();
   }
 
   removeRow = (evt, selectedRow) => {
@@ -74,13 +79,21 @@ class EnhancedTable extends Component {
     });
   };
 
-  addRow = (newData) =>
-    new Promise((resolve, reject) => {
-      newData = updateRow(newData);
+  addRow = (newData) => {
+    return new Promise((resolve, reject) => {
       setTimeout(() => {
-        // this.props.getNewTable([...this.state.data, newData]);
-      }, 0);
+        newData = makeNewRow(newData);
+        // this.setState({
+        //   dataToShow: [...this.state.dataToShow, newData]
+        // });
+        createContact(newData);
+        setTimeout(() => {
+          this.getAll();
+        }, 1000);
+        resolve();
+      }, 500);
     });
+  };
 
   showModal = (evt, selectedRow) => {
     evt.preventDefault();

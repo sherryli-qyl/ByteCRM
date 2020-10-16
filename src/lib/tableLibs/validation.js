@@ -10,7 +10,7 @@ const testEmailAddr = (str) => {
 
 // for mm/dd/yyyy format
 const testDate = (str) => {
-  const reg = /^(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d$/;
+  const reg = /^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$/;
   return reg.test(str);
 };
 
