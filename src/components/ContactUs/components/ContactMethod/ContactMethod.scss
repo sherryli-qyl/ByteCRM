@@ -1,15 +1,34 @@
+@import "../../../../style/variable.scss";
 .contact_method_container {
   display: flex;
   justify-content: center;
   position: relative;
-  .callMethod{
+  background-color: white;
+  .callMethod {
     position: absolute;
     top: -60px;
     left: 50%;
+
+    @include MQ(M) {
+      top: -30px;
+      left: 50%;
+    }
+    @include MQ(S) {
+      top: -30px;
+      left: 6%
+      
+    }
   }
-  .emailMethod{
+  .emailMethod {
     position: absolute;
     top: -60px;
     right: 50%;
+    @include MQ(M) {
+      top: -30px;
+    }
+    @include MQ(S) {
+      top: 400px;
+      left: 6%
+    }
   }
 }

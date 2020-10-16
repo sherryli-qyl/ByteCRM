@@ -1,5 +1,9 @@
 .App {
-  overflow-y: hidden
+  overflow-y: hidden;
+  .container{
+    height: 100vh;
+    width: 100vw;
+  }
 }
 
 
