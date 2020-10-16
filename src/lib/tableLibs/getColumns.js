@@ -28,6 +28,7 @@ function getColumns() {
           ? true
           : { isValid: false, helperText: "Phone number format incorrect" },
     },
+
     { title: "CONTACT OWNER", field: "contactOwner", editable: "never", },
     { title: "ASSOCIATED COMPANY", field: "associatedCompany", editable: "never", },
     {
