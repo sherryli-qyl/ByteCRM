@@ -31,6 +31,19 @@ async function removeContact(contactID) {
   return response.status;
 }
 
+async function createContact(body) {
+  const url = new URL("http://localhost:3000/api/contacts/");
+  console.log(body);
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(body),
+  });
+  const data = response.json();
+  return data;
+}
 
 async function UpdateContact(contactId, body) {
   const serverUrl = `http://localhost:3000/api/contacts/${contactId}`;
@@ -71,7 +84,7 @@ async function GetContactByUserId(userId, keyword) {
   }
 }
 
-export { GetContact, UpdateContact, GetContactByUserId, GetAllContacts, removeContact };
+export { GetContact, UpdateContact, GetContactByUserId, GetAllContacts, removeContact, createContact };
 
 /*
 function postData(url, data) {

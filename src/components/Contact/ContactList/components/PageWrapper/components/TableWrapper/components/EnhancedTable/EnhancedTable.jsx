@@ -7,17 +7,18 @@ import tableIcons from "../../../../../../../../../lib/tableLibs/getIcons";
 import getColumns from "../../../../../../../../../lib/tableLibs/getColumns";
 import exportCSV from "../../../../../../../../../lib/tableLibs/exportCSV";
 import exportPDF from "../../../../../../../../../lib/tableLibs/exportPDF";
-import updateRow from "../../../../../../../../../lib/tableLibs/updateRow";
 import {
   GetAllContacts,
   removeContact,
+  createContact,
+  UpdateContact,
 } from "../../../../../../../../Api/Contact";
 import {
+  addRowsFromCsv,
   getTable,
   processData,
   remove,
-  editColumns,
-  updateTable,
+  makeNewRow,
 } from "../../../../../../../../../lib/tableLibs/dataOperation";
 
 class EnhancedTable extends Component {
@@ -32,7 +33,7 @@ class EnhancedTable extends Component {
     };
   }
 
-  componentDidMount() {
+  getAllContacts = () => {
     GetAllContacts().then((data) => {
       console.log("EnhancedTable -> componentDidMount -> data", data);
       let allData = [];
@@ -47,6 +48,10 @@ class EnhancedTable extends Component {
         dataToShow: showData,
       });
     });
+  };
+
+  componentDidMount() {
+    this.getAllContacts();
   }
 
   removeRow = (evt, selectedRow) => {
@@ -74,13 +79,21 @@ class EnhancedTable extends Component {
     });
   };
 
-  addRow = (newData) =>
-    new Promise((resolve, reject) => {
-      newData = updateRow(newData);
+  addRow = (newData) => {
+    return new Promise((resolve, reject) => {
       setTimeout(() => {
-        // this.props.getNewTable([...this.state.data, newData]);
-      }, 0);
+        newData = makeNewRow(newData);
+        // this.setState({
+        //   dataToShow: [...this.state.dataToShow, newData]
+        // });
+        createContact(newData);
+        setTimeout(() => {
+          this.getAllContacts();
+        }, 1000);
+        resolve();
+      }, 500);
     });
+  };
 
   showModal = (evt, selectedRow) => {
     evt.preventDefault();
@@ -92,11 +105,12 @@ class EnhancedTable extends Component {
   };
 
   getDataAndIndex = (data) => {
-    // Add the index of rows for editing
-    if (data.size !== 0) {
-      data.set("index", this.state.selectedRow);
-    }
-    // this.props.getDataToEdit(data);
+    this.state.selectedRow.map((cur) => {
+      UpdateContact(this.state.allData[cur].contactID, data);
+    });
+    setTimeout(() => {
+      this.getAllContacts();
+    }, 1000);
   };
 
   getSelectedRowIndex = (Rows) => {

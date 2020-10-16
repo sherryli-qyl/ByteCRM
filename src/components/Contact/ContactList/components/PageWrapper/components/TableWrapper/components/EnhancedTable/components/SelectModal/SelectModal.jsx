@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import "./SelectModal.scss";
 import DropdownList from "./components/DropdownList";
 import StringInput from "./components/StringInput";
-import generateArray from '../../../../../../../../../../../lib/tableLibs/generateArray';
+import processDate from "../../../../../../../../../../../lib/tableLibs/processDate";
+import generateArray from "../../../../../../../../../../../lib/tableLibs/generateArray";
 import {
   testPhoneNum,
   testEmailAddr,
@@ -11,35 +12,34 @@ import {
 } from "../../../../../../../../../../../lib/tableLibs/validation";
 
 /* ======================Define all Options for Dropdown======================================= */
-const MODAL = {
-  OTHER: "OTHER",
-  DATE: "DATE",
-  STATUS: "STATUS",
-  EMPTY: null,
-};
-
 const FIELDS = [
   "",
   "Name",
   "Email",
   "Phone number",
-  "Contact owner",
-  "Associated company",
+  // "Contact owner",
+  // "Associated company",
   "Last activity date",
   "Lead status",
-  "Create date",
+  // "Create date",
 ];
 
-const FIELDS_MAP_TO_KEYS = new Map([
-  ["Name", "name"],
-  ["Email", "email"],
-  ["Phone number", "phoneNumber"],
-  ["Contact owner", "contactOwner"],
-  ["Associated company", "associatedCompany"],
-  ["Last activity date", "LastActivityDate"],
-  ["Lead status", "leadStatus"],
-  ["Create date", "createDate"],
-]);
+const FIELD_TO_KEY = {
+  Name: "name",
+  Email: "email",
+  "Phone number": "phoneNo",
+  // "Contact owner": "contactOwner",
+  // "Associated company": "company",
+  "Last activity date": "lastActivityDate",
+  "Lead status": "leadStatus",
+  // "Create date": "createDate",
+};
+
+const VALIDATE_FUNC = {
+  "Last activity date": testDate,
+  "Phone number": testPhoneNum,
+  Email: testEmailAddr,
+};
 
 const LEAD_STATUS = [
   "",
@@ -55,7 +55,6 @@ const LEAD_STATUS = [
 
 const DAYS = [""].concat(generateArray(1, 31));
 const YEARS = [""].concat(generateArray(1900, 2020));
-const MONTHSNUM = generateArray(1, 12);
 const MONTHS = [
   "",
   "Jan",
@@ -72,13 +71,13 @@ const MONTHS = [
   "Dec",
 ];
 
-
 class SelectModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      isValid: true,
+      isEmpty: false,
       selectedField: "",
-      showType: MODAL.EMPTY,
       singleDataToEdit: "",
       dateToEdit: new Map([
         ["day", ""],
@@ -88,87 +87,40 @@ class SelectModal extends Component {
     };
   }
 
-  /* ======================Get Which Field to Operate======================================= */
-  getSelectedField = (field) => {
-    this.setState({ selectedField: field });
-    this.getType();
-  };
-
-  selectType(target) {
-    this.setState({
-      showType: target,
-    });
-  }
-
-  getType = () => {
-    if (
-      this.state.selectedField === "Name" ||
-      this.state.selectedField === "Email" ||
-      this.state.selectedField === "Phone number" ||
-      this.state.selectedField === "Contact owner" ||
-      this.state.selectedField === "Associated company"
-    ) {
-      this.selectType(MODAL.OTHER);
-    } else if (
-      this.state.selectedField === "Last activity date" ||
-      this.state.selectedField === "Create date"
-    ) {
-      this.selectType(MODAL.DATE);
-    } else if (this.state.selectedField === "Lead status") {
-      this.selectType(MODAL.STATUS);
-    } else {
-      this.selectType(MODAL.EMPTY);
-    }
-  };
-
   /* ======================Get Processed Data according to Selected Field======================================= */
   getInputData = (data) => {
     if (
-      this.state.showType !== MODAL.DATE &&
-      this.state.showType !== MODAL.EMPTY
+      this.state.selectedField !== "Last activity date" &&
+      this.state.selectedField !== ""
     ) {
-      //
       this.setState({ singleDataToEdit: data, dateToEdit: [] });
-    } else if (this.state.showType === MODAL.DATE) {
-      //
-      const curData = this.processDateData(data);
+    } else if (this.state.selectedField === "Last activity date") {
+      const curData = processDate(data);
       let temp = this.state.dateToEdit;
       temp.set(Object.keys(curData)[0], Object.values(curData)[0]);
       this.setState({ dateToEdit: temp });
     } else {
-      //
       this.setState({ singleDataToEdit: "", dateToEdit: [] });
     }
   };
 
-  processDateData(data) {
-    let result = "";
-    let cur = data.toString();
-    switch (cur.length) {
-      case NaN:
-      case "":
-        break;
-      case 1:
-        result = { day: "0" + data };
-        break;
-      case 2:
-        result = { day: data };
-        break;
-      case 3:
-        let month = MONTHSNUM[MONTHS.indexOf(data) - 1];
-        if (Number(month) <= 10) {
-          month = "0" + month;
-        }
-        result = { month: month };
-        break;
-      case 4:
-        result = { year: data };
-        break;
-      default:
-        throw Error("Invalid input!");
-    }
-    return result;
-  }
+  getSelectedField = (field) => {
+    this.setState((prevState) => {
+      if (prevState.selectedField !== field) {
+        return {
+          selectedField: field,
+          isEmpty: false,
+          isValid: true,
+          dateToEdit: new Map([
+            ["day", ""],
+            ["month", ""],
+            ["year", ""],
+          ]),
+          singleDataToEdit: "",
+        };
+      }
+    });
+  };
 
   /* ======================Handle 2 Buttons and Mask Clicking======================================= */
   closeModal = () => {
@@ -179,49 +131,86 @@ class SelectModal extends Component {
     this.props.changeModalVisible(false);
   };
 
-  confirm = () => {
-    this.props.changeModalVisible(false);
-    let currentData = null;
-    const selectedField = FIELDS_MAP_TO_KEYS.get(this.state.selectedField);
-    const showType = this.state.showType;
-    // Use a map to restore input data
-    const mapData = new Map();
-    // Get input data from selected field. Two types of data: <input> & dropdown
-    if (this.state.singleDataToEdit.length === 0) {
-      currentData = this.state.dateToEdit;
+  handleReceivedData = (field, value, mapData) => {
+    if (
+      field === "Last activity date" ||
+      field === "Phone number" ||
+      field === "Email"
+    ) {
+      if (field === "Last activity date") {
+        value = value
+          ? value.get("day") +
+            "/" +
+            value.get("month") +
+            "/" +
+            value.get("year")
+          : undefined;
+      }
+      if (testEmptyString(value)) {
+        this.setState({
+          isEmpty: true,
+          isValid: false,
+        });
+      } else if (VALIDATE_FUNC[field](value)) {
+        mapData.set(field, value);
+        this.setState({
+          isEmpty: false,
+          isValid: true,
+        });
+      } else {
+        this.setState({
+          isEmpty: false,
+          isValid: false,
+        });
+      }
+    } else if (field === "Name") {
+      if (testEmptyString(value)) {
+        this.setState({
+          isEmpty: true,
+          isValid: false,
+        });
+      } else {
+        mapData.set(field, value);
+        this.setState({
+          isEmpty: false,
+          isValid: true,
+        });
+      }
     } else {
-      currentData = this.state.singleDataToEdit;
+      mapData.set(field, value);
+      this.setState({
+        isEmpty: false,
+        isValid: true,
+      });
     }
-    // Validate if input data is legal
-    if (selectedField === "phoneNumber" && testPhoneNum(currentData)) {
-      mapData.set(selectedField, currentData);
-    } else if (selectedField === "email" && testEmailAddr(currentData)) {
-      mapData.set(selectedField, currentData);
-    } else if (
-      (showType === MODAL.OTHER || showType === MODAL.STATUS) &&
-      testEmptyString(currentData)
-    ) {
-      mapData.set(selectedField, currentData);
-    } else if (
-      showType === MODAL.DATE &&
-      testDate(
-        currentData.get("month") +
-          "/" +
-          currentData.get("day") +
-          "/" +
-          currentData.get("year")
-      )
-    ) {
-      currentData =
-        currentData.get("month") +
-        "/" +
-        currentData.get("day") +
-        "/" +
-        currentData.get("year");
-      mapData.set(selectedField, currentData);
-    }
+  };
+
+  confirm = () => {
+    let currentData;
+    const selectedField = this.state.selectedField;
+    // Use a map to restore input data
+    let mapData = new Map();
+    currentData =
+      this.state.selectedField === "Last activity date"
+        ? this.state.dateToEdit
+        : this.state.singleDataToEdit;
+    this.handleReceivedData(selectedField, currentData, mapData);
     // Pass input data to father component
-    this.props.getDataToEdit(mapData);
+    setTimeout(() => {
+      if (!this.state.isEmpty && this.state.isValid) {
+        const iterator = mapData.keys();
+        const key = iterator.next().value;
+        mapData.set(FIELD_TO_KEY[key], mapData.get(key));
+        mapData.delete(key);
+        if (mapData.keys().next().value === "name") {
+          let tempName = mapData.values().next().value.split(" ");
+          mapData.set("firstName", tempName[0]);
+          mapData.set("lastName", tempName.length > 1 ? tempName[1] : undefined);
+        }
+        this.props.getDataToEdit(Object.fromEntries(mapData));
+        this.props.changeModalVisible(false);
+      }
+    }, 500);
   };
 
   render() {
@@ -235,7 +224,7 @@ class SelectModal extends Component {
               getSelectedField={this.getSelectedField}
               items={FIELDS}
             />
-            {this.state.showType === MODAL.STATUS && (
+            {this.state.selectedField === "Lead status" && (
               <DropdownList
                 className="dropdown-list-single"
                 hint="Please select a status"
@@ -243,13 +232,17 @@ class SelectModal extends Component {
                 items={LEAD_STATUS}
               />
             )}
-            {this.state.showType === MODAL.OTHER && (
+            {(this.state.selectedField === "Name" ||
+              this.state.selectedField === "Phone number" ||
+              this.state.selectedField === "Email") && (
               <StringInput
                 getInputData={this.getInputData}
                 selectedField={this.state.selectedField}
+                isEmpty={this.state.isEmpty}
+                isValid={this.state.isValid}
               />
             )}
-            {this.state.showType === MODAL.DATE && (
+            {this.state.selectedField === "Last activity date" && (
               <>
                 <DropdownList
                   className="dropdown-list-triple1"

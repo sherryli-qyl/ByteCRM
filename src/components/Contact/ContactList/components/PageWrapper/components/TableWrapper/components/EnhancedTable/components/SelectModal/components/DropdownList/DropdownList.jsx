@@ -23,7 +23,6 @@ class DropdownList extends React.Component {
         } else if (this.props.getInputData) {
           this.props.getInputData(this.state.selected);
         }
-        
         res();
       }, 500);
     });
@@ -35,7 +34,7 @@ class DropdownList extends React.Component {
 
   buttonDown = () => {
     this.setState((prevState) => ({ visible: !prevState.visible }));
-  }
+  };
 
   render() {
     return (
@@ -46,8 +45,13 @@ class DropdownList extends React.Component {
             this.changeVisible(false);
           }}
         >
-          <div className={`${this.props.className}-text-box`} onClick={this.buttonDown}>
-            <div className={`${this.props.className}-display`}>{this.state.selected}</div>
+          <div
+            className={`${this.props.className}-text-box`}
+            onClick={this.buttonDown}
+          >
+            <div className={`${this.props.className}-display`}>
+              {this.state.selected}
+            </div>
           </div>
           {this.state.visible && (
             <DropdownItem

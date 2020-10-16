@@ -1,6 +1,28 @@
 import React from "react";
 import JumpButton from "../../components/Contact/ContactList/components/PageWrapper/components/TableWrapper/components/EnhancedTable/components/JumpButton";
+import getDate from "./getDate";
 
+const LEAD_STATUS = {
+  1: "New",
+  2: "Open",
+  3: "In progress",
+  4: "Open deal",
+  5: "Unqualified",
+  6: "Attempted to contact",
+  7: "Connected",
+  8: "Bad timing",
+};
+
+const LEAD_STATUS_BACK = {
+  "New": 1,
+  "Open": 2,
+  "In progress": 3,
+  "Open deal": 4,
+  "Unqualified": 5,
+  "Attempted to contact": 6,
+  "Connected": 7,
+  "Bad timing": 8,
+}
 
 const addRowsFromCsv = (newData) => {
   // if (newData.length === 0) {
@@ -14,31 +36,11 @@ const addRowsFromCsv = (newData) => {
   // return tableData;
 };
 
-
-const editColumns = (newValue) => {
-  // if (newValue && newValue.size !== 0) {
-  //   let normalizedTable = normalizeData(tableData);
-  //   const iterator = newValue.values();
-  //   const dataToEdit = iterator.next().value;
-  //   const index = iterator.next().value;
-  //   const field = newValue.keys().next().value;
-  //   for (const i of index) {
-  //     let curRow = normalizedTable[i];
-  //     Object.keys(curRow).forEach((key) => {
-  //       if (key === field) {
-  //         curRow[key] = dataToEdit;
-  //       }
-  //     });
-  //   }
-  //   tableData = wrapUpData(normalizedTable);
-  // return tableData;
-};
-
 /* ====================================GET========================================== */
 function wrapUpData(data) {
   return data.map((cur) => {
     return {
-      name: <JumpButton id={cur.contactID} type={"contact"} name={cur.name} />,
+      name: (<JumpButton id={cur.contactID} type={"contact"} name={cur.name} />),
       contactID: cur.contactID,
       companyID: cur.companyID,
       email: cur.email,
@@ -62,6 +64,8 @@ const processData = (data) => {
   let newOwner;
   if (typeof data.contactOwner === "object") {
     newOwner = data.contactOwner.fullName;
+  } else if (!data.contactOwner) {
+    newOwner = "Unassigned";
   }
   return {
     name: data.fullName,
@@ -73,7 +77,7 @@ const processData = (data) => {
     associatedCompany:
       typeof data.company === "object" ? data.company.name : data.company,
     lastActivityDate: data.lastActivityDate,
-    leadStatus: data.leadStatus,
+    leadStatus: LEAD_STATUS_BACK[data.leadStatus],
     createDate: data.createDate,
   };
 };
@@ -116,10 +120,44 @@ function remove(allData, selectedRow) {
   return allData;
 }
 
+/* =====================================POST============================================== */
+function makeNewRow(newData) {
+  newData.createDate = getDate();
+  // if (!newData.contactOwner) {
+  //   newData.contactOwnerFirstName = "Unassigned";
+  //   newData.contactOwnerLastName = undefined;
+  //   delete newData.contactOwner;
+  // } else {
+  //   let tempName = newData.contactOwner.split(" ");
+  //   newData.contactOwnerFirstName = tempName[0];
+  //   newData.contactOwnerLastName =
+  //     tempName.length > 1 ? tempName[1] : undefined;
+  //   delete newData.contactOwner;
+  // }
+  delete newData.contactOwner;
+  if (newData.phoneNumber) {
+    newData.phoneNo = newData.phoneNumber;
+    delete newData.phoneNumber;
+  }
+  // if (newData.associatedCompany) {
+  //   newData.companyName = newData.associatedCompany;
+  //   delete newData.associatedCompany;
+  // }
+  delete newData.associatedCompany;
+  if (newData.leadStatus) {
+    newData.leadStatus = LEAD_STATUS[newData.leadStatus];
+  }
+  let tempName = newData.name.split(" ");
+  newData.firstName = tempName[0];
+  newData.lastName = tempName.length > 1 ? tempName[1] : undefined;
+  delete newData.name;
+  return newData;
+}
+
 export {
   addRowsFromCsv,
-  editColumns,
   getTable,
   processData,
   remove,
+  makeNewRow,
 };
