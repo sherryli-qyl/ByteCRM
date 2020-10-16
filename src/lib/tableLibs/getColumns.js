@@ -7,9 +7,6 @@ function getColumns() {
       title: "NAME",
       field: "name",
       initialEditValue: "",
-      // render: rowData => (
-
-      // ),
       validate: (rowData) =>
         rowData.name === ""
           ? { isValid: false, helperText: "Name cannot be empty" }

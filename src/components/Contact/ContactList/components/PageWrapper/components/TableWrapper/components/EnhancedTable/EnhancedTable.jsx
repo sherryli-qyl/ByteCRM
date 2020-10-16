@@ -11,14 +11,14 @@ import {
   GetAllContacts,
   removeContact,
   createContact,
+  UpdateContact,
 } from "../../../../../../../../Api/Contact";
 import {
+  addRowsFromCsv,
   getTable,
   processData,
   remove,
   makeNewRow,
-  editColumns,
-  updateTable,
 } from "../../../../../../../../../lib/tableLibs/dataOperation";
 
 class EnhancedTable extends Component {
@@ -105,12 +105,12 @@ class EnhancedTable extends Component {
   };
 
   getDataAndIndex = (data) => {
-    console.log(data);
-    // Add the index of rows for editing
-    // if (data.size !== 0) {
-    //   data.set("index", this.state.selectedRow);
-    // }
-    // this.props.getDataToEdit(data);
+    this.state.selectedRow.map((cur) => {
+      UpdateContact(this.state.allData[cur].contactID, data);
+    });
+    setTimeout(() => {
+      this.getAllContacts();
+    }, 1000);
   };
 
   getSelectedRowIndex = (Rows) => {

@@ -36,25 +36,6 @@ const addRowsFromCsv = (newData) => {
   // return tableData;
 };
 
-const editColumns = (newValue) => {
-  // if (newValue && newValue.size !== 0) {
-  //   let normalizedTable = normalizeData(tableData);
-  //   const iterator = newValue.values();
-  //   const dataToEdit = iterator.next().value;
-  //   const index = iterator.next().value;
-  //   const field = newValue.keys().next().value;
-  //   for (const i of index) {
-  //     let curRow = normalizedTable[i];
-  //     Object.keys(curRow).forEach((key) => {
-  //       if (key === field) {
-  //         curRow[key] = dataToEdit;
-  //       }
-  //     });
-  //   }
-  //   tableData = wrapUpData(normalizedTable);
-  // return tableData;
-};
-
 /* ====================================GET========================================== */
 function wrapUpData(data) {
   return data.map((cur) => {
@@ -173,11 +154,8 @@ function makeNewRow(newData) {
   return newData;
 }
 
-/* =====================================PUT============================================== */
-
 export {
   addRowsFromCsv,
-  editColumns,
   getTable,
   processData,
   remove,
