@@ -36,7 +36,7 @@ const FIELDS_MAP_TO_KEYS = new Map([
   ["City", "city"],
   ["Country", "country"],
   ["Industry", "industry"],
-  ["Last activity date", "LastActivityDate"],
+  ["Last activity date", "lastActivityDate"],
   ["Create date", "createDate"],
 ]);
 
