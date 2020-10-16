@@ -20,7 +20,7 @@ const Public = () => (
       About
     </NavigationLink.Text>
     <NavigationLink.Text indictable href="/contactus">
-    Contact Us
+      Contact Us
     </NavigationLink.Text>
   </div>
 );

@@ -1,12 +1,12 @@
 @import '../../../../../../../style/variable.scss';
 
-.timeline-action-container {
+.call-timeline-action-container {
   display: flex;
   flex-direction: row-reverse;
-  padding: 15px 20px;
+  margin: 4% 5%;
 }
 
-.timeline-action-button {
+.call-timeline-action-button {
   width: 80px;
   background-color: $primary-color-light;
   margin-right: 1em;

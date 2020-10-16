@@ -8,9 +8,14 @@
 .Layout {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   font-family: Avenir Next W02, Avenir Next, Helvetica, Arial, sans-serif;
   font-size: 13px;
   font-weight: 500;
-  line-height: 2.5rem;
+  align-self: center;
   color:#ffffff;
+}
+
+.Container {
+  padding: 8px 0px;
 }
