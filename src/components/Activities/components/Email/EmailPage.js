@@ -85,7 +85,7 @@ class EmailPage extends React.Component {
                 return emailList;
             }
             else {
-                return null;
+                return [];
             }
         }).then((emailList) => {
             this.sortCardsArray(emailList);
