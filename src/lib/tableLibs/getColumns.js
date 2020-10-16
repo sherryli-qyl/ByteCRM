@@ -32,7 +32,7 @@ function getColumns() {
           : { isValid: false, helperText: "Phone number format incorrect" },
     },
     { title: "CONTACT OWNER", field: "contactOwner" },
-    { title: "Associated Company", field: "associatedCompany" },
+    { title: "ASSOCIATED COMPANY", field: "associatedCompany" },
     {
       title: "LAST ACTIVITY DATE",
       initialEditValue: getDate(),

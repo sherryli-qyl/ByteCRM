@@ -3,7 +3,7 @@ import LogCallButton from '../../../../../../Style/Button/Activities/LogButton';
 import LogCallModal from '../../../../../../Activities/components/Note/components/NoteModal';
 import Modal from '../../../../../../../js/Modal';
 import { ModalContext } from '../../../../../../Modal/components/ModalContext';
-import PhoneCallBtn from '../../../../../../Style/Button/Activities/CreateButton';
+import CreateButton from '../../../../../../Style/Button/Activities/CreateButton';
 import './TimeLineControls.scss';
 
 const TimeLineControls = () => {
@@ -11,11 +11,11 @@ const TimeLineControls = () => {
   const createLogCall = new Modal('Note', 'Note', <LogCallModal />);
 
   return (
-    <div className="timeline-action-container">
-      <PhoneCallBtn>Make a phone call</PhoneCallBtn>
+    <div className="call-timeline-action-container">
+      <CreateButton>Make a phone call</CreateButton>
 
       <LogCallButton
-        className="timeline-action-button"
+        className="call-timeline-action-button"
         onClick={() => onClick(createLogCall)}
       >
         Log call
