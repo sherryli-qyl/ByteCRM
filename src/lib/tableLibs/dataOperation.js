@@ -59,7 +59,7 @@ const editColumns = (newValue) => {
 function wrapUpData(data) {
   return data.map((cur) => {
     return {
-      name: <JumpButton id={cur.contactID} type={"contact"} name={cur.name} />,
+      name: (<JumpButton id={cur.contactID} type={"contact"} name={cur.name} />),
       contactID: cur.contactID,
       companyID: cur.companyID,
       email: cur.email,
@@ -139,34 +139,32 @@ function remove(allData, selectedRow) {
   return allData;
 }
 
-/* =====================================ADD============================================== */
+/* =====================================POST============================================== */
 function makeNewRow(newData) {
   newData.createDate = getDate();
-  if (!newData.contactOwner) {
-    newData.contactOwnerFirstName = "Unassigned";
-    newData.contactOwnerLastName = undefined;
-    delete newData.contactOwner;
-  } else {
-    let tempName = newData.contactOwner.split(" ");
-    newData.contactOwnerFirstName = tempName[0];
-    newData.contactOwnerLastName =
-      tempName.length > 1 ? tempName[1] : undefined;
-    delete newData.contactOwner;
-  }
+  // if (!newData.contactOwner) {
+  //   newData.contactOwnerFirstName = "Unassigned";
+  //   newData.contactOwnerLastName = undefined;
+  //   delete newData.contactOwner;
+  // } else {
+  //   let tempName = newData.contactOwner.split(" ");
+  //   newData.contactOwnerFirstName = tempName[0];
+  //   newData.contactOwnerLastName =
+  //     tempName.length > 1 ? tempName[1] : undefined;
+  //   delete newData.contactOwner;
+  // }
+  delete newData.contactOwner;
   if (newData.phoneNumber) {
     newData.phoneNo = newData.phoneNumber;
     delete newData.phoneNumber;
   }
-  if (newData.associatedCompany) {
-    newData.company = newData.associatedCompany;
-    delete newData.associatedCompany;
-  }
+  // if (newData.associatedCompany) {
+  //   newData.companyName = newData.associatedCompany;
+  //   delete newData.associatedCompany;
+  // }
+  delete newData.associatedCompany;
   if (newData.leadStatus) {
     newData.leadStatus = LEAD_STATUS[newData.leadStatus];
-  }
-  if (newData.company) {
-    newData.companyName = newData.company;
-    delete newData.company;
   }
   let tempName = newData.name.split(" ");
   newData.firstName = tempName[0];
@@ -174,6 +172,8 @@ function makeNewRow(newData) {
   delete newData.name;
   return newData;
 }
+
+/* =====================================PUT============================================== */
 
 export {
   addRowsFromCsv,

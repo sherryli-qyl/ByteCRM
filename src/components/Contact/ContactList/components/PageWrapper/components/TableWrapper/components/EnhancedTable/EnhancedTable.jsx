@@ -33,7 +33,7 @@ class EnhancedTable extends Component {
     };
   }
 
-  getAll = () => {
+  getAllContacts = () => {
     GetAllContacts().then((data) => {
       console.log("EnhancedTable -> componentDidMount -> data", data);
       let allData = [];
@@ -51,7 +51,7 @@ class EnhancedTable extends Component {
   };
 
   componentDidMount() {
-    this.getAll();
+    this.getAllContacts();
   }
 
   removeRow = (evt, selectedRow) => {
@@ -88,7 +88,7 @@ class EnhancedTable extends Component {
         // });
         createContact(newData);
         setTimeout(() => {
-          this.getAll();
+          this.getAllContacts();
         }, 1000);
         resolve();
       }, 500);
@@ -105,10 +105,11 @@ class EnhancedTable extends Component {
   };
 
   getDataAndIndex = (data) => {
+    console.log(data);
     // Add the index of rows for editing
-    if (data.size !== 0) {
-      data.set("index", this.state.selectedRow);
-    }
+    // if (data.size !== 0) {
+    //   data.set("index", this.state.selectedRow);
+    // }
     // this.props.getDataToEdit(data);
   };
 

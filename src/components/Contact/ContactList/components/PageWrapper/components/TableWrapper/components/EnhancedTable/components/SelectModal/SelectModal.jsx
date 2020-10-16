@@ -127,16 +127,13 @@ class SelectModal extends Component {
       this.state.showType !== MODAL.DATE &&
       this.state.showType !== MODAL.EMPTY
     ) {
-      //
       this.setState({ singleDataToEdit: data, dateToEdit: [] });
     } else if (this.state.showType === MODAL.DATE) {
-      //
       const curData = this.processDateData(data);
       let temp = this.state.dateToEdit;
       temp.set(Object.keys(curData)[0], Object.values(curData)[0]);
       this.setState({ dateToEdit: temp });
     } else {
-      //
       this.setState({ singleDataToEdit: "", dateToEdit: [] });
     }
   };
