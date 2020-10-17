@@ -2,9 +2,9 @@ import React from 'react';
 import MeetingCards from './components/MeetingCards/MeetingCards';
 import MeetingPageHeader from './components/Header/MeetingPageHeader';
 import shuffleCards from '../../../../services/shuffleCards';
-import { GetMeetings } from '../../../../Api/Meeting/meeting';
+import { GetMeetings,UpdateMeeting } from '../../../../Api/Meeting/meeting';
 import "./MeetingPage.scss";
-
+import { ActivityContext } from '../../../Context';
 
 class MeetingPage extends React.Component {
     constructor(props) {
@@ -22,6 +22,8 @@ class MeetingPage extends React.Component {
             cardList: [],
             cardsArray: [],
         }
+        this.onChangeText = this.onChangeText.bind(this);
+        this.onChangeMeeting = this.onChangeMeeting.bind(this);
     }
 
     sortCardsArray() {
@@ -29,6 +31,22 @@ class MeetingPage extends React.Component {
         this.setState({
             cardsArray: newCardsArray
         })
+    }
+
+    onChangeText(newContent, cardKey) {
+        const newCardsList = this.state.cardList;
+        for (let i in newCardsList) {
+            if (newCardsList[i].key === cardKey) {
+                newCardsList[i].description = newContent;
+                this.setState({
+                    cardsList: newCardsList,
+                })
+            }
+        }
+    }
+
+    onChangeMeeting(meetingId, body) {
+        UpdateMeeting(meetingId, body);
     }
 
     componentDidMount() {
@@ -65,14 +83,23 @@ class MeetingPage extends React.Component {
     }
 
     render() {    
-        const {cardList,cardsArray} = this.state;
-        console.log("cardsArray");
-        console.log(cardsArray);
+        const {cardsArray} = this.state;
         return (
-            <div className="meetingPage">
-                <MeetingPageHeader />
-                <MeetingCards cardsArray={cardsArray} />
-            </div>
+            <ActivityContext.Consumer>
+                {contactData => {
+                    return (
+                        <div className="emailPage">
+                            <MeetingPageHeader 
+                                contactData={contactData}
+                                /*handleLogMeeting={this.handleLogMeeting}*/ />
+                            <MeetingCards
+                                contactData={contactData}
+                                cardsArray={cardsArray}
+                                onChangeMeeting={this.onChangeMeeting} />
+                        </div>
+                    )
+                }}
+            </ActivityContext.Consumer>
         )
     }
 }
