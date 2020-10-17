@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./ContactList.scss";
-import ListPage from "./components/PageWrapper";
+import PageWrapper from "../../../pages/ListPage/components/PageWrapper";
 
 
 const tabs = [
@@ -31,7 +31,7 @@ class ContactList extends Component {
     return (
       <div className="root" key={'wrapper'}>
         <h1>Contacts</h1>
-        <ListPage tabs={tabs} userAccount={this.state.userAccount} />
+        <PageWrapper tabs={tabs} userAccount={this.state.userAccount} type={'contact'}/>
       </div>
     );
   }
