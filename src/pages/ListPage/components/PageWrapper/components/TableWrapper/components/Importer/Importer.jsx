@@ -83,15 +83,15 @@ function Importer(props) {
   };
 
   return (
-    <div>
+    <>
       <ReactFileReader
         multipleFiles={false}
         fileTypes={[".csv"]}
         handleFiles={handleFiles}
       >
-        <button className="btn">Import</button>
+        <button className="import__btn">Import</button>
       </ReactFileReader>
-    </div>
+    </>
   );
 }
 

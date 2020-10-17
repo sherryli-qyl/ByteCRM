@@ -5,7 +5,7 @@ import Tab from "@material-ui/core/Tab";
 import TabContainer from "./components/TabContainer/TabContainer";
 import TableWrapper from "./components/TableWrapper";
 
-class ListPage extends React.Component {
+class PageWrapper extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -39,6 +39,7 @@ class ListPage extends React.Component {
                   key={"ID" + tab.id}
                   tab={tab.id}
                   userAccount={this.props.userAccount}
+                  type={this.props.type}
                 />
               </div>
             )
@@ -48,4 +49,4 @@ class ListPage extends React.Component {
   }
 }
 
-export default ListPage;
+export default PageWrapper;

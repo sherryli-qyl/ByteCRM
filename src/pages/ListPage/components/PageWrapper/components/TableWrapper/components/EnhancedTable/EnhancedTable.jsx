@@ -1,25 +1,25 @@
 import React, { Component } from "react";
 import { ThemeProvider as MuiThemeProvider } from "@material-ui/core/styles";
-import Theme from "../../../../../../../../Style/Theme/TableTheme";
+import Theme from "../../../../../../../../components/Style/Theme/TableTheme";
 import MaterialTable from "material-table";
 import SelectModal from "./components/SelectModal";
-import tableIcons from "../../../../../../../../../lib/tableLibs/getIcons";
-import getColumns from "../../../../../../../../../lib/tableLibs/getColumns";
-import exportCSV from "../../../../../../../../../lib/tableLibs/exportCSV";
-import exportPDF from "../../../../../../../../../lib/tableLibs/exportPDF";
+import tableIcons from "../../../../../../../../lib/tableLibs/getIcons";
+import getColumns from "../../../../../../../../lib/tableLibs/getColumns";
+import exportCSV from "../../../../../../../../lib/tableLibs/exportCSV";
+import exportPDF from "../../../../../../../../lib/tableLibs/exportPDF";
 import {
   GetAllContacts,
   removeContact,
   createContact,
   UpdateContact,
-} from "../../../../../../../../Api/Contact";
+} from "../../../../../../../../components/Api/Contact";
 import {
   addRowsFromCsv,
   getTable,
   processData,
   remove,
   makeNewRow,
-} from "../../../../../../../../../lib/tableLibs/dataOperation";
+} from "../../../../../../../../lib/tableLibs/dataOperation";
 
 class EnhancedTable extends Component {
   constructor(props) {
@@ -159,8 +159,8 @@ class EnhancedTable extends Component {
               pageSize: 10,
               pageSizeOptions: [10, 30, 50],
               exportButton: true,
-              exportCsv: exportCSV,
-              exportPdf: exportPDF,
+              exportCsv: (columns, data) => exportCSV(columns, data, this.props.type),
+              exportPdf: (columns, data) => exportPDF(columns, data, this.props.type),
             }}
             editable={{
               onRowAdd: this.addRow,

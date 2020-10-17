@@ -1,7 +1,7 @@
 import React from "react";
 import EnhancedTable from "./components/EnhancedTable/EnhancedTable";
 import Importer from "./components/Importer";
-import { addRowsFromCsv } from "../../../../../../../lib/tableLibs/dataOperation";
+import { addRowsFromCsv } from "../../../../../../lib/tableLibs/dataOperation";
 
 class TableWrapper extends React.Component {
   constructor(props) {
@@ -41,6 +41,7 @@ class TableWrapper extends React.Component {
           CSVData={this.state.CSVData}
           tab={this.props.tab}
           userAccount={this.props.userAccount}
+          type={this.props.type}
         />
       </>
     );
