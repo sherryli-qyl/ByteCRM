@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from './components/Header';
+import Footer from './components/Footer';
 import './AddModal.scss';
 
 
@@ -14,13 +15,19 @@ class AddModal extends React.Component {
 
 
     render() {
-        const { title,content } = this.props.addModal;
+        const { title,content} = this.props.addModal;
+
+        let className = 'addModal ';
+        if(this.props.showAddModal){
+            className += 'addModal--active'
+        }
         return (
-            <div className="addModal">
-                <Header title = {title}/>
-                <div className="addModal__Body">
+            <div className= {className}>
+                <Header title = {title} onClickCloseBtn = {this.props.onClickCloseBtn}/>
+                <div className="addModal__body">
                     {content}
                 </div>
+                <Footer/>
             </div>
         )
     }

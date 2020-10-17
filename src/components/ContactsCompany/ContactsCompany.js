@@ -11,7 +11,6 @@ class ContactsCompany extends React.Component {
     const hintMessage = "You may only associate one company to a contact record";
     this.state = {
       hintMessage,
-      showAddModal: false,
     }
   }
 

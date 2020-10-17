@@ -1,13 +1,23 @@
 import React from 'react';
+import AddExistCompany from './components/AddExistCompany';
+import SwitchButtonBar from '../../../SwitchButtonBar';
+
+import './AddCompabyRef.scss';
 
 
 
-const AddCompanyRef =(props)=>{
+const AddCompanyRef = (props) => {
+
+    const components = [{key:0,label:"Add existing company",component: <AddExistCompany/>},
+                        {key:1,label:"Create a new company",component:""}]
 
 
-    return(
-        <div>
-            add company
+    return (
+        <div className='addCompanyRef'>
+            <div className='addCompanyRef__description'>
+                Keep track of which companies are related to this contact.
+            </div>
+            <SwitchButtonBar components = {components}/>
         </div>
     )
 }
