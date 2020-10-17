@@ -1,7 +1,6 @@
 import React from 'react';
 import SearchBar from '../../../SearchBar';
 import Select from '../Select';
-import Loading from '../../../Loading';
 import './Dropdown.scss';
 
 

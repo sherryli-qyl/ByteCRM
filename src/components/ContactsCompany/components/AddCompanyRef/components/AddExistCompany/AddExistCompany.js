@@ -1,4 +1,5 @@
 import React from 'react';
+import SearchBar from '../../../../../SearchBar';
 
 import './AddExistCompany.scss';
 
@@ -8,7 +9,7 @@ const AddExistCompany =({
 
     return(
         <div>
-            abc
+           
 
         </div>
     )
