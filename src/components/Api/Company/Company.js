@@ -7,8 +7,8 @@ const GetCompanyByCode = (code) => {
 export {GetCompanyByCode};
 
 
-async function GetCompany(companyId) {
-  const serverUrl = `http://localhost:3000/api/companies/${companyId}`;
+async function GetCompany(code) {
+  const serverUrl = `http://localhost:3000/api/companies/${code}`;
   const response = await fetch(serverUrl, {
     method: "GET",
   });
@@ -26,10 +26,10 @@ async function GetAllCompanies() {
   });
   const data = response.json();
   return data;
-}
+};
 
-async function UpdateCompany(companyId, body) {
-  const serverUrl = `http://localhost:3000/api/companies/${companyId}`;
+async function UpdateCompany(code, body) {
+  const serverUrl = `http://localhost:3000/api/companies/${code}`;
   console.log(body);
   const response = await fetch(serverUrl, {
     method: "PUT",
@@ -42,8 +42,27 @@ async function UpdateCompany(companyId, body) {
   return data;
 }
 
-async function GetCompanyByUserId(userId, keyword) {
-  const serverUrl = `http://localhost:3000/api/companies/search/${userId}/${keyword}`;
+async function AddCompany(body){
+  const serverUrl = `http://localhost:3000/api/companies`;
+  const response = await fetch(serverUrl, {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(body)
+  });
+
+  if (response.ok){
+    return response.json();
+  }
+  else {
+    return false
+  }
+}
+
+
+async function GetCompanyByUserId(code, keyword) {
+  const serverUrl = `http://localhost:3000/api/companies/search/${code}/${keyword}`;
   const response = await fetch(serverUrl, {
     method: "GET",
   });
@@ -67,4 +86,20 @@ async function GetCompanyByUserId(userId, keyword) {
   }
 }
 
-export { GetCompany, UpdateCompany, GetCompanyByUserId, GetAllCompanies };
+async function DeleteCompany(code) {
+  const serverUrl = `http://localhost:3000/api/companies/${code}`;
+  const response = await fetch(serverUrl, {
+    method: "DELETE",
+    headers: {
+        'Content-Type': 'application/json'
+    },
+  });
+  if(response.ok) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+
+export { GetAllCompanies, GetCompany, AddCompany, UpdateCompany, GetCompanyByUserId,  DeleteCompany };
