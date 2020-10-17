@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import api from '../../../../lib/api/api' ;
 import { withRouter } from 'react-router-dom';
 
 class LoginForm extends React.Component {
@@ -59,8 +60,8 @@ class LoginForm extends React.Component {
         passwordErrMsg: '',
       });
     }
-    axios
-      .post('http://localhost:3000/api/auth', {
+    api
+      .post('/api/auth', {
         email: this.state.user.email,
         password: this.state.user.password,
       })

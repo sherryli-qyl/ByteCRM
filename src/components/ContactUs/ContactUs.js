@@ -1,9 +1,7 @@
 import React from 'react';
-import './ContactUs.scss';
-
-// import CatchBackground from './components/CatchBackground';
 import Background from './components/Background';
 import ContactMethod from './components/ContactMethod';
+import './ContactUs.scss';
 
 const ContactUs = () => {
     return (

@@ -1,15 +1,15 @@
 import jwt from 'jsonwebtoken';
 
-const JWT_TOKEN_NAME = 'jwtToken-byteCRM';
+const AUTH_TOKEN = 'AUTH_TOKEN';
 
-export const getToken = () => localStorage.getItem(JWT_TOKEN_NAME);
+export const getToken = () => localStorage.getItem(AUTH_TOKEN);
 
-export const setToken = token => localStorage.setItem(JWT_TOKEN_NAME, token);
+export const setToken = token => localStorage.setItem(AUTH_TOKEN, token);
 
-export const removeToken = () => localStorage.removeItem(JWT_TOKEN_NAME);
+export const removeToken = () => localStorage.removeItem(AUTH_TOKEN);
 
 export const isLoggedIn = () => {
-    const token = localStorage.getItem(JWT_TOKEN_NAME);
+    const token = localStorage.getItem(AUTH_TOKEN);
 
     if (!token) return false;
 
@@ -19,3 +19,4 @@ export const isLoggedIn = () => {
 
     return !isExpired;
 };
+

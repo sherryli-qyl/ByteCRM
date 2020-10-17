@@ -1,1 +1,1 @@
-export {GetContact, GetContactByUserId, GetAllContacts, UpdateContact, removeContact } from './Contact';
+export {GetContact, GetContactByUserId, GetAllContacts, UpdateContact, removeContact, createContact } from './Contact';

@@ -30,3 +30,9 @@
   -moz-box-shadow: inset 0px 1px 4px #ececec;
   -webkit-box-shadow: inset 0px 1px 4px #ececec;
 }
+
+.errorMsg {
+  position: relative;
+  top: 40px;
+  color: red;
+}

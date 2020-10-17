@@ -1,13 +1,13 @@
 import styled, { css } from 'styled-components';
 
 const NavigationItem = styled.div`
-  padding: 16px;
+  padding: 0px 16px;
 
   ${(props) => props.indictable && css`
-    &:hover {
+    ${'' /* &:hover {
       border-bottom: 2px solid #008fb4;
-      margin-bottom: -2px;
-    }
+      margin-bottom: -5px;
+    } */}
   `}
 `;
 
