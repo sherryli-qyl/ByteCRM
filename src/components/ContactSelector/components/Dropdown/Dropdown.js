@@ -1,7 +1,6 @@
 import React from 'react';
-import SearchBar from '../SearchBar';
+import SearchBar from '../../../SearchBar';
 import Select from '../Select';
-import HintBar from '../HintBar';
 import Loading from '../../../Loading';
 import './Dropdown.scss';
 
@@ -32,9 +31,11 @@ const Dropdown = ({
             <div className='contactDropdown__inner'>
                 <div className='contactDropdown__inner__wrapper'>
                     <SearchBar textInput={textInput}
-                        enableCleanBtn={enableCleanBtn}
-                        handleInputChange={handleInputChange}
-                        handleCleanInput={handleCleanInput} />
+                               enableCleanBtn={enableCleanBtn}
+                               handleInputChange={handleInputChange}
+                               handleCleanInput={handleCleanInput}
+                               checkInput = {checkInput}
+                               textInputHint = {textInputHint} />
                 </div>
                 {!checkInput ?
                     <Select label={'Contacts'}
@@ -44,12 +45,7 @@ const Dropdown = ({
                             handleRemoveContact={handleRemoveContact}
                             handleAddContact={handleAddContact} />
                     :
-                    loading ?
-                        <Loading variant="bar" />
-                        :
-                        <HintBar>
-                            {textInputHint}
-                        </HintBar>
+                  ""
                 }
             </div>
         </div>
