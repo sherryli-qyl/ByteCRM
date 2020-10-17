@@ -31,6 +31,7 @@ class JumpButton extends React.Component {
         >
           {this.props.name}
         </NavLink>
+        &ensp;
       </button>
     );
   }

@@ -4,8 +4,6 @@ const GetCompanyByCode = (code) => {
     const response = api.get(`/api/companies/${code}`);
     return response; 
 }
-export {GetCompanyByCode};
-
 
 async function GetCompany(code) {
   const serverUrl = `http://localhost:3000/api/companies/${code}`;
@@ -91,7 +89,7 @@ async function DeleteCompany(code) {
   const response = await fetch(serverUrl, {
     method: "DELETE",
     headers: {
-        'Content-Type': 'application/json'
+      'Content-Type': 'application/json'
     },
   });
   if(response.ok) {
@@ -101,5 +99,4 @@ async function DeleteCompany(code) {
   }
 }
 
-
-export { GetAllCompanies, GetCompany, AddCompany, UpdateCompany, GetCompanyByUserId,  DeleteCompany };
+export { GetCompanyByCode, GetAllCompanies, GetCompany, AddCompany, UpdateCompany, GetCompanyByUserId,  DeleteCompany };

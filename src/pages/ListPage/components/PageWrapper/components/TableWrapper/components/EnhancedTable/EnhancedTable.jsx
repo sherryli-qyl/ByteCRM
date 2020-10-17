@@ -14,11 +14,17 @@ import {
   UpdateContact,
 } from "../../../../../../../../components/Api/Contact";
 import {
-  addRowsFromCsv,
+  GetAllCompanies,
+  AddCompany,
+  UpdateCompany,
+  DeleteCompany,
+} from "../../../../../../../../components/Api/Company";
+import {
   getTable,
   processData,
-  remove,
   makeNewRow,
+  remove,
+  addRowsFromCsv,
 } from "../../../../../../../../lib/tableLibs/dataOperation";
 
 class EnhancedTable extends Component {
@@ -26,7 +32,7 @@ class EnhancedTable extends Component {
     super(props);
     this.state = {
       modalVisible: false,
-      columns: getColumns(),
+      columns: getColumns(this.props.type),
       selectedRow: null,
       dataToShow: [],
       allData: [],
@@ -37,11 +43,30 @@ class EnhancedTable extends Component {
     GetAllContacts().then((data) => {
       console.log("EnhancedTable -> componentDidMount -> data", data);
       let allData = [];
-      allData = data.map((cur) => processData(cur));
+      allData = data.map((cur) => processData(cur, this.props.type));
       const showData = getTable(
         allData,
         this.props.tab,
-        this.props.userAccount
+        this.props.userAccount,
+        this.props.type
+      );
+      this.setState({
+        allData: allData,
+        dataToShow: showData,
+      });
+    });
+  };
+
+  getAllCompanies = () => {
+    GetAllCompanies().then((data) => {
+      console.log("EnhancedTable -> componentDidMount -> data", data);
+      let allData = [];
+      allData = data.map((cur) => processData(cur, this.props.type));
+      const showData = getTable(
+        allData,
+        this.props.tab,
+        this.props.userAccount,
+        this.props.type
       );
       this.setState({
         allData: allData,
@@ -51,7 +76,11 @@ class EnhancedTable extends Component {
   };
 
   componentDidMount() {
-    this.getAllContacts();
+    if (this.props.type === "contact") {
+      this.getAllContacts();
+    } else {
+      this.getAllCompanies();
+    }
   }
 
   removeRow = (evt, selectedRow) => {
@@ -67,9 +96,15 @@ class EnhancedTable extends Component {
         }
         // remove data in mongoDB
         deleteRow.map((cur) => {
-          removeContact(cur.contactID).then((code) => {
-            console.log("EnhancedTable -> removeRow -> code", code);
-          });
+          if (this.props.type === "contact") {
+            removeContact(cur.contactID).then((code) => {
+              console.log("EnhancedTable -> removeRow -> code", code);
+            });
+          } else if (this.props.type === "company") {
+            DeleteCompany(cur.companyID).then((status) => {
+              console.log("Delete completion is " + status);
+            })
+          }
         });
         this.setState({
           dataToShow: allData,
@@ -82,10 +117,7 @@ class EnhancedTable extends Component {
   addRow = (newData) => {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        newData = makeNewRow(newData);
-        // this.setState({
-        //   dataToShow: [...this.state.dataToShow, newData]
-        // });
+        newData = makeNewRow(newData, this.props.type);
         createContact(newData);
         setTimeout(() => {
           this.getAllContacts();
@@ -104,7 +136,7 @@ class EnhancedTable extends Component {
     this.setState({ modalVisible: s });
   };
 
-  getDataAndIndex = (data) => {
+  getDataToEdit = (data) => {
     this.state.selectedRow.map((cur) => {
       UpdateContact(this.state.allData[cur].contactID, data);
     });
@@ -127,7 +159,7 @@ class EnhancedTable extends Component {
         {this.state.modalVisible && (
           <SelectModal
             changeModalVisible={this.changeVisible}
-            getDataToEdit={this.getDataAndIndex}
+            getDataToEdit={this.getDataToEdit}
           ></SelectModal>
         )}
         <MuiThemeProvider theme={Theme}>
@@ -159,8 +191,10 @@ class EnhancedTable extends Component {
               pageSize: 10,
               pageSizeOptions: [10, 30, 50],
               exportButton: true,
-              exportCsv: (columns, data) => exportCSV(columns, data, this.props.type),
-              exportPdf: (columns, data) => exportPDF(columns, data, this.props.type),
+              exportCsv: (columns, data) =>
+                exportCSV(columns, data, this.props.type),
+              exportPdf: (columns, data) =>
+                exportPDF(columns, data, this.props.type),
             }}
             editable={{
               onRowAdd: this.addRow,
