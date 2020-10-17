@@ -66,7 +66,7 @@ function getColumns(type) {
         editable: "never",
       },
     ];
-  } else {
+  } else if (type === "company") {
     return [
       {
         title: "NAME",
@@ -93,8 +93,8 @@ function getColumns(type) {
         initialEditValue: getDate(),
         validate: (rowData) => {
           if (
-            rowData.lastActivityDate === "" ||
-            testDate(rowData.lastActivityDate)
+            rowData.lastLoggedCallDate === "" ||
+            testDate(rowData.lastLoggedCallDate)
           ) {
             return true;
           }

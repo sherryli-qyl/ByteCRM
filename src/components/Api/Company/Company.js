@@ -28,7 +28,6 @@ async function GetAllCompanies() {
 
 async function UpdateCompany(code, body) {
   const serverUrl = `http://localhost:3000/api/companies/${code}`;
-  console.log(body);
   const response = await fetch(serverUrl, {
     method: "PUT",
     headers: {

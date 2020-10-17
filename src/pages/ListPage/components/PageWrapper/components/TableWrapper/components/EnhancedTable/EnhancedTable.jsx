@@ -118,9 +118,17 @@ class EnhancedTable extends Component {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         newData = makeNewRow(newData, this.props.type);
-        createContact(newData);
+        if (this.props.type === "contact") {
+          createContact(newData);
+        } else if (this.props.type === "company") {
+          AddCompany(newData);
+        }
         setTimeout(() => {
-          this.getAllContacts();
+          if (this.props.type === "contact") {
+            this.getAllContacts();
+          } else {
+            this.getAllCompanies();
+          }
         }, 1000);
         resolve();
       }, 500);
@@ -138,10 +146,18 @@ class EnhancedTable extends Component {
 
   getDataToEdit = (data) => {
     this.state.selectedRow.map((cur) => {
-      UpdateContact(this.state.allData[cur].contactID, data);
+      if (this.props.type === "contact") {
+        UpdateContact(this.state.allData[cur].contactID, data);
+      } else if (this.props.type === "company") {
+        UpdateCompany(this.state.allData[cur].companyID, data);
+      }
     });
     setTimeout(() => {
-      this.getAllContacts();
+      if (this.props.type === "contact") {
+        this.getAllContacts();
+      } else {
+        this.getAllCompanies();
+      }
     }, 1000);
   };
 
@@ -160,6 +176,7 @@ class EnhancedTable extends Component {
           <SelectModal
             changeModalVisible={this.changeVisible}
             getDataToEdit={this.getDataToEdit}
+            type={this.props.type}
           ></SelectModal>
         )}
         <MuiThemeProvider theme={Theme}>
@@ -186,6 +203,8 @@ class EnhancedTable extends Component {
             ]}
             options={{
               selection: true,
+              addRowPosition: "first",
+              // maxBodyHeight: 700,
               search: true,
               sorting: true,
               pageSize: 10,

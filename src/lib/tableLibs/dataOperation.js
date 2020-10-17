@@ -63,8 +63,8 @@ function wrapUpData(data, type) {
     });
   } else if (type === "company") {
     return data.map((cur) => {
-      const temp = [];
-      if (cur.contactID.length !== 0) {
+      let newOwners, temp = [];
+      if (cur.associatedContacts.length !== 0 && cur.contactID.length !== 0) {
         for (let i in cur.contactID) {
           temp.push(
             <JumpButton
@@ -75,13 +75,12 @@ function wrapUpData(data, type) {
           );
         }
       }
-      let newOwners = <>{temp.map((cur) => cur)}</>;
+      newOwners = <>{temp.map((cur) => cur)}</>;
       return {
         name: (
           <JumpButton id={cur.companyID} type={"company"} name={cur.name} />
         ),
-        associatedContacts:
-          cur.associatedContacts.length !== 0 ? newOwners : undefined,
+        associatedContacts: newOwners ? newOwners : undefined,
         companyOwner: cur.companyOwner,
         companyID: cur.companyID,
         phoneNumber: cur.phoneNumber,
@@ -238,7 +237,7 @@ function makeNewRow(newData, type) {
     delete newData.name;
     return newData;
   } else if (type === "company") {
-    console.log("makeNewRow -> newData", newData);
+    return newData;
   }
 }
 
