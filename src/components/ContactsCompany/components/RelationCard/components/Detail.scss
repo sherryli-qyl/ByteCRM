@@ -1,4 +1,4 @@
-@import '../../../../../../../../style/variable.scss';
+@import '../../../../../style/variable.scss';
 
 .relatedCompany {
   position: relative;
@@ -72,7 +72,7 @@
       &__hint{
         position:fixed;
         right:2.5%;
-        top: 15%;
+        top: 11%;
       }
     }
   }

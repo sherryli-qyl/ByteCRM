@@ -1,8 +1,8 @@
 import React from 'react';
 import { faPhoneAlt, faExternalLinkAlt, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import RemoveButtom from '../../../../../../../Style/Button/Activities/LogButton';
-import HintBox from '../../../../../../../HintBox';
+import RemoveButtom from '../../../../Style/Button/Activities/LogButton';
+import HintBox from '../../../../HintBox';
 import './Detail.scss';
 
 

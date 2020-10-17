@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Modal from '../../Modal';
 import InfoPage from '../../InfoPage';
 import Activities from '../../Activities';
-import RelationCompany from "./components/RelationCompany";
+import SideBar from '../../SideBar';
 import Loading from '../../Loading';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { ModalContext } from '../../Modal/components/ModalContext';
@@ -102,6 +102,7 @@ class ContactMain extends Component {
         const infoData = { key: 'contact', data: contact, dictionary: ContactDictionary };
         const value = { single: this.onChangeSingleInfo, multi: this.onChangeMultiInfo };
         const contactData = {contact:contact,userId:this.userId,close:this.closeModal}
+        const sideBarData = {company:contact.company}
         const openModal = this.openModal;
         return (
             <div>
@@ -121,7 +122,7 @@ class ContactMain extends Component {
                                 <ActivityContext.Provider value = {contactData}>
                                     <Activities contact = {contact}
                                                 />
-                                    <RelationCompany company={contact.company}/>
+                                    <SideBar data = {sideBarData} />
                                     <Modal Xaxis={this.state.Xaxis}
                                         Yaxis={this.state.Yaxis}
                                         visible={visible}

@@ -34,6 +34,7 @@ const Dropdown = ({
                                enableCleanBtn={enableCleanBtn}
                                handleInputChange={handleInputChange}
                                handleCleanInput={handleCleanInput}
+                               loading = {loading}
                                checkInput = {checkInput}
                                textInputHint = {textInputHint} />
                 </div>

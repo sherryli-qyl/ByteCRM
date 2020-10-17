@@ -1,6 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
+import AddModal from '../AddModal';
 import HintBox from '../HintBox';
 import './ExpandBar.scss';
 
@@ -10,13 +11,21 @@ class ExpandBar extends React.Component {
         super(props);
         this.state = {
             showDetail: false,
+            showAddModal:false,
             showHint:false,
             color:"white",
-
         }
 
         this.handleOnClickAngle = this.handleOnClickAngle.bind(this);
         this.hintBoxToggle = this.hintBoxToggle.bind(this);
+        this.onClickAddBtn = this.onClickAddBtn.bind(this);
+    }
+
+    onClickAddBtn(){
+        this.setState(prevState =>({
+            ...prevState,
+            showAddModal:true,
+        }))
     }
 
     handleOnClickAngle() {
@@ -33,9 +42,10 @@ class ExpandBar extends React.Component {
     }
 
 
+
     render() {
-        const { showDetail,showHint } = this.state;
-        const { showAdd, disabled, hintMessage } = this.props;
+        const { showDetail,showHint,showAddModal} = this.state;
+        const { showAdd, disabled, hintMessage,addModal } = this.props;
         let angleIconClassName = 'angleIcon '
 
 
@@ -68,6 +78,7 @@ class ExpandBar extends React.Component {
                                         disabled={disabled}
                                         onClick={(event) => {
                                         event.stopPropagation();
+                                        this.onClickAddBtn();
                                     }}>
                                     {disabled && showHint?
                                         <div className='expandBar__container__right__hint'>
@@ -89,7 +100,12 @@ class ExpandBar extends React.Component {
                         {this.props.content}
                     </div>
                 </div>
-
+                {showAddModal?
+                 <AddModal addModal = {addModal}/>
+                 :
+                 ""
+                }
+               
             </div>
         )
     }

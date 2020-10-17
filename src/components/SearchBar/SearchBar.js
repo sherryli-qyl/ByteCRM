@@ -1,5 +1,6 @@
 import React from 'react';
 import HintBar from './components/HintBar';
+import Loading from '../Loading';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faTimes } from "@fortawesome/free-solid-svg-icons";
 
@@ -34,7 +35,7 @@ class SearchBar extends React.Component {
 
 
     render() {
-        const { textInput, enableCleanBtn, checkInput, textInputHint } = this.props;
+        const { textInput, enableCleanBtn, checkInput, textInputHint, loading } = this.props;
 
         let showHint = false;
         if (checkInput) {
@@ -67,9 +68,13 @@ class SearchBar extends React.Component {
                 </div>
                 {showHint ?
                     <div className="searchBar__bottom">
-                        <HintBar>
-                            {textInputHint}
-                        </HintBar>
+                        {loading ?
+                            <Loading variant="bar" />
+                            :
+                            <HintBar>
+                                {textInputHint}
+                            </HintBar>
+                        }
                     </div>
                     :
                     ""
