@@ -1,12 +1,14 @@
 @import "../../../../style/variable.scss";
 
 .catch_background {
-  // background-image: url("../../../../img/Contactus/getintouch.jpeg") no-repeat fixed,
   background-image: linear-gradient(45deg, #6a78d1, #00a4bd);
   height: 350px;
   background-position: center;
   background-size: cover;
   position: relative;
+  @include MQ(S) {
+    height: 300px;
+  }
 
   .background-text {
     text-align: center;
@@ -18,9 +20,21 @@
 
     h2 {
       font-size: 50px;
+      @include MQ(M) {
+        font-size: 40px;
+      }
+      @include MQ(S) {
+        font-size: 27px;
+      }
     }
     p {
       font-size: 1.125rem;
+      @include MQ(M) {
+        font-size: 1rem;
+      }
+      @include MQ(S) {
+        font-size: 0.8rem;
+      }
     }
   }
 }

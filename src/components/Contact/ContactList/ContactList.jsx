@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./ContactList.scss";
-import ListPage from "./components/listPage";
-
+import ListPage from "./components/PageWrapper";
 
 
 const tabs = [
@@ -13,6 +12,10 @@ const tabs = [
     id: 2,
     label: "My contacts",
   },
+  {
+    id: 3,
+    label: "Unassigned contacts"
+  }
 ];
 
 
@@ -20,7 +23,7 @@ class ContactList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userAccount: "James",
+      userAccount: "Yurun Yu",
     };
   }
 
