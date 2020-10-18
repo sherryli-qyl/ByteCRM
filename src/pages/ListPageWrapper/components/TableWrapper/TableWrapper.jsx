@@ -20,22 +20,6 @@ class TableWrapper extends React.Component {
     }, 500)
   };
 
-  // getNewTable = (newTable) => {
-  //   this.setState({
-  //     table: updateTable(newTable)
-  //   });
-  // }
-
-  // edit只能得到需要修改的行和域
-  // getDataToEdit = (dataToEdit) => {
-  //   this.setState({
-  //     table: editColumns(dataToEdit),
-  //   });
-  //   setTimeout(() => {
-  //       console.log(this.state.table);
-  //   })
-  // };
-
   render() {
     return (
       <>

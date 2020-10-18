@@ -6,7 +6,7 @@ import SelectModal from "./components/SelectModal";
 import tableIcons from "../../../../../../lib/tableLibs/getIcons";
 import getColumns from "../../../../../../lib/tableLibs/getColumns";
 import exportCSV from "../../../../../../lib/tableLibs/exportCSV";
-import exportPDF from "../../../../../../lib/tableLibs/exportPDF";
+// import exportPDF from "../../../../../../lib/tableLibs/exportPDF";
 import {
   GetAllContacts,
   removeContact,
@@ -23,8 +23,7 @@ import {
   getTable,
   processData,
   makeNewRow,
-  remove,
-  addRowsFromCsv,
+  remove
 } from "../../../../../../lib/tableLibs/dataOperation";
 
 class EnhancedTable extends Component {
@@ -47,6 +46,7 @@ class EnhancedTable extends Component {
     }
   }
 
+  // TODO: get new data from CSV
   componentDidUpdate(nextProps) {
     const { CSVData } = this.props;
     if (nextProps.CSVData !== CSVData) {
