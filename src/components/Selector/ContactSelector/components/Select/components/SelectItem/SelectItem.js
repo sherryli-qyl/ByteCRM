@@ -33,18 +33,18 @@ class SelectItem extends React.Component{
 
         const {showHint} = this.state;
 
-        let btnClassName = "contactSelectItem__left__checkbox__btn "
+        let btnClassName = "selectSearchItem__left__checkbox__btn "
 
         if (disabled) {
-            btnClassName += "contactSelectItem__left__checkbox__btn--disabled"
+            btnClassName += "selectSearchItem__left__checkbox__btn--disabled"
         }
 
         return(
-            <div className='contactSelectItem'  onMouseEnter = {()=>this.handleHintToggle(true)}
+            <div className='selectSearchItem'  onMouseEnter = {()=>this.handleHintToggle(true)}
                                                 onMouseLeave={()=>this.handleHintToggle(false)}>
-            <div className='contactSelectItem__left'>
+            <div className='selectSearchItem__left'>
                 {checked ?
-                    <div className='contactSelectItem__left__checkbox'>
+                    <div className='selectSearchItem__left__checkbox'>
                         <button
                             className={btnClassName}
                             disabled={disabled}
@@ -56,18 +56,18 @@ class SelectItem extends React.Component{
                         </button>
                     </div>
                     :
-                    <div className='contactSelectItem__left__square'
+                    <div className='selectSearchItem__left__square'
                         onClick={event => {
                             event.preventDefault();
                             handleAddContact(contact);
                         }} />
                 }
             </div>
-            <div className='contactSelectItem__right'>
+            <div className='selectSearchItem__right'>
                 {`${contact.fullName} (${contact.email})`}
             </div>
             {disabled && showHint ?
-                <div className="contactSelectItem__hint">
+                <div className="selectSearchItem__hint">
                     <HintBox variant='topRight'>{selectHint}</HintBox>
                 </div>
                 :

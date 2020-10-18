@@ -16,9 +16,9 @@ const ContactSelect = (props) => {
     }
 
     return (
-        <div className="contactSelect">
-            <div className="contactSelect__title">
-                <span className="contactSelect__title__text">
+        <div className="searchResultSelect">
+            <div className="searchResultSelect__title">
+                <span className="searchResultSelect__title__text">
                     {label}
                 </span>
             </div>

@@ -4,12 +4,12 @@ import CompanySelector from '../../../../../Selector/CompanySelector';
 import './AddExistCompany.scss';
 
 const AddExistCompany =({
-    children
+    handleSelectedCompany,
 }) =>{
 
     return(
         <div>
-            <CompanySelector/>
+            <CompanySelector handleSelectedCompany={handleSelectedCompany}/>
         </div>
     )
 }

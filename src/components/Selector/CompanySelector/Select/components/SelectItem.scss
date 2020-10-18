@@ -1,0 +1,19 @@
+@import '../../../../../style/variable.scss';
+
+.companySelectItem{
+    display: flex;
+    justify-content: flex-start;
+    background-color: white;
+    padding: 10px 0px 10px 20px;
+
+    &--selected{
+        background-color: #e5f5f8;
+    }
+
+    &__btn{
+        @extend .nakedBtn;
+        color:$primary-color;
+        font-size: 15px;
+        cursor: pointer;
+    }
+}

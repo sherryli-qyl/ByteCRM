@@ -1,5 +1,7 @@
 .addModal{
     position: fixed;
+    display: flex;
+    flex-direction: column;
     right:0;
     top:0;
     bottom: 0;
@@ -21,11 +23,13 @@
     }
 
     &__body{
+        flex:1 1 100%;
         padding: {
             left:40px;
             right:40px;
             top:24px;
             bottom:1;
         }
+
     }
 }

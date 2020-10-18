@@ -1,6 +1,7 @@
 import React from 'react';
 import Dropdown from '../components/Dropdown';
 import DropDownDisplay from '../../DropDownDisplay';
+import Select from './Select';
 import {GetCompanyByUserId} from '../../Api/Company';
 import './CompanySelector.scss';
 
@@ -16,14 +17,20 @@ class CompanySelector extends React.Component {
             textInputHint: '',
             enableCleanBtn: false,
             loading:false,
+            company:"",
+            selectIndex: 0, 
             searchList:[],
+            dropDownDisable:false,
         }
         this.wrapperRef = React.createRef();
         this.btnRef = React.createRef();
         this.handleClickSelectorButton = this.handleClickSelectorButton.bind(this);
+        this.handleAddCompany = this.handleAddCompany.bind(this);
+        this.handleRemoveCompany = this.handleRemoveCompany.bind(this);
         this.handleCleanInput = this.handleCleanInput.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleClickOutside = this.handleClickOutside.bind(this);
+        this.onChangeSelectItem = this.onChangeSelectItem.bind(this);
     }
 
     handleClickSelectorButton() {
@@ -53,12 +60,37 @@ class CompanySelector extends React.Component {
         this.handleFindContact("");
     }
 
+    handleRemoveCompany(selectedCompany) {
+       this.setState({
+           company: selectedCompany
+       })
+    }
+
+    handleAddCompany(selectedCompany) {
+        this.setState({
+            company: selectedCompany
+        })
+        this.handleClickSelectorButton();
+        
+    }
+
     handleFindContact(text) {
         let newHint = '';
         if (text.length === 0) {
             this.setState({
                 searchList: [],
                 checkInput: false,
+            })
+        }
+
+        else if (text.length > 0 && text.length < 3) {
+            newHint = `type ${3 - text.length} more character`;
+            this.setState(prevState => {
+                return {
+                    ...prevState,
+                    textInputHint: newHint,
+                    checkInput: true,
+                }
             })
         }
 
@@ -70,6 +102,7 @@ class CompanySelector extends React.Component {
                 loading: true
             }))
             response.then(findCompanies => {
+                console.table(findCompanies);
                 if (findCompanies) {
                     const newSearchList = findCompanies;
                     let foundNewCompany = false;
@@ -102,6 +135,13 @@ class CompanySelector extends React.Component {
         }
     }
 
+    onChangeSelectItem(index){
+        this.setState({
+            selectIndex:index
+        })
+        console.log(index);
+    }
+
     handleClickOutside(event) {
         if (this.wrapperRef && !this.wrapperRef.current.contains(event.target) && !this.btnRef.current.contains(event.target) && this.state.showDropdown) {
             this.handleClickSelectorButton();
@@ -120,12 +160,27 @@ class CompanySelector extends React.Component {
 
 
     render() {
-        const { showDropdown, checkInput,textInput,textInputHint,enableCleanBtn,loading} = this.state;
+        const { showDropdown,checkInput,textInput,textInputHint,
+                enableCleanBtn,loading,searchList,selectIndex,
+                company, dropDownDisable} = this.state;
+
+        const select = <Select label={'Company'}
+                               searchList = {searchList}
+                               selectIndex = {selectIndex}
+                               handleAddCompany={this.handleAddCompany}
+                               onChangeSelectItem = {this.onChangeSelectItem}/>;
         return (
             <div className='companySelector'>
                 <div className='companySelector__displayBar' ref={this.btnRef}>
-                    <DropDownDisplay onClick={this.handleClickSelectorButton}>
-                        Search Companies
+                    <DropDownDisplay dropDownDisable = {dropDownDisable} 
+                                     onClick={this.handleClickSelectorButton}>
+                        {company?
+                        <div>
+                           {company.name}
+                        </div>
+                        :
+                       " Search Companies"
+                        }
                    </DropDownDisplay>
                 </div>
                 <div className='companySelector__dropDown' ref={this.wrapperRef}>
@@ -135,6 +190,7 @@ class CompanySelector extends React.Component {
                                       placeholder = {'Search'}
                                       textInput = {textInput}
                                       loading = {loading}
+                                      select = {select}
                                       textInputHint={textInputHint}
                                       enableCleanBtn = {enableCleanBtn}
                                       showDropdown={showDropdown}

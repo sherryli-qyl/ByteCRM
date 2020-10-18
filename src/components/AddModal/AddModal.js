@@ -27,7 +27,8 @@ class AddModal extends React.Component {
                 <div className="addModal__body">
                     {content}
                 </div>
-                <Footer/>
+                <Footer  onClickSave={this.props.onClickSave}
+                         onClickCancel={this.props.onClickCloseBtn}/>
             </div>
         )
     }

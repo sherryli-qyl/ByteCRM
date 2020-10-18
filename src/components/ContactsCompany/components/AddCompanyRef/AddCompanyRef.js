@@ -6,9 +6,12 @@ import './AddCompabyRef.scss';
 
 
 
-const AddCompanyRef = (props) => {
+const AddCompanyRef = ({
+    handleSelectedCompany,
+}) => {
 
-    const components = [{key:0,label:"Add existing company",component: <AddExistCompany/>},
+    const components = [{key:0,label:"Add existing company",
+                        component: <AddExistCompany handleSelectedCompany ={handleSelectedCompany}/>},
                         {key:1,label:"Create a new company",component:""}]
 
 

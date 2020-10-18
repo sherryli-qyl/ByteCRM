@@ -8,9 +8,10 @@ import './DropDownDisplay.scss';
 
 const DropDownDisplay = ({
     children,
+    dropDownDisable,
     onClick,
 }) => (
-        <div className='dropDownDisplay' onClick= {(event)=>{
+        <button className='dropDownDisplay' disabled = {dropDownDisable} onClick= {(event)=>{
             event.preventDefault();
             onClick();
         }}>
@@ -20,7 +21,7 @@ const DropDownDisplay = ({
             <div className='dropDownDisplay__icon'>
                 <FontAwesomeIcon icon={faCaretDown}/>
             </div>
-        </div>
+        </button>
     )
 
 export default DropDownDisplay;

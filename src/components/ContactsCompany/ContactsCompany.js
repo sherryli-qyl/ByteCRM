@@ -11,14 +11,24 @@ class ContactsCompany extends React.Component {
     const hintMessage = "You may only associate one company to a contact record";
     this.state = {
       hintMessage,
+      company: this.props.company,
     }
+    this.handleSelectedCompany = this.handleSelectedCompany.bind(this);
+  }
+
+  handleSelectedCompany(company){
+    this.setState({
+      company:company
+    })
   }
 
 
+
+
   render() {
-    const { hintMessage} = this.state;
-    const { company } = this.props;
-    const addModal = {title: 'Add companies to this contact',content:<AddComapnyRef/>}
+    const { hintMessage,company} = this.state;
+    const addModal = {title: 'Add companies to this contact',
+                      content:<AddComapnyRef handleSelectedCompany={this.handleSelectedCompany}/>}
 
     let disabled = false;
     if (company) {
