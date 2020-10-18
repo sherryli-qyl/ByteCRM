@@ -70,8 +70,8 @@ class CompanySelector extends React.Component {
         this.setState({
             company: selectedCompany
         })
+        this.props.handleSelectedCompany(selectedCompany);
         this.handleClickSelectorButton();
-        
     }
 
     handleFindContact(text) {

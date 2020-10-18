@@ -6,13 +6,15 @@ import './RelationCard.scss'
 
 const RelationCard = ({
   company,
+  handleRemoveCompany
 }) => {
   return (
     <div className="relationcard">
       {company ?
         <Detail
           name={company.name}
-          website={company.companyDomainName}
+          handleRemoveCompany = {handleRemoveCompany}
+          website={company.companyDomain}
           phoneNumber={company.phoneNumber} />
         :
         <div className = "relationcard__description">

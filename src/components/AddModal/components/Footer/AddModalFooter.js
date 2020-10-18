@@ -5,15 +5,15 @@ import './AddModalFooter.scss';
 
 
 const AddModalFooter = ({
-    onClickSave,
-    onClickCancel,
+    onClickSaveBtn,
+    onClickCancelBtn,
 }) => (
         <div className='addModalFooter'>
             <div className='addModalFooter__btnWrapper'>
-                <Button size='large' variant='contained' onClick = {onClickSave}>
+                <Button size='large' variant='contained' onClick = {onClickSaveBtn}>
                     Save
                 </Button>
-                <Button size='large' variant='outlined' onClick={onClickCancel}>
+                <Button size='large' variant='outlined' onClick={onClickCancelBtn}>
                     Cancel
                  </Button>
             </div>

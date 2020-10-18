@@ -12,23 +12,41 @@ class ContactsCompany extends React.Component {
     this.state = {
       hintMessage,
       company: this.props.company,
+      selectedCompany: "",
     }
     this.handleSelectedCompany = this.handleSelectedCompany.bind(this);
+    this.handleRemoveCompany = this.handleRemoveCompany.bind(this);
+    this.onClickSaveBtn = this.onClickSaveBtn.bind(this);
   }
 
-  handleSelectedCompany(company){
+  handleSelectedCompany(company) {
     this.setState({
-      company:company
+      selectedCompany: company
     })
+  }
+
+  handleRemoveCompany(){
+    this.setState({
+      company:""
+    })
+  }
+
+  onClickSaveBtn() {
+    this.setState(prevState => ({
+      company: prevState.selectedCompany
+    })
+    )
   }
 
 
 
 
   render() {
-    const { hintMessage,company} = this.state;
-    const addModal = {title: 'Add companies to this contact',
-                      content:<AddComapnyRef handleSelectedCompany={this.handleSelectedCompany}/>}
+    const { hintMessage, company } = this.state;
+    const addModal = {
+      title: 'Add companies to this contact',
+      content: <AddComapnyRef handleSelectedCompany={this.handleSelectedCompany} />
+    }
 
     let disabled = false;
     if (company) {
@@ -37,13 +55,14 @@ class ContactsCompany extends React.Component {
 
     return (
       <div className="contactsCompany">
-        <ExpandBar content={<RelationCard company={company} />}
+        <ExpandBar content={<RelationCard company={company} 
+                                          handleRemoveCompany = {this.handleRemoveCompany}/>}
                    label={"Company"}
-                   addModal = {addModal }
+                   addModal={addModal}
                    hintMessage={hintMessage}
                    disabled={disabled}
-                   showAdd={true}/>
-        
+                   showAdd={true}
+                   onClickSaveBtn = {this.onClickSaveBtn} />
       </div>
     )
   }
