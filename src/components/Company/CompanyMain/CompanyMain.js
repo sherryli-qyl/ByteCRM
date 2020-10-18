@@ -76,7 +76,9 @@ class CompanyMain extends Component {
     }
 
     componentDidMount() {
-        const data = GetCompanyByCode(this.state.code);
+        const selectedCompanyId = sessionStorage.getItem('id');
+        console.log(selectedCompanyId)
+        const data = GetCompanyByCode(selectedCompanyId);
         data.then(response => {
             if (response.statusText === "OK") {
                 this.setState({
@@ -111,7 +113,7 @@ class CompanyMain extends Component {
                                 </InfoContext.Provider>
 
                                 <ActivityContext.Provider value = {contactData}>
-                                    <Activities/>
+                                    {/* <Activities/> */}
                                 <RelationContact />
                                 <Modal Xaxis={this.state.Xaxis}
                                     Yaxis={this.state.Yaxis}

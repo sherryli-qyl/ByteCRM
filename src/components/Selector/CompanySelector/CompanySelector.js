@@ -10,35 +10,84 @@ class CompanySelector extends React.Component {
         super(props);
         this.state = {
             showDropdown: false,
-            checkInput: false,
+            checkInput: true,
+            textInput: '',
+            textInputHint: '',
+            enableCleanBtn: false,
         }
-        this.onClickDropDown = this.onClickDropDown.bind(this);
+        this.wrapperRef = React.createRef();
+        this.btnRef = React.createRef();
+        this.handleClickSelectorButton = this.handleClickSelectorButton.bind(this);
+        this.handleCleanInput = this.handleCleanInput.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleClickOutside = this.handleClickOutside.bind(this);
     }
 
-    onClickDropDown() {
+    handleClickSelectorButton() {
         this.setState(prevState => ({
             showDropdown: !prevState.showDropdown
         })
-        )
-        console.log(this.state.showDropdown);
+        );
+        this.handleCleanInput();
+    }
+
+    handleInputChange(inputText) {
+        let activeBtn = false
+        if (inputText.length > 0) {
+            activeBtn = true;
+        }
+        this.setState({
+            textInput: inputText,
+            enableCleanBtn: activeBtn
+        })
+        // this.handleFindContact(inputText);
+    }
+
+    handleCleanInput() {
+        this.setState({
+            textInput: '',
+        })
+        // this.handleFindContact("");
+    }
+
+    handleClickOutside(event) {
+        if (this.wrapperRef && !this.wrapperRef.current.contains(event.target) && !this.btnRef.current.contains(event.target) && this.state.showDropdown) {
+            this.handleClickSelectorButton();
+        }
+    }
+
+    componentDidMount() {
+        document.addEventListener('mousedown', this.handleClickOutside);
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener('mousedown', this.handleClickOutside);
     }
 
 
+
+
     render() {
-        const { showDropdown, checkInput } = this.state;
+        const { showDropdown, checkInput,textInput,textInputHint,enableCleanBtn} = this.state;
         return (
             <div className='companySelector'>
-                <div className='companySelector__displayBar'>
-                    <DropDownDisplay onClick={this.onClickDropDown}>
+                <div className='companySelector__displayBar' ref={this.btnRef}>
+                    <DropDownDisplay onClick={this.handleClickSelectorButton}>
                         Search Companies
                    </DropDownDisplay>
                 </div>
-                <div className='companySelector__dropDown'>
+                <div className='companySelector__dropDown' ref={this.wrapperRef}>
                         {showDropdown ?
                             <Dropdown checkInput={checkInput}
                                       corner={'disable'}
                                       placeholder = {'Search'}
-                                      showDropdown={showDropdown} />
+                                      textInput = {textInput}
+                                      textInputHint={textInputHint}
+                                      enableCleanBtn = {enableCleanBtn}
+                                      showDropdown={showDropdown}
+                                      handleCleanInput={this.handleCleanInput}
+                                      handleInputChange={this.handleInputChange}
+                                       />
                             :
                             ""
                         }
