@@ -204,16 +204,15 @@ class EnhancedTable extends Component {
             options={{
               selection: true,
               addRowPosition: "first",
-              // maxBodyHeight: 700,
               search: true,
               sorting: true,
               pageSize: 10,
               pageSizeOptions: [10, 30, 50],
               exportButton: true,
+              // exportPdf: (columns, data) =>
+              //   exportPDF(columns, data, this.props.type),
               exportCsv: (columns, data) =>
                 exportCSV(columns, data, this.props.type),
-              exportPdf: (columns, data) =>
-                exportPDF(columns, data, this.props.type),
             }}
             editable={{
               onRowAdd: this.addRow,
