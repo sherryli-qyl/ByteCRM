@@ -2,14 +2,14 @@ import React, { Component } from "react";
 import "./SelectModal.scss";
 import DropdownList from "./components/DropdownList";
 import StringInput from "./components/StringInput";
-import processDate from "../../../../../../../../../../lib/tableLibs/processDate";
-import generateArray from "../../../../../../../../../../lib/tableLibs/generateArray";
+import processDate from "../../../../../../../../lib/tableLibs/processDate";
+import generateArray from "../../../../../../../../lib/tableLibs/generateArray";
 import {
   testPhoneNum,
   testEmailAddr,
   testEmptyString,
   testDate,
-} from "../../../../../../../../../../lib/tableLibs/validation";
+} from "../../../../../../../../lib/tableLibs/validation";
 
 /* ======================Define all Options for Dropdown======================================= */
 const CONTACT_FIELDS = [

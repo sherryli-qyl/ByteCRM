@@ -1,5 +1,5 @@
 import React from "react";
-import JumpButton from "../../pages/ListPage/components/PageWrapper/components/TableWrapper/components/EnhancedTable/components/JumpButton";
+import JumpButton from "../../pages/ListPageWrapper/components/TableWrapper/components/EnhancedTable/components/JumpButton";
 import getDate from "./getDate";
 
 const LEAD_STATUS = {
@@ -63,11 +63,13 @@ function wrapUpData(data, type) {
     });
   } else if (type === "company") {
     return data.map((cur) => {
-      let newOwners, temp = [];
+      let newOwners,
+        temp = [];
       if (cur.associatedContacts.length !== 0 && cur.contactID.length !== 0) {
         for (let i in cur.contactID) {
           temp.push(
             <JumpButton
+              key={cur.contactID[i]}
               id={cur.contactID[i]}
               type={"contact"}
               name={cur.associatedContacts[i]}
@@ -78,7 +80,12 @@ function wrapUpData(data, type) {
       newOwners = <>{temp.map((cur) => cur)}</>;
       return {
         name: (
-          <JumpButton id={cur.companyID} type={"company"} name={cur.name} />
+          <JumpButton
+            key={cur.companyID}
+            id={cur.companyID}
+            type={"company"}
+            name={cur.name}
+          />
         ),
         associatedContacts: newOwners ? newOwners : undefined,
         companyOwner: cur.companyOwner,

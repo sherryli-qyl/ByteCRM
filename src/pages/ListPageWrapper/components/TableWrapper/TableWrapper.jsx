@@ -1,7 +1,7 @@
 import React from "react";
 import EnhancedTable from "./components/EnhancedTable/EnhancedTable";
-import Importer from "./components/Importer";
-import { addRowsFromCsv } from "../../../../../../lib/tableLibs/dataOperation";
+import Reader from "./components/Importer";
+
 
 class TableWrapper extends React.Component {
   constructor(props) {
@@ -13,8 +13,11 @@ class TableWrapper extends React.Component {
 
   getNewDataFromCSV = (newRows) => {
     this.setState({
-      CSVData: addRowsFromCsv(newRows),
+      CSVData: newRows,
     });
+    setTimeout(()=> {
+      console.log(this.state.CSVData);
+    }, 500)
   };
 
   // getNewTable = (newTable) => {
@@ -36,7 +39,9 @@ class TableWrapper extends React.Component {
   render() {
     return (
       <>
-        <Importer getNewData={this.getNewDataFromCSV} />
+        <Reader 
+          getNewData={this.getNewDataFromCSV} 
+        />
         <EnhancedTable
           CSVData={this.state.CSVData}
           tab={this.props.tab}
