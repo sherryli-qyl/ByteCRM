@@ -1,12 +1,15 @@
 import React from 'react';
 import SearchBar from '../../../SearchBar';
 import Select from '../Select';
+import Corner from './components/Corner';
 import './Dropdown.scss';
 
 
 const Dropdown = ({
+    label,
     showDropdown,
     textInputHint,
+    contactSelectHint,
     checkInput,
     contactList, 
     searchList, 
@@ -17,7 +20,6 @@ const Dropdown = ({
     handleCleanInput,
     handleRemoveContact,
     handleAddContact,
-    contactSelectHint
 }) => {
 
     let className = "contactDropdown "
@@ -26,7 +28,7 @@ const Dropdown = ({
     }
     return (
         <div className={className}>
-            <div className='contactDropdown__corner' />
+            <Corner variant ='topLeft'/>
             <div className='contactDropdown__inner'>
                 <div className='contactDropdown__inner__wrapper'>
                     <SearchBar textInput={textInput}
@@ -38,7 +40,7 @@ const Dropdown = ({
                                textInputHint = {textInputHint} />
                 </div>
                 {!checkInput ?
-                    <Select label={'Contacts'}
+                    <Select label={label}
                             contactList = {contactList}
                             searchList = {searchList}
                             contactSelectHint = {contactSelectHint}

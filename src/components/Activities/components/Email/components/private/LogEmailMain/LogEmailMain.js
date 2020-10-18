@@ -2,7 +2,7 @@ import React from 'react';
 import DatePicker from '../../../../../../Style/Picker/DatePicker';
 import TimePicker from '../../../../../../Style/Picker/TimePicker';
 import { transferTimeHHMM } from '../../../../../../services/timeManager';
-import ContactSelector from '../../../../../../ContactSelector';
+import ContactSelector from '../../../../../../Selector/ContactSelector';
 import './LogEmailMain.scss';
 
 const contactSelectHint = "Logged Emails must have at Least one association";

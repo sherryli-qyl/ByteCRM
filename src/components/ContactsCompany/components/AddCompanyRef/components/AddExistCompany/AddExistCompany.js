@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchBar from '../../../../../SearchBar';
+import CompanySelector from '../../../../../Selector/CompanySelector';
 
 import './AddExistCompany.scss';
 
@@ -9,8 +9,7 @@ const AddExistCompany =({
 
     return(
         <div>
-           
-
+            <CompanySelector/>
         </div>
     )
 }

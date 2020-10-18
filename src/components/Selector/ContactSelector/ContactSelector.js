@@ -1,9 +1,9 @@
 import React from 'react';
-import Dropdown from './components/Dropdown';
+import Dropdown from '../components/Dropdown';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
-import { FormatList,SearchContactLocal, SearchContactRemote,ItemSelected } from '../../utils/SearchContact/SearchContact';
-import { GetContactByUserId } from '../Api/Contact';
+import { FormatList,SearchContactLocal, SearchContactRemote,ItemSelected } from '../../../utils/SearchContact/SearchContact';
+import { GetContactByUserId } from '../../Api/Contact';
 import './ContactSelector.scss';
 
 
@@ -217,6 +217,7 @@ class ContactSelector extends React.Component {
                         loading={loading}
                         showDropdown={showDropdown}
                         contact={contact}
+                        label = {'Contacts'}
                         textInput={textInput}
                         contactSelectHint = {this.props.contactSelectHint}
                         enableCleanBtn={enableCleanBtn}

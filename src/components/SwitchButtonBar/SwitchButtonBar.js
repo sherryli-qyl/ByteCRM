@@ -36,8 +36,8 @@ class SwitchButtonBar extends React.Component {
                                 component={item.component}
                                 handleSwitchBtn={() => this.handleSwitchBtn(item.key)} />
                         ))}
+                         <div className='switchButtonBar__buttonWrapper__blank'/>
                     </div>
-                    <div className='switchButtonBar__buttonWrapper__blank'/>
                 </div>
                 <div className='switchButtonBar__components'>
                     {components.map((item) => {
