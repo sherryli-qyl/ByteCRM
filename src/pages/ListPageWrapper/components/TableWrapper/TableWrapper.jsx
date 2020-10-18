@@ -39,9 +39,9 @@ class TableWrapper extends React.Component {
   render() {
     return (
       <>
-        <Reader 
+        {/* <Reader 
           getNewData={this.getNewDataFromCSV} 
-        />
+        /> */}
         <EnhancedTable
           CSVData={this.state.CSVData}
           tab={this.props.tab}

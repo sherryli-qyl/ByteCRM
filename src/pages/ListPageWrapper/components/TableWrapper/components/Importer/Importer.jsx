@@ -4,12 +4,15 @@ import './Importer.scss';
 
 const buttonRef = React.createRef();
 
-export default class Reader extends Component {
+export default class Importer extends Component {
   handleOpenDialog = (e) => {
     // Note that the ref is set async, so it might be null at some point
     if (buttonRef.current) {
       buttonRef.current.open(e);
+      console.log(e)
+      console.log(buttonRef.current);
     }
+    
   };
 
   handleOnFileLoad = (data) => {
