@@ -1,5 +1,5 @@
 import React from "react";
-import JumpButton from "../../pages/ListPage/components/PageWrapper/components/TableWrapper/components/EnhancedTable/components/JumpButton";
+import JumpButton from "../../pages/ListPageWrapper/components/TableWrapper/components/EnhancedTable/components/JumpButton";
 import getDate from "./getDate";
 
 const LEAD_STATUS = {
@@ -22,18 +22,6 @@ const LEAD_STATUS_BACK = {
   "Attempted to contact": 6,
   Connected: 7,
   "Bad timing": 8,
-};
-
-const addRowsFromCsv = (newData) => {
-  // if (newData.length === 0) {
-  //   return tableData;
-  // }
-  // let normalizedTable = normalizeData(tableData);
-  // for (const item of newData) {
-  //   normalizedTable.push(item);
-  // }
-  // tableData = wrapUpData(normalizedTable);
-  // return tableData;
 };
 
 /* ====================================GET========================================== */
@@ -63,11 +51,13 @@ function wrapUpData(data, type) {
     });
   } else if (type === "company") {
     return data.map((cur) => {
-      let newOwners, temp = [];
+      let newOwners,
+        temp = [];
       if (cur.associatedContacts.length !== 0 && cur.contactID.length !== 0) {
         for (let i in cur.contactID) {
           temp.push(
             <JumpButton
+              key={cur.contactID[i]}
               id={cur.contactID[i]}
               type={"contact"}
               name={cur.associatedContacts[i]}
@@ -78,7 +68,12 @@ function wrapUpData(data, type) {
       newOwners = <>{temp.map((cur) => cur)}</>;
       return {
         name: (
-          <JumpButton id={cur.companyID} type={"company"} name={cur.name} />
+          <JumpButton
+            key={cur.companyID}
+            id={cur.companyID}
+            type={"company"}
+            name={cur.name}
+          />
         ),
         associatedContacts: newOwners ? newOwners : undefined,
         companyOwner: cur.companyOwner,
@@ -241,4 +236,4 @@ function makeNewRow(newData, type) {
   }
 }
 
-export { getTable, processData, makeNewRow, remove, addRowsFromCsv };
+export { getTable, processData, makeNewRow, remove };

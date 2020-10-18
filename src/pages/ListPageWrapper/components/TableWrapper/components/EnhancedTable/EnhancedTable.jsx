@@ -1,31 +1,30 @@
 import React, { Component } from "react";
 import { ThemeProvider as MuiThemeProvider } from "@material-ui/core/styles";
-import Theme from "../../../../../../../../components/Style/Theme/TableTheme";
+import Theme from "../../../../../../components/Style/Theme/TableTheme";
 import MaterialTable from "material-table";
 import SelectModal from "./components/SelectModal";
-import tableIcons from "../../../../../../../../lib/tableLibs/getIcons";
-import getColumns from "../../../../../../../../lib/tableLibs/getColumns";
-import exportCSV from "../../../../../../../../lib/tableLibs/exportCSV";
-import exportPDF from "../../../../../../../../lib/tableLibs/exportPDF";
+import tableIcons from "../../../../../../lib/tableLibs/getIcons";
+import getColumns from "../../../../../../lib/tableLibs/getColumns";
+import exportCSV from "../../../../../../lib/tableLibs/exportCSV";
+// import exportPDF from "../../../../../../lib/tableLibs/exportPDF";
 import {
   GetAllContacts,
   removeContact,
   createContact,
   UpdateContact,
-} from "../../../../../../../../components/Api/Contact";
+} from "../../../../../../components/Api/Contact";
 import {
   GetAllCompanies,
   AddCompany,
   UpdateCompany,
   DeleteCompany,
-} from "../../../../../../../../components/Api/Company";
+} from "../../../../../../components/Api/Company";
 import {
   getTable,
   processData,
   makeNewRow,
-  remove,
-  addRowsFromCsv,
-} from "../../../../../../../../lib/tableLibs/dataOperation";
+  remove
+} from "../../../../../../lib/tableLibs/dataOperation";
 
 class EnhancedTable extends Component {
   constructor(props) {
@@ -35,8 +34,41 @@ class EnhancedTable extends Component {
       columns: getColumns(this.props.type),
       selectedRow: null,
       dataToShow: [],
-      allData: [],
+      allData: []
     };
+  }
+
+  componentDidMount() {
+    if (this.props.type === "contact") {
+      this.getAllContacts();
+    } else {
+      this.getAllCompanies();
+    }
+  }
+
+  // TODO: get new data from CSV
+  componentDidUpdate(nextProps) {
+    const { CSVData } = this.props;
+    if (nextProps.CSVData !== CSVData) {
+      if (this.props.type === "contact") {
+        console.log(nextProps.CSVData)
+        // for loop + validate
+        // createContact(nextProps.CSVData);
+      } else if (this.props.type === "company") {
+        // AddCompany(nextProps.CSVData);
+        setTimeout(() => {
+          console.log(nextProps.CSVData)
+        }, 500)
+        
+      }
+      // setTimeout(() => {
+      //   if (this.props.type === "contact") {
+      //     this.getAllContacts();
+      //   } else {
+      //     this.getAllCompanies();
+      //   }
+      // }, 1000);
+    }
   }
 
   getAllContacts = () => {
@@ -75,14 +107,6 @@ class EnhancedTable extends Component {
     });
   };
 
-  componentDidMount() {
-    if (this.props.type === "contact") {
-      this.getAllContacts();
-    } else {
-      this.getAllCompanies();
-    }
-  }
-
   removeRow = (evt, selectedRow) => {
     evt.preventDefault();
     new Promise((resolve, reject) => {
@@ -103,7 +127,7 @@ class EnhancedTable extends Component {
           } else if (this.props.type === "company") {
             DeleteCompany(cur.companyID).then((status) => {
               console.log("Delete completion is " + status);
-            })
+            });
           }
         });
         this.setState({
@@ -204,16 +228,15 @@ class EnhancedTable extends Component {
             options={{
               selection: true,
               addRowPosition: "first",
-              // maxBodyHeight: 700,
               search: true,
               sorting: true,
               pageSize: 10,
               pageSizeOptions: [10, 30, 50],
               exportButton: true,
+              // exportPdf: (columns, data) =>
+              //   exportPDF(columns, data, this.props.type),
               exportCsv: (columns, data) =>
                 exportCSV(columns, data, this.props.type),
-              exportPdf: (columns, data) =>
-                exportPDF(columns, data, this.props.type),
             }}
             editable={{
               onRowAdd: this.addRow,
