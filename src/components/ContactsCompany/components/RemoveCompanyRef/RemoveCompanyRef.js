@@ -8,6 +8,7 @@ import './RemoveCompanyRef.scss';
 const RemoveCompanyRef = ({
     contactName,
     companyName,
+    onClickConfirmBtn,
     onClickCancelBtn,
 }) => (
         <Overlay>
@@ -16,7 +17,7 @@ const RemoveCompanyRef = ({
                     {`Remove the association between ${contactName} and ${companyName}?`}
                 </div>
                 <div className='removeCompanyRef__btnWrapper'>
-                    <Button variant='contained' size = 'large'>
+                    <Button variant='contained' size = 'large' onClick={()=>(onClickConfirmBtn())}>
                         Remove
                     </Button>
                     <Button variant='outlined' size='large' onClick = {()=>(onClickCancelBtn())}>

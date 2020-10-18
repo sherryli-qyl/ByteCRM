@@ -14,7 +14,7 @@ class Detail extends React.Component {
       showRemoveModal: false
     }
     this.handleModalToggle = this.handleModalToggle.bind(this);
-    this.onClickConfirm = this.onClickConfirm.bind(this);
+    this.onClickConfirmBtn = this.onClickConfirmBtn.bind(this);
     this.onClickCancelBtn = this.onClickCancelBtn.bind(this);
   }
 
@@ -24,7 +24,7 @@ class Detail extends React.Component {
     }))
   }
 
-  onClickConfirm() {
+  onClickConfirmBtn() {
     this.props.handleRemoveCompany();
   }
 
@@ -33,7 +33,7 @@ class Detail extends React.Component {
   }
 
   render() {
-    const { website, name, phoneNumber } = this.props;
+    const { website, name, phoneNumber,contact} = this.props;
     const { showRemoveModal } = this.state;
     const websiteURL = `https://${website}`;
     return (
@@ -64,8 +64,9 @@ class Detail extends React.Component {
           </RemoveButtom>
         </div>
         {showRemoveModal ?
-          <RemoveRefModal contactName={name}
+          <RemoveRefModal contactName={contact.fullName}
                           companyName={name}
+                          onClickConfirmBtn = {this.onClickConfirmBtn}
                           onClickCancelBtn = {this.onClickCancelBtn}/>
           :
           ""

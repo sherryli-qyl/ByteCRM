@@ -103,7 +103,7 @@ class ContactMain extends Component {
         const infoData = { key: 'contact', data: contact, dictionary: ContactDictionary };
         const value = { single: this.onChangeSingleInfo, multi: this.onChangeMultiInfo };
         const contactData = {contact:contact,userId:this.userId,close:this.closeModal}
-        const sideBarData = {company:contact.company}
+        const sideBarData = {company:contact.company,contact:contact}
         const openModal = this.openModal;
         return (
             <div>

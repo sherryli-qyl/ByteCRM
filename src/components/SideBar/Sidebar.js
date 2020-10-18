@@ -15,11 +15,11 @@ class SideBar extends React.Component{
     }
 
     render(){
-        const {company} = this.props.data;
+        const {company,contact} = this.props.data;
         return(
             <div className = 'sideBar'>
-                <ContactsCompany company = {company}/>
-
+                <ContactsCompany company = {company}
+                                 contact = {contact}/>
             </div>
         )
     }

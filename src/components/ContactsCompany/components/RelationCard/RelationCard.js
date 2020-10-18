@@ -6,6 +6,7 @@ import './RelationCard.scss'
 
 const RelationCard = ({
   company,
+  contact,
   handleRemoveCompany
 }) => {
   return (
@@ -13,9 +14,10 @@ const RelationCard = ({
       {company ?
         <Detail
           name={company.name}
-          handleRemoveCompany = {handleRemoveCompany}
+          contact = {contact}
           website={company.companyDomain}
-          phoneNumber={company.phoneNumber} />
+          phoneNumber={company.phoneNumber} 
+          handleRemoveCompany = {handleRemoveCompany}/>
         :
         <div className = "relationcard__description">
           View the company related to this contact. Add an existing company or create a new one.

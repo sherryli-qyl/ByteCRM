@@ -52,10 +52,14 @@ class ExpandBar extends React.Component {
 
 
     render() {
-        const { showDetail, showHint, showAddModal } = this.state;
+        const {showHint, showAddModal } = this.state;
         const { showAdd, disabled, hintMessage, addModal } = this.props;
         let angleIconClassName = 'angleIcon ';
-
+        
+        let showDetail = this.state.showDetail;
+        if(this.props.showDetail){
+            showDetail = this.props.showDetail
+        }
 
         let expandContentClassName = 'expandBar__container__content '
         let addBtnClassName = 'expandBar__container__right__addBtn '
