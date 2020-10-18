@@ -1,6 +1,7 @@
 import React from 'react';
 import Dropdown from '../components/Dropdown';
 import DropDownDisplay from '../../DropDownDisplay';
+import {GetCompanyByUserId} from '../../Api/Company';
 import './CompanySelector.scss';
 
 
@@ -14,6 +15,8 @@ class CompanySelector extends React.Component {
             textInput: '',
             textInputHint: '',
             enableCleanBtn: false,
+            loading:false,
+            searchList:[],
         }
         this.wrapperRef = React.createRef();
         this.btnRef = React.createRef();
@@ -40,14 +43,63 @@ class CompanySelector extends React.Component {
             textInput: inputText,
             enableCleanBtn: activeBtn
         })
-        // this.handleFindContact(inputText);
+        this.handleFindContact(inputText);
     }
 
     handleCleanInput() {
         this.setState({
             textInput: '',
         })
-        // this.handleFindContact("");
+        this.handleFindContact("");
+    }
+
+    handleFindContact(text) {
+        let newHint = '';
+        if (text.length === 0) {
+            this.setState({
+                searchList: [],
+                checkInput: false,
+            })
+        }
+
+        if (text.length >= 3) {
+            newHint = 'searching';
+            const response = GetCompanyByUserId(sessionStorage.getItem('userId'), text.toUpperCase())
+            this.setState(prevState => ({
+                ...prevState,
+                loading: true
+            }))
+            response.then(findCompanies => {
+                if (findCompanies) {
+                    const newSearchList = findCompanies;
+                    let foundNewCompany = false;
+                    if (newSearchList.length >= 1) {
+                        foundNewCompany = true;
+                        this.setState(prevState => {
+                            return {
+                                ...prevState,
+                                checkInput: !foundNewCompany,
+                                searchList: newSearchList,
+                                textInputHint: newHint,
+                                loading: false,
+                            }
+                        });
+                    }
+                }
+                else {
+                    this.setState(prevState => {
+                        return {
+                            ...prevState,
+                            loading: false,
+                            checkInput: true,
+                            textInputHint: 'No result found'
+                        }
+                    }
+                    )
+                }
+            }
+            )
+        }
     }
 
     handleClickOutside(event) {
@@ -68,7 +120,7 @@ class CompanySelector extends React.Component {
 
 
     render() {
-        const { showDropdown, checkInput,textInput,textInputHint,enableCleanBtn} = this.state;
+        const { showDropdown, checkInput,textInput,textInputHint,enableCleanBtn,loading} = this.state;
         return (
             <div className='companySelector'>
                 <div className='companySelector__displayBar' ref={this.btnRef}>
@@ -82,6 +134,7 @@ class CompanySelector extends React.Component {
                                       corner={'disable'}
                                       placeholder = {'Search'}
                                       textInput = {textInput}
+                                      loading = {loading}
                                       textInputHint={textInputHint}
                                       enableCleanBtn = {enableCleanBtn}
                                       showDropdown={showDropdown}
@@ -96,6 +149,4 @@ class CompanySelector extends React.Component {
         )
     }
 }
-
-
 export default CompanySelector;

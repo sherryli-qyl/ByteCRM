@@ -20,7 +20,7 @@ class ContactMain extends Component {
     constructor(props) {
         super(props);
         this.id = "5f7c1fa07ed22f05ec4ec31a";
-        this.userId = "5f80b49ae7f8960972681ac5";
+        this.userId = "5f6fda5a99f207748e5905fa";
         const expandPack = [{ key: 'About this Contact', content: "" }, { key: 'Website Activity', content: (<WebActivity />) }]
         this.state = {
             Xaxis: 300,
@@ -83,6 +83,7 @@ class ContactMain extends Component {
 
     componentDidMount() {
         const selectedContactId = sessionStorage.getItem('id');
+        sessionStorage.setItem('userId',this.userId);
         const contact = GetContact(selectedContactId);
         contact.then(value =>
             this.setState({
