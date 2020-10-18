@@ -24,18 +24,6 @@ const LEAD_STATUS_BACK = {
   "Bad timing": 8,
 };
 
-const addRowsFromCsv = (newData) => {
-  // if (newData.length === 0) {
-  //   return tableData;
-  // }
-  // let normalizedTable = normalizeData(tableData);
-  // for (const item of newData) {
-  //   normalizedTable.push(item);
-  // }
-  // tableData = wrapUpData(normalizedTable);
-  // return tableData;
-};
-
 /* ====================================GET========================================== */
 function wrapUpData(data, type) {
   if (type === "contact") {
@@ -248,4 +236,4 @@ function makeNewRow(newData, type) {
   }
 }
 
-export { getTable, processData, makeNewRow, remove, addRowsFromCsv };
+export { getTable, processData, makeNewRow, remove };
