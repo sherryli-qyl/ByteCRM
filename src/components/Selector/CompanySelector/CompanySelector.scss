@@ -1,0 +1,17 @@
+@import '../../../style/variable.scss';
+
+
+.companySelector{
+    display:flex;
+    flex-direction: column;
+    
+    &__displayBar{
+        position: relative;
+        width: 100%;
+    }
+
+    &__dropDown{
+        margin:1% 0;
+        position: relative;
+    }
+}

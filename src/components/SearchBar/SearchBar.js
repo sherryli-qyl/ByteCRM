@@ -35,7 +35,7 @@ class SearchBar extends React.Component {
 
 
     render() {
-        const { textInput, enableCleanBtn, checkInput, textInputHint, loading } = this.props;
+        const { textInput, enableCleanBtn, checkInput, textInputHint, loading,placeholder } = this.props;
 
         let showHint = false;
         if (checkInput) {
@@ -54,10 +54,10 @@ class SearchBar extends React.Component {
                     <form className="searchBar__top__form"
                     >
                         <input ref={this.textInput}
-                            value={textInput}
-                            className="searchBar__top__form__input"
-                            placeholder="Search all records"
-                            onChange={this.onChange}
+                               value={textInput}
+                               className="searchBar__top__form__input"
+                               placeholder={placeholder}
+                               onChange={this.onChange}
                         />
                     </form>
                     <div className="searchBar__top__right">

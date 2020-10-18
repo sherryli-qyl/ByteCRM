@@ -1,16 +1,17 @@
 import React from 'react';
 import SelectItem from './components/SelectItem/SelectItem';
-import {CheckOneContact} from '../../../../utils/SearchContact/SearchContact';
+import { CheckOneContact } from '../../../../../utils/SearchContact/SearchContact';
 import './ContactSelect.scss';
 
 
-
 const ContactSelect = (props) => {
-    const { contactList,searchList,label} = props;
+    const { selectList, searchList, label } = props;
 
-    let currentList = contactList;
+    let currentList = []
 
-    if (searchList && searchList.length > 0){
+    selectList ? currentList = selectList : currentList = [];
+
+    if (searchList && searchList.length > 0) {
         currentList = searchList
     }
 
@@ -22,10 +23,10 @@ const ContactSelect = (props) => {
                 </span>
             </div>
             {
-                currentList.map(item => { 
-                    const oneContactId = CheckOneContact(contactList,currentList);
+                currentList.map(item => {
+                    const oneContactId = CheckOneContact(selectList, currentList);
                     let disabled = false;
-                    if (oneContactId && oneContactId === item.contact._id){
+                    if (oneContactId && oneContactId === item.contact._id) {
                         disabled = true
                     }
                     return (
@@ -34,14 +35,13 @@ const ContactSelect = (props) => {
                             contactID={item.contact._id}
                             contact={item.contact}
                             checked={item.checked}
-                            disabled = {disabled}
-                            contactSelectHint = {props.contactSelectHint}
+                            disabled={disabled}
+                            selectHint={props.selectHint}
                             handleRemoveContact={props.handleRemoveContact}
                             handleAddContact={props.handleAddContact}>
                         </SelectItem>
                     )
                 })
-
             }
         </div>
     )

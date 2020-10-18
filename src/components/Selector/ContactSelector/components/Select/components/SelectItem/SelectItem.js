@@ -1,7 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckSquare } from "@fortawesome/free-solid-svg-icons";
-import HintBox from '../../.././../../HintBox';
+import HintBox from '../../../../../../HintBox';
 import './SelectItem.scss';
 
 
@@ -28,7 +28,7 @@ class SelectItem extends React.Component{
             checked,
             handleRemoveContact,
             handleAddContact,
-            contactSelectHint
+            selectHint
         } = this.props;
 
         const {showHint} = this.state;
@@ -68,7 +68,7 @@ class SelectItem extends React.Component{
             </div>
             {disabled && showHint ?
                 <div className="contactSelectItem__hint">
-                    <HintBox variant='topRight'>{contactSelectHint}</HintBox>
+                    <HintBox variant='topRight'>{selectHint}</HintBox>
                 </div>
                 :
                 ""

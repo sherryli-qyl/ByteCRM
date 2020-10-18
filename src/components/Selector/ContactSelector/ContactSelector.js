@@ -1,5 +1,6 @@
 import React from 'react';
 import Dropdown from '../components/Dropdown';
+import Select from './components/Select';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
 import { FormatList,SearchContactLocal, SearchContactRemote,ItemSelected } from '../../../utils/SearchContact/SearchContact';
@@ -193,7 +194,14 @@ class ContactSelector extends React.Component {
         else if (contactList.length === 1) {
             contacted = `${contactList[0].contact.firstName} ${contactList[0].contact.lastName}`;
         }
-        else contacted = `${contactList.length} contacts`
+        else contacted = `${contactList.length} contacts`;
+
+        const select = <Select label={'Contacts'}
+                               selectList = {contactList}
+                               searchList = {searchList}
+                               selectHint = {this.props.contactSelectHint}
+                               handleRemoveContact={this.handleRemoveContact}
+                               handleAddContact={this.handleAddContact}/>;
 
 
         return (
@@ -208,23 +216,20 @@ class ContactSelector extends React.Component {
                         <FontAwesomeIcon className='contactSelector__label__btn__icon' icon={faCaretDown} />
                     </button>
                 </div>
-                <div className='drowpdown__wrapper' ref={this.wrapperRef}>
+                <div className='contactSelector__dropDown' ref={this.wrapperRef}>
                     <Dropdown
                         textInputHint={textInputHint}
                         checkInput={checkInput}
-                        contactList = {contactList}
-                        searchList = {searchList}
                         loading={loading}
                         showDropdown={showDropdown}
                         contact={contact}
-                        label = {'Contacts'}
                         textInput={textInput}
-                        contactSelectHint = {this.props.contactSelectHint}
                         enableCleanBtn={enableCleanBtn}
+                        select = {select}
+                        corner={'topLeft'}
+                        placeholder = {"Search all records"}
                         handleCleanInput={this.handleCleanInput}
                         handleInputChange={this.handleInputChange}
-                        handleRemoveContact={this.handleRemoveContact}
-                        handleAddContact={this.handleAddContact}
                        />
                 </div>
             </div>

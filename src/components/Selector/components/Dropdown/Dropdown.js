@@ -1,37 +1,35 @@
 import React from 'react';
 import SearchBar from '../../../SearchBar';
-import Select from '../Select';
+import Select from '../../ContactSelector/components/Select';
 import Corner from './components/Corner';
 import './Dropdown.scss';
 
 
 const Dropdown = ({
-    label,
     showDropdown,
     textInputHint,
-    contactSelectHint,
+    select,
+    corner,
     checkInput,
-    contactList, 
-    searchList, 
     loading,
     textInput,
+    placeholder,
     enableCleanBtn,
     handleInputChange,
     handleCleanInput,
-    handleRemoveContact,
-    handleAddContact,
 }) => {
 
-    let className = "contactDropdown "
+    let className = "selectorDropdown "
     if (showDropdown) {
-        className += "contactDropdown__active"
+        className += "selectorDropdown__active"
     }
     return (
         <div className={className}>
-            <Corner variant ='topLeft'/>
-            <div className='contactDropdown__inner'>
-                <div className='contactDropdown__inner__wrapper'>
+            <Corner variant ={corner}/>
+            <div className='selectorDropdown__inner'>
+                <div className='selectorDropdown__inner__wrapper'>
                     <SearchBar textInput={textInput}
+                               placeholder = {placeholder}
                                enableCleanBtn={enableCleanBtn}
                                handleInputChange={handleInputChange}
                                handleCleanInput={handleCleanInput}
@@ -40,12 +38,7 @@ const Dropdown = ({
                                textInputHint = {textInputHint} />
                 </div>
                 {!checkInput ?
-                    <Select label={label}
-                            contactList = {contactList}
-                            searchList = {searchList}
-                            contactSelectHint = {contactSelectHint}
-                            handleRemoveContact={handleRemoveContact}
-                            handleAddContact={handleAddContact} />
+                   select
                     :
                   ""
                 }

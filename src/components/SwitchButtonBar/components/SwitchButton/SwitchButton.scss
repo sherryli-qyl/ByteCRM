@@ -4,13 +4,16 @@
     @extend .nakedBtn;
     font-size: 14px;
     padding: 15px 20px;
-    color: #33475b;
+    color: $primary-color;
     font-weight: 400;
     background-color: rgb(245, 248, 250);
     white-space: nowrap;
     text-align: center;
     border: solid 1px rgba($color: $border-color, $alpha: 1.0);
-  
+    
+    &:hover{
+        color:rgba($color:$primary-color, $alpha: 0.6)
+    }
 
     &+&{
         border-left:none;
@@ -20,8 +23,9 @@
     &--active{
         background-color: white;
         border-bottom: none;
-        
+
+        &:hover{
+            color:$primary-color;
+        }
     }
-
-
 }
