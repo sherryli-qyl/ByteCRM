@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import AssignedUserSelector from './components/AssignedUserSelector';
 import EmailReminderSelector from './components/EmailReminderSelector';
 import QueueSelector from './components/QueueSelector';
-import TypeDropdown from '../../../components/Type';
+import TypeDropdown from './components/Dropdown/Type';
 import PriorityDropdown from './components/Dropdown/Priority';
 import "./TaskInput.scss";
 const useStyles = makeStyles((theme) => ({
