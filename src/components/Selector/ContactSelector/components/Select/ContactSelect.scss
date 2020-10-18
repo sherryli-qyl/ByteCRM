@@ -1,3 +1,5 @@
+@import '../../../../../style/variable.scss';
+
 .searchResultSelect{
     display: flex;
     flex-direction: column;
@@ -16,6 +18,7 @@
         font-weight: 600;
 
         &__text{
+            color:$primary-color;
             margin-left: 3%;
         }
     }
