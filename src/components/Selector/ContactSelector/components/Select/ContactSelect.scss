@@ -1,0 +1,28 @@
+@import '../../../../../style/variable.scss';
+
+.searchResultSelect{
+    display: flex;
+    flex-direction: column;
+    flex:2;
+    width: 100%;
+    justify-content: center;
+    height: 100%;
+    
+    &__title{
+        display: flex;
+        align-items: center;
+        background-color: white;
+        min-height:40px;
+        width: 100%;
+        font-size: 14px;
+        font-weight: 600;
+
+        &__text{
+            color:$primary-color;
+            margin-left: 3%;
+        }
+    }
+}
+
+
+

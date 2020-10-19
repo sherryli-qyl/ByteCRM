@@ -1,3 +1,5 @@
+import api from '../../../lib/api';
+
 async function GetContact(contactId) {
   const serverUrl = `http://localhost:3000/api/contacts/${contactId}`;
   const response = await fetch(serverUrl, {
@@ -18,7 +20,6 @@ async function GetAllContacts() {
   const data = response.json();
   return data;
 }
-
 
 async function removeContact(contactID) {
   let url = new URL(`http://localhost:3000/api/contacts/${contactID}`);
@@ -64,18 +65,6 @@ async function GetContactByUserId(userId, keyword) {
   const response = await fetch(serverUrl, {
     method: "GET",
   });
-  // .then((res)=>{
-  //     if(!res.ok){
-  //         throw res;
-  //     }
-  //     return res.json();
-  // })
-  // .catch(error =>{
-  //     if (error.status === 404){
-  //         console.log("no match data");
-  //     }
-  //     throw error;
-  // })
   if (response.status === 404) {
     return false;
   } else if (response.ok) {
@@ -84,4 +73,15 @@ async function GetContactByUserId(userId, keyword) {
   }
 }
 
-export { GetContact, UpdateContact, GetContactByUserId, GetAllContacts, removeContact, createContact };
+const AddCompanyRef = (id,code) => {
+    const response = api.post(`/api/contacts/${id}/companies/${code}`);
+    return response;
+}
+
+const RemoveCompanyRef = (id,code) => {
+    const response = api.delete(`/api/contacts/${id}/companies/${code}`);
+    return response;
+}
+
+
+export { GetContact, UpdateContact, GetContactByUserId, GetAllContacts, removeContact, createContact,AddCompanyRef,RemoveCompanyRef};

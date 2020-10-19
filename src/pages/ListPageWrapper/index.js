@@ -1,1 +1,1 @@
-export { default } from './PageWrapper.jsx';
+export { default } from './PageWrapper';

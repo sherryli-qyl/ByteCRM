@@ -1,0 +1,23 @@
+.dropdownCorner{
+    position: absolute;
+    transform: rotate(45deg);
+    background-color: #eaf0f6;
+    border: {
+        top: solid 1px rgb(203, 214, 226);
+        left: solid 1px rgb(203, 214, 226);
+    }
+
+
+    &--topLeft{
+        top: -10px;
+        left: 20px;
+        height: 20px;
+        width: 20px;
+        z-index: -1;
+    }
+
+    &--disable{
+        opacity: 0;
+        visibility: hidden;
+    }
+}

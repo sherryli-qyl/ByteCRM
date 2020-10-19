@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Modal from '../../Modal';
 import InfoPage from '../../InfoPage';
 import Activities from '../../Activities';
-import RelationCompany from "./components/RelationCompany";
+import SideBar from '../../SideBar';
 import Loading from '../../Loading';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { ModalContext } from '../../Modal/components/ModalContext';
@@ -20,7 +20,7 @@ class ContactMain extends Component {
     constructor(props) {
         super(props);
         this.id = "5f7c1fa07ed22f05ec4ec31a";
-        this.userId = "5f80b49ae7f8960972681ac5";
+        this.userId = "5f6fda5a99f207748e5905fa";
         const expandPack = [{ key: 'About this Contact', content: "" }, { key: 'Website Activity', content: (<WebActivity />) }]
         this.state = {
             Xaxis: 300,
@@ -83,6 +83,7 @@ class ContactMain extends Component {
 
     componentDidMount() {
         const selectedContactId = sessionStorage.getItem('id');
+        sessionStorage.setItem('userId',this.userId);
         const contact = GetContact(selectedContactId);
         contact.then(value =>
             this.setState({
@@ -102,6 +103,7 @@ class ContactMain extends Component {
         const infoData = { key: 'contact', data: contact, dictionary: ContactDictionary };
         const value = { single: this.onChangeSingleInfo, multi: this.onChangeMultiInfo };
         const contactData = {contact:contact,userId:this.userId,close:this.closeModal}
+        const sideBarData = {company:contact.company,contact:contact}
         const openModal = this.openModal;
         return (
             <div>
@@ -121,7 +123,7 @@ class ContactMain extends Component {
                                 <ActivityContext.Provider value = {contactData}>
                                     <Activities contact = {contact}
                                                 />
-                                    <RelationCompany company={contact.company}/>
+                                    <SideBar data = {sideBarData} />
                                     <Modal Xaxis={this.state.Xaxis}
                                         Yaxis={this.state.Yaxis}
                                         visible={visible}

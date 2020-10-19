@@ -1,7 +1,7 @@
 import api from '../../../lib/api';
 
-const GetCompanyByCode = (code) => {
-    const response = api.get(`/api/companies/${code}`);
+const GetCompanyByCode = (id) => {
+    const response = api.get(`/api/companies/${id}`);
     return response; 
 }
 

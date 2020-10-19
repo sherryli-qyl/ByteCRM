@@ -8,7 +8,7 @@ import RelationContact from './components/RelationContact';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { publicTheme } from '../../Style/Theme/MatUITheme';
 import { CompanyDictionary } from './components/Dictionary';
-import { GetCompanyByCode } from '../../Api/Company/Company';
+import { GetCompanyByCode,UpdateCompany } from '../../Api/Company';
 import { ActivityContext } from '../../Activities/Context';
 import Loading from '../../Loading';
 import './CompanyMain.scss';
@@ -68,15 +68,23 @@ class CompanyMain extends Component {
 
     onChangeMultiInfo(data) {
         let newCompany = data;
-        this.setState({
-            company: newCompany
-        })
-
-        console.table(newCompany);
+        const response = UpdateCompany(this.state.company.id,data);
+        response.then(response=>{
+            if(response.statusText === "OK"){
+                this.setState({
+                    company: newCompany
+                })
+            }
+            else{
+                console.log("update company failed");
+            }
+        }) 
     }
 
     componentDidMount() {
-        const data = GetCompanyByCode(this.state.code);
+        const selectedCompanyId = sessionStorage.getItem('id');
+        console.log(selectedCompanyId)
+        const data = GetCompanyByCode(selectedCompanyId);
         data.then(response => {
             if (response.statusText === "OK") {
                 this.setState({
@@ -111,7 +119,7 @@ class CompanyMain extends Component {
                                 </InfoContext.Provider>
 
                                 <ActivityContext.Provider value = {contactData}>
-                                    <Activities/>
+                                    {/* <Activities/> */}
                                 <RelationContact />
                                 <Modal Xaxis={this.state.Xaxis}
                                     Yaxis={this.state.Yaxis}

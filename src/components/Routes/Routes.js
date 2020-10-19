@@ -6,7 +6,7 @@ import CompanyList from '../Company/CompanyList';
 import CompanyMain from '../Company/CompanyMain';
 import RegForm from '../User/RegForm/Register';
 import Login from '../User/LogIn/LogIn';
-import About from '../AboutUs/AboutUs';
+import About from '../AboutUs/AboutUs.js';
 import Contactus from '../ContactUs/ContactUs';
 import history from '../Routes/components/History';
 // import ProtectedRoute from './components/ProtectedRoute';
