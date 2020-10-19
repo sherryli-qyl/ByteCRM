@@ -8,11 +8,11 @@ import { GetNoteByRelatedToId, UpdateNote, DeleteNote } from '../../../Api/Note/
 
 
 
+const contact = JSON.parse(sessionStorage.getItem('contact'));
 
 class NotesTimeLine extends React.Component {
   constructor(props) {
     super(props);
-    const {contact} = this.props;
     this.state = {
       cardsList: [],
       cardsArray: [],
@@ -31,7 +31,7 @@ class NotesTimeLine extends React.Component {
   }
 
   handleGetNotes() {
-    const notes = GetNoteByRelatedToId(this.props.contact.id);
+    const notes = GetNoteByRelatedToId(this.state.contact.id);
     notes
       .then(value => {
         this.setState({

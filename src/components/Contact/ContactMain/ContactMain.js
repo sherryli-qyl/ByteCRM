@@ -114,6 +114,7 @@ class ContactMain extends Component {
                             <div className="Main">
                                 <InfoContext.Provider value={value}>
                                     <InfoPage 
+                                        contact = {contact}
                                         openModal={this.openModal}
                                         infoData={infoData}
                                         expandPack={expandPack}

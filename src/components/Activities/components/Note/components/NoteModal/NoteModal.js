@@ -12,10 +12,8 @@ class NoteModal extends React.Component {
   constructor(props) {
     super(props);
 
-
-
-    const{contact } = this.props.contact;
     const user = JSON.parse(localStorage.getItem('user'));
+    const contact = JSON.parse(sessionStorage.getItem('contact'));
 
     this.state = {
       user,

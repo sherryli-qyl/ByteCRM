@@ -81,7 +81,7 @@ class EmailPage extends React.Component {
     }
 
     handleInitPage() {
-        const emails = GetEmails(this.props.contactId);
+        const emails = GetEmails(this.state.contact.id);
         emails.then(emailList => {
             if (emailList.length > 0) {
                 this.setState({
