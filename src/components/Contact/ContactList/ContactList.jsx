@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./ContactList.scss";
-import PageWrapper from "../../../Pages/ListPageWrapper";
+import PageWrapper from "../../../pages/ListPageWrapper";
 
 
 
