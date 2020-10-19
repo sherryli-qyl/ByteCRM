@@ -120,7 +120,7 @@ class CompanyMain extends Component {
                                 </InfoContext.Provider>
 
                                 <ActivityContext.Provider value = {contactData}>
-                                    {/* <Activities/> */}
+                                    <Activities/>
                                 <RelationContact />
                                 <Modal Xaxis={this.state.Xaxis}
                                     Yaxis={this.state.Yaxis}
