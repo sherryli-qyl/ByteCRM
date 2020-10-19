@@ -192,7 +192,7 @@ class ContactSelector extends React.Component {
             contacted = `0 contacts`
         }
         else if (contactList.length === 1) {
-            contacted = `${contactList[0].contact.firstName} ${contactList[0].contact.lastName}`;
+            contacted = `${contactList[0].contact.fullName}`;
         }
         else contacted = `${contactList.length} contacts`;
 

@@ -54,7 +54,6 @@ class LoginForm extends React.Component {
     event.preventDefault();
     const isValid = this.validate();
     if (isValid) {
-      console.log(this.state);
       this.setState({
         emailErrMsg: '',
         passwordErrMsg: '',
@@ -66,8 +65,8 @@ class LoginForm extends React.Component {
         password: this.state.user.password,
       })
       .then((res) => {
-        console.log(res);
-        if (res.status === 200) {
+        if (res.status === 200) {  
+          localStorage.setItem('user', JSON.stringify(res.data.user));
           this.props.history.push('/contacts');
         }
       })

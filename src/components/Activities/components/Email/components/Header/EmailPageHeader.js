@@ -12,12 +12,16 @@ import Modal from '../../../../../../js/Modal';
 
 
 const EmailPageHeader = (props) => {
-    const createModal = new Modal('Email', 'Email', <EmailModal contact={props.contact}/>); //create your modal
-    const logModal = new Modal('Log Email', 'Log Email', <LogEmailModal contactData={props.contactData}
-                                                                        handleLogEmail = {props.handleLogEmail}/>);
+    const createModal= (closeModal) => new Modal('Email', 'Email', <EmailModal contact={props.contact}/>); //create your modal
+    const logModal = (closeModal) => (
+        new Modal('Log Email', 'Log Email',
+            <LogEmailModal contact={props.contact} 
+                           user = {props.user}         
+                           handleCloseModal = {closeModal}
+                           handleLogEmail = {props.handleLogEmail}/>));
     return (
         <ModalContext.Consumer>
-            { openModal =>
+            { modalController =>
                 <div className="emailPage__header">
                     <div className="emailPage__header__showReply">
                         <button className="replyButton">
@@ -25,13 +29,13 @@ const EmailPageHeader = (props) => {
                         </button>
                     </div>
                     <div className="emailPage__header__logEmail">
-                        <LogButton onClick={() => openModal(logModal)}>
+                        <LogButton onClick={() => modalController.open(logModal(modalController.close))}>
                             Log Email
                         </LogButton> {/* //set function */}
                     </div>
 
                     <div className='emailPage__header__createEmail'>
-                        <CreateButton onClick={() => openModal(createModal)}> {/* //set function */}
+                        <CreateButton onClick={() => modalController.open(createModal(modalController.close))}> {/* //set function */}
                             Create Email
                         </CreateButton>
                     </div>

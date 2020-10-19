@@ -83,14 +83,15 @@ class CompanyMain extends Component {
 
     componentDidMount() {
         const selectedCompanyId = sessionStorage.getItem('id');
-        console.log(selectedCompanyId)
         const data = GetCompanyByCode(selectedCompanyId);
         data.then(response => {
             if (response.statusText === "OK") {
+                const company = response.data
                 this.setState({
-                    company: response.data,
+                    company: company,
                     loading: false,
                 })
+            sessionStorage.setItem('company', JSON.stringify(company));
             }
             else if (response.status === 404) {
                 alert('comapny is not found');
@@ -119,7 +120,7 @@ class CompanyMain extends Component {
                                 </InfoContext.Provider>
 
                                 <ActivityContext.Provider value = {contactData}>
-                                    {/* <Activities/> */}
+                                    <Activities/>
                                 <RelationContact />
                                 <Modal Xaxis={this.state.Xaxis}
                                     Yaxis={this.state.Yaxis}

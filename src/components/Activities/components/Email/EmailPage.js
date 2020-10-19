@@ -4,7 +4,10 @@ import EmailPageHeader from './components/Header';
 import shuffleCards from '../../../services/shuffleCards';
 import { GetEmails, UpdateEmail, DeleteEmailLog, UpdateContacts, RemoveContacts } from '../../../Api/Email/Email';
 import "./EmailPage.scss";
-import { ActivityContext } from '../../Context';
+
+
+const user = JSON.parse(localStorage.getItem('user'));
+const contact = JSON.parse(sessionStorage.getItem('contact'));
 
 
 class EmailPage extends React.Component {
@@ -12,6 +15,8 @@ class EmailPage extends React.Component {
         super(props);
         this.state = {
             cardList: [],
+            user,
+            contact,
             cardsArray: [],
         }
         this.onChangeText = this.onChangeText.bind(this);
@@ -76,11 +81,11 @@ class EmailPage extends React.Component {
     }
 
     handleInitPage() {
-        const emails = GetEmails(this.props.contactId);
+        const emails = GetEmails(this.state.contact.id);
         emails.then(emailList => {
             if (emailList.length > 0) {
                 this.setState({
-                    cardList:emailList
+                    cardList: emailList
                 })
                 return emailList;
             }
@@ -97,26 +102,24 @@ class EmailPage extends React.Component {
     }
 
     render() {
-        const { cardsArray } = this.state;
+        const { cardsArray,contact,user } = this.state;
         return (
-            <ActivityContext.Consumer>
-                {contactData => {
-                    return (
-                        <div className="emailPage">
-                            <EmailPageHeader 
-                                contactData={contactData}
-                                handleLogEmail={this.handleLogEmail} />
-                            <EmailCards
-                                contactData={contactData}
-                                cardsArray={cardsArray}
-                                handleDeleteCard={this.handleDeleteCard}
-                                handleAddContact={this.handleAddContact}
-                                handleRemoveContact={this.handleRemoveContact}
-                                onChangeEmail={this.onChangeEmail} />
-                        </div>
-                    )
-                }}
-            </ActivityContext.Consumer>
+            <div className="emailPage">
+                <EmailPageHeader
+                    contact={contact}
+                    user = {user}
+                    handleLogEmail={this.handleLogEmail} />
+                <EmailCards
+                    contact={contact}
+                    user = {user}
+                    cardsArray={cardsArray}
+                    handleDeleteCard={this.handleDeleteCard}
+                    handleAddContact={this.handleAddContact}
+                    handleRemoveContact={this.handleRemoveContact}
+                    onChangeEmail={this.onChangeEmail} />
+            </div>
+
+
         )
     }
 }

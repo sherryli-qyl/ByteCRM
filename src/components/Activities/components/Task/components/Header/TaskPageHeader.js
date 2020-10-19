@@ -1,20 +1,26 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import CreateButton from '../../../../../Style/Button/Activities/CreateButton';
 import TaskModal from '../TaskModal/';
 import {ModalContext} from '../../../../../Modal/components/ModalContext';
 import Modal from '../../../../../../js/Modal';
 import "./TaskPageHeader.scss";
 
-const TaskPageHeader = () => {
-  const onClick= useContext(ModalContext); 
-  const createModal = new Modal('Task', 'Task',<TaskModal />); 
+const TaskPageHeader = (props) => {
+ 
+  const createModal= (closeModal) => new Modal('Task', 'Task',
+                                        <TaskModal  contact={props.contact} 
+                                                    user = {props.user}         
+                                                    handleCloseModal = {closeModal}/>); 
   return(
+    <ModalContext.Consumer>
+    { modalController =>
     <div className="taskPage__header">
       <div className='taskPage__header__createTask'>
-        <CreateButton onClick={() => onClick(createModal)}>Create Task</CreateButton>
+        <CreateButton onClick={() => modalController.open(createModal(modalController.close))}>Create Task</CreateButton>
       </div>
-    </div>
-  )
+    </div>}
+    </ModalContext.Consumer>
+    )
 }
 
 export default TaskPageHeader;

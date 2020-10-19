@@ -19,14 +19,14 @@ class ContactMain extends Component {
 
     constructor(props) {
         super(props);
-        this.id = "5f7c1fa07ed22f05ec4ec31a";
-        this.userId = "5f6fda5a99f207748e5905fa";
         const expandPack = [{ key: 'About this Contact', content: "" }, { key: 'Website Activity', content: (<WebActivity />) }]
+        const user = JSON.parse(localStorage.getItem('user'));
         this.state = {
             Xaxis: 300,
             Yaxis: 50,
             visible: false,
             contact: '',
+            user,
             expandPack: expandPack,
             currentModal: "",
             loading: true,
@@ -68,6 +68,7 @@ class ContactMain extends Component {
                 contact: newContact
             })
         }
+        UpdateContact(this.state.user.id, newContact)
     }
 
     onChangeMultiInfo(data) {
@@ -75,7 +76,7 @@ class ContactMain extends Component {
         this.setState({
             contact: newContact
         })
-        UpdateContact(this.id, newContact)
+        UpdateContact(this.state.user.id, newContact)
         console.table(newContact);
     }
 
@@ -83,14 +84,15 @@ class ContactMain extends Component {
 
     componentDidMount() {
         const selectedContactId = sessionStorage.getItem('id');
-        sessionStorage.setItem('userId',this.userId);
         const contact = GetContact(selectedContactId);
-        contact.then(value =>
+        contact.then(value =>{
             this.setState({
                 contact: value,
                 loading: false,
-            })
-        ).catch(error =>{
+            });
+           sessionStorage.setItem('contact', JSON.stringify(value));
+        })
+        .catch(error =>{
             console.log(error.message);
             alert("Please Check your Internet");
         })
@@ -99,15 +101,14 @@ class ContactMain extends Component {
 
 
     render() {
-        const { visible, currentModal, contact, theme, expandPack, loading } = this.state;
+        const { visible, currentModal, contact, theme, expandPack, loading,user } = this.state;
         const infoData = { key: 'contact', data: contact, dictionary: ContactDictionary };
         const value = { single: this.onChangeSingleInfo, multi: this.onChangeMultiInfo };
-        const contactData = {contact:contact,userId:this.userId,close:this.closeModal}
         const sideBarData = {company:contact.company,contact:contact}
-        const openModal = this.openModal;
+        const modalController = {open: this.openModal,close:this.closeModal}
         return (
             <div>
-                <ModalContext.Provider value={openModal}>
+                <ModalContext.Provider value={modalController}>
                     <ThemeProvider theme={theme}>
                         {loading ?
                             <Loading variant="full page" />
@@ -119,23 +120,20 @@ class ContactMain extends Component {
                                         infoData={infoData}
                                         expandPack={expandPack}
                                     />
-                                </InfoContext.Provider>
-                                <ActivityContext.Provider value = {contactData}>
+                                </InfoContext.Provider>   
                                     <Activities contact = {contact}
-                                                />
+                                                user = {user}/>
                                     <SideBar data = {sideBarData} />
                                     <Modal Xaxis={this.state.Xaxis}
                                         Yaxis={this.state.Yaxis}
                                         visible={visible}
                                         currentModal={currentModal}
                                         closeModal={this.closeModal} />
-                                </ActivityContext.Provider>
                             </div>
                         }
                     </ThemeProvider>
                 </ModalContext.Provider>
             </div>
-
         )
     }
 }

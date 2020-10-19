@@ -4,16 +4,19 @@ import NoteCardsList from './components/NoteCardsList';
 import shuffleCards from '../../../services/shuffleCards';
 import "./NotesTimeLine.scss";
 import { GetNoteByRelatedToId, UpdateNote, DeleteNote } from '../../../Api/Note/Note';
-import { ActivityContext } from '../../Context';
 
+
+
+
+const contact = JSON.parse(sessionStorage.getItem('contact'));
 
 class NotesTimeLine extends React.Component {
   constructor(props) {
     super(props);
-    
     this.state = {
       cardsList: [],
       cardsArray: [],
+      contact,
     }
 
     this.onChangeText = this.onChangeText.bind(this);
@@ -28,7 +31,7 @@ class NotesTimeLine extends React.Component {
   }
 
   handleGetNotes() {
-    const notes = GetNoteByRelatedToId(this.props.contactId);
+    const notes = GetNoteByRelatedToId(this.state.contact.id);
     notes
       .then(value => {
         this.setState({
@@ -84,27 +87,23 @@ class NotesTimeLine extends React.Component {
 
 
   render() {
-    const { cardsArray } = this.state;
+    const { cardsArray,contact} = this.state;
 
     return (
-      <ActivityContext.Consumer>
-        {contactData => (
+  
           <div className="note-time-line">
             <TimeLineControls 
-              contactData={contactData}
+              contact={contact}
               handleCreateNote = {this.handleCreateNote}
             />
             <NoteCardsList 
-              contactData={contactData}
+              contact={contact}
               cardsArray={cardsArray} 
               onChangeNote = {this.onChangeNote}
               handleDeleteNoteCard = {this.handleDeleteNoteCard}
             />
           </div>
         )}
-      </ActivityContext.Consumer>
-    )
-  }
 }
 
 export default NotesTimeLine;
