@@ -83,14 +83,15 @@ class CompanyMain extends Component {
 
     componentDidMount() {
         const selectedCompanyId = sessionStorage.getItem('id');
-        console.log(selectedCompanyId)
         const data = GetCompanyByCode(selectedCompanyId);
         data.then(response => {
             if (response.statusText === "OK") {
+                const company = response.data
                 this.setState({
-                    company: response.data,
+                    company: company,
                     loading: false,
                 })
+            sessionStorage.setItem('company', JSON.stringify(company));
             }
             else if (response.status === 404) {
                 alert('comapny is not found');

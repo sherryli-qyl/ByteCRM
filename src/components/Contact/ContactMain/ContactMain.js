@@ -85,12 +85,14 @@ class ContactMain extends Component {
     componentDidMount() {
         const selectedContactId = sessionStorage.getItem('id');
         const contact = GetContact(selectedContactId);
-        contact.then(value =>
+        contact.then(value =>{
             this.setState({
                 contact: value,
                 loading: false,
-            })
-        ).catch(error =>{
+            });
+           sessionStorage.setItem('contact', JSON.stringify(value));
+        })
+        .catch(error =>{
             console.log(error.message);
             alert("Please Check your Internet");
         })
@@ -114,7 +116,6 @@ class ContactMain extends Component {
                             <div className="Main">
                                 <InfoContext.Provider value={value}>
                                     <InfoPage 
-                                        contact = {contact}
                                         openModal={this.openModal}
                                         infoData={infoData}
                                         expandPack={expandPack}

@@ -12,8 +12,6 @@ const DEST = {
 class JumpButton extends React.Component {
   constructor(props) {
     super(props);
-    this.state={
-    }
   }
 
   render() {
@@ -22,7 +20,7 @@ class JumpButton extends React.Component {
         className="nakedBtn"
         onClick={(event) => {
           event.preventDefault();
-          sessionStorage.setItem(this.props.type, JSON.stringify(this.props.contact));
+          sessionStorage.setItem("id", this.props.id);
         }}
       >
         <NavLink
