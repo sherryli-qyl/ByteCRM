@@ -7,6 +7,8 @@
     width: 100%;
     justify-content: center;
     height: 100%;
+    border-radius: 0 0 3px 3px;
+    overflow: hidden;
     
     &__title{
         display: flex;
@@ -16,10 +18,12 @@
         width: 100%;
         font-size: 14px;
         font-weight: 600;
+       
 
         &__text{
             color:$primary-color;
             margin-left: 3%;
+           
         }
     }
 }
