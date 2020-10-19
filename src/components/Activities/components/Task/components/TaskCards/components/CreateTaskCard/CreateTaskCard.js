@@ -7,7 +7,7 @@ import TaskDescription from './components/TaskDescription';
 class CreateTaskCard extends React.Component {
   constructor(props) {
     super(props);
-    const { _id, description, assignedToUser, type, priority} = this.props.card;
+    const { _id, description,assignedToUser,priority} = this.props.card;
     this.state = {
       currentDate: this.props.card.date,
       currentTime: this.props.card.time,
@@ -15,7 +15,7 @@ class CreateTaskCard extends React.Component {
       cardId: _id,
       description,
       userList: assignedToUser,
-      type,
+      taskType: this.props.card.taskType,
       priority,
     }
     this.onDateChange = this.onDateChange.bind(this);
@@ -86,12 +86,14 @@ class CreateTaskCard extends React.Component {
   }
 
     render() {
-      const { currentDate, currentTime, cardId, description, type, priority} = this.state;
+      const { currentDate, currentTime, cardId, description, taskType, priority} = this.state;
         return (
           <div className="createTaskCard">
             <InputTaskType 
               currentDate={currentDate}
               currentTime={currentTime}
+              taskType = {taskType}
+              priority = {priority}
               onTimeChange={this.onTimeChange}
               onDateChange={this.onDateChange}
               onPriorityChange={this.onPriorityChange}
