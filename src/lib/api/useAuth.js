@@ -4,11 +4,9 @@ const AUTH_TOKEN = 'AUTH_TOKEN';
 
 const extractAuthTokenFromResponse = (response) => {
   const authToken = response.headers['x-auth-token'];
-console.log(response);
   if (authToken) {
     localStorage.setItem(AUTH_TOKEN, authToken);
   }
-
   return response;
 };
 
