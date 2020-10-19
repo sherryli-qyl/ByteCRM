@@ -15,7 +15,6 @@ const Options = {
 }
 
 const exportCSV = (columns, data, type) => {
-  console.log("exportCSV -> data", data)
   if (data.length === 0) {
     alert("No contacts to export!");
     return;
@@ -57,7 +56,6 @@ const exportCSV = (columns, data, type) => {
           ? tempData[i].createDate
           : "";
       }
-      console.log("exportCSV -> result", result);
       break;
     }
     case "company": {
@@ -65,30 +63,26 @@ const exportCSV = (columns, data, type) => {
         result[i] = {};
         result[i]["name"] = tempData[i].name.props.name;
         result[i]["phone number"] = tempData[i].phoneNumber ? tempData[i].phoneNumber : "";
-        if (tempData[i].companyOwner) {
-          let temp = "";
-          for (let i = 0; i < tempData[i].companyOwner.props.length; i += 2) {
-            temp += tempData[i].companyOwner.props.children[i].props.name + ", ";
-            if (
-              i == tempData[i].companyOwner.props.length - 2 ||
-              i == tempData[i].companyOwner.props.length - 1
-            ) {
-              temp = temp.slice(0, temp.length - 2);
-            }
-          }
-          result[i]["company owner"] = temp;
-        } else {
-          result[i]["company owner"] = "";
-        }
-        result[i]["last activity date"] = tempData[i].lastActivityDate
-          ? tempData[i].lastActivityDate
-          : "";
+        result[i]["company owner"] = tempData[i].companyOwner ? tempData[i].companyOwner : "";
         result[i]["city"] = tempData[i].city ? tempData[i].city : "";
         result[i]["country"] = tempData[i].country ? tempData[i].country : "";
         result[i]["industry"] = tempData[i].industry ? tempData[i].industry : "";
-        result[i]["create date"] = tempData[i].createDate;
+        result[i]["last logged call date"] = tempData[i].lastLoggedCallDate
+          ? tempData[i].lastLoggedCallDate
+          : "";
+        if (tempData[i].associatedContacts.props.children.length !== 0) {
+          let temp = "";
+          for (let i = 0; i < tempData[i].associatedContacts.props.children.length; i++) {
+            temp += tempData[i].associatedContacts.props.children[i].props.name + ", ";
+            if (i == tempData[i].associatedContacts.props.length - 1) {
+              temp = temp.slice(0, temp.length - 2);
+            }
+          }
+          result[i]["associated contacts"] = temp;
+        } else {
+          result[i]["associated contacts"] = "";
+        }
       }
-      console.log("exportCSV -> result", result);
       break;
     }
   }

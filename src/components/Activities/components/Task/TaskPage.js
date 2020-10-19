@@ -3,22 +3,23 @@ import TaskCards from './components/TaskCards';
 import TaskPageHeader from './components/Header';
 import shuffleCards from '../../../services/shuffleCards';
 import "./TaskPage.scss";
+import {ActivityContext} from '../../Context'
+import {GetTasks, UpdateTask, DeleteCreateTask, UpdateAssignedToUser, RemoveAssignedToUser} from '../../../Api/Task/Task';
 
 
 class TaskPage extends React.Component {
 	constructor(props) {
 		super(props);
-		this.taskCardsList = [
-			{ key: 1, name: "Yurun Yu", value: "test", taskType:"To-do",type: "Task", date: '2020-09-14',time:'9:00 PM'},
-			{ key: 2, name: "Yurun Yu", value: "test", taskType:"Email",type: "Task", date: '2020-10-13',time:'9:30 AM' },
-			{ key: 3, name: "Yurun Yu", value: "test", taskType:"Call",type: "Task", date: '2020-08-12',time:'10:59 AM'},
-			{ key: 4, name: "Yurun Yu", value: "test", taskType:"Email",type: "Task", date: '2020-09-15',time:'12:16 PM' },
-			{ key: 5, name: "Yurun Yu", value: "test", taskType:"To-do",type: "Task", date: '2020-08-14',time:'12:00 AM'},
-			{ key: 6, name: "Yurun Yu", value: "test", taskType:"Call",type: "Task", date: '2020-10-14',time:'13:48 AM'},
-		]
 		this.state = {
+			cardList: [],
 			cardsArray: [],
 		}
+		this.onChangeText = this.onChangeText.bind(this);
+		this.onChangeTask = this.onChangeTask.bind(this);
+		this.handleCreateTask = this.handleCreateTask.bind(this);
+		this.handleDeleteCard = this.handleDeleteCard.bind(this);
+		this.handleAddUser = this.handleAddUser.bind(this);
+		this.handleRemoveUser = this.handleRemoveUser.bind(this);
 	}
 
 	sortCardsArray() {
@@ -28,17 +29,90 @@ class TaskPage extends React.Component {
 		})
 	}
 
+	onChangeText(newContent, cardKey) {
+		const newCardsList = this.state.cardList;
+		for (let i in newCardsList) {
+				if (newCardsList[i].key === cardKey) {
+						newCardsList[i].description = newContent;
+						this.setState({
+								cardsList: newCardsList,
+						})
+				}
+		}
+	}
+
+	onChangeTask(taskId, body) {
+		UpdateTask(taskId, body);
+	}
+
+	handleInitPage(){
+		const tasks = GetTasks(this.props.userId);
+	 tasks.then(value => {
+				this.setState({
+						cardList: value,
+				});
+				return this.state.cardList
+		}).then(data => {
+				if (data.length >= 1) {
+						this.sortCardsArray();
+				}
+		});
+	}
+
+
+	handleCreateTask(task){
+		const newCardList = this.state.cardList;
+		newCardList.push(task);
+		this.setState({
+				cardList:newCardList,
+		})
+		this.sortCardsArray()
+	}
+
+	handleDeleteCard(id){
+		const response = DeleteCreateTask(id);
+		response.then(value =>{
+				if (value){
+				this.handleInitPage();
+				}
+		})
+	}
+
+	handleAddUser(userId, taskId){
+		UpdateAssignedToUser(userId, taskId);
+	}
+
+	handleRemoveUser(userId, taskId){
+		RemoveAssignedToUser(userId, taskId);
+	}
+
 	componentDidMount() {
-		this.sortCardsArray();
+		
+		this.handleInitPage();
 	}
 
 	render() {
 		const { cardsArray} = this.state;
 		return (
-			<div className="taskPage">
-				<TaskPageHeader />
-				<TaskCards cardsArray={cardsArray} />
-			</div>
+		<ActivityContext.Consumer>
+			{userData =>{
+				return(
+					<div className="taskPage">
+					<TaskPageHeader handleCreateTask = {this.handleCreateTask}
+													userData={userData} />
+					<TaskCards
+						userData={userData}
+						cardsArray={cardsArray}
+						handleDeleteCard = {this.handleDeleteCard}
+						handleAddUser={this.handleAddUser}
+						handleRemoveUser={this.handleRemoveUser} 
+						onChangeTask={this.onChangeTask} />
+					</div>
+				)
+
+			}}
+			
+		</ActivityContext.Consumer>
 		)
 	}
 }

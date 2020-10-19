@@ -86,7 +86,18 @@ function getColumns(type) {
             : { isValid: false, helperText: "Phone number format incorrect" },
       },
       { title: "COMPANY OWNER", field: "companyOwner", editable: "never", },
-      { title: "ASSOCIATED CONTACTS", field: "associatedContacts", editable: "never", },
+      {
+        title: "CITY",
+        field: "city",
+      },
+      {
+        title: "COUNTRY",
+        field: "country",
+      },
+      {
+        title: "INDUSTRY",
+        field: "industry"
+      },
       {
         title: "LAST LOGGED CALL DATE",
         field: "lastLoggedCallDate",
@@ -101,18 +112,7 @@ function getColumns(type) {
           return { isValid: false, helperText: "Date format incorrect" };
         },
       },
-      {
-        title: "CITY",
-        field: "city",
-      },
-      {
-        title: "COUNTRY",
-        field: "country",
-      },
-      {
-        title: "INDUSTRY",
-        field: "industry"
-      }
+      { title: "ASSOCIATED CONTACTS", field: "associatedContacts", editable: "never", },
     ];
   }
 }
