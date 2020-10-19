@@ -31,9 +31,12 @@ function wrapUpData(data, type) {
     return data.map((cur) => {
       return {
         name: (
-          <JumpButton id={cur.contactID} type={"contact"} name={cur.name} />
+          <JumpButton id={cur.id} 
+                      contact = {cur} 
+                      type={"contact"} 
+                      name={cur.fullName} />
         ),
-        contactID: cur.contactID,
+        contactID: cur.id,
         companyID: cur.companyID,
         email: cur.email,
         phoneNumber: cur.phoneNumber,
@@ -41,6 +44,7 @@ function wrapUpData(data, type) {
         associatedCompany: (
           <JumpButton
             id={cur.companyID}
+            company = {cur}
             type={"company"}
             name={cur.associatedCompany}
           />
@@ -54,12 +58,12 @@ function wrapUpData(data, type) {
     return data.map((cur) => {
       let newOwners,
         temp = [];
-      if (cur.associatedContacts.length !== 0 && cur.contactID.length !== 0) {
-        for (let i in cur.contactID) {
+      if (cur.associatedContacts.length !== 0 && cur.id.length !== 0) {
+        for (let i in cur.id) {
           temp.push(
             <JumpButton
-              key={cur.contactID[i]}
-              id={cur.contactID[i]}
+              key={cur.id[i]}
+              id={cur.id[i]}
               type={"contact"}
               name={cur.associatedContacts[i]}
             />
@@ -99,8 +103,8 @@ const processData = (data, type) => {
       newOwner = "Unassigned";
     }
     return {
-      name: data.fullName,
-      contactID: data.id,
+      fullName: data.fullName,
+      id: data.id,
       companyID: data.company ? data.company.code : undefined,
       phoneNumber: data.phoneNo,
       email: data.email,

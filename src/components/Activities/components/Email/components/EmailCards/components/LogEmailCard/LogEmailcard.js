@@ -16,7 +16,8 @@ class LogEmailCard extends React.Component {
             card:this.props.card,
             cardId: _id,
             description,
-            contactList:contacts
+            contactList:contacts,
+            showDeleteModal:false,
         }
         this.onDateChange = this.onDateChange.bind(this);
         this.onTimeChange = this.onTimeChange.bind(this);
@@ -65,7 +66,7 @@ class LogEmailCard extends React.Component {
 
     render() {
         const { currentDate, currentTime,cardId, description,contactList} = this.state;
-        const {userId,contact} = this.props.contactData;
+        const {user,contact} = this.props;
         return (
             <div className="logEmailCard">
                 {description?
@@ -79,7 +80,7 @@ class LogEmailCard extends React.Component {
                 <div className='blockline' >
                     <Body contactList = {contactList}
                           contact = {contact}
-                          userId = {userId}
+                          userId = {user.id}
                           currentDate={currentDate}
                           currentTime={currentTime}
                           handleAddContact = {this.handleAddContact}
