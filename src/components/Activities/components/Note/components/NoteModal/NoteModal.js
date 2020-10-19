@@ -6,14 +6,19 @@ import NoteInput from './components/NoteInput/NoteInput';
 import { AddNote, GetNoteByRelatedToId } from '../../../../../Api/Note/Note';
 
 
+
+
 class NoteModal extends React.Component {
   constructor(props) {
     super(props);
 
-    const{ userId, contact } = this.props.contactData;
+
+
+    const{contact } = this.props.contact;
+    const user = JSON.parse(localStorage.getItem('user'));
 
     this.state = {
-      userId,
+      user,
       content: '',
       contact,
       btnDisable: true,
@@ -48,11 +53,11 @@ class NoteModal extends React.Component {
   } 
 
   handleClickSaveBtn(){
-    const { content, userId, contact } = this.state;
+    const { content, user, contact } = this.state;
       if (this.checkValidation(content)){
         const body = {
           content: content,
-          createdBy: userId,
+          createdBy: user.id,
           type:'Note',
           isDeleted: false,
           relatedTo: contact,
@@ -61,7 +66,7 @@ class NoteModal extends React.Component {
         res.then(value => {
           if (value) {
             this.props.handleCreateNote(value);
-            this.props.contactData.close();
+            this.props.handleCloseModal();
           } else {
               console.log("Unexpected Error");
           }
