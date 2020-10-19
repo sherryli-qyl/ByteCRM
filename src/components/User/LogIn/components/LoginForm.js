@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-import api from '../../../../lib/api/api' ;
 import { withRouter } from 'react-router-dom';
+import api from '../../../../lib/api/api';
 
 class LoginForm extends React.Component {
   constructor() {
