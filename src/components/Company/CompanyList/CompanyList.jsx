@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./CompanyList.scss";
-import TableWrapper from "../../../pages/ListPageWrapper";
+import PageWrapper from "../../../Pages/ListPageWrapper";
 
 
 
@@ -32,7 +32,7 @@ class CompanyList extends Component {
     return (
       <div className="root" key={'wrapper'}>
         <h1>Companies</h1>
-        <TableWrapper tabs={tabs} userAccount={this.state.userAccount} type={'company'}/>
+        <PageWrapper tabs={tabs} userAccount={this.state.userAccount} type={'company'}/>
       </div>
     );
   }

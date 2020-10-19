@@ -2,6 +2,8 @@
 
 .searchBar {
     position: relative;
+    display: flex;
+    flex-direction: column;
 
     &__top {
         display: flex;
@@ -41,6 +43,9 @@
                 }
             }
         }
-
+    }
+    
+    &__bottom{
+        width: 100%;
     }
 }

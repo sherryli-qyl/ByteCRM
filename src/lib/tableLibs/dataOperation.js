@@ -1,5 +1,6 @@
 import React from "react";
-import JumpButton from "../../pages/ListPageWrapper/components/TableWrapper/components/EnhancedTable/components/JumpButton";
+import JumpButton from "../../Pages/ListPageWrapper/components/TableWrapper/components/EnhancedTable/components/JumpButton";
+ 
 import getDate from "./getDate";
 
 const LEAD_STATUS = {
