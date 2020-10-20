@@ -4,12 +4,12 @@ import InfoPage from '../../InfoPage';
 import Activities from '../../Activities';
 import SideBar from '../../SideBar';
 import Loading from '../../Loading';
+import ContactsCompany from '../../ContactsCompany';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { ModalContext } from '../../Modal/components/ModalContext';
 import { InfoContext } from '../../InfoPage/components/Context';
 import { publicTheme } from '../../Style/Theme/MatUITheme';
 import { ContactDictionary } from './components/Dictionary';
-import { ActivityContext } from '../../Activities/Context';
 import { GetContact, UpdateContact } from '../../Api/Contact/Contact';
 import WebActivity from './components/WebActivity';
 import './ContactMain.scss';
@@ -103,8 +103,10 @@ class ContactMain extends Component {
     render() {
         const { visible, currentModal, contact, theme, expandPack, loading,user } = this.state;
         const infoData = { key: 'contact', data: contact, dictionary: ContactDictionary };
-        const value = { single: this.onChangeSingleInfo, multi: this.onChangeMultiInfo };
-        const sideBarData = {company:contact.company,contact:contact}
+        const onChangeInfoHandlers = { single: this.onChangeSingleInfo, multi: this.onChangeMultiInfo };
+        const sideBarItems = [
+            {key:"Company",component: <ContactsCompany contact = {contact} company = {contact.company}/>}
+        ]
         const modalController = {open: this.openModal,close:this.closeModal}
         return (
             <div>
@@ -114,7 +116,7 @@ class ContactMain extends Component {
                             <Loading variant="full page" />
                             :
                             <div className="Main">
-                                <InfoContext.Provider value={value}>
+                                <InfoContext.Provider value={onChangeInfoHandlers}>
                                     <InfoPage 
                                         openModal={this.openModal}
                                         infoData={infoData}
@@ -123,7 +125,7 @@ class ContactMain extends Component {
                                 </InfoContext.Provider>   
                                     <Activities contact = {contact}
                                                 user = {user}/>
-                                    <SideBar data = {sideBarData} />
+                                    <SideBar sideBarItems = {sideBarItems} />
                                     <Modal Xaxis={this.state.Xaxis}
                                         Yaxis={this.state.Yaxis}
                                         visible={visible}

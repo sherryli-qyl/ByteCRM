@@ -69,6 +69,8 @@ render() {
     showDetail = true
   }
 
+  console.log(showDetail)
+
   const addModal = {
     title: 'Add companies to this contact',
     content: <AddComapnyRef handleSelectedCompany={this.handleSelectedCompany} />
@@ -81,9 +83,10 @@ render() {
 
   return (
     <div className="contactsCompany">
-      <ExpandBar content={<RelationCard company={company}
-        contact={contact}
-        handleRemoveCompany={this.handleRemoveCompany} />}
+      <ExpandBar content={
+        <RelationCard company={company}
+                      contact={contact}
+                      handleRemoveCompany={this.handleRemoveCompany}/>}
         label={"Company"}
         addModal={addModal}
         hintMessage={hintMessage}
