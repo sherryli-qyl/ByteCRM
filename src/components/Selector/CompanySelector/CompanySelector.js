@@ -96,7 +96,8 @@ class CompanySelector extends React.Component {
 
         if (text.length >= 3) {
             newHint = 'searching';
-            const response = GetCompanyByUserId(sessionStorage.getItem('userId'), text.toUpperCase())
+            
+            const response = GetCompanyByUserId(JSON.parse(localStorage.getItem('user')).id, text.toUpperCase())
             this.setState(prevState => ({
                 ...prevState,
                 loading: true
