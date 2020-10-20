@@ -101,7 +101,7 @@ class ContactMain extends Component {
 
 
     render() {
-        const { visible, currentModal, contact, theme, expandPack, loading,user } = this.state;
+        const { visible, currentModal, contact, theme, expandPack, loading} = this.state;
         const infoData = { key: 'contact', data: contact, dictionary: ContactDictionary };
         const onChangeInfoHandlers = { single: this.onChangeSingleInfo, multi: this.onChangeMultiInfo };
         const sideBarItems = [
@@ -123,8 +123,7 @@ class ContactMain extends Component {
                                         expandPack={expandPack}
                                     />
                                 </InfoContext.Provider>   
-                                    <Activities contact = {contact}
-                                                user = {user}/>
+                                    <Activities contact = {contact}/>
                                     <SideBar sideBarItems = {sideBarItems} />
                                     <Modal Xaxis={this.state.Xaxis}
                                         Yaxis={this.state.Yaxis}

@@ -12,11 +12,14 @@ import './ContactSelector.scss';
 class ContactSelector extends React.Component {
     constructor(props) {
         super(props);
+        const {contactList,userId,contact} = this.props;
+        const test = contactList;
         this.state = {
             showDropdown: false,
-            contactList: this.props.contactList,
-            userId: this.props.userId,
-            contact: this.props.contact,
+            contactList,
+            test,
+            userId,
+            contact,
             textInput: '',
             enableCleanBtn: false,
             checkInput: false,
@@ -173,6 +176,7 @@ class ContactSelector extends React.Component {
 
     componentDidMount() {
         document.addEventListener('mousedown', this.handleClickOutside);
+        console.log(this.props.contactList);
     }
 
     componentWillUnmount() {
@@ -185,8 +189,13 @@ class ContactSelector extends React.Component {
         const { showDropdown, textInput, enableCleanBtn,
             textInputHint, checkInput, searchList, loading, contact } = this.state;
 
+            console.log(this.state.test);
+            console.log(this.props.contactList)
+
+
         let contacted = ""
         const contactList = FormatList(this.state.contactList);
+       
 
         if (!contactList) {
             contacted = `0 contacts`
