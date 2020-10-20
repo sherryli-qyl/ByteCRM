@@ -51,7 +51,7 @@ class ExpandBar extends React.Component {
 
 
     render() {
-        const {showHint, showAddModal,showDetail } = this.state;
+        const { showHint, showAddModal, showDetail } = this.state;
         const { showAdd, disabled, hintMessage, addModal } = this.props;
         let angleIconClassName = 'angleIcon ';
 
@@ -104,17 +104,21 @@ class ExpandBar extends React.Component {
                         }
                     </div>
                     <div className={expandContentClassName}>
-                        {this.props.content}
+                        {showDetail ?
+                            this.props.content
+                            :
+                            ""
+                        }
                     </div>
                 </div>
                 {addModal ?
                     <AddModal addModal={addModal}
-                              onClickCloseBtn={this.onClickCloseBtn}
-                              onClickSaveBtn = {()=>{
-                                  this.props.onClickSaveBtn();
-                                  this.onClickCloseBtn();
-                                }}
-                              showAddModal={showAddModal} />
+                        onClickCloseBtn={this.onClickCloseBtn}
+                        onClickSaveBtn={() => {
+                            this.props.onClickSaveBtn();
+                            this.onClickCloseBtn();
+                        }}
+                        showAddModal={showAddModal} />
                     :
                     ""
                 }
