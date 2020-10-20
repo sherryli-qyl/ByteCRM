@@ -3,8 +3,7 @@ import './NoteModal.scss';
 import './components/NoteInput';
 import NoteSaveBar from './components/NoteSaveBar';
 import NoteInput from './components/NoteInput/NoteInput';
-import { AddNote, GetNoteByRelatedToId } from '../../../../../Api/Note/Note';
-
+import { AddNote } from '../../../../../Api/Note/Note';
 
 
 
@@ -44,8 +43,7 @@ class NoteModal extends React.Component {
     const checkInput = text.replaceAll(" ","").replaceAll('<br>', '').replaceAll('<p></p>','');
     if (checkInput!== ''){
       return true
-    }
-    else{
+    } else {
       return false; 
     }
   } 
@@ -76,8 +74,7 @@ class NoteModal extends React.Component {
   
 
   render() {
-    //const { btnDisable, createdBy, relatedTo } = this.state;
-    const { btnDisable, userId, contact } = this.state;
+    const { btnDisable, user, contact } = this.state;
 
     return (
       <section id="NoteModal" className="NoteModal">
@@ -86,7 +83,7 @@ class NoteModal extends React.Component {
             placeholder="Start typing to leave a note..."
             handleEditorChange={this.handleEditorChange}
             createdBy={contact}
-            relatedTo={userId}
+            relatedTo={user}
           />
         </div>
         <div className="note-container-footer">
