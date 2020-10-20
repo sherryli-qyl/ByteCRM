@@ -7,7 +7,6 @@ import { GetNoteByRelatedToId, UpdateNote, DeleteNote } from '../../../Api/Note/
 
 
 
-
 const contact = JSON.parse(sessionStorage.getItem('contact'));
 
 class NotesTimeLine extends React.Component {
@@ -74,7 +73,7 @@ class NotesTimeLine extends React.Component {
       cardsList: newCardList,
     })
     this.sortCardsArray()
-}
+  }
 
   handleDeleteNoteCard(noteId){
     const response = DeleteNote(noteId);
@@ -87,23 +86,22 @@ class NotesTimeLine extends React.Component {
 
 
   render() {
-    const { cardsArray,contact} = this.state;
+    const { cardsArray, contact} = this.state;
 
     return (
-  
-          <div className="note-time-line">
-            <TimeLineControls 
-              contact={contact}
-              handleCreateNote = {this.handleCreateNote}
-            />
-            <NoteCardsList 
-              contact={contact}
-              cardsArray={cardsArray} 
-              onChangeNote = {this.onChangeNote}
-              handleDeleteNoteCard = {this.handleDeleteNoteCard}
-            />
-          </div>
-        )}
+      <div className="note-time-line">
+        <TimeLineControls 
+          contact={contact}
+          handleCreateNote = {this.handleCreateNote}
+        />
+        <NoteCardsList 
+          contact={contact}
+          cardsArray={cardsArray} 
+          onChangeNote = {this.onChangeNote}
+          handleDeleteNoteCard = {this.handleDeleteNoteCard}
+        />
+      </div>
+    )}
 }
 
 export default NotesTimeLine;

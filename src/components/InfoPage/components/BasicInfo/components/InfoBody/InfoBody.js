@@ -30,7 +30,7 @@ class InfoBody extends React.Component {
                             <Loading variant="block" />
                             :
                             <React.Fragment>
-                                <div className='infoBody__contactsIcon__init'> BH </div>
+                                <div className='infoBody__contactsIcon__init'> {`${dataPack.data.firstName[0]}${dataPack.data.lastName[0]}`} </div>
                                 <div className="infoBody__name"> {`${dataPack.data.firstName} ${dataPack.data.lastName}`} </div>
                                 <div className="infoBody__jobTitle"> {`${dataPack.data.jobTitle} ${companyName}`}  </div>
                             </React.Fragment>
@@ -38,7 +38,7 @@ class InfoBody extends React.Component {
                     </React.Fragment>
                     :
                     <React.Fragment>
-                        <div className='infoBody__contactsIcon__init'> AA</div>
+                        <div className='infoBody__contactsIcon__init'> {dataPack.data.name[0]} </div>
                         <div className="infoBody__name"> {dataPack.data.name} </div>
                         <div className="infoBody__jobTitle"> {dataPack.data.companyDomainName} </div>
                     </React.Fragment>
