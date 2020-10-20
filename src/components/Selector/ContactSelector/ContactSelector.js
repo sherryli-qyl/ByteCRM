@@ -13,11 +13,13 @@ class ContactSelector extends React.Component {
     constructor(props) {
         super(props);
         const {contactList,userId,contact} = this.props;
-        const test = contactList;
+        const test1 = contact;
+        const test2 = userId;
         this.state = {
             showDropdown: false,
             contactList,
-            test,
+            test1,
+            test2,
             userId,
             contact,
             textInput: '',
@@ -176,7 +178,7 @@ class ContactSelector extends React.Component {
 
     componentDidMount() {
         document.addEventListener('mousedown', this.handleClickOutside);
-        console.log(this.props.contactList);
+        console.log(this.props);
     }
 
     componentWillUnmount() {
@@ -188,9 +190,9 @@ class ContactSelector extends React.Component {
     render() {
         const { showDropdown, textInput, enableCleanBtn,
             textInputHint, checkInput, searchList, loading, contact } = this.state;
-
-            console.log(this.state.test);
-            console.log(this.props.contactList)
+            console.log(this.state.test1);
+            console.log(this.state.test2);
+            console.log(this.props)
 
 
         let contacted = ""
