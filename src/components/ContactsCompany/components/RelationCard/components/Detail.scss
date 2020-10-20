@@ -70,9 +70,9 @@
       }
 
       &__hint{
-        position:fixed;
-        right:2.5%;
-        top: 11%;
+        position: absolute;;
+        top:-60px;
+        right:-5px; 
       }
     }
   }

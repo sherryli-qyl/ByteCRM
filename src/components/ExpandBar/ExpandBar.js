@@ -40,7 +40,6 @@ class ExpandBar extends React.Component {
         this.setState(prevState => ({
             showDetail: !prevState.showDetail,
         }))
-        console.log(this.state.showDetail);
     }
 
     hintBoxToggle(show) {
@@ -52,14 +51,14 @@ class ExpandBar extends React.Component {
 
 
     render() {
-        const {showHint, showAddModal } = this.state;
+        const { showHint, showAddModal, showDetail } = this.state;
         const { showAdd, disabled, hintMessage, addModal } = this.props;
         let angleIconClassName = 'angleIcon ';
 
         let expandContentClassName = 'expandBar__container__content '
         let addBtnClassName = 'expandBar__container__right__addBtn '
 
-        if (this.state.showDetail) {
+        if (showDetail) {
             angleIconClassName += 'angleIcon__rotate';
             expandContentClassName += 'expandBar__container__content__active';
         }
@@ -105,17 +104,21 @@ class ExpandBar extends React.Component {
                         }
                     </div>
                     <div className={expandContentClassName}>
-                        {this.props.content}
+                        {showDetail ?
+                            this.props.content
+                            :
+                            ""
+                        }
                     </div>
                 </div>
                 {addModal ?
                     <AddModal addModal={addModal}
-                              onClickCloseBtn={this.onClickCloseBtn}
-                              onClickSaveBtn = {()=>{
-                                  this.props.onClickSaveBtn();
-                                  this.onClickCloseBtn();
-                                }}
-                              showAddModal={showAddModal} />
+                        onClickCloseBtn={this.onClickCloseBtn}
+                        onClickSaveBtn={() => {
+                            this.props.onClickSaveBtn();
+                            this.onClickCloseBtn();
+                        }}
+                        showAddModal={showAddModal} />
                     :
                     ""
                 }

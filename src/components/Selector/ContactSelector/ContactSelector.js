@@ -12,11 +12,16 @@ import './ContactSelector.scss';
 class ContactSelector extends React.Component {
     constructor(props) {
         super(props);
+        const {contactList,userId,contact} = this.props;
+        const test1 = contact;
+        const test2 = userId;
         this.state = {
             showDropdown: false,
-            contactList: this.props.contactList,
-            userId: this.props.userId,
-            contact: this.props.contact,
+            contactList,
+            test1,
+            test2,
+            userId,
+            contact,
             textInput: '',
             enableCleanBtn: false,
             checkInput: false,
@@ -185,13 +190,11 @@ class ContactSelector extends React.Component {
         const { showDropdown, textInput, enableCleanBtn,
             textInputHint, checkInput, searchList, loading, contact } = this.state;
 
-        let contacted = ""
-        const contactList = FormatList(this.state.contactList);
-
-        if (!contactList) {
-            contacted = `0 contacts`
-        }
-        else if (contactList.length === 1) {
+        let contacted = "";
+        let contactList = [];
+        this.state.contactList? contactList =  FormatList(this.state.contactList) : contacted = `0 contacts`;
+        
+        if (contactList.length === 1) {
             contacted = `${contactList[0].contact.fullName}`;
         }
         else contacted = `${contactList.length} contacts`;

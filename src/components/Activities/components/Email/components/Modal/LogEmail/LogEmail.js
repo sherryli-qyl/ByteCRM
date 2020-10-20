@@ -15,10 +15,12 @@ class LogEmail extends React.Component {
         const currentDate = transferDateInYearMonDay(new Date());
         const currentTime = "09:00";
         const{user,contact} = this.props;
-        let contacts = []
-        let contactList = []
-        contactList.push(contact);
-        contacts.push(contact.id);
+        
+        let contactList = [];
+        let contacts = [];
+        contact ? contactList.push(contact) : contactList = [];
+        contact ? contacts.push(contact) : contacts = [];
+
         this.state = {
             currentDate,
             currentTime,

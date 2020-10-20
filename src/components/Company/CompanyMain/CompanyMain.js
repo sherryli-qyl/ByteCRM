@@ -90,6 +90,7 @@ class CompanyMain extends Component {
                 this.setState({
                     company: company,
                     loading: false,
+                    associatedContacts: company.associatedContacts,
                 })
             sessionStorage.setItem('company', JSON.stringify(company));
             }
@@ -100,13 +101,14 @@ class CompanyMain extends Component {
     }
 
     render() {
-        const { visible, currentModal, company, expandPack, theme, loading } = this.state;
+        const { visible, currentModal, company, associatedContacts, expandPack, theme,loading} = this.state;
         const value = { single: this.onChangeSingleInfo, multi: this.onChangeMultiInfo };
         const infoData = { key: 'company', data: company, dictionary: CompanyDictionary };
-        const contactData = {contact:"",userId:this.userId,close:this.closeModal}
+        const modalController = {open: this.openModal,close:this.closeModal}
+
         return (
             <div>
-                <ModalContext.Provider value={this.openModal}>
+                <ModalContext.Provider value={modalController}>
                     <ThemeProvider theme={theme}>
                         {loading ?
                             <Loading variant="full page" />
@@ -118,9 +120,7 @@ class CompanyMain extends Component {
                                         expandPack={expandPack}
                                     />
                                 </InfoContext.Provider>
-
-                                <ActivityContext.Provider value = {contactData}>
-                                    <Activities/>
+                                    <Activities associatedContacts = {associatedContacts}/>
                                 <RelationContact />
                                 <Modal Xaxis={this.state.Xaxis}
                                     Yaxis={this.state.Yaxis}
@@ -128,7 +128,6 @@ class CompanyMain extends Component {
                                     currentModal={currentModal}
                                     closeModal={this.closeModal}
                                 />
-                                </ActivityContext.Provider>
                             </div>
                         }
                     </ThemeProvider>

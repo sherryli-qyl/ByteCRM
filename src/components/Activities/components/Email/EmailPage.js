@@ -2,12 +2,12 @@ import React from 'react';
 import EmailCards from './components/EmailCards';
 import EmailPageHeader from './components/Header';
 import shuffleCards from '../../../services/shuffleCards';
-import { GetEmails, UpdateEmail, DeleteEmailLog, UpdateContacts, RemoveContacts } from '../../../Api/Email/Email';
+import { GetEmails, GetMultiContactsEmails,UpdateEmail, DeleteEmailLog, UpdateContacts, RemoveContacts } from '../../../Api/Email/Email';
 import "./EmailPage.scss";
 
 
 const user = JSON.parse(localStorage.getItem('user'));
-const contact = JSON.parse(sessionStorage.getItem('contact'));
+
 
 
 class EmailPage extends React.Component {
@@ -16,7 +16,8 @@ class EmailPage extends React.Component {
         this.state = {
             cardList: [],
             user,
-            contact,
+            contact:this.props.contact,
+            associatedContacts:this.props.associatedContacts,
             cardsArray: [],
         }
         this.onChangeText = this.onChangeText.bind(this);
@@ -81,19 +82,32 @@ class EmailPage extends React.Component {
     }
 
     handleInitPage() {
-        const emails = GetEmails(this.state.contact.id);
-        emails.then(emailList => {
-            if (emailList.length > 0) {
+        let data = []
+        const {contact,associatedContacts} = this.state;
+        if (contact){
+            data = GetEmails(contact.id);
+        }
+        else if (associatedContacts){
+            let ids = "";
+            for(let i = 0; i < associatedContacts.length;i++){
+                const id = associatedContacts[i].id; 
+                i === 0 ? ids += id : ids += "&&" + id;
+            }
+            data = GetMultiContactsEmails(ids); 
+        }
+        data.then(response => {
+            if (response.statusText === "OK") {
+                console.log(response.data);
                 this.setState({
-                    cardList: emailList
+                    cardList: response.data
                 })
-                return emailList;
+                return response.data;
             }
             else {
                 return [];
             }
-        }).then((emailList) => {
-            this.sortCardsArray(emailList);
+        }).then((cards) => {
+            this.sortCardsArray(cards);
         });
     }
 

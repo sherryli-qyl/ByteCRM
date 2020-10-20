@@ -1,25 +1,29 @@
 import React from 'react';
-import ContactsCompany from '../ContactsCompany';
-
-
+import SideBarItem from './components/SideBarItem/SideBarItem'
 import './SideBar.scss'
 
 
 
-class SideBar extends React.Component{
-    constructor(props){
+class SideBar extends React.Component {
+    constructor(props) {
         super(props);
-        this.state={
+        this.state = {
 
         }
     }
 
-    render(){
-        const {company,contact} = this.props.data;
-        return(
-            <div className = 'sideBar'>
-                <ContactsCompany company = {company}
-                                 contact = {contact}/>
+    render() {
+        const { sideBarItems } = this.props;
+        return (
+            <div className='sideBar'>
+                {sideBarItems.map((item) => {
+                    return (
+                        <SideBarItem key={item.key}>
+                            {item.component}
+                        </SideBarItem>
+                    )
+                })
+                }
             </div>
         )
     }
