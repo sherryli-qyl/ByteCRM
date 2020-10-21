@@ -1,7 +1,7 @@
 import 'date-fns';
 import React from 'react';
 import { ThemeProvider} from '@material-ui/core/styles';
-import DateFnsUtils from '@date-io/date-fns';
+import MomentUtils from '@date-io/moment';
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
@@ -34,13 +34,14 @@ class DatePicker extends React.Component {
 
   render() {
     const { currentDate, pickerTheme} = this.state
+    console.log(currentDate)
     return (
-      <MuiPickersUtilsProvider utils={DateFnsUtils}>
+      <MuiPickersUtilsProvider utils={MomentUtils}>
         <ThemeProvider theme={pickerTheme}>
           <KeyboardDatePicker 
             disableToolbar
             clearable
-            format="MM/dd/yyyy"
+            format="DD/MM/yyyy"
             margin="normal"
             id="date-picker-inline"
             value={currentDate}
