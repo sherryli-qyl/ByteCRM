@@ -6,14 +6,16 @@ import './RelationCard.scss'
 
 const RelationCard = ({
   contacts,
-  company
+  company,
+  handleRemoveRef
 }) => (
   <div className="cardWrap">
     {contacts.map((item) => (
       <Detail
         key={item.id}
         company = {company}
-        contact = {item}/>
+        contact = {item}
+        handleRemoveRef = {handleRemoveRef}/>
     )
     )}
   </div>

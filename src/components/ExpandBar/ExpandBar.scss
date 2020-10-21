@@ -20,12 +20,12 @@
             align-self: center;
             max-height: 0px;
             font-size: 14px;
-            transition: max-height .3s ease-out;
+            transition: max-height .5s ease-out;
 
 
             &__active {
                 max-height: 100%;
-                transition: max-height .3s ease-in;
+                transition: max-height .5s ease-in;
                 transform-origin: 100% 0;
             }
         }

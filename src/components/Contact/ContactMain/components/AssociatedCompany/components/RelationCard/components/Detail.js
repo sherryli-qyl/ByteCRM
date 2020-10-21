@@ -31,12 +31,13 @@ class Detail extends React.Component {
   }
 
   render() {
-    const { website, name, phoneNumber, contact } = this.props;
+    const { website, company, phoneNumber, contact } = this.props;
+    console.log(company);
     const { showRemoveModal } = this.state;
     const websiteURL = `https://${website}`;
     return (
       <div className="relatedCompany">
-        <div className="relatedCompany__companyName"> {name} </div>
+        <div className="relatedCompany__companyName"> {company.name} </div>
         <div className="relatedCompany__website">
           <a className="relatedCompany__website__link" href={websiteURL} target="_blank" rel="noopener noreferrer">
             {website}
@@ -54,7 +55,7 @@ class Detail extends React.Component {
         <div className="relatedCompany__removeBtn">
           <RemoveBtn showRemoveModal={showRemoveModal}
                      contactName={contact.fullName}
-                     companyName={contact.company.name}
+                     companyName={company.name}
                      handleModalToggle={this.handleModalToggle}
                      onClickConfirmBtn={this.onClickConfirmBtn}
                      onClickCancelBtn={this.onClickCancelBtn} />

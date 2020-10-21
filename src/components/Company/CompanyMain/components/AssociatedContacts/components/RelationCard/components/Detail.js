@@ -2,7 +2,8 @@ import React from 'react';
 import EmailModal from '../../../../../../../Activities/components/Email/components/Modal/CreateEmail';
 import { ModalContext } from '../../../../../../../Modal/components/ModalContext';
 import Modal from '../../../../../../../../js/Modal';
-import { faEnvelope, faPhoneAlt, faTimes } from "@fortawesome/free-solid-svg-icons";
+import RemoveBtn from '../../../../../../../RemoveBtn';
+import { faEnvelope, faPhoneAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Avatar from '../../../../../../../Avatar';
 import './Detail.scss';
@@ -14,8 +15,28 @@ class Detail extends React.Component {
     this.state = {
       showRemoveModal: false,
     }
-
+    this.handleModalToggle = this.handleModalToggle.bind(this);
+    this.onClickConfirmBtn = this.onClickConfirmBtn.bind(this);
+    this.onClickCancelBtn = this.onClickCancelBtn.bind(this);
   }
+
+  handleModalToggle() {
+    this.setState(prevState => ({
+      showRemoveModal: !prevState.showRemoveModal
+    }))
+  }
+
+  onClickConfirmBtn() {
+    this.props.handleRemoveRef(this.props.contact.id,this.props.company.id);
+    this.setState({
+      showRemoveModal:false
+    })
+  }
+
+  onClickCancelBtn() {
+    this.handleModalToggle();
+  }
+
 
   render() {
     const { showRemoveModal } = this.state;
@@ -60,24 +81,14 @@ class Detail extends React.Component {
                 <span className="relatedContactsWrapper__activityContainer__activity">{contact.phoneNo}</span>
               </div>
             </div>
-            {/* <div className='detail__btnContainer'>
-              <RemoveButtom className='relatedCompany__btnContainer__remove' onClick={this.handleModalToggle}>
-                <div className="relatedCompany__btnContainer__remove__hint">
-                  <HintBox variant='bottomRight'>
-                    Remove association
-              </HintBox>
-                </div>
-                <FontAwesomeIcon icon={faTimes} />
-              </RemoveButtom>
+            <div className="relatedContacts__removeBtn">
+              <RemoveBtn showRemoveModal={showRemoveModal}
+                         contactName={contact.fullName}
+                         companyName={company.name}
+                         handleModalToggle={this.handleModalToggle}
+                         onClickConfirmBtn={this.onClickConfirmBtn}
+                         onClickCancelBtn={this.onClickCancelBtn} />
             </div>
-            {showRemoveModal ?
-              <RemoveRefModal contactName={contact.fullName}
-                companyName={company.name}
-                onClickConfirmBtn={this.onClickConfirmBtn}
-                onClickCancelBtn={this.onClickCancelBtn} />
-              :
-              ""
-            } */}
           </div>
         }
       </ModalContext.Consumer >

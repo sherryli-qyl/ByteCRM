@@ -13,7 +13,7 @@ const RelationCard = ({
     <div className="relationcard">
       {company ?
         <Detail
-          name={company.name}
+          company = {company}
           contact = {contact}
           website={company.companyDomain}
           phoneNumber={company.phoneNumber} 

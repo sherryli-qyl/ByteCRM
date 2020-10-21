@@ -64,12 +64,13 @@ onClickSaveBtn() {
 render() {
   const { hintMessage, company, contact } = this.state;
 
+  console.log(company);
+
   let showDetail = false;
   if (company) {
     showDetail = true
   }
 
-  console.log(showDetail)
 
   const addModal = {
     title: 'Add companies to this contact',
@@ -83,6 +84,7 @@ render() {
 
   return (
     <div className="contactsCompany">
+      
       <ExpandBar content={
         <RelationCard company={company}
                       contact={contact}
