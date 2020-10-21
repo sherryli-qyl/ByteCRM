@@ -79,8 +79,8 @@ class ExpandBar extends React.Component {
                         </div>
                         {showAdd ?
                             <div className='expandBar__container__right'
-                                onMouseEnter={() => this.hintBoxToggle(true)}
-                                onMouseLeave={() => this.hintBoxToggle(false)}>
+                                 onMouseEnter={() => this.hintBoxToggle(true)}
+                                 onMouseLeave={() => this.hintBoxToggle(false)}>
                                 <button className={addBtnClassName}
                                     disabled={disabled}
                                     onClick={(event) => {
@@ -97,7 +97,7 @@ class ExpandBar extends React.Component {
                                         ""
                                     }
                                    + Add
-                                    </button>
+                                </button>
                             </div>
                             :
                             ""
