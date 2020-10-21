@@ -16,9 +16,9 @@ const AddContactRef = ({
 
 
     return (
-        <div className='addContactRef'>
-            <div className='addContactRef__description'>
-                Keep track of which companies are related to this contact.
+        <div className='addRef'>
+            <div className='addRef__description'>
+            Keep track of which contacts are part of this company.
             </div>
             <SwitchButtonBar components = {components}/>
         </div>

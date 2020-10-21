@@ -16,8 +16,8 @@ const AddCompanyRef = ({
 
 
     return (
-        <div className='addCompanyRef'>
-            <div className='addCompanyRef__description'>
+        <div className='addRef'>
+            <div className='addRef__description'>
                 Keep track of which companies are related to this contact.
             </div>
             <SwitchButtonBar components = {components}/>
