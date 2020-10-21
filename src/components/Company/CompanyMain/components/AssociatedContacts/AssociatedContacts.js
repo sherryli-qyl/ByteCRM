@@ -1,6 +1,7 @@
 import React from 'react';
 import RelationCard from './components/RelationCard';
 import ExpandBar from '../../../../ExpandBar';
+import AddContactRef from './components/AddContactRef';
 import { AddCompanyRef, RemoveCompanyRef } from '../../../../Api/Contact';
 import './AssociatedContacts.scss';
 
@@ -45,10 +46,17 @@ class AssociatedContacts extends React.Component {
       showDetail = true;
     }
 
+    const addModal = {
+      title: 'Add companies to this contact',
+      content: <AddContactRef handleSelectedCompany={this.handleSelectedCompany} />
+    }
+
     return (
       <div className="associatedContacts">
         <ExpandBar label={`Contacts (${contacts.length})`}
                    showDetail={showDetail}
+                   showAdd={true}
+                   addModal={addModal}
                    content={
             <RelationCard contacts={contacts}
                           company={company}

@@ -13,13 +13,9 @@ class ContactSelector extends React.Component {
     constructor(props) {
         super(props);
         const {contactList,userId,contact} = this.props;
-        const test1 = contact;
-        const test2 = userId;
         this.state = {
             showDropdown: false,
             contactList,
-            test1,
-            test2,
             userId,
             contact,
             textInput: '',
