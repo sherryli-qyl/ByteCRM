@@ -51,7 +51,14 @@ class Detail extends React.Component {
           </div>
           {phoneNumber}
         </div>
-       
+        <div className="relatedCompany__removeBtn">
+          <RemoveBtn showRemoveModal={showRemoveModal}
+                     contactName={contact.fullName}
+                     companyName={contact.company.name}
+                     handleModalToggle={this.handleModalToggle}
+                     onClickConfirmBtn={this.onClickConfirmBtn}
+                     onClickCancelBtn={this.onClickCancelBtn} />
+        </div>
       </div >
     )
   };

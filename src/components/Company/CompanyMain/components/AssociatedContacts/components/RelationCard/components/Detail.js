@@ -5,9 +5,6 @@ import Modal from '../../../../../../../../js/Modal';
 import { faEnvelope, faPhoneAlt, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Avatar from '../../../../../../../Avatar';
-import RemoveButtom from '../../../../../../../Style/Button/Activities/LogButton';
-import RemoveRefModal from '../../../../../../../RemoveCompanyRef';
-import HintBox from '../../../../../../../HintBox';
 import './Detail.scss';
 
 

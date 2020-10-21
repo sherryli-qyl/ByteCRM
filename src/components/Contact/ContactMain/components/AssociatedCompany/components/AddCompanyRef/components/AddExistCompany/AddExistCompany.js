@@ -1,5 +1,5 @@
 import React from 'react';
-import CompanySelector from '../../../../../Selector/CompanySelector';
+import CompanySelector from '../../../../../../../../Selector/CompanySelector';
 
 import './AddExistCompany.scss';
 

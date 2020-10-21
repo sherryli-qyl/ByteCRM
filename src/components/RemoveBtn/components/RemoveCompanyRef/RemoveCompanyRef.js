@@ -1,6 +1,6 @@
 import React from 'react';
-import Overlay from '../Overlay';
-import Button from '../Button'
+import Overlay from '../../../Overlay';
+import Button from '../../../Button'
 
 import './RemoveCompanyRef.scss';
 

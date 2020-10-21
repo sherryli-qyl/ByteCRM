@@ -4,7 +4,7 @@ import InfoPage from '../../InfoPage';
 import Activities from '../../Activities';
 import SideBar from '../../SideBar';
 import Loading from '../../Loading';
-import AssociatedCompany from '../../AssociatedCompany';
+import AssociatedCompany from './components/AssociatedCompany';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { ModalContext } from '../../Modal/components/ModalContext';
 import { InfoContext } from '../../InfoPage/components/Context';

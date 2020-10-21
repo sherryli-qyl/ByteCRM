@@ -1,4 +1,4 @@
-@import '../../../../../style/variable.scss';
+@import '../../../../../../../../style/variable.scss';
 
 .relatedCompany {
   position: relative;
@@ -11,7 +11,7 @@
   font-size: 12px;
 
   &:hover {
-    .relatedCompany__btnContainer{
+    .relatedCompany__removeBtn{
         display:block;
     }
   }
@@ -47,33 +47,10 @@
     }
   }
 
-  &__btnContainer {
+  &__removeBtn{
     display: none;
     position: absolute;
     right: 6px;
     top: 8px;
-
-    &__remove {
-      position: relative;
-      padding: 0px 0px;
-      font-weight: 600;
-      min-width: 26px;
-      min-height: 26px;
-      font-size: 15px;
-
-      &:hover{
-       .hintBox{
-         display:flex;
-         opacity: 1;
-         visibility: visible;
-        }
-      }
-
-      &__hint{
-        position: absolute;;
-        top:-60px;
-        right:-5px; 
-      }
-    }
   }
 }

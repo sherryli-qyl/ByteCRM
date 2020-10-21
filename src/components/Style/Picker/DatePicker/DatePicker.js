@@ -1,7 +1,6 @@
 import 'date-fns';
 import React from 'react';
-import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import { makeStyles } from '@material-ui/core/styles';
+import { ThemeProvider} from '@material-ui/core/styles';
 import DateFnsUtils from '@date-io/date-fns';
 import {
   MuiPickersUtilsProvider,

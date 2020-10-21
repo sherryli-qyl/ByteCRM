@@ -1,6 +1,6 @@
 import React from 'react';
 import AddExistCompany from './components/AddExistCompany';
-import SwitchButtonBar from '../../../SwitchButtonBar';
+import SwitchButtonBar from '../../../../../../SwitchButtonBar';
 
 import './AddCompabyRef.scss';
 

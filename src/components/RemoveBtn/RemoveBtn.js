@@ -4,11 +4,12 @@ import RemoveRefModal from './components/RemoveCompanyRef';
 import HintBox from '../HintBox';
 import {faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import './RemoveBtn.scss';
 
 
 const RemoveBtn = ({
     showRemoveModal,
-    contact,
+    contactName,
     companyName,
     handleModalToggle,
     onClickConfirmBtn,
@@ -26,7 +27,7 @@ const RemoveBtn = ({
             </RemoveButtom>
             {
                 showRemoveModal ?
-                    <RemoveRefModal contactName={contact.fullName}
+                    <RemoveRefModal contactName={contactName}
                         companyName={companyName}
                         onClickConfirmBtn={onClickConfirmBtn}
                         onClickCancelBtn={onClickCancelBtn} />
