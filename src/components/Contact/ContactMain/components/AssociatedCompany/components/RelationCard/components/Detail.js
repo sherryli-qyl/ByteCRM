@@ -1,9 +1,7 @@
 import React from 'react';
-import { faPhoneAlt, faExternalLinkAlt, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faPhoneAlt, faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import RemoveButtom from '../../../../Style/Button/Activities/LogButton';
-import RemoveRefModal from '../../RemoveCompanyRef';
-import HintBox from '../../../../HintBox';
+import RemoveBtn from '../../../../../../../RemoveBtn';
 import './Detail.scss';
 
 
@@ -28,12 +26,12 @@ class Detail extends React.Component {
     this.props.handleRemoveCompany();
   }
 
-  onClickCancelBtn(){
+  onClickCancelBtn() {
     this.handleModalToggle();
   }
 
   render() {
-    const { website, name, phoneNumber,contact} = this.props;
+    const { website, name, phoneNumber, contact } = this.props;
     const { showRemoveModal } = this.state;
     const websiteURL = `https://${website}`;
     return (
@@ -53,24 +51,7 @@ class Detail extends React.Component {
           </div>
           {phoneNumber}
         </div>
-        <div className='relatedCompany__btnContainer'>
-          <RemoveButtom className='relatedCompany__btnContainer__remove' onClick={this.handleModalToggle}>
-            <div className="relatedCompany__btnContainer__remove__hint">
-              <HintBox variant='bottomRight'>
-                Remove association
-              </HintBox>
-            </div>
-            <FontAwesomeIcon icon={faTimes} />
-          </RemoveButtom>
-        </div>
-        {showRemoveModal ?
-          <RemoveRefModal contactName={contact.fullName}
-                          companyName={name}
-                          onClickConfirmBtn = {this.onClickConfirmBtn}
-                          onClickCancelBtn = {this.onClickCancelBtn}/>
-          :
-          ""
-        }
+       
       </div >
     )
   };

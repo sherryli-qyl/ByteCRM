@@ -1,7 +1,9 @@
 @import '../../../../../../../../style/variable.scss';
 
-.detail {
-  .detailWrapper {
+.relatedContacts {
+  position: relative;
+
+  .relatedContactsWrapper {
     border: solid 1px rgba(51, 71, 91, 0.4);
     margin: 10px 0px;
     border-radius: 3px;
@@ -40,12 +42,13 @@
       }
     }
 
-    &__emailContainer {
+    &__activityContainer {
       display: flex;
       padding: 0 15px;
       align-items: center;
+      margin-top:2%;
 
-      &__email {
+      &__activity {
         cursor: pointer;
         margin-left:6%;
 

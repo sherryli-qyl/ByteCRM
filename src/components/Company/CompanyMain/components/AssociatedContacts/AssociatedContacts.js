@@ -16,10 +16,16 @@ class AssociatedContacts extends React.Component {
 
   render() {
     const { contacts, company } = this.state;
-    console.log(contacts);
+    let showDetail = false
+
+    if(contacts.length > 0){
+      showDetail = true;
+    }
+    
     return (
       <div className="associatedContacts">
         <ExpandBar label={`Contacts (${contacts.length})`}
+                   showDetail={showDetail}
                    content={
             <RelationCard contacts={contacts}
                           company={company} />
