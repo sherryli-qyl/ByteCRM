@@ -1,12 +1,12 @@
 import React from 'react';
 import RelationCard from './components/RelationCard';
 import AddComapnyRef from './components/AddCompanyRef';
-import ExpandBar from '../ExpandBar';
-import { AddCompanyRef, RemoveCompanyRef } from '../Api/Contact';
-import './ContactsCompany.scss';
+import ExpandBar from '../../../../ExpandBar';
+import { AddCompanyRef, RemoveCompanyRef } from '../../../../Api/Contact';
+import './AssociatedCompany.scss';
 
 
-class ContactsCompany extends React.Component {
+class AssociatedCompany extends React.Component {
   constructor(props) {
     super(props);
     const hintMessage = "You may only associate one company to a contact record";
@@ -87,23 +87,16 @@ render() {
         <RelationCard company={company}
                       contact={contact}
                       handleRemoveCompany={this.handleRemoveCompany}/>}
-        label={"Company"}
-        addModal={addModal}
-        hintMessage={hintMessage}
-        disabled={disabled}
-        showDetail={showDetail}
-        showAdd={true}
-        onClickSaveBtn={this.onClickSaveBtn} />
+                      label={"Company"}
+                      addModal={addModal}
+                      hintMessage={hintMessage}
+                      disabled={disabled}
+                      showDetail={showDetail}
+                      showAdd={true}
+                      onClickSaveBtn={this.onClickSaveBtn} />
     </div>
   )
 }
 }
 
-
-
-
-
-
-
-
-export default ContactsCompany;
+export default AssociatedCompany;

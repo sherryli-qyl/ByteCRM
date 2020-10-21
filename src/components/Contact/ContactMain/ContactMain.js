@@ -4,7 +4,7 @@ import InfoPage from '../../InfoPage';
 import Activities from '../../Activities';
 import SideBar from '../../SideBar';
 import Loading from '../../Loading';
-import ContactsCompany from '../../ContactsCompany';
+import AssociatedCompany from '../../AssociatedCompany';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { ModalContext } from '../../Modal/components/ModalContext';
 import { InfoContext } from '../../InfoPage/components/Context';
@@ -105,7 +105,7 @@ class ContactMain extends Component {
         const infoData = { key: 'contact', data: contact, dictionary: ContactDictionary };
         const onChangeInfoHandlers = { single: this.onChangeSingleInfo, multi: this.onChangeMultiInfo };
         const sideBarItems = [
-            {key:"Company",component: <ContactsCompany contact = {contact} company = {contact.company}/>}
+            {key:"Company",component: <AssociatedCompany contact = {contact} company = {contact.company}/>}
         ]
         const modalController = {open: this.openModal,close:this.closeModal}
         return (

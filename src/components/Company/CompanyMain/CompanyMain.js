@@ -4,12 +4,12 @@ import { InfoContext } from '../../InfoPage/components/Context';
 import { ModalContext } from '../../Modal/components/ModalContext';
 import InfoPage from '../../InfoPage';
 import Activities from '../../Activities';
-import RelationContact from './components/RelationContact';
+import SideBar from '../../SideBar';
+import AssociatedContacts from './components/AssociatedContacts';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { publicTheme } from '../../Style/Theme/MatUITheme';
 import { CompanyDictionary } from './components/Dictionary';
 import { GetCompanyByCode,UpdateCompany } from '../../Api/Company';
-import { ActivityContext } from '../../Activities/Context';
 import Loading from '../../Loading';
 import './CompanyMain.scss';
 
@@ -104,6 +104,9 @@ class CompanyMain extends Component {
         const { visible, currentModal, company, associatedContacts, expandPack, theme,loading} = this.state;
         const value = { single: this.onChangeSingleInfo, multi: this.onChangeMultiInfo };
         const infoData = { key: 'company', data: company, dictionary: CompanyDictionary };
+        const sideBarItems = [
+            {key:"Contacts",component: <AssociatedContacts associatedContacts = {associatedContacts} company = {company}/>}
+        ]
         const modalController = {open: this.openModal,close:this.closeModal}
 
         return (
@@ -121,7 +124,7 @@ class CompanyMain extends Component {
                                     />
                                 </InfoContext.Provider>
                                     <Activities associatedContacts = {associatedContacts}/>
-                                <RelationContact />
+                                    <SideBar sideBarItems = {sideBarItems} />
                                 <Modal Xaxis={this.state.Xaxis}
                                     Yaxis={this.state.Yaxis}
                                     visible={visible}
