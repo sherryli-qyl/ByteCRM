@@ -91,6 +91,7 @@ class CompanyMain extends Component {
                     company: company,
                     loading: false,
                     associatedContacts: company.associatedContacts,
+                    relatedTo: company,
                 })
             sessionStorage.setItem('company', JSON.stringify(company));
             }
@@ -101,7 +102,7 @@ class CompanyMain extends Component {
     }
 
     render() {
-        const { visible, currentModal, company, associatedContacts, expandPack, theme,loading} = this.state;
+        const { visible, currentModal, company, associatedContacts, relatedTo, expandPack, theme,loading} = this.state;
         const value = { single: this.onChangeSingleInfo, multi: this.onChangeMultiInfo };
         const infoData = { key: 'company', data: company, dictionary: CompanyDictionary };
         const modalController = {open: this.openModal,close:this.closeModal}
@@ -120,7 +121,10 @@ class CompanyMain extends Component {
                                         expandPack={expandPack}
                                     />
                                 </InfoContext.Provider>
-                                    <Activities associatedContacts = {associatedContacts}/>
+                                    <Activities 
+                                      associatedContacts = {associatedContacts}
+                                      relatedTo = {relatedTo}
+                                    />
                                 <RelationContact />
                                 <Modal Xaxis={this.state.Xaxis}
                                     Yaxis={this.state.Yaxis}
