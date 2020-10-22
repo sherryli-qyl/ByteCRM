@@ -7,11 +7,13 @@ import './AddContactRef.scss';
 
 
 const AddContactRef = ({
-    handleSelectedContact,
+    contactList,
+    handleSelectedContacts,
 }) => {
 
     const components = [{key:0,label:"Add existing contact",
-                        component: <AddExistContact handleSelectedContact ={handleSelectedContact}/>},
+                        component: <AddExistContact contactList = {contactList}
+                                                    handleSelectedContacts ={handleSelectedContacts}/>},
                         {key:1,label:"Create a new contact",component:""}]
 
 

@@ -5,7 +5,7 @@ import './ContactSelect.scss';
 
 
 const ContactSelect = (props) => {
-    const { selectList, searchList, label } = props;
+    const { selectList, searchList, label, checkOneContact } = props;
 
     let currentList = []
 
@@ -26,7 +26,7 @@ const ContactSelect = (props) => {
                 currentList.map(item => {
                     const oneContactId = CheckOneContact(selectList, currentList);
                     let disabled = false;
-                    if (oneContactId && oneContactId === item.contact._id) {
+                    if (oneContactId && oneContactId === item.contact._id && checkOneContact) {
                         disabled = true
                     }
                     return (

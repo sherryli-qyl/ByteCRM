@@ -111,7 +111,7 @@ class ExpandBar extends React.Component {
                         }
                     </div>
                 </div>
-                {addModal ?
+                {addModal && showAddModal?
                     <AddModal addModal={addModal}
                         onClickCloseBtn={this.onClickCloseBtn}
                         onClickSaveBtn={() => {

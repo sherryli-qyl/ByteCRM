@@ -4,12 +4,15 @@ import ContactSelector from '../../../../../../../../Selector/ContactSelector';
 import './AddExistContact.scss';
 
 const AddExistContact =({
-    handleSelectedCompany,
+    contactList,
+    handleSelectedContacts,
 }) =>{
 
     return(
         <div>
-            <ContactSelector handleSelectedCompany={handleSelectedCompany}/>
+            <ContactSelector 
+                contactList = {contactList}
+                handleSelectedContacts={handleSelectedContacts}/>
         </div>
     )
 }

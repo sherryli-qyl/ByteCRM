@@ -24,7 +24,7 @@ class SwitchButtonBar extends React.Component {
     render() {
         const { components } = this.props;
         const { currentComponent } = this.state;
-        console.log(currentComponent)
+        
         return (
             <div className='switchButtonBar'>
                 <div className='switchButtonBar__buttonWrapper'>

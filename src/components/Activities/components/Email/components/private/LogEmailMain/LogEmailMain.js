@@ -26,6 +26,7 @@ const LogEmailCardMain = ({
                                  contact = {contact}
                                  userId = {userId}
                                  contactSelectHint = {contactSelectHint}
+                                 variant = "activity"
                                  handleAddContact = {handleAddContact}
                                  handleDeleteContact = {handleDeleteContact}/>
             </div>

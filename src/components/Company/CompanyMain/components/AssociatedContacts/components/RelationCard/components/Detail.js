@@ -61,10 +61,10 @@ class Detail extends React.Component {
                   </Avatar>
                 </div>
                 <div className="relatedContactsWrapper__header__basicInfo">
-                    <NavigationButton path = {"/contacts/main"}
-                                      id = {contact.id}>
-                      {contact.fullName}
-                    </NavigationButton>
+                  <NavigationButton path={"/contacts/main"}
+                    id={contact.id}>
+                    {contact.fullName}
+                  </NavigationButton>
                   <div className="relatedContactsWrapper__header__basicInfo__jobTitle">
                     {`${jobTitle} ${company.name}`}
                   </div>
@@ -84,7 +84,8 @@ class Detail extends React.Component {
               </div>
             </div>
             <div className="relatedContacts__removeBtn">
-              <RemoveBtn showRemoveModal={showRemoveModal}
+              <RemoveBtn
+                showRemoveModal={showRemoveModal}
                 contactName={contact.fullName}
                 companyName={company.name}
                 handleModalToggle={this.handleModalToggle}

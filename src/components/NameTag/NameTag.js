@@ -20,6 +20,7 @@ const NameTag = ({
                         disabled={disable}
                         onClick={(event) => {
                             event.preventDefault();
+                            event.stopPropagation();
                             onClick();
                         }}
                     >
