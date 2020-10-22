@@ -74,7 +74,7 @@ class Detail extends React.Component {
                 <div className="relatedContactsWrapper__activityContainer__icon">
                   <FontAwesomeIcon icon={faEnvelope} />
                 </div>
-                <span className="relatedContactsWrapper__activityContainer__activity" onClick={() => value.open(createModal)}>{contact.email}</span>
+                <div className="relatedContactsWrapper__activityContainer__activity" onClick={() => value.open(createModal)}>{contact.email}</div>
               </div>
               <div className="relatedContactsWrapper__activityContainer">
                 <div className="relatedContactsWrapper__activityContainer__icon">
