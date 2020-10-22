@@ -1,6 +1,7 @@
 import React from 'react';
 import { faPhoneAlt, faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import NavigationButton from '../../../../../../../NavigationButton';
 import RemoveBtn from '../../../../../../../RemoveBtn';
 import './Detail.scss';
 
@@ -32,12 +33,15 @@ class Detail extends React.Component {
 
   render() {
     const { website, company, phoneNumber, contact } = this.props;
-    console.log(company);
     const { showRemoveModal } = this.state;
     const websiteURL = `https://${website}`;
     return (
       <div className="relatedCompany">
-        <div className="relatedCompany__companyName"> {company.name} </div>
+        <NavigationButton path = {"/companies/main"}
+                          id = {company.id}>
+          {company.name}
+        </NavigationButton>
+        {/* <div className="relatedCompany__companyName">  </div> */}
         <div className="relatedCompany__website">
           <a className="relatedCompany__website__link" href={websiteURL} target="_blank" rel="noopener noreferrer">
             {website}
@@ -54,11 +58,11 @@ class Detail extends React.Component {
         </div>
         <div className="relatedCompany__removeBtn">
           <RemoveBtn showRemoveModal={showRemoveModal}
-                     contactName={contact.fullName}
-                     companyName={company.name}
-                     handleModalToggle={this.handleModalToggle}
-                     onClickConfirmBtn={this.onClickConfirmBtn}
-                     onClickCancelBtn={this.onClickCancelBtn} />
+            contactName={contact.fullName}
+            companyName={company.name}
+            handleModalToggle={this.handleModalToggle}
+            onClickConfirmBtn={this.onClickConfirmBtn}
+            onClickCancelBtn={this.onClickCancelBtn} />
         </div>
       </div >
     )

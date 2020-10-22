@@ -1,0 +1,14 @@
+@import '../../style/variable.scss';
+
+.navigationButtonWrapper {
+
+
+    &__btn {
+        @extend .nakedBtn;
+        padding: 1px 0px;
+
+        &__active {
+            color: $secondary-color;
+        }
+    }
+}

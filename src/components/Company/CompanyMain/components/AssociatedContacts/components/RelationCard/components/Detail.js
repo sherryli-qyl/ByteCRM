@@ -3,6 +3,7 @@ import EmailModal from '../../../../../../../Activities/components/Email/compone
 import { ModalContext } from '../../../../../../../Modal/components/ModalContext';
 import Modal from '../../../../../../../../js/Modal';
 import RemoveBtn from '../../../../../../../RemoveBtn';
+import NavigationButton from '../../../../../../../NavigationButton';
 import { faEnvelope, faPhoneAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Avatar from '../../../../../../../Avatar';
@@ -27,9 +28,9 @@ class Detail extends React.Component {
   }
 
   onClickConfirmBtn() {
-    this.props.handleRemoveRef(this.props.contact.id,this.props.company.id);
+    this.props.handleRemoveRef(this.props.contact.id, this.props.company.id);
     this.setState({
-      showRemoveModal:false
+      showRemoveModal: false
     })
   }
 
@@ -60,9 +61,10 @@ class Detail extends React.Component {
                   </Avatar>
                 </div>
                 <div className="relatedContactsWrapper__header__basicInfo">
-                  <div className="relatedContactsWrapper__header__basicInfo__name">
-                    {contact.fullName}
-                  </div>
+                    <NavigationButton path = {"/contacts/main"}
+                                      id = {contact.id}>
+                      {contact.fullName}
+                    </NavigationButton>
                   <div className="relatedContactsWrapper__header__basicInfo__jobTitle">
                     {`${jobTitle} ${company.name}`}
                   </div>
@@ -83,11 +85,11 @@ class Detail extends React.Component {
             </div>
             <div className="relatedContacts__removeBtn">
               <RemoveBtn showRemoveModal={showRemoveModal}
-                         contactName={contact.fullName}
-                         companyName={company.name}
-                         handleModalToggle={this.handleModalToggle}
-                         onClickConfirmBtn={this.onClickConfirmBtn}
-                         onClickCancelBtn={this.onClickCancelBtn} />
+                contactName={contact.fullName}
+                companyName={company.name}
+                handleModalToggle={this.handleModalToggle}
+                onClickConfirmBtn={this.onClickConfirmBtn}
+                onClickCancelBtn={this.onClickCancelBtn} />
             </div>
           </div>
         }
