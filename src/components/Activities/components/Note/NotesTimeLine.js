@@ -7,7 +7,6 @@ import { GetNoteByRelatedToId, UpdateNote, DeleteNote } from '../../../Api/Note/
 
 
 const user = JSON.parse(localStorage.getItem('user'));
-//const relatedTo = JSON.parse(sessionStorage.getItem('contact'));
 
 
 class NotesTimeLine extends React.Component {
@@ -18,7 +17,6 @@ class NotesTimeLine extends React.Component {
       cardsList: [],
       cardsArray: [],
       relatedTo: this.props.relatedTo,
-      associatedContacts: this.props.associatedContacts,
     }
 
     this.onChangeText = this.onChangeText.bind(this);
