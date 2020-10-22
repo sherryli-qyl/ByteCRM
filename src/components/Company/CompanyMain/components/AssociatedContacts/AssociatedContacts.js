@@ -2,7 +2,8 @@ import React from 'react';
 import RelationCard from './components/RelationCard';
 import ExpandBar from '../../../../ExpandBar';
 import AddContactRef from './components/AddContactRef';
-import { AddCompanyRef, RemoveCompanyRef } from '../../../../Api/Contact';
+import { RemoveCompanyRef } from '../../../../Api/Contact';
+import {MultiRefChange} from '../../../../Api/Company';
 import './AssociatedContacts.scss';
 
 class AssociatedContacts extends React.Component {
@@ -12,16 +13,22 @@ class AssociatedContacts extends React.Component {
     this.state = {
       contactList: contactList,
       company: company,
-      selectedContacts:contactList,
+      selectedContacts:[],
     }
     this.handleRemoveRef = this.handleRemoveRef.bind(this);
     this.handleSelectedContacts = this.handleSelectedContacts.bind(this);
+    this.onClickSaveBtn = this.onClickSaveBtn.bind(this);
   }
 
 
   handleSelectedContacts(contacts){
+    let newContacts = []
+    for (let i in contacts){
+      newContacts.push(contacts[i].id)
+    }
+    
     this.setState({
-      selectedContacts: contacts,
+      selectedContacts: newContacts,
     })
   }
 
@@ -47,6 +54,22 @@ class AssociatedContacts extends React.Component {
     })
   }
 
+  onClickSaveBtn() {
+    const body = {contacts: this.state.selectedContacts};
+    const data = MultiRefChange(this.state.company.id,body);
+    data.then(response => {
+      if (response.statusText === "OK") {
+        this.setState({
+          contactList: response.data.associatedContacts
+        })
+        console.log("Add Contacts success");
+      }
+      else {
+        console.log("Add Contacts failed");
+      }
+    })
+  }
+
   render() {
     const { contactList, company} = this.state;
     let showDetail = false
@@ -67,10 +90,12 @@ class AssociatedContacts extends React.Component {
                    showDetail={showDetail}
                    showAdd={true}
                    addModal={addModal}
+                   onClickSaveBtn={this.onClickSaveBtn} 
                    content={
             <RelationCard contacts={contactList}
                           company={company}
-                          handleRemoveRef = {this.handleRemoveRef} />
+                          handleRemoveRef = {this.handleRemoveRef} 
+                          />
           }/>
       </div>
     )

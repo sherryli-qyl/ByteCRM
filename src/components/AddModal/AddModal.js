@@ -15,20 +15,28 @@ class AddModal extends React.Component {
 
 
     render() {
-        const { title,content} = this.props.addModal;
+        const { title, content } = this.props.addModal;
+        const { showAddModal } = this.props
 
         let className = 'addModal ';
-        if(this.props.showAddModal){
+        if (showAddModal) {
             className += 'addModal--active'
         }
         return (
-            <div className= {className}>
-                <Header title = {title} onClickCloseBtn = {this.props.onClickCloseBtn}/>
-                <div className="addModal__body">
-                    {content}
-                </div>
-                <Footer  onClickSaveBtn={this.props.onClickSaveBtn}
-                         onClickCancelBtn={this.props.onClickCloseBtn}/>
+            <div className={className}>
+                {showAddModal ?
+                    <React.Fragment>
+                        <Header title={title} onClickCloseBtn={this.props.onClickCloseBtn} />
+                        <div className="addModal__body">
+                            {content}
+                        </div>
+                        <Footer onClickSaveBtn={this.props.onClickSaveBtn}
+                            onClickCancelBtn={this.props.onClickCloseBtn} />
+
+                    </React.Fragment>
+                    :
+                    ""
+                }
             </div>
         )
     }

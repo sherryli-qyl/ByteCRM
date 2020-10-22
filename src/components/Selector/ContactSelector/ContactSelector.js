@@ -259,6 +259,7 @@ class ContactSelector extends React.Component {
                             {this.state.contactList ?
                                 this.state.contactList.map((item) => (
                                     <NameTag key = {item.id}  
+                                             onClick = {()=>this.handleRemoveContact(item.id)}
                                              disable={false}>
                                         {item.fullName}
                                     </NameTag>
