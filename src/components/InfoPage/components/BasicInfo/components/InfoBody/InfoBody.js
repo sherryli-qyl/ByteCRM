@@ -1,5 +1,6 @@
 import React from 'react';
 import Loading from '../../../../../Loading';
+import Avatar from '../../../../../Avatar';
 import './InfoBody.scss';
 
 
@@ -19,8 +20,8 @@ class InfoBody extends React.Component {
         }
 
         let companyName = "";
-        if(dataPack.data.company){
-             companyName = `at ${dataPack.data.company.name}`;
+        if (dataPack.data.company) {
+            companyName = `at ${dataPack.data.company.name}`;
         }
         return (
             <div className="infoBody">
@@ -30,7 +31,11 @@ class InfoBody extends React.Component {
                             <Loading variant="block" />
                             :
                             <React.Fragment>
-                                <div className='infoBody__contactsIcon__init'> {`${dataPack.data.firstName[0]}${dataPack.data.lastName[0]}`} </div>
+                                <div className='infoBody__contactsAvatar--init'>
+                                    <Avatar variant='large'>
+                                        {`${dataPack.data.firstName[0]}${dataPack.data.lastName[0]}`}
+                                    </Avatar>
+                                </div>
                                 <div className="infoBody__name"> {`${dataPack.data.firstName} ${dataPack.data.lastName}`} </div>
                                 <div className="infoBody__jobTitle"> {`${dataPack.data.jobTitle} ${companyName}`}  </div>
                             </React.Fragment>
@@ -38,7 +43,11 @@ class InfoBody extends React.Component {
                     </React.Fragment>
                     :
                     <React.Fragment>
-                        <div className='infoBody__contactsIcon__init'> {dataPack.data.name[0]} </div>
+                        <div className='infoBody__contactsAvatar--init'>
+                            <Avatar variant='large'>
+                                {dataPack.data.name[0]}
+                            </Avatar>
+                        </div>
                         <div className="infoBody__name"> {dataPack.data.name} </div>
                         <div className="infoBody__jobTitle"> {dataPack.data.companyDomainName} </div>
                     </React.Fragment>

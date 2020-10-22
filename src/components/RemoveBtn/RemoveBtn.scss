@@ -1,0 +1,28 @@
+.removeBtn {
+    padding: 0px 0px;
+    font-weight: 600;
+    min-width: 26px;
+    min-height: 26px;
+    font-size: 15px;
+
+    &:hover{
+     .hintBox{
+       display:flex;
+       opacity: 1;
+       visibility: visible;
+      }
+    }
+
+    &__hint{
+      position: absolute;;
+      top:-60px;
+      right:-5px; 
+      &:hover{
+        .hintBox{
+            display:none;
+            opacity: 0;
+            visibility: hidden;
+           }
+      }
+    }
+  }

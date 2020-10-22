@@ -58,23 +58,12 @@ async function AddCompany(body){
 }
 
 
-async function GetCompanyByUserId(code, keyword) {
-  const serverUrl = `http://localhost:3000/api/companies/search/${code}/${keyword}`;
+async function GetCompanyByUserId(id, keyword) {
+  const serverUrl = `http://localhost:3000/api/companies/search/${id}/${keyword}`;
   const response = await fetch(serverUrl, {
     method: "GET",
   });
-  // .then((res)=>{
-  //     if(!res.ok){
-  //         throw res;
-  //     }
-  //     return res.json();
-  // })
-  // .catch(error =>{
-  //     if (error.status === 404){
-  //         console.log("no match data");
-  //     }
-  //     throw error;
-  // })
+
   if (response.status === 404) {
     return false;
   } else if (response.ok) {
@@ -98,4 +87,9 @@ async function DeleteCompany(code) {
   }
 }
 
-export { GetCompanyByCode, GetAllCompanies, GetCompany, AddCompany, UpdateCompany, GetCompanyByUserId,  DeleteCompany };
+async function MultiRefChange(id,body){
+    const response = api.put(`/api/companies/${id}/ref`,body);
+    return response; 
+}
+
+export { GetCompanyByCode, GetAllCompanies, GetCompany, AddCompany, UpdateCompany, GetCompanyByUserId,  DeleteCompany,MultiRefChange };

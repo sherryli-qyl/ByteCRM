@@ -19,14 +19,15 @@
             justify-content: flex-start;
             align-self: center;
             max-height: 0px;
-           
+            opacity: 0;
             font-size: 14px;
-            transition: max-height .3s ease-out;
+            transition: all 1s ease-out;
 
 
             &__active {
                 max-height: 100%;
-                transition: max-height .3s ease-in;
+                opacity: 1;
+                transition: all 1s ease-in;
                 transform-origin: 100% 0;
             }
         }

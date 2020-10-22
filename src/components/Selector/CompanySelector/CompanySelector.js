@@ -3,6 +3,7 @@ import Dropdown from '../components/Dropdown';
 import DropDownDisplay from '../../DropDownDisplay';
 import Select from './Select';
 import {GetCompanyByUserId} from '../../Api/Company';
+import NameTag from '../../NameTag';
 import './CompanySelector.scss';
 
 
@@ -176,9 +177,9 @@ class CompanySelector extends React.Component {
                     <DropDownDisplay dropDownDisable = {dropDownDisable} 
                                      onClick={this.handleClickSelectorButton}>
                         {company?
-                        <div>
-                           {company.name}
-                        </div>
+                         <NameTag disable={true} >
+                              {company.name}
+                         </NameTag>
                         :
                        " Search Companies"
                         }

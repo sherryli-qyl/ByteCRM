@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import AssignedUserSelector from './components/AssignedUserSelector';
-import EmailReminderSelector from './components/EmailReminderSelector';
+
 import QueueSelector from './components/QueueSelector';
 import TypeDropdown from './components/Dropdown/Type';
 import PriorityDropdown from './components/Dropdown/Priority';

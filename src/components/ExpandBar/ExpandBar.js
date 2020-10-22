@@ -79,8 +79,8 @@ class ExpandBar extends React.Component {
                         </div>
                         {showAdd ?
                             <div className='expandBar__container__right'
-                                onMouseEnter={() => this.hintBoxToggle(true)}
-                                onMouseLeave={() => this.hintBoxToggle(false)}>
+                                 onMouseEnter={() => this.hintBoxToggle(true)}
+                                 onMouseLeave={() => this.hintBoxToggle(false)}>
                                 <button className={addBtnClassName}
                                     disabled={disabled}
                                     onClick={(event) => {
@@ -97,7 +97,7 @@ class ExpandBar extends React.Component {
                                         ""
                                     }
                                    + Add
-                                    </button>
+                                </button>
                             </div>
                             :
                             ""
@@ -111,14 +111,15 @@ class ExpandBar extends React.Component {
                         }
                     </div>
                 </div>
-                {addModal ?
+                {addModal?
                     <AddModal addModal={addModal}
-                        onClickCloseBtn={this.onClickCloseBtn}
-                        onClickSaveBtn={() => {
-                            this.props.onClickSaveBtn();
-                            this.onClickCloseBtn();
-                        }}
-                        showAddModal={showAddModal} />
+                              onClickCloseBtn={this.onClickCloseBtn}
+                              showAddModal={showAddModal} 
+                              onClickSaveBtn={() => {
+                                this.props.onClickSaveBtn();
+                               this.onClickCloseBtn();
+                            }}
+                    />
                     :
                     ""
                 }

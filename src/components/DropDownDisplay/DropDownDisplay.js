@@ -11,7 +11,7 @@ const DropDownDisplay = ({
     dropDownDisable,
     onClick,
 }) => (
-        <button className='dropDownDisplay' disabled = {dropDownDisable} onClick= {(event)=>{
+        <div className='dropDownDisplay' disabled = {dropDownDisable} onClick= {(event)=>{
             event.preventDefault();
             onClick();
         }}>
@@ -21,7 +21,7 @@ const DropDownDisplay = ({
             <div className='dropDownDisplay__icon'>
                 <FontAwesomeIcon icon={faCaretDown}/>
             </div>
-        </button>
+        </div>
     )
 
 export default DropDownDisplay;

@@ -1,9 +1,11 @@
 import React from 'react';
 import Dropdown from '../components/Dropdown';
 import Select from './components/Select';
+import DropDownDisplay from '../../DropDownDisplay';
+import NameTag from '../../NameTag';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
-import { FormatList,SearchContactLocal, SearchContactRemote,ItemSelected } from '../../../utils/SearchContact/SearchContact';
+import { FormatList, SearchContactLocal, SearchContactRemote, ItemSelected } from '../../../utils/SearchContact/SearchContact';
 import { GetContactByUserId } from '../../Api/Contact';
 import './ContactSelector.scss';
 
@@ -12,16 +14,13 @@ import './ContactSelector.scss';
 class ContactSelector extends React.Component {
     constructor(props) {
         super(props);
-        const {contactList,userId,contact} = this.props;
-        const test1 = contact;
-        const test2 = userId;
+        const { contactList, userId, contact, variant } = this.props;
         this.state = {
             showDropdown: false,
             contactList,
-            test1,
-            test2,
             userId,
             contact,
+            variant,
             textInput: '',
             enableCleanBtn: false,
             checkInput: false,
@@ -67,36 +66,50 @@ class ContactSelector extends React.Component {
     }
 
     handleRemoveContact(id) {
-        let newList = this.state.contactList;
-        let newSearchList = ItemSelected(this.state.searchList,id,false);
-        if (newList.length <= 1){     
+        let newList = [...this.state.contactList];
+        let newSearchList = ItemSelected(this.state.searchList, id, false);
+        
+        if (newList.length <= 1 && this.state.variant === "activity") {
             console.log("card must have at least one contact");
             return;
         }
-        else{
+        else {
             for (let i in newList) {
                 if (newList[i]._id === id) {
                     newList.splice(i, 1);
                 }
-                this.setState({
-                    contactList: newList,
-                    searchList: newSearchList
-                })
-            }
-            this.props.handleDeleteContact(id);
+                if(this.state.variant === "activity"){
+                    this.props.handleDeleteContact(id);
+                    this.setState({
+                        contactList: newList,
+                        searchList: newSearchList
+                    })
+                }
+                else{
+                    this.setState({
+                        contactList: newList,
+                    })
+                    this.props.handleSelectedContacts(newList);
+                }      
+            }    
         }
     }
 
     handleAddContact(contact) {
         let newContactList = this.state.contactList;
-        let newSearchList = ItemSelected(this.state.searchList,contact.id,true);
+        let newSearchList = ItemSelected(this.state.searchList, contact.id, true);
         newContactList.push(contact);
 
-        this.setState({
-            contactList: newContactList,
-            searchList:newSearchList
-        })  
-        this.props.handleAddContact(contact._id);
+        if(this.state.variant === "activity"){
+            this.props.handleAddContact(contact._id);
+            this.setState({
+                contactList: newContactList,
+                searchList: newSearchList
+            })
+        }
+        else{
+            this.props.handleSelectedContacts(newContactList);
+        }
     }
 
     handleFindContact(text) {
@@ -132,7 +145,7 @@ class ContactSelector extends React.Component {
         if (text.length >= 3) {
             newHint = 'searching';
             const newList = SearchContactLocal(this.state.contactList, text.toUpperCase());
-            const response = GetContactByUserId(this.props.userId, text.toUpperCase())
+            const response = GetContactByUserId(JSON.parse(localStorage.getItem('user')).id, text.toUpperCase())
             this.setState(prevState => ({
                 ...prevState,
                 loading: true
@@ -188,38 +201,76 @@ class ContactSelector extends React.Component {
 
     render() {
         const { showDropdown, textInput, enableCleanBtn,
-            textInputHint, checkInput, searchList, loading, contact } = this.state;
+            textInputHint, checkInput, searchList, loading, contact, variant } = this.state;
 
         let contacted = "";
         let contactList = [];
-        this.state.contactList? contactList =  FormatList(this.state.contactList) : contacted = `0 contacts`;
-        
+        this.state.contactList ? contactList = FormatList(this.state.contactList) : contacted = `0 contacts`;
+
+        let corner = "disable";
+        let dropDownClassName = "contactSelector__dropDown ";
+        let label = "Contacts";
+        let checkOneContact = false;
+
+        if (variant === "activity") {
+            corner = "topLeft";
+            dropDownClassName += "contactSelector__dropDown--activity";
+            checkOneContact = true;
+        }
+        else {
+            dropDownClassName += "contactSelector__dropDown--sideBar";
+            label = "Results";
+        }
+
+
         if (contactList.length === 1) {
             contacted = `${contactList[0].contact.fullName}`;
         }
         else contacted = `${contactList.length} contacts`;
 
-        const select = <Select label={'Contacts'}
-                               selectList = {contactList}
-                               searchList = {searchList}
-                               selectHint = {this.props.contactSelectHint}
-                               handleRemoveContact={this.handleRemoveContact}
-                               handleAddContact={this.handleAddContact}/>;
+        const select = 
+        <Select
+            label={label}
+            checkOneContact= {checkOneContact}
+            selectList={contactList}
+            searchList={searchList}
+            selectHint={this.props.contactSelectHint}
+            handleRemoveContact={this.handleRemoveContact}
+            handleAddContact={this.handleAddContact} />;
 
-
+        
         return (
             <div className='contactSelector'>
-                <div className='contactSelector__label' ref={this.btnRef}>
-                    <button className='contactSelector__label__btn'
-                        onClick={(event) => {
-                            event.stopPropagation();
-                            this.handleClickSelectorButton();
-                        }}>
-                        {contacted}
-                        <FontAwesomeIcon className='contactSelector__label__btn__icon' icon={faCaretDown} />
-                    </button>
-                </div>
-                <div className='contactSelector__dropDown' ref={this.wrapperRef}>
+                {variant === "activity" ?
+                    <div className='contactSelector__label' ref={this.btnRef}>
+                        <button className='contactSelector__label__btn'
+                            onClick={(event) => {
+                                event.stopPropagation();
+                                this.handleClickSelectorButton();
+                            }}>
+                            {contacted}
+                            <FontAwesomeIcon className='contactSelector__label__btn__icon' icon={faCaretDown} />
+                        </button>
+                    </div>
+                    :
+                    <div className='contactSelector__displayBar' ref={this.btnRef}>
+                        <DropDownDisplay
+                            onClick={this.handleClickSelectorButton}>
+                            {this.state.contactList ?
+                                this.state.contactList.map((item) => (
+                                    <NameTag key = {item.id}  
+                                             onClick = {()=>this.handleRemoveContact(item.id)}
+                                             disable={false}>
+                                        {item.fullName}
+                                    </NameTag>
+                                ))
+                                :
+                                " Search Companies"
+                            }
+                        </DropDownDisplay>
+                    </div>
+                }
+                <div className={dropDownClassName} ref={this.wrapperRef}>
                     <Dropdown
                         textInputHint={textInputHint}
                         checkInput={checkInput}
@@ -228,12 +279,12 @@ class ContactSelector extends React.Component {
                         contact={contact}
                         textInput={textInput}
                         enableCleanBtn={enableCleanBtn}
-                        select = {select}
-                        corner={'topLeft'}
-                        placeholder = {"Search all records"}
+                        select={select}
+                        corner={corner}
+                        placeholder={"Search all records"}
                         handleCleanInput={this.handleCleanInput}
                         handleInputChange={this.handleInputChange}
-                       />
+                    />
                 </div>
             </div>
         )
