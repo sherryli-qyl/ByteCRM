@@ -13,7 +13,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import {
   COMPANY_BASE_URL,
   CONTACT_BASE_URL,
-  LOGIN_BASE_URL,
+  LOGIN_URL,
   REG_BASE_URL,
   ABOUTUS_BASE_URL,
   CONTACTUS_BASE_URL,
@@ -26,10 +26,9 @@ const Routes = ({
     <BrowserRouter history={history}>
       <Switch>
         <Redirect exact from="/" to={CONTACT_BASE_URL} />
-        <Route exact path={LOGIN_BASE_URL} component={Login} />
+        <Route exact path={LOGIN_URL} component={Login} />
         <Route exact path={REG_BASE_URL} component={RegForm} />
         <ProtectedRoute exact path={CONTACT_BASE_URL} component={ContactList} />
-        {/* <Route exact path={CONTACT_BASE_URL} component={ContactList} /> */}
         <Route exact path={`${CONTACT_BASE_URL}/:id`} component={ContactMain} />
         <Route exact path={COMPANY_BASE_URL} component={CompanyList} />
         <Route exact path={`${COMPANY_BASE_URL}/main`} component={CompanyMain} />
