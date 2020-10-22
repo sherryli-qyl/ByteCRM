@@ -10,11 +10,11 @@ import MeetingPage from './components/Functions/Meeting/MeetingPage';
 class Activities extends React.Component {
   constructor(props) {
     super(props);
-    const {associatedContacts,contact} = this.props;
+    const { associatedContacts, contact, relatedTo } = this.props;
     const tabItems = [
       { key: 'Activity', value: 'Activity', activity: <div>Activity</div> },
-      { key: 'Notes', value: 'Notes', activity: <NotesTimeLine/> },
-      {key: 'Emails', value: 'Emails', activity: <EmailPage  contact = {contact} associatedContacts = {associatedContacts}/>},
+      { key: 'Notes', value: 'Notes', activity: <NotesTimeLine relatedTo = {relatedTo} /> },
+      { key: 'Emails', value: 'Emails', activity: <EmailPage  contact = {contact} associatedContacts = {associatedContacts}/>},
       { key: 'Calls', value: 'Calls', activity: <CallPanel /> },
       { key: 'Tasks', value: 'Tasks', activity: <TaskPage/> },
       { key: 'Meetings', value: 'Meetings', activity: <MeetingPage /> },

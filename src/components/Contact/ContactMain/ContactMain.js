@@ -89,6 +89,7 @@ class ContactMain extends Component {
             this.setState({
                 contact: value,
                 loading: false,
+                relatedTo: value,
             });
            sessionStorage.setItem('contact', JSON.stringify(value));
         })
@@ -101,7 +102,7 @@ class ContactMain extends Component {
 
 
     render() {
-        const { visible, currentModal, contact, theme, expandPack, loading} = this.state;
+        const { visible, currentModal, contact, relatedTo, theme, expandPack, loading} = this.state;
         const infoData = { key: 'contact', data: contact, dictionary: ContactDictionary };
         const onChangeInfoHandlers = { single: this.onChangeSingleInfo, multi: this.onChangeMultiInfo };
         const sideBarItems = [
@@ -123,7 +124,10 @@ class ContactMain extends Component {
                                         expandPack={expandPack}
                                     />
                                 </InfoContext.Provider>   
-                                    <Activities contact = {contact}/>
+                                    <Activities 
+                                      contact = {contact}
+                                      relatedTo = {relatedTo}
+                                    />
                                     <SideBar sideBarItems = {sideBarItems} />
                                     <Modal Xaxis={this.state.Xaxis}
                                         Yaxis={this.state.Yaxis}
