@@ -12,12 +12,12 @@ class NoteModal extends React.Component {
     super(props);
 
     const user = JSON.parse(localStorage.getItem('user'));
-    const contact = JSON.parse(sessionStorage.getItem('contact'));
+    const relatedTo = this.props.relatedTo;
 
     this.state = {
       user,
       content: '',
-      contact,
+      relatedTo,
       btnDisable: true,
     }
     this.handleEditorChange = this.handleEditorChange.bind(this);
@@ -49,14 +49,14 @@ class NoteModal extends React.Component {
   } 
 
   handleClickSaveBtn(){
-    const { content, user, contact } = this.state;
+    const { content, user, relatedTo } = this.state;
       if (this.checkValidation(content)){
         const body = {
           content: content,
           createdBy: user.id,
           type:'Note',
           isDeleted: false,
-          relatedTo: contact,
+          relatedTo: relatedTo,
         }
         const res = AddNote(body);
         res.then(value => {
@@ -74,7 +74,7 @@ class NoteModal extends React.Component {
   
 
   render() {
-    const { btnDisable, user, contact } = this.state;
+    const { btnDisable, user, relatedTo } = this.state;
 
     return (
       <section id="NoteModal" className="NoteModal">
@@ -82,8 +82,8 @@ class NoteModal extends React.Component {
           <NoteInput 
             placeholder="Start typing to leave a note..."
             handleEditorChange={this.handleEditorChange}
-            createdBy={contact}
-            relatedTo={user}
+            createdBy={user}
+            relatedTo={relatedTo}
           />
         </div>
         <div className="note-container-footer">

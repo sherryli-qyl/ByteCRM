@@ -6,16 +6,19 @@ import "./NotesTimeLine.scss";
 import { GetNoteByRelatedToId, UpdateNote, DeleteNote } from '../../../Api/Note/Note';
 
 
+const user = JSON.parse(localStorage.getItem('user'));
+//const relatedTo = JSON.parse(sessionStorage.getItem('contact'));
 
-const contact = JSON.parse(sessionStorage.getItem('contact'));
 
 class NotesTimeLine extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      user,
       cardsList: [],
       cardsArray: [],
-      contact,
+      relatedTo: this.props.relatedTo,
+      associatedContacts: this.props.associatedContacts,
     }
 
     this.onChangeText = this.onChangeText.bind(this);
@@ -30,7 +33,7 @@ class NotesTimeLine extends React.Component {
   }
 
   handleGetNotes() {
-    const notes = GetNoteByRelatedToId(this.state.contact.id);
+    const notes = GetNoteByRelatedToId(this.state.relatedTo.id);
     notes
       .then(value => {
         this.setState({
@@ -86,16 +89,16 @@ class NotesTimeLine extends React.Component {
 
 
   render() {
-    const { cardsArray, contact} = this.state;
+    const { cardsArray, relatedTo } = this.state;
 
     return (
       <div className="note-time-line">
         <TimeLineControls 
-          contact={contact}
+          relatedTo={relatedTo}
           handleCreateNote = {this.handleCreateNote}
         />
         <NoteCardsList 
-          contact={contact}
+          relatedTo={relatedTo}
           cardsArray={cardsArray} 
           onChangeNote = {this.onChangeNote}
           handleDeleteNoteCard = {this.handleDeleteNoteCard}
