@@ -11,7 +11,7 @@ const TimeLineControls = (props) => {
     'Note', 
     'Note', 
     <NoteModal 
-      contact={props.contact}
+      relatedTo = {props.relatedTo}
       handleCloseModal = {closeModal}
       handleCreateNote = {props.handleCreateNote}
     />

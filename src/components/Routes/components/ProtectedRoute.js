@@ -3,7 +3,7 @@ import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
 
 import { isLoggedIn } from '../../../utils/auth';
-import { LOGIN_BASE_URL } from '../URLMap';
+import { LOGIN_URL } from '../URLMap';
 
 const ProtectedRoute = ({ component: ProtectedComponent, ...rest }) => {
     return (
@@ -12,7 +12,7 @@ const ProtectedRoute = ({ component: ProtectedComponent, ...rest }) => {
             render={routeProps => {
                 if (!isLoggedIn()) return (
                     <Redirect to={{
-                        pathname: LOGIN_BASE_URL,
+                        pathname: LOGIN_URL,
                         // state: { from: routeProps.location.pathname },
                     }} />
                 );
