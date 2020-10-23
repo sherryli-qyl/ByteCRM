@@ -6,21 +6,24 @@
   &__content{
     display: inline-block;
       
+    &__block{
+      display: flex;
 
-      &__block{
-        display: flex;
-
-        &+&{
-          margin-top:5%;
-        }
-
-        &__item{
-          &+&{
-            margin-left:5%;
-          }
-
-          display: block;
-        }
+      &+&{
+        margin-top:5%;
       }
-  } 
+
+      &__item{
+        &+&{
+          margin-left:5%;
+        }
+
+        display: block;
+      }
+    }
+      
+  
+  }
+  
+  
 }

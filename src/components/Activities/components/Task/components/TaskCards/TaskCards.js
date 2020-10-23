@@ -7,10 +7,11 @@ import "./TaskCards.scss";
 
 function TaskCards(props) {
 	const createCard = (card)=>(<CreateTaskCard card={card}
-					                            userData = {props.userData}
-				                                onChangeTask = {props.onChangeTask}
-			                                    handleAddUser = {props.handleAddUser}
-		                                        handleRemoveUser= {props.handleRemoveUser} />);
+																							getRelatedTo = {props.getRelatedTo}
+																							user={props.user}
+																							onChangeTask = {props.onChangeTask}
+																							handleAddUser = {props.handleAddUser}
+																							handleRemoveUser= {props.handleRemoveUser} />);
 	const icon= faTasks;
 	return (
 		<div className='taskCards'>
