@@ -3,19 +3,21 @@ import './NoteModal.scss';
 import './components/NoteInput';
 import NoteSaveBar from './components/NoteSaveBar';
 import NoteInput from './components/NoteInput/NoteInput';
-import { AddNote, GetNoteByRelatedToId } from '../../../../../Api/Note/Note';
+import { AddNote } from '../../../../../Api/Note/Note';
+
 
 
 class NoteModal extends React.Component {
   constructor(props) {
     super(props);
 
-    const{ userId, contact } = this.props.contactData;
+    const user = JSON.parse(localStorage.getItem('user'));
+    const relatedTo = this.props.relatedTo;
 
     this.state = {
-      userId,
+      user,
       content: '',
-      contact,
+      relatedTo,
       btnDisable: true,
     }
     this.handleEditorChange = this.handleEditorChange.bind(this);
@@ -41,27 +43,26 @@ class NoteModal extends React.Component {
     const checkInput = text.replaceAll(" ","").replaceAll('<br>', '').replaceAll('<p></p>','');
     if (checkInput!== ''){
       return true
-    }
-    else{
+    } else {
       return false; 
     }
   } 
 
   handleClickSaveBtn(){
-    const { content, userId, contact } = this.state;
+    const { content, user, relatedTo } = this.state;
       if (this.checkValidation(content)){
         const body = {
           content: content,
-          createdBy: userId,
+          createdBy: user.id,
           type:'Note',
           isDeleted: false,
-          relatedTo: contact,
+          relatedTo: relatedTo,
         }
         const res = AddNote(body);
         res.then(value => {
           if (value) {
             this.props.handleCreateNote(value);
-            this.props.contactData.close();
+            this.props.handleCloseModal();
           } else {
               console.log("Unexpected Error");
           }
@@ -73,8 +74,7 @@ class NoteModal extends React.Component {
   
 
   render() {
-    //const { btnDisable, createdBy, relatedTo } = this.state;
-    const { btnDisable, userId, contact } = this.state;
+    const { btnDisable, user, relatedTo } = this.state;
 
     return (
       <section id="NoteModal" className="NoteModal">
@@ -82,8 +82,8 @@ class NoteModal extends React.Component {
           <NoteInput 
             placeholder="Start typing to leave a note..."
             handleEditorChange={this.handleEditorChange}
-            createdBy={contact}
-            relatedTo={userId}
+            createdBy={user}
+            relatedTo={relatedTo}
           />
         </div>
         <div className="note-container-footer">

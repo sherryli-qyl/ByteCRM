@@ -1,6 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
+import AddModal from '../AddModal';
 import HintBox from '../HintBox';
 import './ExpandBar.scss';
 
@@ -9,38 +10,54 @@ class ExpandBar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            showDetail: false,
-            showHint:false,
-            color:"white",
-
+            showDetail: this.props.showDetail,
+            showAddModal: false,
+            showHint: false,
+            color: "white",
         }
 
         this.handleOnClickAngle = this.handleOnClickAngle.bind(this);
         this.hintBoxToggle = this.hintBoxToggle.bind(this);
+        this.onClickAddBtn = this.onClickAddBtn.bind(this);
+        this.onClickCloseBtn = this.onClickCloseBtn.bind(this);
+    }
+
+    onClickAddBtn() {
+        this.setState(prevState => ({
+            ...prevState,
+            showAddModal: true,
+        }))
+    }
+
+    onClickCloseBtn() {
+        this.setState(prevState => ({
+            ...prevState,
+            showAddModal: false,
+        }))
     }
 
     handleOnClickAngle() {
         this.setState(prevState => ({
             showDetail: !prevState.showDetail,
         }))
-        console.log(this.state.showDetail);
     }
 
-    hintBoxToggle(show){
+    hintBoxToggle(show) {
         this.setState({
-            showHint:show
+            showHint: show
         })
     }
 
 
-    render() {
-        const { showDetail,showHint } = this.state;
-        const { showAdd, disabled, hintMessage } = this.props;
-        let angleIconClassName = 'angleIcon '
 
+    render() {
+        const { showHint, showAddModal, showDetail } = this.state;
+        const { showAdd, disabled, hintMessage, addModal } = this.props;
+        let angleIconClassName = 'angleIcon ';
 
         let expandContentClassName = 'expandBar__container__content '
         let addBtnClassName = 'expandBar__container__right__addBtn '
+
         if (showDetail) {
             angleIconClassName += 'angleIcon__rotate';
             expandContentClassName += 'expandBar__container__content__active';
@@ -60,16 +77,17 @@ class ExpandBar extends React.Component {
                         <div className='expandBar__container__labelBtn__text'>
                             <span> {this.props.label} </span>
                         </div>
-                        {showAdd  ?
+                        {showAdd ?
                             <div className='expandBar__container__right'
-                                 onMouseEnter = {()=>this.hintBoxToggle(true)}
-                                 onMouseLeave={()=>this.hintBoxToggle(false)}>
+                                 onMouseEnter={() => this.hintBoxToggle(true)}
+                                 onMouseLeave={() => this.hintBoxToggle(false)}>
                                 <button className={addBtnClassName}
-                                        disabled={disabled}
-                                        onClick={(event) => {
+                                    disabled={disabled}
+                                    onClick={(event) => {
                                         event.stopPropagation();
+                                        this.onClickAddBtn();
                                     }}>
-                                    {disabled && showHint?
+                                    {disabled && showHint ?
                                         <div className='expandBar__container__right__hint'>
                                             <HintBox variant="right">
                                                 {hintMessage}
@@ -79,17 +97,32 @@ class ExpandBar extends React.Component {
                                         ""
                                     }
                                    + Add
-                                    </button>
+                                </button>
                             </div>
                             :
                             ""
                         }
                     </div>
                     <div className={expandContentClassName}>
-                        {this.props.content}
+                        {showDetail ?
+                            this.props.content
+                            :
+                            ""
+                        }
                     </div>
                 </div>
-
+                {addModal?
+                    <AddModal addModal={addModal}
+                              onClickCloseBtn={this.onClickCloseBtn}
+                              showAddModal={showAddModal} 
+                              onClickSaveBtn={() => {
+                                this.props.onClickSaveBtn();
+                               this.onClickCloseBtn();
+                            }}
+                    />
+                    :
+                    ""
+                }
             </div>
         )
     }

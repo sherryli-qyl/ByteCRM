@@ -1,0 +1,9 @@
+@import '../../../../style/variable.scss';
+
+.addModalFooter{
+    border-top: solid 1px $border-color;
+
+    &__btnWrapper{
+        padding:24px 40px;
+    }
+}

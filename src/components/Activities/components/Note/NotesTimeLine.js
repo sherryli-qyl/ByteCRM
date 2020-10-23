@@ -4,16 +4,19 @@ import NoteCardsList from './components/NoteCardsList';
 import shuffleCards from '../../../services/shuffleCards';
 import "./NotesTimeLine.scss";
 import { GetNoteByRelatedToId, UpdateNote, DeleteNote } from '../../../Api/Note/Note';
-import { ActivityContext } from '../../Context';
+
+
+const user = JSON.parse(localStorage.getItem('user'));
 
 
 class NotesTimeLine extends React.Component {
   constructor(props) {
     super(props);
-    
     this.state = {
+      user,
       cardsList: [],
       cardsArray: [],
+      relatedTo: this.props.relatedTo,
     }
 
     this.onChangeText = this.onChangeText.bind(this);
@@ -28,7 +31,7 @@ class NotesTimeLine extends React.Component {
   }
 
   handleGetNotes() {
-    const notes = GetNoteByRelatedToId(this.props.contactId);
+    const notes = GetNoteByRelatedToId(this.state.relatedTo.id);
     notes
       .then(value => {
         this.setState({
@@ -71,7 +74,7 @@ class NotesTimeLine extends React.Component {
       cardsList: newCardList,
     })
     this.sortCardsArray()
-}
+  }
 
   handleDeleteNoteCard(noteId){
     const response = DeleteNote(noteId);
@@ -84,27 +87,22 @@ class NotesTimeLine extends React.Component {
 
 
   render() {
-    const { cardsArray } = this.state;
+    const { cardsArray, relatedTo } = this.state;
 
     return (
-      <ActivityContext.Consumer>
-        {contactData => (
-          <div className="note-time-line">
-            <TimeLineControls 
-              contactData={contactData}
-              handleCreateNote = {this.handleCreateNote}
-            />
-            <NoteCardsList 
-              contactData={contactData}
-              cardsArray={cardsArray} 
-              onChangeNote = {this.onChangeNote}
-              handleDeleteNoteCard = {this.handleDeleteNoteCard}
-            />
-          </div>
-        )}
-      </ActivityContext.Consumer>
-    )
-  }
+      <div className="note-time-line">
+        <TimeLineControls 
+          relatedTo={relatedTo}
+          handleCreateNote = {this.handleCreateNote}
+        />
+        <NoteCardsList 
+          relatedTo={relatedTo}
+          cardsArray={cardsArray} 
+          onChangeNote = {this.onChangeNote}
+          handleDeleteNoteCard = {this.handleDeleteNoteCard}
+        />
+      </div>
+    )}
 }
 
 export default NotesTimeLine;

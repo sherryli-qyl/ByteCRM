@@ -3,10 +3,12 @@ import "./CompanyHeader.scss";
 import IconProfile from "../../../../../../../img/Company/profile.svg";
 import IconCompany from "../../../../../../../img/Company/company.svg"
 import {NavLink} from 'react-router-dom';
-
+import {
+  COMPANY_BASE_URL,
+} from '../../../../../../Routes/URLMap';
 const CompanyHeader = () => (
   <div className="company_basic">
-    <NavLink activeClassName = "active" to = "/companies">
+    <NavLink activeClassName = "active" to = {COMPANY_BASE_URL}>
     <button className="back-to-list">
       <div className="company_text"> Companies </div>
       <div>
