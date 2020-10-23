@@ -131,6 +131,7 @@ class CompanyMain extends Component {
                                 <Modal Xaxis={this.state.Xaxis}
                                     Yaxis={this.state.Yaxis}
                                     visible={visible}
+                                    modalController={modalController}
                                     currentModal={currentModal}
                                     closeModal={this.closeModal}
                                 />

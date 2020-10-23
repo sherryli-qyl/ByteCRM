@@ -108,7 +108,7 @@ class ContactMain extends Component {
         const sideBarItems = [
             {key:"Company",component: <AssociatedCompany contact = {contact} company = {contact.company}/>}
         ]
-        const modalController = {open: this.openModal,close:this.closeModal}
+        const modalController = {open: this.openModal,close:this.closeModal,contact: contact}
         return (
             <div>
                 <ModalContext.Provider value={modalController}>
@@ -130,10 +130,11 @@ class ContactMain extends Component {
                                     />
                                     <SideBar sideBarItems = {sideBarItems} />
                                     <Modal Xaxis={this.state.Xaxis}
-                                        Yaxis={this.state.Yaxis}
-                                        visible={visible}
-                                        currentModal={currentModal}
-                                        closeModal={this.closeModal} />
+                                           Yaxis={this.state.Yaxis}
+                                           modalController={modalController}
+                                           visible={visible}
+                                           currentModal={currentModal}
+                                           closeModal={this.closeModal} />
                             </div>
                         }
                     </ThemeProvider>

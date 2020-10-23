@@ -14,18 +14,24 @@ import './InfoPage.scss';
 class InfoPage extends Component {
   constructor(props) {
     super(props);
+    const noteModal = (value) =>(<NoteModal modalController = {value}/>)
+    const emailModal = (value) =>(<EmailModal modalController = {value}/>)
+    const callModal = (value) =>(<CallModal  modalController = {value}/>)
+    const taskModal = (value) =>(<TaskModal modalController = {value}/>)
+    const meetingModal = (value) =>(<MeetingCreateModal modalController = {value}/>)
+   
     const navItems = [
-      { key: 'Note', value: 'Note', icon: faEdit, modal: <NoteModal /> },
-      { key: 'Email', value: 'Email', icon: faEnvelope, modal: <EmailModal /> },
-      { key: 'Call', value: 'Call', icon: faPhoneAlt, modal: <CallModal /> },
+      { key: 'Note', value: 'Note', icon: faEdit, modal: noteModal},
+      { key: 'Email', value: 'Email', icon: faEnvelope, modal: emailModal },
+      { key: 'Call', value: 'Call', icon: faPhoneAlt, modal: callModal},
       { key: 'Log', value: 'Log', icon: faPlus, modal: '' },
-      { key: 'Task', value: 'Task', icon: faTasks, modal: <TaskModal /> },
-      { key: 'Meeting', value: 'Meet', icon: faCalendarAlt, modal: <MeetingCreateModal /> },
+      { key: 'Task', value: 'Task', icon: faTasks, modal: taskModal},
+      { key: 'Meeting', value: 'Meet', icon: faCalendarAlt, modal: meetingModal },
     ];
     this.state = {
       navItems,
       currentModal: navItems[0],
-      name: 'email',
+      name: 'note',
     };
     this.onNavItemClick = this.onNavItemClick.bind(this);
   }
