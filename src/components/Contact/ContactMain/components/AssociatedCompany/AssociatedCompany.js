@@ -64,13 +64,10 @@ onClickSaveBtn() {
 render() {
   const { hintMessage, company, contact } = this.state;
 
-  console.log(company);
-
   let showDetail = false;
   if (company) {
     showDetail = true
   }
-
 
   const addModal = {
     title: 'Add companies to this contact',

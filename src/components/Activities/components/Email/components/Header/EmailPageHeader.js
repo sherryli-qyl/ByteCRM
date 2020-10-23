@@ -12,13 +12,19 @@ import Modal from '../../../../../../js/Modal';
 
 
 const EmailPageHeader = (props) => {
-    const createModal= (closeModal) => new Modal('Email', 'Email', <EmailModal contact={props.contact}/>); //create your modal
-    const logModal = (closeModal) => (
-        new Modal('Log Email', 'Log Email',
-            <LogEmailModal contact={props.contact} 
-                           user = {props.user}         
-                           handleCloseModal = {closeModal}
-                           handleLogEmail = {props.handleLogEmail}/>));
+    const logModal = (value) => (<LogEmailModal 
+                                          contact={props.contact} 
+                                          user = {props.user}  
+                                          modalController={value}
+                                          handleCloseModal = {value.close}    
+                                          handleLogEmail = {props.handleLogEmail}/>);
+    const createModal = (value) => (<EmailModal 
+                                          modalController={value}
+                                          handleCloseModal = {value.close}
+                                          handleCreateNote={props.handleCreateNote}/>);                                  
+    const logEmailModal = new Modal('Note', 'Note', logModal);
+    const createEmailModal = new Modal('Note', 'Note', createModal);
+
     return (
         <ModalContext.Consumer>
             { modalController =>
@@ -29,13 +35,13 @@ const EmailPageHeader = (props) => {
                         </button>
                     </div>
                     <div className="emailPage__header__logEmail">
-                        <LogButton onClick={() => modalController.open(logModal(modalController.close))}>
+                        <LogButton onClick={() => modalController.open(logEmailModal)}>
                             Log Email
                         </LogButton> {/* //set function */}
                     </div>
 
                     <div className='emailPage__header__createEmail'>
-                        <CreateButton onClick={() => modalController.open(createModal(modalController.close))}> {/* //set function */}
+                        <CreateButton onClick={() => modalController.open(createEmailModal)}> {/* //set function */}
                             Create Email
                         </CreateButton>
                     </div>

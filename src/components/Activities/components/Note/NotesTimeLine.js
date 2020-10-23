@@ -7,7 +7,6 @@ import { GetNoteByRelatedToId, UpdateNote, DeleteNote } from '../../../Api/Note/
 
 
 const user = JSON.parse(localStorage.getItem('user'));
-const id = sessionStorage.getItem('id');
 
 
 class NotesTimeLine extends React.Component {
@@ -32,7 +31,7 @@ class NotesTimeLine extends React.Component {
   }
 
   handleGetNotes() {
-    const notes = GetNoteByRelatedToId(this.state.relatedTo.id);
+    const notes = GetNoteByRelatedToId(this.state.relatedTo);
     notes
       .then(value => {
         this.setState({

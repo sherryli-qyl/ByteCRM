@@ -62,8 +62,7 @@ class NoteModal extends React.Component {
         res.then(value => {
           if (value && this.props.handleCreateNote) {
               this.props.handleCreateNote(value);
-              this.props.handleCloseModal();
-            
+              this.props.modalController.close();  
           }
           else if(this.props.modalController){
             this.props.modalController.close();
@@ -80,7 +79,7 @@ class NoteModal extends React.Component {
 
   render() {
     const { btnDisable, user, relatedTo } = this.state;
-
+    
     return (
       <section id="NoteModal" className="NoteModal">
         <div className="note-input">

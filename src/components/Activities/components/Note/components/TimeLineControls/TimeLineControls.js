@@ -10,7 +10,6 @@ const TimeLineControls = (props) => {
 
 
   const modal = (value) => (<NoteModal modalController={value}
-                                       handleCloseModal = {value.close}
                                        handleCreateNote={props.handleCreateNote}/>)
   const noteModal = new Modal('Note', 'Note', modal);
 

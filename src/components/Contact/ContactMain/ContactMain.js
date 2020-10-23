@@ -89,7 +89,6 @@ class ContactMain extends Component {
             this.setState({
                 contact: value,
                 loading: false,
-                relatedTo: value,
             });
            sessionStorage.setItem('contact', JSON.stringify(value));
         })
@@ -102,13 +101,14 @@ class ContactMain extends Component {
 
 
     render() {
-        const { visible, currentModal, contact, relatedTo, theme, expandPack, loading} = this.state;
+        const { visible, currentModal, contact, theme, expandPack, loading} = this.state;
         const infoData = { key: 'contact', data: contact, dictionary: ContactDictionary };
         const onChangeInfoHandlers = { single: this.onChangeSingleInfo, multi: this.onChangeMultiInfo };
         const sideBarItems = [
             {key:"Company",component: <AssociatedCompany contact = {contact} company = {contact.company}/>}
         ]
         const modalController = {open: this.openModal,close:this.closeModal,contact: contact}
+        console.log("111");
         return (
             <div>
                 <ModalContext.Provider value={modalController}>
@@ -126,7 +126,7 @@ class ContactMain extends Component {
                                 </InfoContext.Provider>   
                                     <Activities 
                                       contact = {contact}
-                                      relatedTo = {relatedTo}
+                                      relatedTo = {contact.id}
                                     />
                                     <SideBar sideBarItems = {sideBarItems} />
                                     <Modal Xaxis={this.state.Xaxis}
