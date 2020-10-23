@@ -41,9 +41,19 @@ class Modal extends Component {
 
     render() {
         const { hide} = this.state;
+        const {modalController} = this.props;
+        
+        let modal = "";
+        
+        if(this.props.currentModal){
+            modal = this.props.currentModal.modal(modalController);
+        }
+       
+       
+
         const dragHandlers = {onStart: this.onStart, onStop: this.onStop};
+
         const nodeRef = React.createRef();
-        const Content =   this.props.currentModal.modal
         let modalClassName = "Modal";
 
         if (this.props.visible) {
@@ -71,7 +81,7 @@ class Modal extends Component {
                             <div className="MainComponents" />
                             :
                             <div className="MainComponents Component--acitve">
-                                {Content}
+                               { modal}
                             </div>
                         }
                     </div>

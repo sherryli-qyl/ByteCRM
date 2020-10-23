@@ -31,7 +31,7 @@ class NotesTimeLine extends React.Component {
   }
 
   handleGetNotes() {
-    const notes = GetNoteByRelatedToId(this.state.relatedTo.id);
+    const notes = GetNoteByRelatedToId(this.state.relatedTo);
     notes
       .then(value => {
         this.setState({

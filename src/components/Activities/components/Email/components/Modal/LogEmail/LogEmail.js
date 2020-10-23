@@ -15,7 +15,7 @@ class LogEmail extends React.Component {
         const currentDate = transferDateInYearMonDay(new Date());
         const currentTime = "09:00";
         const{user,contact} = this.props;
-        
+
         let contactList = [];
         let contacts = [];
         contact ? contactList.push(contact) : contactList = [];
@@ -115,7 +115,7 @@ class LogEmail extends React.Component {
             res.then(value=>{
                 if (value){
                     this.props.handleLogEmail(value);
-                    this.props.handleCloseModal();
+                    this.props.modalController.close();
                 }
                 else{
                     console.log("Unexpected Error");

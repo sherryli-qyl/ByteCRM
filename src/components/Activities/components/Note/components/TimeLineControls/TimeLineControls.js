@@ -7,22 +7,18 @@ import './TimeLineControls.scss';
 
 
 const TimeLineControls = (props) => {
-  const createModal = (closeModal) => new Modal(
-    'Note', 
-    'Note', 
-    <NoteModal 
-      relatedTo = {props.relatedTo}
-      handleCloseModal = {closeModal}
-      handleCreateNote = {props.handleCreateNote}
-    />
-    ); 
+
+
+  const modal = (value) => (<NoteModal modalController={value}
+                                       handleCreateNote={props.handleCreateNote}/>)
+  const noteModal = new Modal('Note', 'Note', modal);
 
   return (
     <ModalContext.Consumer>
-      {modalController => 
+      {modalController =>
         <div className="timeline-action-container">
-          <CreateButton 
-            onClick={() => modalController.open(createModal(modalController.close))}
+          <CreateButton
+            onClick={() => modalController.open(noteModal)}
           >
             Create Note</CreateButton>
         </div>

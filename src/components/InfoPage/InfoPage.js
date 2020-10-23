@@ -2,11 +2,7 @@ import React, { Component } from 'react';
 import { faEnvelope, faEdit, faPhoneAlt, faCalendarAlt, faPlus, faTasks,faUser,faBuilding} from "@fortawesome/free-solid-svg-icons";
 import BasicInfo from './components/BasicInfo';
 import DetailInfo from './components/DetailInfo';
-import NoteModal from '../Activities/components/Note/components/NoteModal';
-import EmailModal from '../Activities/components/Email/components/Modal/CreateEmail';
-import CallModal from '../Modal/components/Function/Call';
-import TaskModal from '../Activities/components/Task/components/TaskModal';
-import MeetingCreateModal from '../Modal/components/Function/Meeting/MeetingCreateModal';
+import Modals from './services/Modals'
 import DataPack from './services/DataPack';
 import './InfoPage.scss';
 
@@ -15,17 +11,17 @@ class InfoPage extends Component {
   constructor(props) {
     super(props);
     const navItems = [
-      { key: 'Note', value: 'Note', icon: faEdit, modal: <NoteModal /> },
-      { key: 'Email', value: 'Email', icon: faEnvelope, modal: <EmailModal /> },
-      { key: 'Call', value: 'Call', icon: faPhoneAlt, modal: <CallModal /> },
+      { key: 'Note', value: 'Note', icon: faEdit, modal: Modals.note},
+      { key: 'Email', value: 'Email', icon: faEnvelope, modal: Modals.email},
+      { key: 'Call', value: 'Call', icon: faPhoneAlt, modal: Modals.call},
       { key: 'Log', value: 'Log', icon: faPlus, modal: '' },
-      { key: 'Task', value: 'Task', icon: faTasks, modal: <TaskModal /> },
-      { key: 'Meeting', value: 'Meet', icon: faCalendarAlt, modal: <MeetingCreateModal /> },
+      { key: 'Task', value: 'Task', icon: faTasks, modal: Modals.task},
+      { key: 'Meeting', value: 'Meet', icon: faCalendarAlt, modal: Modals.meeting},
     ];
     this.state = {
       navItems,
       currentModal: navItems[0],
-      name: 'email',
+      name: 'note',
     };
     this.onNavItemClick = this.onNavItemClick.bind(this);
   }
