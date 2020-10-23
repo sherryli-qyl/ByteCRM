@@ -2,11 +2,7 @@ import React, { Component } from 'react';
 import { faEnvelope, faEdit, faPhoneAlt, faCalendarAlt, faPlus, faTasks,faUser,faBuilding} from "@fortawesome/free-solid-svg-icons";
 import BasicInfo from './components/BasicInfo';
 import DetailInfo from './components/DetailInfo';
-import NoteModal from '../Activities/components/Note/components/NoteModal';
-import EmailModal from '../Activities/components/Email/components/Modal/CreateEmail';
-import CallModal from '../Modal/components/Function/Call';
-import TaskModal from '../Activities/components/Task/components/TaskModal';
-import MeetingCreateModal from '../Modal/components/Function/Meeting/MeetingCreateModal';
+import Modals from './services/Modals'
 import DataPack from './services/DataPack';
 import './InfoPage.scss';
 
@@ -14,19 +10,13 @@ import './InfoPage.scss';
 class InfoPage extends Component {
   constructor(props) {
     super(props);
-    const noteModal = (value) =>(<NoteModal modalController = {value}/>)
-    const emailModal = (value) =>(<EmailModal modalController = {value}/>)
-    const callModal = (value) =>(<CallModal  modalController = {value}/>)
-    const taskModal = (value) =>(<TaskModal modalController = {value}/>)
-    const meetingModal = (value) =>(<MeetingCreateModal modalController = {value}/>)
-   
     const navItems = [
-      { key: 'Note', value: 'Note', icon: faEdit, modal: noteModal},
-      { key: 'Email', value: 'Email', icon: faEnvelope, modal: emailModal },
-      { key: 'Call', value: 'Call', icon: faPhoneAlt, modal: callModal},
+      { key: 'Note', value: 'Note', icon: faEdit, modal: Modals.noteModal},
+      { key: 'Email', value: 'Email', icon: faEnvelope, modal: Modals.emailModal },
+      { key: 'Call', value: 'Call', icon: faPhoneAlt, modal: Modals.callModal},
       { key: 'Log', value: 'Log', icon: faPlus, modal: '' },
-      { key: 'Task', value: 'Task', icon: faTasks, modal: taskModal},
-      { key: 'Meeting', value: 'Meet', icon: faCalendarAlt, modal: meetingModal },
+      { key: 'Task', value: 'Task', icon: faTasks, modal: Modals.taskModal},
+      { key: 'Meeting', value: 'Meet', icon: faCalendarAlt, modal: Modals.meetingModal },
     ];
     this.state = {
       navItems,

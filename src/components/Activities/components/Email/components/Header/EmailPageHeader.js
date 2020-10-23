@@ -16,11 +16,9 @@ const EmailPageHeader = (props) => {
                                           contact={props.contact} 
                                           user = {props.user}  
                                           modalController={value}
-                                          handleCloseModal = {value.close}    
                                           handleLogEmail = {props.handleLogEmail}/>);
     const createModal = (value) => (<EmailModal 
                                           modalController={value}
-                                          handleCloseModal = {value.close}
                                           handleCreateNote={props.handleCreateNote}/>);                                  
     const logEmailModal = new Modal('Note', 'Note', logModal);
     const createEmailModal = new Modal('Note', 'Note', createModal);
