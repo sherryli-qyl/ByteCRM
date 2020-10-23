@@ -11,10 +11,11 @@ import Grid from '@material-ui/core/Grid';
 
 
 
-const MeetingPageHeader = () => {
+const MeetingPageHeader = (props) => {
     const onClick= useContext(ModalContext); //receive context
-    const createModal = new Modal('Schedule', 'Meeting',<MeetingCreateModal/>); //create your modal
-    const logModal = new Modal('Log Meeting', 'Meeting',<MeetingLogModal/>);
+    const createModal = new Modal('Schedule', 'Meeting',<MeetingCreateModal contact={props.contact}/>); //create your modal
+    const logModal = new Modal('Log Meeting', 'Meeting',<MeetingLogModal contactData={props.contactData}
+    handleLogMeeting = {props.handleLogMeeting}/>);
     return(
         <div className="meetingHeader">
             <Grid  container alignContent="space-between" alignItems="center">

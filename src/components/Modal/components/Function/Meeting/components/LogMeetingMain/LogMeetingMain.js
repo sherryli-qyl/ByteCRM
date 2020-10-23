@@ -1,25 +1,20 @@
 import React from 'react';
-import DatePicker from '../../../../../Style/Picker/DatePicker';
-import TimePicker from '../../../../../Style/Picker/TimePicker';
-import { transferTimeHHMM } from '../../../../../services/timeManager';
-//import ContactSelector from '../../../../../../ContactSelector';
-//import './LogMeetingMain.scss';
+import DatePicker from '../../../../../../Style/Picker/DatePicker';
+import TimePicker from '../../../../../../Style/Picker/TimePicker';
+import { transferTimeHHMM } from '../../../../../../services/timeManager';
+import './LogMeetingMain.scss';
 
-//const contactSelectHint = "Logged Emails must have at Least one association";
+const contactSelectHint = "Logged Meetings must have at Least one association";
 const LogMeetingCardMain = ({
     currentTime,
     currentDate,
     onDateChange,
     onTimeChange,
-    //handleAddContact,
-    //handleDeleteContact,
     contact,
     userId,
-    //contactList,
+    contactList,
 }) => (
         <div className="meetingCardBody">
-            <div className='meetingCardBody__container'>
-            </div>
             <div className='meetingCardBody__container'>
                 <div className="cardLabel">
                     Date

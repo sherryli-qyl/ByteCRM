@@ -11,13 +11,15 @@ class LogMeetingCard extends React.Component {
         this.state = {
             currentDate: this.props.card.date,
             currentTime: this.props.card.time,
+            meetingDuration :this.props.card.duration,
             card:this.props.card,
             cardId: _id,
             description,
-            contactList:contacts
+            contactList:contacts,
         }
         this.onDateChange = this.onDateChange.bind(this);
         this.onTimeChange = this.onTimeChange.bind(this);
+        this.onDurationChange = this.onDurationChange.bind(this);
         this.onDescriptionChange = this.onDescriptionChange.bind(this);
     }
 
@@ -41,6 +43,13 @@ class LogMeetingCard extends React.Component {
         this.props.onChangeMeeting(this.state.cardId,newCard)
     }
 
+    onDurationChange(duration) {
+        const newDuration = duration;
+        this.setState({
+          meetingDuration: newDuration,
+        })
+      }
+
     onDescriptionChange(description){
         let newCard = this.state.card;
         newCard.description = description;
@@ -52,7 +61,7 @@ class LogMeetingCard extends React.Component {
     }
 
     render() {
-        const { currentDate, currentTime,cardId, description,contactList} = this.state;
+        const { currentDate, currentTime,meetingDuration,cardId, description,contactList} = this.state;
         const {userId,contact} = this.props.contactData;
         return (
             <div className="logMeetingCard">
@@ -70,8 +79,10 @@ class LogMeetingCard extends React.Component {
                           userId = {userId}
                           currentDate={currentDate}
                           currentTime={currentTime}
+                          meetingDuration={meetingDuration}
                           onTimeChange={this.onTimeChange}
-                          onDateChange={this.onDateChange} />
+                          onDateChange={this.onDateChange}
+                          onDurationChange={this.onDurationChange} />
                 </div>
             </div>
         )

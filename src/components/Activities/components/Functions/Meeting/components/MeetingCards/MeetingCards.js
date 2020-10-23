@@ -22,6 +22,7 @@ function MeetingCards(props) {
                     icon = {icon}  
                     createCard = {createCard}
                     logCard = {logCard}
+                    handleDeleteCard = {props.handleDeleteCard}
                     />
             ))}
         </div>
