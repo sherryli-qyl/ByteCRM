@@ -2,9 +2,9 @@ import React from 'react';
 import MeetingCards from './components/MeetingCards/MeetingCards';
 import MeetingPageHeader from './components/Header/MeetingPageHeader';
 import shuffleCards from '../../../../services/shuffleCards';
-import { GetMeetings } from '../../../../Api/Meeting/meeting';
+import { GetMeetings,UpdateMeeting,DeleteMeetingLog } from '../../../../Api/Meeting/meeting';
 import "./MeetingPage.scss";
-
+import { ActivityContext } from '../../../Context';
 
 class MeetingPage extends React.Component {
     constructor(props) {
@@ -22,16 +22,77 @@ class MeetingPage extends React.Component {
             cardList: [],
             cardsArray: [],
         }
+        this.onChangeText = this.onChangeText.bind(this);
+        this.onChangeMeeting = this.onChangeMeeting.bind(this);
+        this.handleLogMeeting = this.handleLogMeeting.bind(this);
+        this.handleDeleteCard = this.handleDeleteCard.bind(this);
     }
 
-    sortCardsArray() {
-        const newCardsArray = shuffleCards(this.state.cardList);
+    sortCardsArray(meetingList) {
+        if(meetingList){
+        const newCardsArray = shuffleCards(meetingList);
         this.setState({
             cardsArray: newCardsArray
         })
+        }
+        return;
+    }
+
+    onChangeText(newContent, cardKey) {
+        const newCardsList = this.state.cardList;
+        for (let i in newCardsList) {
+            if (newCardsList[i].key === cardKey) {
+                newCardsList[i].description = newContent;
+                this.setState({
+                    cardsList: newCardsList,
+                })
+            }
+        }
+    }
+
+    onChangeMeeting(meetingId, body) {
+        UpdateMeeting(meetingId, body);
+    }
+
+    handleLogMeeting(meeting) {
+        const newCardList = this.state.cardList;
+        newCardList.push(meeting);
+        this.setState({
+            cardList: newCardList,
+        })
+        this.sortCardsArray(newCardList);
+    }
+
+    handleDeleteCard(id) {
+        const response = DeleteMeetingLog(id);
+        response.then(value => {
+            if (value) {
+                this.handleInitPage();
+            }
+        })
+    }
+
+    handleInitPage() {
+        //const meetings = GetMeetings(this.props.contactId);
+        const meetings = GetMeetings(this.id);
+        meetings.then(meetingList => {
+            if (meetingList.length > 0) {
+                this.setState({
+                    cardList:meetingList
+                })
+                return meetingList;
+            }
+            else {
+                return null;
+            }
+        }).then((meetingList) => {
+            this.sortCardsArray(meetingList);
+        });
     }
 
     componentDidMount() {
+        this.handleInitPage();
+        /*
         //const meetings = GetMeetings(this.props.id);
         const tempMeetings = GetMeetings(this.id);
         tempMeetings.then(value => {
@@ -44,6 +105,8 @@ class MeetingPage extends React.Component {
                 this.sortCardsArray();
             }
         });
+
+        */
         /*tempMeetings.then(function(result) {
             console.log("result");
             console.log(result); // "Some User token"
@@ -65,14 +128,24 @@ class MeetingPage extends React.Component {
     }
 
     render() {    
-        const {cardList,cardsArray} = this.state;
-        console.log("cardsArray");
-        console.log(cardsArray);
+        const {cardsArray} = this.state;
         return (
-            <div className="meetingPage">
-                <MeetingPageHeader />
-                <MeetingCards cardsArray={cardsArray} />
-            </div>
+            <ActivityContext.Consumer>
+                {contactData => {
+                    return (
+                        <div className="meetingPage">
+                            <MeetingPageHeader 
+                                contactData={contactData}
+                                handleLogMeeting={this.handleLogMeeting} />
+                            <MeetingCards
+                                contactData={contactData}
+                                cardsArray={cardsArray}
+                                handleDeleteCard={this.handleDeleteCard}
+                                onChangeMeeting={this.onChangeMeeting} />
+                        </div>
+                    )
+                }}
+            </ActivityContext.Consumer>
         )
     }
 }
