@@ -1,5 +1,5 @@
-async function GetTasks(userId) {
-  const serverUrl = `http://localhost:3000/api/tasks/${userId}`;
+async function GetTasks(getRelatedToId) {
+  const serverUrl = `http://localhost:3000/api/tasks/${getRelatedToId}`;
   const response = await fetch(serverUrl, {
       method: "GET"
   });
@@ -55,8 +55,8 @@ async function DeleteCreateTask(taskId) {
   }
 }
 
-async function UpdateAssignedToUser(userId, taskId){
-	const serverUrl = `http://localhost:3000/api/tasks/${taskId}/assignedToUser/${userId}`;
+async function UpdateAssignedToUser(getRelatedToId, taskId){
+	const serverUrl = `http://localhost:3000/api/tasks/${taskId}/assignedToUser/${getRelatedToId}`;
 	const response = await fetch(serverUrl, {
 			method: "PUT",
 			headers: {
@@ -67,8 +67,8 @@ async function UpdateAssignedToUser(userId, taskId){
 	return data;
 }
 
-async function RemoveAssignedToUser(userId,taskId){
-	const serverUrl = `http://localhost:3000/api/tasks/${taskId}/assignedToUser/${userId}`;
+async function RemoveAssignedToUser(getRelatedToId,taskId){
+	const serverUrl = `http://localhost:3000/api/tasks/${taskId}/assignedToUser/${getRelatedToId}`;
 	const response = await fetch(serverUrl, {
 			method: "DELETE",
 			headers: {

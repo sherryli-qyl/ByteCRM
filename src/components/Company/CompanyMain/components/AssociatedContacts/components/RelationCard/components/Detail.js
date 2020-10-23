@@ -7,6 +7,7 @@ import NavigationButton from '../../../../../../../NavigationButton';
 import { faEnvelope, faPhoneAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Avatar from '../../../../../../../Avatar';
+
 import './Detail.scss';
 
 
@@ -57,7 +58,7 @@ class Detail extends React.Component {
               <div className="relatedContactsWrapper__header">
                 <div className="relatedContactsWrapper__header__avatar">
                   <Avatar>
-                    {`${contact.firstName[0]}${contact.lastName[0]}`}
+                   {`${contact.firstName[0]}${contact.lastName[0]}`}
                   </Avatar>
                 </div>
                 <div className="relatedContactsWrapper__header__basicInfo">
