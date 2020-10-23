@@ -2,9 +2,12 @@ import React from 'react';
 import EmailCards from './components/EmailCards';
 import EmailPageHeader from './components/Header';
 import shuffleCards from '../../../services/shuffleCards';
-import { GetEmails, UpdateEmail, DeleteEmailLog, UpdateContacts, RemoveContacts } from '../../../Api/Email/Email';
+import { GetEmails, GetMultiContactsEmails,UpdateEmail, DeleteEmailLog, UpdateContacts, RemoveContacts } from '../../../Api/Email/Email';
 import "./EmailPage.scss";
-import { ActivityContext } from '../../Context';
+
+
+const user = JSON.parse(localStorage.getItem('user'));
+
 
 
 class EmailPage extends React.Component {
@@ -12,6 +15,9 @@ class EmailPage extends React.Component {
         super(props);
         this.state = {
             cardList: [],
+            user,
+            contact:this.props.contact,
+            associatedContacts:this.props.associatedContacts,
             cardsArray: [],
         }
         this.onChangeText = this.onChangeText.bind(this);
@@ -76,19 +82,32 @@ class EmailPage extends React.Component {
     }
 
     handleInitPage() {
-        const emails = GetEmails(this.props.contactId);
-        emails.then(emailList => {
-            if (emailList.length > 0) {
+        let data = []
+        const {contact,associatedContacts} = this.state;
+        if (contact){
+            data = GetEmails(contact.id);
+        }
+        else if (associatedContacts){
+            let ids = "";
+            for(let i = 0; i < associatedContacts.length;i++){
+                const id = associatedContacts[i].id; 
+                i === 0 ? ids += id : ids += "&&" + id;
+            }
+            data = GetMultiContactsEmails(ids); 
+        }
+        data.then(response => {
+            if (response.statusText === "OK") {
+                console.log(response.data);
                 this.setState({
-                    cardList:emailList
+                    cardList: response.data
                 })
-                return emailList;
+                return response.data;
             }
             else {
-                return null;
+                return [];
             }
-        }).then((emailList) => {
-            this.sortCardsArray(emailList);
+        }).then((cards) => {
+            this.sortCardsArray(cards);
         });
     }
 
@@ -97,26 +116,24 @@ class EmailPage extends React.Component {
     }
 
     render() {
-        const { cardsArray } = this.state;
+        const { cardsArray,contact,user } = this.state;
         return (
-            <ActivityContext.Consumer>
-                {contactData => {
-                    return (
-                        <div className="emailPage">
-                            <EmailPageHeader 
-                                contactData={contactData}
-                                handleLogEmail={this.handleLogEmail} />
-                            <EmailCards
-                                contactData={contactData}
-                                cardsArray={cardsArray}
-                                handleDeleteCard={this.handleDeleteCard}
-                                handleAddContact={this.handleAddContact}
-                                handleRemoveContact={this.handleRemoveContact}
-                                onChangeEmail={this.onChangeEmail} />
-                        </div>
-                    )
-                }}
-            </ActivityContext.Consumer>
+            <div className="emailPage">
+                <EmailPageHeader
+                    contact={contact}
+                    user = {user}
+                    handleLogEmail={this.handleLogEmail} />
+                <EmailCards
+                    contact={contact}
+                    user = {user}
+                    cardsArray={cardsArray}
+                    handleDeleteCard={this.handleDeleteCard}
+                    handleAddContact={this.handleAddContact}
+                    handleRemoveContact={this.handleRemoveContact}
+                    onChangeEmail={this.onChangeEmail} />
+            </div>
+
+
         )
     }
 }

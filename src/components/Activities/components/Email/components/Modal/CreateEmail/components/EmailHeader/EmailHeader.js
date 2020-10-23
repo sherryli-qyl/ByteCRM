@@ -1,7 +1,7 @@
 import React from 'react';
 import './EmailHeader.scss';
 import HeaderItem from './components/HeaderItem';
-import ReceiverTag from './components/ReceNameTag';
+import ReceiverTag from '../../../../../../../../NameTag';
 import Text from '../../../../../../../../Style/Text';
 
 

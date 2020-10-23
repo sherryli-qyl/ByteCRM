@@ -2,30 +2,38 @@
 
 .Header{
     display: flex;
+    align-items: center;
     background-color: rgba($color: $primary-color, $alpha: 0.7);
     background-image: linear-gradient(-303deg,$primary-color,#184242 56%,#073347);
     width: 100%; 
     cursor: grab;
-    height: 54px;
+    height:50px;
+    border-radius:5px 5px 0px 0px;
       
     &__Left{
-             align-self: center;
-             flex: 4;
-             height:100%;
+            display: flex;
+            align-items: center;
+            flex:4;
+            height:100%;
+            padding-left:1%;
                   
            
              &__Name{
                       font-size: medium;
                       font-weight: 700;
-                      color:white;          
+                      color:white;
+                      padding-left: 2%;    
+                      padding-bottom: 1%;         
                     }       
             } 
 
      &__Right{
-        height: 100%;
-        flex: 1;
-        align-self: center;
-        justify-content: flex-end;   
+              height:100%;
+              display: flex;
+              flex:1;
+              align-items: center;
+              justify-content: flex-end;
+              padding-right: 2%;     
      }         
 }
 
@@ -33,6 +41,7 @@
     border:0;
     outline: 0;
     background-color: transparent;
+    border-radius: 50%; 
 
     &:hover{
         background-color: darken($secondary-color,8%);      

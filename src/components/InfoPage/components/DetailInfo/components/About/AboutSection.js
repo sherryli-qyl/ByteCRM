@@ -59,13 +59,13 @@ class AboutSection extends React.Component {
                 <InfoContext.Consumer>
                     {value => (
                         <SaveModal modalActive={modalActive}
-                            closeModal={this.closeModal}
-                            propertyDiff={propertyDiff}
-                            saveData={() => {
-                                value.multi({ ...data });
-                                this.closeModal();
-                            }
-                            } />
+                                   closeModal={this.closeModal}
+                                   propertyDiff={propertyDiff}
+                                   saveData={() => {
+                                        value.multi({ ...data });
+                                        this.closeModal();
+                                }
+                        }/>
                     )}
                 </InfoContext.Consumer>
             </div>

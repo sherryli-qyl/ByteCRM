@@ -6,7 +6,12 @@ import "./TaskCards.scss";
 
 
 function TaskCards(props) {
-	const createCard = (card)=>(<CreateTaskCard card={card}/>);
+	const createCard = (card)=>(<CreateTaskCard card={card}
+																							getRelatedTo = {props.getRelatedTo}
+																							user={props.user}
+																							onChangeTask = {props.onChangeTask}
+																							handleAddUser = {props.handleAddUser}
+																							handleRemoveUser= {props.handleRemoveUser} />);
 	const icon= faTasks;
 	return (
 		<div className='taskCards'>
@@ -15,8 +20,10 @@ function TaskCards(props) {
 					key={cards.date}
 					date={cards.date}
 					content={cards.content}
-					icon = {icon}  
-					createCard = {createCard}
+					icon={icon}  
+					createCard={createCard}
+					handleTest={props.handleTest}
+          handleDeleteCard={props.handleDeleteCard}
 				/>
 			))}
 		</div>

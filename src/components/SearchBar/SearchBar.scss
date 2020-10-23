@@ -1,0 +1,53 @@
+@import '../../style/variable.scss';
+
+.searchBar {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border-radius: 4px;
+
+    &__top {
+        display: flex;
+        flex: 1;
+        padding: 10px 10px;
+       
+
+        &__form {
+            width: 100%;
+            display: flex;
+
+            &__input {
+                outline: none;
+                border: 2px solid rgb(127, 209, 222);
+                border-radius: 5px;
+                height: 30px;
+                width: 100%;
+            }
+        }
+
+        &__right {
+            position: relative;
+
+            &__btn {
+                @extend .nakedBtn;
+                position: absolute;
+                right: 10px;
+
+                &__active {
+                    cursor: pointer;
+                }
+
+                &__icon {
+                    color: #0091ae;
+                    height: 30px;
+                    width: 30px;
+
+                }
+            }
+        }
+    }
+    
+    &__bottom{
+        width: 100%;
+    }
+}

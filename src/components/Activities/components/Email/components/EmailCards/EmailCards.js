@@ -9,7 +9,8 @@ import "./EmailCards.scss";
 function EmailCards(props) {
     const createCard = (card)=>(<CreateEmailCard card={card}/>);
     const logCard =(card)=>(<LogEmailCard card={card} 
-                                          contactData = {props.contactData}
+                                          contact = {props.contact}
+                                          user={props.user}
                                           onChangeEmail = {props.onChangeEmail}
                                           handleAddContact = {props.handleAddContact}
                                           handleRemoveContact = {props.handleRemoveContact}/>);
@@ -24,7 +25,6 @@ function EmailCards(props) {
                     icon = {icon}  
                     createCard = {createCard}
                     logCard = {logCard}
-                    handleTest = {props.handleTest}
                     handleDeleteCard = {props.handleDeleteCard}
                     />
             ))}

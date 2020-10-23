@@ -4,22 +4,18 @@
     opacity: 0;
     visibility: hidden;
     position: relative;
-    float: left;
     background-color: $primary-color;
     color: white;
     font-size: 12px;
     border-radius: 3px;
-    flex-wrap: nowrap;
     transition: opacity .6s ease-in;
 
 
     &__corner{
         position: absolute;
-        // background-color: red;
         height:15px;
         width: 15px;
         transform: rotate(45deg);
-        
         background-color: $primary-color;
 
         &--bottomRight{

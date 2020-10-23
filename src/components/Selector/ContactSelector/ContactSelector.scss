@@ -1,0 +1,56 @@
+@import '../../../style/variable.scss';
+
+
+.contactSelector {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: 20px;
+    width: 100%;
+
+
+    &__label {
+        &__btn {
+            @extend .nakedBtn;
+            display: flex;
+            cursor: pointer;
+            color: $secondary-color;
+            justify-content: flex-end;
+            align-items: center;
+            font-size: 15px;
+            min-width: 90px;
+
+            &__icon {
+                margin-left: 5px;
+                color: rgba($color: $primary-color, $alpha: 0.7);
+                flex-grow: 1;
+            }
+
+
+            &:hover {
+                border-bottom: solid 1px;
+            }
+
+        }
+    }
+
+    &__displayBar{
+        position: relative;
+        width: 100%;
+    }
+
+    &__dropDown {
+        &--activity {
+            position: absolute;
+            z-index: 1;
+            top: 40px;
+            left: 40px;
+            width: 350px;
+        }
+
+        &--sideBar{
+            margin:1% 0;
+            position: relative;
+        }
+    }
+}

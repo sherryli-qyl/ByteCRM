@@ -3,7 +3,7 @@
 
 const Dictionary = [
     { key: 'name', tip: false, title: 'Name' },
-    { key: 'companyDomainName', tip: false, title: 'Company Domain Name' },
+    { key: 'companyDomain', tip: false, title: 'Company Domain Name' },
     { key: 'industry', tip: true, title: 'Industry' },
     { key: 'phoneNumber', tip: false, title: 'Phone Number' },
     { key: 'companyOwner', tip: false, title: 'Company Owner' },

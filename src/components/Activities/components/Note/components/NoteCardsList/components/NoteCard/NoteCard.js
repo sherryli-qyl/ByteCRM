@@ -40,7 +40,7 @@ class NoteCard extends React.Component {
 
   render() {
     const { cardId, content, comments } = this.props.card;
-    const { userId, contact} = this.props.contactData;
+    
     return (
       <div>
         <NoteBody 

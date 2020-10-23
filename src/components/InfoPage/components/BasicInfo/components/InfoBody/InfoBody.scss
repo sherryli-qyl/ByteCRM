@@ -9,25 +9,18 @@
     justify-content: center;
     margin:5% auto;
 
-    &__contactsIcon{
+    &__contactsAvatar{
 
-        &__init{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 26px;
-            color:white;
-            height: 72px;
-            width: 72px;
-            margin:3%;
-            border-radius: 50px;
-            background-color: rgba($color: #516F90, $alpha: 0.8);
+        &--init{
+            font-size:30px;
+            height:72px;
+            width:72px;
         }
     }
 
     &__name{
         font-size: 24px;
-        margin:1%;
+        margin:3%;
         color: $primary-color;
     }
 

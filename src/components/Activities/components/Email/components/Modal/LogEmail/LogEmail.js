@@ -14,17 +14,19 @@ class LogEmail extends React.Component {
         super(props);
         const currentDate = transferDateInYearMonDay(new Date());
         const currentTime = "09:00";
-        const{userId,contact} = this.props.contactData;
-        let contacts = []
-        let contactList = []
-        contact ? contactList.push(contact): contactList = [];
-        contact._id? contacts= [contact._id] : contacts = [];
+        const{user,contact} = this.props;
+        
+        let contactList = [];
+        let contacts = [];
+        contact ? contactList.push(contact) : contactList = [];
+        contact ? contacts.push(contact) : contacts = [];
+
         this.state = {
             currentDate,
             currentTime,
             contactList,
             contacts,
-            userId,
+            user,
             contact,
             btnDisable: true,
             description: '',
@@ -98,21 +100,22 @@ class LogEmail extends React.Component {
     }
 
     handleClickLogBtn(){
-        const {currentDate,currentTime,contacts,description,userId} = this.state;
+        const {currentDate,currentTime,contacts,description,user} = this.state;
         if (this.checkValidation(description)){
             const body = {
                 description: description,
                 date: currentDate,
                 time:currentTime,
                 contacts:contacts,
-                userId:userId,
+                userId:user.id,
                 type:'Logged Email',
             }
+            // console.log(body);
             const res = PostEmail(body);
             res.then(value=>{
                 if (value){
                     this.props.handleLogEmail(value);
-                    this.props.contactData.close();
+                    this.props.handleCloseModal();
                 }
                 else{
                     console.log("Unexpected Error");
@@ -121,19 +124,19 @@ class LogEmail extends React.Component {
         }
         else{
             return;
-        }
+     }
     }
 
 
     render() {
-        const { currentDate, currentTime,contactList,contact,userId,btnDisable} = this.state;
+        const { currentDate, currentTime,contactList,contact,user,btnDisable} = this.state;
         return (
             <div className="logEmailModal">
                 <div className="logEmailModal__header">
                     <Header currentDate={currentDate}
                             currentTime={currentTime}
                             contact = {contact}
-                            userId = {userId}
+                            userId = {user.id}
                             contactList = {contactList}
                             onDateChange = {this.handleDateChange}
                             onTimeChange = {this.handleTimeChange}

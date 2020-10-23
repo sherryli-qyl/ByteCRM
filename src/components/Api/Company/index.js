@@ -2,4 +2,4 @@
 // export {GetAllCompanies} from './Company';
 
 
-export {default} from './Company';
+export { GetCompanyByCode,GetAllCompanies, GetCompany, AddCompany, UpdateCompany, GetCompanyByUserId,  DeleteCompany,MultiRefChange } from './Company';

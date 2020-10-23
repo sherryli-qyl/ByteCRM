@@ -1,10 +1,14 @@
+import api from '../../../lib/api';
+
 async function GetEmails(contactId) {
-    const serverUrl = `http://localhost:3000/api/emails/${contactId}`;
-    const response = await fetch(serverUrl, {
-        method: "GET"
-    });
-    const data = response.json();
-    return data;
+    const response = api.get(`/api/emails/${contactId}`);
+    return response;
+}
+
+
+const GetMultiContactsEmails = (contacts) => {
+    const response = api.get(`/api/emails/contacts/${contacts}`);
+    return response;
 }
 
 async function PostEmail(body){
@@ -56,7 +60,6 @@ async function DeleteEmailLog(emailId) {
 }
 
 
-
 async function UpdateContacts(contactId,emailId){
     const serverUrl = `http://localhost:3000/api/emails/${emailId}/contacts/${contactId}`;
     const response = await fetch(serverUrl, {
@@ -82,4 +85,4 @@ async function RemoveContacts(contactId,emailId){
 }
 
 
-export {GetEmails,PostEmail,UpdateEmail,DeleteEmailLog,UpdateContacts,RemoveContacts};
+export {GetEmails,GetMultiContactsEmails,PostEmail,UpdateEmail,DeleteEmailLog,UpdateContacts,RemoveContacts};

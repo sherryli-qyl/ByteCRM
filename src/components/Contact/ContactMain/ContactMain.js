@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import Modal from '../../Modal';
 import InfoPage from '../../InfoPage';
 import Activities from '../../Activities';
-import RelationCompany from "./components/RelationCompany";
+import SideBar from '../../SideBar';
 import Loading from '../../Loading';
+import AssociatedCompany from './components/AssociatedCompany';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { ModalContext } from '../../Modal/components/ModalContext';
 import { InfoContext } from '../../InfoPage/components/Context';
 import { publicTheme } from '../../Style/Theme/MatUITheme';
 import { ContactDictionary } from './components/Dictionary';
-import { ActivityContext } from '../../Activities/Context';
 import { GetContact, UpdateContact } from '../../Api/Contact/Contact';
 import WebActivity from './components/WebActivity';
 import './ContactMain.scss';
@@ -19,14 +19,14 @@ class ContactMain extends Component {
 
     constructor(props) {
         super(props);
-        this.id = "5f7c1fa07ed22f05ec4ec31a";
-        this.userId = "5f80b49ae7f8960972681ac5";
         const expandPack = [{ key: 'About this Contact', content: "" }, { key: 'Website Activity', content: (<WebActivity />) }]
+        const user = JSON.parse(localStorage.getItem('user'));
         this.state = {
             Xaxis: 300,
             Yaxis: 50,
             visible: false,
             contact: '',
+            user,
             expandPack: expandPack,
             currentModal: "",
             loading: true,
@@ -68,6 +68,7 @@ class ContactMain extends Component {
                 contact: newContact
             })
         }
+        UpdateContact(this.state.user.id, newContact)
     }
 
     onChangeMultiInfo(data) {
@@ -75,7 +76,7 @@ class ContactMain extends Component {
         this.setState({
             contact: newContact
         })
-        UpdateContact(this.id, newContact)
+        UpdateContact(this.state.user.id, newContact)
         console.table(newContact);
     }
 
@@ -84,12 +85,15 @@ class ContactMain extends Component {
     componentDidMount() {
         const selectedContactId = sessionStorage.getItem('id');
         const contact = GetContact(selectedContactId);
-        contact.then(value =>
+        contact.then(value =>{
             this.setState({
                 contact: value,
                 loading: false,
-            })
-        ).catch(error =>{
+                relatedTo: value,
+            });
+           sessionStorage.setItem('contact', JSON.stringify(value));
+        })
+        .catch(error =>{
             console.log(error.message);
             alert("Please Check your Internet");
         })
@@ -98,42 +102,43 @@ class ContactMain extends Component {
 
 
     render() {
-        const { visible, currentModal, contact, theme, expandPack, loading } = this.state;
+        const { visible, currentModal, contact, relatedTo, theme, expandPack, loading} = this.state;
         const infoData = { key: 'contact', data: contact, dictionary: ContactDictionary };
-        const value = { single: this.onChangeSingleInfo, multi: this.onChangeMultiInfo };
-        const contactData = {contact:contact,userId:this.userId,close:this.closeModal}
-        const openModal = this.openModal;
+        const onChangeInfoHandlers = { single: this.onChangeSingleInfo, multi: this.onChangeMultiInfo };
+        const sideBarItems = [
+            {key:"Company",component: <AssociatedCompany contact = {contact} company = {contact.company}/>}
+        ]
+        const modalController = {open: this.openModal,close:this.closeModal}
         return (
             <div>
-                <ModalContext.Provider value={openModal}>
+                <ModalContext.Provider value={modalController}>
                     <ThemeProvider theme={theme}>
                         {loading ?
                             <Loading variant="full page" />
                             :
                             <div className="Main">
-                                <InfoContext.Provider value={value}>
+                                <InfoContext.Provider value={onChangeInfoHandlers}>
                                     <InfoPage 
                                         openModal={this.openModal}
                                         infoData={infoData}
                                         expandPack={expandPack}
                                     />
-                                </InfoContext.Provider>
-                                <ActivityContext.Provider value = {contactData}>
-                                    <Activities contact = {contact}
-                                                />
-                                    <RelationCompany company={contact.company}/>
+                                </InfoContext.Provider>   
+                                    <Activities 
+                                      contact = {contact}
+                                      relatedTo = {relatedTo}
+                                    />
+                                    <SideBar sideBarItems = {sideBarItems} />
                                     <Modal Xaxis={this.state.Xaxis}
                                         Yaxis={this.state.Yaxis}
                                         visible={visible}
                                         currentModal={currentModal}
                                         closeModal={this.closeModal} />
-                                </ActivityContext.Provider>
                             </div>
                         }
                     </ThemeProvider>
                 </ModalContext.Provider>
             </div>
-
         )
     }
 }

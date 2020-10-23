@@ -1,0 +1,48 @@
+@import '../../style/variable.scss';
+
+
+.button{
+    @extend .nakedBtn;
+    border-radius: 3px;
+    font-size: small;
+
+    &--contained{
+        color: white;
+        background-color: $tertiary-color;
+
+        &:hover {
+            opacity: 0.8;
+            cursor: pointer;
+        }
+    }
+
+    &--outlined{
+        background-color: white;
+        color: $tertiary-color;
+        border: solid 1px $tertiary-color;
+       
+
+        &:hover {
+            background-color: rgba($color: $tertiary-color, $alpha: 0.1);
+            cursor: pointer;
+        }
+    }
+
+    &--small{
+        height: 30px;
+        min-width: 60px;
+        white-space: nowrap;
+        text-align: center;
+        padding: 0px 10px;
+    }
+
+    &--large{
+        height: 40px;
+        width: 80px;
+    }
+
+    &+&{
+        margin-left:10px;
+    }
+}
+

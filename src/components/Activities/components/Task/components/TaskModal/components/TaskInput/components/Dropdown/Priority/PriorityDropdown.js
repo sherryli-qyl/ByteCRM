@@ -16,13 +16,24 @@ class PriorityDropdown extends React.Component {
             priorityItems,
             theme
         }
+        this.onChange = this.onChange.bind(this);
+    }
+
+    onChange(priority){
+        const newPriority = priority.target.value;
+        this.props.onPriorityChange(newPriority);
+        this.setState({
+            priorityItems: newPriority,
+        })
     }
 
     render() {
         const { priorityItems, theme } = this.state;
         return (
             <ThemeProvider theme={theme}>
-                <Dropdown dropdownItems={priorityItems}
+                <Dropdown 
+                dropdownItems={priorityItems}
+                onChange={priority => this.onChange(priority)}
                 />
             </ThemeProvider>
         )
