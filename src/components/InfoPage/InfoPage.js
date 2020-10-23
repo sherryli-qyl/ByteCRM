@@ -11,12 +11,12 @@ class InfoPage extends Component {
   constructor(props) {
     super(props);
     const navItems = [
-      { key: 'Note', value: 'Note', icon: faEdit, modal: Modals.noteModal},
-      { key: 'Email', value: 'Email', icon: faEnvelope, modal: Modals.emailModal },
-      { key: 'Call', value: 'Call', icon: faPhoneAlt, modal: Modals.callModal},
+      { key: 'Note', value: 'Note', icon: faEdit, modal: Modals.note},
+      { key: 'Email', value: 'Email', icon: faEnvelope, modal: Modals.email},
+      { key: 'Call', value: 'Call', icon: faPhoneAlt, modal: Modals.call},
       { key: 'Log', value: 'Log', icon: faPlus, modal: '' },
-      { key: 'Task', value: 'Task', icon: faTasks, modal: Modals.taskModal},
-      { key: 'Meeting', value: 'Meet', icon: faCalendarAlt, modal: Modals.meetingModal },
+      { key: 'Task', value: 'Task', icon: faTasks, modal: Modals.task},
+      { key: 'Meeting', value: 'Meet', icon: faCalendarAlt, modal: Modals.meeting},
     ];
     this.state = {
       navItems,

@@ -7,11 +7,11 @@ import MeetingCreateModal from '../../Modal/components/Function/Meeting/MeetingC
 
 
 const Modals = {
-    noteModal: (value) => (<NoteModal modalController={value} />),
-    emailModal: (value) => (<EmailModal modalController={value} />),
-    callModal: (value) => (<CallModal modalController={value} />),
-    taskModal: (value) => (<TaskModal modalController={value} />),
-    meetingModal: (value) => (<MeetingCreateModal modalController={value} />),
+    note: (value) => (<NoteModal modalController={value} />),
+    email: (value) => (<EmailModal modalController={value} />),
+    call: (value) => (<CallModal modalController={value} />),
+    task: (value) => (<TaskModal modalController={value} />),
+    meeting: (value) => (<MeetingCreateModal modalController={value} />),
 }
 
 export default Modals;
