@@ -5,6 +5,7 @@ import DurationDropDown from '../DurationDropDown';
 import { transferTimeHHMM } from '../../../../../../services/timeManager';
 //import ContactSelector from '../../../../../../ContactSelector';
 //import './LogMeetingMain.scss';
+/**/
 
 //const contactSelectHint = "Logged Emails must have at Least one association";
 const LogMeetingCardMain = ({
@@ -16,8 +17,8 @@ const LogMeetingCardMain = ({
     onDurationChange,
     //handleAddContact,
     //handleDeleteContact,
-    contact,
-    userId,
+    //contact,
+    //userId,
     //contactList,
 }) => (
         <div className="meetingCardBody">
@@ -27,8 +28,7 @@ const LogMeetingCardMain = ({
                 </div>
                 <div className='meetingCardBody__container__picker'>
                     <DatePicker defaultDate={currentDate}
-                        onDateChange={onDateChange}
-                    />
+                        onDateChange={onDateChange}/>
                 </div>
             </div>
             <div className='meetingCardBody__container'>

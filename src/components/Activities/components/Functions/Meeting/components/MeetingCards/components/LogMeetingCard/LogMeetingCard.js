@@ -62,7 +62,7 @@ class LogMeetingCard extends React.Component {
 
     render() {
         const { currentDate, currentTime,meetingDuration,cardId, description,contactList} = this.state;
-        const {userId,contact} = this.props.contactData;
+        //const {userId,contact} = this.props.contactData;
         return (
             <div className="logMeetingCard">
                 {description?
@@ -75,8 +75,8 @@ class LogMeetingCard extends React.Component {
                 }
                 <div className='blockline' >
                     <Body contactList = {contactList}
-                          contact = {contact}
-                          userId = {userId}
+                          //ontact = {contact}
+                          //userId = {userId}
                           currentDate={currentDate}
                           currentTime={currentTime}
                           meetingDuration={meetingDuration}

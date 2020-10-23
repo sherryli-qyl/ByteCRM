@@ -40,7 +40,7 @@ class DurationDropDown extends React.Component {
         return (
             <Dropdown
                 value={currentValue}
-                 onChangeValue = {this.onChangeValue}
+                onChangeValue = {this.onChangeValue}
                 selectItems={selectItems}
             />
         )

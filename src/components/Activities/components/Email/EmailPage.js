@@ -6,7 +6,7 @@ import { GetEmails, GetMultiContactsEmails,UpdateEmail, DeleteEmailLog, UpdateCo
 import "./EmailPage.scss";
 
 
-const user = JSON.parse(localStorage.getItem('user'));
+const user = JSON.parse(localStorage.getItem('user'));//user id
 
 
 
@@ -15,7 +15,7 @@ class EmailPage extends React.Component {
         super(props);
         this.state = {
             cardList: [],
-            user,
+            user,//user.id,contact id
             contact:this.props.contact,
             associatedContacts:this.props.associatedContacts,
             cardsArray: [],
