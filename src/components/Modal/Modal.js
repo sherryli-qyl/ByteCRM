@@ -3,6 +3,7 @@ import './Modal.scss'
 import Draggable from 'react-draggable';
 import Header from './components/Header/';
 import withModal from './components/withModal';
+import Note from '../Activities/components/Note/components/NoteModal'
 
 
 class Modal extends Component {
@@ -12,7 +13,7 @@ class Modal extends Component {
             fullScreen: false,
             defaultXaxis: 500,
             defaultYaxis: 100,
-            hide: true,
+            hide: false,
         };
 
         this.showModal = this.showModal.bind(this);
@@ -44,13 +45,6 @@ class Modal extends Component {
         const { hide } = this.state;
         const { modalController } = this.props;
 
-
-       let Modal = "";
-        if (this.props.currentModal) {
-            Modal = withModal(this.props.currentModal.modal, modalController);
-        }
-
-
         const dragHandlers = { onStart: this.onStart, onStop: this.onStop };
 
         const nodeRef = React.createRef();
@@ -81,7 +75,7 @@ class Modal extends Component {
                         <div className="MainComponents" />
                         :
                         <div className="MainComponents Component--acitve">
-                            <Modal />
+                            <this.props.currentModal.modal modalController={modalController} />
                         </div>
                     }
                 </div>

@@ -1,4 +1,4 @@
-import {getDate,sortDate,addDate,transferDate} from "./DateManager";
+import {getDate,sortDate} from "./DateManager";
 import Cards from '../../js/Cards';
 
 

@@ -126,14 +126,16 @@ class CompanyMain extends Component {
                                     <Activities associatedContacts = {associatedContacts}
                                                 relatedTo = {company.id}/>
                                     <SideBar sideBarItems = {sideBarItems} />
-
-                                <Modal Xaxis={this.state.Xaxis}
-                                    Yaxis={this.state.Yaxis}
-                                    visible={visible}
-                                    modalController={modalController}
-                                    currentModal={currentModal}
-                                    closeModal={this.closeModal}
-                                />
+                                    {currentModal?
+                                        <Modal Xaxis={this.state.Xaxis}
+                                        Yaxis={this.state.Yaxis}
+                                        modalController={modalController}
+                                        visible={visible}
+                                        currentModal={currentModal}
+                                        closeModal={this.closeModal} />
+                                        :
+                                        ""
+                                    }  
                             </div>
                         }
                     </ThemeProvider>

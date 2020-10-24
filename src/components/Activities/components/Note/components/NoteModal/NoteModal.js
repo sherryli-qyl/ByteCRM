@@ -65,6 +65,7 @@ class NoteModal extends React.Component {
               this.props.modalController.close();  
           }
           else if(this.props.modalController){
+            console.log("1111" +  this.props.modalController.contact.id);
             this.props.modalController.close();
           } else {
               console.log("Unexpected Error");
@@ -79,7 +80,7 @@ class NoteModal extends React.Component {
 
   render() {
     const { btnDisable, user, relatedTo } = this.state;
-    
+
     return (
       <section id="NoteModal" className="NoteModal">
         <div className="note-input">
