@@ -1,1 +1,1 @@
-export {saveAction} from './action';
+export {saveAction,addContactAction} from './action';

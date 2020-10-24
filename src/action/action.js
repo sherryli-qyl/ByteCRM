@@ -1,8 +1,16 @@
-const saveAction =(reload)=>{
+const saveAction =(value)=>{
     return {
-        type:"save",
-        reload,
+        type:"SAVE",
+        value,
+        reload:true
     }
 }
 
-module.exports = {saveAction};
+const addContactAction = (contact) =>{
+    return{
+        type: "ADD",
+        contact,
+    }
+}
+
+module.exports = {saveAction,addContactAction};

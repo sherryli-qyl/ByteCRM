@@ -1,18 +1,13 @@
+import { combineReducers } from 'redux';
+import reload from './components/reload';
+import contact from './components/contact';
 
-const defaultState = {
-    reload:false,
-}
-const reducer = (state = defaultState,action)=>{
-    const {reload} = action
-    switch(action.type){
-        case 'save':
-            console.log(action.reload);
-            return {...state, reload}
 
-        default:
-            return state;
-    }
 
-};
+const reducer = combineReducers({
+    reload,
+    contact,
+})
 
-module.exports = {reducer};
+
+export default reducer;

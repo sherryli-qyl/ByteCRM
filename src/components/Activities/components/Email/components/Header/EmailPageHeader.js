@@ -20,8 +20,8 @@ const EmailPageHeader = (props) => {
     const createModal = (value) => (<EmailModal 
                                           modalController={value}
                                           handleCreateNote={props.handleCreateNote}/>);                                  
-    const logEmailModal = new Modal('Note', 'Note', logModal);
-    const createEmailModal = new Modal('Note', 'Note', createModal);
+    const logEmailModal = new Modal('Note', 'Note', LogEmailModal );
+    const createEmailModal = new Modal('Note', 'Note', EmailModal);
 
     return (
         <ModalContext.Consumer>

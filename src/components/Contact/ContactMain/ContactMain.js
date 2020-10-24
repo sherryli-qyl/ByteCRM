@@ -4,6 +4,8 @@ import InfoPage from '../../InfoPage';
 import Activities from '../../Activities';
 import SideBar from '../../SideBar';
 import Loading from '../../Loading';
+import store from '../../../store';
+import {addContactAction} from '../../../action';
 import AssociatedCompany from './components/AssociatedCompany';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { ModalContext } from '../../Modal/components/ModalContext';
@@ -81,7 +83,7 @@ class ContactMain extends Component {
 
 
 
-    componentDidMount() {
+    componentDidMount() { 
         const selectedContactId = sessionStorage.getItem('id');
         const contact = GetContact(selectedContactId);
         contact.then(value =>{
@@ -89,6 +91,9 @@ class ContactMain extends Component {
                 contact: value,
                 loading: false,
             });
+            const action = addContactAction(value);
+            store.dispatch(action);
+            // console.log(store.getState());
            sessionStorage.setItem('contact', JSON.stringify(value));
         })
         .catch(error =>{
