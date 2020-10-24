@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './Modal.scss'
 import Draggable from 'react-draggable';
 import Header from './components/Header/';
+import withController from './components/withController';
 
 
 class Modal extends Component {
@@ -43,13 +44,13 @@ class Modal extends Component {
         const { hide} = this.state;
         const {modalController} = this.props;
         
-        let modal = "";
+        // let modal = "";
         
-        if(this.props.currentModal){
-            modal = this.props.currentModal.modal(modalController);
-        }
+        // if(this.props.currentModal){
+        //     modal = this.props.currentModal.modal(modalController);
+        // }
        
-       
+       const withControllerModal = withController(this.props.currentModal.modal,modalController)
 
         const dragHandlers = {onStart: this.onStart, onStop: this.onStop};
 
@@ -81,7 +82,7 @@ class Modal extends Component {
                             <div className="MainComponents" />
                             :
                             <div className="MainComponents Component--acitve">
-                               { modal}
+                               {withControllerModal}
                             </div>
                         }
                     </div>
