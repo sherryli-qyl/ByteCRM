@@ -108,7 +108,7 @@ class ContactMain extends Component {
             {key:"Company",component: <AssociatedCompany contact = {contact} company = {contact.company}/>}
         ]
         const modalController = {open: this.openModal,close:this.closeModal,contact: contact}
-        console.log("111");
+        
         return (
             <div>
                 <ModalContext.Provider value={modalController}>
