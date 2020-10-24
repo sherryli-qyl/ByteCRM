@@ -3,6 +3,8 @@ import './NoteModal.scss';
 import './components/NoteInput';
 import NoteSaveBar from './components/NoteSaveBar';
 import NoteInput from './components/NoteInput/NoteInput';
+import store from '../../../../../../store';
+import {saveAction} from '../../../../../../action';
 import { AddNote } from '../../../../../Api/Note/Note';
 
 
@@ -60,12 +62,9 @@ class NoteModal extends React.Component {
         }
         const res = AddNote(body);
         res.then(value => {
-          if (value && this.props.handleCreateNote) {
-              this.props.handleCreateNote(value);
-              this.props.modalController.close();  
-          }
-          else if(this.props.modalController){
-            console.log("1111" +  this.props.modalController.contact.id);
+          if(this.props.modalController){
+            const action = saveAction(true);
+            store.dispatch(action);
             this.props.modalController.close();
           } else {
               console.log("Unexpected Error");

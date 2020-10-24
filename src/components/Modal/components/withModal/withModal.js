@@ -14,7 +14,6 @@ const withModal = (Component,controller) => {
 
         render() {
             const {controller} = this.state;
-            console.log(controller.contact.id);
             return (
                 <Component
                     {...this.props}
