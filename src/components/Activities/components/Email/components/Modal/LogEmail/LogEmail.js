@@ -4,18 +4,19 @@ import Header from '../../private/LogEmailMain';
 import Body from './components/LogEmailBody';
 import Footer from './components/LogEmailFooter';
 import {PostEmail} from '../../../../../../Api/Email/Email';
+import store from '../../../../../../../store';
+import {saveAction} from '../../../../../../../action';
 import './LogEmail.scss';
 
 
-
+const user = JSON.parse(localStorage.getItem('user'));
 
 class LogEmail extends React.Component {
     constructor(props) {
         super(props);
         const currentDate = transferDateInYearMonDay(new Date());
         const currentTime = "09:00";
-        const{user,contact} = this.props;
-
+        const {contact} = store.getState().contact;
         let contactList = [];
         let contacts = [];
         contact ? contactList.push(contact) : contactList = [];
@@ -110,11 +111,11 @@ class LogEmail extends React.Component {
                 userId:user.id,
                 type:'Logged Email',
             }
-            // console.log(body);
             const res = PostEmail(body);
             res.then(value=>{
                 if (value){
-                    this.props.handleLogEmail(value);
+                    const action = saveAction(value);
+                    store.dispatch(action);
                     this.props.modalController.close();
                 }
                 else{

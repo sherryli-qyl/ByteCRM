@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './Modal.scss'
 import Draggable from 'react-draggable';
 import Header from './components/Header/';
+import withModal from './components/withModal';
+import Note from '../Activities/components/Note/components/NoteModal'
 
 
 class Modal extends Component {
@@ -25,8 +27,8 @@ class Modal extends Component {
     }
 
     handleHideButton() {
-        this.setState(preState=>({
-            hide:!preState.hide,
+        this.setState(preState => ({
+            hide: !preState.hide,
         }))
     }
 
@@ -34,24 +36,16 @@ class Modal extends Component {
         this.setState({
             visibleStatus: true,
             hide: false,
-        })  
+        })
     }
 
 
 
     render() {
-        const { hide} = this.state;
-        const {modalController} = this.props;
-        
-        let modal = "";
-        
-        if(this.props.currentModal){
-            modal = this.props.currentModal.modal(modalController);
-        }
-       
-       
+        const { hide } = this.state;
+        const { modalController } = this.props;
 
-        const dragHandlers = {onStart: this.onStart, onStop: this.onStop};
+        const dragHandlers = { onStart: this.onStart, onStop: this.onStop };
 
         const nodeRef = React.createRef();
         let modalClassName = "Modal";
@@ -66,25 +60,25 @@ class Modal extends Component {
                 handle="strong" {...dragHandlers}
                 defaultPosition={{ x: this.props.Xaxis, y: this.props.Yaxis }}
             >
-                    <div ref={nodeRef} className={modalClassName}>
-                        <strong className="cursor">
-                            <div className="Header">
-                                <Header
-                                    name={this.props.currentModal.key}
-                                    hide={this.state.hide}
-                                    handleCloseButton={this.handleCloseButton}
-                                    handleHideButton={this.handleHideButton}
-                                />
-                            </div>
-                        </strong>
-                        {hide ?
-                            <div className="MainComponents" />
-                            :
-                            <div className="MainComponents Component--acitve">
-                               { modal}
-                            </div>
-                        }
-                    </div>
+                <div ref={nodeRef} className={modalClassName}>
+                    <strong className="cursor">
+                        <div className="Header">
+                            <Header
+                                name={this.props.currentModal.key}
+                                hide={this.state.hide}
+                                handleCloseButton={this.handleCloseButton}
+                                handleHideButton={this.handleHideButton}
+                            />
+                        </div>
+                    </strong>
+                    {hide ?
+                        <div className="MainComponents" />
+                        :
+                        <div className="MainComponents Component--acitve">
+                            <this.props.currentModal.modal modalController={modalController} />
+                        </div>
+                    }
+                </div>
             </Draggable>
         )
     }

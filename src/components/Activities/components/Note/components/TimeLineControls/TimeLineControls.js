@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import CreateButton from '../../../../../Style/Button/Activities/CreateButton';
 import NoteModal from '../NoteModal';
 import Modal from '../../../../../../js/Modal';
@@ -7,11 +7,7 @@ import './TimeLineControls.scss';
 
 
 const TimeLineControls = (props) => {
-
-
-  const modal = (value) => (<NoteModal modalController={value}
-                                       handleCreateNote={props.handleCreateNote}/>)
-  const noteModal = new Modal('Note', 'Note', modal);
+  const noteModal = new Modal('Note', 'Note', NoteModal);
 
   return (
     <ModalContext.Consumer>

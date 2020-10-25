@@ -2,6 +2,7 @@ import React from 'react';
 import TimeLineControls from './components/TimeLineControls';
 import NoteCardsList from './components/NoteCardsList';
 import shuffleCards from '../../../services/shuffleCards';
+import store from '../../../../store';
 import "./NotesTimeLine.scss";
 import { GetAllAssociatedNotes, UpdateNote, DeleteNote } from '../../../Api/Note/Note';
 
@@ -18,6 +19,7 @@ class NotesTimeLine extends React.Component {
       cardsArray: [],
       relatedTo: this.props.relatedTo,
       associatedContacts: this.props.associatedContacts,
+      reload:true,
     }
 
     this.onChangeText = this.onChangeText.bind(this);
@@ -28,7 +30,16 @@ class NotesTimeLine extends React.Component {
   }
 
   componentDidMount() {
-    this.handleGetNotes();
+    store.subscribe(()=>{
+      const {reload} = store.getState();
+      if (reload){
+        this.handleGetNotes();
+      }
+    });
+
+    if(this.state.reload){
+      this.handleGetNotes();
+    }
   }
 
   handleGetNotes() {
@@ -50,6 +61,7 @@ class NotesTimeLine extends React.Component {
       .then(value => {
         this.setState({
           cardsList: value.data,
+          reload:false
         });
         return this.state.cardsList
       })
