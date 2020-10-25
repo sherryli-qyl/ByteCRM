@@ -1,4 +1,4 @@
-import React from 'react';
+
 
 function Modal(key,value,modal) {
     this.key = key;

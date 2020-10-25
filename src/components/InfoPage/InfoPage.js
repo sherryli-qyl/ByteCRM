@@ -15,13 +15,14 @@ class InfoPage extends Component {
   constructor(props) {
     super(props);
     const navItems = [
-      { key: 'Note', value: 'Note', icon: faEdit, modal: <NoteModal /> },
-      { key: 'Email', value: 'Email', icon: faEnvelope, modal: <EmailModal /> },
-      { key: 'Call', value: 'Call', icon: faPhoneAlt, modal: <CallModal /> },
+      { key: 'Note', value: 'Note', icon: faEdit, modal: NoteModal},
+      { key: 'Email', value: 'Email', icon: faEnvelope, modal: EmailModal},
+      { key: 'Call', value: 'Call', icon: faPhoneAlt, modal: CallModal  },
       { key: 'Log', value: 'Log', icon: faPlus, modal: '' },
-      { key: 'Task', value: 'Task', icon: faTasks, modal: <TaskModal /> },
-      { key: 'Meeting', value: 'Meet', icon: faCalendarAlt, modal: <MeetingCreateModal /> },
+      { key: 'Task', value: 'Task', icon: faTasks, modal: TaskModal},
+      { key: 'Meeting', value: 'Meet', icon: faCalendarAlt, modal: MeetingCreateModal},
     ];
+
     this.state = {
       navItems,
       currentModal: navItems[0],

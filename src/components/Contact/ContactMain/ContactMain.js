@@ -4,6 +4,8 @@ import InfoPage from '../../InfoPage';
 import Activities from '../../Activities';
 import SideBar from '../../SideBar';
 import Loading from '../../Loading';
+import store from '../../../store';
+import {addContactAction} from '../../../action';
 import AssociatedCompany from './components/AssociatedCompany';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { ModalContext } from '../../Modal/components/ModalContext';
@@ -39,7 +41,6 @@ class ContactMain extends Component {
     }
 
     openModal(selectedModal) {
-        console.table(selectedModal);
         if (selectedModal.key === this.state.currentModal.key) {
             this.setState({
                 visible: true,
@@ -82,15 +83,17 @@ class ContactMain extends Component {
 
 
 
-    componentDidMount() {
+    componentDidMount() { 
         const selectedContactId = sessionStorage.getItem('id');
         const contact = GetContact(selectedContactId);
         contact.then(value =>{
             this.setState({
                 contact: value,
                 loading: false,
-                relatedTo: value,
             });
+            const action = addContactAction(value);
+            store.dispatch(action);
+            // console.log(store.getState());
            sessionStorage.setItem('contact', JSON.stringify(value));
         })
         .catch(error =>{
@@ -102,13 +105,14 @@ class ContactMain extends Component {
 
 
     render() {
-        const { visible, currentModal, contact, relatedTo, theme, expandPack, loading} = this.state;
+        const { visible, currentModal, contact, theme, expandPack, loading} = this.state;
         const infoData = { key: 'contact', data: contact, dictionary: ContactDictionary };
         const onChangeInfoHandlers = { single: this.onChangeSingleInfo, multi: this.onChangeMultiInfo };
         const sideBarItems = [
             {key:"Company",component: <AssociatedCompany contact = {contact} company = {contact.company}/>}
         ]
-        const modalController = {open: this.openModal,close:this.closeModal}
+        const modalController = {open: this.openModal,close:this.closeModal,contact: contact}
+        
         return (
             <div>
                 <ModalContext.Provider value={modalController}>
@@ -126,14 +130,19 @@ class ContactMain extends Component {
                                 </InfoContext.Provider>   
                                     <Activities 
                                       contact = {contact}
-                                      relatedTo = {relatedTo}
+                                      relatedTo = {contact.id}
                                     />
                                     <SideBar sideBarItems = {sideBarItems} />
-                                    <Modal Xaxis={this.state.Xaxis}
+                                    {currentModal?
+                                        <Modal Xaxis={this.state.Xaxis}
                                         Yaxis={this.state.Yaxis}
+                                        modalController={modalController}
                                         visible={visible}
                                         currentModal={currentModal}
                                         closeModal={this.closeModal} />
+                                        :
+                                        ""
+                                    }    
                             </div>
                         }
                     </ThemeProvider>

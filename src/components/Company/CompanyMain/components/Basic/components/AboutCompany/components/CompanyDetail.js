@@ -17,7 +17,7 @@ const CompanyDetail = (props) => (
       </ReactTooltip>
     </div>
     <div className="input"> {props.input} </div>
-  </div >
+  </div>
 );
 
 export default CompanyDetail;
