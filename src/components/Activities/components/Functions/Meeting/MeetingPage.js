@@ -2,31 +2,38 @@ import React from 'react';
 import MeetingCards from './components/MeetingCards/MeetingCards';
 import MeetingPageHeader from './components/Header/MeetingPageHeader';
 import shuffleCards from '../../../../services/shuffleCards';
-import { GetMeetings,UpdateMeeting,DeleteMeetingLog } from '../../../../Api/Meeting/meeting';
+import { GetMeetings,UpdateMeeting,DeleteMeetingLog,UpdateContacts,RemoveContacts} from '../../../../Api/Meeting/meeting';
 import "./MeetingPage.scss";
-import { ActivityContext } from '../../../Context';
+
+const user = JSON.parse(localStorage.getItem('user'));//user id
 
 class MeetingPage extends React.Component {
     constructor(props) {
         super(props);
-        this.id="5f740910947dc00d88cc918c";
-        /*this.meetingCardsList = [
-            { key: 1, name: "Sherry Li", value: "test", type: "Logged meeting", date: '2020-09-14',time:'9:00 PM'},
-            { key: 2, name: "Sherry Li", value: "test", type: "Meeting", date: '2020-10-13',time:'9:30 PM' },
-            { key: 3, name: "Sherry Li", value: "test", type: "Logged meeting", date: '2020-08-12',time:'10:00 AM'},
-            { key: 4, name: "Sherry Li", value: "test", type: "Meeting", date: '2020-09-15',time:'7:16 PM' },
-            { key: 5, name: "Sherry Li", value: "test", type: "Logged meeting", date: '2020-08-14',time:'12:00 AM'},
-            { key: 6, name: "Sherry Li", value: "test", type: "Logged meeting", date: '2020-10-14',time:'13:48 AM'},
-        ];*/
+        //this.id="5f7ee917b4a5db35f4afd8ee";
         this.state = {
+            user,
             cardList: [],
             cardsArray: [],
+            contact:this.props.contact,
+            associatedContacts:this.props.associatedContacts,
         }
         this.onChangeText = this.onChangeText.bind(this);
         this.onChangeMeeting = this.onChangeMeeting.bind(this);
         this.handleLogMeeting = this.handleLogMeeting.bind(this);
         this.handleDeleteCard = this.handleDeleteCard.bind(this);
+        this.handleAddContact = this.handleAddContact.bind(this);
+        this.handleRemoveContact = this.handleRemoveContact.bind(this);
     }
+
+    handleAddContact(contactId, meetingId) {
+        UpdateContacts(contactId, meetingId);
+    }
+
+    handleRemoveContact(contactId, meetingId) {
+        RemoveContacts(contactId, meetingId);
+    }
+
 
     sortCardsArray(meetingList) {
         if(meetingList){
@@ -69,12 +76,45 @@ class MeetingPage extends React.Component {
             if (value) {
                 this.handleInitPage();
             }
+
         })
     }
 
     handleInitPage() {
         //const meetings = GetMeetings(this.props.contactId);
-        const meetings = GetMeetings(this.id);
+        /*
+        let data = []
+        const {contact} = this.state;
+        if (contact){
+            data = GetMeetings(contact.id);
+        }
+        data.then(response => {
+            if (response.statusText === "OK") {
+                console.log(response.data);
+                this.setState({
+                    cardList: response.data
+                })
+                return response.data;
+            }
+            else {
+                return [];
+            }
+        }).then((cards) => {
+            this.sortCardsArray(cards);
+        });
+    }
+        else if (associatedContacts){
+            let ids = "";
+            for(let i = 0; i < associatedContacts.length;i++){
+                const id = associatedContacts[i].id; 
+                i === 0 ? ids += id : ids += "&&" + id;
+            }
+            data = GetMultiContactsEmails(ids); 
+        }*/
+        console.log(this.state);
+        const {contact} = this.state;
+        const meetings = GetMeetings(contact.id);
+        //const meetings = GetMeetings(this.id);
         meetings.then(meetingList => {
             if (meetingList.length > 0) {
                 this.setState({
@@ -92,60 +132,26 @@ class MeetingPage extends React.Component {
 
     componentDidMount() {
         this.handleInitPage();
-        /*
-        //const meetings = GetMeetings(this.props.id);
-        const tempMeetings = GetMeetings(this.id);
-        tempMeetings.then(value => {
-            this.setState({
-                cardList: value
-            });
-            return this.state.cardList
-        }).then(data => {
-            if (data.length >= 1) {
-                this.sortCardsArray();
-            }
-        });
-
-        */
-        /*tempMeetings.then(function(result) {
-            console.log("result");
-            console.log(result); // "Some User token"
-            this.setState({
-            cardList: result
-        });
-        })*/
-        /*
-        tempMeetings.then(function(result) {
-            console.log("result");
-            console.log(result); // "Some User token"
-            this.setState({
-            cardList: result
-        });
-        })
-        console.log("this.state.cardList");
-        console.log(this.state.cardList);
-        this.sortCardsArray();*/
     }
-
+ 
+    
     render() {    
-        const {cardsArray} = this.state;
+        const {cardsArray,contact,user} = this.state;
         return (
-            <ActivityContext.Consumer>
-                {contactData => {
-                    return (
-                        <div className="meetingPage">
-                            <MeetingPageHeader 
-                                contactData={contactData}
-                                handleLogMeeting={this.handleLogMeeting} />
-                            <MeetingCards
-                                contactData={contactData}
-                                cardsArray={cardsArray}
-                                handleDeleteCard={this.handleDeleteCard}
-                                onChangeMeeting={this.onChangeMeeting} />
-                        </div>
-                    )
-                }}
-            </ActivityContext.Consumer>
+            <div className="meetingPage">
+                <MeetingPageHeader 
+                    contact={contact}
+                    user = {user}
+                    handleLogMeeting={this.handleLogMeeting} />
+                <MeetingCards
+                    contact={contact}
+                    user = {user}
+                    cardsArray={cardsArray}
+                    handleDeleteCard={this.handleDeleteCard}
+                    handleAddContact={this.handleAddContact}
+                    handleRemoveContact={this.handleRemoveContact}
+                    onChangeMeeting={this.onChangeMeeting} />
+            </div>            
         )
     }
 }

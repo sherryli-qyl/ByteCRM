@@ -6,33 +6,36 @@ import MeetingLogModal from '../../../../../../Modal/components/Function/Meeting
 import {ModalContext} from '../../../../../../Modal/components/ModalContext';
 import "./MeetingPageHeader.scss";
 import Modal from '../../../../../../../js/Modal';
-import Grid from '@material-ui/core/Grid';
 
 
 
 
 const MeetingPageHeader = (props) => {
-    const onClick= useContext(ModalContext); //receive context
     const createModal = new Modal('Schedule', 'Meeting',<MeetingCreateModal contact={props.contact}/>); //create your modal
-    const logModal = new Modal('Log Meeting', 'Meeting',<MeetingLogModal contactData={props.contactData}
-    handleLogMeeting = {props.handleLogMeeting}/>);
+    const logModal = (closeModal) => 
+        (new Modal('Log Meeting', 'Log Meeting',
+            <MeetingLogModal contact={props.contact}
+                            user = {props.user}         
+                            handleCloseModal = {closeModal}
+                            handleLogMeeting = {props.handleLogMeeting}
+                            />));
     return(
-        <div className="meetingHeader">
-            <Grid  container alignContent="space-between" alignItems="center">
-            <Grid item xs={6} >
-            </Grid>
-            <Grid item xs={3}>
-                <LogButton onClick={() => onClick(logModal)}>
-                    Log Meeting
-                </LogButton> {/* //set function */}
-            </Grid>
-            <Grid item xs={3}>
-                <CreateButton onClick={() => onClick(createModal)}> {/* //set function */}
-                    Create Meeting
-                </CreateButton>
-            </Grid>
-            </Grid>
-        </div>
+        <ModalContext.Consumer>
+            {modalController =>
+                <div className="meetingPage__header">
+                    <div className="meetingPage__header__logMeeting">
+                        <LogButton onClick={() => modalController.open(logModal(modalController.close))}>
+                            Log Meeting
+                        </LogButton> {/* //set function */}
+                    </div>
+
+                    <div className='meetingPage__header__createMeeting'>
+                        <CreateButton onClick={() => modalController.open(createModal(modalController.close))}> {/* //set function */}
+                            Create Meeting
+                        </CreateButton>
+                    </div>
+                </div>}
+    </ModalContext.Consumer>
     )
 }
 
