@@ -3,6 +3,8 @@ import './NoteModal.scss';
 import './components/NoteInput';
 import NoteSaveBar from './components/NoteSaveBar';
 import NoteInput from './components/NoteInput/NoteInput';
+import store from '../../../../../../store';
+import {saveAction} from '../../../../../../action';
 import { AddNote } from '../../../../../Api/Note/Note';
 
 
@@ -12,7 +14,7 @@ class NoteModal extends React.Component {
     super(props);
 
     const user = JSON.parse(localStorage.getItem('user'));
-    const relatedTo = this.props.relatedTo;
+    const relatedTo = sessionStorage.getItem('id');
 
     this.state = {
       user,
@@ -60,12 +62,14 @@ class NoteModal extends React.Component {
         }
         const res = AddNote(body);
         res.then(value => {
-          if (value) {
-            this.props.handleCreateNote(value);
-            this.props.handleCloseModal();
+          if(this.props.modalController){
+            const action = saveAction(value);
+            store.dispatch(action);
+            this.props.modalController.close();
           } else {
               console.log("Unexpected Error");
           }
+          
         })
       } else {
           return;

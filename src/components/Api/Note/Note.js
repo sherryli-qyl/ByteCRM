@@ -1,9 +1,16 @@
+import api from '../../../lib/api';
+
 async function GetNoteByRelatedToId(relatedToId) {
   const serverUrl = `http://localhost:3000/api/notes/relatedTo/${relatedToId}`;
   const response = await fetch(serverUrl, {
     method: "GET",
   })
   return response.json();
+}
+
+const GetAllAssociatedNotes = (contacts) => {
+  const response = api.get(`http://localhost:3000/api/notes/contacts/${contacts}`);
+  return response;
 }
 
 async function UpdateNote(noteId, body) {
@@ -53,17 +60,4 @@ async function DeleteNote(noteId) {
 }
 
 
-
-// async function addComment(userId, noteId, content) {
-//   const comment = {
-//     createdBy: userId,
-//     content: content,
-//   };
-
-//   const updateNote = await Note.put(`http://localhost:3000/api/notes/${noteId}/comment`, comment);
-
-//   return updateNote;
-// }
-
-
-export { GetNoteByRelatedToId, UpdateNote, AddNote, DeleteNote };
+export { GetNoteByRelatedToId, GetAllAssociatedNotes, UpdateNote, AddNote, DeleteNote };

@@ -2,6 +2,7 @@ import React from 'react';
 import EmailCards from './components/EmailCards';
 import EmailPageHeader from './components/Header';
 import shuffleCards from '../../../services/shuffleCards';
+import store from '../../../../store';
 import { GetEmails, GetMultiContactsEmails,UpdateEmail, DeleteEmailLog, UpdateContacts, RemoveContacts } from '../../../Api/Email/Email';
 import "./EmailPage.scss";
 
@@ -19,6 +20,7 @@ class EmailPage extends React.Component {
             contact:this.props.contact,
             associatedContacts:this.props.associatedContacts,
             cardsArray: [],
+            reload:true,
         }
         this.onChangeText = this.onChangeText.bind(this);
         this.onChangeEmail = this.onChangeEmail.bind(this);
@@ -99,7 +101,8 @@ class EmailPage extends React.Component {
             if (response.statusText === "OK") {
                 console.log(response.data);
                 this.setState({
-                    cardList: response.data
+                    cardList: response.data,
+                    reload:false,
                 })
                 return response.data;
             }
@@ -112,7 +115,15 @@ class EmailPage extends React.Component {
     }
 
     componentDidMount() {
-        this.handleInitPage();
+        store.subscribe(()=>{
+            const {reload,value} = store.getState().reload;
+            if (reload){
+              this.handleLogEmail(value);
+            }
+          });
+          if(this.state.reload){
+            this.handleInitPage();
+          } 
     }
 
     render() {

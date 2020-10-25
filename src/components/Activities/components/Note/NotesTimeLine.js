@@ -2,8 +2,9 @@ import React from 'react';
 import TimeLineControls from './components/TimeLineControls';
 import NoteCardsList from './components/NoteCardsList';
 import shuffleCards from '../../../services/shuffleCards';
+import store from '../../../../store';
 import "./NotesTimeLine.scss";
-import { GetNoteByRelatedToId, UpdateNote, DeleteNote } from '../../../Api/Note/Note';
+import { GetAllAssociatedNotes, UpdateNote, DeleteNote } from '../../../Api/Note/Note';
 
 
 const user = JSON.parse(localStorage.getItem('user'));
@@ -17,6 +18,8 @@ class NotesTimeLine extends React.Component {
       cardsList: [],
       cardsArray: [],
       relatedTo: this.props.relatedTo,
+      associatedContacts: this.props.associatedContacts,
+      reload:true,
     }
 
     this.onChangeText = this.onChangeText.bind(this);
@@ -27,20 +30,43 @@ class NotesTimeLine extends React.Component {
   }
 
   componentDidMount() {
-    this.handleGetNotes();
+    store.subscribe(()=>{
+      const {reload} = store.getState();
+      if (reload){
+        this.handleGetNotes();
+      }
+    });
+
+    if(this.state.reload){
+      this.handleGetNotes();
+    }
   }
 
   handleGetNotes() {
-    const notes = GetNoteByRelatedToId(this.state.relatedTo.id);
-    notes
+    const { relatedTo, associatedContacts } = this.state;
+    let allNotes = [];
+
+    if (associatedContacts) {
+      let ids = relatedTo + "&&";
+      for (let i = 0; i < associatedContacts.length; i++) {
+          const id = associatedContacts[i].id; 
+          i === 0 ? ids += id : ids += "&&" + id;
+      }
+      allNotes = GetAllAssociatedNotes(ids);
+    } else {
+      allNotes = GetAllAssociatedNotes(relatedTo);
+    }
+
+    allNotes
       .then(value => {
         this.setState({
-          cardsList: value,
+          cardsList: value.data,
+          reload:false
         });
         return this.state.cardsList
       })
-      .then(data => {
-        this.sortCardsArray();
+      .then(cards => {
+        this.sortCardsArray(cards);
       });
   }
 
