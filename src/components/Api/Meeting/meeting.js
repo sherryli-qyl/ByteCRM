@@ -56,5 +56,28 @@ async function DeleteMeetingLog(meetingId) {
     }
 }
 
+async function UpdateContacts(contactId,meetingId){
+    const serverUrl = `http://localhost:3000/api/meetings/${meetingId}/contacts/${contactId}`;
+    const response = await fetch(serverUrl, {
+        method: "PUT",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    });
+    const data = response.json();
+    return data;
+}
 
-export {GetMeetings,UpdateMeeting,PostMeeting,DeleteMeetingLog};
+async function RemoveContacts(contactId,meetingId){
+    const serverUrl = `http://localhost:3000/api/meetings/${meetingId}/contacts/${contactId}`;
+    const response = await fetch(serverUrl, {
+        method: "DELETE",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    });
+    const data = response.json();
+    return data;
+}
+
+export {GetMeetings,UpdateMeeting,PostMeeting,DeleteMeetingLog,UpdateContacts,RemoveContacts};

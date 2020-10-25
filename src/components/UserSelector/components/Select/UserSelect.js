@@ -15,9 +15,9 @@ const UserSelect = (props) => {
     }
 
     return (
-        <div className="contactSelect">
-            <div className="contactSelect__title">
-                <span className="contactSelect__title__text">
+        <div className="userSelect">
+            <div className="userSelect__title">
+                <span className="userSelect__title__text">
                     {label}
                 </span>
             </div>
@@ -35,7 +35,7 @@ const UserSelect = (props) => {
                             user={item.user}
                             checked={item.checked}
                             disabled = {disabled}
-                            contactSelectHint = {props.contactSelectHint}
+                            userSelectHint = {props.userSelectHint}
                             handleRemoveUser={props.handleRemoveUser}
                             handleAddUser={props.handleAddUser}>
                         </SelectItem>

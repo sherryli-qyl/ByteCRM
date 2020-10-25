@@ -196,15 +196,15 @@ class UserSelector extends React.Component {
         }
         
         return (
-            <div className='contactSelector'>
-                <div className='contactSelector__label' ref={this.btnRef}>
-                    <button className='contactSelector__label__btn'
+            <div className='userSelector'>
+                <div className='userSelector__label' ref={this.btnRef}>
+                    <button className='userSelector__label__btn'
                         onClick={(event) => {
                             event.stopPropagation();
                             this.handleClickSelectorButton();
                         }}>
                         {assignedTo}
-                        <FontAwesomeIcon className='contactSelector__label__btn__icon' icon={faCaretDown} />
+                        <FontAwesomeIcon className='userSelector__label__btn__icon' icon={faCaretDown} />
                     </button>
                 </div>
                 <div className='drowpdown__wrapper' ref={this.wrapperRef}>

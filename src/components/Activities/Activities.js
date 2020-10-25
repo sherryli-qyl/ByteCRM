@@ -17,7 +17,7 @@ class Activities extends React.Component {
       { key: 'Emails', value: 'Emails', activity: <EmailPage  contact = {contact} associatedContacts = {associatedContacts}/>},
       { key: 'Calls', value: 'Calls', activity: <CallPanel /> },
       { key: 'Tasks', value: 'Tasks', activity: <TaskPage getRelatedTo={contact} /> },
-      { key: 'Meetings', value: 'Meetings', activity: <MeetingPage /> },
+      { key: 'Meetings', value: 'Meetings', activity: <MeetingPage contact = {contact} associatedContacts = {associatedContacts}/> },
     ];
     this.state = {
       currentActivity: tabItems[0].key,
