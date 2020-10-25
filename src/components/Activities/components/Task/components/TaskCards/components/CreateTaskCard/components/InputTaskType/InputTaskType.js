@@ -11,15 +11,12 @@ import './InputTaskType.scss';
 
 
 const InputTaskType = ({
-  currentTime,
-  currentDate,
+  card,
   onDateChange,
   onTimeChange,
   onTypeChange,
-  taskType,
-  priority,
   onPriorityChange,
-  userName,
+  
   handleAddUser,
   handleDeleteUser,
   contactSelectHint,
@@ -34,10 +31,10 @@ const InputTaskType = ({
                 <div className="cardLabel">
                   Assigned to
                 </div>
-                  <UserTag
+                  {/* <UserTag
                     userName={userName}
                     userIcon={UserIcon}
-                  />
+                  /> */}
               </div>
                 
                 <div className='inputTaskType__content__block__userItem'>
@@ -56,31 +53,31 @@ const InputTaskType = ({
                   <div className="cardLabel">
                     Date
                   </div>
-                  <DatePicker defaultDate={currentDate}
+                  <DatePicker defaultDate={card.currentDate}
                               onDateChange={onDateChange} />
                 </div>
                 <div className='inputTaskType__content__block__item'>
                   <div className="cardLabel">
                     Time
                   </div>
-                  <TimePicker defaultTime={transferTimeHHMM(currentTime)} 
+                  <TimePicker defaultTime={transferTimeHHMM(card.time)} 
                               onTimeChange={onTimeChange} />
                 </div>
                 <div className='inputTaskType__content__block__item'>
                   <div className="cardLabel">Type</div>
-                  <TypeDropdown defaultValue={taskType}
+                  <TypeDropdown defaultValue={card.taskType}
                                 onTypeChange={onTypeChange} />
                 </div>
               </div>
               <div className='inputTaskType__content__block'>
                 <div className='inputTaskType__content__block__item'>
                   <div className="cardLabel">Priority</div>
-                  <PriorityDropdown defaultValue={priority}
+                  <PriorityDropdown defaultValue={card.priority}
                                     onPriorityChange={onPriorityChange} />
                 </div>
                 <div className='inputTaskType__content__block__item'>
                   <div className="cardLabel">Created By</div>
-                    <span>{userName}</span>
+                    <span className="spanText">{card.createdBy.fullName}</span>
                   </div>
                 </div>
               </div>

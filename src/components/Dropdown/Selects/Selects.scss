@@ -5,8 +5,8 @@
     position: absolute;
     display:flex;
     justify-content: center;
-    top:200%;
-    right:-70%;
+    top:40px;
+    left:-30px;
     background-color: white;
     opacity: 0;
     visibility: hidden;
@@ -14,7 +14,7 @@
     z-index: 2;
     border-radius: 3px;
     padding:10px 0px;
-    
+
 
     &__active {
         opacity: 1;
@@ -22,25 +22,32 @@
         transition: opacity .5s ease-in;
     }
 
-    &__corner{
-        border: {
-            top:solid 1px rgba($color: $border-color, $alpha: 1.0);
-            left:solid 1px rgba($color: $border-color, $alpha: 1.0);
+    &__wrapper{
+        position: relative;
+
+        &__corner{
+            border: {
+                top:solid 1px rgba($color: $border-color, $alpha: 1.0);
+                left:solid 1px rgba($color: $border-color, $alpha: 1.0);
+            }
+            position: absolute;
+            top:-21px;
+            left:40px;
+            height:20px;
+            width:20px;
+            transform: rotate(45deg);
+            z-index: 1;
+            background-color: white;
         }
-        position: absolute;
-        top:-6%;
-        height:20px;
-        width:20px;
-        transform: rotate(45deg);
-        z-index: 1;
-        background-color: white;
+    
+        &__inner{
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+            z-index:2;
+            max-height: 200px;
+            overflow: hidden;
+            overflow-y: scroll;
+        }
     }
-
-    &__inner{
-        display: flex;
-        flex-direction: column;
-        background-color: white;
-        z-index:2;
-    }
-
 }

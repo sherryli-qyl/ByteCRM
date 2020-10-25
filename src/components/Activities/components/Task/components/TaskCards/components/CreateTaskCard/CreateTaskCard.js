@@ -7,14 +7,14 @@ import TaskDescription from './components/TaskDescription';
 class CreateTaskCard extends React.Component {
   constructor(props) {
     super(props);
-    const { _id, description, assignedToUser} = this.props.card;
+    const { _id, description, assignedTo} = this.props.card;
     this.state = {
       currentDate: this.props.card.date,
       currentTime: this.props.card.time,
       card:this.props.card,
       cardId: _id,
       description,
-      userList: assignedToUser,
+      userList: assignedTo,
       taskType: this.props.card.taskType,
       priority: this.props.card.priority,
     }
@@ -86,23 +86,20 @@ class CreateTaskCard extends React.Component {
   }
 
     render() {
-      const { currentDate, currentTime, cardId, description, taskType, priority} = this.state;
+      const { card, cardId, description} = this.state;
+      console.log(card)
       
         return (
           <div className="createTaskCard">
             <div className='blockline'>
               <InputTaskType 
-                  currentDate={currentDate}
-                  currentTime={currentTime}
+                  card = {card}
                   onTimeChange={this.onTimeChange}
                   onDateChange={this.onDateChange}
-                  taskType={taskType}
-                  priority={priority}
                   onPriorityChange={this.onPriorityChange}
                   onTypeChange={this.onTypeChange}
                   handleAddUser={this.handleAddUser}
                   handleDeleteUser={this.handleDeleteUser}
-                  userName={this.props.card.assignedToUser.fullName}
                 />
             </div>
         

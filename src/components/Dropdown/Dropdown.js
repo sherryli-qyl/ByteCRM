@@ -18,16 +18,20 @@ class Dropdown extends React.Component {
         this.handleClickOutside = this.handleClickOutside.bind(this);
     }
 
-    onClickDropdown() {
+    handleToggler(){
         this.setState(prevState => ({
             showDropdown: !prevState.showDropdown,
         })
         );
-        console.log(this.state.showDropdown);
+    }
+
+    onClickDropdown() {
+        this.handleToggler();
     }
 
     onChangeSelect(value) {
         this.props.onChangeValue(value);
+        this.handleToggler();
     }
 
     handleClickOutside(event) {
