@@ -8,13 +8,13 @@ import "./TaskCards.scss";
 function TaskCards(props) {
 	const createCard = (card)=>(<CreateTaskCard card={card}
 																							getRelatedTo = {props.getRelatedTo}
-																							user={props.user}
+																							assignedToUser={props.assignedToUser}
 																							onChangeTask = {props.onChangeTask}
 																							handleAddUser = {props.handleAddUser}
 																							handleRemoveUser= {props.handleRemoveUser} />);
 	const icon= faTasks;
 	return (
-		<div className='taskCards'>
+		<div className="taskCards">
 			{props.cardsArray.map((cards) => (
 				<CardContainer
 					key={cards.date}
