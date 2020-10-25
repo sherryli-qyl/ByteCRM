@@ -5,13 +5,10 @@ import './Avatar.scss';
 
 const Avatar = ({
     children,
-    variant, //large,small
 }) => {
-
-    let className = `avatar avatar--${variant}`
     
     return (
-        <div className={className}>
+        <div className= "avatar">
             {children}
         </div>
     )
