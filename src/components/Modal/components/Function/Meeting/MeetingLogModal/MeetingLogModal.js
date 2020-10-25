@@ -10,13 +10,18 @@ import {PostMeeting} from '../../../../../Api/Meeting/meeting';
 import Header from '../components/LogMeetingMain';
 import Body from './components/LogMeetingBody';
 import Footer from './components/LogMeetingFooter';
+import store from '../../../../../../store';
+import {saveAction} from '../../../../../../action';
+
+const user = JSON.parse(localStorage.getItem('user'));
 
 class MeetingModal extends React.Component {
   constructor(props) {
     super(props);  
     const currentDate = transferDateInYearMonDay(new Date());
     const currentTime = "09:00";
-    const {user,contact} = this.props;
+    const {contact} = store.getState().contact;
+    //const {user,contact} = this.props;
     let contacts = [];
     let contactList = [];
     contact ? contactList.push(contact) : contactList = [];
@@ -110,12 +115,14 @@ class MeetingModal extends React.Component {
                 type:'Logged Meeting',
                 title: 'Test Meeting',
                 duration: '30 minutes',
+                userId:user.id,
             }
             const res = PostMeeting(body);
             res.then(value=>{
                 if (value){
-                    this.props.handleLogMeeting(value);
-                    this.props.handleCloseModal();
+                    const action = saveAction(value);
+                    store.dispatch(action);
+                    this.props.modalController.close();
                 }
                 else{
                     console.log("Unexpected Error");

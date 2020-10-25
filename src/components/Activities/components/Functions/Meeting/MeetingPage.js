@@ -3,6 +3,7 @@ import MeetingCards from './components/MeetingCards/MeetingCards';
 import MeetingPageHeader from './components/Header/MeetingPageHeader';
 import shuffleCards from '../../../../services/shuffleCards';
 import { GetMeetings,UpdateMeeting,DeleteMeetingLog,UpdateContacts,RemoveContacts} from '../../../../Api/Meeting/meeting';
+import store from '../../../../../store';
 import "./MeetingPage.scss";
 
 const user = JSON.parse(localStorage.getItem('user'));//user id
@@ -10,13 +11,13 @@ const user = JSON.parse(localStorage.getItem('user'));//user id
 class MeetingPage extends React.Component {
     constructor(props) {
         super(props);
-        //this.id="5f7ee917b4a5db35f4afd8ee";
         this.state = {
             user,
             cardList: [],
             cardsArray: [],
             contact:this.props.contact,
             associatedContacts:this.props.associatedContacts,
+            reload:true,
         }
         this.onChangeText = this.onChangeText.bind(this);
         this.onChangeMeeting = this.onChangeMeeting.bind(this);
@@ -81,36 +82,7 @@ class MeetingPage extends React.Component {
     }
 
     handleInitPage() {
-        //const meetings = GetMeetings(this.props.contactId);
-        /*
-        let data = []
-        const {contact} = this.state;
-        if (contact){
-            data = GetMeetings(contact.id);
-        }
-        data.then(response => {
-            if (response.statusText === "OK") {
-                console.log(response.data);
-                this.setState({
-                    cardList: response.data
-                })
-                return response.data;
-            }
-            else {
-                return [];
-            }
-        }).then((cards) => {
-            this.sortCardsArray(cards);
-        });
-    }
-        else if (associatedContacts){
-            let ids = "";
-            for(let i = 0; i < associatedContacts.length;i++){
-                const id = associatedContacts[i].id; 
-                i === 0 ? ids += id : ids += "&&" + id;
-            }
-            data = GetMultiContactsEmails(ids); 
-        }*/
+        console.log("this.state");
         console.log(this.state);
         const {contact} = this.state;
         const meetings = GetMeetings(contact.id);
@@ -118,7 +90,8 @@ class MeetingPage extends React.Component {
         meetings.then(meetingList => {
             if (meetingList.length > 0) {
                 this.setState({
-                    cardList:meetingList
+                    cardList:meetingList,
+                    reload:false,
                 })
                 return meetingList;
             }
@@ -131,7 +104,15 @@ class MeetingPage extends React.Component {
     }
 
     componentDidMount() {
-        this.handleInitPage();
+        store.subscribe(()=>{
+            const {reload,value} = store.getState().reload;
+            if (reload){
+              this.handleLogMeeting(value);
+            }
+          });
+          if(this.state.reload){
+            this.handleInitPage();
+          } 
     }
  
     
