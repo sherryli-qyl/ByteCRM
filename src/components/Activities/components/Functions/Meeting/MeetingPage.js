@@ -2,39 +2,31 @@ import React from 'react';
 import MeetingCards from './components/MeetingCards/MeetingCards';
 import MeetingPageHeader from './components/Header/MeetingPageHeader';
 import shuffleCards from '../../../../services/shuffleCards';
-import { GetMeetings,UpdateMeeting,DeleteMeetingLog,UpdateContacts,RemoveContacts} from '../../../../Api/Meeting/meeting';
-import store from '../../../../../store';
+import { GetMeetings,UpdateMeeting,DeleteMeetingLog } from '../../../../Api/Meeting/meeting';
 import "./MeetingPage.scss";
-
-const user = JSON.parse(localStorage.getItem('user'));//user id
+import { ActivityContext } from '../../../Context';
 
 class MeetingPage extends React.Component {
     constructor(props) {
         super(props);
+        this.id="5f740910947dc00d88cc918c";
+        /*this.meetingCardsList = [
+            { key: 1, name: "Sherry Li", value: "test", type: "Logged meeting", date: '2020-09-14',time:'9:00 PM'},
+            { key: 2, name: "Sherry Li", value: "test", type: "Meeting", date: '2020-10-13',time:'9:30 PM' },
+            { key: 3, name: "Sherry Li", value: "test", type: "Logged meeting", date: '2020-08-12',time:'10:00 AM'},
+            { key: 4, name: "Sherry Li", value: "test", type: "Meeting", date: '2020-09-15',time:'7:16 PM' },
+            { key: 5, name: "Sherry Li", value: "test", type: "Logged meeting", date: '2020-08-14',time:'12:00 AM'},
+            { key: 6, name: "Sherry Li", value: "test", type: "Logged meeting", date: '2020-10-14',time:'13:48 AM'},
+        ];*/
         this.state = {
-            user,
             cardList: [],
             cardsArray: [],
-            contact:this.props.contact,
-            associatedContacts:this.props.associatedContacts,
-            reload:true,
         }
         this.onChangeText = this.onChangeText.bind(this);
         this.onChangeMeeting = this.onChangeMeeting.bind(this);
         this.handleLogMeeting = this.handleLogMeeting.bind(this);
         this.handleDeleteCard = this.handleDeleteCard.bind(this);
-        this.handleAddContact = this.handleAddContact.bind(this);
-        this.handleRemoveContact = this.handleRemoveContact.bind(this);
     }
-
-    handleAddContact(contactId, meetingId) {
-        UpdateContacts(contactId, meetingId);
-    }
-
-    handleRemoveContact(contactId, meetingId) {
-        RemoveContacts(contactId, meetingId);
-    }
-
 
     sortCardsArray(meetingList) {
         if(meetingList){
@@ -77,21 +69,16 @@ class MeetingPage extends React.Component {
             if (value) {
                 this.handleInitPage();
             }
-
         })
     }
 
     handleInitPage() {
-        console.log("this.state");
-        console.log(this.state);
-        const {contact} = this.state;
-        const meetings = GetMeetings(contact.id);
-        //const meetings = GetMeetings(this.id);
+        //const meetings = GetMeetings(this.props.contactId);
+        const meetings = GetMeetings(this.id);
         meetings.then(meetingList => {
             if (meetingList.length > 0) {
                 this.setState({
-                    cardList:meetingList,
-                    reload:false,
+                    cardList:meetingList
                 })
                 return meetingList;
             }
@@ -104,35 +91,61 @@ class MeetingPage extends React.Component {
     }
 
     componentDidMount() {
-        store.subscribe(()=>{
-            const {reload,value} = store.getState().reload;
-            if (reload){
-              this.handleLogMeeting(value);
+        this.handleInitPage();
+        /*
+        //const meetings = GetMeetings(this.props.id);
+        const tempMeetings = GetMeetings(this.id);
+        tempMeetings.then(value => {
+            this.setState({
+                cardList: value
+            });
+            return this.state.cardList
+        }).then(data => {
+            if (data.length >= 1) {
+                this.sortCardsArray();
             }
-          });
-          if(this.state.reload){
-            this.handleInitPage();
-          } 
+        });
+
+        */
+        /*tempMeetings.then(function(result) {
+            console.log("result");
+            console.log(result); // "Some User token"
+            this.setState({
+            cardList: result
+        });
+        })*/
+        /*
+        tempMeetings.then(function(result) {
+            console.log("result");
+            console.log(result); // "Some User token"
+            this.setState({
+            cardList: result
+        });
+        })
+        console.log("this.state.cardList");
+        console.log(this.state.cardList);
+        this.sortCardsArray();*/
     }
- 
-    
+
     render() {    
-        const {cardsArray,contact,user} = this.state;
+        const {cardsArray} = this.state;
         return (
-            <div className="meetingPage">
-                <MeetingPageHeader 
-                    contact={contact}
-                    user = {user}
-                    handleLogMeeting={this.handleLogMeeting} />
-                <MeetingCards
-                    contact={contact}
-                    user = {user}
-                    cardsArray={cardsArray}
-                    handleDeleteCard={this.handleDeleteCard}
-                    handleAddContact={this.handleAddContact}
-                    handleRemoveContact={this.handleRemoveContact}
-                    onChangeMeeting={this.onChangeMeeting} />
-            </div>            
+            <ActivityContext.Consumer>
+                {contactData => {
+                    return (
+                        <div className="meetingPage">
+                            <MeetingPageHeader 
+                                contactData={contactData}
+                                handleLogMeeting={this.handleLogMeeting} />
+                            <MeetingCards
+                                contactData={contactData}
+                                cardsArray={cardsArray}
+                                handleDeleteCard={this.handleDeleteCard}
+                                onChangeMeeting={this.onChangeMeeting} />
+                        </div>
+                    )
+                }}
+            </ActivityContext.Consumer>
         )
     }
 }
