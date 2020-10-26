@@ -19,28 +19,28 @@ const Dropdown = ({
     handleCleanInput,
     handleRemoveUser,
     handleAddUser,
-    userSelectHint
+    contactSelectHint
 }) => {
 
-    let className = "userDropdown "
+    let className = "contactDropdown "
     if (showDropdown) {
-        className += "userDropdown__active"
+        className += "contactDropdown__active"
     }
     return (
         <div className={className}>
-            <div className='userDropdown__corner' />
-            <div className='userDropdown__inner'>
-                <div className='userDropdown__inner__wrapper'>
+            <div className='contactDropdown__corner' />
+            <div className='contactDropdown__inner'>
+                <div className='contactDropdown__inner__wrapper'>
                     <SearchBar textInput={textInput}
                         enableCleanBtn={enableCleanBtn}
                         handleInputChange={handleInputChange}
                         handleCleanInput={handleCleanInput} />
                 </div>
                 {!checkInput ?
-                    <Select label={'users'}
+                    <Select label={'Contacts'}
                             userList = {userList}
                             searchList = {searchList}
-                            userSelectHint = {userSelectHint}
+                            contactSelectHint = {contactSelectHint}
                             handleRemoveUser={handleRemoveUser}
                             handleAddUser={handleAddUser} />
                     :
