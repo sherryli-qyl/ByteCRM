@@ -23,29 +23,34 @@ const InputTaskType = ({
   handleAddUser,
   handleDeleteUser,
   contactSelectHint,
-  user,
+  assignedToUser,
   userId,
   userList,
 }) => (
         <div className="inputTaskType">
           <div className='inputTaskType__content'>          
             <div className='inputTaskType__content__block'>
-              <div className='inputTaskType__content__block__item'>
+            <div className='inputTaskType__content__block__item'>
                 <div className="cardLabel">
                   Assigned to
                 </div>
-                <UserTag
-                  userName={userName}
-                  userIcon={UserIcon}
-                />
-                <UserSelector userList={userList}
-                              user={user}
-                              userId={userId}
-                              contactSelectHint = {contactSelectHint}
-                              handleAddUser = {handleAddUser}
-                              handleDeleteUser = {handleDeleteUser} />
-                
+                  <UserTag
+                    userName={userName}
+                    userIcon={UserIcon}
+                  />
               </div>
+                
+                <div className='inputTaskType__content__block__userItem'>
+                <UserSelector 
+                userList={userList}
+                assignedToUser={assignedToUser}
+                userId={userId}
+                contactSelectHint = {contactSelectHint}
+                handleAddUser = {handleAddUser}
+                handleDeleteUser = {handleDeleteUser} />
+                </div>  
+            </div>
+              
               <div className='inputTaskType__content__block'>
                 <div className='inputTaskType__content__block__item'>
                   <div className="cardLabel">
@@ -75,12 +80,12 @@ const InputTaskType = ({
                 </div>
                 <div className='inputTaskType__content__block__item'>
                   <div className="cardLabel">Created By</div>
-                    <span>Olivia Hou</span>
+                    <span>{userName}</span>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          
         
       )
 
