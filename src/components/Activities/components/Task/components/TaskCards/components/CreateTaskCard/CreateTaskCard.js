@@ -87,29 +87,31 @@ class CreateTaskCard extends React.Component {
 
     render() {
       const { currentDate, currentTime, cardId, description, taskType, priority} = this.state;
+      
         return (
           <div className="createTaskCard">
-            <InputTaskType 
-              currentDate={currentDate}
-              currentTime={currentTime}
-              onTimeChange={this.onTimeChange}
-              onDateChange={this.onDateChange}
-              taskType={taskType}
-              priority={priority}
-              onPriorityChange={this.onPriorityChange}
-              onTypeChange={this.onTypeChange}
-              handleAddUser={this.handleAddUser}
-              handleDeleteUser={this.handleDeleteUser}
-            />
-            <div className="createTaskCard__footer">
-            {description?
+            <div className='blockline'>
+              <InputTaskType 
+                  currentDate={currentDate}
+                  currentTime={currentTime}
+                  onTimeChange={this.onTimeChange}
+                  onDateChange={this.onDateChange}
+                  taskType={taskType}
+                  priority={priority}
+                  onPriorityChange={this.onPriorityChange}
+                  onTypeChange={this.onTypeChange}
+                  handleAddUser={this.handleAddUser}
+                  handleDeleteUser={this.handleDeleteUser}
+                  userName={this.props.card.assignedToUser.fullName}
+                />
+            </div>
+        
+            <div className='createTaskCard__footer'>
               <TaskDescription 
                 cardId={cardId}
                 description={description} 
                 onContentChange = {this.onDescriptionChange} />
-                : 
-                ""
-            } 
+               
             </div>
           </div>
         )
