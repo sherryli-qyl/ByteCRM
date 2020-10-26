@@ -12,14 +12,14 @@ import Modal from '../../../../../../js/Modal';
 
 
 const EmailPageHeader = (props) => {
-    const logModal = (value) => (<LogEmailModal 
+    /*const logModal = (value) => (<LogEmailModal 
                                           contact={props.contact} 
                                           user = {props.user}  
                                           modalController={value}
                                           handleLogEmail = {props.handleLogEmail}/>);
     const createModal = (value) => (<EmailModal 
                                           modalController={value}
-                                          handleCreateNote={props.handleCreateNote}/>);                                  
+                                          handleCreateNote={props.handleCreateNote}/>);   */                               
     const logEmailModal = new Modal('Note', 'Note', LogEmailModal );
     const createEmailModal = new Modal('Note', 'Note', EmailModal);
 
