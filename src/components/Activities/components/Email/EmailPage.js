@@ -7,7 +7,7 @@ import { GetEmails, GetMultiContactsEmails,UpdateEmail, DeleteEmailLog, UpdateCo
 import "./EmailPage.scss";
 
 
-const user = JSON.parse(localStorage.getItem('user'));//user id
+const user = JSON.parse(localStorage.getItem('user'));
 
 
 
