@@ -5,14 +5,14 @@ import shuffleCards from '../../../services/shuffleCards';
 import "./TaskPage.scss";
 import {GetTasks, UpdateTask, DeleteCreateTask, UpdateAssignedToUser, RemoveAssignedToUser} from '../../../Api/Task/Task';
 
-const assignedToUser = JSON.parse(localStorage.getItem('assignedToUser'));
+const user = JSON.parse(localStorage.getItem('user'));
 //const getRelatedTo = JSON.parse(localStorage.getItem('getRelatedTo'));
 
 class TaskPage extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			assignedToUser,
+			user,
 			cardList: [],
 			cardsArray: [],
 			getRelatedTo: this.props.getRelatedTo,
@@ -25,8 +25,8 @@ class TaskPage extends React.Component {
 		this.handleRemoveUser = this.handleRemoveUser.bind(this);
 	}
 
-	sortCardsArray(data) {
-		const newCardsArray = shuffleCards(data);
+	sortCardsArray() {
+		const newCardsArray = shuffleCards(this.taskCardsList);
 		this.setState({
 			cardsArray: newCardsArray
 		})
@@ -49,17 +49,15 @@ class TaskPage extends React.Component {
 	}
 
 	handleInitPage(){
-		const tasks = GetTasks(this.props.getRelatedTo.id);
+		const tasks = GetTasks(this.props.getRelatedTo);
 	 tasks.then(value => {
-		 console.log(value);
 				this.setState({
 						cardList: value,
 				});
 				return this.state.cardList
 		}).then(data => {
-			console.log(typeof(data))
 				if (data.length >= 1) {
-						this.sortCardsArray(data);
+						this.sortCardsArray();
 				}
 		});
 	}
@@ -97,15 +95,15 @@ class TaskPage extends React.Component {
 	}
 
 	render() {
-		const { cardsArray, getRelatedTo} = this.state;
+		const { cardsArray, getRelatedTo, user} = this.state;
 		return (
 		<div className="taskPage">
 					<TaskPageHeader handleCreateTask = {this.handleCreateTask}
-					                assignedToUser={assignedToUser}
+					                user={user}
 													getRelatedTo={getRelatedTo} />
 					<TaskCards
 						getRelatedTo={getRelatedTo}
-						assignedToUser={assignedToUser}
+						user={user}
 						cardsArray={cardsArray}
 						handleDeleteCard = {this.handleDeleteCard}
 						handleAddUser={this.handleAddUser}

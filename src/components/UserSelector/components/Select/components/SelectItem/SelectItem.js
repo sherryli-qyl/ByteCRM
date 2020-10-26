@@ -28,23 +28,23 @@ class SelectItem extends React.Component{
             checked,
             handleRemoveUser,
             handleAddUser,
-            userSelectHint
+            contactSelectHint
         } = this.props;
 
         const {showHint} = this.state;
 
-        let btnClassName = "userSelectItem__left__checkbox__btn "
+        let btnClassName = "contactSelectItem__left__checkbox__btn "
 
         if (disabled) {
-            btnClassName += "userSelectItem__left__checkbox__btn--disabled"
+            btnClassName += "contactSelectItem__left__checkbox__btn--disabled"
         }
 
         return(
-            <div className='userSelectItem'  onMouseEnter = {()=>this.handleHintToggle(true)}
+            <div className='contactSelectItem'  onMouseEnter = {()=>this.handleHintToggle(true)}
                                                 onMouseLeave={()=>this.handleHintToggle(false)}>
-            <div className='userSelectItem__left'>
+            <div className='contactSelectItem__left'>
                 {checked ?
-                    <div className='userSelectItem__left__checkbox'>
+                    <div className='contactSelectItem__left__checkbox'>
                         <button
                             className={btnClassName}
                             disabled={disabled}
@@ -56,19 +56,19 @@ class SelectItem extends React.Component{
                         </button>
                     </div>
                     :
-                    <div className='userSelectItem__left__square'
+                    <div className='contactSelectItem__left__square'
                         onClick={event => {
                             event.preventDefault();
                             handleAddUser(user);
                         }} />
                 }
             </div>
-            <div className='userSelectItem__right'>
+            <div className='contactSelectItem__right'>
                 {`${user.fullName} (${user.email})`}
             </div>
             {disabled && showHint ?
-                <div className="userSelectItem__hint">
-                    <HintBox variant='topRight'>{userSelectHint}</HintBox>
+                <div className="contactSelectItem__hint">
+                    <HintBox variant='topRight'>{contactSelectHint}</HintBox>
                 </div>
                 :
                 ""
