@@ -10,12 +10,9 @@ const HeaderNavLink = ({
 }) => {
     return (
         <div className='headerNavLinkWrapper'>
-                <NavLink   className = "headerNavLinkWrapper__link"
-                           to={{
-                            pathname: path,
-                        }}>
-                    {children}
-                </NavLink>
+            <a href={path} className="headerNavLinkWrapper__link">
+            {children}  
+            </a>
         </div>
     )
 }
