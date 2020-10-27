@@ -78,6 +78,8 @@ class EditableText extends React.Component {
         onClick={this.handleEdit}
       >
         <div className="editable-text-content" dangerouslySetInnerHTML={{ __html: this.state.content }}>
+
+
         </div>
 
         <div className={onHover ? "editable-text-edit-icon" : "editable-text-edit-icon__hidden"}>

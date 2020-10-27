@@ -7,3 +7,44 @@
 .profile_nav {
   width: 30px;
 }
+// a:link {
+//   color: #ffffff;
+//   text-decoration: none;
+// }
+
+// .styledlink:hover {
+//   color: #008fb4;
+// }
+
+.private-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+  margin: 5px 5px;
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: #33475b;
+  color: #ffffff;
+
+  .private_text {
+      text-align: center;
+      line-height: 20px;
+  }
+}
+
+.private-profile {
+  background-color: #33475b;
+}
+
+.private-link {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+  margin: 5px 10px;
+  cursor: pointer;
+  color: #ffffff;
+  text-decoration: none;
+  &:hover{
+      color: #008fb4;
+  }
+}
