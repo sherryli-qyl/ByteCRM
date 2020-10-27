@@ -6,7 +6,6 @@ import "./TaskPage.scss";
 import {GetTasks, UpdateTask, DeleteCreateTask, UpdateAssignedToUser, RemoveAssignedToUser} from '../../../Api/Task/Task';
 
 const assignedToUser = JSON.parse(localStorage.getItem('assignedToUser'));
-//const getRelatedTo = JSON.parse(localStorage.getItem('getRelatedTo'));
 
 class TaskPage extends React.Component {
 	constructor(props) {
@@ -15,7 +14,8 @@ class TaskPage extends React.Component {
 			assignedToUser,
 			cardList: [],
 			cardsArray: [],
-			getRelatedTo: this.props.getRelatedTo,
+			contact: this.props.contact,
+			associatedContacts:this.props.associatedContacts,
 		}
 		this.onChangeText = this.onChangeText.bind(this);
 		this.onChangeTask = this.onChangeTask.bind(this);
@@ -49,7 +49,7 @@ class TaskPage extends React.Component {
 	}
 
 	handleInitPage(){
-		const tasks = GetTasks(this.props.getRelatedTo.id);
+		const tasks = GetTasks(this.props.contact.id);
 	 tasks.then(value => {
 				this.setState({
 						cardList: value,
@@ -95,14 +95,15 @@ class TaskPage extends React.Component {
 	}
 
 	render() {
-		const { cardsArray, getRelatedTo} = this.state;
+		const { cardsArray, contact,user} = this.state;
 		return (
 		<div className="taskPage">
 					<TaskPageHeader handleCreateTask = {this.handleCreateTask}
 					                assignedToUser={assignedToUser}
-													getRelatedTo={getRelatedTo} />
+									contact={contact}
+									user = {user} />
 					<TaskCards
-						getRelatedTo={getRelatedTo}
+						contact={contact}
 						assignedToUser={assignedToUser}
 						cardsArray={cardsArray}
 						handleDeleteCard = {this.handleDeleteCard}
