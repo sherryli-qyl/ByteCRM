@@ -4,14 +4,14 @@ import styled  from 'styled-components';
 import './NavigationButton.scss';
 
 
-const NavigationLink = styled(NavLink)`
-  text-decoration: none;
-  color: #0091ae;
+// const NavigationLink = styled(NavLink)`
+//   text-decoration: none;
+//   color: #0091ae;
 
-  &:hover {
-    border-bottom: solid 1px #0091ae;
-  }
-`;
+//   &:hover {
+//     border-bottom: solid 1px #0091ae;
+//   }
+// `;
 
 const NavigationButton = ({
     children,
@@ -25,13 +25,13 @@ const NavigationButton = ({
                     event.preventDefault();
                     sessionStorage.setItem("id", id);
                 }}>
-                <NavigationLink
+                <NavLink
                     to={{
                         pathname: path,
                     }}
                 >
                     {children}
-                </NavigationLink>
+                </NavLink>
             </button>
         </div>
     )
