@@ -19,7 +19,6 @@ class CreateTaskCard extends React.Component {
       taskType: this.props.card.taskType,
       priority: this.props.card.priority,
     }
-    this.onDescriptionChange = this.onDescriptionChange.bind(this);
     this.handleAddUser = this.handleAddUser.bind(this);
     this.handleDeleteUser = this.handleDeleteUser.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
@@ -42,16 +41,6 @@ class CreateTaskCard extends React.Component {
       card:newCard,
     })
     this.props.onChangeTask(this.state.cardId, newCard);
-  }
-
-  onDescriptionChange(description) {
-    let newCard = this.state.card;
-    newCard.description = description;
-    this.setState({
-      description: description,
-      card: newCard,
-    })
-    this.props.onChangeTask(this.state.cardId, newCard)
   }
 
 
@@ -78,7 +67,7 @@ class CreateTaskCard extends React.Component {
           <TaskDescription
             cardId={cardId}
             description={description}
-            onContentChange={this.onDescriptionChange} /> 
+            handleUpdate = {this.handleUpdate} /> 
       </div>
     )
   }
