@@ -1,10 +1,14 @@
-async function GetTasks(getRelatedToId) {
-  const serverUrl = `http://localhost:3000/api/tasks/${getRelatedToId}`;
-  const response = await fetch(serverUrl, {
-      method: "GET"
-  });
-  const data = response.json();
-  return data;
+import api from '../../../lib/api';
+
+const GetTasks = (contactId) =>{
+    const response = api.get(`/api/tasks/${contactId}`);
+    return response;
+}
+
+
+const GetMultiContactsTasks = (contacts) => {
+    const response = api.get(`/api/tasks/contacts/${contacts}`);
+    return response;
 }
 
 async function PostTask(body){
@@ -79,4 +83,4 @@ async function RemoveAssignedToUser(getRelatedToId,taskId){
 	return data;
 }
 
-export {GetTasks,PostTask,UpdateTask,DeleteCreateTask,UpdateAssignedToUser,RemoveAssignedToUser};
+export {GetTasks,GetMultiContactsTasks,PostTask,UpdateTask,DeleteCreateTask,UpdateAssignedToUser,RemoveAssignedToUser};

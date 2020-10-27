@@ -3,7 +3,7 @@ import TaskCards from './components/TaskCards';
 import TaskPageHeader from './components/Header';
 import shuffleCards from '../../../services/shuffleCards';
 import "./TaskPage.scss";
-import {GetTasks, UpdateTask, DeleteCreateTask, UpdateAssignedToUser, RemoveAssignedToUser} from '../../../Api/Task/Task';
+import { GetTasks, GetMultiContactsTasks,UpdateTask, DeleteCreateTask, UpdateAssignedToUser, RemoveAssignedToUser } from '../../../Api/Task/Task';
 
 const assignedToUser = JSON.parse(localStorage.getItem('assignedToUser'));
 
@@ -15,7 +15,7 @@ class TaskPage extends React.Component {
 			cardList: [],
 			cardsArray: [],
 			contact: this.props.contact,
-			associatedContacts:this.props.associatedContacts,
+			associatedContacts: this.props.associatedContacts,
 		}
 		this.onChangeText = this.onChangeText.bind(this);
 		this.onChangeTask = this.onChangeTask.bind(this);
@@ -35,12 +35,12 @@ class TaskPage extends React.Component {
 	onChangeText(newContent, cardKey) {
 		const newCardsList = this.state.cardList;
 		for (let i in newCardsList) {
-				if (newCardsList[i].key === cardKey) {
-						newCardsList[i].description = newContent;
-						this.setState({
-								cardsList: newCardsList,
-						})
-				}
+			if (newCardsList[i].key === cardKey) {
+				newCardsList[i].description = newContent;
+				this.setState({
+					cardsList: newCardsList,
+				})
+			}
 		}
 	}
 
@@ -48,69 +48,82 @@ class TaskPage extends React.Component {
 		UpdateTask(taskId, body);
 	}
 
-	handleInitPage(){
-		const tasks = GetTasks(this.props.contact.id);
-	 tasks.then(value => {
+	handleInitPage() {
+		let data = []
+        const {contact,associatedContacts} = this.state;
+        if (contact){
+            data = GetTasks(contact.id);
+        }
+        else if (associatedContacts){
+            let ids = "";
+            for(let i = 0; i < associatedContacts.length;i++){
+                const id = associatedContacts[i].id; 
+                i === 0 ? ids += id : ids += "&&" + id;
+            }
+            data = GetMultiContactsTasks(ids); 
+        }
+		data.then(response => {
+			if(response.statusText === "OK"){
 				this.setState({
-						cardList: value,
+					cardList: response.data,
 				});
-				return this.state.cardList
-		}).then(data => {
-				if (data.length >= 1) {
-						this.sortCardsArray(data);
-				}
+			}
+			return this.state.cardList
+		}).then(cards => {
+			if (cards.length >= 1) {
+				this.sortCardsArray(cards);
+			}
 		});
 	}
 
 
-	handleCreateTask(task){
+	handleCreateTask(task) {
 		const newCardList = this.state.cardList;
 		newCardList.push(task);
 		this.setState({
-				cardList:newCardList,
+			cardList: newCardList,
 		})
 		this.sortCardsArray()
 	}
 
-	handleDeleteCard(id){
+	handleDeleteCard(id) {
 		const response = DeleteCreateTask(id);
-		response.then(value =>{
-				if (value){
+		response.then(value => {
+			if (value) {
 				this.handleInitPage();
-				}
+			}
 		})
 	}
 
-	handleAddUser(userId, taskId){
+	handleAddUser(userId, taskId) {
 		UpdateAssignedToUser(userId, taskId);
 	}
 
-	handleRemoveUser(userId, taskId){
+	handleRemoveUser(userId, taskId) {
 		RemoveAssignedToUser(userId, taskId);
 	}
 
 	componentDidMount() {
-		
 		this.handleInitPage();
 	}
 
 	render() {
-		const { cardsArray, contact,user} = this.state;
+		const { cardsArray, contact, user } = this.state;
 		return (
-		<div className="taskPage">
-					<TaskPageHeader handleCreateTask = {this.handleCreateTask}
-					                assignedToUser={assignedToUser}
-									contact={contact}
-									user = {user} />
-					<TaskCards
-						contact={contact}
-						assignedToUser={assignedToUser}
-						cardsArray={cardsArray}
-						handleDeleteCard = {this.handleDeleteCard}
-						handleAddUser={this.handleAddUser}
-						handleRemoveUser={this.handleRemoveUser} 
-						onChangeTask={this.onChangeTask} />
-					</div>
+			<div className="taskPage">
+				<TaskPageHeader handleCreateTask={this.handleCreateTask}
+					assignedToUser={assignedToUser}
+					contact={contact}
+					user={user} />
+				<TaskCards
+					contact={contact}
+					assignedToUser={assignedToUser}
+					cardsArray={cardsArray}
+					handleDeleteCard={this.handleDeleteCard}
+					handleAddUser={this.handleAddUser}
+					handleRemoveUser={this.handleRemoveUser}
+					onChangeTask={this.onChangeTask} />
+			</div>
 		)
 	}
 }

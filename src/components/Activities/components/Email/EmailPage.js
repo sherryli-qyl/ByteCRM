@@ -99,7 +99,6 @@ class EmailPage extends React.Component {
         }
         data.then(response => {
             if (response.statusText === "OK") {
-                console.log(response.data);
                 this.setState({
                     cardList: response.data,
                     reload:false,
