@@ -15,11 +15,16 @@
 }
 
 .editable-text-content{
-  // width: 90%;
-  // font-weight: 400;
+  margin-block-start: 0px;
+  margin-block-end: 0px;
   font-size: 14px;
   color: #33475b;
-  line-height: 20px;
+  line-height: 1.6;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
 }
 
 
