@@ -2,4 +2,32 @@
   display: flex;
 }
 
+.public-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+  margin: 5px 5px;
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: #33475b;
+}
 
+.back-to-home {
+  background-color: #33475b;
+}
+
+.public-link {display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+  margin: 5px 10px;
+  cursor: pointer;
+  color: #ffffff;
+  text-decoration: none;
+  &:hover{
+      color: #008fb4;
+  }
+}
+
+// .styledlink:hover {
+//   color: #008fb4;
+// }

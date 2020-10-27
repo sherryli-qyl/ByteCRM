@@ -1,17 +1,13 @@
 import React from 'react';
-import NavigationLink from '../../components/NavigationLink';
 import './Private.scss';
 import Profile from '../../../../img/Contact/profile.png';
 import { withRouter } from "react-router";
 import { isLoggedIn, removeToken } from '../../../../utils/auth';
 import {
   CONTACT_BASE_URL,
-  COMPANY_BASE_URL,
   LOGIN_URL,
-  ABOUTUS_BASE_URL,
-  CONTACTUS_BASE_URL
-
 } from '../../../Routes/URLMap';
+import { NavLink } from 'react-router-dom';
 
 const logout = history => {
   removeToken();
@@ -24,13 +20,15 @@ const Private = ({ history }) => {
 
   return (
     <div className="Layout">
-      <NavigationLink.Text indictable href="/login">
-        <div onClick={() => logout(history)}>Sign Out</div>
-      </NavigationLink.Text>
-      <NavigationLink.Text indictable href="/">
+      <NavLink className="private-link" activeClassName="active" to={LOGIN_URL}>
+        <button className="private-nav">
+          <div className="private-text" onClick={() => logout(history)}>Sign Out</div>
+        </button>
+      </NavLink>
+      <NavLink className="private-link" activeClassName="selected" to={CONTACT_BASE_URL}>
         <img className="profile_nav" src={Profile} alt="profile" />
-      </NavigationLink.Text>
+      </NavLink>
     </div>
   );
 };
-export default withRouter (Private);
+export default withRouter(Private);
