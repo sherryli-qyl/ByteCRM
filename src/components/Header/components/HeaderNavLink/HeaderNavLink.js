@@ -11,7 +11,7 @@ const HeaderNavLink = ({
     return (
         <div className='headerNavLinkWrapper'>
             <a href={path} className="headerNavLinkWrapper__link">
-            {children}  
+                {children}
             </a>
         </div>
     )
