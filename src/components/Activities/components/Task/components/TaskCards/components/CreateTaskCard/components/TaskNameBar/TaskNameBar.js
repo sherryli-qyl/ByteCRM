@@ -11,11 +11,6 @@ const TaskNameBar = ({
     status,
     handleUpdate,
 }) => {
-
-    console.log(status)
-
-
-
     return (
         <div className="taskNameBar">
             <div className="taskNameBar__checkCircle" >

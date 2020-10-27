@@ -51,13 +51,11 @@ class TaskPage extends React.Component {
 	handleInitPage(){
 		const tasks = GetTasks(this.props.getRelatedTo.id);
 	 tasks.then(value => {
-		 console.log(value);
 				this.setState({
 						cardList: value,
 				});
 				return this.state.cardList
 		}).then(data => {
-			console.log(typeof(data))
 				if (data.length >= 1) {
 						this.sortCardsArray(data);
 				}
