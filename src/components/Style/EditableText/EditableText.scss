@@ -1,79 +1,111 @@
-.editable-text-wrapper{
+@import '../../../style/variable.scss';
+
+.editableText {
   position: relative;
-  padding: 10px;
-  margin-bottom: 10px;
-}
+  border:1px solid transparent;
+  display: flex;
+  align-items: center;
+  padding: 0 5px;
 
-.editable-text-wrapper__hovered{
-  position: relative;
-  padding: 10px;
-  margin-bottom: 10px;
-  background-color: rgb(229, 245, 248);
-  border: 1px solid rgb(127, 209, 222);
-  border-radius: 3px;
-  cursor: text;
-}
+  &:hover {
+    position: relative;
+    background-color: rgb(229, 245, 248);
+    border: 1px solid rgb(127, 209, 222);
+    border-radius: 3px;
+    cursor: text;
 
-.editable-text-content{
-  margin-block-start: 0px;
-  margin-block-end: 0px;
-  font-size: 14px;
-  color: #33475b;
-  line-height: 1.6;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 6;
-  -webkit-box-orient: vertical;
-}
+    .editableText__icon{
+      visibility: visible;
+      opacity: 1;
+    }
+  }
 
+  &__content {
+    color: #33475b;
+    font-size: 14px;
+   
 
-.editable-text-edit-icon{
-  font-size: 14px;
-  color: #00A4BD;
-  cursor: pointer;
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  &__hidden{
-    visibility: hidden;
+    &--input{
+      font-weight: 600;
+      padding: 10px 10px;
+    }
+
+    &--editor{
+      margin-block-start: 0px;
+      margin-block-end: 0px;
+      line-height: 1.6;
+      overflow: hidden;
+      max-height: 200px;
+      padding:10px;
+    }
+  }
+
+  &__icon {
+    font-size: 14px;
+    color: #00A4BD;
+    cursor: pointer;
     position: absolute;
+    visibility: hidden;
+    opacity: 0;
     bottom: 10px;
     right: 10px;
   }
 }
 
-.editingmode-editor{
-  border: 3px solid;
-  border-color: rgba(0,208,228,.5);
-  box-shadow: 0 1px 3px rgba(0,164,189,.3);
-  border-radius: 3px;
-  cursor: default;
-}
 
-.editingmode-editor-actions{
-  display: flex;
-  justify-content: flex-start;
-  margin: 10px 0px;
 
-  &__save{
-    flex: 1;
-    align-self: center;
+.editingmode {
+  &__editor {
+    border: 3px solid;
+    border-color: rgba(0, 208, 228, .5);
+    box-shadow: 0 1px 3px rgba(0, 164, 189, .3);
+    border-radius: 3px;
+    cursor: default;
   }
-  &__cancel{
-    margin-left: 2%;
-    align-self: center;
-    flex: 8;
+
+  &__inputWrapper {
+    width: 100%;
+
+    &__input {
+      border: solid 1px $border-color;
+      border-radius: 5px;
+      width: 90%;
+      outline: none;
+      font-size: 16px;
+      color: $primary-color;
+      background-color: #f5f8fa;
+      padding: 10px 0 10px 10px;
+
+      &:focus {
+        border: solid 2px rgba(0, 208, 228, .5);
+      }
+    }
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: flex-start;
+    margin: 10px 0px;
+
+    &__save {
+      flex: 1;
+      align-self: center;
+    }
+
+    &__cancel {
+      margin-left: 2%;
+      align-self: center;
+      flex: 8;
+    }
   }
 }
 
-.createButton-small{
+.createButton-small {
   min-width: 60px;
-  min-height:30px;
+  min-height: 30px;
 }
 
-.logButton-small{
+.logButton-small {
   min-width: 60px;
-  min-height:30px;
+  min-height: 30px;
 }
-
