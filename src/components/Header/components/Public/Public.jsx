@@ -1,27 +1,32 @@
 import React from 'react';
-import NavigationLink from '../../components/NavigationLink';
 import './Public.scss';
 import SmallLogo from '../../../../img/Logo/smalllogo.png';
-//import { NavLink } from 'react-router-dom';
-
+import { NavLink } from 'react-router-dom';
+import {
+  CONTACT_BASE_URL,
+  COMPANY_BASE_URL,
+  ABOUTUS_BASE_URL,
+  CONTACTUS_BASE_URL
+} from '../../../Routes/URLMap';
+import HeaderNavButton from '../HeaderNavButton';
 
 const Public = () => (
   <div className="Layout">
-    <NavigationLink.Text indictable href="/">
-      <img src={SmallLogo} alt="small logo" />
-    </NavigationLink.Text>
-    <NavigationLink.Text indictable href="/contacts">
-      Contacts
-    </NavigationLink.Text>
-    <NavigationLink.Text indictable href="/companies">
-      Companies
-    </NavigationLink.Text>
-    <NavigationLink.Text indictable href="/about">
-      About
-    </NavigationLink.Text>
-    <NavigationLink.Text indictable href="/contactus">
-      Contact Us
-    </NavigationLink.Text>
+    <NavLink className = "public-link" activeClassName = "active" to = {CONTACT_BASE_URL}>
+    <img src={SmallLogo} alt="small logo" />
+    </NavLink>
+    <NavLink className = "public-link" activeClassName = "active" to = {CONTACT_BASE_URL}>
+      <div className="public_text"> Contacts </div>
+    </NavLink>
+    <NavLink className = "public-link" activeClassName = "active" to = {COMPANY_BASE_URL}>
+      <div className="public_text"> Companies </div>
+    </NavLink>
+    <NavLink className = "public-link" activeClassName = "active" to = {ABOUTUS_BASE_URL}>
+      <div className="public_text"> About </div>
+    </NavLink>
+    <NavLink className = "public-link" activeClassName = "active" to = {CONTACTUS_BASE_URL}>
+      <div className="public_text"> Contact Us </div>
+    </NavLink>
   </div>
 );
 

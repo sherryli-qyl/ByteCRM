@@ -29,9 +29,9 @@ const Routes = ({
         <Route exact path={LOGIN_URL} component={Login} />
         <Route exact path={REG_BASE_URL} component={RegForm} />
         <ProtectedRoute exact path={CONTACT_BASE_URL} component={ContactList} />
-        <Route exact path={`${CONTACT_BASE_URL}/:id`} component={ContactMain} />
-        <Route exact path={COMPANY_BASE_URL} component={CompanyList} />
-        <Route exact path={`${COMPANY_BASE_URL}/main`} component={CompanyMain} />
+        <ProtectedRoute exact path={`${CONTACT_BASE_URL}/:id`} component={ContactMain} />
+        <ProtectedRoute exact path={COMPANY_BASE_URL} component={CompanyList} />
+        <ProtectedRoute exact path={`${COMPANY_BASE_URL}/main`} component={CompanyMain} />
         <Route exact path={ABOUTUS_BASE_URL} component={About} />
         <Route exact path={CONTACTUS_BASE_URL} component={Contactus} />
       </Switch>

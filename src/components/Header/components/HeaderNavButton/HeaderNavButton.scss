@@ -1,0 +1,22 @@
+.navlink {
+    text-decoration: none;
+    color: #0091ae;
+    &:hover {
+        border-bottom: solid 1px #0091ae;
+    }
+}
+
+@import '../../../../style/variable.scss';
+
+.navigationHeaderButtonWrapper {
+
+    &__btn {
+        @extend .nakedBtn;
+        padding: 1px 0px;
+        font-size: 14px;
+
+        &__active {
+            color: $secondary-color;
+        }
+    }
+}

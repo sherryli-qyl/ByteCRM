@@ -86,6 +86,7 @@ class EditableText extends React.Component {
             :
             <div className="editableText__content--editor" dangerouslySetInnerHTML={{ __html: this.state.content }} />
           }
+
         </div>
 
         <div className="editableText__icon">
