@@ -1,11 +1,10 @@
 @import '../../../style/variable.scss';
 
 .editableText {
-  position: relative;
   border:1px solid transparent;
   display: flex;
   align-items: center;
-  padding: 0 5px;
+  padding: 0px 10px;
 
   &:hover {
     position: relative;
@@ -23,32 +22,29 @@
   &__content {
     color: #33475b;
     font-size: 14px;
-   
+    flex-grow: 1;
+    
 
     &--input{
-      font-weight: 600;
-      padding: 10px 10px;
+      font-weight: 600;   
     }
 
     &--editor{
-      margin-block-start: 0px;
-      margin-block-end: 0px;
       line-height: 1.6;
       overflow: hidden;
       max-height: 200px;
-      padding:10px;
     }
   }
 
   &__icon {
+    display: flex;
+    align-self: flex-end;
     font-size: 14px;
     color: #00A4BD;
     cursor: pointer;
-    position: absolute;
     visibility: hidden;
     opacity: 0;
-    bottom: 10px;
-    right: 10px;
+    padding:10px 0;
   }
 }
 

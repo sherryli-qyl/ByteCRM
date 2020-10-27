@@ -8,16 +8,12 @@ import TaskDescription from './components/TaskDescription';
 class CreateTaskCard extends React.Component {
   constructor(props) {
     super(props);
-    const { _id, description, assignedTo } = this.props.card;
+    const { _id, description, assignedTo} = this.props.card;
     this.state = {
-      currentDate: this.props.card.date,
-      currentTime: this.props.card.time,
       card: this.props.card,
       cardId: _id,
       description,
       userList: assignedTo,
-      taskType: this.props.card.taskType,
-      priority: this.props.card.priority,
     }
     this.handleAddUser = this.handleAddUser.bind(this);
     this.handleDeleteUser = this.handleDeleteUser.bind(this);
@@ -33,8 +29,6 @@ class CreateTaskCard extends React.Component {
   }
 
   handleUpdate(value,key){
-    console.log(value);
-    console.log(key);
     let newCard = this.state.card;
     newCard[key] = value;
     this.setState({
@@ -45,8 +39,7 @@ class CreateTaskCard extends React.Component {
 
 
   render() {
-    const { card, cardId, description } = this.state;
-    console.log(card)
+    const {card} = this.state;
 
     return (
       <div className="createTaskCard">
@@ -65,8 +58,7 @@ class CreateTaskCard extends React.Component {
           />
         </div>     
           <TaskDescription
-            cardId={cardId}
-            description={description}
+            description={card.description}
             handleUpdate = {this.handleUpdate} /> 
       </div>
     )

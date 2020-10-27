@@ -3,7 +3,6 @@ import EditableText from '../../../../../../../../../Style/EditableText';
 import "./TaskDescription.scss"
 
 const TaskDescription = ({
-  cardId,
   description,
   handleUpdate,
 }) => {
