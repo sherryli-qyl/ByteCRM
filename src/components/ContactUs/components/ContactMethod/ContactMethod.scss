@@ -15,7 +15,7 @@
     }
     @include MQ(S) {
       top: -30px;
-      left: 6%
+      left: 20px;
       
     }
   }
@@ -28,7 +28,7 @@
     }
     @include MQ(S) {
       top: 400px;
-      left: 6%
+      left: 20px;
     }
   }
 }
