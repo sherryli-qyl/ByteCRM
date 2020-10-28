@@ -1,1 +1,1 @@
-export {default} from'./DurationDropDown';
+export { default } from './DurationDropDown';

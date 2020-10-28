@@ -1,1 +1,1 @@
-export {default} from './LogMeetingCard';
+export { default } from './LogMeetingCard';

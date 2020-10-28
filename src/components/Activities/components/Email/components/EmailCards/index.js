@@ -1,1 +1,1 @@
-export {default} from "./EmailCards";
+export { default } from './EmailCards';

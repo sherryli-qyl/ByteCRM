@@ -1,1 +1,1 @@
-export {default} from"./MeetingInput";
+export { default } from './MeetingInput';

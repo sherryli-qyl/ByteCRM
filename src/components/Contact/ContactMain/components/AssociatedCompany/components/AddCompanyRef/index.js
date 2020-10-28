@@ -1,1 +1,1 @@
-export {default} from './AddCompanyRef';
+export { default } from './AddCompanyRef';

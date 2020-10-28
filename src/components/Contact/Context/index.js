@@ -1,1 +1,1 @@
-export {default as ContactContext} from './Context';
+export { default as ContactContext } from './Context';

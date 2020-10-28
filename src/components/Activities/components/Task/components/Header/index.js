@@ -1,1 +1,1 @@
-export {default} from './TaskPageHeader';
+export { default } from './TaskPageHeader';

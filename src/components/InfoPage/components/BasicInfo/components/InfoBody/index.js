@@ -1,1 +1,1 @@
-export {default} from './InfoBody';
+export { default } from './InfoBody';

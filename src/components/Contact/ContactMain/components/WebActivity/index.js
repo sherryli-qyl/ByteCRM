@@ -1,1 +1,1 @@
-export {default} from './WebActivity';
+export { default } from './WebActivity';

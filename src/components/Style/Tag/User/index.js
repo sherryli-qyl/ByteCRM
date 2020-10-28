@@ -1,1 +1,1 @@
-export {default} from './Usertag';
+export { default } from './Usertag';

@@ -1,1 +1,1 @@
-export {default} from './ContactSelect';
+export { default } from './ContactSelect';

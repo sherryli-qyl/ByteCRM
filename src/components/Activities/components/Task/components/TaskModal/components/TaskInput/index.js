@@ -1,1 +1,1 @@
-export {default} from './TaskInput';
+export { default } from './TaskInput';

@@ -4,11 +4,11 @@ import './NoteInput.scss';
 
 const NoteInput = (props) => (
   <div className="rich-text-input">
-    <Editor 
+    <Editor
       placeholder={props.placeholder}
-      handleEditorChange = {props.handleEditorChange}
+      handleEditorChange={props.handleEditorChange}
     />
-  </div> 
+  </div>
 );
 
 export default NoteInput;

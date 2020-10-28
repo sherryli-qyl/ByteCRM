@@ -1,7 +1,6 @@
-function ListItem(contact,checked) {
-    this.contact = contact;
-    this.checked = checked; 
+function ListItem(contact, checked) {
+  this.contact = contact;
+  this.checked = checked;
 }
-
 
 export default ListItem;

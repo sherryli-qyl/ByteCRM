@@ -1,1 +1,1 @@
-export {default} from './NameTag';
+export { default } from './NameTag';

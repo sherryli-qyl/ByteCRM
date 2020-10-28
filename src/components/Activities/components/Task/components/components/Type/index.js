@@ -1,1 +1,1 @@
-export {default} from './TypeDropdown';
+export { default } from './TypeDropdown';

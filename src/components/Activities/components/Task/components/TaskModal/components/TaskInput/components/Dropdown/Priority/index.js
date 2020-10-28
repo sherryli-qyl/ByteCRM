@@ -1,1 +1,1 @@
-export {default} from './PriorityDropdown';
+export { default } from './PriorityDropdown';
