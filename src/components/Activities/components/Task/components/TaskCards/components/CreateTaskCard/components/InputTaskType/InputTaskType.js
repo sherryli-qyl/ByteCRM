@@ -22,6 +22,7 @@ const InputTaskType = ({
           <div className='inputTaskType__content'>          
             <div className='inputTaskType__content__block'>
             <div className='inputTaskType__content__block__item'>
+
                 <div className="cardLabel">
                   Assigned to
                 </div>
@@ -30,7 +31,7 @@ const InputTaskType = ({
                     userIcon={UserIcon}
                   /> */}
               </div>
-                
+
                 <div className='inputTaskType__content__block__userItem'>
                 <UserSelector 
                 userList={userList}
@@ -50,6 +51,7 @@ const InputTaskType = ({
                   <DatePicker defaultDate={card.currentDate}
                               onDateChange={(date)=>handleUpdate(date,"date")} />
                 </div>
+
                 <div className='inputTaskType__content__block__item'>
                   <div className="cardLabel">
                     Time
@@ -57,18 +59,21 @@ const InputTaskType = ({
                   <TimePicker defaultTime={transferTimeHHMM(card.time)} 
                               onTimeChange={(time)=>handleUpdate(time,"time")} />
                 </div>
+
                 <div className='inputTaskType__content__block__item'>
                   <div className="cardLabel">Type</div>
                   <TypeDropdown defaultValue={card.taskType}
                                 onTypeChange={(taskType)=>handleUpdate(taskType,"taskType")} />
                 </div>
               </div>
+
               <div className='inputTaskType__content__block'>
                 <div className='inputTaskType__content__block__item'>
                   <div className="cardLabel">Priority</div>
                   <PriorityDropdown defaultValue={card.priority}
                                     onPriorityChange={(priority)=>handleUpdate(priority,"priority")} />
                 </div>
+
                 <div className='inputTaskType__content__block__item'>
                   <div className="cardLabel">Created By</div>
                     <span className="spanText">{card.createdBy.fullName}</span>

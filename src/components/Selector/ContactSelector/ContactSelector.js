@@ -150,9 +150,9 @@ class ContactSelector extends React.Component {
                 ...prevState,
                 loading: true
             }))
-            response.then(findContacts => {
-                if (findContacts) {
-                    const newSearchList = SearchContactRemote(newList, text.toUpperCase(), findContacts);
+            response.then(response => {
+                if (response) {
+                    const newSearchList = SearchContactRemote(newList, text.toUpperCase(), response.data);
                     let foundNewContact = false;
                     if (newSearchList.length >= 1) {
                         foundNewContact = true;
