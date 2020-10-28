@@ -69,7 +69,7 @@ class ContactMain extends Component {
                 contact: newContact
             })
         }
-        UpdateContact(this.state.user.id, newContact)
+        UpdateContact(this.state.contact.id, newContact)
     }
 
     onChangeMultiInfo(data) {
@@ -77,7 +77,7 @@ class ContactMain extends Component {
         this.setState({
             contact: newContact
         })
-        UpdateContact(this.state.user.id, newContact)
+        UpdateContact(this.state.contact.id, newContact)
         console.table(newContact);
     }
 
@@ -93,8 +93,7 @@ class ContactMain extends Component {
             });
             const action = addContactAction(value);
             store.dispatch(action);
-            // console.log(store.getState());
-           sessionStorage.setItem('contact', JSON.stringify(value));
+            sessionStorage.setItem('contact', JSON.stringify(value));
         })
         .catch(error =>{
             console.log(error.message);

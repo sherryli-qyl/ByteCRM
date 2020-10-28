@@ -11,5 +11,14 @@
         &__active {
             color: $secondary-color;
         }
+
+        &__link{
+            text-decoration: none;
+            color: #0091ae;
+
+            &:hover{
+                border-bottom: solid 1px #0091ae;
+            }
+        }
     }
 }

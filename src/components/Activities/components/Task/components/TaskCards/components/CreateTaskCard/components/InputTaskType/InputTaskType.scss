@@ -1,37 +1,39 @@
 @import '../../../../../../../../../../style/variable.scss';
-.inputTaskType{
+
+.span{
+  
+}
+
+.inputTaskType {
   display: flex;
   flex-direction: column;
 
-  &__content{
+  &__content {
     display: inline-block;
-      
-    &__block{
+
+    &__block {
       display: flex;
 
-      &+&{
-        margin-top:5%;
+      &+& {
+        margin-top: 5%;
       }
-       
-      &__userItem{
+
+      &__userItem {
         display: block;
         margin-top: 8%;
         margin-left: -5%;
       }
-      &__item{
 
-        &+&{
-          margin-left:10%;
-        }
+      &__item {
         
+
+
+        &+& {
+          margin-left: 10%;
+        }
 
         display: block;
       }
-    
-      
-  
+    }
   }
-  
-  
-}
 }

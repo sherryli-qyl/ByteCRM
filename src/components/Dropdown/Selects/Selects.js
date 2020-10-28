@@ -9,23 +9,40 @@ const Selects = ({
     selectItems,
     showDropdown,
     onChangeSelect,
+    variant,
 }) => {
-    let className = "select "
-    if(showDropdown){
-        className += "select__active"
+    let selectClassName = "select "
+    let cornerClassName = 'select__wrapper__corner '
+
+    if (showDropdown) {
+        selectClassName += "select--active "
     }
+
+    if(variant === 'above'){
+        selectClassName += `select--${variant}`
+        cornerClassName += 'select__wrapper__corner--bottom'
+        
+    }
+    else{
+        selectClassName += "select select--below"
+        cornerClassName += 'select__wrapper__corner--top'
+    }
+
     return (
-        <div className={className}>
-            <div className='select__corner' />
-            <div className='select__inner'>
-                {selectItems.map((item) => {
-                    return (
-                        <SelectItem key={item.key}
-                                    onClick={()=> onChangeSelect(item.value)}
-                                    item = {item.value} />
-                    )
-                })
-                }
+        <div className={selectClassName}>
+            <div className="select__wrapper">
+                <div className={cornerClassName}/>
+                <div className='select__wrapper__inner'>
+                    {selectItems.map((item) => {
+                       
+                        return (
+                            <SelectItem key={item.key}
+                                onClick={() => onChangeSelect(item.value,item.key)}
+                                item={ item.display? item.display: item.value} />
+                        )
+                    })
+                    }
+                </div>
             </div>
         </div>
     )

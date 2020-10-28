@@ -5,10 +5,12 @@ import Header from '../components/Header';
 
 function App() {
   return (
-    <div className = "App">
-      <Header />
-      <main className = "container">
-      <Routes />
+    <div className="App">
+     
+        <Header />
+      
+      <main className="container">
+        <Routes />
       </main>
     </div>
   )

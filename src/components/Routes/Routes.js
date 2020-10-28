@@ -19,9 +19,7 @@ import {
   CONTACTUS_BASE_URL,
 } from './URLMap';
 
-const Routes = ({
-  contactId,
-}) => {
+const Routes = () => {
   return (
     <BrowserRouter history={history}>
       <Switch>
