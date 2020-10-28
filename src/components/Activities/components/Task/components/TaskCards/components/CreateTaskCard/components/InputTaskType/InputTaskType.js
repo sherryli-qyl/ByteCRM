@@ -4,22 +4,13 @@ import TimePicker from '../../../../../../../../../Style/Picker/TimePicker';
 import TypeDropdown from '../../../../../components/Type';
 import PriorityDropdown from '../../../../../components/Priority';
 import {transferTimeHHMM} from '../../../../../../../../../services/timeManager';
-import UserTag from '../../../../../../../../../Style/Tag/User';
-import UserIcon from '../../../../../../../../../../img/Contact/profile.png';
 import UserSelector from '../../../../../../../../../UserSelector/UserSelector';
 import './InputTaskType.scss';
 
 
 const InputTaskType = ({
-  currentTime,
-  currentDate,
-  onDateChange,
-  onTimeChange,
-  onTypeChange,
-  taskType,
-  priority,
-  onPriorityChange,
-  userName,
+  card,
+  handleUpdate,
   handleAddUser,
   handleDeleteUser,
   contactSelectHint,
@@ -34,10 +25,10 @@ const InputTaskType = ({
                 <div className="cardLabel">
                   Assigned to
                 </div>
-                  <UserTag
+                  {/* <UserTag
                     userName={userName}
                     userIcon={UserIcon}
-                  />
+                  /> */}
               </div>
                 
                 <div className='inputTaskType__content__block__userItem'>
@@ -56,31 +47,31 @@ const InputTaskType = ({
                   <div className="cardLabel">
                     Date
                   </div>
-                  <DatePicker defaultDate={currentDate}
-                              onDateChange={onDateChange} />
+                  <DatePicker defaultDate={card.currentDate}
+                              onDateChange={(date)=>handleUpdate(date,"date")} />
                 </div>
                 <div className='inputTaskType__content__block__item'>
                   <div className="cardLabel">
                     Time
                   </div>
-                  <TimePicker defaultTime={transferTimeHHMM(currentTime)} 
-                              onTimeChange={onTimeChange} />
+                  <TimePicker defaultTime={transferTimeHHMM(card.time)} 
+                              onTimeChange={(time)=>handleUpdate(time,"time")} />
                 </div>
                 <div className='inputTaskType__content__block__item'>
                   <div className="cardLabel">Type</div>
-                  <TypeDropdown defaultValue={taskType}
-                                onTypeChange={onTypeChange} />
+                  <TypeDropdown defaultValue={card.taskType}
+                                onTypeChange={(taskType)=>handleUpdate(taskType,"taskType")} />
                 </div>
               </div>
               <div className='inputTaskType__content__block'>
                 <div className='inputTaskType__content__block__item'>
                   <div className="cardLabel">Priority</div>
-                  <PriorityDropdown defaultValue={priority}
-                                    onPriorityChange={onPriorityChange} />
+                  <PriorityDropdown defaultValue={card.priority}
+                                    onPriorityChange={(priority)=>handleUpdate(priority,"priority")} />
                 </div>
                 <div className='inputTaskType__content__block__item'>
                   <div className="cardLabel">Created By</div>
-                    <span>{userName}</span>
+                    <span className="spanText">{card.createdBy.fullName}</span>
                   </div>
                 </div>
               </div>

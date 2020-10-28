@@ -1,5 +1,6 @@
 .Layout {
   display: flex;
+  padding: 0 5px;
 }
 
 .public-nav {
@@ -16,17 +17,7 @@
   background-color: #33475b;
 }
 
-.public-link {display: flex;
-  flex-wrap: wrap;
-  justify-content: left;
-  margin: 5px 10px;
-  cursor: pointer;
-  color: #ffffff;
-  text-decoration: none;
-  &:hover{
-      color: #008fb4;
-  }
-}
+
 
 // .styledlink:hover {
 //   color: #008fb4;

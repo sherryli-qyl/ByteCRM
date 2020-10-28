@@ -1,1 +1,1 @@
-export { default } from './Public';
+export { default } from './Public.js';

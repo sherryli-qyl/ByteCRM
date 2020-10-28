@@ -1,46 +1,73 @@
 @import '../../../style/variable.scss';
 
-.select{
+.select {
     @extend .border;
     position: absolute;
-    display:flex;
+    display: flex;
     justify-content: center;
-    top:200%;
-    right:-70%;
     background-color: white;
     opacity: 0;
     visibility: hidden;
     transition: opacity .5s ease-out;
     z-index: 2;
     border-radius: 3px;
-    padding:10px 0px;
-    
+    padding: 10px 0px;
 
-    &__active {
+    &--below {
+        top: 40px;
+        left: -30px;
+    }
+
+    &--above{
+        top:-240px;
+        left:0px;
+    }
+
+    &--active {
         opacity: 1;
         visibility: visible;
         transition: opacity .5s ease-in;
     }
 
-    &__corner{
-        border: {
-            top:solid 1px rgba($color: $border-color, $alpha: 1.0);
-            left:solid 1px rgba($color: $border-color, $alpha: 1.0);
+    &__wrapper {
+        position: relative;
+
+        &__corner {
+
+            &--top{
+                top:-21px;
+                left:40px;
+                border: {
+                    top: solid 1px rgba($color: $border-color, $alpha: 1.0);
+                    left: solid 1px rgba($color: $border-color, $alpha: 1.0);
+                }
+            }
+
+            &--bottom{
+                top:200px;
+                left:50px;
+                border: {
+                    bottom: solid 1px rgba($color: $border-color, $alpha: 1.0);
+                    right: solid 1px rgba($color: $border-color, $alpha: 1.0);
+                }
+            }
+
+            position: absolute;
+            height:20px;
+            width:20px;
+            transform: rotate(45deg);
+            z-index: -1;
+            background-color: white;
         }
-        position: absolute;
-        top:-6%;
-        height:20px;
-        width:20px;
-        transform: rotate(45deg);
-        z-index: 1;
-        background-color: white;
-    }
 
-    &__inner{
-        display: flex;
-        flex-direction: column;
-        background-color: white;
-        z-index:2;
+        &__inner {
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+            z-index: 2;
+            max-height: 200px;
+            overflow: hidden;
+            overflow-y: scroll;
+        }
     }
-
 }

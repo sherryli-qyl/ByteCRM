@@ -49,6 +49,12 @@ $maxL: 2560px;
     cursor: pointer;
 }
 
+.spanText{
+    font-size: 14px;
+    font-weight:400;
+    color:$primary-color;
+}
+
 .disabled {
     cursor: not-allowed !important;
     color: #b0c1d4;
@@ -76,6 +82,8 @@ $maxL: 2560px;
         top: 2%;
         bottom: 1%;
     }
+
+    padding: 3% 0;
     border: {
         top: solid 1px rgb(203, 214, 226);
         bottom: solid 1px rgb(203, 214, 226);
