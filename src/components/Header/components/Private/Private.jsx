@@ -7,7 +7,8 @@ import {
   CONTACT_BASE_URL,
   LOGIN_URL,
 } from '../../../Routes/URLMap';
-import { NavLink } from 'react-router-dom';
+import HeaderNavLink from '../HeaderNavLink';
+
 
 const logout = history => {
   removeToken();
@@ -20,14 +21,14 @@ const Private = ({ history }) => {
 
   return (
     <div className="Layout">
-      <NavLink className="private-link" activeClassName="active" to={LOGIN_URL}>
+      <HeaderNavLink path={LOGIN_URL}>
         <button className="private-nav">
           <div className="private-text" onClick={() => logout(history)}>Sign Out</div>
         </button>
-      </NavLink>
-      <NavLink className="private-link" activeClassName="selected" to={CONTACT_BASE_URL}>
+      </HeaderNavLink>
+      <HeaderNavLink path={CONTACT_BASE_URL}>
         <img className="profile_nav" src={Profile} alt="profile" />
-      </NavLink>
+      </HeaderNavLink>
     </div>
   );
 };
