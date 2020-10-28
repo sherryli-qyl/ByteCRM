@@ -1,9 +1,18 @@
 import React from "react";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
+import { orange } from '@material-ui/core/colors';
 
 import TabContainer from "./components/TabContainer/TabContainer";
 import TableWrapper from "./components/TableWrapper";
+
+const theme = createMuiTheme({
+  palette: {
+    primary: orange,
+  }
+});
 
 class PageWrapper extends React.Component {
   constructor(props) {
@@ -24,11 +33,13 @@ class PageWrapper extends React.Component {
     const { activeTab } = this.state;
     return (
       <>
-        <Tabs value={activeTab} onChange={this.handleChange} key={"tabs"}>
-          {this.props.tabs.map((tab) => (
-            <Tab key={tab.id} label={tab.label} value={tab.id} />
-          ))}
-        </Tabs>
+        <ThemeProvider theme={theme}>
+          <Tabs value={activeTab} onChange={this.handleChange} key={"tabs"} indicatorColor="primary">
+            {this.props.tabs.map((tab) => (
+              <Tab key={tab.id} label={tab.label} value={tab.id} />
+            ))}
+          </Tabs>
+        </ThemeProvider>
 
         {this.props.tabs.map(
           (tab) =>
