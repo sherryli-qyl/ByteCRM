@@ -1,18 +1,18 @@
 import React from 'react';
+import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import NoteCard from './components/NoteCard';
 import CardContainer from '../../../../../Style/Card/Activity/Container';
-import { faEdit } from "@fortawesome/free-solid-svg-icons";
-
 
 function NoteCardsList(props) {
   const createCard = (card) => (
-    <NoteCard 
-      card={card} 
-      relatedTo = {props.relatedTo}
+    <NoteCard
+      card={card}
+      relatedTo={props.relatedTo}
       onChangeNote={props.onChangeNote}
-    />);
+    />
+  );
   const icon = faEdit;
-  
+
   return (
     <div>
       {props.cardsArray.map((cards) => (
@@ -20,14 +20,13 @@ function NoteCardsList(props) {
           key={cards.date}
           date={cards.date}
           content={cards.content}
-          icon={icon}  
+          icon={icon}
           createCard={createCard}
-          handleDeleteCard = {props.handleDeleteNoteCard}
+          handleDeleteCard={props.handleDeleteNoteCard}
         />
       ))}
     </div>
-  )
+  );
 }
-
 
 export default NoteCardsList;

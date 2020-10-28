@@ -1,1 +1,1 @@
-export {default} from './RemoveBtn';
+export { default } from './RemoveBtn';

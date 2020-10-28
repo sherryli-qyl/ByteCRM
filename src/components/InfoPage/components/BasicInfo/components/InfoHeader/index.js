@@ -1,1 +1,1 @@
-export {default} from './InfoHeader';
+export { default } from './InfoHeader';

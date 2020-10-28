@@ -1,1 +1,1 @@
-export {default} from './MeetingLogModalMultiSelect';
+export { default } from './MeetingLogModalMultiSelect';

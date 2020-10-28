@@ -1,1 +1,1 @@
-export {default} from './MeetingCardHeader';
+export { default } from './MeetingCardHeader';

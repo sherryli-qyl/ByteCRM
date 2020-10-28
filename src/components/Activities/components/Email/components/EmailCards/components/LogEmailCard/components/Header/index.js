@@ -1,1 +1,1 @@
-export {default} from './EmailCardHeader';
+export { default } from './EmailCardHeader';

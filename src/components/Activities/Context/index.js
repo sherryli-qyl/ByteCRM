@@ -1,1 +1,1 @@
-export {default as ActivityContext} from './Context';
+export { default as ActivityContext } from './Context';

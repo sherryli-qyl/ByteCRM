@@ -1,1 +1,1 @@
-export {default} from './CompanyHeader';
+export { default } from './CompanyHeader';

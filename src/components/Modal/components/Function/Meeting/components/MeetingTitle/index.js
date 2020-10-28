@@ -1,1 +1,1 @@
-export {default} from './MeetingTitle';
+export { default } from './MeetingTitle';

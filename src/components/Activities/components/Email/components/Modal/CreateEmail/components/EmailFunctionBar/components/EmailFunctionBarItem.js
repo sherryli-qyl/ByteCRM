@@ -1,20 +1,16 @@
 import React from 'react';
 import Text from '../../../../../../../../../Style/Text';
 
-
-
 const EmailFunctionBarItem = ({
-    children,
+  children,
 
 }) => (
-        <div className="functionBar_Item">
-            <Text className="functionBar_Item_Text"
-            // onClick={() => onItemClick()}
-            >
-                {children}
-            </Text>
-        </div>
+  <div className="functionBar_Item">
+    <Text className="functionBar_Item_Text">
+      {children}
+    </Text>
+  </div>
 
-    );
+);
 
 export default EmailFunctionBarItem;

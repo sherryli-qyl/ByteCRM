@@ -1,1 +1,1 @@
-export {default} from './EmailPageHeader';
+export { default } from './EmailPageHeader';

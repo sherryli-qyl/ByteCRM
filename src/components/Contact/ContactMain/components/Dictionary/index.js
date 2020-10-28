@@ -1,1 +1,1 @@
-export {default as ContactDictionary} from './Dictionary';
+export { default as ContactDictionary } from './Dictionary';
