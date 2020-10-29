@@ -3,9 +3,7 @@ import TaskCards from './components/TaskCards';
 import TaskPageHeader from './components/Header';
 import shuffleCards from '../../../services/shuffleCards';
 import './TaskPage.scss';
-import {
- GetTasks, GetMultiContactsTasks, UpdateTask, DeleteCreateTask, UpdateAssignedToUser, RemoveAssignedToUser,
-} from '../../../Api/Task/Task';
+import { GetTasks, GetMultiContactsTasks, UpdateTask, DeleteCreateTask, UpdateAssignedToUser, RemoveAssignedToUser} from '../../../Api/Task/Task';
 
 const assignedToUser = JSON.parse(localStorage.getItem('assignedToUser'));
 
@@ -47,6 +45,7 @@ class TaskPage extends React.Component {
 	}
 
 	onChangeTask(taskId, body) {
+		console.log("1111" + taskId)
 		UpdateTask(taskId, body);
 	}
 

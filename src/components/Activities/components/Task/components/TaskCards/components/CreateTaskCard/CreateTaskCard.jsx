@@ -14,10 +14,10 @@ class CreateTaskCard extends React.Component {
   constructor(props) {
     super(props);
     const { card } = this.props;
-    const { id } = card;
+    const { _id } = card;
     this.state = {
       card,
-      cardId: id,
+      cardId: _id,
       showDetails: false,
     };
     this.handleAddUser = this.handleAddUser.bind(this);
@@ -58,6 +58,8 @@ class CreateTaskCard extends React.Component {
 
   render() {
     const { card, showDetails } = this.state;
+
+    console.log(card)
 
     const Body = () => (
       <>
