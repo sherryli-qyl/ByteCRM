@@ -1,18 +1,11 @@
 import React from 'react';
-import "./ButtonStyle.scss";
-
-
-
+import './ButtonStyle.scss';
 
 const ContainedButton = ({
-    children,
-    className
-}) => {
-    return (
-        <button className={"containedButton--small"}>{children}</button>
-    )
-
-}
-
+  children,
+  className,
+}) => (
+  <button className="containedButton--small">{children}</button>
+);
 
 export default ContainedButton;

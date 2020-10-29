@@ -1,20 +1,11 @@
 import React from 'react';
-import "./ButtonStyle.scss";
-
-
-
-
+import './ButtonStyle.scss';
 
 const OutLinedButton = ({
-    children,
-    className
-}) => {
-    return (
-        <button className={`outlinedButton ${className}`}>{children}</button>
-    )
-
-}
-
+  children,
+  className,
+}) => (
+  <button className={`outlinedButton ${className}`}>{children}</button>
+);
 
 export default OutLinedButton;
-
