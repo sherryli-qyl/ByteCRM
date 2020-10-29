@@ -56,7 +56,8 @@
     "start": "cross-env PORT=8000 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint . --ext .jsx,.js --ignore-path .gitignore"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -75,6 +76,12 @@
   },
   "devDependencies": {
     "cross-env": "^7.0.2",
+    "eslint": "^7.12.1",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-react-hooks": "^4.2.0",
     "react-props-history": "^3.0.7",
     "react-router-dom": "^5.2.0"
   }
