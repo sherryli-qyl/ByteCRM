@@ -15,23 +15,23 @@ const publicTheme = createMuiTheme({
         justifyContent: 'flex-start',
         height: '15px',
         padding: '0px',
-      }
+      },
     },
     MuiInput: {
       root: {
 
       },
       underline: {
-        "&&&&:hover:before": {
-          borderBottom: "1px solid" + primaryColor,
+        '&&&&:hover:before': {
+          borderBottom: `1px solid${primaryColor}`,
         },
-        "&:before": {
-          borderBottom: "0",
+        '&:before': {
+          borderBottom: '0',
         },
-        "&::after": {
-          borderBottom: "0",
+        '&::after': {
+          borderBottom: '0',
         },
-        borderBottom: "0px solid" + primaryColor,
+        borderBottom: `0px solid${primaryColor}`,
       },
       input: {
         color: primaryColor,
@@ -39,7 +39,7 @@ const publicTheme = createMuiTheme({
         height: '15px',
         fontSize: '15px',
 
-      }
+      },
     },
     MuiInputAdornment: {
       root: {
@@ -47,46 +47,45 @@ const publicTheme = createMuiTheme({
       },
       positionEnd: {
         marginLeft: '0px',
-      }
+      },
     },
     MuiButtonBase: {
       root: {
         width: '15px',
         backgroundColor: 'transparent',
-      }
+      },
     },
     MuiSelect: {
-      root:{
-        display:'flex',
+      root: {
+        display: 'flex',
       },
       select: {
-        "&:focus": {
+        '&:focus': {
           backgroundColor: 'transparent',
         },
-      }
+      },
     },
-  
-  MuiIconButton: {
+
+    MuiIconButton: {
       root: {
         borderRadius: 0,
         height: '15px',
         minWidth: '15px',
         padding: '0px',
         backgroundColor: 'transparent',
-        "&:hover": {
+        '&:hover': {
           backgroundColor: 'red',
         },
       },
     },
     MuiTouchRipple: {
       root: {
-        "&:focus": {
+        '&:focus': {
           outline: 'none',
-        }
-      }
-    }
-  }
-})
-
+        },
+      },
+    },
+  },
+});
 
 export { publicTheme };

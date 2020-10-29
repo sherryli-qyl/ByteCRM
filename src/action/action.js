@@ -1,16 +1,12 @@
-const saveAction =(value)=>{
-    return {
-        type:"SAVE",
-        value,
-        reload:true
-    }
-}
+const saveAction = (value) => ({
+  type: 'SAVE',
+  value,
+  reload: true,
+});
 
-const addContactAction = (contact) =>{
-    return{
-        type: "ADD",
-        contact,
-    }
-}
+const addContactAction = (contact) => ({
+  type: 'ADD',
+  contact,
+});
 
-module.exports = {saveAction,addContactAction};
+module.exports = { saveAction, addContactAction };

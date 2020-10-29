@@ -1,1 +1,1 @@
-export {default} from './CardContainer';
+export { default } from './CardContainer';

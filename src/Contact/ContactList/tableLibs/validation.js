@@ -14,8 +14,8 @@ const testDate = (str) => {
   return reg.test(str);
 };
 
-const testEmptyString = (str) => {
-  return str !== undefined;
-};
+const testEmptyString = (str) => str !== undefined;
 
-export { testPhoneNum, testEmailAddr, testDate, testEmptyString };
+export {
+  testPhoneNum, testEmailAddr, testDate, testEmptyString,
+};
