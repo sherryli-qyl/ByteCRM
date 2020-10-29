@@ -16,7 +16,7 @@ class CreateTaskCard extends React.Component {
       userList: assignedTo,
     }
     this.handleAddUser = this.handleAddUser.bind(this);
-    this.handleDeleteUser = this.handleDeleteUser.bind(this);
+    this.handleRemoveUser = this.handleRemoveUser.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
   }
 
@@ -24,8 +24,8 @@ class CreateTaskCard extends React.Component {
     this.props.handleAddUser(userId, this.state.cardId);
   }
 
-  handleDeleteUser(userId) {
-    this.props.handleDeleteUser(userId, this.state.cardId);
+  handleRemoveUser(userId) {
+    this.props.handleRemoveUser(userId, this.state.cardId);
   }
 
   handleUpdate(value,key){
@@ -54,7 +54,7 @@ class CreateTaskCard extends React.Component {
             card={card}
             handleUpdate = {this.handleUpdate}
             handleAddUser={this.handleAddUser}
-            handleDeleteUser={this.handleDeleteUser}
+            handleRemoveUser={this.handleRemoveUser}
           />
         </div>     
           <TaskDescription

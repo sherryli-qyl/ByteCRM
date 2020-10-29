@@ -59,28 +59,14 @@ async function DeleteCreateTask(taskId) {
   }
 }
 
-async function UpdateAssignedToUser(getRelatedToId, taskId){
-	const serverUrl = `http://localhost:3000/api/tasks/${taskId}/assignedToUser/${getRelatedToId}`;
-	const response = await fetch(serverUrl, {
-			method: "PUT",
-			headers: {
-					'Content-Type': 'application/json'
-			},
-	});
-	const data = response.json();
-	return data;
+async function UpdateAssignedToUser(userId, taskId){
+    const response = api.put(`http://localhost:3000/api/tasks/${taskId}/assignedToUser/${userId}`);
+	return response;
 }
 
-async function RemoveAssignedToUser(getRelatedToId,taskId){
-	const serverUrl = `http://localhost:3000/api/tasks/${taskId}/assignedToUser/${getRelatedToId}`;
-	const response = await fetch(serverUrl, {
-			method: "DELETE",
-			headers: {
-					'Content-Type': 'application/json'
-			},
-	});
-	const data = response.json();
-	return data;
+async function RemoveAssignedToUser(userId,taskId){
+	const response = api.delete(`http://localhost:3000/api/tasks/${taskId}/assignedToUser/${userId}`);
+	return response;
 }
 
 export {GetTasks,GetMultiContactsTasks,PostTask,UpdateTask,DeleteCreateTask,UpdateAssignedToUser,RemoveAssignedToUser};

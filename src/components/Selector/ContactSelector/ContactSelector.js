@@ -223,7 +223,7 @@ class ContactSelector extends React.Component {
 
 
         if (contactList.length === 1) {
-            contacted = `${contactList[0].contact.fullName}`;
+            contacted = `${contactList[0].selects.fullName}`;
         }
         else contacted = `${contactList.length} contacts`;
 
@@ -234,8 +234,8 @@ class ContactSelector extends React.Component {
             selectList={contactList}
             searchList={searchList}
             selectHint={this.props.contactSelectHint}
-            handleRemoveContact={this.handleRemoveContact}
-            handleAddContact={this.handleAddContact} />;
+            handleRemoveSelects={this.handleRemoveContact}
+            handleAddSelects={this.handleAddContact} />;
 
         
         return (

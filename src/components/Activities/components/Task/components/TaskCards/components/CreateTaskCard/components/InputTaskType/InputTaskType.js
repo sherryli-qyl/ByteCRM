@@ -14,32 +14,22 @@ const InputTaskType = ({
   card,
   handleUpdate,
   handleAddUser,
-  handleDeleteUser,
-  userList,
+  handleRemoveUser,
 }) => (
     <div className="inputTaskType">
       <div className='inputTaskType__content'>
         <div className='inputTaskType__content__block'>
           <div className='inputTaskType__content__block__item'>
-
             <div className="cardLabel">
               Assigned to
-                </div>
-            {/* <UserTag
-                    userName={userName}
-                    userIcon={UserIcon}
-                  /> */}
-          </div>
-
-          <div className='inputTaskType__content__block__userItem'>
+            </div>
             <UserSelector
               userList={card.users}
               contactSelectHint={userSelectHint}
               handleAddUser={handleAddUser}
-              handleDeleteUser={handleDeleteUser} />
+              handleRemoveUser={handleRemoveUser} />
           </div>
         </div>
-
         <div className='inputTaskType__content__block'>
           <div className='inputTaskType__content__block__item'>
             <div className="cardLabel">

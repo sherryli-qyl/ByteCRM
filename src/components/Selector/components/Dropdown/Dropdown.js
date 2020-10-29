@@ -1,6 +1,5 @@
 import React from 'react';
 import SearchBar from '../../../SearchBar';
-import Select from '../../ContactSelector/components/Select';
 import Corner from './components/Corner';
 import './Dropdown.scss';
 

@@ -26,8 +26,8 @@ class SelectItem extends React.Component{
             contactID,
             disabled,
             checked,
-            handleRemoveContact,
-            handleAddContact,
+            handleRemoveSelects,
+            handleAddSelects,
             selectHint
         } = this.props;
 
@@ -50,7 +50,7 @@ class SelectItem extends React.Component{
                             disabled={disabled}
                             onClick={event => {
                                 event.preventDefault();
-                                handleRemoveContact(contactID);
+                                handleRemoveSelects(contactID);
                             }}>
                             <FontAwesomeIcon icon={faCheckSquare} />
                         </button>
@@ -59,7 +59,7 @@ class SelectItem extends React.Component{
                     <div className='selectSearchItem__left__square'
                         onClick={event => {
                             event.preventDefault();
-                            handleAddContact(contact);
+                            handleAddSelects(contact);
                         }} />
                 }
             </div>

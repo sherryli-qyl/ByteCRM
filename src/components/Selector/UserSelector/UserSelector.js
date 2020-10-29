@@ -79,7 +79,7 @@ class UserSelector extends React.Component {
                     searchList: newSearchList
                 })
             }
-            this.props.handleDeleteUser(id);
+            this.props.handleRemoveUser(id);
         }
     }
 
@@ -194,9 +194,11 @@ class UserSelector extends React.Component {
             assignedTo = `0 user`
         }
 
-        else if (userList.length === 1) {
-            assignedTo = `${userList[0].user.firstName} ${userList[0].user.lastName} (${userList[0].user.email})`
+        if (userList.length === 1) {
+            assignedTo = `${userList[0].selects.fullName} (${userList[0].selects.email})`;
         }
+        else assignedTo = `${userList.length} contacts`;
+
 
         const select = 
         <Select
@@ -205,8 +207,8 @@ class UserSelector extends React.Component {
             selectList={userList}
             searchList={searchList}
             selectHint={this.props.contactSelectHint}
-            handleRemoveContact={this.handleRemoveContact}
-            handleAddContact={this.handleAddContact} />;
+            handleRemoveSelects={this.handleRemoveUser}
+            handleAddSelects={this.handleAddUser} />;
         
         return (
             <div className='userSelector'>
@@ -220,13 +222,15 @@ class UserSelector extends React.Component {
                         <FontAwesomeIcon className='userSelector__label__btn__icon' icon={faCaretDown} />
                     </button>
                 </div>
-                <div className='drowpdown__wrapper' ref={this.wrapperRef}>
+                <div className="userSelector__dropdown"ref={this.wrapperRef}>
                     <Dropdown
                         textInputHint={textInputHint}
                         checkInput={checkInput}
                         userList = {userList}
                         searchList = {searchList}
                         loading={loading}
+                        select = {select}
+                        corner={"topLeft"}
                         showDropdown={showDropdown}
                         user={user}
                         textInput={textInput}

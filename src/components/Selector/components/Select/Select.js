@@ -4,7 +4,7 @@ import { CheckOneSelects } from '../../../../lib/Search';
 import './Select.scss';
 
 
-const UserSelect = (props) => {
+const Select = (props) => {
     const { selectList, searchList, label, checkOneContact } = props;
 
     let currentList = []
@@ -37,8 +37,8 @@ const UserSelect = (props) => {
                             checked={item.checked}
                             disabled={disabled}
                             selectHint={props.selectHint}
-                            handleRemoveContact={props.handleRemoveContact}
-                            handleAddContact={props.handleAddContact}>
+                            handleRemoveSelects={props.handleRemoveSelects}
+                            handleAddSelects={props.handleAddSelects}>
                         </SelectItem>
                     )
                 })
@@ -47,4 +47,4 @@ const UserSelect = (props) => {
     )
 }
 
-export default UserSelect;
+export default Select;

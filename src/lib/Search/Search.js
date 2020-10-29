@@ -36,7 +36,7 @@ function SearchSelectsRemote(searchList,textInput,selectsList){
 function ItemSelected(selectList,id,checked){
     let newList = selectList;
     for (let i in newList){
-        if(newList[i].contact.id === id){
+        if(newList[i].selects.id === id){
             newList[i].checked = checked
         }
     }
@@ -49,13 +49,13 @@ function CheckOneSelects(selectsList,searchList){
     for (let i in searchList){
         if(searchList[i].checked === true ){
             checkedCounter +=1;
-            contactId = searchList[i].contact.id
+            contactId = searchList[i].selects.id
         }
     }
     if(checkedCounter === 1 && selectsList.length > 1){
         return false
     }
-    else if(checkedCounter === 1 && selectsList[0].contact.id === contactId){
+    else if(checkedCounter === 1 && selectsList[0].selects.id === contactId){
         return contactId;
     }
     else{
@@ -66,7 +66,7 @@ function CheckOneSelects(selectsList,searchList){
 function checkDuplicate(selectsList,contact){
     let duplicate = false;
     for (let i in selectsList){
-        if(selectsList[i].contact._id === contact._id){
+        if(selectsList[i].selects._id === contact._id){
             duplicate = true;
             return duplicate
         }
