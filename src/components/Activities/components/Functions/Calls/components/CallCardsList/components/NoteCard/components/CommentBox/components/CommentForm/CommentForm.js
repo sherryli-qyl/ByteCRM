@@ -9,9 +9,9 @@ class CommentForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    let author = 'Joe Doe';
-    let content = this.content;
-    let timestamp = new Date().toString().slice(0, 33);
+    const author = 'Joe Doe';
+    const { content } = this;
+    const timestamp = new Date().toString().slice(0, 33);
     this.props.addComment(author, content.value, timestamp);
     this.content.value = '';
     this.setState({ content: '' });
@@ -28,7 +28,7 @@ class CommentForm extends React.Component {
           placeholder="Start typing comment..."
           required
           ref={(textarea) => (this.content = textarea)}
-        ></textarea>
+        />
 
         <div className="comment-form-controls">
           <button type="submit" className="comment-form-controls__save">

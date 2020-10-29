@@ -7,5 +7,4 @@ const OutLinedButton = ({
 }) => (
   <button className={`outlinedButton ${className}`}>{children}</button>
 );
-
 export default OutLinedButton;

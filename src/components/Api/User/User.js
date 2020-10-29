@@ -1,3 +1,5 @@
+import api from '../../../lib/api';
+
 async function GetAllUsers() {
   let url = new URL('http://localhost:3000/api/users');
   const response = await fetch(url, {
@@ -10,4 +12,12 @@ async function GetAllUsers() {
   return data;
 }
 
-export { GetAllUsers };
+async function SearchUser(id, keyword) {
+  const response = await api.get(`/api/users/search/${id}/${keyword}`);
+  if (response.statusText === 'OK') {
+    return response;
+  }
+  return false;
+}
+
+export { GetAllUsers, SearchUser };

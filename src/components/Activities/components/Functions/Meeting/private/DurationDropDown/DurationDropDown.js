@@ -1,12 +1,10 @@
 import React from 'react';
 import Dropdown from '../../../../../../Dropdown';
 
-
-
 class DurationDropDown extends React.Component {
     constructor(props) {
         super(props);
-        const {defaultValue} = this.props;
+        const { defaultValue } = this.props;
         let currentValue = '';
         defaultValue ? currentValue = defaultValue : currentValue = false;
 
@@ -19,31 +17,30 @@ class DurationDropDown extends React.Component {
             { value: '3.5 hours', key: 5 },
             { value: '4 hours', key: 6 },
             { value: '4.5 hours', key: 7 },
-            { value: '5 hours', key: 8 }]
+            { value: '5 hours', key: 8 }];
         this.state = {
             selectItems,
             currentValue,
-        }
+        };
         this.onChangeValue = this.onChangeValue.bind(this);
     }
 
     onChangeValue(duration) {
         this.setState({
-            currentValue: duration
-        })
-        this.props.onDurationChange(duration)
-
+            currentValue: duration,
+        });
+        this.props.onDurationChange(duration);
     }
 
     render() {
         const { selectItems, currentValue } = this.state;
         return (
-            <Dropdown
-                value={currentValue}
-                onChangeValue = {this.onChangeValue}
-                selectItems={selectItems}
-            />
-        )
+          <Dropdown
+            value={currentValue}
+            onChangeValue={this.onChangeValue}
+            selectItems={selectItems}
+          />
+        );
     }
 }
 

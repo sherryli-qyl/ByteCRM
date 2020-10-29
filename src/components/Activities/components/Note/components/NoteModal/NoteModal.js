@@ -4,10 +4,8 @@ import './components/NoteInput';
 import NoteSaveBar from './components/NoteSaveBar';
 import NoteInput from './components/NoteInput/NoteInput';
 import store from '../../../../../../store';
-import {saveAction} from '../../../../../../action';
+import { saveAction } from '../../../../../../action';
 import { AddNote } from '../../../../../Api/Note/Note';
-
-
 
 class NoteModal extends React.Component {
   constructor(props) {
@@ -21,7 +19,7 @@ class NoteModal extends React.Component {
       content: '',
       relatedTo,
       btnDisable: true,
-    }
+    };
     this.handleEditorChange = this.handleEditorChange.bind(this);
     this.handleClickSaveBtn = this.handleClickSaveBtn.bind(this);
   }
@@ -29,53 +27,49 @@ class NoteModal extends React.Component {
   handleEditorChange(content) {
     if (this.checkValidation(content)) {
       this.setState({
-        content: content,
-        btnDisable: false
-      })
-    }
-    else{
+        content,
+        btnDisable: false,
+      });
+    } else {
       this.setState({
-        content: content,
+        content,
         btnDisable: true,
-      })
+      });
     }
   }
 
-  checkValidation(text){
-    const checkInput = text.replaceAll(" ","").replaceAll('<br>', '').replaceAll('<p></p>','');
-    if (checkInput!== ''){
-      return true
-    } else {
-      return false; 
+  checkValidation(text) {
+    const checkInput = text.replaceAll(' ', '').replaceAll('<br>', '').replaceAll('<p></p>', '');
+    if (checkInput !== '') {
+      return true;
     }
-  } 
+      return false;
+  }
 
-  handleClickSaveBtn(){
+  handleClickSaveBtn() {
     const { content, user, relatedTo } = this.state;
-      if (this.checkValidation(content)){
+      if (this.checkValidation(content)) {
         const body = {
-          content: content,
+          content,
           createdBy: user.id,
-          type:'Note',
+          type: 'Note',
           isDeleted: false,
-          relatedTo: relatedTo,
-        }
+          relatedTo,
+        };
         const res = AddNote(body);
-        res.then(value => {
-          if(this.props.modalController){
+        res.then((value) => {
+          if (this.props.modalController) {
             const action = saveAction(value);
             store.dispatch(action);
             this.props.modalController.close();
           } else {
-              console.log("Unexpected Error");
+              console.log('Unexpected Error');
           }
-          
-        })
+        });
       } else {
-          return;
+
       }
   }
-  
 
   render() {
     const { btnDisable, user, relatedTo } = this.state;
@@ -83,7 +77,7 @@ class NoteModal extends React.Component {
     return (
       <section id="NoteModal" className="NoteModal">
         <div className="note-input">
-          <NoteInput 
+          <NoteInput
             placeholder="Start typing to leave a note..."
             handleEditorChange={this.handleEditorChange}
             createdBy={user}
@@ -91,12 +85,13 @@ class NoteModal extends React.Component {
           />
         </div>
         <div className="note-container-footer">
-          <NoteSaveBar 
-            onClick={this.handleClickSaveBtn} 
-            btnDisable = {btnDisable} />
+          <NoteSaveBar
+            onClick={this.handleClickSaveBtn}
+            btnDisable={btnDisable}
+          />
         </div>
       </section>
-    )
+    );
   }
 }
 

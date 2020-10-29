@@ -7,5 +7,4 @@ const ContainedButton = ({
 }) => (
   <button className="containedButton--small">{children}</button>
 );
-
 export default ContainedButton;

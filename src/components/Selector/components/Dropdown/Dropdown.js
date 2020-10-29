@@ -1,9 +1,7 @@
 import React from 'react';
 import SearchBar from '../../../SearchBar';
-import Select from '../../ContactSelector/components/Select';
 import Corner from './components/Corner';
 import './Dropdown.scss';
-
 
 const Dropdown = ({
     showDropdown,
@@ -18,34 +16,32 @@ const Dropdown = ({
     handleInputChange,
     handleCleanInput,
 }) => {
-
-    let className = "selectorDropdown "
+    let className = 'selectorDropdown ';
     if (showDropdown) {
-        className += "selectorDropdown__active"
+        className += 'selectorDropdown__active';
     }
     return (
-        <div className={className}>
-            <Corner variant ={corner}/>
-            <div className='selectorDropdown__inner'>
-                <div className='selectorDropdown__inner__wrapper'>
-                    <SearchBar textInput={textInput}
-                               placeholder = {placeholder}
-                               enableCleanBtn={enableCleanBtn}
-                               handleInputChange={handleInputChange}
-                               handleCleanInput={handleCleanInput}
-                               loading = {loading}
-                               checkInput = {checkInput}
-                               textInputHint = {textInputHint} />
-                </div>
-                {!checkInput ?
-                   select
-                    :
-                  ""
-                }
-            </div>
+      <div className={className}>
+        <Corner variant={corner} />
+        <div className="selectorDropdown__inner">
+          <div className="selectorDropdown__inner__wrapper">
+            <SearchBar
+              textInput={textInput}
+              placeholder={placeholder}
+              enableCleanBtn={enableCleanBtn}
+              handleInputChange={handleInputChange}
+              handleCleanInput={handleCleanInput}
+              loading={loading}
+              checkInput={checkInput}
+              textInputHint={textInputHint}
+            />
+          </div>
+          {!checkInput
+                   ? select
+                    : ''}
         </div>
-    )
-}
-
+      </div>
+    );
+};
 
 export default Dropdown;

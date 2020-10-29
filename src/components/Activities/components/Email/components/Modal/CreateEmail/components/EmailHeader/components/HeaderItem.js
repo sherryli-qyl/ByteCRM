@@ -1,37 +1,33 @@
 import React from 'react';
-import "./HeaderItem.scss";
-
-
+import './HeaderItem.scss';
 
 const HeaderItems = ({
     children,
     borderBottom,
     value,
-    extraClassName
+    extraClassName,
 }) => {
-    let className = "emailHeader__main__item ";
+    let className = 'emailHeader__main__item ';
 
-    if(extraClassName !== undefined){
+    if (extraClassName !== undefined) {
         className += extraClassName;
     }
 
     if (borderBottom) {
-        className += " border-bottom";
+        className += ' border-bottom';
     }
 
     return (
-        <div className={className}>
-            <div className={"title"}>
-                <span className="title__name">{value}</span>
-            </div>
-            <div className="emailHeader__main__item__right ">
-                {children}
-            </div>
-
+      <div className={className}>
+        <div className="title">
+          <span className="title__name">{value}</span>
         </div>
-    )
-}
+        <div className="emailHeader__main__item__right ">
+          {children}
+        </div>
 
-
+      </div>
+    );
+};
 
 export default HeaderItems;

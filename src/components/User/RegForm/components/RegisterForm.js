@@ -1,14 +1,16 @@
 import React from 'react';
-import GoogleIcon from '../../../../img/logsys/googleIcon.svg';
 import { Link, withRouter } from 'react-router-dom';
 import axios from 'axios';
-//import history from '../../../Routes/components/History';
+import GoogleIcon from '../../../../img/logsys/googleIcon.svg';
+// import history from '../../../Routes/components/History';
 
 class RegisterForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      newUser: { firstname: '', lastname: '', email: '', password: '' },
+      newUser: {
+ firstname: '', lastname: '', email: '', password: '',
+},
       firstnameErrMsg: '',
       lastnameErrMsg: '',
       emailErrMsg: '',
@@ -22,7 +24,7 @@ class RegisterForm extends React.Component {
   }
 
   handleOnFirstnameChange(e) {
-    let value = e.target.value;
+    const { value } = e.target;
     this.setState(
       (prevState) => ({
         newUser: {
@@ -30,12 +32,12 @@ class RegisterForm extends React.Component {
           firstname: value,
         },
       }),
-      () => console.log(this.state.newUser)
+      () => console.log(this.state.newUser),
     );
   }
 
   handleOnLastnameChange(e) {
-    let value = e.target.value;
+    const { value } = e.target;
     this.setState(
       (prevState) => ({
         newUser: {
@@ -43,12 +45,12 @@ class RegisterForm extends React.Component {
           lastname: value,
         },
       }),
-      () => console.log(this.state.newUser)
+      () => console.log(this.state.newUser),
     );
   }
 
   handleOnEmailChange(e) {
-    let value = e.target.value;
+    const { value } = e.target;
     this.setState(
       (prevState) => ({
         newUser: {
@@ -56,12 +58,12 @@ class RegisterForm extends React.Component {
           email: value,
         },
       }),
-      () => console.log(this.state.newUser)
+      () => console.log(this.state.newUser),
     );
   }
 
   handleOnPasswordChange(e) {
-    let value = e.target.value;
+    const { value } = e.target;
     this.setState(
       (prevState) => ({
         newUser: {
@@ -69,7 +71,7 @@ class RegisterForm extends React.Component {
           password: value,
         },
       }),
-      () => console.log(this.state.newUser)
+      () => console.log(this.state.newUser),
     );
   }
 
@@ -90,8 +92,8 @@ class RegisterForm extends React.Component {
     if (!this.state.newUser.email) {
       emailErrMsg = 'Email cannot be blank..';
     } else if (typeof this.state.newUser.email !== 'undefined') {
-      let emailPattern = new RegExp(
-        /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i
+      const emailPattern = new RegExp(
+        /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i,
       );
 
       if (!emailPattern.test(this.state.newUser.email)) {
@@ -102,13 +104,12 @@ class RegisterForm extends React.Component {
     if (!this.state.newUser.password) {
       passwordErrMsg = 'Password cannot be blank.';
     } else if (typeof this.state.newUser.password !== 'undefined') {
-      let passwordPattern = new RegExp(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/i
+      const passwordPattern = new RegExp(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/i,
       );
 
       if (!passwordPattern.test(this.state.newUser.password)) {
-        passwordErrMsg =
-          'Minimum eight characters, at least one uppercase letter, one lowercase letter and one number';
+        passwordErrMsg = 'Minimum eight characters, at least one uppercase letter, one lowercase letter and one number';
       }
     }
 
@@ -185,7 +186,11 @@ class RegisterForm extends React.Component {
             name="firstname"
             value={this.state.newUser.firstname}
           />
-          <span className="reg-errMsg"> {this.state.firstnameErrMsg} </span>
+          <span className="reg-errMsg">
+            {' '}
+            {this.state.firstnameErrMsg}
+            {' '}
+          </span>
           <br />
           <label className="reg-inputLabel" htmlFor="lastname">
             Last Name
@@ -199,7 +204,11 @@ class RegisterForm extends React.Component {
             name="lastname"
             value={this.state.newUser.lastname}
           />
-          <span className="reg-errMsg"> {this.state.lastnameErrMsg} </span>
+          <span className="reg-errMsg">
+            {' '}
+            {this.state.lastnameErrMsg}
+            {' '}
+          </span>
           <br />
           <label className="reg-inputLabel" htmlFor="email">
             Email address
@@ -213,7 +222,11 @@ class RegisterForm extends React.Component {
             name="email"
             value={this.state.newUser.email}
           />
-          <span className="reg-errMsg"> {this.state.emailErrMsg} </span>
+          <span className="reg-errMsg">
+            {' '}
+            {this.state.emailErrMsg}
+            {' '}
+          </span>
           <br />
           <label className="reg-inputLabel" htmlFor="password">
             Password

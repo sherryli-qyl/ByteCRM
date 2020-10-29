@@ -24,5 +24,4 @@ const ControlBar = ({
     </div>
   </div>
 );
-
 export default ControlBar;

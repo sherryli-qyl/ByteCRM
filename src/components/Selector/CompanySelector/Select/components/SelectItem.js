@@ -1,7 +1,6 @@
 import React from 'react';
 import './SelectItem.scss';
 
-
 class SelectItem extends React.Component {
     constructor(props) {
         super(props);
@@ -18,27 +17,26 @@ class SelectItem extends React.Component {
             onChangeSelectItem,
             index,
         } = this.props;
-        
-        let className = 'companySelectItem '
-        if(selected){
-            className += 'companySelectItem--selected'
+
+        let className = 'companySelectItem ';
+        if (selected) {
+            className += 'companySelectItem--selected';
         }
 
         return (
-            <div className={className} onMouseEnter = {()=>onChangeSelectItem(index)}>
-                <button className='companySelectItem__btn'
-                    onClick={event => {
+          <div className={className} onMouseEnter={() => onChangeSelectItem(index)}>
+            <button
+              className="companySelectItem__btn"
+              onClick={(event) => {
                         event.preventDefault();
                         handleAddCompany(company);
-                    }}>
-                    {`${company.name} (${company.companyDomain})`}
-                </button>
-            </div>
-        )
+                    }}
+            >
+              {`${company.name} (${company.companyDomain})`}
+            </button>
+          </div>
+        );
     }
-
 }
 
 export default SelectItem;
-
-

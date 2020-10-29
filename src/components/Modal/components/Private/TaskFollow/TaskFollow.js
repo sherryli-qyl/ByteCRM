@@ -3,7 +3,6 @@ import TaskFollowCheckbox from './components/TaskFollowCheckbox';
 import TaskFollowDropdown from './components/TaskFollowDropdown';
 import './TaskFollow.scss';
 
-
 class Taskfollow extends React.Component {
     constructor(props) {
         super(props);
@@ -16,7 +15,7 @@ class Taskfollow extends React.Component {
     }
 
     handlecheckbox(e) {
-        let newState = !this.state.checked
+        const newState = !this.state.checked;
         this.setState({
             checked: newState,
         });
@@ -25,26 +24,26 @@ class Taskfollow extends React.Component {
     render() {
         const { checked } = this.state;
         return (
-            <div className='taskFollow'>
-                <div className='taskFollow__checkbox'>
-                    <TaskFollowCheckbox
-                        checked={this.checked}
-                        onChange={this.handlecheckbox}
-                    />
+          <div className="taskFollow">
+            <div className="taskFollow__checkbox">
+              <TaskFollowCheckbox
+                checked={this.checked}
+                onChange={this.handlecheckbox}
+              />
 
-                    <div className='taskFollow__checkbox__text'>
-                        <span>Create a task to follow up</span>
-                    </div>
-                </div>
-                {checked ?
-                    <div className='taskFollow__select'>
+              <div className="taskFollow__checkbox__text">
+                <span>Create a task to follow up</span>
+              </div>
+            </div>
+            {checked
+                    ? (
+                      <div className="taskFollow__select">
                         <TaskFollowDropdown theme={this.state.theme} />
-                    </div >
-                    :
-                    ""
-                }
-            </div >
-        )
+                      </div>
+)
+                    : ''}
+          </div>
+        );
     }
 }
 

@@ -1,14 +1,18 @@
 import React from 'react';
-import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ReactTooltip from 'react-tooltip';
-import "./CompanyDetail.scss";
+import './CompanyDetail.scss';
 // import { info } from 'node-sass';
 
 const CompanyDetail = (props) => (
   <div>
     <div className="labelwithinfo">
-      <div className="label"> {props.label} </div>
+      <div className="label">
+        {' '}
+        {props.label}
+        {' '}
+      </div>
       <div className="info" data-tip data-for="infoTip">
         <FontAwesomeIcon icon={faInfoCircle} />
       </div>
@@ -16,7 +20,11 @@ const CompanyDetail = (props) => (
         Property was filled from the ByteCRM database.
       </ReactTooltip>
     </div>
-    <div className="input"> {props.input} </div>
+    <div className="input">
+      {' '}
+      {props.input}
+      {' '}
+    </div>
   </div>
 );
 

@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
+import { ThemeProvider } from '@material-ui/core/styles';
 import Modal from '../../Modal';
 import InfoPage from '../../InfoPage';
 import Activities from '../../Activities';
 import SideBar from '../../SideBar';
 import Loading from '../../Loading';
 import store from '../../../store';
-import {addContactAction} from '../../../action';
+import { addContactAction } from '../../../action';
 import AssociatedCompany from './components/AssociatedCompany';
-import { ThemeProvider } from '@material-ui/core/styles';
 import { ModalContext } from '../../Modal/components/ModalContext';
 import { InfoContext } from '../../InfoPage/components/Context';
 import { publicTheme } from '../../Style/Theme/MatUITheme';
@@ -16,12 +16,10 @@ import { GetContact, UpdateContact } from '../../Api/Contact/Contact';
 import WebActivity from './components/WebActivity';
 import './ContactMain.scss';
 
-
 class ContactMain extends Component {
-
     constructor(props) {
         super(props);
-        const expandPack = [{ key: 'About this Contact', content: "" }, { key: 'Website Activity', content: (<WebActivity />) }]
+        const expandPack = [{ key: 'About this Contact', content: '' }, { key: 'Website Activity', content: (<WebActivity />) }];
         const user = JSON.parse(localStorage.getItem('user'));
         this.state = {
             Xaxis: 300,
@@ -29,11 +27,11 @@ class ContactMain extends Component {
             visible: false,
             contact: '',
             user,
-            expandPack: expandPack,
-            currentModal: "",
+            expandPack,
+            currentModal: '',
             loading: true,
             theme: publicTheme,
-        }
+        };
         this.closeModal = this.closeModal.bind(this);
         this.openModal = this.openModal.bind(this);
         this.onChangeSingleInfo = this.onChangeSingleInfo.bind(this);
@@ -45,8 +43,7 @@ class ContactMain extends Component {
             this.setState({
                 visible: true,
             });
-        }
-        else {
+        } else {
             this.setState({
                 visible: true,
                 currentModal: selectedModal,
@@ -62,31 +59,29 @@ class ContactMain extends Component {
     }
 
     onChangeSingleInfo(key, value) {
-        let newContact = this.state.contact;
+        const newContact = this.state.contact;
         newContact[key] = value;
         if (key && value) {
             this.setState({
-                contact: newContact
-            })
+                contact: newContact,
+            });
         }
-        UpdateContact(this.state.contact.id, newContact)
+        UpdateContact(this.state.contact.id, newContact);
     }
 
     onChangeMultiInfo(data) {
-        let newContact = data;
+        const newContact = data;
         this.setState({
-            contact: newContact
-        })
-        UpdateContact(this.state.contact.id, newContact)
+            contact: newContact,
+        });
+        UpdateContact(this.state.contact.id, newContact);
         console.table(newContact);
     }
 
-
-
-    componentDidMount() { 
+    componentDidMount() {
         const selectedContactId = sessionStorage.getItem('id');
         const contact = GetContact(selectedContactId);
-        contact.then(value =>{
+        contact.then((value) => {
             this.setState({
                 contact: value,
                 loading: false,
@@ -95,59 +90,61 @@ class ContactMain extends Component {
             store.dispatch(action);
             sessionStorage.setItem('contact', JSON.stringify(value));
         })
-        .catch(error =>{
+        .catch((error) => {
             console.log(error.message);
-            alert("Please Check your Internet");
-        })
+            alert('Please Check your Internet');
+        });
     }
 
-
-
     render() {
-        const { visible, currentModal, contact, theme, expandPack, loading} = this.state;
+        const {
+ visible, currentModal, contact, theme, expandPack, loading,
+} = this.state;
         const infoData = { key: 'contact', data: contact, dictionary: ContactDictionary };
         const onChangeInfoHandlers = { single: this.onChangeSingleInfo, multi: this.onChangeMultiInfo };
         const sideBarItems = [
-            {key:"Company",component: <AssociatedCompany contact = {contact} company = {contact.company}/>}
-        ]
-        const modalController = {open: this.openModal,close:this.closeModal,contact: contact}
-        
+            { key: 'Company', component: <AssociatedCompany contact={contact} company={contact.company} /> },
+        ];
+        const modalController = { open: this.openModal, close: this.closeModal, contact };
+
         return (
-            <div>
-                <ModalContext.Provider value={modalController}>
-                    <ThemeProvider theme={theme}>
-                        {loading ?
-                            <Loading variant="full page" />
-                            :
-                            <div className="Main">
+          <div>
+            <ModalContext.Provider value={modalController}>
+              <ThemeProvider theme={theme}>
+                {loading
+                            ? <Loading variant="full page" />
+                            : (
+                              <div className="Main">
                                 <InfoContext.Provider value={onChangeInfoHandlers}>
-                                    <InfoPage 
-                                        openModal={this.openModal}
-                                        infoData={infoData}
-                                        expandPack={expandPack}
-                                    />
-                                </InfoContext.Provider>   
-                                    <Activities 
-                                      contact = {contact}
-                                      relatedTo = {contact.id}
-                                    />
-                                    <SideBar sideBarItems = {sideBarItems} />
-                                    {currentModal?
-                                        <Modal Xaxis={this.state.Xaxis}
-                                        Yaxis={this.state.Yaxis}
-                                        modalController={modalController}
-                                        visible={visible}
-                                        currentModal={currentModal}
-                                        closeModal={this.closeModal} />
-                                        :
-                                        ""
-                                    }    
-                            </div>
-                        }
-                    </ThemeProvider>
-                </ModalContext.Provider>
-            </div>
-        )
+                                  <InfoPage
+                                    openModal={this.openModal}
+                                    infoData={infoData}
+                                    expandPack={expandPack}
+                                  />
+                                </InfoContext.Provider>
+                                <Activities
+                                  contact={contact}
+                                  relatedTo={contact.id}
+                                />
+                                <SideBar sideBarItems={sideBarItems} />
+                                {currentModal
+                                      ? (
+                                        <Modal
+                                          Xaxis={this.state.Xaxis}
+                                          Yaxis={this.state.Yaxis}
+                                          modalController={modalController}
+                                          visible={visible}
+                                          currentModal={currentModal}
+                                          closeModal={this.closeModal}
+                                        />
+)
+                                        : ''}
+                              </div>
+)}
+              </ThemeProvider>
+            </ModalContext.Provider>
+          </div>
+        );
     }
 }
 

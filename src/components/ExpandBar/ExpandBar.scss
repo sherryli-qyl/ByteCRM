@@ -44,7 +44,7 @@
             }
 
             &__icon {
-                width: 25px;
+                font-size:16px;
             }
 
             &__text {
@@ -121,15 +121,3 @@
     }
 }
 
-.angleIcon {
-    color: rgb(0, 164, 189);
-    margin-right: 5%;
-    height: 15px;
-    width: 10px;
-    transition: all 150ms ease-in-out 0s;
-
-    &__rotate {
-        transition: all 150ms ease-in-out 0s;
-        transform: rotate(90deg);
-    }
-}

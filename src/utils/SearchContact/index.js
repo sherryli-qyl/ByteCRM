@@ -1,1 +1,3 @@
-export { default } from './SearchContact';
+export {
+ FormatList, SearchSelectsLocal, SearchSelectsRemote, ItemSelected, CheckOneSelects,
+} from './Search';

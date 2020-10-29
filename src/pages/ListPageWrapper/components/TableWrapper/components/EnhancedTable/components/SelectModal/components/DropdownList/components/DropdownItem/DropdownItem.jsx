@@ -1,13 +1,13 @@
-import React from "react";
-import "./DropdownItem.scss";
+import React from 'react';
+import './DropdownItem.scss';
 
 function DropdownItem(props) {
   let id = 0;
   function displayElements() {
     return (
       <div className={`${props.className}-show-options`}>
-        {props.items &&
-        props.items.map((value, key) => (
+        {props.items
+        && props.items.map((value, key) => (
           <div
             className="data-row"
             key={id++}
@@ -28,6 +28,6 @@ function DropdownItem(props) {
       {displayElements()}
     </>
   );
-};
+}
 
 export default DropdownItem;

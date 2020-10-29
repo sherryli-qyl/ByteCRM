@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import LogCallButton from '../../../../../../Style/Button/Activities/LogButton';
-import LogCallModal from '../../../../../../Activities/components/Note/components/NoteModal';
+import LogCallModal from '../../../../Note/components/NoteModal';
 import Modal from '../../../../../../../js/Modal';
 import { ModalContext } from '../../../../../../Modal/components/ModalContext';
 import CreateButton from '../../../../../../Style/Button/Activities/CreateButton';

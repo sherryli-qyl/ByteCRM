@@ -8,7 +8,12 @@ const CreatedBy = (props) => (
     <div className="createdby-user-icon">
       <FontAwesomeIcon icon={faUserCircle} />
     </div>
-    <span className="createdby-info"> {props.author} logged a call</span>
+    <span className="createdby-info">
+      {' '}
+      {props.author}
+      {' '}
+      logged a call
+    </span>
   </div>
 );
 

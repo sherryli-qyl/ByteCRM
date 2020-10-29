@@ -2,7 +2,6 @@ import React from 'react';
 import ActivityItem from './components/ActivityItem';
 import './ActivityBar.scss';
 
-
 const ActivityBar = ({
     navItems,
     onNavItemClick,
@@ -10,12 +9,12 @@ const ActivityBar = ({
   }) => (
     <nav className="activity__Bar">
       {navItems.map((item) => (
-        <ActivityItem 
-          key = {item.key}
-          name ={item.value}
+        <ActivityItem
+          key={item.key}
+          name={item.value}
           src={item.src}
-          active={currentModal === item.key} 
-           onClick={() => onNavItemClick(item)}
+          active={currentModal === item.key}
+          onClick={() => onNavItemClick(item)}
         >
           {item.value}
         </ActivityItem>

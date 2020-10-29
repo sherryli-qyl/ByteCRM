@@ -1,1 +1,1 @@
-export {default as CompanyContext} from './Context';
+export { default as CompanyContext } from './Context';

@@ -1,22 +1,20 @@
 import React from 'react';
-import "./EmailFunctionBar.scss"
-import EmailFunctionBarItem from './components/EmailFunctionBarItem'
-
-
+import './EmailFunctionBar.scss';
+import EmailFunctionBarItem from './components/EmailFunctionBarItem';
 
 const EmailFunctionBar = ({
     items,
     onItemClick,
 }) => (
-        <nav className="emailFunctionBar border-bottom">
-            {items.map((item) => (
-                <EmailFunctionBarItem
-                    key={item.key}
-                >
-                    {item.value}
-                </EmailFunctionBarItem>
+  <nav className="emailFunctionBar border-bottom">
+    {items.map((item) => (
+      <EmailFunctionBarItem
+        key={item.key}
+      >
+        {item.value}
+      </EmailFunctionBarItem>
             ))}
-        </nav>
+  </nav>
     );
 
 export default EmailFunctionBar;

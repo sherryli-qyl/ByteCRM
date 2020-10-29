@@ -4,8 +4,6 @@ import Dropdown from '../../../../../../../../../Style/Dropdown';
 import { addWeekDay } from '../../../../../../../../../services/DateManager';
 import DueDateTheme from './theme';
 
-
-
 class TaskSelect extends React.Component {
     constructor(props) {
         super(props);
@@ -21,7 +19,7 @@ class TaskSelect extends React.Component {
         const theme = DueDateTheme;
         this.state = {
             timeValue: 3,
-            selectItems: selectItems,
+            selectItems,
             theme,
         };
         this.handleSelectChange = this.handleSelectChange.bind(this);
@@ -40,14 +38,15 @@ class TaskSelect extends React.Component {
     render() {
         const { selectItems, theme } = this.state;
         return (
-            <div>
-                <ThemeProvider theme={theme}>
-                    <Dropdown dropdownItems={selectItems}
-                        transfer={true}
-                        transferKey={addWeekDay}
-                    />
-                </ThemeProvider>
-            </div>
+          <div>
+            <ThemeProvider theme={theme}>
+              <Dropdown
+                dropdownItems={selectItems}
+                transfer
+                transferKey={addWeekDay}
+              />
+            </ThemeProvider>
+          </div>
         );
     }
 }

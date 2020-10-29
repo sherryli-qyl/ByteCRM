@@ -1,91 +1,91 @@
-import React, { Component } from "react";
-import "./SelectModal.scss";
-import DropdownList from "./components/DropdownList";
-import StringInput from "./components/StringInput";
-import processDate from "../../../../../../../../lib/tableLibs/processDate";
-import generateArray from "../../../../../../../../lib/tableLibs/generateArray";
+import React, { Component } from 'react';
+import './SelectModal.scss';
+import DropdownList from './components/DropdownList';
+import StringInput from './components/StringInput';
+import processDate from '../../../../../../../../lib/tableLibs/processDate';
+import generateArray from '../../../../../../../../lib/tableLibs/generateArray';
 import {
   testPhoneNum,
   testEmailAddr,
   testEmptyString,
   testDate,
-} from "../../../../../../../../lib/tableLibs/validation";
+} from '../../../../../../../../lib/tableLibs/validation';
 
 /* ======================Define all Options for Dropdown======================================= */
 const CONTACT_FIELDS = [
-  "",
-  "Name",
-  "Email",
-  "Phone number",
+  '',
+  'Name',
+  'Email',
+  'Phone number',
   // "Contact owner",
   // "Associated company",
-  "Last activity date",
-  "Lead status",
+  'Last activity date',
+  'Lead status',
   // "Create date",
 ];
 
 const COMPANY_FIELDS = [
-  "",
-  "Name",
-  "Phone number",
+  '',
+  'Name',
+  'Phone number',
   // "Company owner",
   // "Associated contacts",
-  "Last logged call date",
-  "City",
-  "Country",
-  "Industry",
+  'Last logged call date',
+  'City',
+  'Country',
+  'Industry',
 ];
 
 const FIELD_TO_KEY = {
-  "Name": "name",
-  "Email": "email",
-  "Phone number": "phoneNo",
+  Name: 'name',
+  Email: 'email',
+  'Phone number': 'phoneNo',
   // "Contact owner": "contactOwner",
   // "Associated company": "company",
-  "Last activity date": "lastActivityDate",
-  "Lead status": "leadStatus",
+  'Last activity date': 'lastActivityDate',
+  'Lead status': 'leadStatus',
   // "Create date": "createDate",
-  "Last logged call date": "lastLoggedCallDate",
-  "Phone number": "phoneNumber",
-  "City" : "city",
-  "Country": "country",
-  "Industry": "industry"
+  'Last logged call date': 'lastLoggedCallDate',
+  'Phone number': 'phoneNumber',
+  City: 'city',
+  Country: 'country',
+  Industry: 'industry',
 };
 
 const VALIDATE_FUNC = {
-  "Last activity date": testDate,
-  "Phone number": testPhoneNum,
+  'Last activity date': testDate,
+  'Phone number': testPhoneNum,
   Email: testEmailAddr,
 };
 
 const LEAD_STATUS = [
-  "",
-  "New",
-  "Open",
-  "In progress",
-  "Open deal",
-  "Unqualified",
-  "Attempted to contact",
-  "Connected",
-  "Bad timing",
+  '',
+  'New',
+  'Open',
+  'In progress',
+  'Open deal',
+  'Unqualified',
+  'Attempted to contact',
+  'Connected',
+  'Bad timing',
 ];
 
-const DAYS = [""].concat(generateArray(1, 31));
-const YEARS = [""].concat(generateArray(1900, 2020));
+const DAYS = [''].concat(generateArray(1, 31));
+const YEARS = [''].concat(generateArray(1900, 2020));
 const MONTHS = [
-  "",
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec",
+  '',
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
+  'May',
+  'Jun',
+  'Jul',
+  'Aug',
+  'Sep',
+  'Oct',
+  'Nov',
+  'Dec',
 ];
 
 class SelectModal extends Component {
@@ -94,12 +94,12 @@ class SelectModal extends Component {
     this.state = {
       isValid: true,
       isEmpty: false,
-      selectedField: "",
-      singleDataToEdit: "",
+      selectedField: '',
+      singleDataToEdit: '',
       dateToEdit: new Map([
-        ["day", ""],
-        ["month", ""],
-        ["year", ""],
+        ['day', ''],
+        ['month', ''],
+        ['year', ''],
       ]),
     };
   }
@@ -107,21 +107,21 @@ class SelectModal extends Component {
   /* ======================Get Processed Data according to Selected Field======================================= */
   getInputData = (data) => {
     if (
-      this.state.selectedField !== "Last activity date" &&
-      this.state.selectedField !== "Last logged call date" &&
-      this.state.selectedField !== ""
+      this.state.selectedField !== 'Last activity date'
+      && this.state.selectedField !== 'Last logged call date'
+      && this.state.selectedField !== ''
     ) {
       this.setState({ singleDataToEdit: data, dateToEdit: [] });
     } else if (
-      this.state.selectedField === "Last activity date" ||
-      this.state.selectedField !== "Last logged call date"
+      this.state.selectedField === 'Last activity date'
+      || this.state.selectedField !== 'Last logged call date'
     ) {
       const curData = processDate(data);
-      let temp = this.state.dateToEdit;
+      const temp = this.state.dateToEdit;
       temp.set(Object.keys(curData)[0], Object.values(curData)[0]);
       this.setState({ dateToEdit: temp });
     } else {
-      this.setState({ singleDataToEdit: "", dateToEdit: [] });
+      this.setState({ singleDataToEdit: '', dateToEdit: [] });
     }
   };
 
@@ -133,11 +133,11 @@ class SelectModal extends Component {
           isEmpty: false,
           isValid: true,
           dateToEdit: new Map([
-            ["day", ""],
-            ["month", ""],
-            ["year", ""],
+            ['day', ''],
+            ['month', ''],
+            ['year', ''],
           ]),
-          singleDataToEdit: "",
+          singleDataToEdit: '',
         };
       }
     });
@@ -154,18 +154,18 @@ class SelectModal extends Component {
 
   handleReceivedData = (field, value, mapData) => {
     if (
-      field === "Last activity date" ||
-      field === "Last logged call date" ||
-      field === "Phone number" ||
-      field === "Email"
+      field === 'Last activity date'
+      || field === 'Last logged call date'
+      || field === 'Phone number'
+      || field === 'Email'
     ) {
-      if (field === "Last activity date" || field === "Last logged call date") {
+      if (field === 'Last activity date' || field === 'Last logged call date') {
         value = value
-          ? value.get("day") +
-            "/" +
-            value.get("month") +
-            "/" +
-            value.get("year")
+          ? `${value.get('day')
+            }/${
+            value.get('month')
+            }/${
+            value.get('year')}`
           : undefined;
       }
       if (testEmptyString(value)) {
@@ -185,7 +185,7 @@ class SelectModal extends Component {
           isValid: false,
         });
       }
-    } else if (field === "Name") {
+    } else if (field === 'Name') {
       if (testEmptyString(value)) {
         this.setState({
           isEmpty: true,
@@ -208,13 +208,12 @@ class SelectModal extends Component {
   };
 
   confirm = () => {
-    let currentData = "";
-    const selectedField = this.state.selectedField;
+    let currentData = '';
+    const { selectedField } = this.state;
     // Use a map to restore input data
-    let mapData = new Map();
-    currentData =
-      this.state.selectedField === "Last activity date" ||
-      this.state.selectedField === "Last logged call date"
+    const mapData = new Map();
+    currentData = this.state.selectedField === 'Last activity date'
+      || this.state.selectedField === 'Last logged call date'
         ? this.state.dateToEdit
         : this.state.singleDataToEdit;
     this.handleReceivedData(selectedField, currentData, mapData);
@@ -225,12 +224,12 @@ class SelectModal extends Component {
         const key = iterator.next().value;
         mapData.set(FIELD_TO_KEY[key], mapData.get(key));
         mapData.delete(key);
-        if (this.props.type === "contact" && mapData.keys().next().value === "name") {
-          let tempName = mapData.values().next().value.split(" ");
-          mapData.set("firstName", tempName[0]);
+        if (this.props.type === 'contact' && mapData.keys().next().value === 'name') {
+          const tempName = mapData.values().next().value.split(' ');
+          mapData.set('firstName', tempName[0]);
           mapData.set(
-            "lastName",
-            tempName.length > 1 ? tempName[1] : undefined
+            'lastName',
+            tempName.length > 1 ? tempName[1] : undefined,
           );
         }
         this.props.getDataToEdit(Object.fromEntries(mapData));
@@ -242,30 +241,29 @@ class SelectModal extends Component {
   render() {
     return (
       <div className="modal-wrapper">
-        {
-          <div className="modal">
-            <DropdownList
-              className="dropdown-list-selection"
-              hint="Please select a field"
-              getSelectedField={this.getSelectedField}
-              items={
-                this.props.type === "contact" ? CONTACT_FIELDS : COMPANY_FIELDS
+        <div className="modal">
+          <DropdownList
+            className="dropdown-list-selection"
+            hint="Please select a field"
+            getSelectedField={this.getSelectedField}
+            items={
+                this.props.type === 'contact' ? CONTACT_FIELDS : COMPANY_FIELDS
               }
-            />
-            {this.state.selectedField === "Lead status" && (
-              <DropdownList
-                className="dropdown-list-single"
-                hint="Please select a status"
-                getInputData={this.getInputData}
-                items={LEAD_STATUS}
-              />
+          />
+          {this.state.selectedField === 'Lead status' && (
+          <DropdownList
+            className="dropdown-list-single"
+            hint="Please select a status"
+            getInputData={this.getInputData}
+            items={LEAD_STATUS}
+          />
             )}
-            {(this.state.selectedField === "Name" ||
-              this.state.selectedField === "Phone number" ||
-              this.state.selectedField === "Email" ||
-              this.state.selectedField === "City" ||
-              this.state.selectedField === "Country" ||
-              this.state.selectedField === "Industry") && (
+          {(this.state.selectedField === 'Name'
+              || this.state.selectedField === 'Phone number'
+              || this.state.selectedField === 'Email'
+              || this.state.selectedField === 'City'
+              || this.state.selectedField === 'Country'
+              || this.state.selectedField === 'Industry') && (
               <StringInput
                 getInputData={this.getInputData}
                 selectedField={this.state.selectedField}
@@ -273,8 +271,8 @@ class SelectModal extends Component {
                 isValid={this.state.isValid}
               />
             )}
-            {(this.state.selectedField === "Last activity date" ||
-              this.state.selectedField === "Last logged call date") && (
+          {(this.state.selectedField === 'Last activity date'
+              || this.state.selectedField === 'Last logged call date') && (
               <>
                 <DropdownList
                   className="dropdown-list-triple1"
@@ -297,20 +295,19 @@ class SelectModal extends Component {
               </>
             )}
 
-            <div className="modal-operator">
-              <button
-                className="modal-operator-close"
-                onClick={this.closeModal}
-              >
-                Cancel
-              </button>
-              <button className="modal-operator-confirm" onClick={this.confirm}>
-                Confirm
-              </button>
-            </div>
+          <div className="modal-operator">
+            <button
+              className="modal-operator-close"
+              onClick={this.closeModal}
+            >
+              Cancel
+            </button>
+            <button className="modal-operator-confirm" onClick={this.confirm}>
+              Confirm
+            </button>
           </div>
-        }
-        <div className="mask" onClick={this.maskClick}></div>
+        </div>
+        <div className="mask" onClick={this.maskClick} />
       </div>
     );
   }

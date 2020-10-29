@@ -1,8 +1,7 @@
 import React from 'react';
-//import CommentBox from './components/CommentBox';
-import NoteBody from "./components/NoteBody";
-import CreatedBy from "./components/CreatedBy";
-
+// import CommentBox from './components/CommentBox';
+import NoteBody from './components/NoteBody';
+import CreatedBy from './components/CreatedBy';
 
 class NoteCard extends React.Component {
   constructor(props) {
@@ -13,50 +12,50 @@ class NoteCard extends React.Component {
       card: this.props.card,
       content,
       comments,
-    }
+    };
     this.onContentChange = this.onContentChange.bind(this);
     this.onCommentChange = this.onCommentChange.bind(this);
   }
 
-  onContentChange(content){
-    let newCard = this.state.card;
+  onContentChange(content) {
+    const newCard = this.state.card;
     newCard.content = content;
     this.setState({
-      content: content,
+      content,
       card: newCard,
-    })
-    this.props.onChangeNote(this.state.cardId, newCard)
+    });
+    this.props.onChangeNote(this.state.cardId, newCard);
   }
 
-  onCommentChange(comments){
-    let newCard = this.state.card;
+  onCommentChange(comments) {
+    const newCard = this.state.card;
     newCard.comments = comments;
     this.setState({
-      comments: comments,
+      comments,
       card: newCard,
-    })
-    this.props.onChangeNote(this.state.cardId, newCard)
+    });
+    this.props.onChangeNote(this.state.cardId, newCard);
   }
 
   render() {
     const { cardId, content, comments } = this.props.card;
-    
+
     return (
       <div>
-        <NoteBody 
+        <NoteBody
           cardId={cardId}
           content={content}
-          onContentChange={this.onContentChange} 
-          />
-        <CreatedBy 
+          onContentChange={this.onContentChange}
+        />
+        <CreatedBy
           createdBy={this.props.card.createdBy.fullName}
         />
-        {/* <CommentBox 
+        {/* <CommentBox
           comments={comments}
-          onCommentChange={this.onCommentChange} 
+          onCommentChange={this.onCommentChange}
         />             */}
       </div>
-    )
+    );
   }
 }
 

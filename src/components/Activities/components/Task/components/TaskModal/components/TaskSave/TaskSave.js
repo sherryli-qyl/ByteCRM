@@ -1,6 +1,6 @@
 import React from 'react';
 import ContainedButton from '../../../../../../../Style/Button/Modal/ContainedButton';
-import "./TaskSave.scss";
+import './TaskSave.scss';
 
 const TaskSave = () => (
   <div className="taskSave">
@@ -10,6 +10,6 @@ const TaskSave = () => (
       </ContainedButton>
     </div>
   </div>
-)
+);
 
 export default TaskSave;
