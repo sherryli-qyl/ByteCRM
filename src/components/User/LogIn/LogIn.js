@@ -18,7 +18,7 @@ class LogIn extends React.Component {
 
           {/* <Route path="/call">
             <Calls />
-          </Route>*/}
+          </Route> */}
         </Switch>
       </div>
     );
