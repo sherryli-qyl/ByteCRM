@@ -4,13 +4,13 @@ import Private from './components/Private';
 import './Header.scss';
 
 const Header = () => (
-  <div className = "StyledHeader">
-    <div className = "Container">
-      <div className = "Layout">
-        <div className = "Left">
+  <div className="StyledHeader">
+    <div className="Container">
+      <div className="Layout">
+        <div className="Left">
           <Public />
         </div>
-        <div className = "Right">
+        <div className="Right">
           <Private />
         </div>
       </div>
