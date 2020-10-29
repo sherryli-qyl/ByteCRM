@@ -1,7 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckSquare } from "@fortawesome/free-solid-svg-icons";
-import HintBox from '../../../../../../HintBox';
+import HintBox from '../../../../../HintBox';
 import './SelectItem.scss';
 
 

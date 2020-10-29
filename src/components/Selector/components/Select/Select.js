@@ -1,10 +1,10 @@
 import React from 'react';
 import SelectItem from './components/SelectItem/SelectItem';
-import { CheckOneContact } from '../../../../../utils/SearchContact/SearchContact';
-import './ContactSelect.scss';
+import { CheckOneSelects } from '../../../../lib/Search';
+import './Select.scss';
 
 
-const ContactSelect = (props) => {
+const UserSelect = (props) => {
     const { selectList, searchList, label, checkOneContact } = props;
 
     let currentList = []
@@ -24,16 +24,16 @@ const ContactSelect = (props) => {
             </div>
             {
                 currentList.map(item => {
-                    const oneContactId = CheckOneContact(selectList, currentList);
+                    const oneContactId = CheckOneSelects(selectList, currentList);
                     let disabled = false;
-                    if (oneContactId && oneContactId === item.contact._id && checkOneContact) {
+                    if (oneContactId && oneContactId === item.selects._id && checkOneContact) {
                         disabled = true
                     }
                     return (
                         <SelectItem
-                            key={item.contact._id}
-                            contactID={item.contact._id}
-                            contact={item.contact}
+                            key={item.selects._id}
+                            contactID={item.selects._id}
+                            contact={item.selects}
                             checked={item.checked}
                             disabled={disabled}
                             selectHint={props.selectHint}
@@ -47,4 +47,4 @@ const ContactSelect = (props) => {
     )
 }
 
-export default ContactSelect;
+export default UserSelect;

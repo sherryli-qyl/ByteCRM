@@ -1,14 +1,13 @@
 import React from 'react';
 import Dropdown from '../components/Dropdown';
-import Select from './components/Select';
+import Select from '../components/Select';
 import DropDownDisplay from '../../DropDownDisplay';
 import NameTag from '../../NameTag';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
-import { FormatList, SearchContactLocal, SearchContactRemote, ItemSelected } from '../../../utils/SearchContact/SearchContact';
+import { FormatList,SearchSelectsLocal,SearchSelectsRemote,ItemSelected} from '../../../lib/Search';
 import { GetContactByUserId } from '../../Api/Contact';
 import './ContactSelector.scss';
-
 
 
 class ContactSelector extends React.Component {
@@ -114,7 +113,7 @@ class ContactSelector extends React.Component {
 
     handleFindContact(text) {
         let newHint = '';
-        let newList = SearchContactLocal(this.state.contactList, text.toUpperCase());
+        let newList = SearchSelectsLocal(this.state.contactList, text.toUpperCase());
 
         if (text.length === 0) {
             this.setState({
@@ -144,7 +143,7 @@ class ContactSelector extends React.Component {
 
         if (text.length >= 3) {
             newHint = 'searching';
-            const newList = SearchContactLocal(this.state.contactList, text.toUpperCase());
+            const newList = SearchSelectsLocal(this.state.contactList, text.toUpperCase());
             const response = GetContactByUserId(JSON.parse(localStorage.getItem('user')).id, text.toUpperCase())
             this.setState(prevState => ({
                 ...prevState,
@@ -152,7 +151,7 @@ class ContactSelector extends React.Component {
             }))
             response.then(response => {
                 if (response) {
-                    const newSearchList = SearchContactRemote(newList, text.toUpperCase(), response.data);
+                    const newSearchList = SearchSelectsRemote(newList, text.toUpperCase(), response.data);
                     let foundNewContact = false;
                     if (newSearchList.length >= 1) {
                         foundNewContact = true;

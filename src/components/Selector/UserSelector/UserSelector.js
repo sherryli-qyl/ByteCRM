@@ -1,9 +1,10 @@
 import React from 'react';
-import Dropdown from './components/Dropdown';
+import Dropdown from '../components/Dropdown';
+import Select from '../components/Select';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
-import { FormatList,SearchUserLocal, SearchUserRemote,ItemSelected } from '../../utils/SearchUser/SearchUser';
-import { SearchUser } from '../Api/User/User';
+import { FormatList,SearchSelectsLocal, SearchSelectsRemote,ItemSelected } from '../../../lib/Search';
+import { SearchUser } from '../../Api/User';
 import './UserSelector.scss';
 
 
@@ -96,7 +97,7 @@ class UserSelector extends React.Component {
 
     handleFindUser(text) {
         let newHint = '';
-        let newList = SearchUserLocal(this.state.userList, text.toUpperCase());
+        let newList = SearchSelectsLocal(this.state.userList, text.toUpperCase());
 
         if (text.length === 0) {
             this.setState({
@@ -126,7 +127,7 @@ class UserSelector extends React.Component {
 
         if (text.length >= 3) {
             newHint = 'searching';
-            const newList = SearchUserLocal(this.state.userList, text.toUpperCase());
+            const newList = SearchSelectsLocal(this.state.userList, text.toUpperCase());
             const response = SearchUser(this.state.userId,text);
             this.setState(prevState => ({
                 ...prevState,
@@ -135,7 +136,7 @@ class UserSelector extends React.Component {
             response.then(findUsers => {
                 if (findUsers) {
                     console.log(findUsers)
-                    const newSearchList = SearchUserRemote(newList, text.toUpperCase(), findUsers.data);
+                    const newSearchList = SearchSelectsRemote(newList, text.toUpperCase(), findUsers.data);
                     let foundNewUser = false;
                     if (newSearchList.length >= 1) {
                         foundNewUser = true;
@@ -196,6 +197,16 @@ class UserSelector extends React.Component {
         else if (userList.length === 1) {
             assignedTo = `${userList[0].user.firstName} ${userList[0].user.lastName} (${userList[0].user.email})`
         }
+
+        const select = 
+        <Select
+            label={"Users"}
+            checkOneContact= {true}
+            selectList={userList}
+            searchList={searchList}
+            selectHint={this.props.contactSelectHint}
+            handleRemoveContact={this.handleRemoveContact}
+            handleAddContact={this.handleAddContact} />;
         
         return (
             <div className='userSelector'>
