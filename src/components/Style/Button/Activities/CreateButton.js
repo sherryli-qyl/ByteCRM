@@ -10,15 +10,14 @@ const CreateButton = ({
   <button
     className={`createButton ${className}`}
     onClick={(event) => {
-                event.preventDefault();
-                if (onSave) {
-                    onSave();
-                }
-                onClick();
-            }}
+      event.preventDefault();
+      if (onSave) {
+        onSave();
+      }
+      onClick();
+    }}
   >
     {children}
   </button>
-    );
-
+);
 export default CreateButton;

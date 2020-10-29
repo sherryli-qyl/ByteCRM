@@ -50,8 +50,8 @@ const DatePickerTheme = createMuiTheme({
         width: '80px',
         fontSize: '15px',
         '&:hover': {
-            cursor: 'pointer',
-          },
+          cursor: 'pointer',
+        },
       },
       formControl: {
         marginTop: '0px',

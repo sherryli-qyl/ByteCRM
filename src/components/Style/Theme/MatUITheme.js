@@ -66,7 +66,7 @@ const publicTheme = createMuiTheme({
       },
     },
 
-  MuiIconButton: {
+    MuiIconButton: {
       root: {
         borderRadius: 0,
         height: '15px',

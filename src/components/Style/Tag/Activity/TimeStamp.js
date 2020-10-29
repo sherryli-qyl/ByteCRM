@@ -8,35 +8,35 @@ import Text from '../../Text';
 import './TimeStamp.scss';
 
 const useStyles = (theme) => ({
-    root: {
-        minWidth: 275,
-    },
-    timeStamp: {
-        fontSize: 12,
-        textAlign: 'right',
-    },
+  root: {
+    minWidth: 275,
+  },
+  timeStamp: {
+    fontSize: 12,
+    textAlign: 'right',
+  },
 });
 
 class TimeStamp extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-        };
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+    };
+  }
 
-    render() {
-        const { classes } = this.props;
-        const weekday = getWeekDay(this.props.date);
-        return (
-          <div className="timeStamp">
-            <Tooltip title={`${weekday} ${this.props.dateTime}`} placement="top">
-              <Typography className={classes.timeStamp} gutterBottom>
-                {this.props.dateTime}
-              </Typography>
-            </Tooltip>
-          </div>
-        );
-    }
+  render() {
+    const { classes } = this.props;
+    const weekday = getWeekDay(this.props.date);
+    return (
+      <div className="timeStamp">
+        <Tooltip title={`${weekday} ${this.props.dateTime}`} placement="top">
+          <Typography className={classes.timeStamp} gutterBottom>
+            {this.props.dateTime}
+          </Typography>
+        </Tooltip>
+      </div>
+    );
+  }
 }
 
 export default withStyles(useStyles)(TimeStamp);

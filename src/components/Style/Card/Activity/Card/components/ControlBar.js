@@ -3,7 +3,7 @@ import Text from '../../../../Text';
 import './ControlBar.scss';
 
 const ControlBar = ({
-    onClickDelete,
+  onClickDelete,
 }) => (
   <div className="controlBar">
     <div className="controlBar__container">
@@ -15,14 +15,13 @@ const ControlBar = ({
       <button
         className="controlBar__container__btn"
         onClick={(event) => {
-                                event.preventDefault();
-                                onClickDelete();
-                              }}
+          event.preventDefault();
+          onClickDelete();
+        }}
       >
         <Text className="controlBar__container__btn__text">Delete</Text>
       </button>
     </div>
   </div>
-        );
-
+);
 export default ControlBar;

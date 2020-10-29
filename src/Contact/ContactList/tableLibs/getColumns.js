@@ -9,24 +9,24 @@ function getColumns() {
       type: 'string',
       initialEditValue: '',
       validate: (rowData) => (rowData.name === ''
-          ? { isValid: false, helperText: 'Name cannot be empty' }
-          : true),
+        ? { isValid: false, helperText: 'Name cannot be empty' }
+        : true),
     },
     {
       title: 'Email',
       field: 'email',
       type: 'string',
       validate: (rowData) => (testEmailAddr(rowData.email)
-          ? true
-          : { isValid: false, helperText: 'Email address format incorrect' }),
+        ? true
+        : { isValid: false, helperText: 'Email address format incorrect' }),
     },
     {
       title: 'Phone',
       field: 'phoneNumber',
       type: 'string',
       validate: (rowData) => (testPhoneNum(rowData.phoneNumber)
-          ? true
-          : { isValid: false, helperText: 'Phone number format incorrect' }),
+        ? true
+        : { isValid: false, helperText: 'Phone number format incorrect' }),
     },
     { title: 'Contact Owner', field: 'contactOwner', type: 'string' },
     { title: 'Associated Company', field: 'associatedCompany', type: 'string' },
