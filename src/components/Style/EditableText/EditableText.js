@@ -16,7 +16,7 @@ class EditableText extends React.Component {
 
   constructor(props) {
     super(props);
-    const { content, cardKey, variant } = this.props;
+    const { content, cardKey, variant} = this.props;
     this.state = {
       isEditingMode: false,
       onHover: false,
@@ -70,6 +70,7 @@ class EditableText extends React.Component {
 
   renderNormalMode() {
     const { variant, currentContent } = this.state;
+    const {lineThrough} = this.props;
 
     return (
       <div
@@ -80,7 +81,8 @@ class EditableText extends React.Component {
 
         <div className="editableText__content">
           {variant === 'input' ?
-            <div className="editableText__content--input">
+            <div className={lineThrough ? "editableText__content--input editableText__content--input--lineThrough " 
+                                        : "editableText__content--input"}>
               {currentContent}
             </div>
             :

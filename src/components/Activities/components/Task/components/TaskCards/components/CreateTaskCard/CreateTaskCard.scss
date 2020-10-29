@@ -6,4 +6,36 @@
   &__name{
     margin-top: 5%;
   }
+
+  &__details{
+    display: flex;
+    flex-direction: column;
+    // justify-content: flex-start;
+    // align-items: center;
+    padding: 10px 0;
+   
+    &__top{
+      display: flex;
+      justify-content: flex-start;
+      cursor: pointer;
+
+      &__arrow{
+        color:$secondary-color;
+        font-size:16px;
+      }
+  
+      &__label{
+        color: $primary-color;
+        font-size: 14px;
+
+        &:hover{
+          color:$secondary-color;
+        }
+      }
+    }
+
+    &__bottom{
+      margin-left:5%;
+    }
+  }
 }

@@ -34,7 +34,6 @@ class DatePicker extends React.Component {
 
   render() {
     const { currentDate, pickerTheme} = this.state
-    console.log(currentDate)
     return (
       <MuiPickersUtilsProvider utils={MomentUtils}>
         <ThemeProvider theme={pickerTheme}>

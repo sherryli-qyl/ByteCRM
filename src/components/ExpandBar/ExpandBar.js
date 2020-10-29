@@ -1,6 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
+import RotateArrow from '../RotateArrow';
 import AddModal from '../AddModal';
 import HintBox from '../HintBox';
 import './ExpandBar.scss';
@@ -53,13 +54,12 @@ class ExpandBar extends React.Component {
     render() {
         const { showHint, showAddModal, showDetail } = this.state;
         const { showAdd, disabled, hintMessage, addModal } = this.props;
-        let angleIconClassName = 'angleIcon ';
+       
 
         let expandContentClassName = 'expandBar__container__content '
         let addBtnClassName = 'expandBar__container__right__addBtn '
 
         if (showDetail) {
-            angleIconClassName += 'angleIcon__rotate';
             expandContentClassName += 'expandBar__container__content__active';
         }
 
@@ -71,9 +71,8 @@ class ExpandBar extends React.Component {
             <div className='expandBar'>
                 <div className='expandBar__container'>
                     <div className="expandBar__container__labelBtn" onClick={this.handleOnClickAngle}>
-                        <div className='expandBar__container__labelBtn__icon'>
-                            <FontAwesomeIcon className={angleIconClassName} icon={faAngleRight} />
-                        </div>
+                        <RotateArrow rotate = {showDetail} 
+                                     className="expandBar__container__labelBtn__icon"/>
                         <div className='expandBar__container__labelBtn__text'>
                             <span> {this.props.label} </span>
                         </div>

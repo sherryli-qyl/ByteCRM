@@ -11,6 +11,12 @@ const TaskNameBar = ({
     status,
     handleUpdate,
 }) => {
+    
+    let lineThrough = false;
+    if(status === 'complete'){
+        lineThrough = true;
+    }
+
     return (
         <div className="taskNameBar">
             <div className="taskNameBar__checkCircle" >
@@ -25,7 +31,7 @@ const TaskNameBar = ({
                 }
             </div>
             <div className="taskNameBar__nameInput">
-                <EditableText content={children} variant="input" onContentChange={(value)=>handleUpdate(value,"name")}/>
+                <EditableText lineThrough = {lineThrough} content={children} variant="input" onContentChange={(value)=>handleUpdate(value,"name")}/>
             </div>
         </div>
     )
