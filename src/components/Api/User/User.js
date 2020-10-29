@@ -12,8 +12,8 @@ async function GetAllUsers() {
   return data;
 }
 
-async function SearchUser(userId, keyword) {
-  const response = await api.get(`/api/users/search/${keyword}`);
+async function SearchUser(id,keyword) {
+  const response = await api.get(`/api/users/search/${id}/${keyword}`);
   if (response.statusText === "OK") {
     return response;
   }

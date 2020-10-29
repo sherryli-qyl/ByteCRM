@@ -3,10 +3,11 @@ import Dropdown from './components/Dropdown';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
 import { FormatList,SearchUserLocal, SearchUserRemote,ItemSelected } from '../../utils/SearchUser/SearchUser';
-import { GetAllUsers } from '../Api/User/User';
+import { SearchUser } from '../Api/User/User';
 import './UserSelector.scss';
 
 
+const user = JSON.parse(localStorage.getItem('user'));
 
 class UserSelector extends React.Component {
     constructor(props) {
@@ -14,8 +15,8 @@ class UserSelector extends React.Component {
         this.state = {
             showDropdown: false,
             userList: this.props.userList,
-            userId: this.props.userId,
-            user: this.props.user,
+            userId: user.id,
+            user: user,
             textInput: '',
             enableCleanBtn: false,
             checkInput: false,
@@ -126,14 +127,15 @@ class UserSelector extends React.Component {
         if (text.length >= 3) {
             newHint = 'searching';
             const newList = SearchUserLocal(this.state.userList, text.toUpperCase());
-            const response = GetAllUsers();
+            const response = SearchUser(this.state.userId,text);
             this.setState(prevState => ({
                 ...prevState,
                 loading: true
             }))
             response.then(findUsers => {
                 if (findUsers) {
-                    const newSearchList = SearchUserRemote(newList, text.toUpperCase(), findUsers);
+                    console.log(findUsers)
+                    const newSearchList = SearchUserRemote(newList, text.toUpperCase(), findUsers.data);
                     let foundNewUser = false;
                     if (newSearchList.length >= 1) {
                         foundNewUser = true;
