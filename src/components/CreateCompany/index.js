@@ -1,1 +1,1 @@
-export {default} from './CreateCompany';
+export { default } from './CreateCompany';

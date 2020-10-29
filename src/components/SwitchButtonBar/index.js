@@ -1,1 +1,1 @@
-export {default} from './SwitchButtonBar';
+export { default } from './SwitchButtonBar';

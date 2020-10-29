@@ -1,0 +1,81 @@
+@import "../../../../style/variable.scss";
+
+.our_mission_wrapper {
+  display: flex;
+  margin: 0px 148px;
+  padding: 0px 32px;
+  @include MQ(L) {
+    flex-wrap: wrap;
+    margin: 0px;
+  }
+  @include MQ(S) {
+    margin: 0px;
+    padding: 0px 16px;
+  }
+  .mission_text {
+    width: 50%;
+    padding: 0px 32px;
+    color: $primary-color;
+    align-self: center;
+    @include MQ(L) {
+      width: 100vw;
+      padding: 0px 32px;
+    }
+    @include MQ(M) {
+      width: 100vw;
+    }
+    @include MQ(S) {
+      padding: 16px 32px;
+      order: 2;
+    }
+    h2 {
+      text-align: center;
+      font-weight: bolder;
+      margin: 32px;
+    }
+    p {
+      font-size: 18px;
+      line-height: 1.8;
+      padding: 18px 0px;
+      @include MQ(L) {
+        line-height: 1.5;
+      }
+      @include MQ(M) {
+        line-height: 1.5;
+      }
+      @include MQ(S) {
+        font-size: 0.85rem;
+        line-height: 1.5;
+        padding: 0px;
+      }
+    }
+  }
+  .mission_img_wrapper {
+    width: 50%;
+    height: auto;
+    border-radius: 400px/150px;
+    overflow: hidden;
+    padding: 0px 32px;
+    margin-top: auto;
+    margin-bottom: auto;
+    @include MQ(L) {
+      width: 60vw;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    @include MQ(M) {
+      width: 100vw;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    @include MQ(S) {
+      width: 100vw;
+      margin-left: auto;
+      margin-right: auto;
+      order: 1;
+    }
+    img {
+      width: 100%;
+    }
+  }
+}

@@ -1,1 +1,1 @@
-export {default} from './LogMeetingBody';
+export { default } from './LogMeetingBody';

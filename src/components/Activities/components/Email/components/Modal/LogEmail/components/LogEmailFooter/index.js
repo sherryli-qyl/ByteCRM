@@ -1,1 +1,1 @@
-export {default} from './LogEmailFooter';
+export { default } from './LogEmailFooter';

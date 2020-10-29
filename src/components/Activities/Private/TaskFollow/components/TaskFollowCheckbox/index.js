@@ -1,1 +1,1 @@
-export {default} from './TaskFollowCheckbox';
+export { default } from './TaskFollowCheckbox';

@@ -1,1 +1,1 @@
-export {default as ModalContext} from './Context';
+export { default as ModalContext } from './Context';

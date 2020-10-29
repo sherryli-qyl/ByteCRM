@@ -1,1 +1,1 @@
-export {default} from './MeetingCreateModalMultiSelect';
+export { default } from './MeetingCreateModalMultiSelect';

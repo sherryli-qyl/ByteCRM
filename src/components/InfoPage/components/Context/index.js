@@ -1,1 +1,1 @@
-export {default as InfoContext} from './InfoContext';
+export { default as InfoContext } from './InfoContext';

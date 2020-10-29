@@ -1,1 +1,1 @@
-export {default} from './EmailFunctionBarItem';
+export { default } from './EmailFunctionBarItem';

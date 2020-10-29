@@ -13,8 +13,8 @@ class Activities extends React.Component {
     const { associatedContacts, contact, relatedTo } = this.props;
     const tabItems = [
       { key: 'Activity', value: 'Activity', activity: <div>Activity</div> },
-      { key: 'Notes', value: 'Notes', activity: <NotesTimeLine relatedTo = {relatedTo} associatedContacts = {associatedContacts} /> },
-      { key: 'Emails', value: 'Emails', activity: <EmailPage  contact = {contact} associatedContacts = {associatedContacts}/>},
+      { key: 'Notes', value: 'Notes', activity: <NotesTimeLine relatedTo={relatedTo} associatedContacts={associatedContacts} /> },
+      { key: 'Emails', value: 'Emails', activity: <EmailPage contact={contact} associatedContacts={associatedContacts} /> },
       { key: 'Calls', value: 'Calls', activity: <CallPanel /> },
       { key: 'Tasks', value: 'Tasks', activity: <TaskPage contact = {contact} associatedContacts = {associatedContacts} /> },
       { key: 'Meetings', value: 'Meetings', activity: <MeetingPage contact = {contact} associatedContacts = {associatedContacts}/> },
@@ -43,18 +43,18 @@ class Activities extends React.Component {
           currentPage={currentActivity}
           onTabItemClick={this.handleOnclick}
         />
-          <div className="activityPage">
-            {tabItems.map((tabItem) => {
-              if (currentActivity !== tabItem.key) {
-                return null;
-              }
-              return (
-                <React.Fragment key={tabItem.key}>
-                  {tabItem.activity}
-                </React.Fragment>
-              );
-            })}
-          </div>
+        <div className="activityPage">
+          {tabItems.map((tabItem) => {
+            if (currentActivity !== tabItem.key) {
+              return null;
+            }
+            return (
+              <React.Fragment key={tabItem.key}>
+                {tabItem.activity}
+              </React.Fragment>
+            );
+          })}
+        </div>
       </div>
     );
   }

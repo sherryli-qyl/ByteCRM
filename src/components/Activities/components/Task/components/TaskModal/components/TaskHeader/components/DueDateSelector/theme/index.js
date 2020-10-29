@@ -1,1 +1,1 @@
-export {default} from './DueDateTheme';
+export { default } from './DueDateTheme';

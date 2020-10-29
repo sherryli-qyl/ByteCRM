@@ -1,1 +1,1 @@
-export {default} from './ActivityCard';
+export { default } from './ActivityCard';

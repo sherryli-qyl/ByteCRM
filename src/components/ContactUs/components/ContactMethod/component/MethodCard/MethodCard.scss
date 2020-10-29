@@ -1,5 +1,5 @@
 @import "../../../../../../style/variable.scss";
-.cardWrapper{
+.cardWrapper {
   width: 400px;
   height: 300px;
   text-align: center;
@@ -18,23 +18,23 @@
     height: 350px;
   }
   @include MQ(S) {
-    width: 350px;
-    height: 350px;
+    width: 280px;
+    height: 365px;
     margin: 0px 5px 20px 5px;
   }
-  .icon{
+  .icon {
     color: $primary-color;
     margin: 10px;
   }
-  .type{
+  .type {
     margin: 30px;
   }
-  .description{
+  .description {
     margin: 30px;
   }
-  .detail{
+  .detail {
     margin: 30px;
-    &:hover{
+    &:hover {
       color: $secondary-color;
       font-weight: bolder;
     }

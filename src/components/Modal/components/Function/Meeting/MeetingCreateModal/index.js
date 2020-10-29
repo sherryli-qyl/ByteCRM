@@ -1,1 +1,1 @@
-export {default} from './MeetingCreateModal';
+export { default } from './MeetingCreateModal';

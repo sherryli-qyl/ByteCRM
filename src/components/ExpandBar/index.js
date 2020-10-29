@@ -1,1 +1,1 @@
-export {default} from './ExpandBar';
+export { default } from './ExpandBar';

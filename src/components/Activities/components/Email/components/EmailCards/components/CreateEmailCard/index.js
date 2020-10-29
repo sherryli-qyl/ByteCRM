@@ -1,1 +1,1 @@
-export {default} from './CreateEmailCard';
+export { default } from './CreateEmailCard';
