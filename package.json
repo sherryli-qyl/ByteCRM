@@ -58,7 +58,7 @@
     "start": "cross-env PORT=8000 react-scripts start",
     "build": "react-scripts build",
     "test": "jest",
-    "lint": "eslint --fix './src/components/Activities/**/*.jsx'  --ignore-path .gitignore",
+    "lint": "eslint --fix . --ext .jsx,.js --ignore-path .gitignore",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
