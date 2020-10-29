@@ -1,7 +1,7 @@
 import React from 'react';
 import './Private.scss';
+import { withRouter } from 'react-router';
 import Profile from '../../../../img/Contact/profile.png';
-import { withRouter } from "react-router";
 import { isLoggedIn, removeToken } from '../../../../utils/auth';
 import {
   CONTACT_BASE_URL,
@@ -9,14 +9,12 @@ import {
 } from '../../../Routes/URLMap';
 import HeaderNavLink from '../HeaderNavLink';
 
-
-const logout = history => {
+const logout = (history) => {
   removeToken();
   history.push(LOGIN_URL);
 };
 
 const Private = ({ history }) => {
-
   if (!isLoggedIn()) return null;
 
   return (
