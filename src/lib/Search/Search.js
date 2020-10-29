@@ -13,8 +13,8 @@ function SearchSelectsLocal(selectsList, textInput) {
     const searchList = [];
     for (const i in selectsList) {
         if (selectsList[i].fullName.toUpperCase().includes(textInput) || selectsList[i].email.toUpperCase().includes(textInput)) {
-                const listItem = new ListItem(selectsList[i], true);
-                searchList.push(listItem);
+            const listItem = new ListItem(selectsList[i], true);
+            searchList.push(listItem);
         }
     }
     return searchList;
@@ -22,14 +22,14 @@ function SearchSelectsLocal(selectsList, textInput) {
 
 function SearchSelectsRemote(searchList, textInput, selectsList) {
     const newSerachList = searchList;
-    for (const i in selectsList) {
-        if (selectsList[i].fullName.toUpperCase().includes(textInput) || selectsList[i].email.toUpperCase().includes(textInput)) {
+        for (const i in selectsList) {
+            if (selectsList[i].fullName.toUpperCase().includes(textInput) || selectsList[i].email.toUpperCase().includes(textInput)) {
                 if (!checkDuplicate(newSerachList, selectsList[i])) {
                     const listItem = new ListItem(selectsList[i], false);
                     newSerachList.push(listItem);
                 }
+            }
         }
-    }
     return newSerachList;
 }
 
@@ -59,7 +59,7 @@ function CheckOneSelects(selectsList, searchList) {
         return contactId;
     }
 
-        return false;
+    return false;
 }
 
 function checkDuplicate(selectsList, contact) {
@@ -74,5 +74,5 @@ function checkDuplicate(selectsList, contact) {
 }
 
 export {
- FormatList, SearchSelectsLocal, SearchSelectsRemote, ItemSelected, CheckOneSelects,
+    FormatList, SearchSelectsLocal, SearchSelectsRemote, ItemSelected, CheckOneSelects,
 };

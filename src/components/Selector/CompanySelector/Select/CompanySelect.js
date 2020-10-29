@@ -23,7 +23,7 @@ const CompanySelect = (props) => {
 
                     return (
                       <SelectItem
-                        key={item._id}
+                        key={item.id}
                         companyID={item._id}
                         selected={selected}
                         company={item}

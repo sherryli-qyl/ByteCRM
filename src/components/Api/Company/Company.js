@@ -57,17 +57,8 @@ async function AddCompany(body) {
 }
 
 async function GetCompanyByUserId(id, keyword) {
-  const serverUrl = `http://localhost:3000/api/companies/search/${id}/${keyword}`;
-  const response = await fetch(serverUrl, {
-    method: 'GET',
-  });
-
-  if (response.status === 404) {
-    return false;
-  } if (response.ok) {
-    const data = response.json();
-    return data;
-  }
+  const response = await api.get(`http://localhost:3000/api/companies/search/${id}/${keyword}`);
+  return response;
 }
 
 async function DeleteCompany(code) {

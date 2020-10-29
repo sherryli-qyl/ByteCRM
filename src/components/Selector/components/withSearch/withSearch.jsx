@@ -41,7 +41,6 @@ const withSearch = (Component) => {
         const userId = this.state.currentUser.id;
         let newHint = '';
         const newList = SearchSelectsLocal(localList, text.toUpperCase());
-
         if (text.length === 0) {
             this.setState({
                 searchList: [],
@@ -64,15 +63,20 @@ const withSearch = (Component) => {
 
         if (text.length >= 3) {
             newHint = 'searching';
-            const newList = SearchSelectsLocal(localList, text.toUpperCase());
             const response = fetch(userId, text);
             this.setState((prevState) => ({
                 ...prevState,
                 loading: true,
             }));
-            response.then((findUsers) => {
-                if (findUsers.statusText === "OK") {
-                    const newSearchList = SearchSelectsRemote(newList, text.toUpperCase(), findUsers.data);
+            response.then((response) => {
+                if (response.statusText === "OK") {
+                    let newSearchList = [];
+                    if(localList){
+                        newSearchList = SearchSelectsRemote(newList, text.toUpperCase(), response.data);
+                    }
+                    else{
+                        newSearchList = response.data;
+                    }
                     let foundNewUser = false;
                     if (newSearchList.length >= 1) {
                         foundNewUser = true;

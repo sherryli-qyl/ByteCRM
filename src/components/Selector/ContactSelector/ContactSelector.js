@@ -15,19 +15,14 @@ import './ContactSelector.scss';
 class ContactSelector extends React.Component {
     constructor(props) {
         super(props);
-        const { contactList, userId, contact, variant } = this.props;
+        const { contactList, contact, variant } = this.props;
         this.state = {
             showDropdown: false,
             contactList,
-            userId,
             contact,
             variant,
             textInput: '',
             enableCleanBtn: false,
-            checkInput: false,
-            textInputHint: '',
-            loading: false,
-            searchList: [],
         };
         this.wrapperRef = React.createRef();
         this.btnRef = React.createRef();

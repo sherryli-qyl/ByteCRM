@@ -3,6 +3,7 @@ import Dropdown from '../components/Dropdown';
 import DropDownDisplay from '../../DropDownDisplay';
 import Select from './Select';
 import { GetCompanyByUserId } from '../../Api/Company';
+import withSearch from '../components/withSearch';
 import NameTag from '../../NameTag';
 import './CompanySelector.scss';
 
@@ -10,15 +11,12 @@ class CompanySelector extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            showDropdown: false,
-            checkInput: true,
-            textInput: '',
-            textInputHint: '',
+            showDropdown: false, 
+            textInput: '', 
             enableCleanBtn: false,
-            loading: false,
             company: '',
+            companyList:this.props.companyList,
             selectIndex: 0,
-            searchList: [],
             dropDownDisable: false,
         };
         this.wrapperRef = React.createRef();
@@ -48,14 +46,14 @@ class CompanySelector extends React.Component {
             textInput: inputText,
             enableCleanBtn: activeBtn,
         });
-        this.handleFindContact(inputText);
+        this.props.search(inputText,this.state.companyList,GetCompanyByUserId);
     }
 
     handleCleanInput() {
         this.setState({
             textInput: '',
         });
-        this.handleFindContact('');
+        this.props.search('');
     }
 
     handleRemoveCompany(selectedCompany) {
@@ -97,7 +95,6 @@ class CompanySelector extends React.Component {
                 loading: true,
             }));
             response.then((findCompanies) => {
-                console.table(findCompanies);
                 if (findCompanies) {
                     const newSearchList = findCompanies;
                     let foundNewCompany = false;
@@ -145,11 +142,10 @@ class CompanySelector extends React.Component {
     }
 
     render() {
-        const {
- showDropdown, checkInput, textInput, textInputHint,
-                enableCleanBtn, loading, searchList, selectIndex,
-                company, dropDownDisable,
-} = this.state;
+        const { showDropdown, textInput, enableCleanBtn, 
+                selectIndex, company, dropDownDisable } = this.state;
+
+        const { textInputHint, searchList, loading, checkInput } = this.props;
 
         const select = (
           <Select
@@ -199,4 +195,4 @@ class CompanySelector extends React.Component {
         );
     }
 }
-export default CompanySelector;
+export default withSearch(CompanySelector);
