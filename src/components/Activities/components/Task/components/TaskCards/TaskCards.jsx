@@ -1,4 +1,3 @@
-/* eslint-disable no-tabs */
 import React from 'react';
 import { faTasks } from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
@@ -7,7 +6,7 @@ import CardContainer from '../../../../../Style/Card/Activity/Container';
 import './TaskCards.scss';
 
 const TaskCards = ({
-  assignedToUser,
+  currentUser,
   onChangeTask,
   handleAddUser,
   handleRemoveUser,
@@ -17,7 +16,7 @@ const TaskCards = ({
   const createCard = (card) => (
     <CreateTaskCard
       card={card}
-      assignedToUser={assignedToUser}
+      currentUser={currentUser}
       onChangeTask={onChangeTask}
       handleAddUser={handleAddUser}
       handleRemoveUser={handleRemoveUser}
@@ -42,7 +41,7 @@ const TaskCards = ({
 };
 
 TaskCards.propTypes = {
-  assignedToUser: PropTypes.objectOf(PropTypes.object).isRequired,
+  currentUser: PropTypes.objectOf(PropTypes.object).isRequired,
   cardsArray: PropTypes.arrayOf(PropTypes.array).isRequired,
   onChangeTask: PropTypes.func.isRequired,
   handleAddUser: PropTypes.func.isRequired,

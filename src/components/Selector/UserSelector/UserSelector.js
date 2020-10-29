@@ -3,13 +3,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import Dropdown from '../components/Dropdown';
 import Select from '../components/Select';
-import {
- FormatList, SearchSelectsLocal, SearchSelectsRemote, ItemSelected,
-} from '../../../lib/Search';
+import withSearch from '../components/withSearch';
+import { FormatList} from '../../../lib/Search';
 import { SearchUser } from '../../Api/User';
 import './UserSelector.scss';
 
-const user = JSON.parse(localStorage.getItem('user'));
+
 
 class UserSelector extends React.Component {
     constructor(props) {
@@ -17,14 +16,8 @@ class UserSelector extends React.Component {
         this.state = {
             showDropdown: false,
             userList: this.props.userList,
-            userId: user.id,
-            user,
             textInput: '',
             enableCleanBtn: false,
-            checkInput: false,
-            textInputHint: '',
-            loading: false,
-            searchList: [],
         };
         this.wrapperRef = React.createRef();
         this.btnRef = React.createRef();
@@ -47,7 +40,7 @@ class UserSelector extends React.Component {
         this.setState({
             textInput: '',
         });
-        this.handleFindUser('');
+        this.props.search('');
     }
 
     handleInputChange(inputText) {
@@ -59,12 +52,11 @@ class UserSelector extends React.Component {
             textInput: inputText,
             enableCleanBtn: activeBtn,
         });
-        this.handleFindUser(inputText);
+        this.props.search(inputText,this.state.userList,SearchUser);
     }
 
     handleRemoveUser(id) {
         const newList = this.state.userList;
-        const newSearchList = ItemSelected(this.state.searchList, id, false);
         if (newList.length <= 1) {
             console.log('card must have at least one user');
         } else {
@@ -74,83 +66,23 @@ class UserSelector extends React.Component {
                 }
                 this.setState({
                     userList: newList,
-                    searchList: newSearchList,
                 });
             }
+            this.props.handleRemove(id);
             this.props.handleRemoveUser(id);
         }
     }
 
     handleAddUser(user) {
         const newUserList = this.state.userList;
-        const newSearchList = ItemSelected(this.state.searchList, user.id, true);
         newUserList.push(user);
-
         this.setState({
             userList: newUserList,
-            searchList: newSearchList,
         });
+        this.props.handleSelect(user.id);
         this.props.handleAddUser(user._id);
     }
 
-    handleFindUser(text) {
-        let newHint = '';
-        const newList = SearchSelectsLocal(this.state.userList, text.toUpperCase());
-
-        if (text.length === 0) {
-            this.setState({
-                searchList: [],
-                checkInput: false,
-            });
-        } else if (newList.length > 0 && text.length !== 0) {
-            this.setState({
-                searchList: newList,
-                checkInput: false,
-            });
-        } else if (text.length > 0 && text.length < 3 && newList.length === 0) {
-            newHint = `type ${3 - text.length} more character`;
-            this.setState((prevState) => ({
-                    ...prevState,
-                    textInputHint: newHint,
-                    checkInput: true,
-                    searchList: newList,
-                }));
-        }
-
-        if (text.length >= 3) {
-            newHint = 'searching';
-            const newList = SearchSelectsLocal(this.state.userList, text.toUpperCase());
-            const response = SearchUser(this.state.userId, text);
-            this.setState((prevState) => ({
-                ...prevState,
-                loading: true,
-            }));
-            response.then((findUsers) => {
-                if (findUsers) {
-                    console.log(findUsers);
-                    const newSearchList = SearchSelectsRemote(newList, text.toUpperCase(), findUsers.data);
-                    let foundNewUser = false;
-                    if (newSearchList.length >= 1) {
-                        foundNewUser = true;
-                        this.setState((prevState) => ({
-                                ...prevState,
-                                checkInput: !foundNewUser,
-                                searchList: newSearchList,
-                                textInputHint: newHint,
-                                loading: false,
-                            }));
-                    }
-                } else {
-                    this.setState((prevState) => ({
-                            ...prevState,
-                            loading: false,
-                            checkInput: true,
-                            textInputHint: 'No result found',
-                        }));
-                }
-            });
-        }
-    }
 
     handleClickOutside(event) {
         if (this.wrapperRef && !this.wrapperRef.current.contains(event.target) && !this.btnRef.current.contains(event.target) && this.state.showDropdown) {
@@ -167,13 +99,12 @@ class UserSelector extends React.Component {
     }
 
     render() {
-        const {
- showDropdown, textInput, enableCleanBtn,
-            textInputHint, checkInput, searchList, loading, user,
-} = this.state;
+        const { showDropdown, textInput, enableCleanBtn, currentUser } = this.state;
+        const { textInputHint, searchList, loading, checkInput } = this.props;
+        console.log(checkInput)
 
         let assignedTo = '';
-        const userList = FormatList(this.state.userList);
+        let userList = FormatList(this.state.userList);
 
         if (!userList) {
             assignedTo = '0 user';
@@ -182,6 +113,8 @@ class UserSelector extends React.Component {
         if (userList.length === 1) {
             assignedTo = `${userList[0].selects.fullName} (${userList[0].selects.email})`;
         } else assignedTo = `${userList.length} contacts`;
+
+
 
         const select = (
           <Select
@@ -219,7 +152,7 @@ class UserSelector extends React.Component {
                 select={select}
                 corner="topLeft"
                 showDropdown={showDropdown}
-                user={user}
+                currentUser={currentUser}
                 textInput={textInput}
                 enableCleanBtn={enableCleanBtn}
                 handleCleanInput={this.handleCleanInput}
@@ -233,4 +166,4 @@ class UserSelector extends React.Component {
     }
 }
 
-export default UserSelector;
+export default withSearch(UserSelector);

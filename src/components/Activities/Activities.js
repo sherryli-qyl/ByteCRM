@@ -16,7 +16,7 @@ class Activities extends React.Component {
       { key: 'Notes', value: 'Notes', activity: <NotesTimeLine relatedTo={relatedTo} associatedContacts={associatedContacts} /> },
       { key: 'Emails', value: 'Emails', activity: <EmailPage contact={contact} associatedContacts={associatedContacts} /> },
       { key: 'Calls', value: 'Calls', activity: <CallPanel /> },
-      { key: 'Tasks', value: 'Tasks', activity: <TaskPage contact={contact} associatedContacts={associatedContacts} /> },
+      { key: 'Tasks', value: 'Tasks', activity: <TaskPage contact={contact}/> },
       { key: 'Meetings', value: 'Meetings', activity: <MeetingPage contact={contact} associatedContacts={associatedContacts} /> },
     ];
     this.state = {

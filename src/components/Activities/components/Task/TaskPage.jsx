@@ -3,15 +3,15 @@ import TaskCards from './components/TaskCards';
 import TaskPageHeader from './components/Header';
 import shuffleCards from '../../../services/shuffleCards';
 import './TaskPage.scss';
-import { GetTasks, GetMultiContactsTasks, UpdateTask, DeleteCreateTask, UpdateAssignedToUser, RemoveAssignedToUser} from '../../../Api/Task/Task';
+import { GetTasks, GetMultiContactsTasks, UpdateTask, DeleteCreateTask, UpdateAssignedToUser, RemoveAssignedToUser } from '../../../Api/Task/Task';
 
-const assignedToUser = JSON.parse(localStorage.getItem('assignedToUser'));
+const currentUser = JSON.parse(localStorage.getItem('user'));
 
 class TaskPage extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			assignedToUser,
+			currentUser,
 			cardList: [],
 			cardsArray: [],
 			contact: this.props.contact,
@@ -50,17 +50,17 @@ class TaskPage extends React.Component {
 
 	handleInitPage() {
 		let data = [];
-        const { contact, associatedContacts } = this.state;
-        if (contact) {
-            data = GetTasks(contact.id);
-        } else if (associatedContacts) {
-            let ids = '';
-            for (let i = 0; i < associatedContacts.length; i++) {
-                const { id } = associatedContacts[i];
-                i === 0 ? ids += id : ids += `&&${id}`;
-            }
-            data = GetMultiContactsTasks(ids);
-        }
+		const { contact, associatedContacts } = this.state;
+		if (contact) {
+			data = GetTasks(contact.id);
+		} else if (associatedContacts) {
+			let ids = '';
+			for (let i = 0; i < associatedContacts.length; i++) {
+				const { id } = associatedContacts[i];
+				i === 0 ? ids += id : ids += `&&${id}`;
+			}
+			data = GetMultiContactsTasks(ids);
+		}
 		data.then((response) => {
 			if (response.statusText === 'OK') {
 				this.setState({
@@ -106,25 +106,24 @@ class TaskPage extends React.Component {
 	}
 
 	render() {
-		const { cardsArray, contact, user } = this.state;
+		const { cardsArray, contact, currentUser } = this.state;
 		return (
-  <div className="taskPage">
-    <TaskPageHeader
-      handleCreateTask={this.handleCreateTask}
-      assignedToUser={assignedToUser}
-      contact={contact}
-      user={user}
-    />
-    <TaskCards
-      contact={contact}
-      assignedToUser={assignedToUser}
-      cardsArray={cardsArray}
-      handleDeleteCard={this.handleDeleteCard}
-      handleAddUser={this.handleAddUser}
-      handleRemoveUser={this.handleRemoveUser}
-      onChangeTask={this.onChangeTask}
-    />
-  </div>
+			<div className="taskPage">
+				<TaskPageHeader
+					handleCreateTask={this.handleCreateTask}
+					contact={contact}
+					currentUser={currentUser}
+				/>
+				<TaskCards
+					contact={contact}
+					currentUser={currentUser}
+					cardsArray={cardsArray}
+					handleDeleteCard={this.handleDeleteCard}
+					handleAddUser={this.handleAddUser}
+					handleRemoveUser={this.handleRemoveUser}
+					onChangeTask={this.onChangeTask}
+				/>
+			</div>
 		);
 	}
 }

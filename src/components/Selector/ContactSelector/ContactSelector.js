@@ -5,18 +5,17 @@ import Dropdown from '../components/Dropdown';
 import Select from '../components/Select';
 import DropDownDisplay from '../../DropDownDisplay';
 import NameTag from '../../NameTag';
-import {
- FormatList, SearchSelectsLocal, SearchSelectsRemote, ItemSelected,
-} from '../../../lib/Search';
+import withSearch from '../components/withSearch';
+import { FormatList } from '../../../lib/Search';
 import { GetContactByUserId } from '../../Api/Contact';
 import './ContactSelector.scss';
+
+
 
 class ContactSelector extends React.Component {
     constructor(props) {
         super(props);
-        const {
- contactList, userId, contact, variant,
-} = this.props;
+        const { contactList, userId, contact, variant } = this.props;
         this.state = {
             showDropdown: false,
             contactList,
@@ -51,7 +50,7 @@ class ContactSelector extends React.Component {
         this.setState({
             textInput: '',
         });
-        this.handleFindContact('');
+        this.props.search('');
     }
 
     handleInputChange(inputText) {
@@ -63,13 +62,25 @@ class ContactSelector extends React.Component {
             textInput: inputText,
             enableCleanBtn: activeBtn,
         });
-        this.handleFindContact(inputText);
+        this.props.search(inputText,this.state.contactList,GetContactByUserId)
+    }
+
+    handleAddContact(contact) {
+        const newContactList = this.state.contactList;
+        newContactList.push(contact);
+        if (this.state.variant === 'activity') {
+            this.props.handleAddContact(contact._id);
+            this.props.handleSelect(contact._id);
+            this.setState({
+                contactList: newContactList,
+            });
+        } else {
+            this.props.handleSelectedContacts(newContactList);
+        }
     }
 
     handleRemoveContact(id) {
         const newList = [...this.state.contactList];
-        const newSearchList = ItemSelected(this.state.searchList, id, false);
-
         if (newList.length <= 1 && this.state.variant === 'activity') {
             console.log('card must have at least one contact');
         } else {
@@ -79,9 +90,9 @@ class ContactSelector extends React.Component {
                 }
                 if (this.state.variant === 'activity') {
                     this.props.handleDeleteContact(id);
+                    this.props.handleRemove(id);
                     this.setState({
                         contactList: newList,
-                        searchList: newSearchList,
                     });
                 } else {
                     this.setState({
@@ -90,80 +101,6 @@ class ContactSelector extends React.Component {
                     this.props.handleSelectedContacts(newList);
                 }
             }
-        }
-    }
-
-    handleAddContact(contact) {
-        const newContactList = this.state.contactList;
-        const newSearchList = ItemSelected(this.state.searchList, contact.id, true);
-        newContactList.push(contact);
-
-        if (this.state.variant === 'activity') {
-            this.props.handleAddContact(contact._id);
-            this.setState({
-                contactList: newContactList,
-                searchList: newSearchList,
-            });
-        } else {
-            this.props.handleSelectedContacts(newContactList);
-        }
-    }
-
-    handleFindContact(text) {
-        let newHint = '';
-        const newList = SearchSelectsLocal(this.state.contactList, text.toUpperCase());
-
-        if (text.length === 0) {
-            this.setState({
-                searchList: [],
-                checkInput: false,
-            });
-        } else if (newList.length > 0 && text.length !== 0) {
-            this.setState({
-                searchList: newList,
-                checkInput: false,
-            });
-        } else if (text.length > 0 && text.length < 3 && newList.length === 0) {
-            newHint = `type ${3 - text.length} more character`;
-            this.setState((prevState) => ({
-                    ...prevState,
-                    textInputHint: newHint,
-                    checkInput: true,
-                    searchList: newList,
-                }));
-        }
-
-        if (text.length >= 3) {
-            newHint = 'searching';
-            const newList = SearchSelectsLocal(this.state.contactList, text.toUpperCase());
-            const response = GetContactByUserId(JSON.parse(localStorage.getItem('user')).id, text.toUpperCase());
-            this.setState((prevState) => ({
-                ...prevState,
-                loading: true,
-            }));
-            response.then((response) => {
-                if (response) {
-                    const newSearchList = SearchSelectsRemote(newList, text.toUpperCase(), response.data);
-                    let foundNewContact = false;
-                    if (newSearchList.length >= 1) {
-                        foundNewContact = true;
-                        this.setState((prevState) => ({
-                                ...prevState,
-                                checkInput: !foundNewContact,
-                                searchList: newSearchList,
-                                textInputHint: newHint,
-                                loading: false,
-                            }));
-                    }
-                } else {
-                    this.setState((prevState) => ({
-                            ...prevState,
-                            loading: false,
-                            checkInput: true,
-                            textInputHint: 'No result found',
-                        }));
-                }
-            });
         }
     }
 
@@ -182,10 +119,8 @@ class ContactSelector extends React.Component {
     }
 
     render() {
-        const {
- showDropdown, textInput, enableCleanBtn,
-            textInputHint, checkInput, searchList, loading, contact, variant,
-} = this.state;
+        const {showDropdown, textInput, enableCleanBtn, contact, variant } = this.state;
+        const { textInputHint, searchList, loading, checkInput } = this.props;
 
         let contacted = '';
         let contactList = [];
@@ -277,4 +212,4 @@ class ContactSelector extends React.Component {
     }
 }
 
-export default ContactSelector;
+export default withSearch(ContactSelector);

@@ -11,6 +11,7 @@ const userSelectHint = 'Tasks must have at Least one association';
 
 const InputTaskType = ({
   card,
+  currentUser,
   handleUpdate,
   handleAddUser,
   handleRemoveUser,
@@ -24,6 +25,7 @@ const InputTaskType = ({
           </div>
           <UserSelector
             userList={card.users}
+            currentUser = {currentUser}
             contactSelectHint={userSelectHint}
             handleAddUser={handleAddUser}
             handleRemoveUser={handleRemoveUser}
