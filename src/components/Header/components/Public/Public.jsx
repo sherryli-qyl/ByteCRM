@@ -5,7 +5,7 @@ import {
   CONTACT_BASE_URL,
   COMPANY_BASE_URL,
   ABOUTUS_BASE_URL,
-  CONTACTUS_BASE_URL
+  CONTACTUS_BASE_URL,
 } from '../../../Routes/URLMap';
 import HeaderNavLink from '../HeaderNavLink';
 
