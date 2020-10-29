@@ -1,24 +1,21 @@
 import React from 'react';
 
-
-
-const withModal = (Component,controller) => {
+const withModal = (Component, controller) => {
     class Wrapper extends React.Component {
         constructor(props) {
             super(props);
             this.state = {
-                controller:controller
-            }
+                controller,
+            };
         }
 
-
         render() {
-            const {controller} = this.state;
+            const { controller } = this.state;
             return (
-                <Component
-                    {...this.props}
-                    modalController={controller}
-                />
+              <Component
+                {...this.props}
+                modalController={controller}
+              />
             );
         }
     }

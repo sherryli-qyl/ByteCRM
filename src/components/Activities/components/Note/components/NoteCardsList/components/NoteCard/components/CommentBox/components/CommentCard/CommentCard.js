@@ -1,11 +1,9 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
-import { faPen } from '@fortawesome/free-solid-svg-icons';
-import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
-//import Editor from '../../../../../../../../../../../../Style/Editor';
-import './CommentCard.scss';
+import { faUserCircle, faPen, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
+// import Editor from '../../../../../../../../../../../../Style/Editor';
+import './CommentCard.scss';
 
 class CommentCard extends React.Component {
   constructor(props) {
@@ -13,7 +11,7 @@ class CommentCard extends React.Component {
 
     this.state = {
       editing: false,
-      showActionIcons: false
+      showActionIcons: false,
     };
 
     this.handleDelete = this.handleDelete.bind(this);
@@ -21,9 +19,9 @@ class CommentCard extends React.Component {
     this.handleCancel = this.handleCancel.bind(this);
     this.handleSave = this.handleSave.bind(this);
   }
-  
+
   handleEdit() {
-    this.setState({ editing: true })
+    this.setState({ editing: true });
   }
 
   handleDelete() {
@@ -36,23 +34,27 @@ class CommentCard extends React.Component {
   }
 
   handleCancel() {
-    this.setState({ editing: false })
-    this.setState({ showActionIcons: false })
+    this.setState({ editing: false });
+    this.setState({ showActionIcons: false });
   }
 
   handleActionIconsToggle = () => this.setState({ showActionIcons: !this.state.showActionIcons });
 
-  renderNormalMode () {
-    return(
-      <div 
-        className="comment-container" 
+  renderNormalMode() {
+    return (
+      <div
+        className="comment-container"
         onMouseEnter={this.handleActionIconsToggle}
         onMouseLeave={this.handleActionIconsToggle}
       >
         <div className="comment-container-header">
           <div className="comment-container-header__left">
             <FontAwesomeIcon icon={faUserCircle} />
-            <p className="comment-createdby"><b>{this.props.author}</b> left a comment</p>
+            <p className="comment-createdby">
+              <b>{this.props.author}</b>
+              {' '}
+              left a comment
+            </p>
           </div>
           <div className="comment-container-header__right">
             {this.props.timestamp}
@@ -61,44 +63,45 @@ class CommentCard extends React.Component {
         <div className="comment-content">
           {this.props.content}
         </div>
-        {this.state.showActionIcons 
-          && (<div className="comment-card-actions">
-              <FontAwesomeIcon icon={faPen} onClick={this.handleEdit} className="comment-card-actions__button"/>
-              <FontAwesomeIcon icon={faTrashAlt} onClick={this.handleDelete} className="comment-card-actions__button"/>
-             </div>)}
+        {this.state.showActionIcons
+          && (
+          <div className="comment-card-actions">
+            <FontAwesomeIcon icon={faPen} onClick={this.handleEdit} className="comment-card-actions__button" />
+            <FontAwesomeIcon icon={faTrashAlt} onClick={this.handleDelete} className="comment-card-actions__button" />
+          </div>
+)}
       </div>
     );
   }
 
-  renderEditingMode () {
-    return(
+  renderEditingMode() {
+    return (
       <div className="comment-container">
         <div className="comment-container-header__left--editing">
           <FontAwesomeIcon icon={faUserCircle} />
         </div>
-        
+
         <div className="comment-editor">
-          <textarea 
+          <textarea
             className="comment-content-edit"
-            ref={ (textarea) => { this.newContent = textarea; } } 
-            onChange={this.handleChange}        
-            defaultValue={this.props.content}>
-          </textarea>
+            ref={(textarea) => { this.newContent = textarea; }}
+            onChange={this.handleChange}
+            defaultValue={this.props.content}
+          />
           <div className="comment-editor-actions">
-            <button onClick={this.handleSave} class="comment-card-content__save">Save</button>
-            <button onClick={this.handleCancel} class="comment-card-content__cancel">Cancel</button>
+            <button onClick={this.handleSave} className="comment-card-content__save">Save</button>
+            <button onClick={this.handleCancel} className="comment-card-content__cancel">Cancel</button>
           </div>
         </div>
       </div>
     );
   }
 
-  render() { 
-    if(this.state.editing){ 
+  render() {
+    if (this.state.editing) {
       return this.renderEditingMode();
-    } else {
-    return this.renderNormalMode();
     }
+    return this.renderNormalMode();
  }
 }
 

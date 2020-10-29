@@ -1,8 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
-import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
-import { faCommentDots } from '@fortawesome/free-solid-svg-icons';
+import { faChevronDown, faChevronRight, faCommentDots } from '@fortawesome/free-solid-svg-icons';
+
 import CommentCard from './components/CommentCard';
 import CommentForm from './components/CommentForm';
 import './CommentBox.scss';
@@ -62,27 +61,24 @@ class CommentBox extends React.Component {
   }
 
   getComments() {
-    return this.state.comments.map((comment, i) => {
-      return (
-        <CommentCard
-          key={i}
-          index={i}
-          author={comment.author}
-          content={comment.content}
-          timestamp={comment.timestamp}
-          onDelete={this.deleteComment}
-          onUpdate={this.updateComment}
-        />
-      );
-    });
+    return this.state.comments.map((comment, i) => (
+      <CommentCard
+        key={i}
+        index={i}
+        author={comment.author}
+        content={comment.content}
+        timestamp={comment.timestamp}
+        onDelete={this.deleteComment}
+        onUpdate={this.updateComment}
+      />
+      ));
   }
 
   getCommentsTitle(commentCount) {
     if (commentCount === 0) {
       return 'No comments yet';
-    } else {
-      return `Comments (${commentCount}) `;
     }
+      return `Comments (${commentCount}) `;
   }
 
   render() {
@@ -103,7 +99,9 @@ class CommentBox extends React.Component {
             onClick={this.handleClick.bind(this)}
             className="accordion-label"
           >
-            {buttonText} {this.getCommentsTitle(comments.length)}
+            {buttonText}
+            {' '}
+            {this.getCommentsTitle(comments.length)}
           </button>
           {commentNodes}
         </div>

@@ -15,26 +15,26 @@ const DropdownTheme = createMuiTheme({
                 height: '15px',
                 padding: '0px',
                 width: '65px',
-            }
+            },
         },
         MuiInput: {
             root: {
 
             },
             underline: {
-                "&&&&:hover:before": {
-                    borderBottom: "1px solid" + primaryColor,
+                '&&&&:hover:before': {
+                    borderBottom: `1px solid${primaryColor}`,
                 },
-                "&:hover":{
-                    borderBottom: "0",
+                '&:hover': {
+                    borderBottom: '0',
                 },
-                "&:before": {
-                    borderBottom: "0",
+                '&:before': {
+                    borderBottom: '0',
                 },
-                "&::after": {
-                    borderBottom: "0",
+                '&::after': {
+                    borderBottom: '0',
                 },
-                borderBottom: "0px solid" + primaryColor,
+                borderBottom: `0px solid${primaryColor}`,
             },
             input: {
                 color: primaryColor,
@@ -42,7 +42,7 @@ const DropdownTheme = createMuiTheme({
                 height: '15px',
                 fontSize: '15px',
                 width: '65px',
-            }
+            },
         },
         MuiInputAdornment: {
             root: {
@@ -50,22 +50,22 @@ const DropdownTheme = createMuiTheme({
             },
             positionEnd: {
                 marginLeft: '0px',
-            }
+            },
         },
         MuiButtonBase: {
             root: {
                 width: '15px',
                 backgroundColor: 'transparent',
-            }
+            },
         },
         MuiSelect: {
             select: {
-                "&:focus": {
+                '&:focus': {
                     backgroundColor: 'transparent',
                 },
-            }
+            },
         },
-    }
-})
+    },
+});
 
 export default DropdownTheme;

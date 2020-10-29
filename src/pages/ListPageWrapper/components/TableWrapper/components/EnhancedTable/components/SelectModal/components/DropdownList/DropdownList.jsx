@@ -1,7 +1,7 @@
-import React from "react";
-import "./DropdownList.scss";
-import OutsideClickHandler from "react-outside-click-handler";
-import DropdownItem from "./components/DropdownItem";
+import React from 'react';
+import './DropdownList.scss';
+import OutsideClickHandler from 'react-outside-click-handler';
+import DropdownItem from './components/DropdownItem';
 
 class DropdownList extends React.Component {
   constructor(props) {
@@ -10,7 +10,7 @@ class DropdownList extends React.Component {
       hint: this.props.hint,
       items: this.props.items,
       visible: false,
-      selected: "",
+      selected: '',
     };
   }
 

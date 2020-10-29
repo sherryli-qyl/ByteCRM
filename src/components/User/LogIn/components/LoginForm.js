@@ -18,14 +18,16 @@ class LoginForm extends React.Component {
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  //Toggle Password -> Show or Hide
+
+  // Toggle Password -> Show or Hide
   toggleShow = this.toggleShow.bind(this);
+
   toggleShow() {
     this.setState({ hidden: !this.state.hidden });
   }
 
   handleEmailChange(event) {
-    let value = event.target.value;
+    const { value } = event.target;
     this.setState(
       (prevState) => ({
         user: {
@@ -33,12 +35,12 @@ class LoginForm extends React.Component {
           email: value,
         },
       }),
-      () => console.log(this.state.user)
+      () => console.log(this.state.user),
     );
   }
 
   handlePasswordChange(event) {
-    let value = event.target.value;
+    const { value } = event.target;
     this.setState(
       (prevState) => ({
         user: {
@@ -46,7 +48,7 @@ class LoginForm extends React.Component {
           password: value,
         },
       }),
-      () => console.log(this.state.user)
+      () => console.log(this.state.user),
     );
   }
 
@@ -65,7 +67,7 @@ class LoginForm extends React.Component {
         password: this.state.user.password,
       })
       .then((res) => {
-        if (res.status === 200) {  
+        if (res.status === 200) {
           localStorage.setItem('user', JSON.stringify(res.data.user));
           this.props.history.push('/contacts');
         }
@@ -82,8 +84,8 @@ class LoginForm extends React.Component {
     if (!this.state.user.email) {
       emailErrMsg = 'Email cannot be blank..';
     } else if (typeof this.state.user.email !== 'undefined') {
-      let emailPattern = new RegExp(
-        /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i
+      const emailPattern = new RegExp(
+        /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i,
       );
 
       if (!emailPattern.test(this.state.user.email)) {
@@ -94,13 +96,12 @@ class LoginForm extends React.Component {
     if (!this.state.user.password) {
       passwordErrMsg = 'Password cannot be blank.';
     } else if (typeof this.state.user.password !== 'undefined') {
-      let passwordPattern = new RegExp(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/i
+      const passwordPattern = new RegExp(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/i,
       );
 
       if (!passwordPattern.test(this.state.user.password)) {
-        passwordErrMsg =
-          'Minimum eight characters, at least one uppercase letter, one lowercase letter and one number';
+        passwordErrMsg = 'Minimum eight characters, at least one uppercase letter, one lowercase letter and one number';
       }
     }
     if (emailErrMsg || passwordErrMsg) {

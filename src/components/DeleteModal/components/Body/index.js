@@ -1,1 +1,1 @@
-export {default} from './DeleteBody';
+export { default } from './DeleteBody';

@@ -1,15 +1,14 @@
 import React from 'react';
-import "./Text.scss";
+import './Text.scss';
 
-
-const Text =({
+const Text = ({
     children,
     className,
-    text ='text',
-})=>(
-    <span className={className +" "+text}>
-        {children}
-    </span>
+    text = 'text',
+}) => (
+  <span className={`${className} ${text}`}>
+    {children}
+  </span>
 );
 
-export default Text
+export default Text;

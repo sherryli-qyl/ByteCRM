@@ -2,9 +2,8 @@ import React from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
-import {addDate} from '../../../services/DateManager';
+import { addDate } from '../../../services/DateManager';
 import './TaskFollow.scss';
-
 
 class TaskFollowSelect extends React.Component {
     constructor(props) {
@@ -20,10 +19,9 @@ class TaskFollowSelect extends React.Component {
 
         this.state = {
             timeValue: 3,
-            selectItems: selectItems,
+            selectItems,
         };
         this.handleSelectChange = this.handleSelectChange.bind(this);
-
     }
 
     handleSelectChange(e) {
@@ -36,31 +34,30 @@ class TaskFollowSelect extends React.Component {
         });
     }
 
-
-
     render() {
         const { timeValue, selectItems } = this.state;
         return (
-            <div>
-                <ThemeProvider theme={this.props.theme}>
-                    <Select
-                        //disableUnderline
-                        value={timeValue}
-                        variant='standard'
-                        onChange={this.handleSelectChange}
-                        defaultValue={3}
-                        className={"taskFollow__select__input"}
-                    >
-                        {selectItems.map((item) => (
-                            <MenuItem
-                                key={item.key}
-                                value={item.value}>
-                                {item.key + `(${addDate(item.value)})`}
-                            </MenuItem>
+          <div>
+            <ThemeProvider theme={this.props.theme}>
+              <Select
+                        // disableUnderline
+                value={timeValue}
+                variant="standard"
+                onChange={this.handleSelectChange}
+                defaultValue={3}
+                className="taskFollow__select__input"
+              >
+                {selectItems.map((item) => (
+                  <MenuItem
+                    key={item.key}
+                    value={item.value}
+                  >
+                    {`${item.key}(${addDate(item.value)})`}
+                  </MenuItem>
                         ))}
-                    </Select>
-                </ThemeProvider>
-            </div>
+              </Select>
+            </ThemeProvider>
+          </div>
         );
     }
 }

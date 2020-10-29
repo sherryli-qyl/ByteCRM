@@ -16,7 +16,6 @@ import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import DeleteIcon from '@material-ui/icons/Delete';
 
-
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
     Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
@@ -37,6 +36,5 @@ const tableIcons = {
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />),
     Deletion: forwardRef((props, ref) => <DeleteIcon {...props} ref={ref} />),
 };
-
 
 export default tableIcons;

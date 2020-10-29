@@ -5,39 +5,37 @@ async function GetEmails(contactId) {
     return response;
 }
 
-
 const GetMultiContactsEmails = (contacts) => {
     const response = api.get(`/api/emails/contacts/${contacts}`);
     return response;
-}
+};
 
-async function PostEmail(body){
-    const serverUrl = `http://localhost:3000/api/emails`;
+async function PostEmail(body) {
+    const serverUrl = 'http://localhost:3000/api/emails';
     const response = await fetch(serverUrl, {
-        method: "POST",
+        method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
         },
-        body: JSON.stringify(body)
+        body: JSON.stringify(body),
     });
 
-    if (response.ok){
+    if (response.ok) {
         return response.json();
     }
-    else {
-        return false
-    }
+
+        return false;
 }
 
 async function UpdateEmail(emailId, body) {
     const serverUrl = `http://localhost:3000/api/emails/${emailId}`;
     console.log(body);
     const response = await fetch(serverUrl, {
-        method: "PUT",
+        method: 'PUT',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
         },
-        body: JSON.stringify(body)
+        body: JSON.stringify(body),
     });
     const data = response.json();
     return data;
@@ -46,43 +44,42 @@ async function UpdateEmail(emailId, body) {
 async function DeleteEmailLog(emailId) {
     const serverUrl = `http://localhost:3000/api/emails/${emailId}`;
     const response = await fetch(serverUrl, {
-        method: "DELETE",
+        method: 'DELETE',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
         },
     });
-    if(response.ok){
+    if (response.ok) {
         return true;
     }
-    else {
+
         return false;
-    }
 }
 
-
-async function UpdateContacts(contactId,emailId){
+async function UpdateContacts(contactId, emailId) {
     const serverUrl = `http://localhost:3000/api/emails/${emailId}/contacts/${contactId}`;
     const response = await fetch(serverUrl, {
-        method: "PUT",
+        method: 'PUT',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
         },
     });
     const data = response.json();
     return data;
 }
 
-async function RemoveContacts(contactId,emailId){
+async function RemoveContacts(contactId, emailId) {
     const serverUrl = `http://localhost:3000/api/emails/${emailId}/contacts/${contactId}`;
     const response = await fetch(serverUrl, {
-        method: "DELETE",
+        method: 'DELETE',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
         },
     });
     const data = response.json();
     return data;
 }
 
-
-export {GetEmails,GetMultiContactsEmails,PostEmail,UpdateEmail,DeleteEmailLog,UpdateContacts,RemoveContacts};
+export {
+ GetEmails, GetMultiContactsEmails, PostEmail, UpdateEmail, DeleteEmailLog, UpdateContacts, RemoveContacts,
+};

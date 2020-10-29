@@ -1,5 +1,5 @@
 import React from 'react';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
 import Editor from '../Editor';
 import SaveButton from '../Button/Activities/CreateButton';
@@ -16,7 +16,7 @@ class EditableText extends React.Component {
 
   constructor(props) {
     super(props);
-    const { content, cardKey, variant} = this.props;
+    const { content, cardKey, variant } = this.props;
     this.state = {
       isEditingMode: false,
       onHover: false,
@@ -33,14 +33,12 @@ class EditableText extends React.Component {
     this.handleEditorChange = this.handleEditorChange.bind(this);
   }
 
-
   handleEditorChange(newContent) {
     console.log(newContent);
     this.setState({
       currentContent: newContent,
-    })
+    });
   }
-
 
   handleSave() {
     const newContent = this.state.currentContent;
@@ -54,40 +52,41 @@ class EditableText extends React.Component {
   handleEdit() {
     this.setState({
       isEditingMode: true,
-      onHover: false
+      onHover: false,
     });
-
   }
 
   handleCancel() {
     this.setState({
       isEditingMode: false,
-      onHover: false
-    })
+      onHover: false,
+    });
   }
 
-  handleEditIconToggle = (onHover) => this.setState({ onHover: onHover });
+  handleEditIconToggle = (onHover) => this.setState({ onHover });
 
   renderNormalMode() {
     const { variant, currentContent } = this.state;
-    const {lineThrough} = this.props;
+    const { lineThrough } = this.props;
 
     return (
       <div
-        className={"editableText"}
+        className="editableText"
         onMouseEnter={() => this.handleEditIconToggle(true)}
         onMouseLeave={() => this.handleEditIconToggle(false)}
-        onClick={this.handleEdit}>
+        onClick={this.handleEdit}
+      >
 
         <div className="editableText__content">
-          {variant === 'input' ?
-            <div className={lineThrough ? "editableText__content--input editableText__content--input--lineThrough " 
-                                        : "editableText__content--input"}>
-              {currentContent}
-            </div>
-            :
-            <div className="editableText__content--editor" dangerouslySetInnerHTML={{ __html: this.state.content }} />
-          }
+          {variant === 'input'
+            ? (
+              <div className={lineThrough ? 'editableText__content--input editableText__content--input--lineThrough '
+                                        : 'editableText__content--input'}
+              >
+                {currentContent}
+              </div>
+)
+            : <div className="editableText__content--editor" dangerouslySetInnerHTML={{ __html: this.state.content }} />}
 
         </div>
 
@@ -98,34 +97,36 @@ class EditableText extends React.Component {
           />
         </div>
       </div>
-    )
+    );
   }
 
-
-
   renderEditingMode() {
-    const { content, variant,currentContent } = this.state;
-
+    const { content, variant, currentContent } = this.state;
 
     return (
       <div className="editingmode">
-        {variant === "input" ?
+        {variant === 'input' ? (
           <div className="editingmode__inputWrapper">
-            <input className="editingmode__inputWrapper__input" 
-                   value={currentContent}
-                   onChange = {(event) =>this.handleEditorChange(event.target.value)} />
-          </div>
-          :
-          <div className="editingmode__editor">
-            <Editor content={content}
-              handleEditorChange={this.handleEditorChange}
+            <input
+              className="editingmode__inputWrapper__input"
+              value={currentContent}
+              onChange={(event) => this.handleEditorChange(event.target.value)}
             />
           </div>
-        }
+        )
+          : (
+            <div className="editingmode__editor">
+              <Editor
+                content={content}
+                handleEditorChange={this.handleEditorChange}
+              />
+            </div>
+        )}
         <div className="editingmode__actions">
           <div className="editingmode__actions__save">
-            <SaveButton className="createButton-small"
-                        onClick={this.handleSave}
+            <SaveButton
+              className="createButton-small"
+              onClick={this.handleSave}
             >
               Save
             </SaveButton>
@@ -138,16 +139,13 @@ class EditableText extends React.Component {
     );
   }
 
-
-
   render() {
-    const isEditingMode = this.state.isEditingMode;
+    const { isEditingMode } = this.state;
     return (isEditingMode
       ? this.renderEditingMode()
       : this.renderNormalMode()
-    )
+    );
   }
 }
-
 
 export default EditableText;

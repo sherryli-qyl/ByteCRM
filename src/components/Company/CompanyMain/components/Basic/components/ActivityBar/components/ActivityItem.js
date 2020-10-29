@@ -7,33 +7,32 @@ const ActivityItem = ({
     src,
     active,
     onClick,
-    children
+    children,
 }) => {
     let itemClassName = 'activity__item';
-    let buttonClassName = 'activity__button';
-    let iconClassName = 'activity__icon';
-    let ActivityNameClassName = 'activity__name';
-
+    const buttonClassName = 'activity__button';
+    const iconClassName = 'activity__icon';
+    const ActivityNameClassName = 'activity__name';
 
     if (active) {
         itemClassName += ' activity__item--active';
     }
 
     return (
-        <div className={itemClassName}>
-            <button
-                className={buttonClassName}
-                onClick={(event) => {
+      <div className={itemClassName}>
+        <button
+          className={buttonClassName}
+          onClick={(event) => {
                     event.preventDefault();
                     onClick();
                 }}
-            >
-                <img className={iconClassName} src={src} alt={name} />
-            </button>
-            <div className={ActivityNameClassName}>
-                {children}
-            </div>
+        >
+          <img className={iconClassName} src={src} alt={name} />
+        </button>
+        <div className={ActivityNameClassName}>
+          {children}
         </div>
+      </div>
     );
 };
 

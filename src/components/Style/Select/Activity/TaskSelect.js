@@ -5,8 +5,6 @@ import Select from '@material-ui/core/Select';
 import { addWeekDay } from '../../../services/DateManager';
 import { publicTheme } from '../../Theme/MatUITheme';
 
-
-
 class TaskSelect extends React.Component {
     constructor(props) {
         super(props);
@@ -22,11 +20,10 @@ class TaskSelect extends React.Component {
         const theme = publicTheme;
         this.state = {
             timeValue: 3,
-            selectItems: selectItems,
+            selectItems,
             theme,
         };
         this.handleSelectChange = this.handleSelectChange.bind(this);
-
     }
 
     handleSelectChange(e) {
@@ -39,30 +36,29 @@ class TaskSelect extends React.Component {
         });
     }
 
-
-
     render() {
         const { timeValue, selectItems, theme } = this.state;
         return (
-            <div>
-                <Select
-                    disableUnderline
-                    value={timeValue}
-                    variant='standard'
-                    onChange={this.handleSelectChange}
-                    defaultValue={3}
-                    className={"taskFollow__select__input"}
+          <div>
+            <Select
+              disableUnderline
+              value={timeValue}
+              variant="standard"
+              onChange={this.handleSelectChange}
+              defaultValue={3}
+              className="taskFollow__select__input"
+            >
+              {selectItems.map((item) => (
+                <MenuItem
+                  key={item.key}
+                  value={item.value}
                 >
-                    {selectItems.map((item) => (
-                        <MenuItem
-                            key={item.key}
-                            value={item.value}>
-                            {item.key + `(${addWeekDay(item.value)})`}
-                        </MenuItem>
+                  {`${item.key}(${addWeekDay(item.value)})`}
+                </MenuItem>
                     ))}
-                </Select>
+            </Select>
 
-            </div>
+          </div>
         );
     }
 }

@@ -3,12 +3,10 @@ import TimeLineControls from './components/TimeLineControls';
 import NoteCardsList from './components/NoteCardsList';
 import shuffleCards from '../../../services/shuffleCards';
 import store from '../../../../store';
-import "./NotesTimeLine.scss";
+import './NotesTimeLine.scss';
 import { GetAllAssociatedNotes, UpdateNote, DeleteNote } from '../../../Api/Note/Note';
 
-
 const user = JSON.parse(localStorage.getItem('user'));
-
 
 class NotesTimeLine extends React.Component {
   constructor(props) {
@@ -19,8 +17,8 @@ class NotesTimeLine extends React.Component {
       cardsArray: [],
       relatedTo: this.props.relatedTo,
       associatedContacts: this.props.associatedContacts,
-      reload:true,
-    }
+      reload: true,
+    };
 
     this.onChangeText = this.onChangeText.bind(this);
     this.onChangeNote = this.onChangeNote.bind(this);
@@ -30,14 +28,14 @@ class NotesTimeLine extends React.Component {
   }
 
   componentDidMount() {
-    store.subscribe(()=>{
-      const {reload} = store.getState();
-      if (reload){
+    store.subscribe(() => {
+      const { reload } = store.getState();
+      if (reload) {
         this.handleGetNotes();
       }
     });
 
-    if(this.state.reload){
+    if (this.state.reload) {
       this.handleGetNotes();
     }
   }
@@ -47,10 +45,10 @@ class NotesTimeLine extends React.Component {
     let allNotes = [];
 
     if (associatedContacts) {
-      let ids = relatedTo + "&&";
+      let ids = `${relatedTo}&&`;
       for (let i = 0; i < associatedContacts.length; i++) {
-          const id = associatedContacts[i].id; 
-          i === 0 ? ids += id : ids += "&&" + id;
+          const { id } = associatedContacts[i];
+          i === 0 ? ids += id : ids += `&&${id}`;
       }
       allNotes = GetAllAssociatedNotes(ids);
     } else {
@@ -58,14 +56,14 @@ class NotesTimeLine extends React.Component {
     }
 
     allNotes
-      .then(value => {
+      .then((value) => {
         this.setState({
           cardsList: value.data,
-          reload:false
+          reload: false,
         });
-        return this.state.cardsList
+        return this.state.cardsList;
       })
-      .then(cards => {
+      .then((cards) => {
         this.sortCardsArray(cards);
       });
   }
@@ -73,18 +71,18 @@ class NotesTimeLine extends React.Component {
   sortCardsArray() {
     const newCardsArray = shuffleCards(this.state.cardsList);
     this.setState({
-      cardsArray: newCardsArray
-    })
+      cardsArray: newCardsArray,
+    });
   }
 
   onChangeText(newContent, cardKey) {
     const newCardsList = this.state.cardsList;
-    for (let i in newCardsList) {
+    for (const i in newCardsList) {
       if (newCardsList[i].key === cardKey) {
         newCardsList[i].content = newContent;
         this.setState({
           cardsList: newCardsList,
-        })
+        });
       }
     }
   }
@@ -93,42 +91,42 @@ class NotesTimeLine extends React.Component {
     UpdateNote(noteId, body);
   }
 
-  handleCreateNote(note){
+  handleCreateNote(note) {
     const newCardList = this.state.cardsList;
     newCardList.push(note);
     this.setState({
       cardsList: newCardList,
-    })
-    this.sortCardsArray()
+    });
+    this.sortCardsArray();
   }
 
-  handleDeleteNoteCard(noteId){
+  handleDeleteNoteCard(noteId) {
     const response = DeleteNote(noteId);
-    response.then(value => {
+    response.then((value) => {
       if (value) {
         this.handleGetNotes();
       }
-    })
+    });
 }
-
 
   render() {
     const { cardsArray, relatedTo } = this.state;
 
     return (
       <div className="note-time-line">
-        <TimeLineControls 
+        <TimeLineControls
           relatedTo={relatedTo}
-          handleCreateNote = {this.handleCreateNote}
+          handleCreateNote={this.handleCreateNote}
         />
-        <NoteCardsList 
+        <NoteCardsList
           relatedTo={relatedTo}
-          cardsArray={cardsArray} 
-          onChangeNote = {this.onChangeNote}
-          handleDeleteNoteCard = {this.handleDeleteNoteCard}
+          cardsArray={cardsArray}
+          onChangeNote={this.onChangeNote}
+          handleDeleteNoteCard={this.handleDeleteNoteCard}
         />
       </div>
-    )}
+    );
+}
 }
 
 export default NotesTimeLine;

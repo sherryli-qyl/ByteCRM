@@ -1,23 +1,20 @@
 import React from 'react';
-import "./ActivitiesButton.scss";
-
-
-
+import './ActivitiesButton.scss';
 
 const LogButton = ({
     children,
     className,
-    onClick
-}) => {
-    return (
-        <button className={`logButton ${className}`}
-        onClick={(event) => {
+    onClick,
+}) => (
+  <button
+    className={`logButton ${className}`}
+    onClick={(event) => {
             event.preventDefault();
             onClick();
-          }}>{children}
-        </button>
-    )
-}
-
+          }}
+  >
+    {children}
+  </button>
+    );
 
 export default LogButton;

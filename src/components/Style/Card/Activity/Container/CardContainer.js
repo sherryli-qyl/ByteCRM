@@ -2,7 +2,6 @@ import React from 'react';
 import ActivityCard from '../Card';
 import { transferDateInMonthYear, transferDateInMonDayYear } from '../../../../services/DateManager';
 
-
 const CardContainer = ({
     date,
     content,
@@ -10,18 +9,18 @@ const CardContainer = ({
     logCard,
     icon,
     handleDeleteCard,
-    handleTest
+    handleTest,
 }) => {
     const NewDate = transferDateInMonthYear(date);
     return (
-        <div className='CardContainer'>
-            <div className="CardContainer__dateLabel">
-                {NewDate}
-            </div>
-            {content.map((card) => {
-                return (
-                    card.type.includes("Logged") ?
-                        <ActivityCard
+      <div className="CardContainer">
+        <div className="CardContainer__dateLabel">
+          {NewDate}
+        </div>
+        {content.map((card) => (
+                    card.type.includes('Logged')
+                        ? (
+                          <ActivityCard
                             key={card._id}
                             dateTime={`${transferDateInMonDayYear(card.date)} at ${card.time}`}
                             card={card}
@@ -29,21 +28,21 @@ const CardContainer = ({
                             handleTest={handleTest}
                             handleDeleteCard={() => handleDeleteCard(card._id)}
                             cardContent={logCard(card)}
-                        />
-                        :
-                        <ActivityCard
+                          />
+)
+                        : (
+                          <ActivityCard
                             key={card._id}
                             dateTime={`${transferDateInMonDayYear(card.date)} at ${card.time}`}
                             card={card}
                             icon={icon}
                             handleDeleteCard={() => handleDeleteCard(card._id)}
                             cardContent={createCard(card)}
-                        />
-                )
-            })
-            }
-        </div>
+                          />
+)
+                ))}
+      </div>
     );
-}
+};
 
 export default CardContainer;

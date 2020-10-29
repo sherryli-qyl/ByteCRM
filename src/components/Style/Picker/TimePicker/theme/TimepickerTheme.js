@@ -1,7 +1,5 @@
 import { createMuiTheme } from '@material-ui/core/styles';
 
-
-
 const primaryColor = '#0091ae';
 const timePicker = createMuiTheme({
     palette: {
@@ -17,45 +15,45 @@ const timePicker = createMuiTheme({
           height: '19px',
           width: '100px',
           padding: '0px',
-        }
+        },
       },
-      MuiFormControl:{
-        marginNormal:{
-          marginTop:'0px',
-          marginBottom:'0px',
-        }
-  
+      MuiFormControl: {
+        marginNormal: {
+          marginTop: '0px',
+          marginBottom: '0px',
+        },
+
       },
       MuiInput: {
         root: {
           flex: 1,
         },
         underline: {
-          "&&&&:hover:before": {
-            borderBottom: "1px solid" + primaryColor,
+          '&&&&:hover:before': {
+            borderBottom: `1px solid${primaryColor}`,
           },
-          "&:before": {
-            borderBottom: "0",
+          '&:before': {
+            borderBottom: '0',
           },
-          "&::after": {
-            borderBottom: "0",
+          '&::after': {
+            borderBottom: '0',
           },
-          borderBottom: "0px solid" + primaryColor,
+          borderBottom: `0px solid${primaryColor}`,
         },
         input: {
           color: primaryColor,
           padding: '0px',
-          marginTop:'0px',
+          marginTop: '0px',
           height: '19px',
           width: '100px',
           fontSize: '15px',
-          "&:hover":{
-            cursor:"pointer",
-          }
+          '&:hover': {
+            cursor: 'pointer',
+          },
         },
-        formControl:{
-          marginTop:'0px',
-        }
+        formControl: {
+          marginTop: '0px',
+        },
       },
       MuiInputAdornment: {
         root: {
@@ -63,15 +61,15 @@ const timePicker = createMuiTheme({
         },
         positionEnd: {
           marginLeft: '0px',
-        }
+        },
       },
       MuiButtonBase: {
         root: {
           width: '15px',
           backgroundColor: 'transparent',
-        }
+        },
       },
-  
+
       MuiIconButton: {
         root: {
           borderRadius: 0,
@@ -79,7 +77,7 @@ const timePicker = createMuiTheme({
           minWidth: '15px',
           padding: '0px',
           backgroundColor: 'transparent',
-          "&:hover": {
+          '&:hover': {
             backgroundColor: 'transparent',
           },
         },
@@ -88,18 +86,18 @@ const timePicker = createMuiTheme({
         root: {
           height: '15px',
           width: '15px',
-        }
+        },
       },
       MuiPickersDay: {
         daySelected: {
           borderRadius: '50px',
           backgroundColor: 'rgb(71, 223, 135,0.9)',
-          "&:hover": {
+          '&:hover': {
             backgroundColor: 'rgb(71, 223, 135,0.7)',
           },
-        }
-      }
-    }
-  })
+        },
+      },
+    },
+  });
 
   export default timePicker;

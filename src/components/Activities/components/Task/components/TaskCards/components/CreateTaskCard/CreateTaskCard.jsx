@@ -1,21 +1,25 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable react/prop-types */
 import React from 'react';
 import './CreateTaskCard.scss';
+import PropTypes from 'prop-types';
 import TaskNameBar from './components/TaskNameBar';
 import InputTaskType from './components/InputTaskType';
 import TaskDescription from './components/TaskDescription';
-import RotateArrow from '../../../../../../../RotateArrow'; 
+import RotateArrow from '../../../../../../../RotateArrow';
 
 class CreateTaskCard extends React.Component {
   constructor(props) {
     super(props);
-    const { _id, description, assignedTo } = this.props.card;
+    const { card } = this.props;
+    const { id } = card;
     this.state = {
-      card: this.props.card,
-      cardId: _id,
-      description,
-      userList: assignedTo,
+      card,
+      cardId: id,
       showDetails: false,
-    }
+    };
     this.handleAddUser = this.handleAddUser.bind(this);
     this.handleRemoveUser = this.handleRemoveUser.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
@@ -23,9 +27,9 @@ class CreateTaskCard extends React.Component {
   }
 
   handleToggleDetails() {
-    this.setState(prevState => ({
-      showDetails: !prevState.showDetails
-    }))
+    this.setState((prevState) => ({
+      showDetails: !prevState.showDetails,
+    }));
   }
 
   handleAddUser(userId) {
@@ -37,15 +41,14 @@ class CreateTaskCard extends React.Component {
   }
 
   handleUpdate(value, key) {
-    let newCard = this.state.card;
+    const newCard = this.state.card;
     newCard[key] = value;
-    if(key === 'status' && value === "complete"){
+    if (key === 'status' && value === 'complete') {
       this.setState({
         card: newCard,
         showDetails: false,
       });
-    }
-    else{
+    } else {
       this.setState({
         card: newCard,
       });
@@ -53,13 +56,12 @@ class CreateTaskCard extends React.Component {
     this.props.onChangeTask(this.state.cardId, newCard);
   }
 
-
   render() {
     const { card, showDetails } = this.state;
 
     const Body = () => (
-      <React.Fragment>
-        <div className='blockline'>
+      <>
+        <div className="blockline">
           <InputTaskType
             card={card}
             handleUpdate={this.handleUpdate}
@@ -69,41 +71,54 @@ class CreateTaskCard extends React.Component {
         </div>
         <TaskDescription
           description={card.description}
-          handleUpdate={this.handleUpdate} />
-      </React.Fragment>
-    )
+          handleUpdate={this.handleUpdate}
+        />
+      </>
+    );
 
     return (
       <div className="createTaskCard">
         <div className="createTaskCard__name">
-          <TaskNameBar status={card.status}
-            handleUpdate={this.handleUpdate}>
+          <TaskNameBar
+            status={card.status}
+            handleUpdate={this.handleUpdate}
+          >
             {card.name}
           </TaskNameBar>
         </div>
-        {card.status === "complete" ?
+        {card.status === 'complete' ? (
           <div className="createTaskCard__details">
             <div className="createTaskCard__details__top" onClick={this.handleToggleDetails}>
-                <RotateArrow className="createTaskCard__details__top__arrow" 
-                             rotate = {showDetails}/>
+              <RotateArrow
+                className="createTaskCard__details__top__arrow"
+                rotate={showDetails}
+              />
               <span className="createTaskCard__details__top__label">
                 Details
               </span>
             </div>
-            {showDetails ?
-              <div className="createTaskCard__details__bottom">
-                <Body />
-              </div>
-              :
-              ""
-            }
+            {showDetails
+              ? (
+                <div className="createTaskCard__details__bottom">
+                  <Body />
+                </div>
+)
+              : ''}
           </div>
-          :
-          <Body />
-        }
+        )
+          : <Body />}
       </div>
-    )
+    );
   }
 }
+
+CreateTaskCard.defaultProps = {
+  description: undefined,
+};
+
+CreateTaskCard.prototypes = {
+  id: PropTypes.string.isRequired,
+  card: PropTypes.objectOf(PropTypes.object).isRequired,
+};
 
 export default CreateTaskCard;

@@ -3,15 +3,12 @@ import CompanySelector from '../../../../../../../../Selector/CompanySelector';
 
 import './AddExistCompany.scss';
 
-const AddExistCompany =({
+const AddExistCompany = ({
     handleSelectedCompany,
-}) =>{
-
-    return(
-        <div>
-            <CompanySelector handleSelectedCompany={handleSelectedCompany}/>
-        </div>
-    )
-}
+}) => (
+  <div>
+    <CompanySelector handleSelectedCompany={handleSelectedCompany} />
+  </div>
+    );
 
 export default AddExistCompany;

@@ -1,6 +1,6 @@
 import React from 'react';
-import Dropdown from '../../../../../../Dropdown';
 import styled from 'styled-components';
+import Dropdown from '../../../../../../Dropdown';
 
 class PriorityDropdown extends React.Component {
   constructor(props) {
@@ -8,8 +8,6 @@ class PriorityDropdown extends React.Component {
     const { defaultValue } = this.props;
     let currentValue = '';
     defaultValue ? currentValue = defaultValue : currentValue = false;
-
-
 
     const StyledPriority = styled.div`
       color: #33475b;
@@ -25,21 +23,21 @@ class PriorityDropdown extends React.Component {
       }
       `;
 
-
     const selectItems = [
       { key: 0, value: 'None' },
       {
-        key: 1, value:'high',
+        key: 1,
+value: 'high',
         display:
-          <StyledPriority>
-            high
-          </StyledPriority>
-      }]
+  <StyledPriority>
+    high
+  </StyledPriority>,
+      }];
 
     this.state = {
       selectItems,
       currentValue,
-    }
+    };
 
     this.onChangeValue = this.onChangeValue.bind(this);
   }
@@ -47,10 +45,9 @@ class PriorityDropdown extends React.Component {
   onChangeValue(priority) {
     this.setState({
       currentValue: priority,
-    })
+    });
     this.props.onPriorityChange(priority);
   }
-
 
   render() {
     const { selectItems, currentValue } = this.state;
@@ -60,7 +57,7 @@ class PriorityDropdown extends React.Component {
         onChangeValue={this.onChangeValue}
         selectItems={selectItems}
       />
-    )
+    );
   }
 }
 

@@ -28,6 +28,7 @@
     "node-sass": "^4.14.1",
     "npm-latest-version": "^1.0.2",
     "or": "^0.2.0",
+    "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-draggable": "^4.4.3",
@@ -57,7 +58,7 @@
     "start": "cross-env PORT=8000 react-scripts start",
     "build": "react-scripts build",
     "test": "jest",
-    "lint": "eslint --fix . --ext .jsx,.js --ignore-path .gitignore",
+    "lint": "eslint --fix './src/components/Activities/**/*.jsx'  --ignore-path .gitignore",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -65,7 +66,10 @@
       "react-app",
       "plugin:react/recommended",
       "airbnb"
-    ]
+    ],
+    "rules": {
+      "indent": "off"
+    }
   },
   "browserslist": {
     "production": [

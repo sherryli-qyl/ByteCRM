@@ -5,20 +5,19 @@ import Header from './components/Header';
 
 import './LogEmailCard.scss';
 
-
 class LogEmailCard extends React.Component {
     constructor(props) {
         super(props);
-        const { _id,description,contacts } = this.props.card;
+        const { _id, description, contacts } = this.props.card;
         this.state = {
             currentDate: this.props.card.date,
             currentTime: this.props.card.time,
-            card:this.props.card,
+            card: this.props.card,
             cardId: _id,
             description,
-            contactList:contacts,
-            showDeleteModal:false,
-        }
+            contactList: contacts,
+            showDeleteModal: false,
+        };
         this.onDateChange = this.onDateChange.bind(this);
         this.onTimeChange = this.onTimeChange.bind(this);
         this.onDescriptionChange = this.onDescriptionChange.bind(this);
@@ -26,71 +25,76 @@ class LogEmailCard extends React.Component {
         this.handleDeleteContact = this.handleDeleteContact.bind(this);
     }
 
-    handleAddContact(contactId){
-        this.props.handleAddContact(contactId,this.state.cardId);
+    handleAddContact(contactId) {
+        this.props.handleAddContact(contactId, this.state.cardId);
     }
 
-    handleDeleteContact(contactId){
-        this.props.handleRemoveContact(contactId,this.state.cardId);
+    handleDeleteContact(contactId) {
+        this.props.handleRemoveContact(contactId, this.state.cardId);
     }
 
     onDateChange(date) {
-        let newCard = this.state.card;
+        const newCard = this.state.card;
         newCard.date = date;
         this.setState({
             currentDate: date,
             card: newCard,
-        })
-        this.props.onChangeEmail(this.state.cardId,newCard)
+        });
+        this.props.onChangeEmail(this.state.cardId, newCard);
     }
 
     onTimeChange(time) {
-        let newCard = this.state.card;
+        const newCard = this.state.card;
         newCard.time = time;
         this.setState({
             currentTime: time,
-            card:newCard,
-        })
-        this.props.onChangeEmail(this.state.cardId,newCard)
+            card: newCard,
+        });
+        this.props.onChangeEmail(this.state.cardId, newCard);
     }
 
-    onDescriptionChange(description){
-        let newCard = this.state.card;
+    onDescriptionChange(description) {
+        const newCard = this.state.card;
         newCard.description = description;
         this.setState({
-            description:description,
-            card:newCard,
-        })
-        this.props.onChangeEmail(this.state.cardId,newCard)
+            description,
+            card: newCard,
+        });
+        this.props.onChangeEmail(this.state.cardId, newCard);
     }
 
     render() {
-        const { currentDate, currentTime,cardId, description,contactList} = this.state;
-        const {user,contact} = this.props;
+        const {
+ currentDate, currentTime, cardId, description, contactList,
+} = this.state;
+        const { user, contact } = this.props;
         return (
-            <div className="logEmailCard">
-                {description?
-                    <Header 
-                        cardId={cardId}
-                        description={description}
-                        onContentChange = {this.onDescriptionChange}/>
-                    :
-                    ""
-                }
-                <div className='blockline' >
-                    <Body contactList = {contactList}
-                          contact = {contact}
-                          userId = {user.id}
-                          currentDate={currentDate}
-                          currentTime={currentTime}
-                          handleAddContact = {this.handleAddContact}
-                          handleDeleteContact = {this.handleDeleteContact}
-                          onTimeChange={this.onTimeChange}
-                          onDateChange={this.onDateChange} />
-                </div>
-                <Footer userName={this.props.card.user.fullName} />
+          <div className="logEmailCard">
+            {description
+                  ? (
+                    <Header
+                      cardId={cardId}
+                      description={description}
+                      onContentChange={this.onDescriptionChange}
+                    />
+)
+                    : ''}
+            <div className="blockline">
+              <Body
+                contactList={contactList}
+                contact={contact}
+                userId={user.id}
+                currentDate={currentDate}
+                currentTime={currentTime}
+                handleAddContact={this.handleAddContact}
+                handleDeleteContact={this.handleDeleteContact}
+                onTimeChange={this.onTimeChange}
+                onDateChange={this.onDateChange}
+              />
             </div>
-        )
+            <Footer userName={this.props.card.user.fullName} />
+          </div>
+        );
     }
 }
 

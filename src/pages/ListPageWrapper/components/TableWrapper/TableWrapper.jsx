@@ -1,7 +1,6 @@
-import React from "react";
-import EnhancedTable from "./components/EnhancedTable/EnhancedTable";
-import Reader from "./components/Importer";
-
+import React from 'react';
+import EnhancedTable from './components/EnhancedTable/EnhancedTable';
+import Reader from './components/Importer';
 
 class TableWrapper extends React.Component {
   constructor(props) {
@@ -15,16 +14,16 @@ class TableWrapper extends React.Component {
     this.setState({
       CSVData: newRows,
     });
-    setTimeout(()=> {
+    setTimeout(() => {
       console.log(this.state.CSVData);
-    }, 500)
+    }, 500);
   };
 
   render() {
     return (
       <>
-        {/* <Reader 
-          getNewData={this.getNewDataFromCSV} 
+        {/* <Reader
+          getNewData={this.getNewDataFromCSV}
         /> */}
         <EnhancedTable
           CSVData={this.state.CSVData}

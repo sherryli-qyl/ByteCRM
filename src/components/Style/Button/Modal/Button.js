@@ -1,41 +1,39 @@
 import React from 'react';
-import "./ButtonStyle.scss";
-
-
-
+import './ButtonStyle.scss';
 
 const Button = ({
     children,
-    size, //large,small
-    variant,//contained,outlined
+    size, // large,small
+    variant, // contained,outlined
     btnDisable,
-    onClick, 
+    onClick,
 }) => {
     let className = 'containedButton';
-    let btnSize = size;
+    const btnSize = size;
 
     if (variant === 'contained') {
-        className += "--" + btnSize;
-    }
-    else if (variant === 'outlined') {
-        className = "outlinedButton";
-        className += "--" + btnSize;
+        className += `--${btnSize}`;
+    } else if (variant === 'outlined') {
+        className = 'outlinedButton';
+        className += `--${btnSize}`;
     }
 
-    if(btnDisable){
-        className += ' disabled'
+    if (btnDisable) {
+        className += ' disabled';
     }
 
     return (
-        <button className={className}
-            disabled={btnDisable}
-            onClick={(event) => {
+      <button
+        className={className}
+        disabled={btnDisable}
+        onClick={(event) => {
                 event.preventDefault();
                 onClick();
-             }
-            }>{children}</button>
-    )
-}
-
+             }}
+      >
+        {children}
+      </button>
+    );
+};
 
 export default Button;

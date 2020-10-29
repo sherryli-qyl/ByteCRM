@@ -1,1 +1,3 @@
-export { FormatList,SearchSelectsLocal,SearchSelectsRemote,ItemSelected,CheckOneSelects } from './Search';
+export {
+    FormatList, SearchSelectsLocal, SearchSelectsRemote, ItemSelected, CheckOneSelects,
+} from './Search';

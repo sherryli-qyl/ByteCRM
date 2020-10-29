@@ -2,11 +2,13 @@ import React from 'react';
 import MeetingCards from './components/MeetingCards/MeetingCards';
 import MeetingPageHeader from './components/Header/MeetingPageHeader';
 import shuffleCards from '../../../../services/shuffleCards';
-import { GetMeetings,UpdateMeeting,DeleteMeetingLog,UpdateContacts,RemoveContacts} from '../../../../Api/Meeting/meeting';
+import {
+ GetMeetings, UpdateMeeting, DeleteMeetingLog, UpdateContacts, RemoveContacts,
+} from '../../../../Api/Meeting/meeting';
 import store from '../../../../../store';
-import "./MeetingPage.scss";
+import './MeetingPage.scss';
 
-const user = JSON.parse(localStorage.getItem('user'));//user id
+const user = JSON.parse(localStorage.getItem('user'));// user id
 
 class MeetingPage extends React.Component {
     constructor(props) {
@@ -15,10 +17,10 @@ class MeetingPage extends React.Component {
             user,
             cardList: [],
             cardsArray: [],
-            contact:this.props.contact,
-            associatedContacts:this.props.associatedContacts,
-            reload:true,
-        }
+            contact: this.props.contact,
+            associatedContacts: this.props.associatedContacts,
+            reload: true,
+        };
         this.onChangeText = this.onChangeText.bind(this);
         this.onChangeMeeting = this.onChangeMeeting.bind(this);
         this.handleLogMeeting = this.handleLogMeeting.bind(this);
@@ -35,25 +37,23 @@ class MeetingPage extends React.Component {
         RemoveContacts(contactId, meetingId);
     }
 
-
     sortCardsArray(meetingList) {
-        if(meetingList){
+        if (meetingList) {
         const newCardsArray = shuffleCards(meetingList);
         this.setState({
-            cardsArray: newCardsArray
-        })
+            cardsArray: newCardsArray,
+        });
         }
-        return;
     }
 
     onChangeText(newContent, cardKey) {
         const newCardsList = this.state.cardList;
-        for (let i in newCardsList) {
+        for (const i in newCardsList) {
             if (newCardsList[i].key === cardKey) {
                 newCardsList[i].description = newContent;
                 this.setState({
                     cardsList: newCardsList,
-                })
+                });
             }
         }
     }
@@ -67,73 +67,71 @@ class MeetingPage extends React.Component {
         newCardList.push(meeting);
         this.setState({
             cardList: newCardList,
-        })
+        });
         this.sortCardsArray(newCardList);
     }
 
     handleDeleteCard(id) {
         const response = DeleteMeetingLog(id);
-        response.then(value => {
+        response.then((value) => {
             if (value) {
                 this.handleInitPage();
             }
-
-        })
+        });
     }
 
     handleInitPage() {
-        console.log("this.state");
+        console.log('this.state');
         console.log(this.state);
-        const {contact} = this.state;
+        const { contact } = this.state;
         const meetings = GetMeetings(contact.id);
-        //const meetings = GetMeetings(this.id);
-        meetings.then(meetingList => {
+        // const meetings = GetMeetings(this.id);
+        meetings.then((meetingList) => {
             if (meetingList.length > 0) {
                 this.setState({
-                    cardList:meetingList,
-                    reload:false,
-                })
+                    cardList: meetingList,
+                    reload: false,
+                });
                 return meetingList;
             }
-            else {
                 return null;
-            }
         }).then((meetingList) => {
             this.sortCardsArray(meetingList);
         });
     }
 
     componentDidMount() {
-        store.subscribe(()=>{
-            const {reload,value} = store.getState().reload;
-            if (reload){
+        store.subscribe(() => {
+            const { reload, value } = store.getState().reload;
+            if (reload) {
               this.handleLogMeeting(value);
             }
           });
-          if(this.state.reload){
+          if (this.state.reload) {
             this.handleInitPage();
-          } 
+          }
     }
- 
-    
-    render() {    
-        const {cardsArray,contact,user} = this.state;
+
+    render() {
+        const { cardsArray, contact, user } = this.state;
         return (
-            <div className="meetingPage">
-                <MeetingPageHeader 
-                    contact={contact}
-                    user = {user}
-                    handleLogMeeting={this.handleLogMeeting} />
-                <MeetingCards
-                    contact={contact}
-                    user = {user}
-                    cardsArray={cardsArray}
-                    handleDeleteCard={this.handleDeleteCard}
-                    handleAddContact={this.handleAddContact}
-                    handleRemoveContact={this.handleRemoveContact}
-                    onChangeMeeting={this.onChangeMeeting} />
-            </div>            
-        )
+          <div className="meetingPage">
+            <MeetingPageHeader
+              contact={contact}
+              user={user}
+              handleLogMeeting={this.handleLogMeeting}
+            />
+            <MeetingCards
+              contact={contact}
+              user={user}
+              cardsArray={cardsArray}
+              handleDeleteCard={this.handleDeleteCard}
+              handleAddContact={this.handleAddContact}
+              handleRemoveContact={this.handleRemoveContact}
+              onChangeMeeting={this.onChangeMeeting}
+            />
+          </div>
+        );
     }
 }
 

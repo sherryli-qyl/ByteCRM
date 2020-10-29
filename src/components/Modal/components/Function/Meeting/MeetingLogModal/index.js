@@ -1,1 +1,1 @@
-export {default} from './MeetingLogModal';
+export { default } from './MeetingLogModal';

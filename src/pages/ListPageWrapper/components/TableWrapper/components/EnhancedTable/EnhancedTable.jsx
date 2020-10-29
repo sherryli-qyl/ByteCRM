@@ -1,30 +1,30 @@
-import React, { Component } from "react";
-import { ThemeProvider as MuiThemeProvider } from "@material-ui/core/styles";
-import Theme from "../../../../../../components/Style/Theme/TableTheme";
-import MaterialTable from "material-table";
-import SelectModal from "./components/SelectModal";
-import tableIcons from "../../../../../../lib/tableLibs/getIcons";
-import getColumns from "../../../../../../lib/tableLibs/getColumns";
-import exportCSV from "../../../../../../lib/tableLibs/exportCSV";
+import React, { Component } from 'react';
+import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
+import MaterialTable from 'material-table';
+import Theme from '../../../../../../components/Style/Theme/TableTheme';
+import SelectModal from './components/SelectModal';
+import tableIcons from '../../../../../../lib/tableLibs/getIcons';
+import getColumns from '../../../../../../lib/tableLibs/getColumns';
+import exportCSV from '../../../../../../lib/tableLibs/exportCSV';
 // import exportPDF from "../../../../../../lib/tableLibs/exportPDF";
 import {
   GetAllContacts,
   removeContact,
   createContact,
   UpdateContact,
-} from "../../../../../../components/Api/Contact";
+} from '../../../../../../components/Api/Contact';
 import {
   GetAllCompanies,
   AddCompany,
   UpdateCompany,
   DeleteCompany,
-} from "../../../../../../components/Api/Company";
+} from '../../../../../../components/Api/Company';
 import {
   getTable,
   processData,
   makeNewRow,
-  remove
-} from "../../../../../../lib/tableLibs/dataOperation";
+  remove,
+} from '../../../../../../lib/tableLibs/dataOperation';
 
 class EnhancedTable extends Component {
   constructor(props) {
@@ -34,12 +34,12 @@ class EnhancedTable extends Component {
       columns: getColumns(this.props.type),
       selectedRow: null,
       dataToShow: [],
-      allData: []
+      allData: [],
     };
   }
 
   componentDidMount() {
-    if (this.props.type === "contact") {
+    if (this.props.type === 'contact') {
       this.getAllContacts();
     } else {
       this.getAllCompanies();
@@ -50,16 +50,15 @@ class EnhancedTable extends Component {
   componentDidUpdate(nextProps) {
     const { CSVData } = this.props;
     if (nextProps.CSVData !== CSVData) {
-      if (this.props.type === "contact") {
-        console.log(nextProps.CSVData)
+      if (this.props.type === 'contact') {
+        console.log(nextProps.CSVData);
         // for loop + validate
         // createContact(nextProps.CSVData);
-      } else if (this.props.type === "company") {
+      } else if (this.props.type === 'company') {
         // AddCompany(nextProps.CSVData);
         setTimeout(() => {
-          console.log(nextProps.CSVData)
-        }, 500)
-        
+          console.log(nextProps.CSVData);
+        }, 500);
       }
       // setTimeout(() => {
       //   if (this.props.type === "contact") {
@@ -73,17 +72,17 @@ class EnhancedTable extends Component {
 
   getAllContacts = () => {
     GetAllContacts().then((data) => {
-      console.log("EnhancedTable -> componentDidMount -> data", data);
+      console.log('EnhancedTable -> componentDidMount -> data', data);
       let allData = [];
       allData = data.map((cur) => processData(cur, this.props.type));
       const showData = getTable(
         allData,
         this.props.tab,
         this.props.userAccount,
-        this.props.type
+        this.props.type,
       );
       this.setState({
-        allData: allData,
+        allData,
         dataToShow: showData,
       });
     });
@@ -91,17 +90,17 @@ class EnhancedTable extends Component {
 
   getAllCompanies = () => {
     GetAllCompanies().then((data) => {
-      console.log("EnhancedTable -> componentDidMount -> data", data);
+      console.log('EnhancedTable -> componentDidMount -> data', data);
       let allData = [];
       allData = data.map((cur) => processData(cur, this.props.type));
       const showData = getTable(
         allData,
         this.props.tab,
         this.props.userAccount,
-        this.props.type
+        this.props.type,
       );
       this.setState({
-        allData: allData,
+        allData,
         dataToShow: showData,
       });
     });
@@ -111,8 +110,8 @@ class EnhancedTable extends Component {
     evt.preventDefault();
     new Promise((resolve, reject) => {
       setTimeout(() => {
-        let allData = [...this.state.dataToShow],
-          deleteRow = [];
+        let allData = [...this.state.dataToShow];
+          const deleteRow = [];
         // remove rows of dataToShow for table display
         allData = remove(allData, selectedRow);
         for (const row of selectedRow) {
@@ -120,13 +119,13 @@ class EnhancedTable extends Component {
         }
         // remove data in mongoDB
         deleteRow.map((cur) => {
-          if (this.props.type === "contact") {
+          if (this.props.type === 'contact') {
             removeContact(cur.contactID).then((code) => {
-              console.log("EnhancedTable -> removeRow -> code", code);
+              console.log('EnhancedTable -> removeRow -> code', code);
             });
-          } else if (this.props.type === "company") {
+          } else if (this.props.type === 'company') {
             DeleteCompany(cur.companyID).then((status) => {
-              console.log("Delete completion is " + status);
+              console.log(`Delete completion is ${status}`);
             });
           }
         });
@@ -138,17 +137,16 @@ class EnhancedTable extends Component {
     });
   };
 
-  addRow = (newData) => {
-    return new Promise((resolve, reject) => {
+  addRow = (newData) => new Promise((resolve, reject) => {
       setTimeout(() => {
         newData = makeNewRow(newData, this.props.type);
-        if (this.props.type === "contact") {
+        if (this.props.type === 'contact') {
           createContact(newData);
-        } else if (this.props.type === "company") {
+        } else if (this.props.type === 'company') {
           AddCompany(newData);
         }
         setTimeout(() => {
-          if (this.props.type === "contact") {
+          if (this.props.type === 'contact') {
             this.getAllContacts();
           } else {
             this.getAllCompanies();
@@ -157,7 +155,6 @@ class EnhancedTable extends Component {
         resolve();
       }, 500);
     });
-  };
 
   showModal = (evt, selectedRow) => {
     evt.preventDefault();
@@ -170,14 +167,14 @@ class EnhancedTable extends Component {
 
   getDataToEdit = (data) => {
     this.state.selectedRow.map((cur) => {
-      if (this.props.type === "contact") {
+      if (this.props.type === 'contact') {
         UpdateContact(this.state.allData[cur].contactID, data);
-      } else if (this.props.type === "company") {
+      } else if (this.props.type === 'company') {
         UpdateCompany(this.state.allData[cur].companyID, data);
       }
     });
     setTimeout(() => {
-      if (this.props.type === "contact") {
+      if (this.props.type === 'contact') {
         this.getAllContacts();
       } else {
         this.getAllCompanies();
@@ -186,7 +183,7 @@ class EnhancedTable extends Component {
   };
 
   getSelectedRowIndex = (Rows) => {
-    let index = [];
+    const index = [];
     for (const item of Rows) {
       index.push(item.tableData.id);
     }
@@ -201,7 +198,7 @@ class EnhancedTable extends Component {
             changeModalVisible={this.changeVisible}
             getDataToEdit={this.getDataToEdit}
             type={this.props.type}
-          ></SelectModal>
+          />
         )}
         <MuiThemeProvider theme={Theme}>
           <MaterialTable
@@ -215,19 +212,19 @@ class EnhancedTable extends Component {
             }}
             actions={[
               {
-                tooltip: "Remove all selected contact(s)",
+                tooltip: 'Remove all selected contact(s)',
                 icon: tableIcons.Delete,
                 onClick: this.removeRow,
               },
               {
-                tooltip: "Edit contact(s)",
+                tooltip: 'Edit contact(s)',
                 icon: tableIcons.Edit,
                 onClick: this.showModal,
               },
             ]}
             options={{
               selection: true,
-              addRowPosition: "first",
+              addRowPosition: 'first',
               search: true,
               sorting: true,
               pageSize: 10,
@@ -235,8 +232,7 @@ class EnhancedTable extends Component {
               exportButton: true,
               // exportPdf: (columns, data) =>
               //   exportPDF(columns, data, this.props.type),
-              exportCsv: (columns, data) =>
-                exportCSV(columns, data, this.props.type),
+              exportCsv: (columns, data) => exportCSV(columns, data, this.props.type),
             }}
             editable={{
               onRowAdd: this.addRow,

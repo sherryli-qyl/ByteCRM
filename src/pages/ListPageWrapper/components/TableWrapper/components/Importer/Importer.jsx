@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { CSVReader } from "react-papaparse";
+import React, { Component } from 'react';
+import { CSVReader } from 'react-papaparse';
 import './Importer.scss';
 
 const buttonRef = React.createRef();
@@ -9,16 +9,15 @@ export default class Importer extends Component {
     // Note that the ref is set async, so it might be null at some point
     if (buttonRef.current) {
       buttonRef.current.open(e);
-      console.log(e)
+      console.log(e);
       console.log(buttonRef.current);
     }
-    
   };
 
   handleOnFileLoad = (data) => {
-    console.log("---------------------------");
+    console.log('---------------------------');
     console.log(data);
-    console.log("---------------------------");
+    console.log('---------------------------');
   };
 
   handleOnError = (err, file, inputElem, reason) => {
@@ -26,9 +25,9 @@ export default class Importer extends Component {
   };
 
   handleOnRemoveFile = (data) => {
-    console.log("---------------------------");
+    console.log('---------------------------');
     console.log(data);
-    console.log("---------------------------");
+    console.log('---------------------------');
   };
 
   handleRemoveFile = (e) => {
@@ -56,7 +55,7 @@ export default class Importer extends Component {
               borderRadius: 0,
               marginLeft: 0,
               marginRight: 0,
-              width: "40%",
+              width: '40%',
               paddingLeft: 0,
               paddingRight: 0,
             }}

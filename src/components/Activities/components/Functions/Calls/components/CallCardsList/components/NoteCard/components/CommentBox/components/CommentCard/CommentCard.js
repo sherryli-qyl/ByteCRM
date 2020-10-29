@@ -1,8 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
-import { faPen } from '@fortawesome/free-solid-svg-icons';
-import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { faUserCircle, faPen, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+
 import './CommentCard.scss';
 
 class CommentCard extends React.Component {
@@ -38,8 +37,7 @@ class CommentCard extends React.Component {
     this.setState({ showActionIcons: false });
   }
 
-  handleActionIconsToggle = () =>
-    this.setState({ showActionIcons: !this.state.showActionIcons });
+  handleActionIconsToggle = () => this.setState({ showActionIcons: !this.state.showActionIcons });
 
   renderNormalMode() {
     return (
@@ -93,17 +91,17 @@ class CommentCard extends React.Component {
             }}
             onChange={this.handleChange}
             defaultValue={this.props.content}
-          ></textarea>
+          />
           <div className="comment-editor-actions">
             <button
               onClick={this.handleSave}
-              class="comment-card-content__save"
+              className="comment-card-content__save"
             >
               Save
             </button>
             <button
               onClick={this.handleCancel}
-              class="comment-card-content__cancel"
+              className="comment-card-content__cancel"
             >
               Cancel
             </button>
@@ -116,9 +114,8 @@ class CommentCard extends React.Component {
   render() {
     if (this.state.editing) {
       return this.renderEditingMode();
-    } else {
-      return this.renderNormalMode();
     }
+      return this.renderNormalMode();
   }
 }
 

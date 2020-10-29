@@ -1,45 +1,45 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
-import getDate from "./getDate";
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import getDate from './getDate';
 import { getAllContacts } from '../../../Api/Contact';
 
 const url = 'https://localhost:3000/api/contacts/';
 
 const nameSet = [
-  "Brian Halligan",
-  "John wick",
-  "Bruce Lee",
-  "Eclair Young",
-  "Mary McGregor",
+  'Brian Halligan',
+  'John wick',
+  'Bruce Lee',
+  'Eclair Young',
+  'Mary McGregor',
 ];
 
-const ownerSet = ["James", "Mike", "Kay", "Alice", "Unassigned"];
+const ownerSet = ['James', 'Mike', 'Kay', 'Alice', 'Unassigned'];
 
 const phoneNumSet = [
-  "0454991490",
-  "0468080886",
-  "0409875648",
-  "0441387946",
-  "0417899416",
+  '0454991490',
+  '0468080886',
+  '0409875648',
+  '0441387946',
+  '0417899416',
 ];
 
 const emailSet = [
-  "fqwfqwd@gmail.com",
-  "wqrw@hotmail.com",
-  "u1489479@anu.edu.au",
-  "qjioqjw@mail.com",
-  "noAddress@outlook.com",
+  'fqwfqwd@gmail.com',
+  'wqrw@hotmail.com',
+  'u1489479@anu.edu.au',
+  'qjioqjw@mail.com',
+  'noAddress@outlook.com',
 ];
 
 const dateSet = [
-  "02/30/2020",
-  "04/31/2020",
-  "06/31/2020",
-  "09/31/2020",
-  "11/31/2020",
+  '02/30/2020',
+  '04/31/2020',
+  '06/31/2020',
+  '09/31/2020',
+  '11/31/2020',
 ];
 
-const companySet = ["Hubspot, Inc.", "Intel", "AMD", "NVIDIA", "Google"];
+const companySet = ['Hubspot, Inc.', 'Intel', 'AMD', 'NVIDIA', 'Google'];
 
 function createData(
   name,
@@ -49,36 +49,36 @@ function createData(
   associatedCompany,
   lastActivityDate,
   leadStatus,
-  createDate
+  createDate,
 ) {
   return {
     name: (
       <NavLink
         activeClassName="active"
         to={{
-          pathname: "/contacts/main",
+          pathname: '/contacts/main',
           // id: `${ID}`,
         }}
       >
         {name}
       </NavLink>
     ),
-    email: email,
-    phoneNumber: phoneNumber,
-    contactOwner: contactOwner,
+    email,
+    phoneNumber,
+    contactOwner,
     associatedCompany: (
       <NavLink activeClassName="active" to="/companies/main">
         {associatedCompany}
       </NavLink>
     ),
-    lastActivityDate: lastActivityDate,
-    leadStatus: leadStatus,
-    createDate: createDate,
+    lastActivityDate,
+    leadStatus,
+    createDate,
   };
 }
 
 function generateData() {
-  let result = [];
+  const result = [];
   for (let i = 0; i < 10; i++) {
     result.push(
       createData(
@@ -89,8 +89,8 @@ function generateData() {
         companySet[Math.floor(Math.random() * 5)],
         dateSet[Math.floor(Math.random() * 5)],
         Math.floor(Math.random() * 8),
-        getDate()
-      )
+        getDate(),
+      ),
     );
   }
   return result;
@@ -130,10 +130,8 @@ function generateData() {
 /* ======================================================= */
 
 const fetchAllData = () => {
-  getAllContacts().then((data) => {
-    return data;
-  });
-}
+  getAllContacts().then((data) => data);
+};
 
 let tableData = fetchAllData();
 
@@ -174,18 +172,18 @@ const editColumns = (newValue) => {
 const getTable = (id, userAccount) => {
   if (id === 1) {
     return fetchAllData();
-  } else if (id === 2) {
-    let mine = [];
+  } if (id === 2) {
+    const mine = [];
     for (const item of fetchAllData()) {
       if (item.contactOwner === userAccount) {
         mine.push(item);
       }
     }
     return mine;
-  } else if (id === 3) {
-    let unassigned = [];
+  } if (id === 3) {
+    const unassigned = [];
     for (const item of fetchAllData()) {
-      if (item.contactOwner === "Unassigned") {
+      if (item.contactOwner === 'Unassigned') {
         unassigned.push(item);
       }
     }
@@ -193,4 +191,6 @@ const getTable = (id, userAccount) => {
   }
 };
 
-export { getTable, addRowsFromCsv, editColumns, updateTable };
+export {
+ getTable, addRowsFromCsv, editColumns, updateTable,
+};

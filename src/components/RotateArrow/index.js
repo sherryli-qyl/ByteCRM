@@ -1,1 +1,1 @@
-export {default} from './RotateArrow';
+export { default } from './RotateArrow';

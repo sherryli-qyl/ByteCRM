@@ -1,31 +1,29 @@
 import React from 'react';
 
-import './SwitchButton.scss'
-
-
+import './SwitchButton.scss';
 
 const SwitchButton = ({
     label,
     active,
-    handleSwitchBtn
+    handleSwitchBtn,
 }) => {
-
-    let className = 'switchButton '
+    let className = 'switchButton ';
 
     if (active) {
-        className += 'switchButton--active'
+        className += 'switchButton--active';
     }
 
-
     return (
-        <button className={className}
-                onClick = {(event)=>{
+      <button
+        className={className}
+        onClick={(event) => {
                     event.preventDefault();
                     handleSwitchBtn();
-                }}>
-            {label}
-        </button>
-    )
-}
+                }}
+      >
+        {label}
+      </button>
+    );
+};
 
 export default SwitchButton;

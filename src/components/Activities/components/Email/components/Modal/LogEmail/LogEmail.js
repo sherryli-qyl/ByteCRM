@@ -3,11 +3,10 @@ import { transferDateInYearMonDay } from '../../../../../../services/DateManager
 import Header from '../../private/LogEmailMain';
 import Body from './components/LogEmailBody';
 import Footer from './components/LogEmailFooter';
-import {PostEmail} from '../../../../../../Api/Email/Email';
+import { PostEmail } from '../../../../../../Api/Email/Email';
 import store from '../../../../../../../store';
-import {saveAction} from '../../../../../../../action';
+import { saveAction } from '../../../../../../../action';
 import './LogEmail.scss';
-
 
 const user = JSON.parse(localStorage.getItem('user'));
 
@@ -15,8 +14,8 @@ class LogEmail extends React.Component {
     constructor(props) {
         super(props);
         const currentDate = transferDateInYearMonDay(new Date());
-        const currentTime = "09:00";
-        const {contact} = store.getState().contact;
+        const currentTime = '09:00';
+        const { contact } = store.getState().contact;
         let contactList = [];
         let contacts = [];
         contact ? contactList.push(contact) : contactList = [];
@@ -31,7 +30,7 @@ class LogEmail extends React.Component {
             contact,
             btnDisable: true,
             description: '',
-        }
+        };
         this.handleEditorChange = this.handleEditorChange.bind(this);
         this.handleTimeChange = this.handleTimeChange.bind(this);
         this.handleDateChange = this.handleDateChange.bind(this);
@@ -40,38 +39,37 @@ class LogEmail extends React.Component {
         this.handleClickLogBtn = this.handleClickLogBtn.bind(this);
     }
 
-    handleAddContact(id){
+    handleAddContact(id) {
       const newContacts = this.state.contacts;
       newContacts.push(id);
       this.setState({
-          contacts:newContacts
-      })
+          contacts: newContacts,
+      });
     }
 
-    handleDeleteContact(id){
+    handleDeleteContact(id) {
         const newContacts = this.state.contacts;
-        for(let i in newContacts){
-            if (newContacts[i] === id){
-                newContacts.splice(i,1);
+        for (const i in newContacts) {
+            if (newContacts[i] === id) {
+                newContacts.splice(i, 1);
             }
         }
         this.setState({
-            contacts:newContacts,
-        })
+            contacts: newContacts,
+        });
     }
 
     handleEditorChange(text) {
-        if (this.checkValidation(text) && this.state.contacts.length > 0){
+        if (this.checkValidation(text) && this.state.contacts.length > 0) {
             this.setState({
                 description: text,
-                btnDisable: false
-            })
-        }
-        else{
+                btnDisable: false,
+            });
+        } else {
             this.setState({
                 description: text,
                 btnDisable: true,
-            })
+            });
         }
     }
 
@@ -79,79 +77,82 @@ class LogEmail extends React.Component {
         const newTime = time;
         this.setState({
             currentTime: newTime,
-        })
+        });
     }
 
     handleDateChange(date) {
         const newDate = date;
         this.setState({
             currentDate: newDate,
-        })
+        });
     }
 
-    checkValidation(text){
-        const {contacts} = this.state;
-        const checkInput = text.replaceAll(" ","").replaceAll('<br>', '').replaceAll('<p></p>','');
-        if (contacts.length >=1 && checkInput!== ''){
-          return true
+    checkValidation(text) {
+        const { contacts } = this.state;
+        const checkInput = text.replaceAll(' ', '').replaceAll('<br>', '').replaceAll('<p></p>', '');
+        if (contacts.length >= 1 && checkInput !== '') {
+          return true;
         }
-        else{
-            return false; 
-        }
+
+            return false;
     }
 
-    handleClickLogBtn(){
-        const {currentDate,currentTime,contacts,description,user} = this.state;
-        if (this.checkValidation(description)){
+    handleClickLogBtn() {
+        const {
+ currentDate, currentTime, contacts, description, user,
+} = this.state;
+        if (this.checkValidation(description)) {
             const body = {
-                description: description,
+                description,
                 date: currentDate,
-                time:currentTime,
-                contacts:contacts,
-                userId:user.id,
-                type:'Logged Email',
-            }
+                time: currentTime,
+                contacts,
+                userId: user.id,
+                type: 'Logged Email',
+            };
             const res = PostEmail(body);
-            res.then(value=>{
-                if (value){
+            res.then((value) => {
+                if (value) {
                     const action = saveAction(value);
                     store.dispatch(action);
                     this.props.modalController.close();
+                } else {
+                    console.log('Unexpected Error');
                 }
-                else{
-                    console.log("Unexpected Error");
-                }
-            })
-        }
-        else{
-            return;
+            });
+        } else {
+
      }
     }
 
-
     render() {
-        const { currentDate, currentTime,contactList,contact,user,btnDisable} = this.state;
+        const {
+ currentDate, currentTime, contactList, contact, user, btnDisable,
+} = this.state;
         return (
-            <div className="logEmailModal">
-                <div className="logEmailModal__header">
-                    <Header currentDate={currentDate}
-                            currentTime={currentTime}
-                            contact = {contact}
-                            userId = {user.id}
-                            contactList = {contactList}
-                            onDateChange = {this.handleDateChange}
-                            onTimeChange = {this.handleTimeChange}
-                            handleAddContact = {this.handleAddContact}
-                            handleDeleteContact = {this.handleDeleteContact}
-                    />
-                </div>
-                <div className='blockline--top' >
-                    <Body handleEditorChange={this.handleEditorChange} />
-                </div>
-                <Footer onClick = {this.handleClickLogBtn}
-                        btnDisable = {btnDisable}/>
+          <div className="logEmailModal">
+            <div className="logEmailModal__header">
+              <Header
+                currentDate={currentDate}
+                currentTime={currentTime}
+                contact={contact}
+                userId={user.id}
+                contactList={contactList}
+                onDateChange={this.handleDateChange}
+                onTimeChange={this.handleTimeChange}
+                handleAddContact={this.handleAddContact}
+                handleDeleteContact={this.handleDeleteContact}
+              />
             </div>
-        )
+            <div className="blockline--top">
+              <Body handleEditorChange={this.handleEditorChange} />
+            </div>
+            <Footer
+              onClick={this.handleClickLogBtn}
+              btnDisable={btnDisable}
+            />
+          </div>
+        );
     }
 }
 

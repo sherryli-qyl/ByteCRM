@@ -1,17 +1,16 @@
-import {getDate,sortDate} from "./DateManager";
+import { getDate, sortDate } from './DateManager';
 import Cards from '../../js/Cards';
 
-
-function shuffleCards(cardsList){
+function shuffleCards(cardsList) {
     const newCardsArray = [];
     sortDate(cardsList);
-    for(let i in cardsList){
+    for (const i in cardsList) {
         const newDate = getDate(cardsList[i].date);
         const sameCards = [];
-        const result = checkduplicate(newDate,cardsList[i],newCardsArray);
-        if(!result){
+        const result = checkduplicate(newDate, cardsList[i], newCardsArray);
+        if (!result) {
           sameCards.push(cardsList[i]);
-          const cards = new Cards(newDate,sameCards);
+          const cards = new Cards(newDate, sameCards);
           newCardsArray.push(cards);
         }
     }
@@ -19,8 +18,8 @@ function shuffleCards(cardsList){
     return newCardsArray;
 }
 
-function checkduplicate(date, card,cardsArray) {
-    for (let i in cardsArray) {
+function checkduplicate(date, card, cardsArray) {
+    for (const i in cardsArray) {
         if (date === cardsArray[i].date) {
             cardsArray[i].content.push(card);
             return cardsArray;

@@ -5,9 +5,6 @@ import { InfoContext } from '../../../Context';
 import FindDiff from '../../../../services/FindPropertyDiff';
 import './AboutSection.scss';
 
-
-
-
 class AboutSection extends React.Component {
     constructor(props) {
         super(props);
@@ -16,9 +13,9 @@ class AboutSection extends React.Component {
             modalActive: false,
             data,
             propertyDiff: 0,
-        }
+        };
         this.showModal = this.showModal.bind(this);
-        this.closeModal = this.closeModal.bind(this)
+        this.closeModal = this.closeModal.bind(this);
     }
 
     showModal(key, value) {
@@ -37,40 +34,37 @@ class AboutSection extends React.Component {
     closeModal() {
         this.setState({
             modalActive: false,
-        })
+        });
     }
-
 
     render() {
         const { modalActive, data, propertyDiff } = this.state;
         return (
-            <div className='aboutContact'>
-                {this.props.infoList.map((item) => {
-                    return (
-                        <TableEditor
-                            key={item.key}
-                            item={item}
-                            showModal={this.showModal}
-                            closeModal={this.closeModal}
-                        />
-                    )
-                }
-                )}
-                <InfoContext.Consumer>
-                    {value => (
-                        <SaveModal modalActive={modalActive}
-                                   closeModal={this.closeModal}
-                                   propertyDiff={propertyDiff}
-                                   saveData={() => {
+          <div className="aboutContact">
+            {this.props.infoList.map((item) => (
+              <TableEditor
+                key={item.key}
+                item={item}
+                showModal={this.showModal}
+                closeModal={this.closeModal}
+              />
+                    ))}
+            <InfoContext.Consumer>
+              {(value) => (
+                <SaveModal
+                  modalActive={modalActive}
+                  closeModal={this.closeModal}
+                  propertyDiff={propertyDiff}
+                  saveData={() => {
                                         value.multi({ ...data });
                                         this.closeModal();
-                                }
-                        }/>
+                                }}
+                />
                     )}
-                </InfoContext.Consumer>
-            </div>
+            </InfoContext.Consumer>
+          </div>
 
-        )
+        );
     }
 }
 
