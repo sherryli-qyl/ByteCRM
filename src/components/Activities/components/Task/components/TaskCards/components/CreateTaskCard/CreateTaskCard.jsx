@@ -59,8 +59,6 @@ class CreateTaskCard extends React.Component {
   render() {
     const { card, showDetails } = this.state;
 
-    console.log(card)
-
     const Body = () => (
       <>
         <div className="blockline">

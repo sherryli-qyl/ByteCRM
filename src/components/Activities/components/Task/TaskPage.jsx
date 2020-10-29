@@ -45,7 +45,6 @@ class TaskPage extends React.Component {
 	}
 
 	onChangeTask(taskId, body) {
-		console.log("1111" + taskId)
 		UpdateTask(taskId, body);
 	}
 
