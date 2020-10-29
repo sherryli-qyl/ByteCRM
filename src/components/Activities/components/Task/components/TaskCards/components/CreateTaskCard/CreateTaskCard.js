@@ -39,9 +39,17 @@ class CreateTaskCard extends React.Component {
   handleUpdate(value, key) {
     let newCard = this.state.card;
     newCard[key] = value;
-    this.setState({
-      card: newCard,
-    })
+    if(key === 'status' && value === "complete"){
+      this.setState({
+        card: newCard,
+        showDetails: false,
+      });
+    }
+    else{
+      this.setState({
+        card: newCard,
+      });
+    }
     this.props.onChangeTask(this.state.cardId, newCard);
   }
 
