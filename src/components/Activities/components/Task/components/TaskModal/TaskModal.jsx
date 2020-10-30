@@ -13,18 +13,20 @@ import './TaskModal.scss';
 
 
 //name, type, status, relatedTo, description, time , date, taskType, priority, createdBy
-const relatedTo = sessionStorage.getItem('id');
+
 const user = JSON.parse(localStorage.getItem('user'));
 const currentDate = transferDateInYearMonDay(new Date());
 let assignedUsers = [];
 let users = [];
 assignedUsers.push(user);
 users.push(user.id);
-const task = new Task('', 'Task', 'processing', relatedTo, '', '08:00 AM', currentDate, 'To-do', 'none', users, user.id);
+
 
 class TaskModal extends React.Component {
   constructor(props) {
     super(props);
+    const relatedTo = sessionStorage.getItem('id');
+    const task = new Task('', 'Task', 'processing', relatedTo, '', '08:00 AM', currentDate, 'To-do', 'none', users, user.id);
     this.state = {
       currentTime: '08:00 AM',
       currentDate,
