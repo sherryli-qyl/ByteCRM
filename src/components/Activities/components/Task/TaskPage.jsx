@@ -11,13 +11,15 @@ const currentUser = JSON.parse(localStorage.getItem('user'));
 class TaskPage extends React.Component {
 	constructor(props) {
 		super(props);
+		const {contact,relatedTo,associatedContacts} = this.props;
 		this.state = {
 			currentUser,
 			cardList: [],
 			cardsArray: [],
 			reload: true,
-			contact: this.props.contact,
-			associatedContacts: this.props.associatedContacts,
+			relatedTo,
+			contact,
+			associatedContacts,
 		};
 		this.onChangeText = this.onChangeText.bind(this);
 		this.onChangeTask = this.onChangeTask.bind(this);
@@ -52,11 +54,11 @@ class TaskPage extends React.Component {
 
 	handleInitPage() {
 		let data = [];
-		const { contact, associatedContacts } = this.state;
+		const { contact, associatedContacts, relatedTo } = this.state;
 		if (contact) {
 			data = GetTasks(contact.id);
 		} else if (associatedContacts) {
-			let ids = '';
+			let ids = `${relatedTo}&&`;
 			for (let i = 0; i < associatedContacts.length; i++) {
 				const { id } = associatedContacts[i];
 				i === 0 ? ids += id : ids += `&&${id}`;
@@ -120,9 +122,7 @@ class TaskPage extends React.Component {
 		return (
 			<div className="taskPage">
 				<TaskPageHeader
-					handleCreateTask={this.handleCreateTask}
-					contact={contact}
-					currentUser={currentUser}
+					handleCreateTask={this.handleCreateTask}	
 				/>
 				<TaskCards
 					contact={contact}
