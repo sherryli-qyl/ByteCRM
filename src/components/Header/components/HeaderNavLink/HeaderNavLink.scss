@@ -1,23 +1,17 @@
-@import '../../../../style/variable.scss';
+@import "../../../../style/variable.scss";
 
 .headerNavLinkWrapper {
-    white-space: nowrap;
     text-align: center;
-
-
-    &+&{
-        margin: 3% 5%;
-    }
+    vertical-align: middle;
+    margin: 17px 8px;
 
     &__link {
         text-decoration: none;
         color: white;
 
-      
-
         &:hover {
             border: none;
-            color: #008fb4;
+            color: $secondary-color;
         }
     }
 }

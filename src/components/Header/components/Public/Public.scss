@@ -1,18 +1,5 @@
-.Layout {
+.left_wrapper {
   display: flex;
-  padding: 0 5px;
-}
-
-.public-nav {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: left;
-  margin: 5px 5px;
-  cursor: pointer;
-  border-radius: 5px;
-  background-color: #33475b;
-}
-
-.back-to-home {
-  background-color: #33475b;
+  width: 100%;
+  height: 100%;
 }
