@@ -4,6 +4,10 @@ import TaskEditor from './components/TaskEditor';
 import TaskSave from './components/TaskSave';
 import TaskInput from './components/TaskInput';
 import Task from './components/Task';
+import {PostTask} from '../../../../../Api/Task/Task';
+import store from '../../../../../../store';
+import { saveAction } from '../../../../../../action';
+import InputValidation from '../../../../../../utils/InputValidation';
 import { transferDateInYearMonDay } from '../../../../../services/DateManager';
 import './TaskModal.scss';
 
@@ -12,15 +16,15 @@ import './TaskModal.scss';
 const relatedTo = sessionStorage.getItem('id');
 const user = JSON.parse(localStorage.getItem('user'));
 const currentDate = transferDateInYearMonDay(new Date());
-const task = new Task('', 'Task', 'processing', relatedTo, '', '08:00 AM', currentDate, '', 'none', user.id);
+let assignedUsers = [];
+let users = [];
+assignedUsers.push(user);
+users.push(user.id);
+const task = new Task('', 'Task', 'processing', relatedTo, '', '08:00 AM', currentDate, 'To-do', 'none', users, user.id);
 
 class TaskModal extends React.Component {
   constructor(props) {
     super(props);
-    let assignedUsers = [];
-    let users = [];
-    assignedUsers.push(user);
-    users.push(user.id);
     this.state = {
       currentTime: '08:00 AM',
       currentDate,
@@ -32,6 +36,7 @@ class TaskModal extends React.Component {
     this.handleInput = this.handleInput.bind(this);
     this.handleAddUser = this.handleAddUser.bind(this);
     this.handleRemoveUser = this.handleRemoveUser.bind(this);
+    this.handleClickSaveBtn = this.handleClickSaveBtn.bind(this);
   }
 
   handleAddUser(id) {
@@ -68,6 +73,23 @@ class TaskModal extends React.Component {
     }
   }
 
+  handleClickSaveBtn() {
+    if (InputValidation(this.state.task.description) && this.state.users.length > 0) {
+        const body = this.state.task;
+        const res = PostTask(body);
+        res.then((value) => {
+            if (value.statusText === 'OK') {
+                const action = saveAction(value.data);
+                store.dispatch(action);
+                this.props.modalController.close();
+             }      
+            }).catch(error =>{
+              console.log('Unexpected Error');
+              throw error;
+            });
+    } 
+}
+
   render() {
     const { currentTime, currentDate, assignedUsers, disable } = this.state;
     return (
@@ -82,7 +104,8 @@ class TaskModal extends React.Component {
                    handleAddUser = {this.handleAddUser}
                    handleRemoveUser = {this.handleRemoveUser}
                    userList={assignedUsers} />
-        <TaskSave />
+        <TaskSave disable = {disable}
+                  handleClickSaveBtn = {this.handleClickSaveBtn}/>
       </div>
     );
   }

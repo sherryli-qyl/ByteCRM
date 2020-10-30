@@ -2,6 +2,7 @@ import React from 'react';
 import TaskCards from './components/TaskCards';
 import TaskPageHeader from './components/Header';
 import shuffleCards from '../../../services/shuffleCards';
+import store from '../../../../store';
 import './TaskPage.scss';
 import { GetTasks, GetMultiContactsTasks, UpdateTask, DeleteCreateTask, UpdateAssignedToUser, RemoveAssignedToUser } from '../../../Api/Task/Task';
 
@@ -14,6 +15,7 @@ class TaskPage extends React.Component {
 			currentUser,
 			cardList: [],
 			cardsArray: [],
+			reload: true,
 			contact: this.props.contact,
 			associatedContacts: this.props.associatedContacts,
 		};
@@ -81,7 +83,7 @@ class TaskPage extends React.Component {
 		this.setState({
 			cardList: newCardList,
 		});
-		this.sortCardsArray();
+		this.sortCardsArray(newCardList);
 	}
 
 	handleDeleteCard(id) {
@@ -102,7 +104,15 @@ class TaskPage extends React.Component {
 	}
 
 	componentDidMount() {
-		this.handleInitPage();
+		store.subscribe(() => {
+			const { reload, value } = store.getState().reload;
+			if (reload) {
+				this.handleCreateTask(value);
+			}
+		});
+		if (this.state.reload) {
+			this.handleInitPage();
+		}
 	}
 
 	render() {

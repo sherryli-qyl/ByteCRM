@@ -10,26 +10,13 @@ const GetMultiContactsTasks = (contacts) => {
     return response;
 };
 
-async function PostTask(body) {
-  const serverUrl = 'http://localhost:3000/api/tasks';
-  const response = await fetch(serverUrl, {
-      method: 'POST',
-      headers: {
-          'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(body),
-  });
-
-  if (response.ok) {
-      return response.json();
-  }
-
-      return false;
+async function PostTask(task) {
+  const response = api.post(`/api/tasks/`,task);
+  return response;
 }
 
 async function UpdateTask(taskId, body) {
   const serverUrl = `http://localhost:3000/api/tasks/${taskId}`;
-  console.log(body);
   const response = await fetch(serverUrl, {
       method: 'PUT',
       headers: {
