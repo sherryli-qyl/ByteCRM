@@ -1,28 +1,24 @@
 import React from 'react';
+import { Route, Switch } from 'react-router-dom';
 import CRMLogo from './components/CRMLogo';
 import LoginForm from './components/LoginForm';
 import ToSignUpPage from './components/ToSignUpPage';
 import './Style/style.scss';
-import { Route, Switch } from 'react-router-dom';
 
-class LogIn extends React.Component {
-  render() {
-    return (
-      <div>
-        <Switch>
-          <Route exact path="/login">
-            <CRMLogo />
-            <ToSignUpPage />
-            <LoginForm />
-          </Route>
+const LogIn = () => (
+  <div>
+    <Switch>
+      <Route exact path="/login">
+        <CRMLogo />
+        <ToSignUpPage />
+        <LoginForm />
+      </Route>
 
-          {/* <Route path="/call">
+      {/* <Route path="/call">
             <Calls />
           </Route> */}
-        </Switch>
-      </div>
-    );
-  }
-}
+    </Switch>
+  </div>
+);
 
 export default LogIn;
