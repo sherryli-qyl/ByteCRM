@@ -27,8 +27,8 @@ class Dropdown extends React.Component {
         this.handleToggler();
     }
 
-    onChangeSelect(value, key) {
-        this.props.onChangeValue(value, key);
+    onChangeSelect(value, key, item) {
+        this.props.onChangeValue(value, key, item);
         this.handleToggler();
     }
 

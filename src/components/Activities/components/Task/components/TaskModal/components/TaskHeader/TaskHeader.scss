@@ -1,18 +1,22 @@
+@import '../../../../../../../../style/variable.scss';
+
 .taskHeader {
   display: flex;
+  padding:5px 10px;
   
 
   &__left {
     display: flex;
     flex: 1;
-    margin: auto 5%;
     height: 42px;
+    margin-left: 3%;
 
     &__form {
       align-self: center;
 
       &__input {
         font-size: 16px;
+        color: $primary-color;
         outline: none;
         border: none;
       }
@@ -23,19 +27,21 @@
     display: flex;
     flex: 3;
     justify-content: flex-end;
-    margin-top:1%;
+   
 
     &__dropDown{
       display: flex;
+      height: 10px;
       flex-direction: column;
     }
 
     &__time{
       display: flex;
-      justify-content: flex-start;
-      align-items: flex-end;
-      margin-top:0.1rem;
-      
+      height:10px;
+      margin: {
+        top:23px;
+        left:10px;
+      }
     }
   }
 }

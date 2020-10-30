@@ -31,7 +31,7 @@ const Selects = ({
             {selectItems.map((item) => (
               <SelectItem
                 key={item.key}
-                onClick={() => onChangeSelect(item.value, item.key)}
+                onClick={() => onChangeSelect(item.value, item.key, item)}
                 item={item.display ? item.display : item.value}
               />
                         ))}

@@ -4,20 +4,22 @@ import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import Dropdown from '../components/Dropdown';
 import Select from '../components/Select';
 import withSearch from '../components/withSearch';
-import { FormatList} from '../../../lib/Search';
+import { FormatList } from '../../../lib/Search';
 import { SearchUser } from '../../Api/User';
 import './UserSelector.scss';
-
 
 
 class UserSelector extends React.Component {
     constructor(props) {
         super(props);
+        const { userList, variant } = this.props;
         this.state = {
             showDropdown: false,
-            userList: this.props.userList,
+            userList,
+            variant,
             textInput: '',
             enableCleanBtn: false,
+
         };
         this.wrapperRef = React.createRef();
         this.btnRef = React.createRef();
@@ -52,7 +54,7 @@ class UserSelector extends React.Component {
             textInput: inputText,
             enableCleanBtn: activeBtn,
         });
-        this.props.search(inputText,this.state.userList,SearchUser);
+        this.props.search(inputText, this.state.userList, SearchUser);
     }
 
     handleRemoveUser(id) {
@@ -68,8 +70,8 @@ class UserSelector extends React.Component {
                     userList: newList,
                 });
             }
-            this.props.handleRemove(id);
             this.props.handleRemoveUser(id);
+            this.props.handleRemove(id);
         }
     }
 
@@ -80,7 +82,7 @@ class UserSelector extends React.Component {
             userList: newUserList,
         });
         this.props.handleSelect(user.id);
-        this.props.handleAddUser(user._id);
+        this.props.handleAddUser(user.id);
     }
 
 
@@ -100,8 +102,7 @@ class UserSelector extends React.Component {
 
     render() {
         const { showDropdown, textInput, enableCleanBtn, currentUser } = this.state;
-        const { textInputHint, searchList, loading, checkInput } = this.props;
-        console.log(checkInput)
+        const { textInputHint, searchList, loading, checkInput, selectHint } = this.props;
 
         let assignedTo = '';
         let userList = FormatList(this.state.userList);
@@ -112,56 +113,58 @@ class UserSelector extends React.Component {
 
         if (userList.length === 1) {
             assignedTo = `${userList[0].selects.fullName} (${userList[0].selects.email})`;
-        } else assignedTo = `${userList.length} contacts`;
+        } else {
+            assignedTo = `${userList.length} users`
+        };
 
 
 
         const select = (
-          <Select
-            label="Users"
-            checkOneContact
-            selectList={userList}
-            searchList={searchList}
-            selectHint={this.props.contactSelectHint}
-            handleRemoveSelects={this.handleRemoveUser}
-            handleAddSelects={this.handleAddUser}
-          />
-);
+            <Select
+                label="Users"
+                checkOneContact
+                selectList={userList}
+                searchList={searchList}
+                selectHint={selectHint}
+                handleRemoveSelects={this.handleRemoveUser}
+                handleAddSelects={this.handleAddUser}
+            />
+        );
 
         return (
-          <div className="userSelector">
-            <div className="userSelector__label" ref={this.btnRef}>
-              <button
-                className="userSelector__label__btn"
-                onClick={(event) => {
+            <div className="userSelector">
+                <div className="userSelector__label" ref={this.btnRef}>
+                    <button
+                        className="userSelector__label__btn"
+                        onClick={(event) => {
                             event.stopPropagation();
                             this.handleClickSelectorButton();
                         }}
-              >
-                {assignedTo}
-                <FontAwesomeIcon className="userSelector__label__btn__icon" icon={faCaretDown} />
-              </button>
+                    >
+                        {assignedTo}
+                        <FontAwesomeIcon className="userSelector__label__btn__icon" icon={faCaretDown} />
+                    </button>
+                </div>
+                <div className="userSelector__dropdown" ref={this.wrapperRef}>
+                    <Dropdown
+                        textInputHint={textInputHint}
+                        checkInput={checkInput}
+                        userList={userList}
+                        searchList={searchList}
+                        loading={loading}
+                        select={select}
+                        corner="topLeft"
+                        showDropdown={showDropdown}
+                        currentUser={currentUser}
+                        textInput={textInput}
+                        enableCleanBtn={enableCleanBtn}
+                        handleCleanInput={this.handleCleanInput}
+                        handleInputChange={this.handleInputChange}
+                        handleRemoveUser={this.handleRemoveUser}
+                        handleAddUser={this.handleAddUser}
+                    />
+                </div>
             </div>
-            <div className="userSelector__dropdown" ref={this.wrapperRef}>
-              <Dropdown
-                textInputHint={textInputHint}
-                checkInput={checkInput}
-                userList={userList}
-                searchList={searchList}
-                loading={loading}
-                select={select}
-                corner="topLeft"
-                showDropdown={showDropdown}
-                currentUser={currentUser}
-                textInput={textInput}
-                enableCleanBtn={enableCleanBtn}
-                handleCleanInput={this.handleCleanInput}
-                handleInputChange={this.handleInputChange}
-                handleRemoveUser={this.handleRemoveUser}
-                handleAddUser={this.handleAddUser}
-              />
-            </div>
-          </div>
         );
     }
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import TaskCards from './components/TaskCards';
 import TaskPageHeader from './components/Header';
 import shuffleCards from '../../../services/shuffleCards';
+import store from '../../../../store';
 import './TaskPage.scss';
 import { GetTasks, GetMultiContactsTasks, UpdateTask, DeleteCreateTask, UpdateAssignedToUser, RemoveAssignedToUser } from '../../../Api/Task/Task';
 
@@ -10,12 +11,15 @@ const currentUser = JSON.parse(localStorage.getItem('user'));
 class TaskPage extends React.Component {
 	constructor(props) {
 		super(props);
+		const {contact,relatedTo,associatedContacts} = this.props;
 		this.state = {
 			currentUser,
 			cardList: [],
 			cardsArray: [],
-			contact: this.props.contact,
-			associatedContacts: this.props.associatedContacts,
+			reload: true,
+			relatedTo,
+			contact,
+			associatedContacts,
 		};
 		this.onChangeText = this.onChangeText.bind(this);
 		this.onChangeTask = this.onChangeTask.bind(this);
@@ -50,11 +54,11 @@ class TaskPage extends React.Component {
 
 	handleInitPage() {
 		let data = [];
-		const { contact, associatedContacts } = this.state;
+		const { contact, associatedContacts, relatedTo } = this.state;
 		if (contact) {
 			data = GetTasks(contact.id);
 		} else if (associatedContacts) {
-			let ids = '';
+			let ids = `${relatedTo}&&`;
 			for (let i = 0; i < associatedContacts.length; i++) {
 				const { id } = associatedContacts[i];
 				i === 0 ? ids += id : ids += `&&${id}`;
@@ -81,7 +85,7 @@ class TaskPage extends React.Component {
 		this.setState({
 			cardList: newCardList,
 		});
-		this.sortCardsArray();
+		this.sortCardsArray(newCardList);
 	}
 
 	handleDeleteCard(id) {
@@ -102,7 +106,15 @@ class TaskPage extends React.Component {
 	}
 
 	componentDidMount() {
-		this.handleInitPage();
+		store.subscribe(() => {
+			const { reload, value } = store.getState().reload;
+			if (reload) {
+				this.handleCreateTask(value);
+			}
+		});
+		if (this.state.reload) {
+			this.handleInitPage();
+		}
 	}
 
 	render() {
@@ -110,9 +122,7 @@ class TaskPage extends React.Component {
 		return (
 			<div className="taskPage">
 				<TaskPageHeader
-					handleCreateTask={this.handleCreateTask}
-					contact={contact}
-					currentUser={currentUser}
+					handleCreateTask={this.handleCreateTask}	
 				/>
 				<TaskCards
 					contact={contact}

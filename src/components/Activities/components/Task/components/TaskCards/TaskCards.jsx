@@ -41,8 +41,8 @@ const TaskCards = ({
 };
 
 TaskCards.propTypes = {
-  currentUser: PropTypes.objectOf(PropTypes.object).isRequired,
-  cardsArray: PropTypes.arrayOf(PropTypes.array).isRequired,
+  currentUser: PropTypes.oneOfType([PropTypes.object]).isRequired,
+  cardsArray: PropTypes.oneOfType([PropTypes.array]).isRequired,
   onChangeTask: PropTypes.func.isRequired,
   handleAddUser: PropTypes.func.isRequired,
   handleDeleteCard: PropTypes.func.isRequired,

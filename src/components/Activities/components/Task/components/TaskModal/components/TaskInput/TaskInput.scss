@@ -1,12 +1,11 @@
 @import '../../../../../../../../style/variable.scss';
 .taskInput{
   display:flex;
-  // background-color:yellow;
+  flex-direction: column;
   margin: auto 3%;
   
 
   &__top{
-    // background-color: red;
     display:flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -15,10 +14,13 @@
 
     &__item{
       display: flex;
-      flex-direction: column;
-      flex:1;
-      margin-top:2%;
+      flex-direction: column;  
+      margin-top:3%;
       align-self: end;
+
+      &+&{
+        margin-left: 10%;
+      }
 
       &__label{
         font-size: small;
