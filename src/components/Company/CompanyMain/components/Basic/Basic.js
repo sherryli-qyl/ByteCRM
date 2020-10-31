@@ -13,61 +13,61 @@ import NoteModal from '../../../../Modal/components/Function/Note';
 import EmailModal from '../../../../Modal/components/Function/Email';
 
 class Basic extends Component {
-    constructor(props) {
-        super(props);
-        const navItems = [
-            {
- key: 'Note', value: 'Note', src: IconNote, modal: (<NoteModal />),
-},
-            {
- key: 'Email', value: 'Email', src: IconMail, modal: (<EmailModal />),
-},
-            {
- key: 'Call', value: 'Call', src: IconCall, modal: '',
-},
-            {
- key: 'Log', value: 'Log', src: IconLog, modal: (<EmailModal />),
-},
-            {
- key: 'Task', value: 'Task', src: IconTask, modal: (<EmailModal />),
-},
-            {
- key: 'Meeting', value: 'Meeting', src: IconMeeting, modal: (<EmailModal />),
-},
-        ];
-        this.state = {
-            navItems,
-            currentModal: navItems[0],
+  constructor(props) {
+    super(props);
+    const navItems = [
+      {
+        key: 'Note', value: 'Note', src: IconNote, modal: (<NoteModal />),
+      },
+      {
+        key: 'Email', value: 'Email', src: IconMail, modal: (<EmailModal />),
+      },
+      {
+        key: 'Call', value: 'Call', src: IconCall, modal: '',
+      },
+      {
+        key: 'Log', value: 'Log', src: IconLog, modal: (<EmailModal />),
+      },
+      {
+        key: 'Task', value: 'Task', src: IconTask, modal: (<EmailModal />),
+      },
+      {
+        key: 'Meeting', value: 'Meeting', src: IconMeeting, modal: (<EmailModal />),
+      },
+    ];
+    this.state = {
+      navItems,
+      currentModal: navItems[0],
 
-        };
-        this.onNavItemClick = this.onNavItemClick.bind(this);
-    }
+    };
+    this.onNavItemClick = this.onNavItemClick.bind(this);
+  }
 
-    onNavItemClick(selectedModal) {
-        console.log(`Switch to the ${selectedModal.key}`);
-        this.setState({
-            currentModal: selectedModal,
-        });
-        this.props.openModal(selectedModal);
-    }
+  onNavItemClick(selectedModal) {
+    console.log(`Switch to the ${selectedModal.key}`);
+    this.setState({
+      currentModal: selectedModal,
+    });
+    this.props.openModal(selectedModal);
+  }
 
-    render() {
-        const { navItems, currentModal } = this.state;
-        return (
-          <div className="company_information">
-            <CompanyHeader />
+  render() {
+    const { navItems, currentModal } = this.state;
+    return (
+      <div className="company_information">
+        <CompanyHeader />
 
-            <ActivityBar
-              navItems={navItems}
-              currentWindow={currentModal}
-              onNavItemClick={this.onNavItemClick}
-            />
+        <ActivityBar
+          navItems={navItems}
+          currentWindow={currentModal}
+          onNavItemClick={this.onNavItemClick}
+        />
 
-            <AboutCompany />
-          </div>
+        <AboutCompany />
+      </div>
 
-        );
-    }
+    );
+  }
 }
 
 export default Basic;

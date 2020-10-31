@@ -3,13 +3,13 @@ import ContainedButton from '../../../../../../Style/Button/Modal/ContainedButto
 import './MeetingLogBar.scss';
 
 export default function MeetingLogBar() {
-    return (
-      <div className="meetingSaveBar">
-        <div className="meetingSaveBar__save">
-          <ContainedButton>
-            Log activity
-          </ContainedButton>
-        </div>
+  return (
+    <div className="meetingSaveBar">
+      <div className="meetingSaveBar__save">
+        <ContainedButton>
+          Log activity
+        </ContainedButton>
       </div>
-    );
+    </div>
+  );
 }

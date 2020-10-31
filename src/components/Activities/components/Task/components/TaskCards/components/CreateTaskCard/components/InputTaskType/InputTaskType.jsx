@@ -25,7 +25,7 @@ const InputTaskType = ({
           </div>
           <UserSelector
             userList={card.users}
-            currentUser = {currentUser}
+            currentUser={currentUser}
             contactSelectHint={userSelectHint}
             handleAddUser={handleAddUser}
             handleRemoveUser={handleRemoveUser}
@@ -79,6 +79,6 @@ const InputTaskType = ({
     </div>
   </div>
 
-  );
+);
 
 export default InputTaskType;

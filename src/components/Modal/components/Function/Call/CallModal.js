@@ -6,5 +6,5 @@ const Calls = () => (
   <div className="iconCotainer">
     <img src={CommingSoon} alt="" />
   </div>
-  );
+);
 export default Calls;

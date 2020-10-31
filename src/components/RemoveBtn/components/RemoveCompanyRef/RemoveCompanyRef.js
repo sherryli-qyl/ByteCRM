@@ -5,10 +5,10 @@ import Button from '../../../Button';
 import './RemoveCompanyRef.scss';
 
 const RemoveCompanyRef = ({
-    contactName,
-    companyName,
-    onClickConfirmBtn,
-    onClickCancelBtn,
+  contactName,
+  companyName,
+  onClickConfirmBtn,
+  onClickCancelBtn,
 }) => (
   <Overlay>
     <div className="removeCompanyRef">
@@ -25,5 +25,5 @@ const RemoveCompanyRef = ({
       </div>
     </div>
   </Overlay>
-    );
+);
 export default RemoveCompanyRef;

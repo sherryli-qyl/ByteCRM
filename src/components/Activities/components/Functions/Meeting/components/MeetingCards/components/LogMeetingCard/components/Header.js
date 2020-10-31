@@ -10,6 +10,6 @@ const MeetingCardHeader = (props) => (
       placeholder="Description..."
     />
   </div>
-    );
+);
 
 export default MeetingCardHeader;

@@ -5,7 +5,7 @@ import './EmailSendBar.scss';
 import Taskfollow from '../../../../../../../Private/TaskFollow';
 
 const EmailSendBar = ({
-    children,
+  children,
 }) => (
   <div className="emailFooter">
     <div className="emailFooter__send">
@@ -22,6 +22,6 @@ const EmailSendBar = ({
       <Taskfollow />
     </div>
   </div>
-    );
+);
 
 export default EmailSendBar;

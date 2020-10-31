@@ -5,17 +5,17 @@ import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import './DropDownDisplay.scss';
 
 const DropDownDisplay = ({
-    children,
-    dropDownDisable,
-    onClick,
+  children,
+  dropDownDisable,
+  onClick,
 }) => (
   <div
     className="dropDownDisplay"
     disabled={dropDownDisable}
     onClick={(event) => {
-            event.preventDefault();
-            onClick();
-        }}
+      event.preventDefault();
+      onClick();
+    }}
   >
     <div className="dropDownDisplay__text">
       {children}
@@ -24,6 +24,6 @@ const DropDownDisplay = ({
       <FontAwesomeIcon icon={faCaretDown} />
     </div>
   </div>
-    );
+);
 
 export default DropDownDisplay;

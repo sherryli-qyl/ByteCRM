@@ -9,6 +9,6 @@ const LogEmailBody = (props) => (
       handleEditorChange={props.handleEditorChange}
     />
   </div>
-    );
+);
 
 export default LogEmailBody;

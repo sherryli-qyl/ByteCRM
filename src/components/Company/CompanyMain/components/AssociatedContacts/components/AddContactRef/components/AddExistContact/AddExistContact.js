@@ -4,8 +4,8 @@ import ContactSelector from '../../../../../../../../Selector/ContactSelector';
 import './AddExistContact.scss';
 
 const AddExistContact = ({
-    contactList,
-    handleSelectedContacts,
+  contactList,
+  handleSelectedContacts,
 }) => (
   <div>
     <ContactSelector
@@ -13,6 +13,6 @@ const AddExistContact = ({
       handleSelectedContacts={handleSelectedContacts}
     />
   </div>
-    );
+);
 
 export default AddExistContact;

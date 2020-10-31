@@ -6,6 +6,6 @@ const MeetingInput = (props) => (
   <div>
     <Editor placeholder={props.placeholder} />
   </div>
-  );
+);
 
-  export default MeetingInput;
+export default MeetingInput;

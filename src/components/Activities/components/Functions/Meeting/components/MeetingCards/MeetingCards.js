@@ -6,30 +6,30 @@ import CardContainer from '../../../../../../Style/Card/Activity/Container';
 import './MeetingCards.scss';
 
 function MeetingCards(props) {
-    const createCard = (card) => (<CreateMeetingCard card={card} />);
-    const logCard = (card) => (
-      <LogMeetingCard
-        card={card}
-        contactData={props.contactData}
-        onChangeMeeting={props.onChangeMeeting}
-      />
-);
-    const icon = faCalendarAlt;
-    return (
-      <div className="meetingCards">
-        {props.cardsArray.map((cards) => (
-          <CardContainer
-            key={cards.date}
-            date={cards.date}
-            content={cards.content}
-            icon={icon}
-            createCard={createCard}
-            logCard={logCard}
-            handleDeleteCard={props.handleDeleteCard}
-          />
-            ))}
-      </div>
-    );
+  const createCard = (card) => (<CreateMeetingCard card={card} />);
+  const logCard = (card) => (
+    <LogMeetingCard
+      card={card}
+      contactData={props.contactData}
+      onChangeMeeting={props.onChangeMeeting}
+    />
+  );
+  const icon = faCalendarAlt;
+  return (
+    <div className="meetingCards">
+      {props.cardsArray.map((cards) => (
+        <CardContainer
+          key={cards.date}
+          date={cards.date}
+          content={cards.content}
+          icon={icon}
+          createCard={createCard}
+          logCard={logCard}
+          handleDeleteCard={props.handleDeleteCard}
+        />
+      ))}
+    </div>
+  );
 }
 
 export default MeetingCards;

@@ -7,15 +7,15 @@ import './LogMeetingMain.scss';
 
 const contactSelectHint = 'Logged Meetings must have at Least one association';
 const LogMeetingCardMain = ({
-    currentTime,
-    currentDate,
-    onDateChange,
-    onTimeChange,
-    handleAddContact,
-    handleDeleteContact,
-    contact,
-    userId,
-    contactList,
+  currentTime,
+  currentDate,
+  onDateChange,
+  onTimeChange,
+  handleAddContact,
+  handleDeleteContact,
+  contact,
+  userId,
+  contactList,
 }) => (
   <div className="meetingCardBody">
     <div className="meetingCardBody__container">
@@ -55,6 +55,6 @@ const LogMeetingCardMain = ({
       </div>
     </div>
   </div>
-    );
+);
 
 export default LogMeetingCardMain;

@@ -1,8 +1,8 @@
 import api from '../../../lib/api';
 
 const GetCompanyByCode = (id) => {
-    const response = api.get(`/api/companies/${id}`);
-    return response;
+  const response = api.get(`/api/companies/${id}`);
+  return response;
 };
 
 async function GetCompany(code) {
@@ -53,7 +53,7 @@ async function AddCompany(body) {
     return response.json();
   }
 
-    return false;
+  return false;
 }
 
 async function GetCompanyByUserId(id, keyword) {
@@ -72,14 +72,14 @@ async function DeleteCompany(code) {
   if (response.ok) {
     return true;
   }
-    return false;
+  return false;
 }
 
 async function MultiRefChange(id, body) {
-    const response = api.put(`/api/companies/${id}/ref`, body);
-    return response;
+  const response = api.put(`/api/companies/${id}/ref`, body);
+  return response;
 }
 
 export {
- GetCompanyByCode, GetAllCompanies, GetCompany, AddCompany, UpdateCompany, GetCompanyByUserId, DeleteCompany, MultiRefChange,
+  GetCompanyByCode, GetAllCompanies, GetCompany, AddCompany, UpdateCompany, GetCompanyByUserId, DeleteCompany, MultiRefChange,
 };

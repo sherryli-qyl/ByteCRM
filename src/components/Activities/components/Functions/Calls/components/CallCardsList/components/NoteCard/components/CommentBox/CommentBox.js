@@ -71,14 +71,14 @@ class CommentBox extends React.Component {
         onDelete={this.deleteComment}
         onUpdate={this.updateComment}
       />
-      ));
+    ));
   }
 
   getCommentsTitle(commentCount) {
     if (commentCount === 0) {
       return 'No comments yet';
     }
-      return `Comments (${commentCount}) `;
+    return `Comments (${commentCount}) `;
   }
 
   render() {

@@ -9,17 +9,17 @@ import { transferTimeHHMM } from '../../../../../../services/timeManager';
 
 // const contactSelectHint = "Logged Emails must have at Least one association";
 const LogMeetingCardMain = ({
-    currentTime,
-    currentDate,
-    meetingDuration,
-    onDateChange,
-    onTimeChange,
-    onDurationChange,
-    // handleAddContact,
-    // handleDeleteContact,
-    // contact,
-    // userId,
-    // contactList,
+  currentTime,
+  currentDate,
+  meetingDuration,
+  onDateChange,
+  onTimeChange,
+  onDurationChange,
+  // handleAddContact,
+  // handleDeleteContact,
+  // contact,
+  // userId,
+  // contactList,
 }) => (
   <div className="meetingCardBody">
     <div className="meetingCardBody__container">
@@ -54,6 +54,6 @@ const LogMeetingCardMain = ({
       />
     </div>
   </div>
-    );
+);
 
 export default LogMeetingCardMain;
