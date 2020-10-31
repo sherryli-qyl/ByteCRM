@@ -6,8 +6,8 @@ import Footer from './components/Footer';
 import './DeleteModal.scss';
 
 const DeleteModal = ({
-    onClickConfirm,
-    onClickCancel,
+  onClickConfirm,
+  onClickCancel,
 }) => (
   <Overlay>
     <div className="deleteModal">
@@ -19,6 +19,6 @@ const DeleteModal = ({
       />
     </div>
   </Overlay>
-    );
+);
 
 export default DeleteModal;

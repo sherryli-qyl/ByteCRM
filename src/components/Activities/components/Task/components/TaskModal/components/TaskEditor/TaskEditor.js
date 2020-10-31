@@ -4,14 +4,16 @@ import './TaskEditor.scss';
 
 const TaskEditor = ({
   children,
-  handleInput
+  handleInput,
 }) => (
 
   <div className="taskEditor">
-    <Editor  placeholder="Note..."
-             handleEditorChange={(value)=>handleInput(value,'description')}/>
+    <Editor
+      placeholder="Note..."
+      handleEditorChange={(value) => handleInput(value, 'description')}
+    />
   </div>
 
-  );
+);
 
 export default TaskEditor;

@@ -17,5 +17,5 @@ const testDate = (str) => {
 const testEmptyString = (str) => str === undefined || str === '';
 
 export {
- testPhoneNum, testEmailAddr, testDate, testEmptyString,
+  testPhoneNum, testEmailAddr, testDate, testEmptyString,
 };

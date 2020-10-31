@@ -13,6 +13,6 @@ const TaskDescription = ({
       placeholder="Add description"
     />
   </div>
-  );
+);
 
 export default TaskDescription;

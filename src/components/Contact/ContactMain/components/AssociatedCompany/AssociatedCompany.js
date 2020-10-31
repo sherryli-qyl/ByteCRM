@@ -40,60 +40,60 @@ class AssociatedCompany extends React.Component {
     });
   }
 
-onClickSaveBtn() {
-  const data = AddCompanyRef(this.state.contact.id, this.state.selectedCompany.id);
-  data.then((response) => {
-    if (response.statusText === 'OK') {
-      this.setState((prevState) => ({
-        company: prevState.selectedCompany,
-      }));
-      console.log('Add company success');
-    } else {
-      console.log('Add company failed');
+  onClickSaveBtn() {
+    const data = AddCompanyRef(this.state.contact.id, this.state.selectedCompany.id);
+    data.then((response) => {
+      if (response.statusText === 'OK') {
+        this.setState((prevState) => ({
+          company: prevState.selectedCompany,
+        }));
+        console.log('Add company success');
+      } else {
+        console.log('Add company failed');
+      }
+    });
+  }
+
+  render() {
+    const { hintMessage, company, contact } = this.state;
+
+    let showDetail = false;
+    if (company) {
+      showDetail = true;
     }
-  });
-}
 
-render() {
-  const { hintMessage, company, contact } = this.state;
+    const addModal = {
+      title: 'Add companies to this contact',
+      content: <AddComapnyRef handleSelectedCompany={this.handleSelectedCompany} />,
+    };
 
-  let showDetail = false;
-  if (company) {
-    showDetail = true;
-  }
+    let disabled = false;
+    if (company) {
+      disabled = true;
+    }
 
-  const addModal = {
-    title: 'Add companies to this contact',
-    content: <AddComapnyRef handleSelectedCompany={this.handleSelectedCompany} />,
-  };
+    return (
+      <div className="contactsCompany">
 
-  let disabled = false;
-  if (company) {
-    disabled = true;
-  }
-
-  return (
-    <div className="contactsCompany">
-
-      <ExpandBar
-        content={(
-          <RelationCard
-            company={company}
-            contact={contact}
-            handleRemoveCompany={this.handleRemoveCompany}
-          />
+        <ExpandBar
+          content={(
+            <RelationCard
+              company={company}
+              contact={contact}
+              handleRemoveCompany={this.handleRemoveCompany}
+            />
       )}
-        label="Company"
-        addModal={addModal}
-        hintMessage={hintMessage}
-        disabled={disabled}
-        showDetail={showDetail}
-        showAdd
-        onClickSaveBtn={this.onClickSaveBtn}
-      />
-    </div>
-  );
-}
+          label="Company"
+          addModal={addModal}
+          hintMessage={hintMessage}
+          disabled={disabled}
+          showDetail={showDetail}
+          showAdd
+          onClickSaveBtn={this.onClickSaveBtn}
+        />
+      </div>
+    );
+  }
 }
 
 export default AssociatedCompany;

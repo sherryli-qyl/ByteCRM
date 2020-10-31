@@ -5,8 +5,8 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import './AddModalHeader.scss';
 
 const AddModalHeader = ({
-    title,
-    onClickCloseBtn,
+  title,
+  onClickCloseBtn,
 }) => (
   <div className="addModalHeader">
     <div className="addModalHeader__inner">
@@ -19,15 +19,15 @@ const AddModalHeader = ({
         <button
           className="addModalHeader__inner__right__closeBtn"
           onClick={(event) => {
-                                event.preventDefault();
-                                onClickCloseBtn();
-                                }}
+            event.preventDefault();
+            onClickCloseBtn();
+          }}
         >
           <FontAwesomeIcon icon={faTimes} />
         </button>
       </div>
     </div>
   </div>
-    );
+);
 
 export default AddModalHeader;

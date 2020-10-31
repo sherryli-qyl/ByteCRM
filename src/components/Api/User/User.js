@@ -1,7 +1,7 @@
 import api from '../../../lib/api';
 
 async function GetAllUsers() {
-  let url = new URL('http://localhost:3000/api/users');
+  const url = new URL('http://localhost:3000/api/users');
   const response = await fetch(url, {
     method: 'GET',
     headers: {

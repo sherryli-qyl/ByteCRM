@@ -1,10 +1,10 @@
 function FindDiff(newData, oldData, count) {
-    for (const key of Object.keys(newData)) {
-        if (newData[key] !== oldData[key]) {
-            count += 1;
-        }
+  for (const key of Object.keys(newData)) {
+    if (newData[key] !== oldData[key]) {
+      count += 1;
     }
-    return count;
+  }
+  return count;
 }
 
 export default FindDiff;

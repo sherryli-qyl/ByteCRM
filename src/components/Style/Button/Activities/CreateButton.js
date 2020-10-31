@@ -2,10 +2,10 @@ import React from 'react';
 import './ActivitiesButton.scss';
 
 const CreateButton = ({
-    children,
-    className,
-    onClick,
-    onSave,
+  children,
+  className,
+  onClick,
+  onSave,
 }) => (
   <button
     className={`createButton ${className}`}

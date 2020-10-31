@@ -3,19 +3,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './ActivityItem.scss';
 
 const ActivityItem = ({
-    name,
-    icon,
-    active,
-    onClick,
-    children,
+  name,
+  icon,
+  active,
+  onClick,
+  children,
 }) => (
   <div className="activity__item">
     <button
       className="activity__item__button"
       onClick={(event) => {
-                    event.preventDefault();
-                    onClick();
-                }}
+        event.preventDefault();
+        onClick();
+      }}
     >
       <FontAwesomeIcon className="activity__item__button__icon" icon={icon} />
     </button>
@@ -23,6 +23,6 @@ const ActivityItem = ({
       {children}
     </div>
   </div>
-    );
+);
 
 export default ActivityItem;

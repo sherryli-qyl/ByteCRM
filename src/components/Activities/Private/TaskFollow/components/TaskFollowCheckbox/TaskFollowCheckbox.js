@@ -2,8 +2,8 @@ import React from 'react';
 import Checkbox from '@material-ui/core/Checkbox';
 
 const TaskFollowCheckbox = ({
-    checked,
-    onChange,
+  checked,
+  onChange,
 }) => (
   <Checkbox
     checked={checked}
@@ -12,6 +12,6 @@ const TaskFollowCheckbox = ({
     inputProps={{ 'aria-label': 'primary checkbox' }}
   />
 
-    );
+);
 
 export default TaskFollowCheckbox;

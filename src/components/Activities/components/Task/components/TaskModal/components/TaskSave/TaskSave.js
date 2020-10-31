@@ -8,13 +8,13 @@ const TaskSave = ({
 }) => (
   <div className="taskSave">
     <div className="taskSave__save">
-    <Button
+      <Button
         size="small"
         variant="contained"
         btnDisable={disable}
         onClick={handleClickSaveBtn}
       >
-       Save Task
+        Save Task
       </Button>
     </div>
   </div>

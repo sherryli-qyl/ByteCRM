@@ -1,3 +1,3 @@
 export {
-    FormatList, SearchSelectsLocal, SearchSelectsRemote, ItemSelected, CheckOneSelects,
+  FormatList, SearchSelectsLocal, SearchSelectsRemote, ItemSelected, CheckOneSelects,
 } from './Search';

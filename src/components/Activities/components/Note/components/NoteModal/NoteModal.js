@@ -43,32 +43,32 @@ class NoteModal extends React.Component {
     if (checkInput !== '') {
       return true;
     }
-      return false;
+    return false;
   }
 
   handleClickSaveBtn() {
     const { content, user, relatedTo } = this.state;
-      if (this.checkValidation(content)) {
-        const body = {
-          content,
-          createdBy: user.id,
-          type: 'Note',
-          isDeleted: false,
-          relatedTo,
-        };
-        const res = AddNote(body);
-        res.then((value) => {
-          if (this.props.modalController) {
-            const action = saveAction(value);
-            store.dispatch(action);
-            this.props.modalController.close();
-          } else {
-              console.log('Unexpected Error');
-          }
-        });
-      } else {
+    if (this.checkValidation(content)) {
+      const body = {
+        content,
+        createdBy: user.id,
+        type: 'Note',
+        isDeleted: false,
+        relatedTo,
+      };
+      const res = AddNote(body);
+      res.then((value) => {
+        if (this.props.modalController) {
+          const action = saveAction(value);
+          store.dispatch(action);
+          this.props.modalController.close();
+        } else {
+          console.log('Unexpected Error');
+        }
+      });
+    } else {
 
-      }
+    }
   }
 
   render() {

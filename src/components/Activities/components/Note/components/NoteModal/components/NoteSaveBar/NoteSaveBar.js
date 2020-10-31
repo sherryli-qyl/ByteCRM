@@ -19,6 +19,6 @@ const NoteSaveBar = (props) => (
       <Taskfollow />
     </div>
   </div>
-  );
+);
 
 export default NoteSaveBar;

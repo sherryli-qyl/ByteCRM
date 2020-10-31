@@ -52,11 +52,11 @@ class CommentBox extends React.Component {
     this.setState({ comments: this.state.comments.concat([comment]) });
   }
 
-//   fetch('http://localhost:8080')
-//   .then(response => response.json())
-//   .then(json => {
-//   this.setState({mystate: this.state.mystate.push.apply(this.state.mystate, json)})
-// })
+  //   fetch('http://localhost:8080')
+  //   .then(response => response.json())
+  //   .then(json => {
+  //   this.setState({mystate: this.state.mystate.push.apply(this.state.mystate, json)})
+  // })
 
   deleteComment(index) {
     const arr = this.state.comments;
@@ -88,14 +88,14 @@ class CommentBox extends React.Component {
         onDelete={this.deleteComment}
         onUpdate={this.updateComment}
       />
-      ));
+    ));
   }
 
   getCommentsTitle(commentCount) {
     if (commentCount === 0) {
       return 'No comments yet';
     }
-      return `Comments (${commentCount}) `;
+    return `Comments (${commentCount}) `;
   }
 
   render() {
@@ -124,13 +124,13 @@ class CommentBox extends React.Component {
         </div>
         <div>
           {this.state.showCommentForm
-          ? (
-            <CommentForm
-              addComment={this.addComment}
-              handleShowCommentForm={this.handleShowCommentForm.bind(this)}
-            />
-)
-          : null}
+            ? (
+              <CommentForm
+                addComment={this.addComment}
+                handleShowCommentForm={this.handleShowCommentForm.bind(this)}
+              />
+            )
+            : null}
         </div>
 
         <div
@@ -142,7 +142,7 @@ class CommentBox extends React.Component {
           </div>
           <button
             onClick={() => {
-            this.handleShowCommentForm();
+              this.handleShowCommentForm();
             // this.handleShowAddCommentPanel();
             }}
             className="add-comment-button"

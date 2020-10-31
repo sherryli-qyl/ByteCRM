@@ -3,8 +3,8 @@ import './EmailFunctionBar.scss';
 import EmailFunctionBarItem from './components/EmailFunctionBarItem';
 
 const EmailFunctionBar = ({
-    items,
-    onItemClick,
+  items,
+  onItemClick,
 }) => (
   <nav className="emailFunctionBar border-bottom">
     {items.map((item) => (
@@ -13,8 +13,8 @@ const EmailFunctionBar = ({
       >
         {item.value}
       </EmailFunctionBarItem>
-            ))}
+    ))}
   </nav>
-    );
+);
 
 export default EmailFunctionBar;
