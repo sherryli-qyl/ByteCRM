@@ -10,7 +10,7 @@ const exportPDF = (columns, data, type) => {
   }
   const tempData = JSON.parse(JSON.stringify(data));
   const temp = [];
-    const result = [];
+  const result = [];
   switch (type) {
     case 'contact': {
       const transform = new Map([
@@ -92,25 +92,25 @@ const exportPDF = (columns, data, type) => {
     head:
       type === 'contact'
         ? [[
-            'name',
-            'phone number',
-            'email',
-            'associated company',
-            'contact owner',
-            'lead status',
-            'last activity date',
-            'create date',
-          ]]
+          'name',
+          'phone number',
+          'email',
+          'associated company',
+          'contact owner',
+          'lead status',
+          'last activity date',
+          'create date',
+        ]]
         : [[
-            'name',
-            'phone number',
-            'company owner',
-            'country',
-            'city',
-            'industry',
-            'last activity date',
-            'create date',
-          ]],
+          'name',
+          'phone number',
+          'company owner',
+          'country',
+          'city',
+          'industry',
+          'last activity date',
+          'create date',
+        ]],
     body: result,
   };
   const doc = new jsPDF({

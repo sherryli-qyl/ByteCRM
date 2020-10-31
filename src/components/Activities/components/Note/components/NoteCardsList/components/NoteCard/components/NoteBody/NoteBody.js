@@ -10,6 +10,6 @@ const NoteBody = (props) => (
       onContentChange={props.onContentChange}
     />
   </div>
-  );
+);
 
 export default NoteBody;

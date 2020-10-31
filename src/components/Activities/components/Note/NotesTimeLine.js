@@ -47,8 +47,8 @@ class NotesTimeLine extends React.Component {
     if (associatedContacts) {
       let ids = `${relatedTo}&&`;
       for (let i = 0; i < associatedContacts.length; i++) {
-          const { id } = associatedContacts[i];
-          i === 0 ? ids += id : ids += `&&${id}`;
+        const { id } = associatedContacts[i];
+        i === 0 ? ids += id : ids += `&&${id}`;
       }
       allNotes = GetAllAssociatedNotes(ids);
     } else {
@@ -107,7 +107,7 @@ class NotesTimeLine extends React.Component {
         this.handleGetNotes();
       }
     });
-}
+  }
 
   render() {
     const { cardsArray, relatedTo } = this.state;
@@ -126,7 +126,7 @@ class NotesTimeLine extends React.Component {
         />
       </div>
     );
-}
+  }
 }
 
 export default NotesTimeLine;

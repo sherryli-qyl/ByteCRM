@@ -3,8 +3,8 @@ import Button from '../../../Button';
 import './AddModalFooter.scss';
 
 const AddModalFooter = ({
-    onClickSaveBtn,
-    onClickCancelBtn,
+  onClickSaveBtn,
+  onClickCancelBtn,
 }) => (
   <div className="addModalFooter">
     <div className="addModalFooter__btnWrapper">
@@ -16,6 +16,6 @@ const AddModalFooter = ({
       </Button>
     </div>
   </div>
-    );
+);
 
 export default AddModalFooter;

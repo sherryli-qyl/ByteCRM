@@ -2,7 +2,7 @@ import React from 'react';
 import './Overlay.scss';
 
 const Overlay = ({
-    children,
+  children,
 }) => (
   <div className="overlay">
     {children}

@@ -102,7 +102,7 @@ class EmailPage extends React.Component {
         });
         return response.data;
       }
-        return [];
+      return [];
     }).then((cards) => {
       this.sortCardsArray(cards);
     });

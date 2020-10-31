@@ -17,11 +17,11 @@ async function UpdateNote(noteId, body) {
   const serverUrl = `http://localhost:3000/api/notes/${noteId}`;
   console.log(body);
   const response = await fetch(serverUrl, {
-      method: 'PUT',
-      headers: {
-          'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(body),
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(body),
   });
   return response.json();
 }
@@ -40,7 +40,7 @@ async function AddNote(body) {
     return response.json();
   }
 
-    return false;
+  return false;
 }
 
 async function DeleteNote(noteId) {
@@ -48,15 +48,15 @@ async function DeleteNote(noteId) {
   const response = await fetch(serverUrl, {
     method: 'DELETE',
     headers: {
-        'Content-Type': 'application/json',
+      'Content-Type': 'application/json',
     },
   });
   if (response.ok) {
     return true;
   }
-    return false;
+  return false;
 }
 
 export {
- GetNoteByRelatedToId, GetAllAssociatedNotes, UpdateNote, AddNote, DeleteNote,
+  GetNoteByRelatedToId, GetAllAssociatedNotes, UpdateNote, AddNote, DeleteNote,
 };

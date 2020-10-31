@@ -3,39 +3,39 @@ import ClipLoader from 'react-spinners/ClipLoader';
 import './Loading.scss';
 
 const Loading = ({
-    variant,
+  variant,
 }) => {
-    let className = 'loading ';
+  let className = 'loading ';
 
-    switch (variant) {
-        case 'full page':
-            className += 'loading--fullPage';
-            break;
+  switch (variant) {
+    case 'full page':
+      className += 'loading--fullPage';
+      break;
 
-        case 'block':
-            className += 'loading--block';
-            break;
+    case 'block':
+      className += 'loading--block';
+      break;
 
-        case 'bar':
-            className += 'loading--bar';
-            break;
+    case 'bar':
+      className += 'loading--bar';
+      break;
 
-        default:
-            className += 'loading--block';
-            break;
-    }
+    default:
+      className += 'loading--block';
+      break;
+  }
 
-    return (
-      <div className={className}>
-        <div className="spinner">
-          <ClipLoader
-            size={40}
-            color="#0091ae"
-            loading
-          />
-        </div>
+  return (
+    <div className={className}>
+      <div className="spinner">
+        <ClipLoader
+          size={40}
+          color="#0091ae"
+          loading
+        />
       </div>
-    );
+    </div>
+  );
 };
 
 export default Loading;

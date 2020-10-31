@@ -29,29 +29,29 @@ const LEAD_STATUS_BACK = {
 function wrapUpData(data, type) {
   if (type === 'contact') {
     return data.map((cur) => ({
-        name: (
-          <JumpButton id={cur.contactID} type="contact" name={cur.name} />
-        ),
-        contactID: cur.contactID,
-        companyID: cur.companyID,
-        email: cur.email,
-        phoneNumber: cur.phoneNumber,
-        contactOwner: cur.contactOwner,
-        associatedCompany: (
-          <JumpButton
-            id={cur.companyID}
-            type="company"
-            name={cur.associatedCompany}
-          />
-        ),
-        lastActivityDate: cur.lastActivityDate,
-        leadStatus: cur.leadStatus,
-        createDate: cur.createDate,
-      }));
+      name: (
+        <JumpButton id={cur.contactID} type="contact" name={cur.name} />
+      ),
+      contactID: cur.contactID,
+      companyID: cur.companyID,
+      email: cur.email,
+      phoneNumber: cur.phoneNumber,
+      contactOwner: cur.contactOwner,
+      associatedCompany: (
+        <JumpButton
+          id={cur.companyID}
+          type="company"
+          name={cur.associatedCompany}
+        />
+      ),
+      lastActivityDate: cur.lastActivityDate,
+      leadStatus: cur.leadStatus,
+      createDate: cur.createDate,
+    }));
   } if (type === 'company') {
     return data.map((cur) => {
       let newOwners;
-        const temp = [];
+      const temp = [];
       if (cur.associatedContacts.length !== 0 && cur.contactID.length !== 0) {
         for (const i in cur.contactID) {
           temp.push(
@@ -110,32 +110,32 @@ const processData = (data, type) => {
       createDate: data.createDate,
     };
   }
-    let newOwner;
-      let contacts = [];
-      let contactID = [];
-    if (typeof data.companyOwner === 'object') {
-      newOwner = data.companyOwner.fullName;
-    } else if (!data.companyOwner) {
-      newOwner = 'Unassigned';
-    }
-    if (typeof data.associatedContacts === 'object') {
-      contacts = data.associatedContacts.map((cur) => cur.fullName);
-      contactID = data.associatedContacts.map((cur) => cur.id);
-    } else if (!data.associatedContacts) {
-      contacts = contactID = undefined;
-    }
-    return {
-      name: data.name,
-      companyID: data.id,
-      contactID: data.associatedContacts ? contactID : undefined,
-      phoneNumber: data.phoneNumber,
-      companyOwner: newOwner || undefined,
-      associatedContacts: data.associatedContacts ? contacts : undefined,
-      lastLoggedCallDate: data.lastLoggedCallDate,
-      city: data.city,
-      country: data.country,
-      industry: data.industry,
-    };
+  let newOwner;
+  let contacts = [];
+  let contactID = [];
+  if (typeof data.companyOwner === 'object') {
+    newOwner = data.companyOwner.fullName;
+  } else if (!data.companyOwner) {
+    newOwner = 'Unassigned';
+  }
+  if (typeof data.associatedContacts === 'object') {
+    contacts = data.associatedContacts.map((cur) => cur.fullName);
+    contactID = data.associatedContacts.map((cur) => cur.id);
+  } else if (!data.associatedContacts) {
+    contacts = contactID = undefined;
+  }
+  return {
+    name: data.name,
+    companyID: data.id,
+    contactID: data.associatedContacts ? contactID : undefined,
+    phoneNumber: data.phoneNumber,
+    companyOwner: newOwner || undefined,
+    associatedContacts: data.associatedContacts ? contacts : undefined,
+    lastLoggedCallDate: data.lastLoggedCallDate,
+    city: data.city,
+    country: data.country,
+    industry: data.industry,
+  };
 };
 
 const getTable = (data, tabID, userAccount, type) => {
@@ -231,5 +231,5 @@ function makeNewRow(newData, type) {
 }
 
 export {
- getTable, processData, makeNewRow, remove,
+  getTable, processData, makeNewRow, remove,
 };

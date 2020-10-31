@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
- faEnvelope, faEdit, faPhoneAlt, faCalendarAlt, faPlus, faTasks, faUser, faBuilding,
+  faEnvelope, faEdit, faPhoneAlt, faCalendarAlt, faPlus, faTasks, faUser, faBuilding,
 } from '@fortawesome/free-solid-svg-icons';
 import BasicInfo from './components/BasicInfo';
 import DetailInfo from './components/DetailInfo';
@@ -17,23 +17,23 @@ class InfoPage extends Component {
     super(props);
     const navItems = [
       {
- key: 'Note', value: 'Note', icon: faEdit, modal: NoteModal,
-},
+        key: 'Note', value: 'Note', icon: faEdit, modal: NoteModal,
+      },
       {
- key: 'Email', value: 'Email', icon: faEnvelope, modal: EmailModal,
-},
+        key: 'Email', value: 'Email', icon: faEnvelope, modal: EmailModal,
+      },
       {
- key: 'Call', value: 'Call', icon: faPhoneAlt, modal: CallModal,
-},
+        key: 'Call', value: 'Call', icon: faPhoneAlt, modal: CallModal,
+      },
       {
- key: 'Log', value: 'Log', icon: faPlus, modal: '',
-},
+        key: 'Log', value: 'Log', icon: faPlus, modal: '',
+      },
       {
- key: 'Task', value: 'Task', icon: faTasks, modal: TaskModal,
-},
+        key: 'Task', value: 'Task', icon: faTasks, modal: TaskModal,
+      },
       {
- key: 'Meeting', value: 'Meet', icon: faCalendarAlt, modal: MeetingCreateModal,
-},
+        key: 'Meeting', value: 'Meet', icon: faCalendarAlt, modal: MeetingCreateModal,
+      },
     ];
 
     this.state = {
@@ -58,9 +58,9 @@ class InfoPage extends Component {
     let dataPack = '';
 
     if (this.props.infoData.key === 'contact') {
-       dataPack = new DataPack(key, 'Contacts', data, dictionary);
+      dataPack = new DataPack(key, 'Contacts', data, dictionary);
     } else {
-       dataPack = new DataPack(key, 'Companies', data, dictionary);
+      dataPack = new DataPack(key, 'Companies', data, dictionary);
     }
 
     return (

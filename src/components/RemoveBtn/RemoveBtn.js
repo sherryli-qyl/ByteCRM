@@ -7,12 +7,12 @@ import HintBox from '../HintBox';
 import './RemoveBtn.scss';
 
 const RemoveBtn = ({
-    showRemoveModal,
-    contactName,
-    companyName,
-    handleModalToggle,
-    onClickConfirmBtn,
-    onClickCancelBtn,
+  showRemoveModal,
+  contactName,
+  companyName,
+  handleModalToggle,
+  onClickConfirmBtn,
+  onClickCancelBtn,
 }) => (
   <div className="removeBtn">
     <RemoveButtom className="removeBtn" onClick={handleModalToggle}>
@@ -25,17 +25,17 @@ const RemoveBtn = ({
     </div>
     {
                 showRemoveModal
-                    ? (
-                      <RemoveRefModal
-                        contactName={contactName}
-                        companyName={companyName}
-                        onClickConfirmBtn={onClickConfirmBtn}
-                        onClickCancelBtn={onClickCancelBtn}
-                      />
-)
-                    : ''
+                  ? (
+                    <RemoveRefModal
+                      contactName={contactName}
+                      companyName={companyName}
+                      onClickConfirmBtn={onClickConfirmBtn}
+                      onClickCancelBtn={onClickCancelBtn}
+                    />
+                  )
+                  : ''
             }
   </div>
-    );
+);
 
 export default RemoveBtn;

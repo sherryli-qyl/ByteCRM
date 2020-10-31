@@ -32,8 +32,8 @@ class Detail extends React.Component {
 
   render() {
     const {
- website, company, phoneNumber, contact,
-} = this.props;
+      website, company, phoneNumber, contact,
+    } = this.props;
     const { showRemoveModal } = this.state;
     const websiteURL = `https://${website}`;
     return (

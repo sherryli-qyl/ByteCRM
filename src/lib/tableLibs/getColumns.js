@@ -9,22 +9,22 @@ function getColumns(type) {
         field: 'name',
         initialEditValue: '',
         validate: (rowData) => (rowData.name === ''
-            ? { isValid: false, helperText: 'Name cannot be empty' }
-            : true),
+          ? { isValid: false, helperText: 'Name cannot be empty' }
+          : true),
       },
       {
         title: 'EMAIL',
         field: 'email',
         validate: (rowData) => (testEmailAddr(rowData.email)
-            ? true
-            : { isValid: false, helperText: 'Email address format incorrect' }),
+          ? true
+          : { isValid: false, helperText: 'Email address format incorrect' }),
       },
       {
         title: 'PHONE NUMBER',
         field: 'phoneNumber',
         validate: (rowData) => (testPhoneNum(rowData.phoneNumber)
-            ? true
-            : { isValid: false, helperText: 'Phone number format incorrect' }),
+          ? true
+          : { isValid: false, helperText: 'Phone number format incorrect' }),
       },
 
       { title: 'CONTACT OWNER', field: 'contactOwner', editable: 'never' },
@@ -70,15 +70,15 @@ function getColumns(type) {
         field: 'name',
         initialEditValue: '',
         validate: (rowData) => (rowData.name === ''
-            ? { isValid: false, helperText: 'Name cannot be empty' }
-            : true),
+          ? { isValid: false, helperText: 'Name cannot be empty' }
+          : true),
       },
       {
         title: 'PHONE NUMBER',
         field: 'phoneNumber',
         validate: (rowData) => (testPhoneNum(rowData.phoneNumber)
-            ? true
-            : { isValid: false, helperText: 'Phone number format incorrect' }),
+          ? true
+          : { isValid: false, helperText: 'Phone number format incorrect' }),
       },
       { title: 'COMPANY OWNER', field: 'companyOwner', editable: 'never' },
       {

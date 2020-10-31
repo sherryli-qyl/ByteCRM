@@ -9,6 +9,6 @@ const LogMeetingBody = (props) => (
       handleEditorChange={props.handleEditorChange}
     />
   </div>
-    );
+);
 
 export default LogMeetingBody;

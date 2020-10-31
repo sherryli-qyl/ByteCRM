@@ -10,6 +10,6 @@ const EmailCardHeader = (props) => (
       placeholder="Description..."
     />
   </div>
-    );
+);
 
 export default EmailCardHeader;

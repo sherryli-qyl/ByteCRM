@@ -1,1 +1,1 @@
-export {default} from './withSearch';
+export { default } from './withSearch';

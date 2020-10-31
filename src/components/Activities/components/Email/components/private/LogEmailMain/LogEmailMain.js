@@ -7,15 +7,15 @@ import './LogEmailMain.scss';
 
 const contactSelectHint = 'Logged Emails must have at Least one association';
 const LogEmailCardMain = ({
-    currentTime,
-    currentDate,
-    onDateChange,
-    onTimeChange,
-    handleAddContact,
-    handleDeleteContact,
-    contact,
-    userId,
-    contactList,
+  currentTime,
+  currentDate,
+  onDateChange,
+  onTimeChange,
+  handleAddContact,
+  handleDeleteContact,
+  contact,
+  userId,
+  contactList,
 }) => (
   <div className="emailCardBody">
     <div className="emailCardBody__container">
@@ -55,6 +55,6 @@ const LogEmailCardMain = ({
       </div>
     </div>
   </div>
-    );
+);
 
 export default LogEmailCardMain;
