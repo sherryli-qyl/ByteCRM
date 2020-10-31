@@ -33,17 +33,6 @@ function AddBusinessDay(days) {
     return transferDateInYearMonDay(momentBSD(date).businessAdd(days)._d);
 }
 
-const selectItems = [
-    { key: 'Today', value: 0, display: 'Today' },
-    { key: 'Tomorrow ', value: 1, display: 'Tomorrow' },
-    { key: 'in 1 business days ', value: 1, display: '' },
-    { key: 'in 2 business days ', value: 2, display: '' },
-    { key: 'in 3 business days ', value: 3, display: '' },
-    { key: 'in 1 week ', value: 7, display: '' },
-    { key: 'in 2 weeks ', value: 14, display: '' },
-    { key: 'in 1 month ', value: 30 },
-];
-
 function dueDateCalculator(list) {
     let newList = [...list];
     for (let i in list) {
@@ -71,7 +60,7 @@ function transferDateInMonthYear(date) {
 }
 
 function transferDateInMonDayYear(date) {
-    const formateDate = moment(date).format('MMM DD YYYY');
+    const formateDate = moment(date).format('MMM DD, YYYY');
     return formateDate;
 }
 

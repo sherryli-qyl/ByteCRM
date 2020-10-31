@@ -1,6 +1,6 @@
 import React from 'react';
 import ActivityCard from '../Card';
-import { transferDateInMonthYear, transferDateInMonDayYear } from '../../../../services/DateManager';
+import { transferDateInMonthYear, transferDateInMonDayYear } from '../../../../../lib/date';
 
 const CardContainer = ({
   date,

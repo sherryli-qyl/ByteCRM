@@ -1,6 +1,6 @@
 import React from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
-import { addDate } from '../../../../../../services/DateManager';
+import { addDate } from '../../../../../../../lib/date';
 import Dropdown from '../../../../../../Style/Dropdown';
 import './TaskFollowDropDown.scss';
 
