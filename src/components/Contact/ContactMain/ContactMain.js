@@ -8,6 +8,7 @@ import Loading from '../../Loading';
 import store from '../../../store';
 import { addContactAction } from '../../../action';
 import AssociatedCompany from './components/AssociatedCompany';
+import Deals from '../../Deals';
 import { ModalContext } from '../../Modal/components/ModalContext';
 import { InfoContext } from '../../InfoPage/components/Context';
 import { publicTheme } from '../../Style/Theme/MatUITheme';
@@ -104,6 +105,7 @@ class ContactMain extends Component {
         const onChangeInfoHandlers = { single: this.onChangeSingleInfo, multi: this.onChangeMultiInfo };
         const sideBarItems = [
             { key: 'Company', component: <AssociatedCompany contact={contact} company={contact.company} /> },
+            { key: 'Deals', component: <Deals contact = {contact} company={contact.company}/> }
         ];
         const modalController = { open: this.openModal, close: this.closeModal, contact };
 
