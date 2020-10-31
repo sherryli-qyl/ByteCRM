@@ -1,4 +1,4 @@
-import { getDate, sortDate } from './DateManager';
+import { getDate, sortDate } from '../../lib/date';
 import Cards from '../../js/Cards';
 
 function shuffleCards(cardsList) {

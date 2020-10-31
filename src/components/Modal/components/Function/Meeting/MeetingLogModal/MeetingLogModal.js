@@ -1,6 +1,6 @@
 import React from 'react';
 import './MeetingLogModal.scss';
-import { transferDateInYearMonDay } from '../../../../../services/DateManager';
+import { transferDateInYearMonDay } from '../../../../../../lib/date';
 // import Text from '../../../../../Style/Text';
 // import MeetingTitle from '../components/MeetingTitle';
 // import MeetingInput from '../components/MeetingInput';

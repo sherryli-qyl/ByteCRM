@@ -6,7 +6,7 @@ import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
 } from '@material-ui/pickers';
-import { transferDateInYearMonDay } from '../../../services/DateManager';
+import { transferDateInYearMonDay } from '../../../../lib/date';
 import DatePickerTheme from './theme/DatePickerTheme';
 import './DatePicker.scss';
 

@@ -8,7 +8,7 @@ import {PostTask} from '../../../../../Api/Task/Task';
 import store from '../../../../../../store';
 import { saveAction } from '../../../../../../action';
 import InputValidation from '../../../../../../utils/InputValidation';
-import { transferDateInYearMonDay } from '../../../../../services/DateManager';
+import { transferDateInYearMonDay } from '../../../../../../lib/date';
 import './TaskModal.scss';
 
 

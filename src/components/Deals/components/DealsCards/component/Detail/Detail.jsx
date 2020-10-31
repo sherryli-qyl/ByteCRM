@@ -1,5 +1,6 @@
 import React from 'react';
-
+import {transferDateInMonDayYear} from '../../../../../../lib/date';
+import StageBar from './component/StageBar';
 import './Detail.scss';
 
 
@@ -20,7 +21,7 @@ const Detail = ({
                     {`Stage: `}
                 </div>
                 <div className='dealsCard__closeDate'>
-                    {`Close Date: `}
+                    {`Close Date: ${transferDateInMonDayYear(card.closeDate)}`}
                 </div>    
             </div>
         </div>

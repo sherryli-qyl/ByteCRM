@@ -1,6 +1,6 @@
 import React from 'react';
 import Dropdown from '../../../../../../../../../Dropdown';
-import { dueDateCalculator } from '../../../../../../../../../services/DateManager';
+import { dueDateCalculator } from '../../../../../../../../../../lib/date';
 
 class TaskSelect extends React.Component {
   constructor(props) {

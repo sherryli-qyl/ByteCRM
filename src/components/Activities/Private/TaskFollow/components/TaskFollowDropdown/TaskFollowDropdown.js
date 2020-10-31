@@ -1,5 +1,5 @@
 import React from 'react';
-import { addDate } from '../../../../../services/DateManager';
+import { addDate } from '../../../../../../lib/date';
 import Dropdown from '../../../../../Dropdown';
 import './TaskFollowDropDown.scss';
 
