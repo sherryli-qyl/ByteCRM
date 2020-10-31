@@ -13,7 +13,7 @@ const DealsCards = ({
         <div className = 'dealsCard'>
             { deals.map((item)=>(
                 <Detail key = {item.id}
-                       card = {item}/>
+                        card = {item}/>
             ))
             }
 
