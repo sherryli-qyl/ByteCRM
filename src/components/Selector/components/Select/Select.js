@@ -4,7 +4,9 @@ import { CheckOneSelects } from '../../../../lib/Search';
 import './Select.scss';
 
 const Select = (props) => {
-  const { selectList, searchList, label, checkOneContact } = props;
+  const {
+    selectList, searchList, label, checkOneContact,
+  } = props;
 
   let currentList = [];
 
