@@ -11,10 +11,10 @@ class CommentForm extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     const author = 'Joe Doe';
-    // let author = this.author;
     const { content } = this;
+    const { addComment } = this.props;
     const timestamp = new Date().toString().slice(0, 33);
-    this.props.addComment(author, content.value, timestamp);
+    addComment(author, content.value, timestamp);
     this.content.value = '';
     this.setState({ content: '' });
   }
@@ -33,7 +33,7 @@ class CommentForm extends React.Component {
           <button
             type="cancel"
             className="comment-form-controls__cancel"
-            onClick={this.props.handleShowCommentForm}
+            onClick={ this.props.handleShowCommentForm }
           >
             Cancel
           </button>

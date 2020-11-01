@@ -14,12 +14,12 @@ class CommentBox extends React.Component {
     // TODO: When Save button on Comment Form is clicked, hide Comment Form
     // TODO: When Save button on Comment Form is clicked, show Add Comment section
     // TODO: When Cancel button on Comment Form is clicked, show Add Comment section
-
+    const { comments } = this.props;
     this.state = {
       showComments: false,
       showCommentForm: false,
       // showAddCommentPanel: true,
-      comments: this.props.comments,
+      comments,
     };
 
     this.handleShowCommentForm = this.handleShowCommentForm.bind(this);
