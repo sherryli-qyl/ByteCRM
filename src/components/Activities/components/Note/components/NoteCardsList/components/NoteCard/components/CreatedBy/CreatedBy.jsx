@@ -3,19 +3,22 @@ import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './CreatedBy.scss';
 
-const CreatedBy = (props) => (
-  <div className="createdby-container">
-    <div className="createdby-user-icon">
-      <FontAwesomeIcon icon={faUserCircle} />
+const CreatedBy = (props) => {
+  const { createdBy } = props;
+  return (
+    <div className="createdby-container">
+      <div className="createdby-user-icon">
+        <FontAwesomeIcon icon={faUserCircle} />
+      </div>
+      <span className="createdby-info">
+        {' '}
+        {createdBy}
+        {' '}
+        left a note
+      </span>
     </div>
-    <span className="createdby-info">
-      {' '}
-      {props.createdBy}
-      {' '}
-      left a note
-    </span>
-  </div>
-);
+  );
+};
 
 // class CreatedBy extends React.Component {
 //   constructor(props) {

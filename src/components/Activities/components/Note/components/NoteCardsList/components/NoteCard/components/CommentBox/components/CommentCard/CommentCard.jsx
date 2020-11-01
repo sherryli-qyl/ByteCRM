@@ -1,8 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle, faPen, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
-
-// import Editor from '../../../../../../../../../../../../Style/Editor';
 import './CommentCard.scss';
 
 class CommentCard extends React.Component {
