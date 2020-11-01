@@ -9,7 +9,7 @@ import './EmailPageHeader.scss';
 import Modal from '../../../../../../js/Modal';
 
 const EmailPageHeader = (props) => {
-  /* const logModal = (value) => (<LogEmailModal
+    /* const logModal = (value) => (<LogEmailModal
                                           contact={props.contact}
                                           user = {props.user}
                                           modalController={value}
@@ -17,37 +17,37 @@ const EmailPageHeader = (props) => {
     const createModal = (value) => (<EmailModal
                                           modalController={value}
                                           handleCreateNote={props.handleCreateNote}/>);   */
-  const logEmailModal = new Modal('Note', 'Note', LogEmailModal);
-  const createEmailModal = new Modal('Note', 'Note', EmailModal);
+    const logEmailModal = new Modal('Note', 'Note', LogEmailModal);
+    const createEmailModal = new Modal('Note', 'Note', EmailModal);
 
-  return (
-    <ModalContext.Consumer>
-      { (modalController) => (
-        <div className="emailPage__header">
-          <div className="emailPage__header__showReply">
-            <button className="replyButton">
-              <Text>Show all email replies</Text>
-            </button>
-          </div>
-          <div className="emailPage__header__logEmail">
-            <LogButton onClick={() => modalController.open(logEmailModal)}>
-              Log Email
-            </LogButton>
-            {' '}
-            {/* //set function */}
-          </div>
-
-          <div className="emailPage__header__createEmail">
-            <CreateButton onClick={() => modalController.open(createEmailModal)}>
+    return (
+      <ModalContext.Consumer>
+        { (modalController) => (
+          <div className="emailPage__header">
+            <div className="emailPage__header__showReply">
+              <button className="replyButton">
+                <Text>Show all email replies</Text>
+              </button>
+            </div>
+            <div className="emailPage__header__logEmail">
+              <LogButton onClick={() => modalController.open(logEmailModal)}>
+                Log Email
+              </LogButton>
               {' '}
               {/* //set function */}
-              Create Email
-            </CreateButton>
+            </div>
+
+            <div className="emailPage__header__createEmail">
+              <CreateButton onClick={() => modalController.open(createEmailModal)}>
+                {' '}
+                {/* //set function */}
+                Create Email
+              </CreateButton>
+            </div>
           </div>
-        </div>
-      )}
-    </ModalContext.Consumer>
-  );
+              )}
+      </ModalContext.Consumer>
+    );
 };
 
 export default EmailPageHeader;

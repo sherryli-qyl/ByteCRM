@@ -1,1 +1,1 @@
-export { default } from './StageItem';
+export {default} from './StageItem';

@@ -97,17 +97,17 @@ class ContactMain extends Component {
       });
   }
 
-  render() {
-    const {
-      visible, currentModal, contact, theme, expandPack, loading,
-    } = this.state;
-    const infoData = { key: 'contact', data: contact, dictionary: ContactDictionary };
-    const onChangeInfoHandlers = { single: this.onChangeSingleInfo, multi: this.onChangeMultiInfo };
-    const sideBarItems = [
-      { key: 'Company', component: <AssociatedCompany contact={contact} company={contact.company} /> },
-      { key: 'Deals', component: <Deals contact={contact} company={contact.company} /> },
-    ];
-    const modalController = { open: this.openModal, close: this.closeModal, contact };
+    render() {
+        const {
+ visible, currentModal, contact, theme, expandPack, loading,
+} = this.state;
+        const infoData = { key: 'contact', data: contact, dictionary: ContactDictionary };
+        const onChangeInfoHandlers = { single: this.onChangeSingleInfo, multi: this.onChangeMultiInfo };
+        const sideBarItems = [
+            { key: 'Company', component: <AssociatedCompany contact={contact} company={contact.company} /> },
+            { key: 'Deals', component: <Deals contact = {contact} company={contact.company}/> }
+        ];
+        const modalController = { open: this.openModal, close: this.closeModal, contact };
 
     return (
       <div>

@@ -9,7 +9,7 @@ const Button = ({
   onClick,
 }) => {
   let className = `button button--${variant} button--${size}`;
-
+  
   return (
     <button
       className={className}
@@ -22,6 +22,7 @@ const Button = ({
       {children}
     </button>
   );
+
 };
 
 export default Button;
