@@ -63,17 +63,17 @@ function createData(
         {name}
       </NavLink>
     ),
-    email: email,
-    phoneNumber: phoneNumber,
-    contactOwner: contactOwner,
+    email,
+    phoneNumber,
+    contactOwner,
     associatedCompany: (
       <NavLink activeClassName="active" to="/companies/main">
         {associatedCompany}
       </NavLink>
     ),
-    lastActivityDate: lastActivityDate,
-    leadStatus: leadStatus,
-    createDate: createDate,
+    lastActivityDate,
+    leadStatus,
+    createDate,
   };
 }
 
@@ -172,7 +172,7 @@ const editColumns = (newValue) => {
 const getTable = (id, userAccount) => {
   if (id === 1) {
     return fetchAllData();
-  } else if (id === 2) {
+  } if (id === 2) {
     let mine = [];
     for (const item of fetchAllData()) {
       if (item.contactOwner === userAccount) {
@@ -180,7 +180,7 @@ const getTable = (id, userAccount) => {
       }
     }
     return mine;
-  } else if (id === 3) {
+  } if (id === 3) {
     let unassigned = [];
     for (const item of fetchAllData()) {
       if (item.contactOwner === 'Unassigned') {

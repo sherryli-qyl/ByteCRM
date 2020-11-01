@@ -45,41 +45,43 @@ class SelectItem extends React.Component {
         onMouseLeave={() => this.handleHintToggle(false)}
       >
         <div className="selectSearchItem__left">
-          {checked ?
-            <div className="selectSearchItem__left__checkbox">
-              <button
-                className={btnClassName}
-                disabled={disabled}
+          {checked
+            ? (
+              <div className="selectSearchItem__left__checkbox">
+                <button
+                  className={btnClassName}
+                  disabled={disabled}
+                  onClick={(event) => {
+                    event.preventDefault();
+                    handleRemoveSelects(contactID);
+                  }}
+                >
+                  <FontAwesomeIcon icon={faCheckSquare} />
+                </button>
+              </div>
+            )
+
+            : (
+              <div
+                className="selectSearchItem__left__square"
                 onClick={(event) => {
                   event.preventDefault();
-                  handleRemoveSelects(contactID);
+                  handleAddSelects(contact);
                 }}
-              >
-                <FontAwesomeIcon icon={faCheckSquare} />
-              </button>
-            </div>
-
-            :
-            <div
-              className="selectSearchItem__left__square"
-              onClick={(event) => {
-                event.preventDefault();
-                handleAddSelects(contact);
-              }}
-            />
-          }
+              />
+            )}
         </div>
         <div className="selectSearchItem__right">
           {`${contact.fullName} (${contact.email})`}
         </div>
-        {disabled && showHint ?
-          <div className="selectSearchItem__hint">
-            <HintBox variant="topRight">{selectHint}</HintBox>
-          </div>
+        {disabled && showHint
+          ? (
+            <div className="selectSearchItem__hint">
+              <HintBox variant="topRight">{selectHint}</HintBox>
+            </div>
+          )
 
-          :
-          ''
-        }
+          : ''}
       </div>
     );
   }

@@ -93,12 +93,13 @@ class CreateTaskCard extends React.Component {
                 Details
               </span>
             </div>
-            { showDetails ? 
+            { showDetails
+              ? (
                 <div className="createTaskCard__details__bottom">
                   <Body />
                 </div>
-              : 
-              ''}
+              )
+              : ''}
           </div>
         )
           : <Body />}
