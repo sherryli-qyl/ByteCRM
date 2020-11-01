@@ -45,7 +45,7 @@ class TaskFollowSelect extends React.Component {
             variant="standard"
             onChange={this.handleSelectChange}
             defaultValue={3}
-            className={"taskFollow__select__input"}
+            className="taskFollow__select__input"
           >
             {selectItems.map((item) => (
               <MenuItem
