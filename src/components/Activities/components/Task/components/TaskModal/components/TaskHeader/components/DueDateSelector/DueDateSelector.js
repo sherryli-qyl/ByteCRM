@@ -15,9 +15,9 @@ class TaskSelect extends React.Component {
       { key: 'in 2 weeks ', value: 14, display: '' },
       { key: 'in 1 month ', value: 30 },
     ];
-
+    
     this.state = {
-      currentValue: selectItems[0].display,
+      currentValue:selectItems[0].display,
       selectItems,
     };
     this.onChangeValue = this.onChangeValue.bind(this);
@@ -26,23 +26,23 @@ class TaskSelect extends React.Component {
   onChangeValue(value, key, item) {
     this.setState({
       currentValue: item.display,
-    });
-    this.props.onChangeValue(value);
-  }
-
-  componentDidMount() {
-    const selectItems = dueDateCalculator(this.state.selectItems);
-    this.setState({
-      selectItems,
-    });
-  }
+    })
+    this.props.onChangeValue(value)
+}
+ 
+componentDidMount(){
+  const selectItems = dueDateCalculator(this.state.selectItems); 
+  this.setState({
+    selectItems: selectItems,
+  })
+}
 
   render() {
-    const { selectItems, currentValue } = this.state;
+    const { selectItems,currentValue } = this.state;
     return (
       <div>
         <Dropdown
-          value={currentValue}
+          value = {currentValue}
           variant="bottom"
           onChangeValue={this.onChangeValue}
           selectItems={selectItems}

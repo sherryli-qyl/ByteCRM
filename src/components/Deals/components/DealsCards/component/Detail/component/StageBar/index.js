@@ -1,1 +1,1 @@
-export { default } from './StageBar';
+export {default} from './StageBar';

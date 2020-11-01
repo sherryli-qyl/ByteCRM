@@ -1,1 +1,1 @@
-export { default } from './DealsCards';
+export {default} from './DealsCards';

@@ -8,7 +8,7 @@ import './MeetingPageHeader.scss';
 import Modal from '../../../../../../../js/Modal';
 
 const MeetingPageHeader = (props) => {
-  /* const createModal = new Modal('Schedule', 'Meeting',<MeetingCreateModal contact={props.contact}/>); //create your modal
+   /* const createModal = new Modal('Schedule', 'Meeting',<MeetingCreateModal contact={props.contact}/>); //create your modal
     const logModal = (closeModal) =>
         (new Modal('Log Meeting', 'Log Meeting',
             <MeetingLogModal contact={props.contact}
@@ -16,31 +16,31 @@ const MeetingPageHeader = (props) => {
                             handleCloseModal = {closeModal}
                             handleLogMeeting = {props.handleLogMeeting}
                             />)); */
-  const logMeetingModal = new Modal('Meeting', 'Meeting', MeetingLogModal);
-  const createMeetingModal = new Modal('Meetinge', 'Meeting', MeetingCreateModal);
-  return (
-    <ModalContext.Consumer>
-      {(modalController) => (
-        <div className="meetingPage__header">
-          <div className="meetingPage__header__logMeeting">
-            <LogButton onClick={() => modalController.open(logMeetingModal)}>
-              Log Meeting
-            </LogButton>
-            {' '}
-            {/* //set function */}
-          </div>
-
-          <div className="meetingPage__header__createMeeting">
-            <CreateButton onClick={() => modalController.open(createMeetingModal)}>
+    const logMeetingModal = new Modal('Meeting', 'Meeting', MeetingLogModal);
+    const createMeetingModal = new Modal('Meetinge', 'Meeting', MeetingCreateModal);
+    return (
+      <ModalContext.Consumer>
+        {(modalController) => (
+          <div className="meetingPage__header">
+            <div className="meetingPage__header__logMeeting">
+              <LogButton onClick={() => modalController.open(logMeetingModal)}>
+                Log Meeting
+              </LogButton>
               {' '}
               {/* //set function */}
-              Create Meeting
-            </CreateButton>
+            </div>
+
+            <div className="meetingPage__header__createMeeting">
+              <CreateButton onClick={() => modalController.open(createMeetingModal)}>
+                {' '}
+                {/* //set function */}
+                Create Meeting
+              </CreateButton>
+            </div>
           </div>
-        </div>
-      )}
-    </ModalContext.Consumer>
-  );
+              )}
+      </ModalContext.Consumer>
+    );
 };
 
 export default MeetingPageHeader;
