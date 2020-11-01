@@ -1,1 +1,1 @@
-export {default} from './StageDropDown';
+export { default } from './StageDropDown';

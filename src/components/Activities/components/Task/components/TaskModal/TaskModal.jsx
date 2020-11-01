@@ -4,15 +4,14 @@ import TaskEditor from './components/TaskEditor';
 import TaskSave from './components/TaskSave';
 import TaskInput from './components/TaskInput';
 import Task from './components/Task';
-import {PostTask} from '../../../../../Api/Task/Task';
+import { PostTask } from '../../../../../Api/Task/Task';
 import store from '../../../../../../store';
 import { saveAction } from '../../../../../../action';
 import InputValidation from '../../../../../../utils/InputValidation';
 import { transferDateInYearMonDay } from '../../../../../../lib/date';
 import './TaskModal.scss';
 
-
-//name, type, status, relatedTo, description, time , date, taskType, priority, createdBy
+// name, type, status, relatedTo, description, time , date, taskType, priority, createdBy
 
 const user = JSON.parse(localStorage.getItem('user'));
 const currentDate = transferDateInYearMonDay(new Date());
@@ -20,7 +19,6 @@ let assignedUsers = [];
 let users = [];
 assignedUsers.push(user);
 users.push(user.id);
-
 
 class TaskModal extends React.Component {
   constructor(props) {
@@ -60,40 +58,41 @@ class TaskModal extends React.Component {
   handleInput(value, key) {
     let newTask = this.state.task;
     newTask[key] = value;
-    console.log(newTask)
+    console.log(newTask);
     if (newTask.name) {
       this.setState({
         task: newTask,
         disable: false,
-      })
-    }
-    else {
+      });
+    } else {
       this.setState({
         task: newTask,
         disable: true,
-      })
+      });
     }
   }
 
   handleClickSaveBtn() {
     if (InputValidation(this.state.task.description) && this.state.users.length > 0) {
-        const body = this.state.task;
-        const res = PostTask(body);
-        res.then((value) => {
-            if (value.statusText === 'OK') {
-                const action = saveAction(value.data);
-                store.dispatch(action);
-                this.props.modalController.close();
-             }      
-            }).catch(error =>{
-              console.log('Unexpected Error');
-              throw error;
-            });
-    } 
-}
+      const body = this.state.task;
+      const res = PostTask(body);
+      res.then((value) => {
+        if (value.statusText === 'OK') {
+          const action = saveAction(value.data);
+          store.dispatch(action);
+          this.props.modalController.close();
+        }
+      }).catch((error) => {
+        console.log('Unexpected Error');
+        throw error;
+      });
+    }
+  }
 
   render() {
-    const { currentTime, currentDate, assignedUsers, disable } = this.state;
+    const {
+      currentTime, currentDate, assignedUsers, disable,
+    } = this.state;
     return (
       <div className="taskModal">
         <TaskHeader
@@ -102,12 +101,16 @@ class TaskModal extends React.Component {
           handleInput={this.handleInput}
         />
         <TaskEditor handleInput={this.handleInput} />
-        <TaskInput handleInput={this.handleInput}
-                   handleAddUser = {this.handleAddUser}
-                   handleRemoveUser = {this.handleRemoveUser}
-                   userList={assignedUsers} />
-        <TaskSave disable = {disable}
-                  handleClickSaveBtn = {this.handleClickSaveBtn}/>
+        <TaskInput
+          handleInput={this.handleInput}
+          handleAddUser={this.handleAddUser}
+          handleRemoveUser={this.handleRemoveUser}
+          userList={assignedUsers}
+        />
+        <TaskSave
+          disable={disable}
+          handleClickSaveBtn={this.handleClickSaveBtn}
+        />
       </div>
     );
   }

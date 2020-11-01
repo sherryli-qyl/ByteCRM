@@ -70,7 +70,14 @@
       "airbnb"
     ],
     "rules": {
-      "indent": "off"
+      "indent": "off",
+      "react/jsx-props-no-spreading": [
+        "error",
+        {
+          "custom": "ignore"
+        }
+      ],
+      "prefer-const": 0
     }
   },
   "browserslist": {
