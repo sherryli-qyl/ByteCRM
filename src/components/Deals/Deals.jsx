@@ -8,7 +8,7 @@ class Deals extends React.Component {
         super(props);
         const deals = [
             {id:0, name: 'yurun new deals', product: {name:'mask',price: 1, description:'medial mask'}, amount: 1000, stage:'Decision Maker Bought-In',
-            discount: 1, total: 2000,closeDate:'2020-10-30', contact: null, company: null},
+            discount: 1, total: 1000,closeDate:'2020-10-30', contact: null, company: null},
              {id:1, name: 'yurun new deals', product: {name:'mask',price: 1, description:'medial mask'}, amount: 2000, stage:'Appointment Scheduled',
              discount: 1, total: 2000, closeDate:'2020-10-30', contact: null, company: null}
         ]
