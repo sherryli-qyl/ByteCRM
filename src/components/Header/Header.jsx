@@ -5,6 +5,7 @@ import './Header.scss';
 
 const Header = () => (
 <<<<<<< HEAD
+<<<<<<< HEAD
   <div className="StyledHeader">
     <div className="Container">
       <div className="Layout">
@@ -14,6 +15,9 @@ const Header = () => (
         <div className="Right">
 =======
   <div className = "styled_header">
+=======
+  <nav className = "styled_header">
+>>>>>>> navbar responisve design
     <div className = "styled_header__container">
       <div className = "layout">
         <div className = "left">
@@ -25,7 +29,7 @@ const Header = () => (
         </div>
       </div>
     </div>
-  </div>
+  </nav>
 );
 
 export default Header;
