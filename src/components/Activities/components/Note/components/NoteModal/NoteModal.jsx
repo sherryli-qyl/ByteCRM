@@ -67,7 +67,7 @@ class NoteModal extends React.Component {
         }
       });
     } else {
-
+      console.log('Unexpected Error');
     }
   }
 

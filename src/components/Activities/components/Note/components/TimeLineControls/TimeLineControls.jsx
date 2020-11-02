@@ -5,7 +5,7 @@ import Modal from '../../../../../../js/Modal';
 import { ModalContext } from '../../../../../Modal/components/ModalContext';
 import './TimeLineControls.scss';
 
-const TimeLineControls = (props) => {
+const TimeLineControls = () => {
   const noteModal = new Modal('Note', 'Note', NoteModal);
 
   return (

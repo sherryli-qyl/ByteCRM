@@ -77,7 +77,7 @@ class NotesTimeLine extends React.Component {
 
   onChangeText(newContent, cardKey) {
     const newCardsList = this.state.cardsList;
-    for (const i in newCardsList) {
+    for (let i in newCardsList) {
       if (newCardsList[i].key === cardKey) {
         newCardsList[i].content = newContent;
         this.setState({
