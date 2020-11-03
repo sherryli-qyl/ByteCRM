@@ -8,13 +8,8 @@ import {
   COMPANY_BASE_URL,
   ABOUTUS_BASE_URL,
   CONTACTUS_BASE_URL,
-<<<<<<< HEAD
-} from '../../../Routes/URLMap';
-import HeaderNavLink from '../HeaderNavLink';
-=======
 } from "../../../Routes/URLMap";
 import HeaderNavLink from "../HeaderNavLink";
->>>>>>> fix navbar style
 
 class Public extends Component {
   state = { clicked: false };
@@ -52,7 +47,7 @@ class Public extends Component {
         </div>
       </div>
     );
-  };
+  }
 }
 
 export default Public;
