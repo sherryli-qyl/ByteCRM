@@ -46,7 +46,6 @@ const FIELD_TO_KEY = {
   'Lead status': 'leadStatus',
   // "Create date": "createDate",
   'Last logged call date': 'lastLoggedCallDate',
-  'Phone number': 'phoneNumber',
   City: 'city',
   Country: 'country',
   Industry: 'industry',

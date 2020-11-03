@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
 import MaterialTable from 'material-table';
-import Theme from '../../../../../../components/Style/Theme/TableTheme';
+import Theme from '../../../../../Style/Theme/TableTheme';
 import SelectModal from './components/SelectModal';
 import tableIcons from '../../../../../../lib/tableLibs/getIcons';
 import getColumns from '../../../../../../lib/tableLibs/getColumns';
@@ -12,13 +12,13 @@ import {
   removeContact,
   createContact,
   UpdateContact,
-} from '../../../../../../components/Api/Contact';
+} from '../../../../../Api/Contact';
 import {
   GetAllCompanies,
   AddCompany,
   UpdateCompany,
   DeleteCompany,
-} from '../../../../../../components/Api/Company';
+} from '../../../../../Api/Company';
 import {
   getTable,
   processData,

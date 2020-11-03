@@ -1,5 +1,5 @@
 import React from 'react';
-import JumpButton from '../../pages/ListPageWrapper/components/TableWrapper/components/EnhancedTable/components/JumpButton';
+import JumpButton from '../../components/List/components/TableWrapper/components/EnhancedTable/components/JumpButton';
 
 import getDate from './getDate';
 
@@ -75,7 +75,6 @@ function wrapUpData(data, type) {
           />
         ),
         associatedContacts: newOwners || undefined,
-        companyOwner: cur.companyOwner,
         companyID: cur.companyID,
         phoneNumber: cur.phoneNumber,
         companyOwner: cur.companyOwner,
