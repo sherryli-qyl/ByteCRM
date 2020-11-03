@@ -6,17 +6,18 @@ import store from '../../../../store';
 import './NotesTimeLine.scss';
 import { GetAllAssociatedNotes, UpdateNote, DeleteNote } from '../../../Api/Note/Note';
 
-const user = JSON.parse(localStorage.getItem('user'));
+// const user = JSON.parse(localStorage.getItem('user'));
 
 class NotesTimeLine extends React.Component {
   constructor(props) {
     super(props);
+    const { relatedTo, associatedContacts } = this.props;
     this.state = {
-      user,
+      // user,
       cardsList: [],
       cardsArray: [],
-      relatedTo: this.props.relatedTo,
-      associatedContacts: this.props.associatedContacts,
+      relatedTo,
+      associatedContacts,
       reload: true,
     };
 
@@ -34,10 +35,34 @@ class NotesTimeLine extends React.Component {
         this.handleGetNotes();
       }
     });
-
-    if (this.state.reload) {
+    const { reload } = this.state;
+    if (reload) {
       this.handleGetNotes();
     }
+  }
+
+  onChangeText(newContent, cardKey) {
+    const newCardsList = this.state.cardsList;
+    for (const i in newCardsList) {
+      if (newCardsList[i].key === cardKey) {
+        newCardsList[i].content = newContent;
+        this.setState({
+          cardsList: newCardsList,
+        });
+      }
+    }
+  }
+
+  onChangeNote(noteId, body) {
+    UpdateNote(noteId, body);
+  }
+
+  sortCardsArray() {
+    const { cardsList } = this.state;
+    const newCardsArray = shuffleCards(cardsList);
+    this.setState({
+      cardsArray: newCardsArray,
+    });
   }
 
   handleGetNotes() {
@@ -68,31 +93,9 @@ class NotesTimeLine extends React.Component {
       });
   }
 
-  sortCardsArray() {
-    const newCardsArray = shuffleCards(this.state.cardsList);
-    this.setState({
-      cardsArray: newCardsArray,
-    });
-  }
-
-  onChangeText(newContent, cardKey) {
-    const newCardsList = this.state.cardsList;
-    for (let i in newCardsList) {
-      if (newCardsList[i].key === cardKey) {
-        newCardsList[i].content = newContent;
-        this.setState({
-          cardsList: newCardsList,
-        });
-      }
-    }
-  }
-
-  onChangeNote(noteId, body) {
-    UpdateNote(noteId, body);
-  }
-
   handleCreateNote(note) {
-    const newCardList = this.state.cardsList;
+    const { cardsList } = this.state;
+    const newCardList = cardsList;
     newCardList.push(note);
     this.setState({
       cardsList: newCardList,

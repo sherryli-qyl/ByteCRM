@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Editor from '../../../../../../../Style/Editor/Editor';
 import './NoteInput.scss';
 
@@ -12,6 +13,16 @@ const NoteInput = (props) => {
       />
     </div>
   );
+};
+
+NoteInput.defaultProps = {
+  handleEditorChange: () => {},
+  placeholder: undefined,
+};
+
+NoteInput.propTypes = {
+  handleEditorChange: PropTypes.func,
+  placeholder: PropTypes.string,
 };
 
 export default NoteInput;

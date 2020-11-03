@@ -4,25 +4,28 @@ import NoteCard from './components/NoteCard';
 import CardContainer from '../../../../../Style/Card/Activity/Container';
 
 function NoteCardsList(props) {
+  const {
+    relatedTo, onChangeNote, cardsArray, handleDeleteNoteCard,
+  } = props;
+  const icon = faEdit;
   const createCard = (card) => (
     <NoteCard
       card={card}
-      relatedTo={props.relatedTo}
-      onChangeNote={props.onChangeNote}
+      relatedTo={relatedTo}
+      onChangeNote={onChangeNote}
     />
   );
-  const icon = faEdit;
 
   return (
     <div>
-      {props.cardsArray.map((cards) => (
+      {cardsArray.map((cards) => (
         <CardContainer
           key={cards.date}
           date={cards.date}
           content={cards.content}
           icon={icon}
           createCard={createCard}
-          handleDeleteCard={props.handleDeleteNoteCard}
+          handleDeleteCard={handleDeleteNoteCard}
         />
       ))}
     </div>

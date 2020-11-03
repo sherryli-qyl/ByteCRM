@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Button from '../../../../../../../Style/Button/Modal/Button';
-import Taskfollow from '../../../../../../Private/TaskFollow';
+// import Taskfollow from '../../../../../../Private/TaskFollow';
 import './NoteSaveBar.scss';
 
 const NoteSaveBar = (props) => {
@@ -23,6 +24,16 @@ const NoteSaveBar = (props) => {
       </div> */}
     </div>
   );
+};
+
+NoteSaveBar.defaultProps = {
+  onClick: () => {},
+  btnDisable: true,
+};
+
+NoteSaveBar.propTypes = {
+  onClick: PropTypes.func,
+  btnDisable: PropTypes.bool,
 };
 
 export default NoteSaveBar;
