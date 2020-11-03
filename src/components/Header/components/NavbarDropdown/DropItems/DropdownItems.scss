@@ -1,0 +1,48 @@
+@import "../../../../../style/variable.scss";
+
+.dropdownItems_wrapper {
+  height: 350px;
+  box-sizing: border-box;
+  .profile_info {
+    border-bottom: solid 1px $border-color;
+    height: 80%;
+    text-align: center;
+    .user_profile {
+      padding-top: 20px;
+    }
+    .user_name {
+      color: $primary-color;
+      font-size: 20px;
+      font-weight: bold;
+      :hover {
+        color: $primary-color;
+      }
+    }
+    .user_email {
+      color: $label-color;
+      font-size: 13px;
+      :hover {
+        color: $label-color;
+      }
+    }
+    .preference {
+      padding: 20px 0px;
+      :hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .sign_out_wrapper {
+    vertical-align: middle;
+    :hover {
+      text-decoration: underline;
+    }
+    .private-text {
+      font-size: 18px;
+      margin: 0;
+      color: $secondary-color;
+      text-align: center;
+    }
+  }
+}

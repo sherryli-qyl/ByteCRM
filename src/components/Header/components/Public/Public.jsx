@@ -52,7 +52,7 @@ class Public extends Component {
         </div>
       </div>
     );
-  }
+  };
 }
 
 export default Public;
