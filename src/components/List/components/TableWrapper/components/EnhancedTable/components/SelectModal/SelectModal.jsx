@@ -209,6 +209,10 @@ class SelectModal extends Component {
   confirm = () => {
     let currentData = '';
     const { selectedField } = this.state;
+    if (!selectedField) {
+      this.props.changeModalVisible(false);
+      return;
+    }
     // Use a map to restore input data
     const mapData = new Map();
     currentData = this.state.selectedField === 'Last activity date'
@@ -221,7 +225,11 @@ class SelectModal extends Component {
       if (!this.state.isEmpty && this.state.isValid) {
         const iterator = mapData.keys();
         const key = iterator.next().value;
-        mapData.set(FIELD_TO_KEY[key], mapData.get(key));
+        if (this.props.type === 'company' && key === 'Phone number') {
+          mapData.set('phoneNumber', mapData.get(key));
+        } else {
+          mapData.set(FIELD_TO_KEY[key], mapData.get(key));
+        }
         mapData.delete(key);
         if (this.props.type === 'contact' && mapData.keys().next().value === 'name') {
           const tempName = mapData.values().next().value.split(' ');

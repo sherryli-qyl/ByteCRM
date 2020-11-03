@@ -1,32 +1,43 @@
-import React from 'react';
-import TaskHeader from './components/TaskHeader';
-import TaskEditor from './components/TaskEditor';
-import TaskSave from './components/TaskSave';
-import TaskInput from './components/TaskInput';
-import Task from './components/Task';
-import { PostTask } from '../../../../../Api/Task/Task';
-import store from '../../../../../../store';
-import { saveAction } from '../../../../../../action';
-import InputValidation from '../../../../../../utils/InputValidation';
-import { transferDateInYearMonDay } from '../../../../../../lib/date';
-import './TaskModal.scss';
+import React from "react";
+import TaskHeader from "./components/TaskHeader";
+import TaskEditor from "./components/TaskEditor";
+import TaskSave from "./components/TaskSave";
+import TaskInput from "./components/TaskInput";
+import Task from "./components/Task";
+import { PostTask } from "../../../../../Api/Task/Task";
+import store from "../../../../../../store";
+import { saveAction } from "../../../../../../action";
+import InputValidation from "../../../../../../utils/InputValidation";
+import { transferDateInYearMonDay } from "../../../../../../lib/date";
+import "./TaskModal.scss";
 
 // name, type, status, relatedTo, description, time , date, taskType, priority, createdBy
-
-const user = JSON.parse(localStorage.getItem('user'));
-const currentDate = transferDateInYearMonDay(new Date());
-let assignedUsers = [];
-let users = [];
-assignedUsers.push(user);
-users.push(user.id);
 
 class TaskModal extends React.Component {
   constructor(props) {
     super(props);
-    const relatedTo = sessionStorage.getItem('id');
-    const task = new Task('', 'Task', 'processing', relatedTo, '', '08:00 AM', currentDate, 'To-do', 'none', users, user.id);
+    const user = JSON.parse(localStorage.getItem("user"));
+    const currentDate = transferDateInYearMonDay(new Date());
+    let assignedUsers = [];
+    let users = [];
+    assignedUsers.push(user);
+    users.push(user.id);
+    const relatedTo = sessionStorage.getItem("id");
+    const task = new Task(
+      "",
+      "Task",
+      "processing",
+      relatedTo,
+      "",
+      "08:00 AM",
+      currentDate,
+      "To-do",
+      "none",
+      users,
+      user.id
+    );
     this.state = {
-      currentTime: '08:00 AM',
+      currentTime: "08:00 AM",
       currentDate,
       task,
       users,
@@ -42,7 +53,7 @@ class TaskModal extends React.Component {
   handleAddUser(id) {
     const newUsers = this.state.users;
     newUsers.push(id);
-    this.handleInput(newUsers, 'users');
+    this.handleInput(newUsers, "users");
   }
 
   handleRemoveUser(id) {
@@ -52,7 +63,7 @@ class TaskModal extends React.Component {
         newUsers.splice(i, 1);
       }
     }
-    this.handleInput(newUsers, 'users');
+    this.handleInput(newUsers, "users");
   }
 
   handleInput(value, key) {
@@ -73,26 +84,29 @@ class TaskModal extends React.Component {
   }
 
   handleClickSaveBtn() {
-    if (InputValidation(this.state.task.description) && this.state.users.length > 0) {
+    if (
+      InputValidation(this.state.task.description) &&
+      this.state.users.length > 0
+    ) {
       const body = this.state.task;
       const res = PostTask(body);
-      res.then((value) => {
-        if (value.statusText === 'OK') {
-          const action = saveAction(value.data);
-          store.dispatch(action);
-          this.props.modalController.close();
-        }
-      }).catch((error) => {
-        console.log('Unexpected Error');
-        throw error;
-      });
+      res
+        .then((value) => {
+          if (value.statusText === "OK") {
+            const action = saveAction(value.data);
+            store.dispatch(action);
+            this.props.modalController.close();
+          }
+        })
+        .catch((error) => {
+          console.log("Unexpected Error");
+          throw error;
+        });
     }
   }
 
   render() {
-    const {
-      currentTime, currentDate, assignedUsers, disable,
-    } = this.state;
+    const { currentTime, currentDate, assignedUsers, disable } = this.state;
     return (
       <div className="taskModal">
         <TaskHeader
