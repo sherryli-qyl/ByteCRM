@@ -128,6 +128,7 @@ class EnhancedTable extends Component {
               console.log(`Delete completion is ${status}`);
             });
           }
+          return true;
         });
         this.setState({
           dataToShow: allData,
@@ -172,6 +173,7 @@ class EnhancedTable extends Component {
       } else if (this.props.type === 'company') {
         UpdateCompany(this.state.allData[cur].companyID, data);
       }
+      return true;
     });
     setTimeout(() => {
       if (this.props.type === 'contact') {
