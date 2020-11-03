@@ -3,7 +3,7 @@ import TabBar from './components/TabBar';
 import EmailPage from './components/Email';
 import TaskPage from './components/Task';
 import NotesTimeLine from './components/Note';
-import CallPanel from './components/Functions/Calls/index';
+import CallPanel from './components/Calls/index';
 import './Activities.scss';
 import MeetingPage from './components/Functions/Meeting/MeetingPage';
 
