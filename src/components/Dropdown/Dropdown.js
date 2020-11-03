@@ -47,7 +47,7 @@ class Dropdown extends React.Component {
   }
 
   render() {
-    const { value, selectItems, variant } = this.props;
+    const { value, selectItems, variant, size } = this.props;
     const { showDropdown } = this.state;
 
     let currentValue = '';
@@ -57,13 +57,19 @@ class Dropdown extends React.Component {
       currentValue = selectItems[0].value;
     }
 
+    let displaySize = 'small';
+
+    if(size){
+      displaySize = size;
+    }
+
     return (
       <div className="dropdown">
         <div className="dropdown__display" ref={this.btnRef} onClick={this.onClickDropdown}>
-          <div className="dropdown__display__text">
+          <div className={`dropdown__display__text dropdown__display__text--${displaySize}`}>
             {currentValue}
           </div>
-          <div className="dropdown__display__icon">
+          <div className={`dropdown__display__icon dropdown__display__icon--${displaySize}`}>
             <FontAwesomeIcon icon={faCaretDown} />
           </div>
         </div>
@@ -71,6 +77,7 @@ class Dropdown extends React.Component {
           <Selects
             selectItems={selectItems}
             variant={variant}
+            size = {size}
             showDropdown={showDropdown}
             onChangeSelect={this.onChangeSelect}
           />

@@ -1,5 +1,6 @@
 import React from 'react';
 import ExpandBar from '../ExpandBar';
+import AddDeals from './components/AddDeals';
 import DealsCards from './components/DealsCards';
 
 
@@ -8,9 +9,9 @@ class Deals extends React.Component {
         super(props);
         const deals = [
             {id:0, name: 'yurun new deals', product: {name:'mask',price: 1, description:'medial mask'}, amount: 1000, stage:'Decision Maker Bought-In',
-            discount: 1, total: 1000,closeDate:'2020-10-30', contact: null, company: null},
+            discount: 1, closeDate:'2020-10-30', contact: null, company: null},
              {id:1, name: 'yurun new deals', product: {name:'mask',price: 1, description:'medial mask'}, amount: 2000, stage:'Appointment Scheduled',
-             discount: 1, total: 2000, closeDate:'2020-10-30', contact: null, company: null}
+             discount: 1, closeDate:'2020-10-30', contact: null, company: null}
         ]
         this.state = {
             disabled: false,
@@ -28,6 +29,11 @@ class Deals extends React.Component {
 
         let showDetail = true;
 
+        const addModal = {
+            title: 'Add Deals to this contact',
+            content: <AddDeals/>,
+          };
+
         return (
             <div>
                 <ExpandBar
@@ -35,7 +41,7 @@ class Deals extends React.Component {
                     content = {
                         <DealsCards deals = {deals}/>
                     }
-                    // addModal={addModal}
+                    addModal={addModal}
                     // hintMessage={hintMessage}
                     disabled={disabled}
                     showDetail={showDetail}

@@ -1,0 +1,9 @@
+.addNewDeals{
+    flex:1;
+    
+    &__wrapper{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+}

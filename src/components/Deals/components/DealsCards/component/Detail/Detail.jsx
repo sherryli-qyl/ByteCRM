@@ -1,6 +1,6 @@
 import React from 'react';
 import { transferDateInMonDayYear } from '../../../../../../lib/date';
-import StageDropDown from './component/StageDropDown';
+import StageDropDown from '../../../StageDropDown';
 import StageBar from './component/StageBar';
 import './Detail.scss';
 
@@ -33,7 +33,7 @@ class Detail extends React.Component{
             <div className="dealsDetail">
                 <div className="dealsDetail__wrapper">
                     <div className="dealsCard__name">
-                        {`$${card.total} ${card.name}`}
+                        {`$${card.amount} ${card.name}`}
                     </div>
                     <StageBar stage={card.stage} />
                     <div className="dealsCard__stage">

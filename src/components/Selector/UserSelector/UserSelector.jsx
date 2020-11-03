@@ -11,10 +11,11 @@ import './UserSelector.scss';
 class UserSelector extends React.Component {
   constructor(props) {
     super(props);
-    const { userList, variant } = this.props;
+    const { userList, variant, user } = this.props;
     this.state = {
       showDropdown: false,
       userList,
+      user,
       variant,
       textInput: '',
       enableCleanBtn: false,
@@ -70,17 +71,17 @@ class UserSelector extends React.Component {
         });
       }
       this.props.handleRemoveUser(id);
-      this.props.handleRemove(id);
     }
   }
 
   handleAddUser(user) {
-    const newUserList = this.state.userList;
+    const newUserList = [];
     newUserList.push(user);
     this.setState({
+      user: user,
       userList: newUserList,
+      showDropdown:false,
     });
-    this.props.handleSelect(user.id);
     this.props.handleAddUser(user.id);
   }
 
@@ -100,10 +101,10 @@ class UserSelector extends React.Component {
 
   render() {
     const {
-      showDropdown, textInput, enableCleanBtn, currentUser,
+      showDropdown, textInput, enableCleanBtn, variant, user,
     } = this.state;
     const {
-      textInputHint, searchList, loading, checkInput, selectHint,
+      textInputHint, searchList, loading, checkInput, selectHint
     } = this.props;
 
     let assignedTo = '';
@@ -133,37 +134,68 @@ class UserSelector extends React.Component {
 
     return (
       <div className="userSelector">
-        <div className="userSelector__label" ref={this.btnRef}>
-          <button
-            className="userSelector__label__btn"
-            onClick={(event) => {
-              event.stopPropagation();
-              this.handleClickSelectorButton();
-            }}
-          >
-            {assignedTo}
-            <FontAwesomeIcon className="userSelector__label__btn__icon" icon={faCaretDown} />
-          </button>
-        </div>
-        <div className="userSelector__dropdown" ref={this.wrapperRef}>
-          <Dropdown
-            textInputHint={textInputHint}
-            checkInput={checkInput}
-            userList={userList}
-            searchList={searchList}
-            loading={loading}
-            select={select}
-            corner="topLeft"
-            showDropdown={showDropdown}
-            currentUser={currentUser}
-            textInput={textInput}
-            enableCleanBtn={enableCleanBtn}
-            handleCleanInput={this.handleCleanInput}
-            handleInputChange={this.handleInputChange}
-            handleRemoveUser={this.handleRemoveUser}
-            handleAddUser={this.handleAddUser}
-          />
-        </div>
+        {variant === 'SideBar' ?
+          <div className="userSelector__sidebar">
+            <div className="userSelector__sidebar__label" ref={this.btnRef}>
+            <button
+                className="userSelector__sidebar__label__btn"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  this.handleClickSelectorButton();
+                }}
+              >
+                  {user.fullName}
+              </button>
+            </div>
+            <div className="userSelector__sidebar__dropdown" ref={this.wrapperRef}>
+              <Dropdown
+                textInputHint={textInputHint}
+                checkInput={checkInput}
+                loading={loading}
+                select={select}
+                corner={'disable'}
+                showDropdown={showDropdown}
+                textInput={textInput}
+                enableCleanBtn={enableCleanBtn}
+                handleCleanInput={this.handleCleanInput}
+                handleInputChange={this.handleInputChange}
+              />
+            </div>
+          </div>
+          :
+          <div className="userSelector__activity">
+            <div className="userSelector__activity__label" ref={this.btnRef}>
+              <button
+                className="userSelector__activity__label__btn"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  this.handleClickSelectorButton();
+                }}
+              >
+                {assignedTo}
+                <FontAwesomeIcon className="userSelector__activity__label__btn__icon" icon={faCaretDown} />
+              </button>
+            </div>
+            <div className="userSelector__activity__dropdown" ref={this.wrapperRef}>
+              <Dropdown
+                textInputHint={textInputHint}
+                checkInput={checkInput}
+                searchList={searchList}
+                loading={loading}
+                select={select}
+                corner={'topLeft'}
+                showDropdown={showDropdown}
+                textInput={textInput}
+                enableCleanBtn={enableCleanBtn}
+                handleCleanInput={this.handleCleanInput}
+                handleInputChange={this.handleInputChange}
+                handleRemoveUser={this.handleRemoveUser}
+                handleAddUser={this.handleAddUser}
+              />
+            </div>
+          </div>
+        }
+
       </div>
     );
   }
