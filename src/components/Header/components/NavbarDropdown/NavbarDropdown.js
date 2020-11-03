@@ -2,9 +2,7 @@ import React from 'react';
 import DropdownItems from './DropItems/DropdownItems';
 import './NavbarDropdown.scss';
 
-const NavbarDropdown = () => {
-  return (
-    <DropdownItems />
-  );
-};
+const NavbarDropdown = () => (
+  <DropdownItems />
+);
 export default NavbarDropdown;

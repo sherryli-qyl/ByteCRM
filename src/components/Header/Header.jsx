@@ -1,7 +1,7 @@
-import React from "react";
-import Public from "./components/Public";
-import Private from "./components/Private";
-import "./Header.scss";
+import React from 'react';
+import Public from './components/Public';
+import Private from './components/Private';
+import './Header.scss';
 
 const Header = () => (
   <nav className="styled_header">

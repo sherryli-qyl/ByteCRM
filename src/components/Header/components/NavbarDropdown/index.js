@@ -1,3 +1,3 @@
-import NavbarDropdown from "./NavbarDropdown";
+import NavbarDropdown from './NavbarDropdown';
 
 export { default } from './NavbarDropdown';

@@ -1,9 +1,9 @@
-import React from "react";
-import Profile from "../../../../../img/Contact/profile.png";
-import HeaderNavLink from "../../HeaderNavLink";
-import { LOGIN_URL } from "../../../../Routes/URLMap";
-import { isLoggedIn, removeToken } from "../../../../../utils/auth";
-import "./DropdownItems.scss";
+import React from 'react';
+import Profile from '../../../../../img/Contact/profile.png';
+import HeaderNavLink from '../../HeaderNavLink';
+import { LOGIN_URL } from '../../../../Routes/URLMap';
+import { isLoggedIn, removeToken } from '../../../../../utils/auth';
+import './DropdownItems.scss';
 
 const logout = (history) => {
   removeToken();
