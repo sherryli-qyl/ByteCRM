@@ -2,7 +2,7 @@ import React from 'react';
 import MeetingCards from './components/MeetingCards/MeetingCards';
 import MeetingPageHeader from './components/Header/MeetingPageHeader';
 import shuffleCards from '../../../../services/shuffleCards';
-import { GetMeetings,UpdateMeeting,DeleteMeetingLog,UpdateContacts,RemoveContacts} from '../../../../Api/Meeting/meeting';
+import { GetMeetings,UpdateMeeting,DeleteMeetingLog,UpdateContacts,RemoveContacts,GetMultiContactsMeetings} from '../../../../Api/Meeting/meeting';
 import store from '../../../../../store';
 import "./MeetingPage.scss";
 
@@ -82,11 +82,38 @@ class MeetingPage extends React.Component {
     }
 
     handleInitPage() {
-        console.log("this.state");
-        console.log(this.state);
-        const {contact} = this.state;
-        const meetings = GetMeetings(contact.id);
+        let data = [];
+        const {contact,associatedContacts} = this.state;
+        if (contact){
+            data = GetMeetings(contact.id);
+        }
+        else if (associatedContacts){
+            let ids = "";
+            for(let i = 0; i < associatedContacts.length;i++){
+                const id = associatedContacts[i].id; 
+                i === 0 ? ids += id : ids += "&&" + id;
+            }
+            data = GetMultiContactsMeetings(ids); 
+        }
+        data.then(response => {
+            if (response.statusText === "OK") {
+                console.log("response.data");
+                console.log(response.data);
+                this.setState({
+                    cardList: response.data,
+                    reload:false,
+                })
+                return response.data;
+            }
+            else {
+                return [];
+            }
+        }).then((cards) => {
+            this.sortCardsArray(cards);
+        });
+        //const meetings = GetMeetings(contact.id);
         //const meetings = GetMeetings(this.id);
+        /*
         meetings.then(meetingList => {
             if (meetingList.length > 0) {
                 this.setState({
@@ -100,7 +127,7 @@ class MeetingPage extends React.Component {
             }
         }).then((meetingList) => {
             this.sortCardsArray(meetingList);
-        });
+        });*/
     }
 
     componentDidMount() {

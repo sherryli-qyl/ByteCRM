@@ -1,7 +1,8 @@
 import React from 'react';
 import './LogMeetingCard.scss';
 import Body from '../../../../private/LogMeetingMain';
-import Header from './components/Header';
+import Header from './components/Header/MeetingCardHeader';
+import Footer from './components/Footer/MeetingCardFooter';
 
 
 class LogMeetingCard extends React.Component {
@@ -12,6 +13,7 @@ class LogMeetingCard extends React.Component {
             currentDate: this.props.card.date,
             currentTime: this.props.card.time,
             meetingDuration :this.props.card.duration,
+            meetingOutcome:this.props.card.outcome,
             card:this.props.card,
             cardId: _id,
             description,
@@ -20,6 +22,7 @@ class LogMeetingCard extends React.Component {
         this.onDateChange = this.onDateChange.bind(this);
         this.onTimeChange = this.onTimeChange.bind(this);
         this.onDurationChange = this.onDurationChange.bind(this);
+        this.onOutcomeChange = this.onOutcomeChange.bind(this);
         this.onDescriptionChange = this.onDescriptionChange.bind(this);
     }
 
@@ -50,6 +53,13 @@ class LogMeetingCard extends React.Component {
         })
       }
 
+    onOutcomeChange(outcome) {
+        const newOutcome = outcome;
+        this.setState({
+            meetingOutcome: newOutcome,
+        })
+      }
+
     onDescriptionChange(description){
         let newCard = this.state.card;
         newCard.description = description;
@@ -61,8 +71,8 @@ class LogMeetingCard extends React.Component {
     }
 
     render() {
-        const { currentDate, currentTime,meetingDuration,cardId, description,contactList} = this.state;
-        //const {userId,contact} = this.props.contactData;
+        const { currentDate, currentTime,meetingDuration,cardId, description,contactList,meetingOutcome} = this.state;
+        const {user,contact} = this.props;
         return (
             <div className="logMeetingCard">
                 {description?
@@ -75,15 +85,21 @@ class LogMeetingCard extends React.Component {
                 }
                 <div className='blockline' >
                     <Body contactList = {contactList}
-                          //ontact = {contact}
-                          //userId = {userId}
+                          contact = {contact}
+                          userId = {user.id}
                           currentDate={currentDate}
                           currentTime={currentTime}
                           meetingDuration={meetingDuration}
+                          meetingOutcome={meetingOutcome}
                           onTimeChange={this.onTimeChange}
                           onDateChange={this.onDateChange}
-                          onDurationChange={this.onDurationChange} />
+                          onDurationChange={this.onDurationChange}
+                          onOutcomeChange={this.onOutcomeChange}
+                          handleAddContact = {this.handleAddContact}
+                          handleDeleteContact = {this.handleDeleteContact}
+                           />
                 </div>
+                <Footer userName={this.props.card.user.fullName} />
             </div>
         )
     }

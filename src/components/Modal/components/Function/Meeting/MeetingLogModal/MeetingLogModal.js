@@ -7,7 +7,7 @@ import { transferDateInYearMonDay } from '../../../../../services/DateManager';
 //import MeetingLogBar from '../components/MeetingLogBar';
 //import MeetingLogModalMultiSelect from'../components/MeetingLogModalMultiSelect';
 import {PostMeeting} from '../../../../../Api/Meeting/meeting';
-import Header from '../components/LogMeetingMain';
+import Header from '../../../../../../components/Activities/components/Functions/Meeting/private/LogMeetingMain';
 import Body from './components/LogMeetingBody';
 import Footer from './components/LogMeetingFooter';
 import store from '../../../../../../store';
@@ -20,6 +20,8 @@ class MeetingModal extends React.Component {
     super(props);  
     const currentDate = transferDateInYearMonDay(new Date());
     const currentTime = "09:00";
+    const currentDuration = "30 mins";
+    const currentOutcome = "None";
     const {contact} = store.getState().contact;
     //const {user,contact} = this.props;
     let contacts = [];
@@ -29,6 +31,8 @@ class MeetingModal extends React.Component {
     this.state = {
         currentDate,
         currentTime,
+        currentDuration,
+        currentOutcome,
         contactList,
         contacts,
         user,
@@ -42,6 +46,8 @@ class MeetingModal extends React.Component {
     this.handleClickLogBtn = this.handleClickLogBtn.bind(this);
     this.handleAddContact = this.handleAddContact.bind(this);
     this.handleDeleteContact = this.handleDeleteContact.bind(this); 
+    this.handleDurationChange = this.handleDurationChange.bind(this);
+    this.handleOutcomeChange = this.handleOutcomeChange.bind(this);
   }
 
     handleAddContact(id){
@@ -86,6 +92,20 @@ class MeetingModal extends React.Component {
         })
     }
 
+    handleDurationChange(duration) {
+        const newDuration = duration;
+        this.setState({
+            currentDuration: newDuration,
+        })
+    }
+
+    handleOutcomeChange(outcome) {
+        const newOutcome = outcome;
+        this.setState({
+            meetingOutcome: newOutcome,
+        })
+      }
+
     handleDateChange(date) {
         const newDate = date;
         this.setState({
@@ -104,18 +124,19 @@ class MeetingModal extends React.Component {
     }
 
     handleClickLogBtn(){
-        const {currentDate,currentTime,contacts,description,user} = this.state;
+        const {currentDate,currentTime,contacts,description,user,currentOutcome} = this.state;
         if (this.checkValidation(description)){
             const body = {
                 description: description,
                 date: currentDate,
                 time:currentTime,
                 contacts:contacts,
-                attendees:"5f740910947dc00d88cc918c",
+                //attendees:"5f740910947dc00d88cc918c",
                 type:'Logged Meeting',
                 title: 'Test Meeting',
                 duration: '30 minutes',
-                userId:user.id,
+                user:user.id,
+                outcome:currentOutcome,
             }
             const res = PostMeeting(body);
             res.then(value=>{
@@ -144,6 +165,8 @@ class MeetingModal extends React.Component {
                   contact = {contact}
                   userId = {user.id}
                   contactList = {contactList}
+                  onDurationChange = {this.handleDurationChange}
+                  onOutcomeChange = {this.handleOutcomeChange}
                   onDateChange = {this.handleDateChange}
                   onTimeChange = {this.handleTimeChange}
                   handleAddContact = {this.handleAddContact}

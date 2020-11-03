@@ -1,3 +1,4 @@
+import api from '../../../lib/api';
 async function PostMeeting(body){
     const serverUrl = `http://localhost:3000/api/meetings`;
     const response = await fetch(serverUrl, {
@@ -17,12 +18,22 @@ async function PostMeeting(body){
 }
 
 async function GetMeetings(contactId) {
+    const response = api.get(`/api/meetings/${contactId}`);
+    return response;
+}
+
+/*async function GetMeetings(contactId) {
     const serverUrl = `http://localhost:3000/api/meetings/${contactId}`;
     const response = await fetch(serverUrl, {
         method: "GET"
     });
     const data = response.json();
     return data;
+}*/
+
+const GetMultiContactsMeetings = (contacts) => {
+    const response = api.get(`/api/meetings/contacts/${contacts}`);
+    return response;
 }
 
 
@@ -80,4 +91,4 @@ async function RemoveContacts(contactId,meetingId){
     return data;
 }
 
-export {GetMeetings,UpdateMeeting,PostMeeting,DeleteMeetingLog,UpdateContacts,RemoveContacts};
+export {GetMeetings,UpdateMeeting,PostMeeting,DeleteMeetingLog,UpdateContacts,RemoveContacts,GetMultiContactsMeetings};

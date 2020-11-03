@@ -7,10 +7,15 @@ import "./MeetingCards.scss";
 
 
 function MeetingCards(props) {
-    const createCard = (card)=>(<CreateMeetingCard card={card}/>);
+    const createCard = (card)=>(<CreateMeetingCard card={card}
+                                                   user={props.user}
+                                                   contact = {props.contact}/>);
     const logCard =(card)=>(<LogMeetingCard card={card}
-                                            contactData = {props.contactData}
-                                            onChangeMeeting = {props.onChangeMeeting}/>);
+                                            contact = {props.contact}
+                                            user={props.user}
+                                            onChangeMeeting = {props.onChangeMeeting}
+                                            handleAddContact = {props.handleAddContact}
+                                            handleRemoveContact = {props.handleRemoveContact}/>);
     const icon= faCalendarAlt;
     return (
         <div className='meetingCards'>

@@ -2,22 +2,19 @@ import React from 'react';
 import DatePicker from '../../../../../../Style/Picker/DatePicker';
 import TimePicker from '../../../../../../Style/Picker/TimePicker';
 import DurationDropDown from '../DurationDropDown';
-import OutcomeDropDown from '../OutcomeDropDown';
 import { transferTimeHHMM } from '../../../../../../services/timeManager';
 import ContactSelector from '../../../../../../Selector/ContactSelector';
-import './LogMeetingMain.scss';
+import './CreateMeetingMain.scss';
 /**/
 
 const contactSelectHint = "Logged Meetings must have at Least one association";
-const LogMeetingCardMain = ({
+const CreateMeetingCardMain = ({
     currentTime,
     currentDate,
     meetingDuration,
     onDateChange,
     onTimeChange,
     onDurationChange,
-    onOutcomeChange,
-    meetingOutcome,
     handleAddContact,
     handleDeleteContact,
     contact,
@@ -62,14 +59,7 @@ const LogMeetingCardMain = ({
             <DurationDropDown defaultValue={meetingDuration}
                           onDurationChange = {onDurationChange}/>
           </div>
-          <div className='meetingCardBody__container'>
-            <div className="cardLabel">
-              Outcome
-             </div>
-            <OutcomeDropDown defaultValue={meetingOutcome}
-                          onOutcomeChange = {onOutcomeChange}/>
-          </div>
         </div>
     )
 
-export default LogMeetingCardMain;
+export default CreateMeetingCardMain;
