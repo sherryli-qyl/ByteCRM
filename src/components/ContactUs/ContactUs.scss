@@ -1,6 +1,11 @@
+@import "../../style/variable.scss";
+
 .Contact_container {
     width: 100%;
-    height: 1180px;
+    height: 800px;
     margin: 0 auto;
     background-color: white;
+    @include MQ(S) {
+        height: 1180px;
+    }
 }
