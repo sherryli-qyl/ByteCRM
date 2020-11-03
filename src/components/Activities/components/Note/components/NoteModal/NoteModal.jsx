@@ -58,16 +58,17 @@ class NoteModal extends React.Component {
       };
       const res = AddNote(body);
       res.then((value) => {
-        if (this.props.modalController) {
+        const { modalController } = this.props;
+        if (modalController) {
           const action = saveAction(value);
           store.dispatch(action);
-          this.props.modalController.close();
+          modalController.close();
         } else {
-          console.log('Unexpected Error');
+          // console.log('Unexpected Error');
         }
       });
     } else {
-      console.log('Unexpected Error');
+      // console.log('Unexpected Error');
     }
   }
 

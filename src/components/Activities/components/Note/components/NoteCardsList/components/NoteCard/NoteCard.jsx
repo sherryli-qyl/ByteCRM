@@ -18,27 +18,33 @@ class NoteCard extends React.Component {
   }
 
   onContentChange(content) {
-    const newCard = this.state.card;
+    const { card, cardId } = this.state;
+    const { onChangeNote } = this.props;
+    const newCard = card;
     newCard.content = content;
     this.setState({
       content,
       card: newCard,
     });
-    this.props.onChangeNote(this.state.cardId, newCard);
+    onChangeNote(cardId, newCard);
   }
 
   onCommentChange(comments) {
-    const newCard = this.state.card;
+    const { card, cardId } = this.state;
+    const { onChangeNote } = this.props;
+    const newCard = card;
     newCard.comments = comments;
     this.setState({
       comments,
       card: newCard,
     });
-    this.props.onChangeNote(this.state.cardId, newCard);
+    onChangeNote(cardId, newCard);
   }
 
   render() {
-    const { cardId, content, comments } = this.props.card;
+    const {
+      cardId, content, comments, createdBy,
+    } = this.props.card;
 
     return (
       <div>
@@ -48,7 +54,7 @@ class NoteCard extends React.Component {
           onContentChange={this.onContentChange}
         />
         <CreatedBy
-          createdBy={this.props.card.createdBy.fullName}
+          createdBy={createdBy.fullName}
         />
         {/* <CommentBox
           comments={comments}

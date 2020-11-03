@@ -1,7 +1,7 @@
 import React from 'react';
 import TimeLineControls from './components/TimeLineControls';
 import CallCardsList from './components/CallCardsList';
-import shuffleCards from '../../../../services/shuffleCards';
+import shuffleCards from '../../../services/shuffleCards';
 import './CallTimeLine.scss';
 
 class NotesTimeLine extends React.Component {

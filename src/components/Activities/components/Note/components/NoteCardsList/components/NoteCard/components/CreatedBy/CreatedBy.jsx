@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './CreatedBy.scss';
@@ -18,6 +19,14 @@ const CreatedBy = (props) => {
       </span>
     </div>
   );
+};
+
+CreatedBy.defaultProps = {
+  createdBy: undefined,
+};
+
+CreatedBy.propTypes = {
+  createdBy: PropTypes.string,
 };
 
 // class CreatedBy extends React.Component {

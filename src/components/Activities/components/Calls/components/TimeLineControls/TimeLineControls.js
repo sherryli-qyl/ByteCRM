@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
-import LogCallButton from '../../../../../../Style/Button/Activities/LogButton';
-import LogCallModal from '../../../../Note/components/NoteModal';
-import Modal from '../../../../../../../js/Modal';
-import { ModalContext } from '../../../../../../Modal/components/ModalContext';
-import CreateButton from '../../../../../../Style/Button/Activities/CreateButton';
+import LogCallButton from '../../../../../Style/Button/Activities/LogButton';
+import LogCallModal from '../../../Note/components/NoteModal';
+import Modal from '../../../../../../js/Modal';
+import { ModalContext } from '../../../../../Modal/components/ModalContext';
+import CreateButton from '../../../../../Style/Button/Activities/CreateButton';
 import './TimeLineControls.scss';
 
 const TimeLineControls = () => {

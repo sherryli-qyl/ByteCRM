@@ -1,7 +1,7 @@
 import React from 'react';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import NoteCard from './components/NoteCard';
-import CardContainer from '../../../../../../Style/Card/Activity/Container';
+import CardContainer from '../../../../../Style/Card/Activity/Container';
 
 function NoteCardsList(props) {
   const createCard = (card) => (<NoteCard card={card} />);

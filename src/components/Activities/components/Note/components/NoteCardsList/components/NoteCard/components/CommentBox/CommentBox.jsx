@@ -30,12 +30,6 @@ class CommentBox extends React.Component {
     this.addComment = this.addComment.bind(this);
   }
 
-  handleShowCommentForm() {
-    this.setState((prevState) => ({
-      showCommentForm: !prevState.showCommentForm,
-    }));
-  }
-
   // handleShowAddCommentPanel() {
   //   this.setState(prevState =>({
   //     showAddCommentPanel: !prevState.showAddCommentPanel
@@ -59,25 +53,29 @@ class CommentBox extends React.Component {
   // })
 
   deleteComment(index) {
-    const arr = this.state.comments;
+    const { comments } = this.state;
+    const arr = comments;
     arr.splice(index, 1);
     this.setState({ comments: arr });
   }
 
   updateComment(newContent, index) {
-    const arr = this.state.comments;
+    const { comments } = this.state;
+    const arr = comments;
     arr[index].content = newContent;
     this.setState({ comments: arr });
   }
 
   handleClick() {
+    const { showComments } = this.state;
     this.setState({
-      showComments: !this.state.showComments,
+      showComments: !showComments,
     });
   }
 
   getComments() {
-    return this.state.comments.map((comment, i) => (
+    const { comments } = this.state;
+    return comments.map((comment, i) => (
       <CommentCard
         key={i}
         index={i}
@@ -96,6 +94,12 @@ class CommentBox extends React.Component {
       return 'No comments yet';
     }
     return `Comments (${commentCount}) `;
+  }
+
+  handleShowCommentForm() {
+    this.setState((prevState) => ({
+      showCommentForm: !prevState.showCommentForm,
+    }));
   }
 
   render() {
