@@ -4,18 +4,18 @@ import Private from './components/Private';
 import './Header.scss';
 
 const Header = () => (
-  <div className="StyledHeader">
-    <div className="Container">
-      <div className="Layout">
-        <div className="Left">
+  <nav className="styled_header">
+    <div className="styled_header__container">
+      <div className="layout">
+        <div className="left">
           <Public />
         </div>
-        <div className="Right">
+        <div className="right">
           <Private />
         </div>
       </div>
     </div>
-  </div>
+  </nav>
 );
 
 export default Header;

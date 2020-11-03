@@ -1,33 +1,37 @@
-import React from 'react';
-import './Private.scss';
-import { withRouter } from 'react-router';
-import Profile from '../../../../img/Contact/profile.png';
-import { isLoggedIn, removeToken } from '../../../../utils/auth';
-import {
-  CONTACT_BASE_URL,
-  LOGIN_URL,
-} from '../../../Routes/URLMap';
-import HeaderNavLink from '../HeaderNavLink';
+import React, { Component } from "react";
+import "./Private.scss";
+import Profile from "../../../../img/Contact/profile.png";
+import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import NavbarDropdown from "../NavbarDropdown";
+import { withRouter } from "react-router";
 
-const logout = (history) => {
-  removeToken();
-  history.push(LOGIN_URL);
-};
+class Private extends Component {
+  state = { clicked: false };
+  handleClick = () => {
+    this.setState({ clicked: !this.state.clicked });
+  };
+  render() {
+    return (
+      <div className="right_wrapper">
+        <div className="profile_wrapper" onClick={this.handleClick}>
+          <div className="profile_container">
+            <div className="profile_nav">
+              <img src={Profile} alt="profile" />
+            </div>
+            <div className="down_icon_wrapper">
+              <FontAwesomeIcon icon={faChevronDown} />
+            </div>
+            <div
+              className={this.state.clicked ? "nav_dropdown active" : "nav_dropdown"}
+            >
+              <NavbarDropdown />
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
 
-const Private = ({ history }) => {
-  if (!isLoggedIn()) return null;
-
-  return (
-    <div className="Layout">
-      <HeaderNavLink path={LOGIN_URL}>
-        <button className="private-nav">
-          <div className="private-text" onClick={() => logout(history)}>Sign Out</div>
-        </button>
-      </HeaderNavLink>
-      <HeaderNavLink path={CONTACT_BASE_URL}>
-        <img className="profile_nav" src={Profile} alt="profile" />
-      </HeaderNavLink>
-    </div>
-  );
-};
 export default withRouter(Private);
