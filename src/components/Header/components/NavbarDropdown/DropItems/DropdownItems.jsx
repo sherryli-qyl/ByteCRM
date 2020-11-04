@@ -1,9 +1,10 @@
-import React from 'react';
-import Profile from '../../../../../img/Contact/profile.png';
-import HeaderNavLink from '../../HeaderNavLink';
-import { LOGIN_URL } from '../../../../Routes/URLMap';
-import { isLoggedIn, removeToken } from '../../../../../utils/auth';
-import './DropdownItems.scss';
+import React from "react";
+import Profile from "../../../../../img/Contact/profile.png";
+import HeaderNavLink from "../../HeaderNavLink";
+import { LOGIN_URL } from "../../../../Routes/URLMap";
+import { isLoggedIn, removeToken } from "../../../../../utils/auth";
+import "../../../../Api/User";
+import "./DropdownItems.scss";
 
 const logout = (history) => {
   removeToken();
@@ -12,6 +13,7 @@ const logout = (history) => {
 const user = JSON.parse(localStorage.getItem('user'));
 
 const DropdownItems = ({ history }) => {
+  const user = JSON.parse(localStorage.getItem('user'));
   if (!isLoggedIn()) return null;
 
   return (
