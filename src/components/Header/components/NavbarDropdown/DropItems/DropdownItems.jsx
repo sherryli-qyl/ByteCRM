@@ -9,6 +9,7 @@ const logout = (history) => {
   removeToken();
   history.push(LOGIN_URL);
 };
+const user = JSON.parse(localStorage.getItem('user'));
 
 const DropdownItems = ({ history }) => {
   if (!isLoggedIn()) return null;
@@ -20,10 +21,10 @@ const DropdownItems = ({ history }) => {
           <img src={Profile} alt="profile" />
         </div>
         <div className="user_name">
-          <p>Li Lei</p>
+          <p>{user.fullName}</p>
         </div>
         <div className="user_email">
-          <p>li.lei@gmail.com</p>
+          <p>{user.email}</p>
         </div>
         <div className="preference">
           <p>Profile & Preferences</p>
@@ -31,9 +32,17 @@ const DropdownItems = ({ history }) => {
       </div>
       <div className="sign_out_wrapper">
         <HeaderNavLink path={LOGIN_URL}>
+          <button onClick={(event)=>{
+            event.preventDefault();
+            localStorage.removeItem('user')
+
+          }}>
+
+        
           <div className="private-text" onClick={() => logout(history)}>
             Sign Out
           </div>
+          </button>
         </HeaderNavLink>
       </div>
     </div>
