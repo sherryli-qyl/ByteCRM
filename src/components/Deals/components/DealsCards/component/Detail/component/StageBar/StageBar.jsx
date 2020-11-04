@@ -14,7 +14,6 @@ const stageItems = [{ key: 0, value: 'Appointment Scheduled', className: 'firstS
 const StageBar = ({
   stage,
 }) => {
-  console.log(stage);
   let key = 0;
   for (const i in stageItems) {
     if (stageItems[i].value === stage) {

@@ -7,6 +7,7 @@ const Selects = ({
   showDropdown,
   onChangeSelect,
   variant,
+  size
 }) => {
   let selectClassName = 'select ';
   let cornerClassName = 'select__wrapper__corner ';
@@ -18,7 +19,11 @@ const Selects = ({
   if (variant === 'above') {
     selectClassName += `select--${variant}`;
     cornerClassName += 'select__wrapper__corner--bottom';
-  } else {
+  } 
+  else if (size === 'large'){
+    selectClassName += 'select select--large';
+  }
+  else {
     selectClassName += 'select select--below';
     cornerClassName += 'select__wrapper__corner--top';
   }

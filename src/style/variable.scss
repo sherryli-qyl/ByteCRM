@@ -82,8 +82,8 @@ $maxL: 2560px;
         top: 2%;
         bottom: 1%;
     }
-
     padding: 3% 0;
+
     border: {
         top: solid 1px rgb(203, 214, 226);
         bottom: solid 1px rgb(203, 214, 226);
@@ -92,7 +92,15 @@ $maxL: 2560px;
     &--top {
         border: {
             top: solid 1px rgb(203, 214, 226);
+            bottom: none;
         }
+    }
+
+    &--bottom{
+        margin: 0 0;
+        padding: 2% 0;
+        border-top: none;
+        border-bottom: solid 1px rgb(203, 214, 226);
     }
 }
 
@@ -102,3 +110,5 @@ $maxL: 2560px;
     color: $label-color;
     margin-bottom: 10px;
 }
+
+

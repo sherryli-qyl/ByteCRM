@@ -10,7 +10,7 @@ const DealsCards = ({
   <div className="dealsCard">
     { deals.map((item) => (
       <Detail
-        key={item.id}
+        // key={item.id}
         card={item}
       />
     ))}

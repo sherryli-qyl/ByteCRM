@@ -14,7 +14,7 @@ class CompanySelector extends React.Component {
       showDropdown: false,
       textInput: '',
       enableCleanBtn: false,
-      company: '',
+      company: this.props.company,
       companyList: this.props.companyList,
       selectIndex: 0,
       dropDownDisable: false,
@@ -160,6 +160,7 @@ class CompanySelector extends React.Component {
         onChangeSelectItem={this.onChangeSelectItem}
       />
     );
+
     return (
       <div className="companySelector">
         <div className="companySelector__displayBar" ref={this.btnRef}>

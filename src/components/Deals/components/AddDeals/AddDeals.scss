@@ -1,0 +1,10 @@
+@import '../../../../style/variable.scss';
+
+.addDeals{
+
+    &__description{
+        color: $primary-color;
+        font-size: 14px;
+        padding:20px 0;
+    }
+}

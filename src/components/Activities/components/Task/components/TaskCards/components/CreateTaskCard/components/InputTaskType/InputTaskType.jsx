@@ -26,7 +26,7 @@ const InputTaskType = ({
           <UserSelector
             userList={card.users}
             currentUser={currentUser}
-            contactSelectHint={userSelectHint}
+            selectHint={userSelectHint}
             handleAddUser={handleAddUser}
             handleRemoveUser={handleRemoveUser}
           />

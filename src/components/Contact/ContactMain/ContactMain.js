@@ -81,6 +81,7 @@ class ContactMain extends Component {
 
   componentDidMount() {
     const selectedContactId = sessionStorage.getItem('id');
+    sessionStorage.removeItem('company');
     const contact = GetContact(selectedContactId);
     contact.then((value) => {
       this.setState({
