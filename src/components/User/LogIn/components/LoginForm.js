@@ -2,6 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 import api from '../../../../lib/api/api';
+import store from '../../../../store';
+import { addUser } from '../../../../action';
 
 class LoginForm extends React.Component {
   constructor() {
@@ -68,7 +70,10 @@ class LoginForm extends React.Component {
       })
       .then((res) => {
         if (res.status === 200) {
-          localStorage.setItem('user', JSON.stringify(res.data.user));
+          const user = res.data.user
+          localStorage.setItem('user', JSON.stringify(user));
+          const action = addUser(user);
+          store.dispatch(action);
           this.props.history.push('/contacts');
         }
       })

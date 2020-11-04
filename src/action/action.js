@@ -9,4 +9,11 @@ const addContactAction = (contact) => ({
   contact,
 });
 
-module.exports = { saveAction, addContactAction };
+const addUser = (user) => ({
+  type: 'ADD',
+  user,
+  reload: true,
+});
+
+
+module.exports = { saveAction, addContactAction, addUser };

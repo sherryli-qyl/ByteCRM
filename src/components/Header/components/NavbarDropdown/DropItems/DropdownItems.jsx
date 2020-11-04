@@ -11,9 +11,9 @@ const logout = (history) => {
 };
 
 
-const DropdownItems = ({ history }) => {
-  if (!isLoggedIn()) return null;
-  const user = JSON.parse(localStorage.getItem('user'));
+const DropdownItems = ({user}) => {
+ 
+  
 
   return (
     <div className="dropdownItems_wrapper">

@@ -33,7 +33,7 @@ class Private extends Component {
             <div
               className={this.state.clicked ? "nav_dropdown active" : "nav_dropdown"}
             >
-              <NavbarDropdown />
+              <NavbarDropdown user = {this.props.user}/>
             </div>
           </div>
         </div>
