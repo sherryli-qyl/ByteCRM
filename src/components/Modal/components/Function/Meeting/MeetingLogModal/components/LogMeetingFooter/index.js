@@ -1,1 +1,1 @@
-export { default } from './LogMeetingFooter';
+export {default} from './LogMeetingFooter';
