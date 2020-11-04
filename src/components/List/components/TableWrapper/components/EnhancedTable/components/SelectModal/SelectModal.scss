@@ -1,3 +1,5 @@
+@import '../../../../../../../../style/variable.scss';
+
 .modal {
   position: fixed;
   width: 400px;
@@ -23,6 +25,8 @@
 
 .modal-operator-close,
 .modal-operator-confirm {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   width: 50%;
   border: none;
   outline: none;
@@ -30,7 +34,7 @@
   line-height: 50px;
   opacity: 1;
   color: #fff;
-  background: rgb(247, 32, 32);
+  background: $primary-color;
   cursor: pointer;
 }
 
