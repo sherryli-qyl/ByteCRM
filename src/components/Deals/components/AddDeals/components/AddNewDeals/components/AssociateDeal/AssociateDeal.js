@@ -10,8 +10,6 @@ const AssociateDeal = ({
     deal,
     onChange,
 }) => {
-    console.log(deal.contacts);
-    
     return (
         <div className="associateDeal">
             <div className="associateDeal__wrapper">

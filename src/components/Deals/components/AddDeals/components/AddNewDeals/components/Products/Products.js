@@ -5,7 +5,8 @@ import './Products.scss';
 
 
 const Products = ({
-    onChange,
+    onChangeValue,
+    onChangeProduct,
     deal,
 }) => {
     let disabled = true;
@@ -24,7 +25,7 @@ const Products = ({
                         value={deal.products.name}
                         onChange={(event) => {
                             event.preventDefault();
-                            onChange(event.target.value, 'name');
+                            onChangeProduct(event.target.value, 'name');
                         }} />
                 </AddItem>
                 <div className="quantityInput">
@@ -34,7 +35,7 @@ const Products = ({
                     <input className={quantityClassName} value={deal.products.quantity}
                         onChange={(event) => {
                             event.preventDefault();
-                            onChange(event.target.value, 'quantity');
+                            onChangeProduct(event.target.value, 'quantity');
                         }}
                         disabled={disabled} />
                 </div>
@@ -44,7 +45,7 @@ const Products = ({
                     value={deal.amount}
                     onChange={(event) => {
                         event.preventDefault();
-                        onChange(event.target.value, 'amount');
+                        onChangeValue(event.target.value, 'amount');
                     }} />
             </AddItem>
             <div className = "blockline blockline--bottom"/>

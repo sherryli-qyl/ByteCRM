@@ -32,6 +32,7 @@ class AddNewDeals extends React.Component {
         this.setState({
             deal: newDeal
         });
+        this.props.onChangeValue(this.state.deal);
     }
 
     onChangeProduct(value, key) {
@@ -56,6 +57,7 @@ class AddNewDeals extends React.Component {
         this.setState({
             deal: newProducts
         });
+        this.props.onChangeValue(this.state.deal);
     }
 
     componentDidMount() {
@@ -86,7 +88,6 @@ class AddNewDeals extends React.Component {
 
     render() {
         const { deal, user, error,showAssociate } = this.state;
-        console.log(deal);
         let userList = [];
         userList.push(user);
 
@@ -128,7 +129,8 @@ class AddNewDeals extends React.Component {
                         </AddItem>
                     ))}
                     <Products deal={deal}
-                        onChange={this.onChangeProduct} />
+                         onChangeProduct={this.onChangeProduct}
+                         onChangeValue = {this.onChangeValue} />
                     {showAssociate ?
                         <AssociateDeal deal={deal}
                             onChange={this.onChangeValue} />

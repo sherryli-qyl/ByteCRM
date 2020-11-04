@@ -14,7 +14,7 @@ const DeleteFooter = ({
           onClickConfirm();
         }}
       >
-        Confrim
+        Confirm
       </button>
       <button
         className="deleteFooter__btnContainer__btn cancelBtn"

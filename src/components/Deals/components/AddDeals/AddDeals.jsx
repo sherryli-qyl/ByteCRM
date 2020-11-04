@@ -5,12 +5,12 @@ import SwitchButtonBar from '../../../SwitchButtonBar';
 import './AddDeals.scss';
 
 const AddDeals = ({
-
+    onChangeValue,
 }) => {
     const components = [{
         key: 0,
         label: 'Create a new Deal',
-        component: <AddNewDeals />,
+        component: <AddNewDeals onChangeValue = {onChangeValue}/>,
     },
     { key: 1, label: 'Add existing deal', component: '' }];
 
