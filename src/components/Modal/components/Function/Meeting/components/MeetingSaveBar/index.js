@@ -1,1 +1,1 @@
-export { default } from './MeetingSaveBar';
+export {default} from './MeetingSaveBar';

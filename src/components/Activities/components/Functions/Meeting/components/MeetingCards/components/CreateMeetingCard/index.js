@@ -1,1 +1,1 @@
-export { default } from './CreateMeetingCard';
+export {default} from './CreateMeetingCard';
