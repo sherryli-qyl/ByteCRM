@@ -1,5 +1,6 @@
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import { isLoggedIn } from '../../../utils/auth';
 import { LOGIN_URL } from '../URLMap';
@@ -17,6 +18,9 @@ const ProtectedRoute = ({ component: ProtectedComponent, ...rest }) => (
           />
         );
       }
+      ProtectedRoute.propTypes = {
+        component: PropTypes.string.isRequired,
+      };
 
       return <ProtectedComponent {...routeProps} />;
     }}

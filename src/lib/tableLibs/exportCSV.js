@@ -74,7 +74,7 @@ const exportCSV = (columns, data, type) => {
           let temp = '';
           for (let i = 0; i < tempData[i].associatedContacts.props.children.length; i++) {
             temp += `${tempData[i].associatedContacts.props.children[i].props.name}, `;
-            if (i == tempData[i].associatedContacts.props.length - 1) {
+            if (i === tempData[i].associatedContacts.props.length - 1) {
               temp = temp.slice(0, temp.length - 2);
             }
           }
@@ -85,6 +85,8 @@ const exportCSV = (columns, data, type) => {
       }
       break;
     }
+    default:
+      throw new Error("Unexpected page type!");
   }
   const csvExporter = new ExportToCsv(Options);
   csvExporter.generateCsv(result);

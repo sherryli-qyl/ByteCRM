@@ -6,7 +6,7 @@ import BasicInfo from './components/BasicInfo';
 import DetailInfo from './components/DetailInfo';
 import NoteModal from '../Activities/components/Note/components/NoteModal';
 import EmailModal from '../Activities/components/Email/components/Modal/CreateEmail';
-import CallModal from '../Modal/components/Function/Call';
+import CallModal from '../Activities/components/Calls/components/CallModal';
 import TaskModal from '../Activities/components/Task/components/TaskModal';
 import MeetingCreateModal from '../Modal/components/Function/Meeting/MeetingCreateModal';
 import DataPack from './services/DataPack';

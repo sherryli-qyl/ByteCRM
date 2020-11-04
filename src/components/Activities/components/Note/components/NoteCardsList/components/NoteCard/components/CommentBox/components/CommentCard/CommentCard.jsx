@@ -18,27 +18,31 @@ class CommentCard extends React.Component {
     this.handleSave = this.handleSave.bind(this);
   }
 
-  handleEdit() {
-    this.setState({ editing: true });
-  }
-
-  handleDelete() {
-    this.props.onDelete(this.props.index);
-  }
-
-  handleSave() {
-    this.props.onUpdate(this.newContent.value, this.props.index);
-    this.setState({ editing: false });
-  }
+  handleActionIconsToggle = () => this.setState({ showActionIcons: !this.state.showActionIcons });
 
   handleCancel() {
     this.setState({ editing: false });
     this.setState({ showActionIcons: false });
   }
 
-  handleActionIconsToggle = () => this.setState({ showActionIcons: !this.state.showActionIcons });
+  handleSave() {
+    const { onUpdate, index } = this.props;
+    onUpdate(this.newContent.value, index);
+    this.setState({ editing: false });
+  }
+
+  handleDelete() {
+    const { onDelete, index } = this.props;
+    onDelete(index);
+  }
+
+  handleEdit() {
+    this.setState({ editing: true });
+  }
 
   renderNormalMode() {
+    const { author, timestamp, content } = this.props;
+    const { showActionIcons } = this.state;
     return (
       <div
         className="comment-container"
@@ -49,30 +53,31 @@ class CommentCard extends React.Component {
           <div className="comment-container-header__left">
             <FontAwesomeIcon icon={faUserCircle} />
             <p className="comment-createdby">
-              <b>{this.props.author}</b>
+              <b>{author}</b>
               {' '}
               left a comment
             </p>
           </div>
           <div className="comment-container-header__right">
-            {this.props.timestamp}
+            {timestamp}
           </div>
         </div>
         <div className="comment-content">
-          {this.props.content}
+          {content}
         </div>
-        {this.state.showActionIcons
+        {showActionIcons
           && (
           <div className="comment-card-actions">
             <FontAwesomeIcon icon={faPen} onClick={this.handleEdit} className="comment-card-actions__button" />
             <FontAwesomeIcon icon={faTrashAlt} onClick={this.handleDelete} className="comment-card-actions__button" />
           </div>
-)}
+          )}
       </div>
     );
   }
 
   renderEditingMode() {
+    const { content } = this.props;
     return (
       <div className="comment-container">
         <div className="comment-container-header__left--editing">
@@ -84,11 +89,11 @@ class CommentCard extends React.Component {
             className="comment-content-edit"
             ref={(textarea) => { this.newContent = textarea; }}
             onChange={this.handleChange}
-            defaultValue={this.props.content}
+            defaultValue={content}
           />
           <div className="comment-editor-actions">
-            <button onClick={this.handleSave} className="comment-card-content__save">Save</button>
-            <button onClick={this.handleCancel} className="comment-card-content__cancel">Cancel</button>
+            <button onClick={this.handleSave} type="submit" className="comment-card-content__save">Save</button>
+            <button onClick={this.handleCancel} type="button" className="comment-card-content__cancel">Cancel</button>
           </div>
         </div>
       </div>
@@ -96,11 +101,12 @@ class CommentCard extends React.Component {
   }
 
   render() {
-    if (this.state.editing) {
+    const { editing } = this.state;
+    if (editing) {
       return this.renderEditingMode();
     }
     return this.renderNormalMode();
- }
+  }
 }
 
 export default CommentCard;

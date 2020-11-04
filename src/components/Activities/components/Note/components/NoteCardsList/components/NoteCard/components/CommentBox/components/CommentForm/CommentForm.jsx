@@ -15,11 +15,12 @@ class CommentForm extends React.Component {
     const { addComment } = this.props;
     const timestamp = new Date().toString().slice(0, 33);
     addComment(author, content.value, timestamp);
-    this.content.value = '';
+    content.value = '';
     this.setState({ content: '' });
   }
 
   render() {
+    const { handleShowCommentForm } = this.props;
     return (
       <form className="comment-form-container" onSubmit={this.handleSubmit.bind(this)}>
         <textarea
@@ -33,7 +34,7 @@ class CommentForm extends React.Component {
           <button
             type="cancel"
             className="comment-form-controls__cancel"
-            onClick={ this.props.handleShowCommentForm }
+            onClick={handleShowCommentForm}
           >
             Cancel
           </button>
