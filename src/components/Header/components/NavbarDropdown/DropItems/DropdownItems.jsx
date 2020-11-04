@@ -2,7 +2,8 @@ import React from 'react';
 import Profile from '../../../../../img/Contact/profile.png';
 import HeaderNavLink from '../../HeaderNavLink';
 import { LOGIN_URL } from '../../../../Routes/URLMap';
-import { isLoggedIn, removeToken } from '../../../../../utils/auth';
+import { isLoggedIn, removeToken, removeUser } from '../../../../../utils/auth';
+import history from '../../../../Routes/components/History';
 import './DropdownItems.scss';
 
 const logout = (history) => {
@@ -10,11 +11,7 @@ const logout = (history) => {
   history.push(LOGIN_URL);
 };
 
-
-const DropdownItems = ({user}) => {
- 
-  
-
+const DropdownItems = ({ user }) => {
   return (
     <div className="dropdownItems_wrapper">
       <div className="profile_info">
@@ -32,16 +29,16 @@ const DropdownItems = ({user}) => {
         </div>
       </div>
       <div className="sign_out_wrapper">
-        <HeaderNavLink path={LOGIN_URL}>
-          <button onClick={(event)=>{
-            event.preventDefault();
-            localStorage.removeItem('user');
-            localStorage.removeItem('AUTH_TOKEN');
-            // logout(history)
-          }}>
+        <button className="navButton" onClick={(event) => {
+          
+          removeUser();
+          removeToken();
+         
+        }}>
+          <a href={LOGIN_URL}>
             Sign Out
-          </button>
-        </HeaderNavLink>
+          </a>
+        </button>
       </div>
     </div>
   );
