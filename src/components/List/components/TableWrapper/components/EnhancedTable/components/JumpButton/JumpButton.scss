@@ -1,10 +1,28 @@
+@import "../../../../../../../../style/variable.scss";
+
 .nakedBtn {
   font-size: medium;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   text-align: left;
-  width: 180px;
+  width: 190px;
+  color: black;
+  
+  position: relative;
+  top: 2px;
+}
+
+.inactive {
+  color: $primary-color;
+  text-decoration: none;
+}
+
+.inactive:hover {
+  color: $secondary-color;
+  text-decoration: underline;
+  font-weight: bolder;
 }
 
 .active {
-  color: #0091ae;
+  color: $secondary-color;
 }
