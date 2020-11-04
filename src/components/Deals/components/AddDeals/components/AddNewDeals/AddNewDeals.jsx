@@ -1,5 +1,7 @@
 import React from 'react';
 import Deal from './components/Deal';
+import Products from './components/Products';
+import AssociateDeal from './components/AssociateDeal';
 import { transferDateInYearMonDay } from '../../../../../../lib/date';
 import DatePicker from '../../../../../Style/Picker/DatePicker';
 import StageDropdown from '../../../StageDropDown';
@@ -14,10 +16,11 @@ class AddNewDeals extends React.Component {
         super(props);
         const user = JSON.parse(localStorage.getItem('user'));
         const date = transferDateInYearMonDay(new Date());
-        const deal = new Deal('', 'Appointment Scheduled', null, date, user, '', null, null, { name: '', quantity: '' });
+        const deal = new Deal('', 'Appointment Scheduled', 0, date, user, '', null, null, { name: '', quantity: 0 });
         this.state = {
             deal,
-            user
+            user,
+            showAssociate: false,
         }
         this.onChangeValue = this.onChangeValue.bind(this);
         this.onChangeProduct = this.onChangeProduct.bind(this);
@@ -32,8 +35,24 @@ class AddNewDeals extends React.Component {
     }
 
     onChangeProduct(value, key) {
-        let newProducts = this.state.deal;
+        let newProducts = { ...this.state.deal };
         newProducts.products[key] = value;
+
+        if (newProducts.products.name === '') {
+            newProducts.products.quantity = 0;
+        }
+
+        if (isNaN(newProducts.products.quantity)) {
+            newProducts.products.quantity = 0;
+            this.setState({
+                deal: newProducts,
+                error: 'quantity must be a number'
+            });
+            return;
+        }
+        else if (newProducts.products.quantity) {
+            newProducts.products.quantity = parseInt(newProducts.products.quantity);
+        }
         this.setState({
             deal: newProducts
         });
@@ -43,14 +62,17 @@ class AddNewDeals extends React.Component {
         const contact = JSON.parse(sessionStorage.getItem('contact'));
         const company = JSON.parse(sessionStorage.getItem('company'));
         let newDeal = this.state.deal;
+        let contactList = [];
         if (contact && contact.company) {
             newDeal.name = `${contact.company.name} - New Deal`;
-            newDeal.contact = contact;
+            contactList.push(contact);
+            newDeal.contacts = contactList;
             newDeal.company = contact.company;
         }
         else if (contact) {
             newDeal.name = `${contact.fullName} - New Deal`;
-            newDeal.contact = contact;
+            contactList.push(contact);
+            newDeal.contacts = contact;
         }
         else {
             newDeal.name = `${company.name} - New Deal`;
@@ -58,21 +80,15 @@ class AddNewDeals extends React.Component {
         }
         this.setState({
             deal: newDeal,
+            showAssociate: true,
         })
     }
 
     render() {
-        const { deal, user } = this.state;
+        const { deal, user, error,showAssociate } = this.state;
         console.log(deal);
         let userList = [];
         userList.push(user);
-
-        let disabled = true;
-        let quantityClassName = "quantityInput__quantity quantityInput__quantity--disabled";
-        if (deal.products.name){
-            disabled = false;
-            quantityClassName = "quantityInput__quantity"
-        } 
 
         const addItems = [
             {
@@ -111,22 +127,14 @@ class AddNewDeals extends React.Component {
                             {item.component}
                         </AddItem>
                     ))}
-                    <div className="addNewDeals__wrapper__products">
-                        <AddItem label={'Add product'}>
-                            <input className="addItem__inputWrapper__input"
-                                   value={deal.products.name}
-                                   onChange={(event) => {
-                                        event.preventDefault();
-                                        this.onChangeProduct(event.target.value, 'name');
-                                }} />
-                        </AddItem>
-                        <div className = "quantityInput">
-                            <div className = "quantityInput__label">
-                                Quantity
-                            </div>
-                            <input className = {quantityClassName} value={deal.products.quantity} disabled = {disabled}/>
-                        </div>
-                    </div>
+                    <Products deal={deal}
+                        onChange={this.onChangeProduct} />
+                    {showAssociate ?
+                        <AssociateDeal deal={deal}
+                            onChange={this.onChangeValue} />
+                        :
+                        ""
+                    }
                 </div>
             </div>
         )

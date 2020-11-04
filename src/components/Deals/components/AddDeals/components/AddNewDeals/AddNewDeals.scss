@@ -9,11 +9,17 @@
 
         &__products{
             display: flex;
-            margin-top: 2%;
+            align-items: center;
+            margin-top: 10px;
+            margin-bottom: 10px;
             width: 90%;
 
             .quantityInput{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
                 margin-left: 5%;
+
                 &__label{
                     font-size: 14px;
                     color: $primary-color;
@@ -22,8 +28,8 @@
                 &__quantity{
                     outline: none;
                     border: 1px solid $border-color;
-                    margin-top: 5px;
-                    height:16px;
+                    margin-top:4px;
+                    height:17px;
                     width: 50px;
                     padding: 9px;
                     font-size: 16px;

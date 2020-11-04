@@ -1,4 +1,4 @@
-function Deal(name, stage, amount, closeDate, dealOwner, dealType, company, contact, products) {
+function Deal(name, stage, amount, closeDate, dealOwner, dealType, company, contacts, products) {
     this.name = name;
     this.stage = stage;
     this.amount = amount;
@@ -6,7 +6,7 @@ function Deal(name, stage, amount, closeDate, dealOwner, dealType, company, cont
     this.dealOwner = dealOwner;
     this.dealType = dealType;
     this.company = company;
-    this.contact = contact;
+    this.contacts = contacts;
     this.products = products;
   }
   
