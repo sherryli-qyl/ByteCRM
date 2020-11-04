@@ -106,8 +106,7 @@ function getColumns(type) {
           }
           return { isValid: false, helperText: 'Date format incorrect' };
         },
-      },
-      { title: 'ASSOCIATED CONTACTS', field: 'associatedContacts', editable: 'never' },
+      }
     ];
   }
 }

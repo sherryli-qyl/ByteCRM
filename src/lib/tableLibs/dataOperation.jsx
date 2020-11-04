@@ -1,5 +1,5 @@
 import React from 'react';
-import JumpButton from '../../pages/ListPageWrapper/components/TableWrapper/components/EnhancedTable/components/JumpButton';
+import JumpButton from '../../components/List/components/TableWrapper/components/EnhancedTable/components/JumpButton';
 
 import getDate from './getDate';
 
@@ -28,6 +28,14 @@ const LEAD_STATUS_BACK = {
 /* ====================================GET========================================== */
 function wrapUpData(data, type) {
   if (type === 'contact') {
+    for (let item of data) {
+      if (item.name.length > 15) {
+        item.name = item.name.slice(0, 15) + "...";
+      }
+      if (item.associatedCompany && item.associatedCompany.length > 15) {
+        item.associatedCompany = item.associatedCompany.slice(0, 15) + "...";
+      }
+    }
     return data.map((cur) => ({
       name: (
         <JumpButton id={cur.contactID} type="contact" name={cur.name} />
@@ -49,22 +57,27 @@ function wrapUpData(data, type) {
       createDate: cur.createDate,
     }));
   } if (type === 'company') {
-    return data.map((cur) => {
-      let newOwners;
-      const temp = [];
-      if (cur.associatedContacts.length !== 0 && cur.contactID.length !== 0) {
-        for (const i in cur.contactID) {
-          temp.push(
-            <JumpButton
-              key={cur.contactID[i]}
-              id={cur.contactID[i]}
-              type="contact"
-              name={cur.associatedContacts[i]}
-            />,
-          );
-        }
+    for (let item of data) {
+      if (item.name.length > 15) {
+        item.name = item.name.slice(0, 15) + "...";
       }
-      newOwners = <>{temp.map((cur) => cur)}</>;
+    }
+    return data.map((cur) => {
+      // let newOwners;
+      // const temp = [];
+      // if (cur.associatedContacts.length !== 0 && cur.contactID.length !== 0) {
+      //   for (const i in cur.contactID) {
+      //     temp.push(
+      //       <JumpButton
+      //         key={cur.contactID[i]}
+      //         id={cur.contactID[i]}
+      //         type="contact"
+      //         name={cur.associatedContacts[i]}
+      //       />,
+      //     );
+      //   }
+      // }
+      // newOwners = <>{temp.map((cur) => cur)}</>;
       return {
         name: (
           <JumpButton
@@ -74,8 +87,7 @@ function wrapUpData(data, type) {
             name={cur.name}
           />
         ),
-        associatedContacts: newOwners || undefined,
-        companyOwner: cur.companyOwner,
+        // associatedContacts: newOwners || undefined,
         companyID: cur.companyID,
         phoneNumber: cur.phoneNumber,
         companyOwner: cur.companyOwner,

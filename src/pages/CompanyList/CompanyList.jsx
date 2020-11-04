@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './CompanyList.scss';
-import PageWrapper from '../../../pages/ListPageWrapper';
+import PageWrapper from '../../components/List';
 
 const tabs = [
   {
