@@ -23,7 +23,7 @@
     "jsonwebtoken": "^8.5.1",
     "jspdf": "^2.1.1",
     "jspdf-autotable": "^3.5.12",
-    "material-table": "^1.61.0",
+    "material-table": "^1.65.0",
     "moment": "^2.29.1",
     "moment-business-days": "^1.2.0",
     "node-sass": "^4.14.1",
