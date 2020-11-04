@@ -7,14 +7,16 @@ function getColumns(type) {
       {
         title: 'NAME',
         field: 'name',
+        type: String,
         initialEditValue: '',
-        validate: (rowData) => (rowData.name === ''
+        validate: (rowData) => (rowData.name === '' || rowData.name === undefined
           ? { isValid: false, helperText: 'Name cannot be empty' }
-          : true),
+          : rowData.name.includes(' ') ? true : { isValid: false, helperText: 'Name must only contain first name and last name'}),
       },
       {
         title: 'EMAIL',
         field: 'email',
+        type: String,
         validate: (rowData) => (testEmailAddr(rowData.email)
           ? true
           : { isValid: false, helperText: 'Email address format incorrect' }),
@@ -22,6 +24,7 @@ function getColumns(type) {
       {
         title: 'PHONE NUMBER',
         field: 'phoneNumber',
+        type: String,
         validate: (rowData) => (testPhoneNum(rowData.phoneNumber)
           ? true
           : { isValid: false, helperText: 'Phone number format incorrect' }),
@@ -32,6 +35,7 @@ function getColumns(type) {
       {
         title: 'LAST ACTIVITY DATE',
         field: 'lastActivityDate',
+        type: String,
         initialEditValue: getDate(),
         validate: (rowData) => {
           if (
@@ -69,9 +73,9 @@ function getColumns(type) {
         title: 'NAME',
         field: 'name',
         initialEditValue: '',
-        validate: (rowData) => (rowData.name === ''
+        validate: (rowData) => (rowData.name === '' || rowData.name === undefined
           ? { isValid: false, helperText: 'Name cannot be empty' }
-          : true),
+          : rowData.name.includes(' ') ? true : { isValid: false, helperText: 'Name must only contain first name and last name'}),
       },
       {
         title: 'PHONE NUMBER',
