@@ -60,6 +60,7 @@
     "start": "cross-env PORT=8000 react-scripts start",
     "build": "react-scripts build",
     "test": "jest",
+    "deploy": "aws s3 sync build/ s3://bytecrm",
     "lint": "eslint --fix . --ext .jsx,.js --ignore-path .gitignore",
     "eject": "react-scripts eject"
   },
