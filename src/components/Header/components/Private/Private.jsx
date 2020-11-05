@@ -18,14 +18,38 @@ class Private extends Component {
     super(props);
     this.state = {
       clicked: false,
+      // showDropdown: false,
     };
 >>>>>>> login page fix && navbar fix
     this.handleClick = this.handleClick.bind(this);
+    // this.onClickDropdown = this.onClickDropdown.bind(this);
+    // this.handleClickOutside = this.handleClickOutside.bind(this);
   }
 
   handleClick = () => {
     this.setState({ clicked: !this.state.clicked });
   };
+
+  // handleToggler() {
+  //   this.setState((prevState) => ({
+  //     showDropdown: !prevState.showDropdown,
+  //   }));
+  // }
+  // onClickDropdown() {
+  //   this.handleToggler();
+  // }
+  // handleClickOutside(event) {
+  //   if (this.state.showDropdown) {
+  //     this.onClickDropdown();
+  //   }
+  // }
+  // componentDidMount() {
+  //   document.addEventListener("mousedown", this.handleClickOutside);
+  // }
+
+  // componentWillUnmount() {
+  //   document.removeEventListener("mousedown", this.handleClickOutside);
+  // }
   render() {
     return (
       <div className="right_wrapper">
