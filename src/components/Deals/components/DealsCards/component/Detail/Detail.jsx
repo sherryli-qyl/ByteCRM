@@ -3,6 +3,7 @@ import { transferDateInMonDayYear } from '../../../../../../lib/date';
 import StageDropDown from '../../../StageDropDown';
 import StageBar from './component/StageBar';
 import RemoveBtn from '../../../../../RemoveBtn';
+import {UpdateDeal} from '../../../../../Api/Deals'
 import './Detail.scss';
 
 
@@ -25,8 +26,18 @@ class Detail extends React.Component {
     handleUpdate(value, key) {
         let newCard = this.state.card;
         newCard[key] = value;
-        this.setState({
-            card: newCard,
+        const body = newCard;
+        const response = UpdateDeal(newCard.id,body);
+        response.then((response) =>{
+            console.log(response)
+            if(response.statusText === 'OK'){
+                this.setState({
+                    card: response.data,
+                })
+            }
+            else{
+                console.log("something wrong");
+            }
         })
     }
 
@@ -51,7 +62,7 @@ class Detail extends React.Component {
 
     render() {
         const { card, showRemoveModal } = this.state;
-        console.log(card)
+       
         return (
             <div className="dealsDetail">
                 <div className="dealsDetail__wrapper">

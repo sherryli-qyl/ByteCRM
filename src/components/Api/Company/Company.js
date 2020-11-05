@@ -1,4 +1,6 @@
 import api from '../../../lib/api';
+import {apiFetch} from '../../../lib/api';
+
 
 const GetCompanyByCode = (id) => {
   const response = api.get(`/api/companies/${id}`);
@@ -6,7 +8,7 @@ const GetCompanyByCode = (id) => {
 };
 
 async function GetCompany(code) {
-  const serverUrl = `http://localhost:3000/api/companies/${code}`;
+  const serverUrl = `${apiFetch}/api/companies/${code}`;
   const response = await fetch(serverUrl, {
     method: 'GET',
   });
@@ -15,7 +17,7 @@ async function GetCompany(code) {
 }
 
 async function GetAllCompanies() {
-  const url = new URL('http://localhost:3000/api/companies');
+  const url = new URL(`${apiFetch}/api/companies`);
   const response = await fetch(url, {
     method: 'GET',
     headers: {
@@ -28,7 +30,7 @@ async function GetAllCompanies() {
 
 async function UpdateCompany(code, body) {
   console.log("UpdateCompany -> code, body", code, body)
-  const serverUrl = `http://localhost:3000/api/companies/${code}`;
+  const serverUrl = `${apiFetch}/api/companies/${code}`;
   const response = await fetch(serverUrl, {
     method: 'PUT',
     headers: {
@@ -42,7 +44,7 @@ async function UpdateCompany(code, body) {
   
 
 async function AddCompany(body) {
-  const serverUrl = 'http://localhost:3000/api/companies';
+  const serverUrl = `${apiFetch}/api/companies`;
   const response = await fetch(serverUrl, {
     method: 'POST',
     headers: {
@@ -64,7 +66,7 @@ async function GetCompanyByUserId(id, keyword) {
 }
 
 async function DeleteCompany(code) {
-  const serverUrl = `http://localhost:3000/api/companies/${code}`;
+  const serverUrl = `${apiFetch}/api/companies/${code}`;
   const response = await fetch(serverUrl, {
     method: 'DELETE',
     headers: {

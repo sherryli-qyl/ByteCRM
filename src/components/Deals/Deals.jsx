@@ -82,8 +82,6 @@ class Deals extends React.Component {
         });
     }
 
-
-
     render() {
         const { disabled, deals } = this.state;
 

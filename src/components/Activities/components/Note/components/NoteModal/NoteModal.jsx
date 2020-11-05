@@ -60,7 +60,7 @@ class NoteModal extends React.Component {
       res.then((value) => {
         const { modalController } = this.props;
         if (modalController) {
-          const action = saveAction(value);
+          const action = saveAction(value, 'note');
           store.dispatch(action);
           modalController.close();
         } else {

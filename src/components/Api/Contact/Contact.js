@@ -1,7 +1,8 @@
 import api from '../../../lib/api';
+import {apiFetch} from '../../../lib/api';
 
 async function GetContact(contactId) {
-  const serverUrl = `http://localhost:3000/api/contacts/${contactId}`;
+  const serverUrl = `${apiFetch}/api/contacts/${contactId}`;
   const response = await fetch(serverUrl, {
     method: 'GET',
   });
@@ -10,7 +11,7 @@ async function GetContact(contactId) {
 }
 
 async function GetAllContacts() {
-  const url = new URL('http://localhost:3000/api/contacts');
+  const url = new URL(`${apiFetch}/api/contacts`);
   const response = await fetch(url, {
     method: 'GET',
     headers: {
@@ -22,7 +23,7 @@ async function GetAllContacts() {
 }
 
 async function removeContact(contactID) {
-  const url = new URL(`http://localhost:3000/api/contacts/${contactID}`);
+  const url = new URL(`${apiFetch}/api/contacts/${contactID}`);
   const response = await fetch(url, {
     method: 'DELETE',
     headers: {
@@ -33,7 +34,7 @@ async function removeContact(contactID) {
 }
 
 async function createContact(body) {
-  const url = new URL('http://localhost:3000/api/contacts/');
+  const url = new URL(`${apiFetch}/api/contacts/`);
   console.log(body);
   const response = await fetch(url, {
     method: 'POST',
@@ -47,7 +48,7 @@ async function createContact(body) {
 }
 
 async function UpdateContact(contactId, body) {
-  const serverUrl = `http://localhost:3000/api/contacts/${contactId}`;
+  const serverUrl = `${apiFetch}/api/contacts/${contactId}`;
   console.log(body);
   const response = await fetch(serverUrl, {
     method: 'PUT',

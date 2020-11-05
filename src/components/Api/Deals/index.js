@@ -1,1 +1,1 @@
-export { AddDealFetch, GetDealsById, DeleteDealsById } from './Deals';
+export { AddDealFetch, GetDealsById, DeleteDealsById, UpdateDeal } from './Deals';

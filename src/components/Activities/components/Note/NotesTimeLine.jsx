@@ -30,8 +30,8 @@ class NotesTimeLine extends React.Component {
 
   componentDidMount() {
     store.subscribe(() => {
-      const { reload } = store.getState();
-      if (reload) {
+      const { reload, key } = store.getState().reload;
+      if (reload && key === 'note') {
         this.handleGetNotes();
       }
     });

@@ -24,6 +24,14 @@
 
         .dealsCard {
 
+            &__name{
+                color: $secondary-color;
+                &:hover{
+                  cursor: pointer;
+                  text-decoration: underline;
+                }
+            }
+
             &__stage {
                 display: flex;
                 color: $primary-color;

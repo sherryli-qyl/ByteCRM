@@ -60,8 +60,9 @@ class EmailPage extends React.Component {
 
   handleDeleteCard(id) {
     const response = DeleteEmailLog(id);
-    response.then((value) => {
-      if (value) {
+    response.then((response) => {
+      console.log(response);
+      if (response.status === 204) {
         this.handleInitPage();
       }
     });
@@ -108,8 +109,8 @@ class EmailPage extends React.Component {
 
   componentDidMount() {
     store.subscribe(() => {
-      const { reload, value } = store.getState().reload;
-      if (reload) {
+      const { reload, value, key } = store.getState().reload;
+      if (reload && key === 'email') {
         this.handleLogEmail(value);
       }
     });
