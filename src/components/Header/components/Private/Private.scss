@@ -13,16 +13,31 @@
       cursor: pointer;
 
       &__userIcon {
-        width: 30px;
-        height: 30px;
+        width: 40px;
+        height: 40px;
       }
 
       &__arrowIcon {
         height: 20px;
-        font-size: 10px;
+        font-size: 15px;
         color: $primary-color-light;
         transform: translateY(10px);
         margin: 0px 10px 10px 15px;
+      }
+    }
+
+    .navBarDropdownCorner {
+      position: absolute;
+      height: 20px;
+      width: 20px;
+      background-color: white;
+      transform: rotate(45deg);
+      z-index:3;
+      top:60px;
+      right:30px;
+      border: {
+        top: solid 1px rgb(203, 214, 226);
+        left: solid 1px rgb(203, 214, 226);
       }
     }
 
@@ -30,12 +45,11 @@
       position: absolute;
       display: flex;
       right: 10px;
-      top: 55px;
+      top: 70px;
       max-height: 0;
       z-index:2;
       background-color: white;
       transition: max-height 0.5s ease-out;
-      
       overflow: hidden;
 
       &--active { 
@@ -46,3 +60,4 @@
     }
   }
 }
+

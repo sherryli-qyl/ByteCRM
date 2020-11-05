@@ -4,23 +4,23 @@
   display: flex;
   flex-direction: column;
   border: solid 1px $border-color;
-  
+
   &__body {
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding: 20px 40px;
     border-bottom: 1px solid $border-color;
-    
+
     &__avatar {
       display: flex;
       align-items: center;
       align-self: center;
-      
-     &__img{
-      height:60px;
-      width: 60px;
-     }
+
+      &__img {
+        height: 60px;
+        width: 60px;
+      }
     }
 
     &__profile {
@@ -86,4 +86,20 @@
       }
     }
   }
+}
+
+.navBarDropdownCorner {
+  background-color: red;
+  height: 15px;
+  width: 15px;
+  position: absolute;
+  transform: rotate(45deg);
+  z-index:3;
+  top:-10px;
+  border: {
+    top: solid 1px rgb(203, 214, 226);
+    left: solid 1px rgb(203, 214, 226);
+  }
+
+
 }
