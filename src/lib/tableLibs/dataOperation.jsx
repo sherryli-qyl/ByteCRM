@@ -1,6 +1,11 @@
 import React from "react";
+import {
+  testPhoneNum,
+  testEmailAddr,
+  testDate,
+  testEmptyString,
+} from "../../lib/tableLibs/validation";
 import JumpButton from "../../components/List/components/TableWrapper/components/EnhancedTable/components/JumpButton";
-
 import getDate from "./getDate";
 
 const LEAD_STATUS = {
@@ -24,18 +29,6 @@ const LEAD_STATUS_BACK = {
   Connected: 7,
   "Bad timing": 8,
 };
-
-/* ====================================CSV========================================== */
-function handleCsv(data, type) {
-  if (type === "contact") {
-    const rows = data.split('\n').slice(1);
-    rows.forEach((row) => {
-      const cols = row.split(",");
-      
-    });
-  } else {
-  }
-}
 
 /* ====================================GET========================================== */
 function wrapUpData(data, type) {
@@ -241,4 +234,4 @@ function makeNewRow(newData, type) {
   }
 }
 
-export { getTable, processData, makeNewRow, remove, handleCsv };
+export { getTable, processData, makeNewRow, remove };

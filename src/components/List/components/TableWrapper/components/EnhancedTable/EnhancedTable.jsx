@@ -49,26 +49,6 @@ class EnhancedTable extends Component {
     }
   }
 
-  // TODO: get new data from CSV
-  componentDidUpdate(prevProps) {
-    const { CSVData } = this.props;
-    if (prevProps.CSVData !== CSVData) {
-      if (this.props.type === "contact") {
-        console.log(CSVData);
-        
-      } else if (this.props.type === "company") {
-        // AddCompany(nextProps.CSVData);
-      }
-      // setTimeout(() => {
-      //   if (this.props.type === "contact") {
-      //     this.getAllContacts();
-      //   } else {
-      //     this.getAllCompanies();
-      //   }
-      // }, 1000);
-    }
-  }
-
   getAllContacts = () => {
     GetAllContacts().then((data) => {
       let allData = [];
