@@ -7,6 +7,7 @@ import DatePicker from '../../../../../Style/Picker/DatePicker';
 import StageDropdown from '../../../StageDropDown';
 import AddItem from '../../../../../AddItem';
 import UserSelector from '../../../../../Selector/UserSelector';
+
 import './AddNewDeals.scss';
 
 
@@ -16,7 +17,7 @@ class AddNewDeals extends React.Component {
         super(props);
         const user = JSON.parse(localStorage.getItem('user'));
         const date = transferDateInYearMonDay(new Date());
-        const deal = new Deal('', 'Appointment Scheduled', 0, date, user, '', null, null, { name: '', quantity: 0 });
+        const deal = new Deal('', 'Appointment Scheduled', 0, date, user, 'New Business', null, null, { name: '', quantity: 0 });
         this.state = {
             deal,
             user,
@@ -90,6 +91,7 @@ class AddNewDeals extends React.Component {
         const { deal, user, error,showAssociate } = this.state;
         let userList = [];
         userList.push(user);
+        console.log(deal)
 
         const addItems = [
             {

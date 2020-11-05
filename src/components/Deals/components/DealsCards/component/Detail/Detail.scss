@@ -15,6 +15,12 @@
         display: flex;
         flex-direction: column;
         padding: 10px 10px;
+        position: relative;
+        &:hover{
+            .dealsCard__removeBtn{
+              display:block;
+            }
+          }
 
         .dealsCard {
 
@@ -30,6 +36,13 @@
 
             &__label{
                 margin-right: 5px;
+            }
+
+            &__removeBtn{
+                display: none;
+                position: absolute;
+                right: 10px;
+                top: 10px;
             }
         }
     }

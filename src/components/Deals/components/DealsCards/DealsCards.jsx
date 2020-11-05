@@ -4,14 +4,15 @@ import Detail from './component/Detail';
 import './DealsCards.scss';
 
 const DealsCards = ({
-  children,
   deals,
+  handleRemoveDeals
 }) => (
   <div className="dealsCard">
     { deals.map((item) => (
       <Detail
-        // key={item.id}
+        key={item.id}
         card={item}
+        handleRemoveDeals = {handleRemoveDeals}
       />
     ))}
 

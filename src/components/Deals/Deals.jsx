@@ -2,81 +2,111 @@ import React from 'react';
 import ExpandBar from '../ExpandBar';
 import AddDeals from './components/AddDeals';
 import DealsCards from './components/DealsCards';
+import { AddDealFetch, GetDealsById, DeleteDealsById } from '../Api/Deals';
 
 
 class Deals extends React.Component {
     constructor(props) {
         super(props);
-        const deals = [
-            {id:0, name: 'yurun new deals', products: {name:'mask',quantity: 1, description:'medial mask'}, amount: 1000, stage:'Decision Maker Bought-In',
-            discount: 1, closeDate:'2020-10-30', contact: null, company: null},
-             {id:1, name: 'yurun new deals', products: {name:'mask',quantity: 2000, description:'medial mask'}, amount: 2000, stage:'Appointment Scheduled',
-             discount: 1, closeDate:'2020-10-30', contact: null, company: null}
-        ]
+        const { contact, company } = this.props;
         this.state = {
             disabled: false,
-            deals: deals,
+            loading:true,
+            deals: [],
             newDeal: null,
+            contact,
+            company,
         }
         this.onChangeValue = this.onChangeValue.bind(this);
         this.onClickSaveBtn = this.onClickSaveBtn.bind(this);
+        this.handleRemoveDeals = this.handleRemoveDeals.bind(this);
     }
 
-    onChangeValue(newDeal){
+    onChangeValue(newDeal) {
         this.setState({
-            newDeal:newDeal,
+            newDeal: newDeal,
         })
     }
 
     onClickSaveBtn() {
-        const body = { newDeal: this.state.newDeal };
+        const body = this.state.newDeal;
         let newDeals = this.state.deals;
-        if (this.state.newDeal){
-            newDeals.push(this.state.newDeal);
-            this.setState({
-                deals:newDeals,
-            })
-        }
-       
-        // const data = MultiRefChange(this.state.company.id, body);
-        // data.then((response) => {
-        //   if (response.statusText === 'OK') {
-        //     this.setState({
-        //         deals: response.data.deals,
-        //     });
-        //     console.log('Add Contacts success');
-        //   } else {
-        //     console.log('Add Contacts failed');
-        //   }
-        // });
-      }
+        const data = AddDealFetch(body);
+        data.then((response) => {
+            if (response.statusText === 'OK') {
+                newDeals.push(response.data);
+                this.setState({
+                    deals: newDeals,
+                })
+                console.log('Add Contacts success');
+            } else {
+                console.log('Add Contacts failed');
+            }
+        });
+    }
 
-    
+    handleRemoveDeals(id){
+        const data = DeleteDealsById(id);
+        data.then((response) => {
+            console.log(response)
+          if (response.statusText === 'OK') {
+            const newDeals = response.data;
+            for (const i in newDeals) {
+              if (newDeals[i].id === id) {
+                newDeals.splice(i, 1);
+                console.log(newDeals);
+              }
+            }
+            this.setState({
+              deals: newDeals,
+            });
+            console.log('Remove deal success');
+          } else {
+            console.log('Remove deal failed');
+          }
+        });
+    }
+
+    componentDidMount() {
+        const {contact,company} = this.state;
+        let id = '';
+        company? id = company.id : id = contact.id
+        const data = GetDealsById(id);
+        data.then((response) => {
+            if (response.statusText === 'OK') {
+                this.setState({
+                    deals: response.data,
+                    loading: false,
+                });
+            }
+        });
+    }
+
 
 
     render() {
-        const {disabled,deals} = this.state;
-        console.log(deals)
+        const { disabled, deals } = this.state;
 
         let showDetail = true;
 
         const addModal = {
             title: 'Add Deals to this contact',
-            content: <AddDeals onChangeValue = {this.onChangeValue}/>,
-          };
+            content: <AddDeals onChangeValue={this.onChangeValue} />,
+        };
 
         return (
             <div>
                 <ExpandBar
-                    label="Deals"
-                    content = {
-                        <DealsCards deals = {deals}/>
+                    label={`Deals (${deals.length})`}
+                    content={
+                        <DealsCards deals={deals} 
+                                    handleRemoveDeals = {this.handleRemoveDeals}/>
                     }
                     addModal={addModal}
                     // hintMessage={hintMessage}
                     disabled={disabled}
                     showDetail={showDetail}
-                    showAdd = {true}
+                    showAdd={true}
                     onClickSaveBtn={this.onClickSaveBtn}
                 />
             </div>

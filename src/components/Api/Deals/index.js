@@ -1,0 +1,1 @@
+export { AddDealFetch, GetDealsById, DeleteDealsById } from './Deals';
