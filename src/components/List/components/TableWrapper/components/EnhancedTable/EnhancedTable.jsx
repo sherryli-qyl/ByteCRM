@@ -143,12 +143,12 @@ class EnhancedTable extends Component {
   changeModalVisible = (s) => {
     this.setState({ modalVisible: s });
   };
-  
+
   changeLoadingVisible = (s) => {
     this.setState({
-      showLoading: s
+      showLoading: s,
     });
-  }
+  };
 
   getDataToEdit = (data) => {
     this.changeLoadingVisible(true);
@@ -171,6 +171,18 @@ class EnhancedTable extends Component {
     }, 1000);
   };
 
+  getSelectedRowIndex = (Rows) => {
+    const index = [];
+    for (const item of Rows) {
+      index.push(item.tableData.id);
+    }
+    setTimeout(() => {
+      this.setState({
+        selectedRow: index,
+      });
+    }, 100);
+  };
+
   render() {
     return (
       <>
@@ -191,6 +203,9 @@ class EnhancedTable extends Component {
               data={this.state.dataToShow}
               icons={tableIcons}
               onRowClick={(evt, selectedRow) => {}}
+              onSelectionChange={(Rows) => {
+                this.getSelectedRowIndex(Rows);
+              }}
               actions={[
                 {
                   tooltip: "Remove all selected contact(s)",
@@ -214,7 +229,7 @@ class EnhancedTable extends Component {
                 exportCsv: (columns, data) =>
                   exportCSV(columns, this.state.allData, this.props.type),
                 exportPdf: (columns, data) =>
-                  exportPDF(columns, this.state.allData, this.props.type)
+                  exportPDF(columns, this.state.allData, this.props.type),
               }}
               editable={{
                 onRowAdd: this.addRow,

@@ -75,7 +75,7 @@ function getColumns(type) {
         initialEditValue: '',
         validate: (rowData) => (rowData.name === '' || rowData.name === undefined
           ? { isValid: false, helperText: 'Name cannot be empty' }
-          : rowData.name.includes(' ') ? true : { isValid: false, helperText: 'Name must only contain first name and last name'}),
+          : true),
       },
       {
         title: 'PHONE NUMBER',
