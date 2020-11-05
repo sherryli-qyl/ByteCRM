@@ -7,20 +7,12 @@ import NavbarDropdown from "./components/NavbarDropdown";
 import { withRouter } from "react-router";
 
 class Private extends Component {
-<<<<<<< HEAD
-  constructor (props){
-    super(props);
-    this.state = {
-      clicked: false,
-    }
-=======
   constructor(props) {
     super(props);
     this.state = {
       clicked: false,
       // showDropdown: false,
     };
->>>>>>> login page fix && navbar fix
     this.handleClick = this.handleClick.bind(this);
     // this.onClickDropdown = this.onClickDropdown.bind(this);
     // this.handleClickOutside = this.handleClickOutside.bind(this);
