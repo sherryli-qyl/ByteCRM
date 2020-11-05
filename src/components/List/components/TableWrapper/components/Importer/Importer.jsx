@@ -1,42 +1,34 @@
 import React, { Component } from "react";
+import UploadModal from './components/UploadModal';
 import "./Importer.scss";
 
 export default class Importer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      fileUploadState: "",
+      modalVisible: false,
     };
-    this.inputReference = React.createRef();
   }
 
-  fileUploadAction = () => this.inputReference.current.click();
-  fileUploadInputChange = (e) => {
-    this.setState({
-      fileUploadState: e.target.value,
-    });
-    this.loadFile(e.target.value);
+  showModal = (evt) => {
+    evt.preventDefault();
+    this.setState({ modalVisible: true });
   };
 
-  loadFile = async (path) => {
-    const response = await fetch(path);
-    const data = await response.text();
-    const rows = data.split('\n').slice(1);
-    console.log("Importer -> rows", rows);
+  changeModalVisible = (s) => {
+    this.setState({ modalVisible: s });
   };
 
   render() {
     return (
       <>
-        <input
-          type="file"
-          hidden
-          ref={this.inputReference}
-          onChange={this.fileUploadInputChange}
-        />
-        <button className="import__btn" onClick={this.fileUploadAction}>
-          Import
-        </button>
+        {this.state.modalVisible && (
+          <UploadModal
+            changeModalVisible={this.changeModalVisible}
+            getNewData={this.props.getNewData}
+          />
+        )}
+        <button className="import__btn" onClick={this.showModal} > Import </button>
       </>
     );
   }

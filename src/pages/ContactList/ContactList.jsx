@@ -21,7 +21,7 @@ class ContactList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userAccount: 'Yurun Yu',
+      userAccount: 'Zoe Joey',
     };
   }
 
