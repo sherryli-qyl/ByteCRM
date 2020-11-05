@@ -219,7 +219,7 @@ class EnhancedTable extends Component {
                 search: true,
                 sorting: true,
                 pageSize: 10,
-                pageSizeOptions: [10, 30, 50],
+                pageSizeOptions: [10, 20, 40],
                 exportButton: true,
                 exportCsv: (columns, data) =>
                   exportCSV(columns, data, this.props.type),
