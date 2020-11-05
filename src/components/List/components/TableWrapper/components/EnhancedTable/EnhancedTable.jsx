@@ -6,6 +6,7 @@ import SelectModal from "./components/SelectModal";
 import tableIcons from "../../../../../../lib/tableLibs/getIcons";
 import getColumns from "../../../../../../lib/tableLibs/getColumns";
 import exportCSV from "../../../../../../lib/tableLibs/exportCSV";
+import exportPDF from "../../../../../../lib/tableLibs/exportPDF";
 import Loading from "../../../../../Loading";
 import {
   GetAllContacts,
@@ -222,7 +223,9 @@ class EnhancedTable extends Component {
                 pageSizeOptions: [10, 20, 40],
                 exportButton: true,
                 exportCsv: (columns, data) =>
-                  exportCSV(columns, data, this.props.type),
+                  exportCSV(columns, this.state.allData, this.props.type),
+                exportPdf: (columns, data) =>
+                  exportPDF(columns, this.state.allData, this.props.type)
               }}
               editable={{
                 onRowAdd: this.addRow,

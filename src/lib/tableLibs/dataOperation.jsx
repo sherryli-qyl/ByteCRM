@@ -31,7 +31,8 @@ const LEAD_STATUS_BACK = {
 };
 
 /* ====================================GET========================================== */
-function wrapUpData(data, type) {
+function wrapUpData(rowData, type) {
+  let data = JSON.parse(JSON.stringify(rowData));
   if (type === "contact") {
     for (let item of data) {
       if (item.name.length > 17) {
@@ -42,7 +43,14 @@ function wrapUpData(data, type) {
       }
     }
     return data.map((cur) => ({
-      name: <JumpButton id={cur.contactID} type="contact" name={cur.name} />,
+      name: (
+        <JumpButton
+          key={cur.contactID}
+          id={cur.contactID}
+          type="contact"
+          name={cur.name}
+        />
+      ),
       contactID: cur.contactID,
       companyID: cur.companyID,
       email: cur.email,
@@ -50,6 +58,7 @@ function wrapUpData(data, type) {
       contactOwner: cur.contactOwner,
       associatedCompany: (
         <JumpButton
+          key={cur.companyID}
           id={cur.companyID}
           type="company"
           name={cur.associatedCompany}
@@ -110,33 +119,34 @@ const processData = (data, type) => {
       leadStatus: LEAD_STATUS_BACK[data.leadStatus],
       createDate: data.createDate,
     };
+  } else {
+    let newOwner;
+    // let contacts = [];
+    // let contactID = [];
+    if (typeof data.companyOwner === "object") {
+      newOwner = data.companyOwner.fullName;
+    } else if (!data.companyOwner) {
+      newOwner = "Unassigned";
+    }
+    // if (typeof data.associatedContacts === "object") {
+    //   contacts = data.associatedContacts.map((cur) => cur.fullName);
+    //   contactID = data.associatedContacts.map((cur) => cur.id);
+    // } else if (!data.associatedContacts) {
+    //   contacts = contactID = undefined;
+    // }
+    return {
+      name: data.name,
+      companyID: data.id,
+      // contactID: data.associatedContacts ? contactID : undefined,
+      phoneNumber: data.phoneNumber,
+      companyOwner: newOwner || undefined,
+      // associatedContacts: data.associatedContacts ? contacts : undefined,
+      lastLoggedCallDate: data.lastLoggedCallDate,
+      city: data.city,
+      country: data.country,
+      industry: data.industry,
+    };
   }
-  let newOwner;
-  let contacts = [];
-  let contactID = [];
-  if (typeof data.companyOwner === "object") {
-    newOwner = data.companyOwner.fullName;
-  } else if (!data.companyOwner) {
-    newOwner = "Unassigned";
-  }
-  if (typeof data.associatedContacts === "object") {
-    contacts = data.associatedContacts.map((cur) => cur.fullName);
-    contactID = data.associatedContacts.map((cur) => cur.id);
-  } else if (!data.associatedContacts) {
-    contacts = contactID = undefined;
-  }
-  return {
-    name: data.name,
-    companyID: data.id,
-    contactID: data.associatedContacts ? contactID : undefined,
-    phoneNumber: data.phoneNumber,
-    companyOwner: newOwner || undefined,
-    associatedContacts: data.associatedContacts ? contacts : undefined,
-    lastLoggedCallDate: data.lastLoggedCallDate,
-    city: data.city,
-    country: data.country,
-    industry: data.industry,
-  };
 };
 
 const getTable = (data, tabID, userAccount, type) => {
