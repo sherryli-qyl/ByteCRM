@@ -7,7 +7,14 @@ import NavbarDropdown from "../NavbarDropdown";
 import { withRouter } from "react-router";
 
 class Private extends Component {
-  state = { clicked: false };
+  constructor (props){
+    super(props);
+    this.state = {
+      clicked: false,
+    }
+    this.handleClick = this.handleClick.bind(this);
+  }
+
   handleClick = () => {
     this.setState({ clicked: !this.state.clicked });
   };
