@@ -1,9 +1,8 @@
-import React from 'react';
-import Profile from '../../../../../img/Contact/profile.png';
-import HeaderNavLink from '../../HeaderNavLink';
-import { LOGIN_URL } from '../../../../Routes/URLMap';
-import { isLoggedIn, removeToken } from '../../../../../utils/auth';
-import './DropdownItems.scss';
+import React from "react";
+import Profile from "../../../../../../../img/Contact/profile.png";
+import { LOGIN_URL } from "../../../../../../Routes/URLMap";
+import { removeToken, removeUser } from "../../../../../../../utils/auth";
+import "./DropdownItems.scss";
 
 const logout = (history) => {
   removeToken();
@@ -11,9 +10,7 @@ const logout = (history) => {
 };
 const user = JSON.parse(localStorage.getItem('user'));
 
-const DropdownItems = ({ history }) => {
-  if (!isLoggedIn()) return null;
-
+const DropdownItems = ({ user }) => {
   return (
     <div className="dropdownItems_wrapper">
       <div className="profile_info">
@@ -31,11 +28,15 @@ const DropdownItems = ({ history }) => {
         </div>
       </div>
       <div className="sign_out_wrapper">
-        <HeaderNavLink path={LOGIN_URL}>
-          <div className="private-text" onClick={() => logout(history)}>
-            Sign Out
-          </div>
-        </HeaderNavLink>
+        <button
+          className="navButton"
+          onClick={(event) => {
+            removeUser();
+            removeToken();
+          }}
+        >
+          <a href={LOGIN_URL}>Sign Out</a>
+        </button>
       </div>
     </div>
   );

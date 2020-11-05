@@ -1,4 +1,4 @@
-@import "../../../../../style/variable.scss";
+@import "../../../../../../../style/variable.scss";
 
 .dropdownItems_wrapper {
   height: 350px;
@@ -35,14 +35,25 @@
 
   .sign_out_wrapper {
     vertical-align: middle;
+    height: auto;
+    position: relative;
     :hover {
       text-decoration: underline;
     }
-    .private-text {
-      font-size: 18px;
-      margin: 0;
+    .navButton {
+      @extend .nakedBtn;
+      width: 100px;
+      height: 30px;
+      border-radius: 5px;
       color: $secondary-color;
-      text-align: center;
+      position: absolute;
+      font-size: 15px;
+      top: 18px;
+      left: 30%;
+      a {
+        color: $secondary-color;
+        text-decoration: none;
+      }
     }
   }
 }
