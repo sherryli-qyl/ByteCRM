@@ -13,7 +13,7 @@ class JumpButton extends React.Component {
   render() {
     return (
       <button
-        className="nakedBtn"
+        className={'naked__button_' + this.props.type}
         onClick={(event) => {
           event.preventDefault();
           sessionStorage.setItem("id", this.props.id);

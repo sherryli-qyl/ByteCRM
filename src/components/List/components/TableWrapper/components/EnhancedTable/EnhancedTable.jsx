@@ -166,6 +166,7 @@ class EnhancedTable extends Component {
   changeModalVisible = (s) => {
     this.setState({ modalVisible: s });
   };
+  
   changeLoadingVisible = (s) => {
     this.setState({
       showLoading: s

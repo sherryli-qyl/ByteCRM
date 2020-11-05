@@ -1,15 +1,26 @@
 @import "../../../../../../../../style/variable.scss";
 
-.nakedBtn {
-  font-size: medium;
+body {
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;   
+}
+
+.naked__button_contact {
+  background: transparent;
+  margin: 0;
+  border: 0;
+  width: 175px;
+  font-size: medium;
   text-align: left;
-  width: 190px;
-  color: black;
-  
-  position: relative;
-  top: 2px;
+}
+
+.naked__button_company {
+  background: transparent;
+  margin: 0;
+  border: 0;
+  width: 260px;
+  font-size: medium;
+  text-align: left;
 }
 
 .inactive {
@@ -25,4 +36,5 @@
 
 .active {
   color: $secondary-color;
+  text-decoration: none;
 }

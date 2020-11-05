@@ -1,6 +1,6 @@
 import React from 'react';
 import EnhancedTable from './components/EnhancedTable/EnhancedTable';
-import Reader from './components/Importer';
+import Importer from './components/Importer';
 
 class TableWrapper extends React.Component {
   constructor(props) {
@@ -22,7 +22,7 @@ class TableWrapper extends React.Component {
   render() {
     return (
       <>
-        <Reader
+        <Importer
           getNewData={this.getNewDataFromCSV}
         />
         <EnhancedTable
