@@ -46,7 +46,7 @@ Editor.modules = {
     ['clean'],
     [{ 'list': 'ordered' }, { 'list': 'bullet' },
       { 'indent': '-1' }, { 'indent': '+1' }],
-    ['link', 'image', 'video'],
+    ['link'],
   ],
   clipboard: {
     // toggle to add extra line breaks when pasting HTML:
@@ -58,7 +58,7 @@ Editor.formats = [
   'header', 'font', 'size',
   'bold', 'italic', 'underline', 'strike', 'blockquote',
   'list', 'bullet', 'indent',
-  'link', 'image', 'video',
+  'link', 
 ];
 
 export default Editor;

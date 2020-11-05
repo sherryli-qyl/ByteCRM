@@ -6,13 +6,19 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
-const useStyles = (theme) => ({
+
+
+
+
+
+
+const useStyles = theme => ({
     root: {
         minWidth: 100,
       },
       time: {
         fontSize: 14,
-        textAlign: 'right',
+        textAlign: "right",
       },
       pos: {
         marginBottom: 12,
@@ -20,8 +26,8 @@ const useStyles = (theme) => ({
       divider: {
         margin: theme.spacing(2, 0),
       },
-      type: {
-        textAlign: 'left',
+      type:{
+        textAlign: "left",
       },
       formControl: {
         margin: theme.spacing(1),
@@ -41,82 +47,94 @@ const useStyles = (theme) => ({
       },
   });
 
+
+
 class MeetingModalMultiSelect extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
         outcome: 0,
-        attendees: 0,
+        attendees:0,
       };
+     
+  
     }
 
-    handleOutcomeChange = (event) => {
+    handleOutcomeChange = event => {
       console.log('Click');
-      this.setState({ outcome: event.target.value });
+      this.setState({outcome:event.target.value});  
+     
     };
-
-    handleAttendeesChange = (event) => {
+    
+    handleAttendeesChange = event => {
       console.log('Click');
-      this.setState({ outcome: event.target.value });
+      this.setState({outcome:event.target.value});  
+     
     };
 
     render() {
         const { classes } = this.props;
+       
 
+        
         return (
-          <div className="border-bottom">
+        <div className="border-bottom">
             <Grid container alignContent="space-between" alignItems="center">
-              <Grid item xs={3}>
-                <FormControl className={classes.formControl}>
-                  <InputLabel shrink id="demo-simple-select-placeholder-label-label">
-                    Attendees
-                  </InputLabel>
-                  <Select
-                    labelId="demo-simple-select-placeholder-label-label"
-                    id="demo-simple-select-placeholder-label"
-                    value={this.state.outcome}
-                    onChange={this.handleChange}
-                    displayEmpty
-                    className={classes.selectEmpty}
-                  >
-                    <MenuItem value="">
-                      <em>None</em>
-                    </MenuItem>
-                    <MenuItem value={10}>Scheduled</MenuItem>
-                    <MenuItem value={20}>Completed</MenuItem>
-                    <MenuItem value={30}>Rescheduled</MenuItem>
-                  </Select>
-                </FormControl>
-              </Grid>
-
-              <Grid item xs={3} />
-              <Grid item xs={3} />
-              <Grid item xs={3}>
-                <FormControl className={classes.formControl}>
-                  <InputLabel shrink id="demo-simple-select-placeholder-label-label">
-                    Duration
-                  </InputLabel>
-                  <Select
-                    labelId="demo-simple-select-placeholder-label-label"
-                    id="demo-simple-select-placeholder-label"
-                    value={this.state.outcome}
-                    onChange={this.handleChange}
-                    displayEmpty
-                    className={classes.selectEmpty}
-                  >
-                    <MenuItem value="">
-                      <em>None</em>
-                    </MenuItem>
-                    <MenuItem value={10}>Scheduled</MenuItem>
-                    <MenuItem value={20}>Completed</MenuItem>
-                    <MenuItem value={30}>Rescheduled</MenuItem>
-                  </Select>
-                </FormControl>
-              </Grid>
+            <Grid item xs={3}>
+            <FormControl className={classes.formControl}>
+            <InputLabel shrink id="demo-simple-select-placeholder-label-label">
+              Attendees
+            </InputLabel>
+            <Select
+              labelId="demo-simple-select-placeholder-label-label"
+              id="demo-simple-select-placeholder-label"
+              value={this.state.outcome}
+              onChange={this.handleChange}
+              displayEmpty
+              className={classes.selectEmpty}
+            >
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
+              <MenuItem value={10}>Scheduled</MenuItem>
+              <MenuItem value={20}>Completed</MenuItem>
+              <MenuItem value={30}>Rescheduled</MenuItem>
+            </Select>
+          </FormControl>
             </Grid>
-          </div>
+          
+            <Grid item xs={3}>
+            
+            </Grid>
+            <Grid item xs={3}>
+            
+            </Grid>
+            <Grid item xs={3}>
+            <FormControl className={classes.formControl}>
+            <InputLabel shrink id="demo-simple-select-placeholder-label-label">
+              Duration
+            </InputLabel>
+            <Select
+              labelId="demo-simple-select-placeholder-label-label"
+              id="demo-simple-select-placeholder-label"
+              value={this.state.outcome}
+              onChange={this.handleChange}
+              displayEmpty
+              className={classes.selectEmpty}
+            >
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
+              <MenuItem value={10}>Scheduled</MenuItem>
+              <MenuItem value={20}>Completed</MenuItem>
+              <MenuItem value={30}>Rescheduled</MenuItem>
+            </Select>
+          </FormControl>
+            </Grid>
+        </Grid>
+        </div>
         );
       }
     }
-
+    
 export default withStyles(useStyles)(MeetingModalMultiSelect);

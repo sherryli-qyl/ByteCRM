@@ -8,7 +8,11 @@ export const setToken = (token) => localStorage.setItem(AUTH_TOKEN, token);
 
 export const removeToken = () => localStorage.removeItem(AUTH_TOKEN);
 
+<<<<<<< HEAD
 export const removeUser = ()=> localStorage.removeItem('user');
+=======
+export const removeUser = () => localStorage.removeItem('user');
+>>>>>>> master
 
 export const isLoggedIn = () => {
   const token = localStorage.getItem(AUTH_TOKEN);
