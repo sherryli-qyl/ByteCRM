@@ -33,7 +33,7 @@
     grid-gap: 10px;
 
     @include MQ(S) {
-      display: flex;
+      display: none;
       flex-direction: column;
       width: 100vw;
       height: 400px;
@@ -46,6 +46,7 @@
   }
   .left_nav_menu.active {
     @include MQ(S) {
+      display: flex;
       background: $primary-color;
       opacity: 1;
       transition: all 0.5s ease;

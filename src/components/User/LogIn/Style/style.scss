@@ -1,12 +1,22 @@
+@import "../../../../style/variable.scss";
 $hoverColor: #33475b;
 $shownColor: #0091ae;
-$myFont: 'Varela Round', sans-serif;
+$myFont: "Varela Round", sans-serif;
 
 .byteCRMLogo {
   width: 27em;
   height: 9em;
   margin-left: 34%;
   margin-top: 5%;
+  @include MQ(S) {
+    width: 17em;
+    height: 6em;
+    margin-left: 13%;
+    margin-top: 15%;
+  }
+  img {
+    width: 100%;
+  }
 }
 
 .signUpPara {
@@ -19,6 +29,9 @@ $myFont: 'Varela Round', sans-serif;
   color: $hoverColor;
   line-height: 12px;
   margin-left: 40%;
+  @include MQ(S) {
+    margin-left: 25%;
+  }
 }
 
 .linkBtn {

@@ -3,15 +3,23 @@ import "./Private.scss";
 import Profile from "../../../../img/Contact/profile.png";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import NavbarDropdown from "../NavbarDropdown";
+import NavbarDropdown from "./components/NavbarDropdown";
 import { withRouter } from "react-router";
 
 class Private extends Component {
+<<<<<<< HEAD
   constructor (props){
     super(props);
     this.state = {
       clicked: false,
     }
+=======
+  constructor(props) {
+    super(props);
+    this.state = {
+      clicked: false,
+    };
+>>>>>>> login page fix && navbar fix
     this.handleClick = this.handleClick.bind(this);
   }
 
@@ -30,9 +38,11 @@ class Private extends Component {
               <FontAwesomeIcon icon={faChevronDown} />
             </div>
             <div
-              className={this.state.clicked ? "nav_dropdown active" : "nav_dropdown"}
+              className={
+                this.state.clicked ? "nav_dropdown active" : "nav_dropdown"
+              }
             >
-              <NavbarDropdown />
+              <NavbarDropdown user={this.props.user} />
             </div>
           </div>
         </div>
