@@ -1,10 +1,41 @@
-.nakedBtn {
+@import "../../../../../../../../style/variable.scss";
+
+
+body {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;   
+}
+
+.naked__button_contact {
+  background: transparent;
+  margin: 0;
+  border: 0;
+  width: 175px;
   font-size: medium;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   text-align: left;
-  width: 180px;
+}
+
+.naked__button_company {
+  background: transparent;
+  margin: 0;
+  border: 0;
+  width: 260px;
+  font-size: medium;
+  text-align: left;
+}
+
+.inactive {
+  color: $primary-color;
+  text-decoration: none;
+}
+
+.inactive:hover {
+  color: $secondary-color;
+  text-decoration: underline;
+  font-weight: bolder;
 }
 
 .active {
-  color: #0091ae;
+  color: $secondary-color;
+  text-decoration: none;
 }

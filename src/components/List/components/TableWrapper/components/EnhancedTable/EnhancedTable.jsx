@@ -6,6 +6,7 @@ import SelectModal from "./components/SelectModal";
 import tableIcons from "../../../../../../lib/tableLibs/getIcons";
 import getColumns from "../../../../../../lib/tableLibs/getColumns";
 import exportCSV from "../../../../../../lib/tableLibs/exportCSV";
+import exportPDF from "../../../../../../lib/tableLibs/exportPDF";
 import Loading from "../../../../../Loading";
 import {
   GetAllContacts,
@@ -46,30 +47,6 @@ class EnhancedTable extends Component {
     } else {
       this.getAllCompanies();
       this.changeLoadingVisible(false);
-    }
-  }
-
-  // TODO: get new data from CSV
-  componentDidUpdate(nextProps) {
-    const { CSVData } = this.props;
-    if (nextProps.CSVData !== CSVData) {
-      if (this.props.type === "contact") {
-        console.log(nextProps.CSVData);
-        // for loop + validate
-        // createContact(nextProps.CSVData);
-      } else if (this.props.type === "company") {
-        // AddCompany(nextProps.CSVData);
-        setTimeout(() => {
-          console.log(nextProps.CSVData);
-        }, 500);
-      }
-      // setTimeout(() => {
-      //   if (this.props.type === "contact") {
-      //     this.getAllContacts();
-      //   } else {
-      //     this.getAllCompanies();
-      //   }
-      // }, 1000);
     }
   }
 
@@ -166,11 +143,12 @@ class EnhancedTable extends Component {
   changeModalVisible = (s) => {
     this.setState({ modalVisible: s });
   };
+
   changeLoadingVisible = (s) => {
     this.setState({
-      showLoading: s
+      showLoading: s,
     });
-  }
+  };
 
   getDataToEdit = (data) => {
     this.changeLoadingVisible(true);
@@ -198,7 +176,11 @@ class EnhancedTable extends Component {
     for (const item of Rows) {
       index.push(item.tableData.id);
     }
-    return index;
+    setTimeout(() => {
+      this.setState({
+        selectedRow: index,
+      });
+    }, 100);
   };
 
   render() {
@@ -222,7 +204,7 @@ class EnhancedTable extends Component {
               icons={tableIcons}
               onRowClick={(evt, selectedRow) => {}}
               onSelectionChange={(Rows) => {
-                this.setState({ selectedRow: this.getSelectedRowIndex(Rows) });
+                this.getSelectedRowIndex(Rows);
               }}
               actions={[
                 {
@@ -242,10 +224,12 @@ class EnhancedTable extends Component {
                 search: true,
                 sorting: true,
                 pageSize: 10,
-                pageSizeOptions: [10, 30, 50],
+                pageSizeOptions: [10, 20, 40],
                 exportButton: true,
                 exportCsv: (columns, data) =>
-                  exportCSV(columns, data, this.props.type),
+                  exportCSV(columns, this.state.allData, this.props.type),
+                exportPdf: (columns, data) =>
+                  exportPDF(columns, this.state.allData, this.props.type),
               }}
               editable={{
                 onRowAdd: this.addRow,
