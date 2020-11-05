@@ -1,14 +1,13 @@
 import React from 'react';
-import DropdownItems from './DropItems/DropdownItems';
+import Body from './components/Body';
+import Footer from './components/Footer';
 import './NavbarDropdown.scss';
 
-<<<<<<< HEAD:src/components/Header/components/NavbarDropdown/NavbarDropdown.js
-const NavbarDropdown = ({
-  user
-}) => (
-=======
 const NavbarDropdown = ({ user }) => (
->>>>>>> master:src/components/Header/components/Private/components/NavbarDropdown/NavbarDropdown.js
-  <DropdownItems user = {user} />
+  <div className = "navBarDropdown">
+    <Body user = {user}/>
+    <Footer user = {user}/>
+  </div>
+  
 );
 export default NavbarDropdown;

@@ -3,9 +3,7 @@ import EmailCards from './components/EmailCards';
 import EmailPageHeader from './components/Header';
 import shuffleCards from '../../../services/shuffleCards';
 import store from '../../../../store';
-import {
-  GetEmails, GetMultiContactsEmails, UpdateEmail, DeleteEmailLog, UpdateContacts, RemoveContacts,
-} from '../../../Api/Email/Email';
+import { GetEmails, GetMultiContactsEmails, UpdateEmail, DeleteEmailLog, UpdateContacts, RemoveContacts } from '../../../Api/Email/Email';
 import './EmailPage.scss';
 
 const user = JSON.parse(localStorage.getItem('user'));
@@ -102,7 +100,7 @@ class EmailPage extends React.Component {
         });
         return response.data;
       }
-      return [];
+        return [];
     }).then((cards) => {
       this.sortCardsArray(cards);
     });

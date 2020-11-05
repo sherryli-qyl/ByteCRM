@@ -15,8 +15,5 @@ const addUser = (user) => ({
   reload: true,
 });
 
-<<<<<<< HEAD
 
-=======
->>>>>>> master
 module.exports = { saveAction, addContactAction, addUser };

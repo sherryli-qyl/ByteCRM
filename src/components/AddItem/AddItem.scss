@@ -17,12 +17,6 @@
         max-height: 42px;
         background-color: #f5f8fa;
         align-items: center;
-
-        &:focus {
-            border: solid 1px rgba(0, 208, 228, .5);
-            box-shadow: 0 0 4px 1px rgba(0,208,228,.3), 0 0 0 1px #00d0e4;
-          }
-
        
         &__input{
             flex:1;

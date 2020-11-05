@@ -10,8 +10,7 @@ class Private extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      clicked: false,
-      // showDropdown: false,
+      showDropdown: false,
     };
     this.handleClick = this.handleClick.bind(this);
     // this.onClickDropdown = this.onClickDropdown.bind(this);
@@ -19,7 +18,9 @@ class Private extends Component {
   }
 
   handleClick = () => {
-    this.setState({ clicked: !this.state.clicked });
+    this.setState((prevState) => ({
+      showDropdown: !prevState.showDropdown
+    }));
   };
 
   // handleToggler() {
@@ -43,23 +44,23 @@ class Private extends Component {
   //   document.removeEventListener("mousedown", this.handleClickOutside);
   // }
   render() {
+    const { showDropdown } = this.state;
+    let className = "private__wrapper__navBarDropdown ";
+    if (showDropdown){
+      className += "private__wrapper__navBarDropdown--active";
+    }
+
     return (
-      <div className="right_wrapper">
-        <div className="profile_wrapper" onClick={this.handleClick}>
-          <div className="profile_container">
-            <div className="profile_nav">
-              <img src={Profile} alt="profile" />
-            </div>
-            <div className="down_icon_wrapper">
+      <div className="private">
+        <div className="private__wrapper">
+          <div className="private__wrapper__user" onClick={this.handleClick}>
+            <img className = "private__wrapper__user__userIcon" src={Profile} alt="profile" />
+            <div className="private__wrapper__user__arrowIcon">
               <FontAwesomeIcon icon={faChevronDown} />
             </div>
-            <div
-              className={
-                this.state.clicked ? "nav_dropdown active" : "nav_dropdown"
-              }
-            >
-              <NavbarDropdown user={this.props.user} />
-            </div>
+          </div>
+          <div className = {className}>
+            <NavbarDropdown user={this.props.user} />
           </div>
         </div>
       </div>

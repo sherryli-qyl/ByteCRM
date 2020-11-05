@@ -29,9 +29,9 @@ class PriorityDropdown extends React.Component {
         key: 1,
         value: 'high',
         display:
-  <StyledPriority>
-    high
-  </StyledPriority>,
+          <StyledPriority>
+            high
+          </StyledPriority>,
       }];
 
     this.state = {
