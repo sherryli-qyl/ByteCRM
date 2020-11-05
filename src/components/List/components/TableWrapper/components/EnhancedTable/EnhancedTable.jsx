@@ -50,18 +50,14 @@ class EnhancedTable extends Component {
   }
 
   // TODO: get new data from CSV
-  componentDidUpdate(nextProps) {
+  componentDidUpdate(prevProps) {
     const { CSVData } = this.props;
-    if (nextProps.CSVData !== CSVData) {
+    if (prevProps.CSVData !== CSVData) {
       if (this.props.type === "contact") {
-        console.log(nextProps.CSVData);
-        // for loop + validate
-        // createContact(nextProps.CSVData);
+        console.log(CSVData);
+        
       } else if (this.props.type === "company") {
         // AddCompany(nextProps.CSVData);
-        setTimeout(() => {
-          console.log(nextProps.CSVData);
-        }, 500);
       }
       // setTimeout(() => {
       //   if (this.props.type === "contact") {

@@ -1,45 +1,55 @@
-import React from 'react';
-import JumpButton from '../../components/List/components/TableWrapper/components/EnhancedTable/components/JumpButton';
+import React from "react";
+import JumpButton from "../../components/List/components/TableWrapper/components/EnhancedTable/components/JumpButton";
 
-import getDate from './getDate';
+import getDate from "./getDate";
 
 const LEAD_STATUS = {
-  1: 'New',
-  2: 'Open',
-  3: 'In progress',
-  4: 'Open deal',
-  5: 'Unqualified',
-  6: 'Attempted to contact',
-  7: 'Connected',
-  8: 'Bad timing',
+  1: "New",
+  2: "Open",
+  3: "In progress",
+  4: "Open deal",
+  5: "Unqualified",
+  6: "Attempted to contact",
+  7: "Connected",
+  8: "Bad timing",
 };
 
 const LEAD_STATUS_BACK = {
   New: 1,
   Open: 2,
-  'In progress': 3,
-  'Open deal': 4,
+  "In progress": 3,
+  "Open deal": 4,
   Unqualified: 5,
-  'Attempted to contact': 6,
+  "Attempted to contact": 6,
   Connected: 7,
-  'Bad timing': 8,
+  "Bad timing": 8,
 };
+
+/* ====================================CSV========================================== */
+function handleCsv(data, type) {
+  if (type === "contact") {
+    const rows = data.split('\n').slice(1);
+    rows.forEach((row) => {
+      const cols = row.split(",");
+      
+    });
+  } else {
+  }
+}
 
 /* ====================================GET========================================== */
 function wrapUpData(data, type) {
-  if (type === 'contact') {
+  if (type === "contact") {
     for (let item of data) {
-      if (item.name.length > 15) {
-        item.name = item.name.slice(0, 15) + "...";
+      if (item.name.length > 17) {
+        item.name = item.name.slice(0, 17) + "...";
       }
-      if (item.associatedCompany && item.associatedCompany.length > 15) {
-        item.associatedCompany = item.associatedCompany.slice(0, 15) + "...";
+      if (item.associatedCompany && item.associatedCompany.length > 17) {
+        item.associatedCompany = item.associatedCompany.slice(0, 17) + "...";
       }
     }
     return data.map((cur) => ({
-      name: (
-        <JumpButton id={cur.contactID} type="contact" name={cur.name} />
-      ),
+      name: <JumpButton id={cur.contactID} type="contact" name={cur.name} />,
       contactID: cur.contactID,
       companyID: cur.companyID,
       email: cur.email,
@@ -56,28 +66,14 @@ function wrapUpData(data, type) {
       leadStatus: cur.leadStatus,
       createDate: cur.createDate,
     }));
-  } if (type === 'company') {
+  }
+  if (type === "company") {
     for (let item of data) {
-      if (item.name.length > 15) {
-        item.name = item.name.slice(0, 15) + "...";
+      if (item.name.length > 25) {
+        item.name = item.name.slice(0, 25) + "...";
       }
     }
     return data.map((cur) => {
-      // let newOwners;
-      // const temp = [];
-      // if (cur.associatedContacts.length !== 0 && cur.contactID.length !== 0) {
-      //   for (const i in cur.contactID) {
-      //     temp.push(
-      //       <JumpButton
-      //         key={cur.contactID[i]}
-      //         id={cur.contactID[i]}
-      //         type="contact"
-      //         name={cur.associatedContacts[i]}
-      //       />,
-      //     );
-      //   }
-      // }
-      // newOwners = <>{temp.map((cur) => cur)}</>;
       return {
         name: (
           <JumpButton
@@ -101,12 +97,12 @@ function wrapUpData(data, type) {
 }
 
 const processData = (data, type) => {
-  if (type === 'contact') {
+  if (type === "contact") {
     let newOwner;
-    if (typeof data.contactOwner === 'object') {
+    if (typeof data.contactOwner === "object") {
       newOwner = data.contactOwner.fullName;
     } else if (!data.contactOwner) {
-      newOwner = 'Unassigned';
+      newOwner = "Unassigned";
     }
     return {
       name: data.fullName,
@@ -116,7 +112,7 @@ const processData = (data, type) => {
       email: data.email,
       contactOwner: newOwner || data.contactOwner,
       associatedCompany:
-        typeof data.company === 'object' ? data.company.name : data.company,
+        typeof data.company === "object" ? data.company.name : data.company,
       lastActivityDate: data.lastActivityDate,
       leadStatus: LEAD_STATUS_BACK[data.leadStatus],
       createDate: data.createDate,
@@ -125,12 +121,12 @@ const processData = (data, type) => {
   let newOwner;
   let contacts = [];
   let contactID = [];
-  if (typeof data.companyOwner === 'object') {
+  if (typeof data.companyOwner === "object") {
     newOwner = data.companyOwner.fullName;
   } else if (!data.companyOwner) {
-    newOwner = 'Unassigned';
+    newOwner = "Unassigned";
   }
-  if (typeof data.associatedContacts === 'object') {
+  if (typeof data.associatedContacts === "object") {
     contacts = data.associatedContacts.map((cur) => cur.fullName);
     contactID = data.associatedContacts.map((cur) => cur.id);
   } else if (!data.associatedContacts) {
@@ -153,9 +149,10 @@ const processData = (data, type) => {
 const getTable = (data, tabID, userAccount, type) => {
   if (tabID === 1) {
     return wrapUpData(data, type);
-  } if (tabID === 2) {
+  }
+  if (tabID === 2) {
     const mine = [];
-    if (type === 'contact') {
+    if (type === "contact") {
       for (const item of data) {
         if (item.contactOwner === userAccount) {
           mine.push(item);
@@ -169,17 +166,18 @@ const getTable = (data, tabID, userAccount, type) => {
       }
     }
     return wrapUpData(mine, type);
-  } if (tabID === 3) {
+  }
+  if (tabID === 3) {
     const unassigned = [];
-    if (type === 'contact') {
+    if (type === "contact") {
       for (const item of data) {
-        if (item.contactOwner === 'Unassigned') {
+        if (item.contactOwner === "Unassigned") {
           unassigned.push(item);
         }
       }
     } else {
       for (const item of data) {
-        if (item.companyOwner === 'Unassigned') {
+        if (item.companyOwner === "Unassigned") {
           unassigned.push(item);
         }
       }
@@ -194,7 +192,7 @@ function remove(allData, selectedRow) {
   for (const item of selectedRow) {
     names.push(item.name);
   }
-  for (let i = 0; i < allData.length;) {
+  for (let i = 0; i < allData.length; ) {
     if (names.includes(allData[i].name)) {
       allData.splice(i, 1);
       continue;
@@ -206,7 +204,7 @@ function remove(allData, selectedRow) {
 
 /* =====================================POST============================================== */
 function makeNewRow(newData, type) {
-  if (type === 'contact') {
+  if (type === "contact") {
     newData.createDate = getDate();
     // if (!newData.contactOwner) {
     //   newData.contactOwnerFirstName = "Unassigned";
@@ -232,16 +230,15 @@ function makeNewRow(newData, type) {
     if (newData.leadStatus) {
       newData.leadStatus = LEAD_STATUS[newData.leadStatus];
     }
-    const tempName = newData.name.split(' ');
+    const tempName = newData.name.split(" ");
     newData.firstName = tempName[0];
     newData.lastName = tempName.length > 1 ? tempName[1] : undefined;
     delete newData.name;
     return newData;
-  } if (type === 'company') {
+  }
+  if (type === "company") {
     return newData;
   }
 }
 
-export {
-  getTable, processData, makeNewRow, remove,
-};
+export { getTable, processData, makeNewRow, remove, handleCsv };

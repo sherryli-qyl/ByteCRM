@@ -10,20 +10,17 @@ class TableWrapper extends React.Component {
     };
   }
 
-  getNewDataFromCSV = (newRows) => {
+  getNewData = (text) => {
     this.setState({
-      CSVData: newRows,
+      CSVData: text,
     });
-    setTimeout(() => {
-      console.log(this.state.CSVData);
-    }, 500);
   };
 
   render() {
     return (
       <>
         <Importer
-          getNewData={this.getNewDataFromCSV}
+          getNewData={this.getNewData}
         />
         <EnhancedTable
           CSVData={this.state.CSVData}
