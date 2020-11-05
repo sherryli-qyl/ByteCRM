@@ -171,14 +171,6 @@ class EnhancedTable extends Component {
     }, 1000);
   };
 
-  getSelectedRowIndex = (Rows) => {
-    const index = [];
-    for (const item of Rows) {
-      index.push(item.tableData.id);
-    }
-    return index;
-  };
-
   render() {
     return (
       <>
@@ -199,9 +191,6 @@ class EnhancedTable extends Component {
               data={this.state.dataToShow}
               icons={tableIcons}
               onRowClick={(evt, selectedRow) => {}}
-              onSelectionChange={(Rows) => {
-                this.setState({ selectedRow: this.getSelectedRowIndex(Rows) });
-              }}
               actions={[
                 {
                   tooltip: "Remove all selected contact(s)",
