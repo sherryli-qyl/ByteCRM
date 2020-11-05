@@ -113,7 +113,7 @@ class LogEmail extends React.Component {
       const res = PostEmail(body);
       res.then((value) => {
         if (value) {
-          const action = saveAction(value);
+          const action = saveAction(value, 'email');
           store.dispatch(action);
           this.props.modalController.close();
         } else {

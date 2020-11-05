@@ -3,9 +3,7 @@ import EmailCards from './components/EmailCards';
 import EmailPageHeader from './components/Header';
 import shuffleCards from '../../../services/shuffleCards';
 import store from '../../../../store';
-import {
-  GetEmails, GetMultiContactsEmails, UpdateEmail, DeleteEmailLog, UpdateContacts, RemoveContacts,
-} from '../../../Api/Email/Email';
+import { GetEmails, GetMultiContactsEmails, UpdateEmail, DeleteEmailLog, UpdateContacts, RemoveContacts } from '../../../Api/Email/Email';
 import './EmailPage.scss';
 
 const user = JSON.parse(localStorage.getItem('user'));
@@ -62,8 +60,9 @@ class EmailPage extends React.Component {
 
   handleDeleteCard(id) {
     const response = DeleteEmailLog(id);
-    response.then((value) => {
-      if (value) {
+    response.then((response) => {
+      console.log(response);
+      if (response.status === 204) {
         this.handleInitPage();
       }
     });
@@ -102,7 +101,7 @@ class EmailPage extends React.Component {
         });
         return response.data;
       }
-      return [];
+        return [];
     }).then((cards) => {
       this.sortCardsArray(cards);
     });
@@ -110,8 +109,8 @@ class EmailPage extends React.Component {
 
   componentDidMount() {
     store.subscribe(() => {
-      const { reload, value } = store.getState().reload;
-      if (reload) {
+      const { reload, value, key } = store.getState().reload;
+      if (reload && key === 'email') {
         this.handleLogEmail(value);
       }
     });

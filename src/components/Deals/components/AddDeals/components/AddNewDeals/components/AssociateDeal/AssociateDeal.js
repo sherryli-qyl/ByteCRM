@@ -28,7 +28,7 @@ const AssociateDeal = ({
                         Contact
                     </div>
                     <ContactSelector  contactList = {deal.contacts}
-                                      handleSelectedContacts={(contact)=> onChange(contact,'contact')} />
+                                      handleSelectedContacts={(contact)=> onChange(contact,'contacts')} />
                 </div>
             </div>
 

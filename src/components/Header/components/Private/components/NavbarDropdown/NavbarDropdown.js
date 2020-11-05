@@ -1,8 +1,14 @@
 import React from 'react';
-import DropdownItems from './DropItems/DropdownItems';
+import Body from './components/Body';
+import Footer from './components/Footer';
 import './NavbarDropdown.scss';
 
 const NavbarDropdown = ({ user }) => (
-  <DropdownItems user = {user} />
+  <div className = "navBarDropdown">
+    <div className = "navBarDropdown__corner"/>
+    <Body user = {user}/>
+    <Footer user = {user}/>
+  </div>
+  
 );
 export default NavbarDropdown;

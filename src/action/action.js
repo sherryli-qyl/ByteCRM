@@ -1,6 +1,7 @@
-const saveAction = (value) => ({
+const saveAction = (value, key) => ({
   type: 'SAVE',
   value,
+  key,
   reload: true,
 });
 
@@ -14,5 +15,6 @@ const addUser = (user) => ({
   user,
   reload: true,
 });
+
 
 module.exports = { saveAction, addContactAction, addUser };

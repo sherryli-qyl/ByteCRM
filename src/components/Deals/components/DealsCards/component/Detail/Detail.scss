@@ -15,8 +15,22 @@
         display: flex;
         flex-direction: column;
         padding: 10px 10px;
+        position: relative;
+        &:hover{
+            .dealsCard__removeBtn{
+              display:block;
+            }
+          }
 
         .dealsCard {
+
+            &__name{
+                color: $secondary-color;
+                &:hover{
+                  cursor: pointer;
+                  text-decoration: underline;
+                }
+            }
 
             &__stage {
                 display: flex;
@@ -30,6 +44,13 @@
 
             &__label{
                 margin-right: 5px;
+            }
+
+            &__removeBtn{
+                display: none;
+                position: absolute;
+                right: 10px;
+                top: 10px;
             }
         }
     }
