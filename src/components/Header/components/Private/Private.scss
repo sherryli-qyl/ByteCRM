@@ -1,9 +1,63 @@
-.Layout {
-  display: flex;
-  position: relative;
-  display: inline-block;
+@import "../../../../style/variable.scss";
+
+.private {
+  &__wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 10px 10px;
+  
+    &__user {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+
+      &__userIcon {
+        width: 40px;
+        height: 40px;
+      }
+
+      &__arrowIcon {
+        height: 20px;
+        font-size: 15px;
+        color: $primary-color-light;
+        transform: translateY(10px);
+        margin: 0px 10px 10px 15px;
+      }
+    }
+
+    .navBarDropdownCorner {
+      position: absolute;
+      height: 20px;
+      width: 20px;
+      background-color: white;
+      transform: rotate(45deg);
+      z-index:3;
+      top:60px;
+      right:30px;
+      border: {
+        top: solid 1px rgb(203, 214, 226);
+        left: solid 1px rgb(203, 214, 226);
+      }
+    }
+
+    &__navBarDropdown {
+      position: absolute;
+      display: flex;
+      right: 10px;
+      top: 70px;
+      max-height: 0;
+      z-index:2;
+      background-color: white;
+      transition: max-height 0.5s ease-out;
+      overflow: hidden;
+
+      &--active { 
+        max-height: 350px;
+        transition: max-height 0.5s ease-in;
+        z-index:2;
+      }
+    }
+  }
 }
 
-.profile_nav {
-  width: 30px;
-}

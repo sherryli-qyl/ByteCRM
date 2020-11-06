@@ -1,26 +1,25 @@
 import React from 'react';
-import { faPhoneAlt, faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
+import { faPhoneAlt, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import NavigationButton from '../../../../../../../NavigationButton';
 import RemoveBtn from '../../../../../../../RemoveBtn';
 import './Detail.scss';
 
-
 class Detail extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showRemoveModal: false
-    }
+      showRemoveModal: false,
+    };
     this.handleModalToggle = this.handleModalToggle.bind(this);
     this.onClickConfirmBtn = this.onClickConfirmBtn.bind(this);
     this.onClickCancelBtn = this.onClickCancelBtn.bind(this);
   }
 
   handleModalToggle() {
-    this.setState(prevState => ({
-      showRemoveModal: !prevState.showRemoveModal
-    }))
+    this.setState((prevState) => ({
+      showRemoveModal: !prevState.showRemoveModal,
+    }));
   }
 
   onClickConfirmBtn() {
@@ -32,13 +31,17 @@ class Detail extends React.Component {
   }
 
   render() {
-    const { website, company, phoneNumber, contact } = this.props;
+    const {
+      website, company, phoneNumber, contact,
+    } = this.props;
     const { showRemoveModal } = this.state;
     const websiteURL = `https://${website}`;
     return (
       <div className="relatedCompany">
-        <NavigationButton path = {"/companies/main"}
-                          id = {company.id}>
+        <NavigationButton
+          path="/companies/main"
+          id={company.id}
+        >
           {company.name}
         </NavigationButton>
         {/* <div className="relatedCompany__companyName">  </div> */}
@@ -57,16 +60,18 @@ class Detail extends React.Component {
           {phoneNumber}
         </div>
         <div className="relatedCompany__removeBtn">
-          <RemoveBtn showRemoveModal={showRemoveModal}
+          <RemoveBtn
+            showRemoveModal={showRemoveModal}
             contactName={contact.fullName}
             companyName={company.name}
             handleModalToggle={this.handleModalToggle}
             onClickConfirmBtn={this.onClickConfirmBtn}
-            onClickCancelBtn={this.onClickCancelBtn} />
+            onClickCancelBtn={this.onClickCancelBtn}
+          />
         </div>
-      </div >
-    )
-  };
+      </div>
+    );
+  }
 }
 
 export default Detail;

@@ -1,0 +1,39 @@
+@import '../../../../../../../../../../style/variable.scss';
+
+.taskNameBar {
+    display: flex;
+    align-items: center;
+
+
+
+    &__checkCircle {
+        margin-right: 1%;
+        height:28px;
+        width: 28px;
+
+        &--processing {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border:solid 1px rgb(203, 214, 226);
+            color: rgb(203, 214, 226);
+            background-color: rgb(245, 248, 250);
+            border-radius: 50%;
+            font-size: 18px;
+            height: 26px;
+            width: 26px;
+            cursor: pointer;
+        }
+
+        &--complete {
+            font-size: 28px;
+            color: $secondary-color;
+            cursor: pointer;
+        }
+
+    }
+
+    &__nameInput {
+        flex-grow: 1;
+    }
+}

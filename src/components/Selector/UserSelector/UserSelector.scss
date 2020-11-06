@@ -1,0 +1,71 @@
+@import '../../../style/variable.scss';
+
+
+.userSelector{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+
+
+    &__sidebar{
+        &__label{
+            display: flex;
+            align-items: center;
+            padding:10px;
+           
+            &__btn{
+                @extend .nakedBtn;
+                display: flex;
+                justify-content: flex-start;
+                font-size:14px;
+                width: 100%;
+                color:$primary-color;
+            }   
+        }
+
+        &__dropdown{
+            position: absolute;
+            z-index: 1;
+            top: 45px;
+            width: 100%;
+        }
+    }
+
+   
+
+    &__activity{
+        &__dropdown{
+            position: absolute;
+            z-index: 1;
+            top: 40px;
+            left: 40px;
+            width: 350px;
+        }
+
+        &__label{
+            height: 20px;
+            &__btn{
+                @extend .nakedBtn;
+                display: flex;
+                cursor: pointer;
+                color: $secondary-color;
+                justify-content: flex-end;
+                align-items: center;
+                font-size: 15px;
+                min-width: 90px;
+    
+                &__icon{
+                    margin-left:5px;
+                    color:rgba($color: $primary-color, $alpha: 0.7);
+                    flex-grow: 1;
+                }
+                
+    
+                &:hover{
+                    border-bottom: solid 1px;
+                }
+            }
+        }
+    }   
+}

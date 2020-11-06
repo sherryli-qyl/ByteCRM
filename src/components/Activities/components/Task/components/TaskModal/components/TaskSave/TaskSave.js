@@ -1,15 +1,23 @@
 import React from 'react';
-import ContainedButton from '../../../../../../../Style/Button/Modal/ContainedButton';
-import "./TaskSave.scss";
+import Button from '../../../../../../../Style/Button/Modal/Button';
+import './TaskSave.scss';
 
-const TaskSave = () => (
+const TaskSave = ({
+  disable,
+  handleClickSaveBtn,
+}) => (
   <div className="taskSave">
     <div className="taskSave__save">
-      <ContainedButton>
-        Send
-      </ContainedButton>
+      <Button
+        size="small"
+        variant="contained"
+        btnDisable={disable}
+        onClick={handleClickSaveBtn}
+      >
+        Save Task
+      </Button>
     </div>
   </div>
-)
+);
 
 export default TaskSave;

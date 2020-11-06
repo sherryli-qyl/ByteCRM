@@ -1,1 +1,1 @@
-export {default} from './LogEmailcard';
+export { default } from './LogEmailcard';

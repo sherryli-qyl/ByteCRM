@@ -1,1 +1,1 @@
-export {default} from './TableEditor';
+export { default } from './TableEditor';

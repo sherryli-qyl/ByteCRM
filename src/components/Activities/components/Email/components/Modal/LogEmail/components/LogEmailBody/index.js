@@ -1,1 +1,1 @@
-export {default} from './LogEmailBody';
+export { default } from './LogEmailBody';

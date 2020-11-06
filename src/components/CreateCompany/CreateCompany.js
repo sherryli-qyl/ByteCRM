@@ -1,23 +1,20 @@
-import React from 'react'
+import React from 'react';
 
+class CreateCompany extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
 
+    };
+  }
 
-class CreateCompany extends React.Component{
-    constructor(props){
-        super(props);
-        this.state={
-
-        }
-    }
-
-
-    render(){
-        return(
-            <div>
-                CreateCompany
-            </div>
-        )
-    }
+  render() {
+    return (
+      <div>
+        CreateCompany
+      </div>
+    );
+  }
 }
 
 export default CreateCompany;

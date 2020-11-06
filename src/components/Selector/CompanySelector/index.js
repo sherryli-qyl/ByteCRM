@@ -1,1 +1,1 @@
-export {default} from './CompanySelector';
+export { default } from './CompanySelector';

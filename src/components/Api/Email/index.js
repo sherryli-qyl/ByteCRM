@@ -1,1 +1,3 @@
-export {GetEmails,GetMultiContactsEmails,PostEmail,UpdateEmail,DeleteEmailLog,UpdateContacts,RemoveContacts} from './Email';
+export {
+  GetEmails, GetMultiContactsEmails, PostEmail, UpdateEmail, DeleteEmailLog, UpdateContacts, RemoveContacts,
+} from './Email';

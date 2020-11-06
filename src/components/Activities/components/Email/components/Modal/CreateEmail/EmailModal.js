@@ -1,6 +1,6 @@
 import React from 'react';
-import "./EmailModal.scss";
-import EmailFunctionBar from "./components/EmailFunctionBar";
+import './EmailModal.scss';
+import EmailFunctionBar from './components/EmailFunctionBar';
 import EmailHeader from './components/EmailHeader';
 import EmailInput from './components/EmailInput';
 import EmailSendBar from './components/EmailSend';
@@ -17,34 +17,31 @@ class EmailModal extends React.Component {
     ];
 
     const contacts = [
-      {key:'John@gmail.com',email:'John@gmail.com', value:'John Wick'},
-      {key:'John222@gmail.com',email:'John222@gmail.com', value:'John 1111 Wick'},
-    ]
+      { key: 'John@gmail.com', email: 'John@gmail.com', value: 'John Wick' },
+      { key: 'John222@gmail.com', email: 'John222@gmail.com', value: 'John 1111 Wick' },
+    ];
     this.state = {
       items,
-      contacts
-    }
-    
+      contacts,
+    };
   }
-  
+
   render() {
-    const { items,contacts } = this.state;
+    const { items, contacts } = this.state;
     return (
       <div className="emailModal">
         <EmailFunctionBar
 
           items={items}
         />
-        <EmailHeader 
-           contacts = {contacts}
+        <EmailHeader
+          contacts={contacts}
         />
-        <EmailInput/>
-        <EmailSendBar/>
+        <EmailInput />
+        <EmailSendBar />
       </div>
     );
   }
 }
-
-
 
 export default EmailModal;

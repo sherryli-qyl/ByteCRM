@@ -1,0 +1,38 @@
+.stageItem{
+    height: 4px;
+    background-color: #eaf0f6;
+    width: 100%;
+    border-radius: 12px;
+
+    &+&{
+        margin-left: 4px;
+    }
+
+    &--firstStage{
+        background-color: #fb9d95;
+    }
+
+    &--secondStage{
+        background-color: #ef91a4;
+    }
+
+    &--thirdStage{
+        background-color: #da89b2;
+    }
+
+    &--fourthStage{
+        background-color: #bc85bd;
+    }
+
+    &--fifthStage{
+        background-color: #aa85c0;
+    }
+
+    &--sixthStage{
+        background-color: #9784c2;
+    }
+
+    &--closeStage{
+        background-color: #516f90;
+    }
+}

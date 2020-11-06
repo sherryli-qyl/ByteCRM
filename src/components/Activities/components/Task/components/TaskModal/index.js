@@ -1,1 +1,1 @@
-export {default} from './TaskModal';
+export { default } from './TaskModal';

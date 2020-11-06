@@ -11,6 +11,8 @@
     z-index:2;
     transition: width .2s ease-in;
     box-shadow: -3px 0 8px 0 rgba(66,91,118,.21);
+    overflow: hidden;
+    overflow-y: scroll;
 
 
     .addModalHeader__inner__left__title{

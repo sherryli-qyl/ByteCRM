@@ -1,0 +1,10 @@
+.rotateArrow{
+    color: rgb(0, 164, 189);
+    transition: all 150ms ease-in-out 0s;
+    margin-right:3%;
+
+    &--rotate {
+        transition: all 150ms ease-in-out 0s;
+        transform: rotate(90deg);
+    }
+}

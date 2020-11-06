@@ -3,102 +3,104 @@ import RelationCard from './components/RelationCard';
 import ExpandBar from '../../../../ExpandBar';
 import AddContactRef from './components/AddContactRef';
 import { RemoveCompanyRef } from '../../../../Api/Contact';
-import {MultiRefChange} from '../../../../Api/Company';
+import { MultiRefChange } from '../../../../Api/Company';
 import './AssociatedContacts.scss';
 
 class AssociatedContacts extends React.Component {
   constructor(props) {
     super(props);
-    const { company, contactList } = this.props
+    const { company, contactList } = this.props;
     this.state = {
-      contactList: contactList,
-      company: company,
-      selectedContacts:[],
-    }
+      contactList,
+      company,
+      selectedContacts: [],
+    };
     this.handleRemoveRef = this.handleRemoveRef.bind(this);
     this.handleSelectedContacts = this.handleSelectedContacts.bind(this);
     this.onClickSaveBtn = this.onClickSaveBtn.bind(this);
   }
 
-
-  handleSelectedContacts(contacts){
-    let newContacts = []
-    for (let i in contacts){
-      newContacts.push(contacts[i].id)
+  handleSelectedContacts(contacts) {
+    const newContacts = [];
+    for (const i in contacts) {
+      newContacts.push(contacts[i].id);
     }
-    
+
     this.setState({
       selectedContacts: newContacts,
-    })
+    });
   }
 
-  handleRemoveRef(contactId,companyId) {
+  handleRemoveRef(contactId, companyId) {
     const data = RemoveCompanyRef(contactId, companyId);
-    data.then(response => {
-      if (response.statusText === "OK") {
-        let newContacts = this.state.contactList;
-        for (let i in newContacts){
-          if (newContacts[i].id === contactId){
-            newContacts.splice(i,1);
+    data.then((response) => {
+      if (response.statusText === 'OK') {
+        const newContacts = this.state.contactList;
+        for (const i in newContacts) {
+          if (newContacts[i].id === contactId) {
+            newContacts.splice(i, 1);
             console.log(newContacts);
           }
         }
         this.setState({
-          contactList:newContacts
-        })
-        console.log("Remove company success");
+          contactList: newContacts,
+        });
+        console.log('Remove company success');
+      } else {
+        console.log('Remove company failed');
       }
-      else {
-        console.log("Remove company failed");
-      }
-    })
+    });
   }
 
   onClickSaveBtn() {
-    const body = {contacts: this.state.selectedContacts};
-    const data = MultiRefChange(this.state.company.id,body);
-    data.then(response => {
-      if (response.statusText === "OK") {
+    const body = { contacts: this.state.selectedContacts };
+    const data = MultiRefChange(this.state.company.id, body);
+    data.then((response) => {
+      if (response.statusText === 'OK') {
         this.setState({
-          contactList: response.data.associatedContacts
-        })
-        console.log("Add Contacts success");
+          contactList: response.data.associatedContacts,
+        });
+        console.log('Add Contacts success');
+      } else {
+        console.log('Add Contacts failed');
       }
-      else {
-        console.log("Add Contacts failed");
-      }
-    })
+    });
   }
 
   render() {
-    const { contactList, company} = this.state;
-    let showDetail = false
+    const { contactList, company } = this.state;
+    let showDetail = false;
 
-    if(contactList.length > 0){
+    if (contactList.length > 0) {
       showDetail = true;
     }
 
     const addModal = {
       title: 'Add companies to this contact',
-      content: <AddContactRef contactList = {contactList}
-                              handleSelectedContacts={this.handleSelectedContacts} />
-    }
+      content: <AddContactRef
+        contactList={contactList}
+        handleSelectedContacts={this.handleSelectedContacts}
+      />,
+    };
 
     return (
       <div className="associatedContacts">
-        <ExpandBar label={`Contacts (${contactList.length})`}
-                   showDetail={showDetail}
-                   showAdd={true}
-                   addModal={addModal}
-                   onClickSaveBtn={this.onClickSaveBtn} 
-                   content={
-            <RelationCard contacts={contactList}
-                          company={company}
-                          handleRemoveRef = {this.handleRemoveRef} 
-                          />
-          }/>
+        <ExpandBar
+          label={`Contacts (${contactList.length})`}
+          showDetail={showDetail}
+          showAdd
+          addModal={addModal}
+          onClickSaveBtn={this.onClickSaveBtn}
+          content={(
+            <RelationCard
+              contacts={contactList}
+              company={company}
+              handleRemoveRef={this.handleRemoveRef}
+            />
+          )}
+        />
       </div>
-    )
+    );
   }
 }
 

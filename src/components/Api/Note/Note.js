@@ -3,61 +3,60 @@ import api from '../../../lib/api';
 async function GetNoteByRelatedToId(relatedToId) {
   const serverUrl = `http://localhost:3000/api/notes/relatedTo/${relatedToId}`;
   const response = await fetch(serverUrl, {
-    method: "GET",
-  })
+    method: 'GET',
+  });
   return response.json();
 }
 
 const GetAllAssociatedNotes = (contacts) => {
   const response = api.get(`http://localhost:3000/api/notes/contacts/${contacts}`);
   return response;
-}
+};
 
 async function UpdateNote(noteId, body) {
   const serverUrl = `http://localhost:3000/api/notes/${noteId}`;
   console.log(body);
   const response = await fetch(serverUrl, {
-      method: "PUT",
-      headers: {
-          'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(body)
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(body),
   });
   return response.json();
 }
 
-async function AddNote(body){
-  const serverUrl = `http://localhost:3000/api/notes`;
+async function AddNote(body) {
+  const serverUrl = 'http://localhost:3000/api/notes';
   const response = await fetch(serverUrl, {
-    method: "POST",
+    method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
-    body: JSON.stringify(body)
+    body: JSON.stringify(body),
   });
 
-  if (response.ok){
+  if (response.ok) {
     return response.json();
   }
-  else {
-    return false
-  }
+
+  return false;
 }
 
 async function DeleteNote(noteId) {
   const serverUrl = `http://localhost:3000/api/notes/${noteId}`;
   const response = await fetch(serverUrl, {
-    method: "DELETE",
+    method: 'DELETE',
     headers: {
-        'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
   });
-  if(response.ok) {
+  if (response.ok) {
     return true;
-  } else {
-    return false;
   }
+  return false;
 }
 
-
-export { GetNoteByRelatedToId, GetAllAssociatedNotes, UpdateNote, AddNote, DeleteNote };
+export {
+  GetNoteByRelatedToId, GetAllAssociatedNotes, UpdateNote, AddNote, DeleteNote,
+};

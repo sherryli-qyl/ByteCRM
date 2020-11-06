@@ -1,8 +1,6 @@
 @import '../../style/variable.scss';
 
 .navigationButtonWrapper {
-
-
     &__btn {
         @extend .nakedBtn;
         padding: 1px 0px;
@@ -10,6 +8,15 @@
 
         &__active {
             color: $secondary-color;
+        }
+
+        &__link{
+            text-decoration: none;
+            color: #0091ae;
+
+            &:hover{
+                border-bottom: solid 1px #0091ae;
+            }
         }
     }
 }

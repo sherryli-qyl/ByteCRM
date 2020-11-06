@@ -1,1 +1,1 @@
-export {default} from './DropdownTheme';
+export { default } from './DropdownTheme';

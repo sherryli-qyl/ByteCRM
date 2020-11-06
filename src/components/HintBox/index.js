@@ -1,1 +1,1 @@
-export {default} from './HintBox';
+export { default } from './HintBox';
