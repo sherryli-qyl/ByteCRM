@@ -2,6 +2,7 @@ import React from 'react';
 import './CreateMeetingCard.scss';
 import Footer from './components/Footer/CreateMeetingFooter';
 import Body from '../../../../private/CreateMeetingMain';
+import Header from '../LogMeetingCard/components/Header'
 
 
 
@@ -25,6 +26,7 @@ class CreateMeetingCard extends React.Component {
         this.handleDurationChange = this.handleDurationChange.bind(this);
         this.handleAddContact = this.handleAddContact.bind(this);
         this.handleDeleteContact = this.handleDeleteContact.bind(this); 
+        this.onDescriptionChange = this.onDescriptionChange.bind(this);
     }
     handleDurationChange(time) {
         const newTime = time;
@@ -66,13 +68,30 @@ class CreateMeetingCard extends React.Component {
         })
     }
 
+    onDescriptionChange(description){
+        let newCard = this.state.card;
+        newCard.description = description;
+        this.setState({
+            description:description,
+            card:newCard,
+        })
+        this.props.onChangeMeeting(this.state.cardId,newCard)
+    }
+
     render() {
         const { currentDate, currentTime,meetingDuration,cardId, description,title,contactList,meetingOutcome} = this.state;
         const {user,contact} = this.props;
         return (
                 <div className="createMeetingCard">
                         <div className="createMeetingCard__title">{title}</div>
-                        <div className="createMeetingCard__description">{description}</div>
+                        {description?
+                            <Header 
+                                cardId={cardId}
+                                description={description}
+                                onContentChange = {this.onDescriptionChange}/>
+                            :
+                            ""
+                        }
                         <div className='blockline' >
                         <Body contactList = {contactList}
                             contact = {contact}

@@ -9,7 +9,8 @@ import "./MeetingCards.scss";
 function MeetingCards(props) {
     const createCard = (card)=>(<CreateMeetingCard card={card}
                                                    user={props.user}
-                                                   contact = {props.contact}/>);
+                                                   contact = {props.contact}
+                                                   onChangeMeeting = {props.onChangeMeeting}/>);
     const logCard =(card)=>(<LogMeetingCard card={card}
                                             contact = {props.contact}
                                             user={props.user}

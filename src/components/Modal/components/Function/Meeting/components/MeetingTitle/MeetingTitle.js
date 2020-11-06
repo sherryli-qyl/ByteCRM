@@ -10,9 +10,24 @@ export default function MeetingTitle() {
                 margin="dense"
                 id="name"
                 placeholder="what are you meeting for?"
-                type="email"
+                type="meeting"
                 fullWidth
             />
         </div>
     );
 }
+
+/*const MeetingTitle = ({
+    onTitleChange,
+}) => ( <div className="border-bottom">
+<TextField 
+    autoFocus
+    margin="dense"
+    id="name"
+    placeholder="what are you meeting for?"
+    type="meeting"
+    fullWidth
+/>
+</div>)
+
+export default MeetingTitle;*/

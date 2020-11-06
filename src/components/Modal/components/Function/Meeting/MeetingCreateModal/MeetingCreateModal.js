@@ -13,12 +13,14 @@ import Body from './components/CreateMeetingBody';
 import Footer from './components/CreateMeetingFooter';
 
 
+
 const user = JSON.parse(localStorage.getItem('user'));
 class MeetingCreateModal extends React.Component {
   constructor(props) {
     super(props);   
     const currentDate = transferDateInYearMonDay(new Date());
     const currentTime = "09:00";
+    const currentTitle = "new meeting"
     const {contact} = store.getState().contact;
     //const {user,contact} = this.props;
     let contacts = [];
@@ -34,9 +36,11 @@ class MeetingCreateModal extends React.Component {
       contact,
       btnDisable: true,
       description: '',
+      currentTitle,
   }
   this.handleEditorChange = this.handleEditorChange.bind(this);
   this.handleTimeChange = this.handleTimeChange.bind(this);
+  this.handleTitleChange = this.handleTitleChange.bind(this);
   this.handleDateChange = this.handleDateChange.bind(this);
   this.handleDurationChange = this.handleDurationChange.bind(this);
   this.handleClickLogBtn = this.handleClickLogBtn.bind(this);
@@ -85,6 +89,12 @@ handleDurationChange(time) {
         currentTime: newTime,
     })
 }
+handleTitleChange(title){
+    const newTitle = title;
+    this.setState({
+        currentTitle: newTitle,
+    })
+}
 
 handleDateChange(date) {
     const newDate = date;
@@ -101,7 +111,7 @@ handleTimeChange(time) {
 }
 
 checkValidation(text){
-    const checkInput = text.replaceAll(" ","").replaceAll('<br>', '').replaceAll('<p></p>','');
+    const checkInput = text.replaceAll(" ","").replaceAll('<br>', '').replaceAll('<p></p>','').replaceAll();
     if (checkInput!== ''){
     return true
     }
@@ -111,7 +121,7 @@ checkValidation(text){
 }
 
 handleClickLogBtn(){
-    const {currentDate,currentTime,contacts,description,user} = this.state;
+    const {currentDate,currentTime,contacts,description,user,currentTitle} = this.state;
     if (this.checkValidation(description)){
         const body = {
             description: description,
@@ -119,7 +129,7 @@ handleClickLogBtn(){
             time:currentTime,
             contacts:contacts,
             type:'Meeting',
-            title: 'Test Meeting',
+            title: 'test',
             duration: '30 minutes',
             user:user.id,
             outcome:"Scheduled",
@@ -145,7 +155,8 @@ handleClickLogBtn(){
     const { currentDate, currentTime,contactList,contact,user,btnDisable} = this.state;
     return (
       <div className="meetingCreateModal">
-        <MeetingTitle/>
+        <MeetingTitle onTitleChange = {this.handleTitleChange}
+                        currentTitle ={this.currentTitle}/>
         <Header currentDate={currentDate}
                   currentTime={currentTime}
                   contact = {contact}

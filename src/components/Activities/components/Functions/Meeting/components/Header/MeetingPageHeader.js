@@ -20,7 +20,7 @@ const MeetingPageHeader = (props) => {
                             handleLogMeeting = {props.handleLogMeeting}
                             />));*/
     const logMeetingModal = new Modal('Meeting', 'Meeting',  MeetingLogModal);
-    const createMeetingModal = new Modal('Meetinge', 'Meeting',  MeetingCreateModal);
+    const createMeetingModal = new Modal('Meeting', 'Meeting',  MeetingCreateModal);
     return(
         <ModalContext.Consumer>
             {modalController =>
