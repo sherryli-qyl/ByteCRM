@@ -1,1 +1,1 @@
-export {default} from './TaskFollowDropdown';
+export { default } from './TaskFollowDropdown';

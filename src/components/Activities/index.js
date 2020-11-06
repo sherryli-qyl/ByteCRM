@@ -1,1 +1,1 @@
-export {default} from"./Activities";
+export { default } from './Activities';

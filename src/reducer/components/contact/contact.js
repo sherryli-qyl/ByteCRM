@@ -1,12 +1,12 @@
-const contactReducer =(state = "",action)=>{
-    const {type,contact} = action
-    switch(type){
-        case 'ADD':
-            return{...state,contact};
+const contactReducer = (state = '', action) => {
+  const { type, contact } = action;
+  switch (type) {
+    case 'ADD':
+      return { ...state, contact };
 
-            default:
-                return state;
-    }
-}
+    default:
+      return state;
+  }
+};
 
 export default contactReducer;

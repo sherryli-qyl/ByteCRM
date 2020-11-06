@@ -1,1 +1,1 @@
-export {default} from './TabItem';
+export { default } from './TabItem';

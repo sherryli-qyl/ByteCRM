@@ -8,11 +8,11 @@ const TabBar = ({
   currentPage,
   onTabItemClick,
 }) => (
-    <nav className={"tabBar"}>
-      {tabItems.map((item) => (
-      <TabItem 
+  <nav className="tabBar">
+    {tabItems.map((item) => (
+      <TabItem
         key={item.key}
-        active={currentPage === item.key} 
+        active={currentPage === item.key}
         onClick={() => onTabItemClick(item)}
       >
         {item.value}

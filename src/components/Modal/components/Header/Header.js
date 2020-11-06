@@ -1,57 +1,45 @@
 import React from 'react';
-import ArrowIcon_Down from "../../../../img/Modal/DownArrow.svg";
-import ArrowIcon_Right from '../../../../img/Modal/RightArrow.svg';
-import CloseIcon from "../../../../img/Modal/closeIcon.png"
-import "./Header.scss";
-
-
+import RotateArrow from '../../../RotateArrow';
+import CloseIcon from '../../../../img/Modal/closeIcon.png';
+import './Header.scss';
 
 function Header(props) {
-    const {hide,name} = props;
-    console.log("name pass " + name);
-    return (
-        <div className="Header">
-            <div className="Header__Left">
-                <div className="Header__Left__Icon">
-                    {hide ?
-                        <button className="FunctionButton"
-                            onClick={(event) => {
-                                props.handleHideButton();
-                                console.log("check hide state1 "+ hide);
-                            }}>
-                            <img className="ArrowIcon" src={ArrowIcon_Right} alt="Close"
-                            />
-                        </button>
-                        :
-                        <button className="FunctionButton"
-                            onClick={(event) => {
-                                props.handleHideButton();
-                                console.log("check hide state2 "+ hide);
-                            }}>
-                            <img className="ArrowIcon" src={ArrowIcon_Down} alt="Close"
-                            />
-                        </button>
-                    }
-                </div>
-                <div className="Header__Left__Name">
-                    <span>{name}</span>
-                </div>
-            </div>
-            <div className="Header__Right">
-                <div className="Header__Right__Icon">
-                    <button className="FunctionButton"
-                        onClick={(event) => {
-                            props.handleCloseButton();
-                        }}
-                    >
-                        <img className="CloseIcon" src={CloseIcon} alt="Close" />
-                    </button>
-                </div>
-            </div>
+  const { hide, name } = props;
+  let hideClassName = 'Header__left__icon ';
+  if (hide){
+    hideClassName += 'Header__left__icon--hide'
+  }
+  return (
+    <div className="Header">
+      <div className="Header__left">
+          <button
+            className="Header__left__btn"
+            onClick={(event) => {
+              props.handleHideButton();
+            }}
+          >
+           <RotateArrow rotate={!hide}
+                        className="Header__left__btn__icon"/>
+          </button>
+        <div className="Header__left__Name">
+          <span>{name}</span>
         </div>
+      </div>
+      <div className="Header__right">
+        <div className="Header__right__icon">
+          <button
+            className="FunctionButton"
+            onClick={(event) => {
+              props.handleCloseButton();
+            }}
+          >
+            <img className="CloseIcon" src={CloseIcon} alt="Close" />
+          </button>
+        </div>
+      </div>
+    </div>
 
-    )
+  );
 }
-
 
 export default Header;

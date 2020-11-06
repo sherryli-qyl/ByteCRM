@@ -1,1 +1,1 @@
-export {default} from './DeleteHeader';
+export { default } from './DeleteHeader';

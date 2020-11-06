@@ -2,9 +2,9 @@ import React from 'react';
 
 import './TabItem.scss';
 
-const TabItem = ({ 
-  children, 
-  active, 
+const TabItem = ({
+  children,
+  active,
   onClick,
 }) => {
   let className = 'tabBar__item';
@@ -15,7 +15,7 @@ const TabItem = ({
 
   return (
     <button
-      className={className} 
+      className={className}
       onClick={(event) => {
         event.preventDefault();
         onClick();

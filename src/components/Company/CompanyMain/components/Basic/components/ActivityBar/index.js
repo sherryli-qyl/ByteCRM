@@ -1,1 +1,1 @@
-export {default} from'./ActivityBar';
+export { default } from './ActivityBar';

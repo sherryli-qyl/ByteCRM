@@ -2,22 +2,40 @@
 
 .dropdown{
     position: relative;
-    background-color: white;
-    &__above{
+    background-color: transparent;
+    
+    &__display{
         display:flex;
-
-        &:hover{
-            cursor: pointer;
-            border-bottom: solid 1px $secondary-color;
-        }
+        align-items: center;
 
         &__text{
-            color: $secondary-color;
+            display: flex;
+            align-items: center;
+            &--small{
+                color: $secondary-color;
+                &:hover{
+                    cursor: pointer;
+                    border-bottom: solid 1px $secondary-color;
+                }
+            }
+
+            &--large{
+                color:$primary-color;
+                flex-grow: 1;
+                height: 40px;
+                &:hover{
+                    cursor: pointer;
+                }
+            }
         }
+
         &__icon{
             margin-left:5px;
             color:rgba($color: $primary-color, $alpha: 0.7);
-            flex-grow: 1;
+
+            &--small{
+                flex-grow: 1;
+            }
         }
     }
 }

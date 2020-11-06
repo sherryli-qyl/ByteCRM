@@ -1,1 +1,1 @@
-export { default } from './TimeLineControls.js';
+export { default } from './TimeLineControls';

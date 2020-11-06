@@ -1,21 +1,13 @@
 import React from 'react';
 import './Avatar.scss';
 
-
-
 const Avatar = ({
-    children,
-    variant, //large,small
-}) => {
+  children,
+}) => (
+  <div className="avatar">
+    {children}
+  </div>
 
-    let className = `avatar avatar--${variant}`
-    
-    return (
-        <div className={className}>
-            {children}
-        </div>
-    )
-}
-
+);
 
 export default Avatar;

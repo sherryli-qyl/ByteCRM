@@ -1,1 +1,1 @@
-export {default as CompanyDictionary} from './Dictionary';
+export { default as CompanyDictionary } from './Dictionary';

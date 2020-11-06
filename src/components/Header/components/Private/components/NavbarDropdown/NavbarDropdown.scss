@@ -1,0 +1,105 @@
+@import "../../../../../../style/variable.scss";
+
+.navBarDropdown {
+  display: flex;
+  flex-direction: column;
+  border: solid 1px $border-color;
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px 40px;
+    border-bottom: 1px solid $border-color;
+
+    &__avatar {
+      display: flex;
+      align-items: center;
+      align-self: center;
+
+      &__img {
+        height: 60px;
+        width: 60px;
+      }
+    }
+
+    &__profile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      &__name {
+        color: $primary-color;
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 20px;
+
+        :hover {
+          color: $primary-color;
+        }
+      }
+
+      &__email {
+        color: $label-color;
+        font-size: 16px;
+        margin: 20px 0;
+
+        :hover {
+          color: $label-color;
+        }
+      }
+
+      &__preference {
+        white-space: nowrap;
+        color: $secondary-color;
+        font-size: 16px;
+        margin: 10px 0;
+        cursor: pointer;
+
+        :hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  &__footer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    :hover {
+      text-decoration: underline;
+    }
+
+    &__navButton {
+      @extend .nakedBtn;
+      width: 100px;
+      height: 30px;
+      border-radius: 5px;
+      font-size: 14px;
+      color: $secondary-color;
+
+      a {
+        color: $secondary-color;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+.navBarDropdownCorner {
+  background-color: red;
+  height: 15px;
+  width: 15px;
+  position: absolute;
+  transform: rotate(45deg);
+  z-index:3;
+  top:-10px;
+  border: {
+    top: solid 1px rgb(203, 214, 226);
+    left: solid 1px rgb(203, 214, 226);
+  }
+
+
+}

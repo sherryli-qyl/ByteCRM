@@ -1,1 +1,1 @@
-export {default} from './MethodCard';
+export { default } from './MethodCard';

@@ -1,1 +1,1 @@
-export {default} from './Selects';
+export { default } from './Selects';

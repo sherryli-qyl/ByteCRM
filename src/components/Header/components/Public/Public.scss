@@ -1,5 +1,56 @@
-.Layout {
+@import "../../../../style/variable.scss";
+
+.left_wrapper {
   display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  @include MQ(S) {
+    position: relative;
+  }
+  .navbar_logo {
+    height: 100%;
+    @include MQ(S) {
+      position: absolute;
+      left: 0;
+    }
+  }
+  .menu_icon {
+    color: $primary-color-light;
+    display: none;
+    @include MQ(S) {
+      display: block;
+      position: absolute;
+      top: 18px;
+      left: 55px;
+    }
+  }
+  .left_nav_menu {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    grid-gap: 10px;
+
+    @include MQ(S) {
+      display: none;
+      flex-direction: column;
+      width: 100vw;
+      height: 400px;
+      position: absolute;
+      top: 50px;
+      left: 0;
+      opacity: 1;
+      transition: all 0.5s ease;
+    }
+  }
+  .left_nav_menu.active {
+    @include MQ(S) {
+      display: flex;
+      background: $primary-color;
+      opacity: 1;
+      transition: all 0.5s ease;
+      z-index: 100;
+    }
+  }
 }
-
-

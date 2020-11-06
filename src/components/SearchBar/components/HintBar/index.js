@@ -1,1 +1,1 @@
-export {default} from './HintBar';
+export { default } from './HintBar';

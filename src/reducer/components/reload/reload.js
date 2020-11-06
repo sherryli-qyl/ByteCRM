@@ -1,12 +1,12 @@
-const reloadReducer =(state = false,action)=>{
-    const {type,reload,value} = action;
-    switch(type){
-        case 'SAVE':
-            return {...state,reload,value};
+const reloadReducer = (state = false, action) => {
+  const { type, reload, value, key } = action;
+  switch (type) {
+    case 'SAVE':
+      return { ...state, reload, value, key };
 
-            default:
-                return state;
-    }
-}
+    default:
+      return state;
+  }
+};
 
 export default reloadReducer;

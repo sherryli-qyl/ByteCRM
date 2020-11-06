@@ -1,0 +1,30 @@
+@import "../../../../style/variable.scss";
+
+.headerNavLinkWrapper {
+    text-align: center;
+    vertical-align: middle;
+    margin: 17px 8px;
+    height: 100%;
+
+    &__link {
+        text-decoration: none;
+        color: $primary-color-light;
+        @include MQ(S) {
+            color: $primary-color-light;
+            text-align: center;
+            display: table;
+            width: 100%;
+        }
+        &:hover {
+            border: none;
+            color: $secondary-color;
+            transition: all 0.2s ease-out;
+            
+            @include MQ(S) {
+                color: $label-color;
+                cursor: pointer;
+                border-radius: 0;
+            }
+        }
+    }
+}

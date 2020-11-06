@@ -5,7 +5,6 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
-
 const useStyles = makeStyles((theme) => ({
   button: {
     display: 'block',
@@ -36,7 +35,7 @@ export default function ControlledOpenSelect() {
 
   return (
     <div>
-    
+
       <FormControl className={classes.formControl}>
         <InputLabel id="demo-controlled-open-select-label">Assigned to</InputLabel>
         <Select

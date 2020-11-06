@@ -1,1 +1,1 @@
-export {default} from"./EmailInput";
+export { default } from './EmailInput';

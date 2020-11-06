@@ -1,1 +1,1 @@
-export {default} from'./EmailSendBar';
+export { default } from './EmailSendBar';

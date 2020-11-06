@@ -1,0 +1,24 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,700,900);
+@import '../../../../../../../../style/variable.scss';
+
+body {
+  font-family: 'Roboto';
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.custom-file-upload {
+  position: relative;
+  top: 100px;
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.custom-file-upload:hover {
+  opacity: 0.6;
+  transition: opacity 0.3s;
+}

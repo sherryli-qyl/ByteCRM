@@ -1,1 +1,1 @@
-export {default} from './RemoveCompanyRef';
+export { default } from './RemoveCompanyRef';

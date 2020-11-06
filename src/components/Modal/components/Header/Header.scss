@@ -10,14 +10,30 @@
     height:50px;
     border-radius:5px 5px 0px 0px;
       
-    &__Left{
+    &__left{
             display: flex;
             align-items: center;
             flex:4;
             height:100%;
             padding-left:1%;
-                  
-           
+            
+            &__btn{
+                @extend .nakedBtn;
+                border-radius: 50px; 
+
+                &:hover{
+                    background-color: darken($secondary-color,8%);      
+                    cursor: pointer;
+                }
+
+                &__icon{
+                    color:white;
+                    font-size: 18px;
+                }
+
+
+            }
+
              &__Name{
                       font-size: medium;
                       font-weight: 700;
@@ -27,7 +43,7 @@
                     }       
             } 
 
-     &__Right{
+     &__right{
               height:100%;
               display: flex;
               flex:1;

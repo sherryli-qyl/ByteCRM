@@ -11,7 +11,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
   root: {
-   width: '137px',
+    width: '137px',
   },
 });
 
@@ -27,7 +27,8 @@ export default function MaterialUIPickers() {
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
       <Grid container justify="space-around">
-        <KeyboardDatePicker className={classes.root}
+        <KeyboardDatePicker
+          className={classes.root}
           disableToolbar
           variant="inline"
           format="MM/dd/yyyy"
@@ -40,8 +41,9 @@ export default function MaterialUIPickers() {
             'aria-label': 'change date',
           }}
         />
-        
-        <KeyboardTimePicker className={classes.root}
+
+        <KeyboardTimePicker
+          className={classes.root}
           margin="normal"
           id="time-picker"
           label="Due Time"
