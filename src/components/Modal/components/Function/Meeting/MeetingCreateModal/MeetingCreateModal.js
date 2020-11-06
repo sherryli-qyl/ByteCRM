@@ -1,9 +1,9 @@
 import React from 'react';
 import "./MeetingCreateModal.scss";
 import MeetingTitle from '../components/MeetingTitle';
-import MeetingInput from '../components/MeetingInput';
-import MeetingSaveBar from '../components/MeetingSaveBar';
-import MeetingCreateModalMultiSelect from'../components/MeetingCreateModalMultiSelect';
+//import MeetingInput from '../components/MeetingInput';
+//import MeetingSaveBar from '../components/MeetingSaveBar';
+//import MeetingCreateModalMultiSelect from'../components/MeetingCreateModalMultiSelect';
 import Header from '../../../../../../components/Activities/components/Functions/Meeting/private/CreateMeetingMain';
 import store from '../../../../../../store';
 import { transferDateInYearMonDay } from '../../../../../services/DateManager';
@@ -20,6 +20,7 @@ class MeetingCreateModal extends React.Component {
     super(props);   
     const currentDate = transferDateInYearMonDay(new Date());
     const currentTime = "09:00";
+    const currentDuration = "1 hour";
     const currentTitle = "new meeting"
     const {contact} = store.getState().contact;
     //const {user,contact} = this.props;
@@ -30,6 +31,7 @@ class MeetingCreateModal extends React.Component {
     this.state = {
       currentDate,
       currentTime,
+      currentDuration,
       contactList,
       contacts,
       user,
@@ -83,10 +85,10 @@ handleEditorChange(text) {
     }
 }
 
-handleDurationChange(time) {
-    const newTime = time;
+handleDurationChange(duration) {
+    const newDuration = duration;
     this.setState({
-        currentTime: newTime,
+        currentDuration: newDuration,
     })
 }
 handleTitleChange(title){
@@ -121,7 +123,7 @@ checkValidation(text){
 }
 
 handleClickLogBtn(){
-    const {currentDate,currentTime,contacts,description,user,currentTitle} = this.state;
+    const {currentDate,currentTime,contacts,description,user,currentTitle,currentDuration} = this.state;
     if (this.checkValidation(description)){
         const body = {
             description: description,
@@ -129,8 +131,8 @@ handleClickLogBtn(){
             time:currentTime,
             contacts:contacts,
             type:'Meeting',
-            title: 'test',
-            duration: '30 minutes',
+            title: currentTitle,
+            duration: currentDuration,
             user:user.id,
             outcome:"Scheduled",
         }
